@@ -33,13 +33,14 @@ class DamageSimulator:
             if current_weapon_att_count >= weapon.attack_count:
                 weapons_index += 1
                 weapon = weapons[weapons_index]
+                # TODO reset current_weapon_att_count??
             damage = weapon.roll_damage(health)
             health -= damage
 
             attack_count += 1
             current_weapon_att_count += 1
 
-        return attack_count * weapon.attack_speed
+        return attack_count * weapon.attack_speed #TODO should keep track of all weapon att speed
 
     def simulate(self, weapons: [Weapon], health, iterations) -> []:
         tick_count = []

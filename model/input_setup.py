@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from model.attack_style import AttackStyle
 from weapon import Weapon
 from model.boost import Boost
 from model.combat_stats import CombatStats
@@ -14,6 +15,7 @@ class GearSetup:
     gear_stats: WeaponStats  # total bonus of gear + weapon, including att speed i guess
     weapon: Weapon  # class that we can inherit and do custom dmg stuff
     attack_count: int  # TODO is this the right place?
+    prayers: [Prayer]
 
 
 @dataclass()
@@ -23,7 +25,6 @@ class InputSetup:
     gear_setups: [GearSetup]
 
     boosts: [Boost]
-    prayers: [Prayer]
 
     raid_level: int = None
     path_level: int = None
