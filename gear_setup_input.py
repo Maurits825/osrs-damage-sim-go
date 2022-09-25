@@ -7,6 +7,7 @@ from model.input_setup import GearSetup
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapon import Weapon
+from weapons.bandos_godsword import BandosGodsword
 from weapons.dragon_claws import DragonClaws
 from weapons.twisted_bow import TwistedBow
 from weapons.zaryte_crossbow import ZaryteCrossbow
@@ -16,6 +17,7 @@ CUSTOM_WEAPONS = {
     "Dragon claws": DragonClaws(),
     "Zaryte crossbow": ZaryteCrossbow(),
     "Twisted bow": TwistedBow(),
+    "Bandos godsword": BandosGodsword(),
 }
 
 

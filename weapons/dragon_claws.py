@@ -12,7 +12,7 @@ class DragonClaws(Weapon):
         if not self.is_special_attack:
             return super().roll_damage()
 
-        self.accuracy = self.get_accuracy(self.npc)
+        self.accuracy = self.get_accuracy()
         hit = random.random()
         if hit <= self.accuracy:
             hit1 = random.randint(math.floor(self.max_hit / 2), self.max_hit - 1)

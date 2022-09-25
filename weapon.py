@@ -60,7 +60,7 @@ class Weapon:
         self.max_hit = self.get_max_hit()
 
     def roll_damage(self) -> int:
-        self.accuracy = self.get_accuracy(self.npc)
+        self.accuracy = self.get_accuracy()
         hit = random.random()
         damage = 0
         if hit <= self.accuracy:
@@ -68,8 +68,8 @@ class Weapon:
 
         return damage
 
-    def get_accuracy(self, npc: NpcStats):
-        defence_roll = self.get_defence_roll(npc)
+    def get_accuracy(self):
+        defence_roll = self.get_defence_roll(self.npc)
         if self.raid_level:
             defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
         return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
@@ -156,4 +156,5 @@ class Weapon:
         return DpsCalculator.get_attack_roll(effective_skill_attack_lvl, gear_skill_bonus, gear_bonus)
 
     def get_dps(self):
+        self.accuracy = self.get_accuracy()
         return DpsCalculator.get_dps(self.max_hit, self.accuracy, self.attack_speed)

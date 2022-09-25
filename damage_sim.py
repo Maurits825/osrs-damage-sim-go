@@ -1,8 +1,11 @@
+import copy
+
 from damage_sim_stats import DamageSimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
 from model.combat_stats import CombatStats
 from model.input_setup import InputSetup, GearSetup
+from model.npc_stats import NpcStats
 from model.prayer import Prayer, PrayerMultiplier
 from weapon import Weapon
 from wiki_data import WikiData
@@ -20,6 +23,7 @@ class DamageSim:
         self.wiki_data = WikiData()
 
         self.input_setup = None
+        self.initial_npc_stats = None
 
     def get_input_setup(self) -> InputSetup:
         # first get inputs
@@ -42,6 +46,11 @@ class DamageSim:
             ],
             [
                 GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 4, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 1, True),
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
         ]
@@ -81,6 +90,7 @@ class DamageSim:
 
     def run(self, iterations):
         self.input_setup = self.get_input_setup()
+        self.initial_npc_stats = copy.deepcopy(self.input_setup.npc)
 
         max_ticks = 0
         for gear_setup in self.input_setup.gear_setups:
@@ -88,7 +98,10 @@ class DamageSim:
             ttk_stats = DamageSimStats.get_data_stats(ticks_to_kill)
             sim_dps_stats = DamageSimStats.get_data_2d_stats(weapon_sim_dps)
 
+            for gear in gear_setup:
+                gear.weapon.set_npc(copy.deepcopy(self.initial_npc_stats))
             DamageSimStats.print_setup(gear_setup)
+
             for idx, dps in enumerate(sim_dps_stats):
                 DamageSimStats.print_stats(dps, gear_setup[idx].name + " Sim DPS")
             DamageSimStats.print_ticks_stats(ttk_stats, "Time")
@@ -103,6 +116,7 @@ class DamageSim:
         ticks_to_kill_list = []
         weapon_sim_dps_list = []
         for i in range(iterations):
+
             ticks_to_kill, weapon_sim_dps = self.run_damage_sim(gear_setup)
             ticks_to_kill_list.append(ticks_to_kill)
             weapon_sim_dps_list.append(weapon_sim_dps)
@@ -110,21 +124,22 @@ class DamageSim:
         return ticks_to_kill_list, weapon_sim_dps_list
 
     def run_damage_sim(self, gear_setups: [GearSetup]) -> ():
-        hitpoints = self.input_setup.npc.combat_stats.hitpoints
         ticks_to_kill = 0
         current_weapon_att_count = 0
         weapons_index = 0
         weapon_damages = []
 
+        # TODO lots of dupe code
         gear_setup = gear_setups[weapons_index]
         weapon: Weapon = gear_setup.weapon
+        npc: NpcStats = (copy.deepcopy(self.initial_npc_stats))
+        weapon.set_npc(npc)
         weapon_sim_dps = []
-        while hitpoints > 0:
-            self.input_setup.npc.current_hitpoints = hitpoints
 
+        while npc.combat_stats.hitpoints > 0:
             if current_weapon_att_count >= gear_setup.attack_count:
                 ticks_to_kill += current_weapon_att_count * weapon.attack_speed
-                weapon_sim_dps.append(min(sum(weapon_damages), self.input_setup.npc.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
+                weapon_sim_dps.append(min(sum(weapon_damages), self.initial_npc_stats.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
 
                 current_weapon_att_count = 0
                 weapon_damages.clear()
@@ -132,14 +147,15 @@ class DamageSim:
                 weapons_index += 1
                 gear_setup = gear_setups[weapons_index]
                 weapon = gear_setup.weapon
+                weapon.set_npc(npc)
 
             damage = weapon.roll_damage()
-            weapon_damages.append(damage)
-            hitpoints -= damage
+            npc.combat_stats.hitpoints -= damage
 
+            weapon_damages.append(damage)
             current_weapon_att_count += 1
 
-        weapon_sim_dps.append(min(sum(weapon_damages), self.input_setup.npc.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
+        weapon_sim_dps.append(min(sum(weapon_damages), self.initial_npc_stats.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
         # TODO by default remove the last weapon att
         ticks_to_kill += (current_weapon_att_count - 1) * weapon.attack_speed
         return ticks_to_kill, weapon_sim_dps

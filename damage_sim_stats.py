@@ -84,7 +84,7 @@ class DamageSimStats:
         bin_count = np.bincount(tick_count) / len(tick_count)
         cum_sum = np.cumsum(bin_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
-        plt.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_info(gear_setups))
+        plt.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
     @staticmethod
     def show_cumulative_graph(max_ticks, input_setup: InputSetup):
@@ -107,7 +107,7 @@ class DamageSimStats:
         plt.show()
 
     @staticmethod
-    def print_setup(gear_setup: [GearSetup]):
+    def print_setup(gear_setup: [GearSetup]): # TODO maybe if attack_count, show dmg dealt?
         text = ""
         for gear in gear_setup:
             text = text + gear.name + ": " + str(gear.attack_count) + ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
@@ -115,7 +115,7 @@ class DamageSimStats:
         print(text[:-1])
 
     @staticmethod
-    def get_gear_setup_info(gear_setups: [GearSetup]):
+    def get_gear_setup_label(gear_setups: [GearSetup]):
         info = ""
         for gear in gear_setups:
             info = info + gear.name + ": " + str(gear.attack_count) + ", "

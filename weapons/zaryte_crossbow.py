@@ -13,11 +13,11 @@ class ZaryteCrossbow(Weapon):
         if not self.is_special_attack:
             return super().roll_damage()
 
-        self.accuracy = self.get_accuracy(self.npc)
+        self.accuracy = self.get_accuracy()
         hit = random.random()
         damage = 0
         if hit <= self.accuracy:
-            damage = min(110, math.floor(0.22*self.npc.current_hitpoints))
+            damage = min(110, math.floor(0.22 * self.npc.combat_stats.hitpoints))
 
         return damage
 

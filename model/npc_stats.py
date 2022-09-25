@@ -16,7 +16,6 @@ class NpcStats:
 
     location: Location
 
-    current_hitpoints = 0
     min_defence: int = 0
 
     def drain_defence(self, amount):
