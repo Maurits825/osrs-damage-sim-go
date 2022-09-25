@@ -1,6 +1,5 @@
 import random
 from dps_calculator import DpsCalculator
-from model.attack_style import AttackStyle
 from model.attack_type import AttackType
 from model.combat_stats import CombatStats
 from model.combat_style import CombatStyle
@@ -66,24 +65,7 @@ class Weapon:
         return damage
 
     def get_accuracy(self, npc: NpcStats):
-        target_defence = 0
-        target_defence_style = 0
-        if self.attack_style.attack_type in Weapon.MELEE_TYPES:
-            target_defence = npc.combat_stats.defence
-            if self.attack_style.attack_type == AttackType.STAB:
-                target_defence_style = npc.defensive_stats.stab
-            elif self.attack_style.attack_type == AttackType.SLASH:
-                target_defence_style = npc.defensive_stats.slash
-            elif self.attack_style.attack_type == AttackType.CRUSH:
-                target_defence_style = npc.defensive_stats.crush
-        elif self.attack_style.attack_type == AttackType.RANGED:
-            target_defence = npc.combat_stats.defence
-            target_defence_style = npc.defensive_stats.ranged
-        elif self.attack_style.attack_type == AttackType.MAGIC:
-            target_defence = npc.combat_stats.magic
-            target_defence_style = npc.defensive_stats.magic
-
-        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+        defence_roll = self.get_defence_roll(npc)
         if self.raid_level:
             defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
         return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
@@ -112,6 +94,26 @@ class Weapon:
             return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength, gear_bonus)
         elif self.attack_style.attack_type == AttackType.MAGIC:
             return 0
+
+    def get_defence_roll(self, npc: NpcStats):
+        target_defence = 0
+        target_defence_style = 0
+        if self.attack_style.attack_type in Weapon.MELEE_TYPES:
+            target_defence = npc.combat_stats.defence
+            if self.attack_style.attack_type == AttackType.STAB:
+                target_defence_style = npc.defensive_stats.stab
+            elif self.attack_style.attack_type == AttackType.SLASH:
+                target_defence_style = npc.defensive_stats.slash
+            elif self.attack_style.attack_type == AttackType.CRUSH:
+                target_defence_style = npc.defensive_stats.crush
+        elif self.attack_style.attack_type == AttackType.RANGED:
+            target_defence = npc.combat_stats.defence
+            target_defence_style = npc.defensive_stats.ranged
+        elif self.attack_style.attack_type == AttackType.MAGIC:
+            target_defence = npc.combat_stats.magic
+            target_defence_style = npc.defensive_stats.magic
+
+        return DpsCalculator.get_defence_roll(target_defence, target_defence_style)
 
     # TODO void boost & magic
     def get_attack_roll(self):

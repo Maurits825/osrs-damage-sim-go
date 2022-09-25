@@ -48,6 +48,15 @@ class DragonClaws(Weapon):
 
         return hit1 + hit2 + hit3 + hit4
 
+    def get_defence_roll(self, npc: NpcStats):
+        if not self.is_special_attack:
+            return super().get_defence_roll(npc)
+
+        target_defence = npc.combat_stats.defence
+        # always roll against slash
+        target_defence_style = npc.defensive_stats.slash
+        return DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+
     def get_dps(self):
         if self.is_special_attack:
             return 0
