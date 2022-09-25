@@ -31,12 +31,19 @@ class DamageSim:
         # TODO prayer input here?
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 4, True),
-                GearSetupInput.load_gear_setup("Max rapier", "Lunge", [Prayer.PIETY])
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
             [
-                GearSetupInput.load_gear_setup("Max rapier", "Lunge", [Prayer.PIETY])
-            ]
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 1, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 2, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 4, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+            ],
         ]
         # TODO boosts and prayer input
         boosts = [Boost(BoostType.SMELLING_SALTS)]
@@ -88,7 +95,7 @@ class DamageSim:
             max_ticks = max(max_ticks, ttk_stats.maximum)
             DamageSimStats.graph_n_cumulative_tick_count(ticks_to_kill, gear_setup)
 
-        DamageSimStats.show_cumulative_graph(max_ticks)
+        DamageSimStats.show_cumulative_graph(max_ticks, self.input_setup)
 
     def run_simulator(self, iterations, gear_setup: [GearSetup]) -> [DamageSimData]:
         ticks_to_kill_list = []
@@ -135,4 +142,4 @@ class DamageSim:
 
 
 sim = DamageSim()
-sim.run(1000)
+sim.run(10000)

@@ -7,7 +7,14 @@ from model.input_setup import GearSetup
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapon import Weapon
+from weapons.dragon_claws import DragonClaws
+from weapons.zaryte_crossbow import ZaryteCrossbow
 from wiki_data import WikiData
+
+CUSTOM_WEAPONS = {
+        "Dragon claws": DragonClaws(),
+        "Zaryte crossbow": ZaryteCrossbow(),
+    }
 
 
 class GearSetupInput:
@@ -29,14 +36,17 @@ class GearSetupInput:
                 for style in weapon_stats.weapon_category.value:
                     if re.match(attack_style_name + " \\(", style.name):
                         attack_style = style
-                weapon = Weapon(attack_style, weapon_stats.attack_speed)
+
+                if weapon_stats.name in CUSTOM_WEAPONS:
+                    weapon = CUSTOM_WEAPONS[weapon_stats.name]
+                else:
+                    weapon = Weapon()
+
+                weapon.set_attack_style_and_speed(attack_style, weapon_stats.attack_speed)
 
                 if is_special:
                     weapon.set_is_special_attack(is_special)
 
-
-        # todo if weapon is in a custom weapon dict or something,
-        # grab the custom class or something
         return GearSetup(name=name,
                          gear_stats=total_gear_stats,
                          weapon=weapon,

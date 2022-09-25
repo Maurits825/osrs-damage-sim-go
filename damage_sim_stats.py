@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 
-from model.input_setup import GearSetup
+from model.input_setup import GearSetup, InputSetup
 
 
 @dataclass()
@@ -87,9 +87,17 @@ class DamageSimStats:
         plt.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_info(gear_setups))
 
     @staticmethod
-    def show_cumulative_graph(max_ticks):
+    def show_cumulative_graph(max_ticks, input_setup: InputSetup):
         plt.xticks(np.arange(0, max_ticks, 20))  # TODO time labels are kind big so this need to be like 10+
-        plt.title("Cumulative Time to Kill")
+        title = "Cumulative Time to Kill: "
+        title += input_setup.npc.name
+
+        if input_setup.raid_level is not None:
+            title += ", raid level: " + str(input_setup.raid_level)
+        if input_setup.path_level is not None:
+            title += ", path level: " + str(input_setup.path_level)
+
+        plt.title(title)
         plt.legend()
         plt.show()
 
@@ -105,5 +113,5 @@ class DamageSimStats:
     def get_gear_setup_info(gear_setups: [GearSetup]):
         info = ""
         for gear in gear_setups:
-            info = info + gear.name + ": " + str(gear.attack_count) + " - "
-        return info[:-3]
+            info = info + gear.name + ": " + str(gear.attack_count) + ", "
+        return info[:-2]

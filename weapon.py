@@ -3,6 +3,7 @@ from dps_calculator import DpsCalculator
 from model.attack_style import AttackStyle
 from model.attack_type import AttackType
 from model.combat_stats import CombatStats
+from model.combat_style import CombatStyle
 from model.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from model.weapon_stats import WeaponStats
@@ -11,9 +12,9 @@ from model.weapon_stats import WeaponStats
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
-    def __init__(self, attack_style: AttackStyle, attack_speed):
-        self.attack_style = attack_style
-        self.attack_speed = attack_speed
+    def __init__(self):
+        self.attack_style = None
+        self.attack_speed = 0
 
         self.combat_stats: CombatStats = None
         self.gear_stats: WeaponStats = None
@@ -26,6 +27,13 @@ class Weapon:
         self.is_special_attack = False
 
         self.raid_level = None
+
+    def set_attack_style_and_speed(self, attack_style, attack_speed):
+        self.attack_style = attack_style
+        self.attack_speed = attack_speed
+
+        if self.attack_style.combat_style == CombatStyle.RAPID:
+            self.attack_speed -= 1
 
     def set_combat_stats(self, combat_stats: CombatStats):
         self.combat_stats = combat_stats
