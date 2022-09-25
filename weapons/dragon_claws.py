@@ -8,11 +8,11 @@ from weapon import Weapon
 
 class DragonClaws(Weapon):
 
-    def roll_damage(self, current_hitpoints, npc: NpcStats) -> int:
+    def roll_damage(self) -> int:
         if not self.is_special_attack:
-            return super().roll_damage(current_hitpoints, npc)
+            return super().roll_damage()
 
-        self.accuracy = self.get_accuracy(npc)
+        self.accuracy = self.get_accuracy(self.npc)
         hit = random.random()
         if hit <= self.accuracy:
             hit1 = random.randint(math.floor(self.max_hit / 2), self.max_hit - 1)

@@ -62,11 +62,13 @@ class DamageSim:
                 gear.weapon.set_combat_stats(combat_stats)
                 if gear.prayers:
                     gear.weapon.set_prayer(PrayerMultiplier.sum_prayers(gear.prayers))
+
                 gear.weapon.set_total_gear_stats(gear.gear_stats)
+                gear.weapon.set_npc(npc)
+                gear.weapon.set_raid_level(raid_level)
 
                 gear.weapon.update_attack_roll()
                 gear.weapon.update_max_hit()
-                gear.weapon.set_raid_level(raid_level)
 
         return InputSetup(
             npc=npc,
@@ -118,6 +120,8 @@ class DamageSim:
         weapon: Weapon = gear_setup.weapon
         weapon_sim_dps = []
         while hitpoints > 0:
+            self.input_setup.npc.current_hitpoints = hitpoints
+
             if current_weapon_att_count >= gear_setup.attack_count:
                 ticks_to_kill += current_weapon_att_count * weapon.attack_speed
                 weapon_sim_dps.append(min(sum(weapon_damages), self.input_setup.npc.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
@@ -129,7 +133,7 @@ class DamageSim:
                 gear_setup = gear_setups[weapons_index]
                 weapon = gear_setup.weapon
 
-            damage = weapon.roll_damage(hitpoints, self.input_setup.npc)
+            damage = weapon.roll_damage()
             weapon_damages.append(damage)
             hitpoints -= damage
 

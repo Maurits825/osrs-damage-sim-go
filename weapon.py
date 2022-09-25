@@ -17,6 +17,7 @@ class Weapon:
 
         self.combat_stats: CombatStats = None
         self.gear_stats: WeaponStats = None
+        self.npc: NpcStats = None
         self.prayer = None
 
         self.attack_roll = 0
@@ -49,14 +50,17 @@ class Weapon:
     def set_is_special_attack(self, is_special_attack):
         self.is_special_attack = is_special_attack
 
+    def set_npc(self, npc):
+        self.npc = npc
+
     def update_attack_roll(self):
         self.attack_roll = self.get_attack_roll()
 
     def update_max_hit(self):
         self.max_hit = self.get_max_hit()
 
-    def roll_damage(self, current_hitpoints, npc: NpcStats) -> int:
-        self.accuracy = self.get_accuracy(npc)
+    def roll_damage(self) -> int:
+        self.accuracy = self.get_accuracy(self.npc)
         hit = random.random()
         damage = 0
         if hit <= self.accuracy:

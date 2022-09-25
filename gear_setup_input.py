@@ -8,13 +8,15 @@ from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapon import Weapon
 from weapons.dragon_claws import DragonClaws
+from weapons.twisted_bow import TwistedBow
 from weapons.zaryte_crossbow import ZaryteCrossbow
 from wiki_data import WikiData
 
 CUSTOM_WEAPONS = {
-        "Dragon claws": DragonClaws(),
-        "Zaryte crossbow": ZaryteCrossbow(),
-    }
+    "Dragon claws": DragonClaws(),
+    "Zaryte crossbow": ZaryteCrossbow(),
+    "Twisted bow": TwistedBow(),
+}
 
 
 class GearSetupInput:

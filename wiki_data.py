@@ -3,6 +3,7 @@ import json
 from model.aggressive_stats import AggressiveStats
 from model.combat_stats import CombatStats
 from model.defensive_stats import DefensiveStats
+from model.locations import Location
 from model.npc_stats import NpcStats
 from model.weapon_category import WeaponCategory
 from model.weapon_stats import WeaponStats
@@ -11,7 +12,8 @@ from model.weapon_stats import WeaponStats
 class WikiData:
     items_json = json.load(open("./wiki_data/items-dps-calc.json"))
     npcs_json = json.load(open("./wiki_data/npcs-dps-calc.json"))
-    min_defence = json.load(open("./wiki_data/npcs-dps-calc.json"))
+    min_defence = json.load(open("./wiki_data/min_defence.json"))
+    locations = json.load(open("./wiki_data/locations.json"))
 
     @staticmethod
     def get_item(item_id: int) -> WeaponStats:
@@ -37,6 +39,8 @@ class WikiData:
         npc = WikiData.npcs_json[str(npc_id)]
         npc_name = npc["name"]
         min_defence = WikiData.min_defence.get(npc_name, 0)
+        location = WikiData.locations.get(npc_name, Location.NONE)
+
         return NpcStats(
             name=npc_name,
             combat_stats=CombatStats(
@@ -62,5 +66,6 @@ class WikiData:
                 magic=npc.get("dmagic", 0),
                 ranged=npc.get("drange", 0),
             ),
-            min_defence=min_defence
+            min_defence=min_defence,
+            location=location
         )

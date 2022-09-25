@@ -1,17 +1,7 @@
 {
-  "Zebak": {
-    "min_defence": 50
-  },
-  "Kephri": {
-    "min_defence": 60
-  },
-  "Ba-Ba": {
-    "min_defence": 60
-  },
-  "Akkha": {
-    "min_defence": 70
-  },
-  "Obelisk": {
-    "min_defence": 60
-  }
+  "Zebak": 50,
+  "Kephri": 60,
+  "Ba-Ba": 60,
+  "Akkha": 70,
+  "Obelisk": 60
 }

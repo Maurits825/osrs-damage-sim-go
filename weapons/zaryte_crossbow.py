@@ -9,15 +9,15 @@ from weapon import Weapon
 class ZaryteCrossbow(Weapon):
     name: str = 'ZCB spec'
 
-    def roll_damage(self, current_hitpoints, npc: NpcStats) -> int:
+    def roll_damage(self) -> int:
         if not self.is_special_attack:
-            return super().roll_damage(current_hitpoints, npc)
+            return super().roll_damage()
 
-        self.accuracy = self.get_accuracy(npc)
+        self.accuracy = self.get_accuracy(self.npc)
         hit = random.random()
         damage = 0
         if hit <= self.accuracy:
-            damage = min(110, math.floor(0.22*current_hitpoints))
+            damage = min(110, math.floor(0.22*self.npc.current_hitpoints))
 
         return damage
 

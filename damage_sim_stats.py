@@ -89,6 +89,11 @@ class DamageSimStats:
     @staticmethod
     def show_cumulative_graph(max_ticks, input_setup: InputSetup):
         plt.xticks(np.arange(0, max_ticks, 20))  # TODO time labels are kind big so this need to be like 10+
+        plt.yticks(np.arange(0, 1.1, 0.1))
+
+        plt.xlabel("Time to kill")
+        plt.ylabel("Cummulative chance")
+
         title = "Cumulative Time to Kill: "
         title += input_setup.npc.name
 
