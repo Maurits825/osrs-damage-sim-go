@@ -1,4 +1,5 @@
 import math
+
 import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
@@ -30,7 +31,7 @@ class DamageSimStats:
         return SimStats(average, maximum, minimum, frequent)
 
     @staticmethod
-    def get_data_2d_stats(data_list) -> [SimStats]:
+    def get_data_2d_stats(data_list) -> list[SimStats]:
         sim_stats_list = []
         dps = []
         for index in range(len(data_list[0])):
@@ -70,17 +71,17 @@ class DamageSimStats:
         plt.show()
 
     @staticmethod
-    def graph_cummulative_tick_count(tick_count, gear_setups: [GearSetup]):
+    def graph_cummulative_tick_count(tick_count, gear_setups: list[GearSetup]):
         bin_count = np.bincount(tick_count) / len(tick_count)
         cum_sum = np.cumsum(bin_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
         plt.plot(time_stamps, cum_sum)
         plt.xticks(np.arange(0, len(cum_sum) + 1, 20))  # TODO time labels are kind big so this need to be like 10+
-        plt.title(DamageSimStats.get_gear_setup_info(gear_setups))
+        plt.title(DamageSimStats.get_gear_setup_label(gear_setups))
         plt.show()
 
     @staticmethod
-    def graph_n_cumulative_tick_count(tick_count, gear_setups: [GearSetup]):
+    def graph_n_cumulative_tick_count(tick_count, gear_setups: list[GearSetup]):
         bin_count = np.bincount(tick_count) / len(tick_count)
         cum_sum = np.cumsum(bin_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
@@ -107,15 +108,19 @@ class DamageSimStats:
         plt.show()
 
     @staticmethod
-    def print_setup(gear_setup: [GearSetup]): # TODO maybe if attack_count, show dmg dealt?
+    def print_setup(gear_setup: list[GearSetup], sim_dps_stats: list[SimStats]):
         text = ""
-        for gear in gear_setup:
-            text = text + gear.name + ": " + str(gear.attack_count) + ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
+        for idx, gear in enumerate(gear_setup):
+            text += gear.name + ": " + str(gear.attack_count)
+            if gear.attack_count != math.inf:
+                text += ", Avr Damage: " + str(round(gear.attack_count * sim_dps_stats[idx].average * 0.6 * gear.weapon.attack_speed)) + "\n"
+            else:
+                text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 
         print(text[:-1])
 
     @staticmethod
-    def get_gear_setup_label(gear_setups: [GearSetup]):
+    def get_gear_setup_label(gear_setups: list[GearSetup]):
         info = ""
         for gear in gear_setups:
             info = info + gear.name + ": " + str(gear.attack_count) + ", "

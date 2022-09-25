@@ -1,5 +1,4 @@
 import math
-import random
 
 from dps_calculator import DpsCalculator
 from model.npc_stats import NpcStats

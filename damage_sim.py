@@ -40,17 +40,12 @@ class DamageSim:
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
             [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 1, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 2, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
-            ],
-            [
                 GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 4, True),
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
             [
                 GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 1, True),
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
         ]
@@ -58,7 +53,7 @@ class DamageSim:
         boosts = [Boost(BoostType.SMELLING_SALTS)]
 
         # TODO input for this
-        raid_level = 0
+        raid_level = 300
         path_level = 0
 
         # TODO calc boosted stats here?
@@ -100,7 +95,7 @@ class DamageSim:
 
             for gear in gear_setup:
                 gear.weapon.set_npc(copy.deepcopy(self.initial_npc_stats))
-            DamageSimStats.print_setup(gear_setup)
+            DamageSimStats.print_setup(gear_setup, sim_dps_stats)
 
             for idx, dps in enumerate(sim_dps_stats):
                 DamageSimStats.print_stats(dps, gear_setup[idx].name + " Sim DPS")
@@ -112,7 +107,7 @@ class DamageSim:
 
         DamageSimStats.show_cumulative_graph(max_ticks, self.input_setup)
 
-    def run_simulator(self, iterations, gear_setup: [GearSetup]) -> [DamageSimData]:
+    def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> (list, list):
         ticks_to_kill_list = []
         weapon_sim_dps_list = []
         for i in range(iterations):
@@ -123,7 +118,7 @@ class DamageSim:
 
         return ticks_to_kill_list, weapon_sim_dps_list
 
-    def run_damage_sim(self, gear_setups: [GearSetup]) -> ():
+    def run_damage_sim(self, gear_setups: list[GearSetup]) -> (int, list):
         ticks_to_kill = 0
         current_weapon_att_count = 0
         weapons_index = 0
