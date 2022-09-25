@@ -16,21 +16,43 @@ class SimStats:
 
 class DamageSimStats:
     @staticmethod
-    def get_tick_count_stats(tick_count) -> SimStats:
-        np_counts = np.array(tick_count)
-        average = np.average(np_counts)
-        maximum = np.max(np_counts)
-        minimum = np.min(np_counts)
-        frequent = int(np.argmax(np.bincount(np_counts)))
+    def get_data_stats(data) -> SimStats:
+        np_data = np.array(data)
+        average = np.average(np_data)
+        maximum = np.max(np_data)
+        minimum = np.min(np_data)
+
+        try:
+            frequent = int(np.argmax(np.bincount(np_data)))
+        except TypeError:
+            frequent = 0
 
         return SimStats(average, maximum, minimum, frequent)
 
     @staticmethod
-    def print_stats(stats: SimStats):
-        print("Average: " + DamageSimStats.format_ticks_to_time(stats.average) + ", " +
+    def get_data_2d_stats(data_list) -> [SimStats]:
+        sim_stats_list = []
+        dps = []
+        for index in range(len(data_list[0])):
+            for data in data_list:
+                dps.append(data[index])
+            sim_stats_list.append(DamageSimStats.get_data_stats(dps))
+            dps.clear()
+        return sim_stats_list
+
+    @staticmethod
+    def print_ticks_stats(stats: SimStats, label: str):
+        print(label + ": Average: " + DamageSimStats.format_ticks_to_time(stats.average) + ", " +
               "Frequent: " + DamageSimStats.format_ticks_to_time(stats.most_frequent) + ", " +
               "Max: " + DamageSimStats.format_ticks_to_time(stats.maximum) + ", " +
               "Min: " + DamageSimStats.format_ticks_to_time(stats.minimum))
+
+    @staticmethod
+    def print_stats(stats: SimStats, label: str):
+        print(label + ": Average: " + str(round(stats.average, 4)) + ", " +
+              "Frequent: " + str(round(stats.most_frequent, 4)) + ", " +
+              "Max: " + str(round(stats.maximum, 4)) + ", " +
+              "Min: " + str(round(stats.minimum, 4)))
 
     @staticmethod
     def format_ticks_to_time(ticks):
@@ -48,9 +70,40 @@ class DamageSimStats:
         plt.show()
 
     @staticmethod
+    def graph_cummulative_tick_count(tick_count, gear_setups: [GearSetup]):
+        bin_count = np.bincount(tick_count) / len(tick_count)
+        cum_sum = np.cumsum(bin_count)
+        time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
+        plt.plot(time_stamps, cum_sum)
+        plt.xticks(np.arange(0, len(cum_sum) + 1, 20))  # TODO time labels are kind big so this need to be like 10+
+        plt.title(DamageSimStats.get_gear_setup_info(gear_setups))
+        plt.show()
+
+    @staticmethod
+    def graph_n_cumulative_tick_count(tick_count, gear_setups: [GearSetup]):
+        bin_count = np.bincount(tick_count) / len(tick_count)
+        cum_sum = np.cumsum(bin_count)
+        time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
+        plt.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_info(gear_setups))
+
+    @staticmethod
+    def show_cumulative_graph(max_ticks):
+        plt.xticks(np.arange(0, max_ticks, 20))  # TODO time labels are kind big so this need to be like 10+
+        plt.title("Cumulative Time to Kill")
+        plt.legend()
+        plt.show()
+
+    @staticmethod
     def print_setup(gear_setup: [GearSetup]):
         text = ""
         for gear in gear_setup:
-            text = text + gear.name + ": " + str(gear.attack_count) + ", DPS: " + str(gear.weapon.get_dps())
+            text = text + gear.name + ": " + str(gear.attack_count) + ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 
-        print(text[:-2])
+        print(text[:-1])
+
+    @staticmethod
+    def get_gear_setup_info(gear_setups: [GearSetup]):
+        info = ""
+        for gear in gear_setups:
+            info = info + gear.name + ": " + str(gear.attack_count) + " - "
+        return info[:-3]

@@ -23,6 +23,10 @@ class Weapon:
         self.accuracy = 0
         self.max_hit = 0
 
+        self.is_special_attack = False
+
+        self.raid_level = None
+
     def set_combat_stats(self, combat_stats: CombatStats):
         self.combat_stats = combat_stats
 
@@ -31,6 +35,18 @@ class Weapon:
 
     def set_total_gear_stats(self, total_gear_stats):
         self.gear_stats = total_gear_stats
+
+    def set_raid_level(self, raid_level):
+        self.raid_level = raid_level
+
+    def set_is_special_attack(self, is_special_attack):
+        self.is_special_attack = is_special_attack
+
+    def update_attack_roll(self):
+        self.attack_roll = self.get_attack_roll()
+
+    def update_max_hit(self):
+        self.max_hit = self.get_max_hit()
 
     def roll_damage(self, current_hitpoints, npc: NpcStats) -> int:
         self.accuracy = self.get_accuracy(npc)
@@ -60,13 +76,9 @@ class Weapon:
             target_defence_style = npc.defensive_stats.magic
 
         defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+        if self.raid_level:
+            defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
         return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
-
-    def update_attack_roll(self):
-        self.attack_roll = self.get_attack_roll()
-
-    def update_max_hit(self):
-        self.max_hit = self.get_max_hit()
 
     # TODO gear bonus & style void boosts
     def get_max_hit(self):

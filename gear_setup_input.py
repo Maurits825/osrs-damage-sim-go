@@ -12,7 +12,8 @@ from wiki_data import WikiData
 
 class GearSetupInput:
     @staticmethod
-    def load_gear_setup(name: str, attack_style_name: str, prayers: [Prayer] = None, attacks: int = math.inf) -> GearSetup:
+    def load_gear_setup(name: str, attack_style_name: str,
+                        prayers: [Prayer] = None, attacks: int = math.inf, is_special=False) -> GearSetup:
         gear_dict = GearJson.load_gear()
         gear = gear_dict[name]
 
@@ -29,6 +30,9 @@ class GearSetupInput:
                     if re.match(attack_style_name + " \\(", style.name):
                         attack_style = style
                 weapon = Weapon(attack_style, weapon_stats.attack_speed)
+
+                if is_special:
+                    weapon.set_is_special_attack(is_special)
 
 
         # todo if weapon is in a custom weapon dict or something,
