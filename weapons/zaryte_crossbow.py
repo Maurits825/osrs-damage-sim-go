@@ -22,7 +22,10 @@ class ZaryteCrossbow(Weapon):
         return damage
 
     def get_attack_roll(self):
-        return 2 * super().get_attack_roll()
+        if self.is_special_attack:
+            return 2 * super().get_attack_roll()
+        else:
+            return super().get_attack_roll()
 
     def get_dps(self):
         if self.is_special_attack:
