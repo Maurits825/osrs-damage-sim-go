@@ -1,23 +1,29 @@
+import copy
 import math
 import re
 
 from gear_json import GearJson
-from model.attack_style import AttackStyle
+from model.attack_style.attack_style import AttackStyle
 from model.input_setup import GearSetup
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapon import Weapon
 from weapons.bandos_godsword import BandosGodsword
+from weapons.bone_dagger import BoneDagger
 from weapons.dragon_claws import DragonClaws
+from weapons.fang import Fang
 from weapons.twisted_bow import TwistedBow
 from weapons.zaryte_crossbow import ZaryteCrossbow
 from wiki_data import WikiData
 
+#TODO is this the place?
 CUSTOM_WEAPONS = {
     "Dragon claws": DragonClaws(),
     "Zaryte crossbow": ZaryteCrossbow(),
     "Twisted bow": TwistedBow(),
     "Bandos godsword": BandosGodsword(),
+    "Bone dagger": BoneDagger(),
+    "Osmumten's fang": Fang()
 }
 
 
@@ -42,7 +48,7 @@ class GearSetupInput:
                         attack_style = style
 
                 if weapon_stats.name in CUSTOM_WEAPONS:
-                    weapon = CUSTOM_WEAPONS[weapon_stats.name]
+                    weapon = copy.deepcopy(CUSTOM_WEAPONS[weapon_stats.name])
                 else:
                     weapon = Weapon()
 

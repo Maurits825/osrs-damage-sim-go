@@ -1,25 +1,55 @@
-from dataclasses import dataclass
 import math
 import random
-from weapons.weapon import Weapon
+
+from dps_calculator import DpsCalculator
+from weapon import Weapon
 
 
-@dataclass()
 class Fang(Weapon):
-    name: str = 'Fang'
+    def __init__(self):
+        super().__init__()
+        self.true_min_hit = 0
+        self.true_max_hit = 0
 
-    def __post_init__(self):
+    def update_max_hit(self):
+        super().update_max_hit()
+
         self.true_min_hit = math.floor(self.max_hit * 0.15)
         self.true_max_hit = self.max_hit - math.floor(self.max_hit * 0.15)
 
-    def roll_damage(self, health=0) -> int:
+    def roll_damage(self) -> int:
+        self.accuracy = self.get_accuracy()
         hit = random.random()
         damage = 0
-        if hit <= (self.accuracy / 100.0):
-            damage = random.randint(self.true_min_hit, self.true_max_hit)
+
+        if self.is_special_attack:
+            max_hit = self.max_hit
+        else:
+            max_hit = self.true_max_hit
+
+        if hit <= self.accuracy:
+            damage = random.randint(self.true_min_hit, max_hit)
         else:
             hit = random.random()
-            if hit <= (self.accuracy / 100.0):
-                damage = random.randint(self.true_min_hit, self.true_max_hit)
+            if hit <= self.accuracy:
+                damage = random.randint(self.true_min_hit, max_hit)
 
         return damage
+
+    def get_attack_roll(self):
+        if self.is_special_attack:
+            return math.floor(1.5 * super().get_attack_roll())
+        else:
+            return super().get_attack_roll()
+
+    def get_dps(self):
+        self.accuracy = self.get_accuracy()
+        effective_accuracy = self.accuracy + ((1 - self.accuracy) * self.accuracy)
+
+        if self.is_special_attack:
+            max_hit = self.max_hit
+        else:
+            max_hit = self.true_max_hit
+
+        effective_max_hit = self.true_min_hit + max_hit
+        return DpsCalculator.get_dps(effective_max_hit, effective_accuracy, self.attack_speed)

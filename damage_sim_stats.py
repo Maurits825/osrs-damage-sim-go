@@ -88,7 +88,7 @@ class DamageSimStats:
         plt.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
     @staticmethod
-    def show_cumulative_graph(max_ticks, input_setup: InputSetup):
+    def show_cumulative_graph(max_ticks, input_setup: InputSetup, iterations, hitpoints):
         plt.xticks(np.arange(0, max_ticks, 20))  # TODO time labels are kind big so this need to be like 10+
         plt.yticks(np.arange(0, 1.1, 0.1))
 
@@ -96,12 +96,14 @@ class DamageSimStats:
         plt.ylabel("Cummulative chance")
 
         title = "Cumulative Time to Kill: "
-        title += input_setup.npc.name
+        title += input_setup.npc.name + ", HP: " + str(hitpoints)
 
         if input_setup.raid_level is not None:
             title += ", raid level: " + str(input_setup.raid_level)
         if input_setup.path_level is not None:
             title += ", path level: " + str(input_setup.path_level)
+
+        title += ", iterations: " + str(iterations)
 
         plt.title(title)
         plt.legend()
@@ -113,7 +115,7 @@ class DamageSimStats:
         for idx, gear in enumerate(gear_setup):
             text += gear.name + ": " + str(gear.attack_count)
             if gear.attack_count != math.inf:
-                text += ", Avr Damage: " + str(round(gear.attack_count * sim_dps_stats[idx].average * 0.6 * gear.weapon.attack_speed)) + "\n"
+                text += ", Avg Damage: " + str(round(gear.attack_count * sim_dps_stats[idx].average * 0.6 * gear.weapon.attack_speed)) + "\n"
             else:
                 text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 

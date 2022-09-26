@@ -1,9 +1,9 @@
 import random
 from dps_calculator import DpsCalculator
-from model.attack_type import AttackType
-from model.combat_stats import CombatStats
-from model.combat_style import CombatStyle
-from model.npc_stats import NpcStats
+from model.attack_style.attack_type import AttackType
+from model.npc.combat_stats import CombatStats
+from model.attack_style.combat_style import CombatStyle
+from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from model.weapon_stats import WeaponStats
 
@@ -97,6 +97,7 @@ class Weapon:
             gear_bonus = 1
             return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength, gear_bonus)
         elif self.attack_style.attack_type == AttackType.MAGIC:
+            #TODO
             return 0
 
     def get_defence_roll(self, npc: NpcStats):

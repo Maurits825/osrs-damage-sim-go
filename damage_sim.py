@@ -3,9 +3,9 @@ import copy
 from damage_sim_stats import DamageSimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
-from model.combat_stats import CombatStats
+from model.npc.combat_stats import CombatStats
 from model.input_setup import InputSetup, GearSetup
-from model.npc_stats import NpcStats
+from model.npc.npc_stats import NpcStats
 from model.prayer import Prayer, PrayerMultiplier
 from weapon import Weapon
 from wiki_data import WikiData
@@ -27,34 +27,43 @@ class DamageSim:
 
     def get_input_setup(self) -> InputSetup:
         # first get inputs
+        # TODO input for this
+        raid_level = 500
+        path_level = 3
+        team_size = 1
         # TODO get npc by name
-        npc = self.wiki_data.get_npc(11730)  # Zebak
-        # TODO better way? - this is input, none boosted stats
+        npc = self.wiki_data.get_npc(11778)  # Ba-Ba
+        # TODO do this here?
+        path_level_mult = 0.08 if path_level > 0 else 0.05
+        npc.combat_stats.hitpoints = int(
+            round(npc.combat_stats.hitpoints/10 * (1 + raid_level * 0.004) * (1 + (path_level - 1) * 0.05 + path_level_mult) * team_size, 0) * 10
+        )
+        # TODO better way? - this is input, non boosted stats
         combat_stats = CombatStats(99, 99, 99, 99, 99, 99)
         # TODO as input maybe or something, list or setup names
         # TODO prayer input here?
+        #GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
-            ],
-            [
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 4, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], 2, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
             ],
             [
                 GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], 4, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
             ],
         ]
         # TODO boosts and prayer input
         boosts = [Boost(BoostType.SMELLING_SALTS)]
-
-        # TODO input for this
-        raid_level = 300
-        path_level = 0
 
         # TODO calc boosted stats here?
         for boost in boosts:
@@ -67,6 +76,7 @@ class DamageSim:
                 if gear.prayers:
                     gear.weapon.set_prayer(PrayerMultiplier.sum_prayers(gear.prayers))
 
+                # TODO make a func for this?
                 gear.weapon.set_total_gear_stats(gear.gear_stats)
                 gear.weapon.set_npc(npc)
                 gear.weapon.set_raid_level(raid_level)
@@ -105,13 +115,12 @@ class DamageSim:
             max_ticks = max(max_ticks, ttk_stats.maximum)
             DamageSimStats.graph_n_cumulative_tick_count(ticks_to_kill, gear_setup)
 
-        DamageSimStats.show_cumulative_graph(max_ticks, self.input_setup)
+        DamageSimStats.show_cumulative_graph(max_ticks, self.input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
 
     def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> (list, list):
         ticks_to_kill_list = []
         weapon_sim_dps_list = []
         for i in range(iterations):
-
             ticks_to_kill, weapon_sim_dps = self.run_damage_sim(gear_setup)
             ticks_to_kill_list.append(ticks_to_kill)
             weapon_sim_dps_list.append(weapon_sim_dps)
@@ -157,4 +166,4 @@ class DamageSim:
 
 
 sim = DamageSim()
-sim.run(10000)
+sim.run(20000)

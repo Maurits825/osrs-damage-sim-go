@@ -6,8 +6,6 @@ from weapon import Weapon
 
 
 class ZaryteCrossbow(Weapon):
-    name: str = 'ZCB spec'
-
     def roll_damage(self) -> int:
         if not self.is_special_attack:
             return super().roll_damage()
