@@ -1,8 +1,8 @@
 from enum import Enum
 
-from model.attack_style import AttackStyle
-from model.attack_type import AttackType
-from model.combat_style import CombatStyle
+from model.attack_style.attack_style import AttackStyle
+from model.attack_style.attack_type import AttackType
+from model.attack_style.combat_style import CombatStyle
 
 
 class WeaponCategory(Enum):

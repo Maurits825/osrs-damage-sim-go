@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from model.weapon_category import WeaponCategory
+from model.attack_style.weapon_category import WeaponCategory
 
 
 @dataclass()

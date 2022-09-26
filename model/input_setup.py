@@ -2,8 +2,8 @@ from dataclasses import dataclass
 
 from weapon import Weapon
 from model.boost import Boost
-from model.combat_stats import CombatStats
-from model.npc_stats import NpcStats
+from model.npc.combat_stats import CombatStats
+from model.npc.npc_stats import NpcStats
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 

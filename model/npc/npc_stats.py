@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from model.aggressive_stats import AggressiveStats
-from model.combat_stats import CombatStats
-from model.defensive_stats import DefensiveStats
+from model.npc.aggressive_stats import AggressiveStats
+from model.npc.combat_stats import CombatStats
+from model.npc.defensive_stats import DefensiveStats
 from model.locations import Location
 
 

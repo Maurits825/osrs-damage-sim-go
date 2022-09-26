@@ -1,7 +1,7 @@
 import math
 from enum import Enum
 
-from model.combat_stats import CombatStats
+from model.npc.combat_stats import CombatStats
 
 
 class BoostType(Enum):
