@@ -28,35 +28,36 @@ class DamageSim:
     def get_input_setup(self) -> InputSetup:
         # first get inputs
         # TODO input for this
-        raid_level = 500
-        path_level = 3
+        raid_level = 0
+        path_level = 0
         team_size = 1
         # TODO get npc by name
         # npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        # npc = self.wiki_data.get_npc(11730)  # Zebak
-        npc = self.wiki_data.get_npc(11719)  # Kephri
+        npc = self.wiki_data.get_npc(11730)  # Zebak
+        # npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
-        path_level_mult = 0.08 if path_level > 0 else 0.05
-        npc.combat_stats.hitpoints = int(
-            round(npc.combat_stats.hitpoints/10 * (1 + raid_level * 0.004) * (1 + (path_level - 1) * 0.05 + path_level_mult) * team_size, 0) * 10
-        )
+        if raid_level and path_level:
+            path_level_mult = 0.08 if path_level > 0 else 0.05
+            npc.combat_stats.hitpoints = int(
+                round(npc.combat_stats.hitpoints/10 * (1 + raid_level * 0.004) * (1 + (path_level - 1) * 0.05 + path_level_mult) * team_size, 0) * 10
+            )
         # TODO better way? - this is input, non boosted stats
         combat_stats = CombatStats(99, 99, 99, 99, 99, 99)
         # TODO as input maybe or something, list or setup names
         # TODO prayer input here?
         #GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
+        #GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
+        #GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
             [
-                GearSetupInput.load_gear_setup("Max DWH", "Pound", [Prayer.PIETY], 2, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
-            ],
-            [
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 2, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max Void Tbow", "Rapid", [Prayer.RIGOUR])
             ],
         ]
         # TODO boosts and prayer input

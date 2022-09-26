@@ -27,7 +27,7 @@ class RlGearInput:
 @click.option('--name', '-n', help='Name of gear list')
 def main(get, save, name):
     if get:
-        RlGearInput.get_gear()
+        print(RlGearInput.get_gear())
     elif save:
         RlGearInput.save_gear(name)
 

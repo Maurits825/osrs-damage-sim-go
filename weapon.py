@@ -28,12 +28,19 @@ class Weapon:
 
         self.raid_level = None
 
+        self.void_skill_attack_boost = 1
+        self.void_skill_str_boost = 1
+
     def set_attack_style_and_speed(self, attack_style, attack_speed):
         self.attack_style = attack_style
         self.attack_speed = attack_speed
 
         if self.attack_style.combat_style == CombatStyle.RAPID:
             self.attack_speed -= 1
+
+    def set_void_boost(self, attack, strength):
+        self.void_skill_attack_boost = attack
+        self.void_skill_str_boost = strength
 
     def set_combat_stats(self, combat_stats: CombatStats):
         self.combat_stats = combat_stats
@@ -81,7 +88,7 @@ class Weapon:
                 prayer=self.prayer,
                 strength_lvl=self.combat_stats.strength,
                 attack_style_boost=self.attack_style.combat_style.value.strength,
-                melee_void_boost=1
+                melee_void_boost=self.void_skill_str_boost
             )
             gear_melee_strength = self.gear_stats.melee_strength
             gear_bonus = 1
@@ -91,7 +98,7 @@ class Weapon:
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.attack_style.combat_style.value.ranged,
-                ranged_void_boost=1
+                ranged_void_boost=self.void_skill_str_boost
             )
             gear_ranged_strength = self.gear_stats.ranged_strength
             gear_bonus = 1
@@ -130,7 +137,7 @@ class Weapon:
                 prayer=self.prayer,
                 attack_lvl=self.combat_stats.attack,
                 attack_style_boost=self.attack_style.combat_style.value.attack,
-                void_boost=1
+                void_boost=self.void_skill_attack_boost
             )
 
             if self.attack_style.attack_type == AttackType.STAB:
@@ -145,7 +152,7 @@ class Weapon:
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.attack_style.combat_style.value.ranged,
-                void_boost=1
+                void_boost=self.void_skill_attack_boost
             )
             gear_skill_bonus = self.gear_stats.ranged
         elif self.attack_style.attack_type == AttackType.MAGIC:

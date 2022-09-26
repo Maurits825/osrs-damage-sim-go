@@ -28,6 +28,12 @@ CUSTOM_WEAPONS = {
     "Dragon warhammer": DragonWarhammer(),
 }
 
+VOID = {8839, 8840, 8842}
+ELITE_VOID = {13072, 13073, 8842}
+MELEE_VOID = 11665
+MAGE_VOID = 11663
+RANGED_VOID = 11664
+
 
 class GearSetupInput:
     @staticmethod
@@ -55,6 +61,8 @@ class GearSetupInput:
                     weapon = Weapon()
 
                 weapon.set_attack_style_and_speed(attack_style, weapon_stats.attack_speed)
+                void_att, void_str = GearSetupInput.get_gear_void_bonuses(gear)
+                weapon.set_void_boost(void_att, void_str)
 
                 if is_special:
                     weapon.set_is_special_attack(is_special)
@@ -64,3 +72,24 @@ class GearSetupInput:
                          weapon=weapon,
                          attack_count=attacks,
                          prayers=prayers)
+
+    @staticmethod
+    def get_gear_void_bonuses(gear):
+        void_att = 1
+        void_str = 1
+        # TODO mage void
+        if VOID.issubset(gear) or ELITE_VOID.issubset(gear):
+            if MELEE_VOID in gear:
+                void_att = 1.1
+                void_str = 1.1
+
+            if ELITE_VOID.issubset(gear):
+                if RANGED_VOID in gear:
+                    void_att = 1.1
+                    void_str = 1.125
+            else:
+                void_att = 1.1
+                void_str = 1.1
+
+        return void_att, void_str
+
