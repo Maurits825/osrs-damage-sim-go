@@ -32,7 +32,9 @@ class DamageSim:
         path_level = 3
         team_size = 1
         # TODO get npc by name
-        npc = self.wiki_data.get_npc(11778)  # Ba-Ba
+        # npc = self.wiki_data.get_npc(11778)  # Ba-Ba
+        # npc = self.wiki_data.get_npc(11730)  # Zebak
+        npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
         path_level_mult = 0.08 if path_level > 0 else 0.05
         npc.combat_stats.hitpoints = int(
@@ -45,20 +47,15 @@ class DamageSim:
         #GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], 2, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
-            ],
-            [
-                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
-            ],
-            [
                 GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
                 GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
             ],
             [
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], 4, True),
+                GearSetupInput.load_gear_setup("Max DWH", "Pound", [Prayer.PIETY], 2, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 2, True),
                 GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
             ],
         ]
@@ -143,7 +140,7 @@ class DamageSim:
         while npc.combat_stats.hitpoints > 0:
             if current_weapon_att_count >= gear_setup.attack_count:
                 ticks_to_kill += current_weapon_att_count * weapon.attack_speed
-                weapon_sim_dps.append(min(sum(weapon_damages), self.initial_npc_stats.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
+                weapon_sim_dps.append(sum(weapon_damages) / (current_weapon_att_count * weapon.attack_speed * 0.6))
 
                 current_weapon_att_count = 0
                 weapon_damages.clear()
@@ -159,9 +156,14 @@ class DamageSim:
             weapon_damages.append(damage)
             current_weapon_att_count += 1
 
-        weapon_sim_dps.append(min(sum(weapon_damages), self.initial_npc_stats.combat_stats.hitpoints) / (current_weapon_att_count * weapon.attack_speed * 0.6))
+        # TODO sim dps is with overkill damage
+        weapon_sim_dps.append(sum(weapon_damages) / (current_weapon_att_count * weapon.attack_speed * 0.6))
         # TODO by default remove the last weapon att
         ticks_to_kill += (current_weapon_att_count - 1) * weapon.attack_speed
+
+        for _ in range(len(weapon_sim_dps), len(gear_setups)):
+            weapon_sim_dps.append(0)
+
         return ticks_to_kill, weapon_sim_dps
 
 

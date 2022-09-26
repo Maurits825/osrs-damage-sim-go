@@ -1,3 +1,4 @@
+import math
 from dataclasses import dataclass
 
 from model.npc.aggressive_stats import AggressiveStats
@@ -20,3 +21,7 @@ class NpcStats:
 
     def drain_defence(self, amount):
         self.combat_stats.defence = max(self.min_defence, self.combat_stats.defence - amount)
+
+    def drain_defence_percent(self, percent):
+        self.combat_stats.defence = max(self.min_defence, math.ceil(self.combat_stats.defence * (percent / 100)))
+
