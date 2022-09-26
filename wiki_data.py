@@ -12,13 +12,12 @@ from model.weapon_stats import WeaponStats
 class WikiData:
     items_json = json.load(open("./wiki_data/items-dps-calc.json"))
     npcs_json = json.load(open("./wiki_data/npcs-dps-calc.json"))
-    min_defence = json.load(open("./wiki_data/min_defence.json"))
-    locations = json.load(open("./wiki_data/locations.json"))
+    extra_data = json.load(open("./wiki_data/extra_data.json"))
 
     @staticmethod
     def get_item(item_id: int) -> WeaponStats:
         weapon = WikiData.items_json[str(item_id)]
-        weapon_category = None if weapon.get("weaponCategory", 0) == 0 else WeaponCategory[weapon.get("weaponCategory", 0)]
+        weapon_category = None if weapon.get("weaponCategory", 0) == 0 else WeaponCategory[weapon["weaponCategory"]]
         return WeaponStats(
             name=weapon.get("name", 0),
             id=weapon.get("id", item_id),
@@ -38,8 +37,8 @@ class WikiData:
     def get_npc(npc_id: int) -> NpcStats:
         npc = WikiData.npcs_json[str(npc_id)]
         npc_name = npc["name"]
-        min_defence = WikiData.min_defence.get(npc_name, 0)
-        location = WikiData.locations.get(npc_name, Location.NONE)
+        min_defence = WikiData.extra_data["min_defence"].get(npc_name, 0)
+        location = WikiData.extra_data["locations"].get(npc_name, Location.NONE)
 
         return NpcStats(
             name=npc_name,
