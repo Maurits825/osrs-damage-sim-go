@@ -3,6 +3,7 @@ import copy
 from damage_sim_stats import DamageSimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
+from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.input_setup import InputSetup, GearSetup
 from model.npc.npc_stats import NpcStats
@@ -28,15 +29,17 @@ class DamageSim:
     def get_input_setup(self) -> InputSetup:
         # first get inputs
         # TODO input for this
-        raid_level = 0
+        raid_level = 500
         path_level = 0
         team_size = 1
         # TODO get npc by name
+        npc = self.wiki_data.get_npc(11762)  # Tumeken's Warden
+        # npc = self.wiki_data.get_npc(11797)  # akkah shadow
         # npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        npc = self.wiki_data.get_npc(11730)  # Zebak
+        # npc = self.wiki_data.get_npc(11730)  # Zebak
         # npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
-        if raid_level and path_level:
+        if npc.location == Location.TOMBS_OF_AMASCUT:
             path_level_mult = 0.08 if path_level > 0 else 0.05
             npc.combat_stats.hitpoints = int(
                 round(npc.combat_stats.hitpoints/10 * (1 + raid_level * 0.004) * (1 + (path_level - 1) * 0.05 + path_level_mult) * team_size, 0) * 10
@@ -45,19 +48,23 @@ class DamageSim:
         combat_stats = CombatStats(99, 99, 99, 99, 99, 99)
         # TODO as input maybe or something, list or setup names
         # TODO prayer input here?
-        #GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
-        #GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
-        #GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
+        # GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
+        # GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
+        # GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
+        # GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+        # GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 2, True),
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
             [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max Void Tbow", "Rapid", [Prayer.RIGOUR])
+                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 2, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
         ]
         # TODO boosts and prayer input
@@ -76,6 +83,9 @@ class DamageSim:
 
                 # TODO make a func for this?
                 gear.weapon.set_total_gear_stats(gear.gear_stats)
+                if "blowpipe" in gear.gear_stats.name:  # TODO where to put this
+                    gear.gear_stats.ranged_strength += 35
+
                 gear.weapon.set_npc(npc)
                 gear.weapon.set_raid_level(raid_level)
 

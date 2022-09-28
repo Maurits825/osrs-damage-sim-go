@@ -1,7 +1,7 @@
-from enum import Enum, auto
+from enum import Enum
 
 
 class Location(Enum):
-    NONE = auto
-    TOMBS_OF_AMASCUT = auto
-    CHAMBERS_OF_XERIC = auto
+    NONE = 1
+    TOMBS_OF_AMASCUT = 2
+    CHAMBERS_OF_XERIC = 3

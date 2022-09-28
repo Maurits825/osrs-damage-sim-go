@@ -38,7 +38,10 @@ class WikiData:
         npc = WikiData.npcs_json[str(npc_id)]
         npc_name = npc["name"]
         min_defence = WikiData.extra_data["min_defence"].get(npc_name, 0)
-        location = WikiData.extra_data["locations"].get(npc_name, Location.NONE)
+        if npc_name in WikiData.extra_data["locations"]:
+            location = Location[WikiData.extra_data["locations"][npc_name]]
+        else:
+            location = Location.NONE
 
         return NpcStats(
             name=npc_name,
