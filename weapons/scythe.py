@@ -1,21 +1,24 @@
 import math
-from dataclasses import dataclass
-
-from weapons.weapon import Weapon
 import random
 
+from dps_calculator import DpsCalculator
+from weapon import Weapon
 
-@dataclass()
+#TODO test
 class Scythe(Weapon):
-    name: str = 'Scythe'
-
-    def roll_damage(self, health=0) -> int:
+    def roll_damage(self) -> int:
+        self.accuracy = self.get_accuracy()
         return self.roll_single_hit(1) + self.roll_single_hit(0.5) + self.roll_single_hit(0.25)
 
     def roll_single_hit(self, reduction) -> int:
         hit = random.random()
         damage = 0
-        if hit <= (self.accuracy / 100.0):
+        if hit <= self.accuracy:
             damage = random.randint(0, self.max_hit)
 
-        return math.floor(damage*reduction)
+        return math.floor(damage * reduction)
+
+    def get_dps(self):
+        self.accuracy = self.get_accuracy()
+        effective_max_hit = self.max_hit + self.max_hit * 0.5 + self.max_hit * 0.25
+        return DpsCalculator.get_dps(effective_max_hit, self.accuracy, self.attack_speed)

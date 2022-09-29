@@ -13,6 +13,7 @@ from weapons.bone_dagger import BoneDagger
 from weapons.dragon_claws import DragonClaws
 from weapons.dragon_warhammer import DragonWarhammer
 from weapons.fang import Fang
+from weapons.scythe import Scythe
 from weapons.twisted_bow import TwistedBow
 from weapons.zaryte_crossbow import ZaryteCrossbow
 from wiki_data import WikiData
@@ -26,6 +27,7 @@ CUSTOM_WEAPONS = {
     "Bone dagger": BoneDagger(),
     "Osmumten's fang": Fang(),
     "Dragon warhammer": DragonWarhammer(),
+    "Scythe of vitur": Scythe(),
 }
 
 VOID = {8839, 8840, 8842}

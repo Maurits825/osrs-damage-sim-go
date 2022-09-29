@@ -29,10 +29,11 @@ class DamageSim:
     def get_input_setup(self) -> InputSetup:
         # first get inputs
         # TODO input for this
-        raid_level = 500
+        raid_level = 0
         path_level = 0
         team_size = 1
         # TODO get npc by name
+        # npc = self.wiki_data.get_npc(11751)  # Obelisk
         npc = self.wiki_data.get_npc(11762)  # Tumeken's Warden
         # npc = self.wiki_data.get_npc(11797)  # akkah shadow
         # npc = self.wiki_data.get_npc(11778)  # Ba-Ba
@@ -53,18 +54,18 @@ class DamageSim:
         # GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
         # GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
         # GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 2, True),
+        # GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+        # GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR])
+        # GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR])
+            ],
+            [
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
             ],
             [
-                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 1, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
-            ],
-            [
-                GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 2, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
+                GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
             ],
         ]
         # TODO boosts and prayer input
