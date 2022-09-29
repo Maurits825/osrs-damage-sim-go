@@ -15,17 +15,13 @@ export class GearSetupComponent implements OnInit {
     this.gearSlots.forEach(slot => {
       this.gear.set(slot, {id: -1});
     });
-
-    this.gearSlots.forEach(slot => {
-      console.log(this.gear.get(slot))
-    });
   }
 
   ngOnInit(): void {
   }
 
   clearSlot(slot: number): void {
-    let item = this.gear.get(slot)
+    let item = this.gear.get(slot);
 
     if (item) {
       item.id = -1;
