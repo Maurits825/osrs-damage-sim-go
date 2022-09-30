@@ -3,14 +3,17 @@
         <tbody>
             <tr *ngFor="let slot of gear | keyvalue;" class="col-1">
                 <td>
-                    <img src="assets/img/equip/slot_{{slot.key}}.png">
+                    <div *ngIf="slot?.value?.id; else other_content">
+                        <img src="{{ slot.value.name | wikiItemIcon }}">
+                    </div>
+                    <ng-template #other_content> <img src="assets/img/equip/slot_{{slot.key}}.png"></ng-template>                    
                 </td>
                 <td class="col-3">
-                    id: {{slot.value.id}}
+                    id: {{slot?.value?.id}}
                 </td>
                 <td class="col-8">
-                    <ng-select [(ngModel)]="slot.value.id">
-                        <ng-option *ngFor="let item of gearSlotItems[slot.key]" [value]="item.id">{{item.name}}</ng-option>
+                    <ng-select [(ngModel)]="slot.value">
+                        <ng-option *ngFor="let item of gearSlotItems[slot.key]" [value]="item">{{item.name}}</ng-option>
                      </ng-select>
                 </td>
             </tr>

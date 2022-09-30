@@ -5,12 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
+import { WikiItemIconPipe } from './pipes/wiki-item-icon.pipe';
 import { DamageSimService } from './services/damage-sim.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GearSetupComponent
+    GearSetupComponent,
+    WikiItemIconPipe,
   ],
   imports: [
     NgSelectModule,

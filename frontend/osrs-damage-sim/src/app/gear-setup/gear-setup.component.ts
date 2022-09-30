@@ -14,24 +14,16 @@ export class GearSetupComponent implements OnInit {
   gear = new Map<number, Item>();
 
   gearSlotItems: GearSlotItems = {};
-  gearSlotItemsFiltered: GearSlotItems = {};
-
-  fruits = ["apple", "orange", "banana", "grapes"];
 
   constructor(private damageSimservice: DamageSimService) {
     this.gearSlots.forEach(slot => {
-      this.gear.set(slot, {name: "", id: null});
+      this.gear.set(slot, {name: "", id: 0});
     });
   }
 
   ngOnInit(): void {
     this.damageSimservice.getGearSlotItems().subscribe((gearSlotItems) => {
       this.gearSlotItems = gearSlotItems;
-      this.gearSlotItemsFiltered = gearSlotItems;
     });
-  }
-
-  filterItems(filterText: string, slot: number): void {
-    this.gearSlotItemsFiltered[slot] = this.gearSlotItems[slot].filter((item: Item) => item.name.toLowerCase().includes(filterText.toLowerCase()));
   }
 }
