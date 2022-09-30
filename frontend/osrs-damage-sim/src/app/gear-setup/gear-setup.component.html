@@ -1,22 +1,18 @@
 <div>
     <table class="table table-borderless">
         <tbody>
-            <tr *ngFor="let slot of gear | keyvalue;">
+            <tr *ngFor="let slot of gear | keyvalue;" class="col-1">
                 <td>
                     <img src="assets/img/equip/slot_{{slot.key}}.png">
                 </td>
-                <td>
+                <td class="col-3">
                     id: {{slot.value.id}}
                 </td>
-                <td>
-                    <select [(ngModel)]="slot.value.id" class="form-select" aria-label="Default select example">
-                        <option selected value="-1">Select item</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <td class="col-8">
+                    <ng-select [(ngModel)]="slot.value.id">
+                        <ng-option *ngFor="let item of gearSlotItems[slot.key]" [value]="item.id">{{item.name}}</ng-option>
+                     </ng-select>
                 </td>
-                <td class="text-end"><button class="btn btn-danger" (click)="clearSlot(slot.key)">X</button></td>
             </tr>
         </tbody>
     </table>

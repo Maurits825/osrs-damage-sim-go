@@ -13,6 +13,7 @@ class WikiData:
     items_json = json.load(open("./wiki_data/items-dps-calc.json"))
     npcs_json = json.load(open("./wiki_data/npcs-dps-calc.json"))
     extra_data = json.load(open("./wiki_data/extra_data.json"))
+    gear_slot_items = json.load(open("./wiki_data/gear_slot_items.json"))
 
     @staticmethod
     def get_item(item_id: int) -> WeaponStats:
@@ -71,3 +72,18 @@ class WikiData:
             min_defence=min_defence,
             location=location
         )
+
+    @staticmethod
+    def update_gear_slot_items_list():
+        gear_slot_items = {}
+        for item_id, item in WikiData.items_json.items():
+            if item["slot"] not in gear_slot_items:
+                gear_slot_items[item["slot"]] = []
+
+            gear_slot_items[item["slot"]].append({
+                "name": item["name"],
+                "id": item_id
+            })
+
+        with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
+            json.dump(gear_slot_items, json_file)

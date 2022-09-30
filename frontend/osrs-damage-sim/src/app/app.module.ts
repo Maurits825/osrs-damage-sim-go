@@ -1,8 +1,11 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
+import { DamageSimService } from './services/damage-sim.service';
 
 @NgModule({
   declarations: [
@@ -10,10 +13,13 @@ import { GearSetupComponent } from './gear-setup/gear-setup.component';
     GearSetupComponent
   ],
   imports: [
-    BrowserModule,
+    NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DamageSimService],
   bootstrap: [AppComponent, GearSetupComponent]
 })
 export class AppModule { }
