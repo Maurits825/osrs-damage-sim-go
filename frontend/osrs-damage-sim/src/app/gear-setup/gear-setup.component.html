@@ -1,19 +1,20 @@
 <div>
+    <button type="button" class="btn btn-danger" (click)="clearAllGear()">Clear all</button>
     <table class="table table-borderless">
         <tbody>
-            <tr *ngFor="let slot of gear | keyvalue;" class="col-1">
+            <tr *ngFor="let slot of gearSlots" class="col-1">
                 <td>
-                    <div *ngIf="slot?.value?.id; else other_content">
-                        <img src="{{ slot.value.name | wikiItemIcon }}">
+                    <div *ngIf="gear[slot]?.id; else other_content">
+                        <img src="{{ gear[slot].name | wikiItemIcon }}">
                     </div>
-                    <ng-template #other_content> <img src="assets/img/equip/slot_{{slot.key}}.png"></ng-template>                    
+                    <ng-template #other_content> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
                 </td>
                 <td class="col-3">
-                    id: {{slot?.value?.id}}
+                    id: {{gear[slot]?.id}}
                 </td>
                 <td class="col-8">
-                    <ng-select [(ngModel)]="slot.value">
-                        <ng-option *ngFor="let item of gearSlotItems[slot.key]" [value]="item">{{item.name}}</ng-option>
+                    <ng-select [(ngModel)]="gear[slot]">
+                        <ng-option *ngFor="let item of gearSlotItems[slot]" [value]="item">{{item.name}}</ng-option>
                      </ng-select>
                 </td>
             </tr>

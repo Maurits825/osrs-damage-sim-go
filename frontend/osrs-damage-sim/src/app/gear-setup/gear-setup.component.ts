@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GearSlotItems } from '../model/gear_slot_items';
+import { GearSlotItem, GearSlotItems } from '../model/gear_slot_items';
 import { Item } from '../model/item';
 import { DamageSimService } from '../services/damage-sim.service';
 
@@ -11,19 +11,24 @@ import { DamageSimService } from '../services/damage-sim.service';
 export class GearSetupComponent implements OnInit {
   gearSlots: Array<any> = [0, 1, 2, 3, 4, 5, 7, 9, 10, 12, 13];
 
-  gear = new Map<number, Item>();
+  gear: GearSlotItem = {};
 
   gearSlotItems: GearSlotItems = {};
 
   constructor(private damageSimservice: DamageSimService) {
-    this.gearSlots.forEach(slot => {
-      this.gear.set(slot, {name: "", id: 0});
-    });
+    this.clearAllGear();
+    console.log(this.gear);
   }
 
   ngOnInit(): void {
     this.damageSimservice.getGearSlotItems().subscribe((gearSlotItems) => {
       this.gearSlotItems = gearSlotItems;
+    });
+  }
+
+  clearAllGear(): void {
+    this.gearSlots.forEach((slot: number) => {
+      this.gear[slot] = {name: "", id: 0};
     });
   }
 }
