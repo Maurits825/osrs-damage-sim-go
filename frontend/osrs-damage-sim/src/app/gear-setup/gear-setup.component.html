@@ -2,8 +2,13 @@
     <table class="table table-borderless">
         <tbody>
             <tr>
-                <td><button type="button" class="btn btn-primary" (click)="loadRlGear()">Load RL gear</button></td>
-                <td class="text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()">Clear all</button></td>
+                <td class="col-3"><button type="button" class="btn btn-primary" (click)="loadRlGear()">Load RL gear</button></td>
+                <td class="col-7">
+                    <ng-select [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
+                        <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
+                    </ng-select>
+                </td>
+                <td class="col-2 text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()">Clear all</button></td>
             </tr>
         </tbody>
     </table>
@@ -17,7 +22,7 @@
                     <ng-template #other_content> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
                 </td>
                 <td class="col-10">
-                    <ng-select [(ngModel)]="gear[slot]" [clearable]="false">
+                    <ng-select [(ngModel)]="gear[slot]" [clearable]="false" (change)="selectedGearSetup = this.gearSetups['None'];">
                         <ng-option *ngFor="let item of gearSlotItems[slot]" [value]="item">{{item.name}}</ng-option>
                     </ng-select>
                 </td>

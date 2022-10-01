@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GearSlotItem, GearSlotItems } from '../model/gear_slot_items';
+import { GearSetup, GearSlotItem, GearSlotItems } from '../model/gear_slot_items';
 import { DamageSimService } from '../services/damage-sim.service';
+import { GearSetupService } from '../services/gear-setups.service';
 import { RlGearService } from '../services/rl-gear.service';
 
 @Component({
@@ -15,9 +16,13 @@ export class GearSetupComponent implements OnInit {
 
   gearSlotItems: GearSlotItems = {};
 
+  gearSetups: GearSetup = {};
+  selectedGearSetup: GearSlotItem = {};
+
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
+    private gearSetupService: GearSetupService,
     ) {}
 
   ngOnInit(): void {
@@ -30,9 +35,17 @@ export class GearSetupComponent implements OnInit {
         this.gear[slot] = empty_item;
       });
     });
+
+    this.gearSetupService.getGearSetups().subscribe((gearSetups: GearSetup) => {
+      this.gearSetups = gearSetups;
+      this.gearSetups["None"] = {};
+      this.selectedGearSetup = this.gearSetups["None"];
+    });
   }
 
   clearAllGear(): void {
+    this.selectedGearSetup = this.gearSetups["None"];
+    
     this.gearSlots.forEach((slot: number) => {
       this.gear[slot].name = "None";
       this.gear[slot].id = 0;
@@ -40,6 +53,8 @@ export class GearSetupComponent implements OnInit {
   }
 
   loadRlGear(): void {
+    this.selectedGearSetup = this.gearSetups["None"];
+
     this.rlGearService.getGear()
       .subscribe((gearSlotItem: GearSlotItem) => {
         this.gearSlots.forEach((slot: number) => {
@@ -53,12 +68,25 @@ export class GearSetupComponent implements OnInit {
           }
         });
     });
-
-    console.log(this.gear);
   }
 
   clearGearSlot(slot: number): void {
     this.gear[slot].name = "None";
     this.gear[slot].id = 0;
+  }
+
+  loadGearSetup(event: string) {
+    const gearSetup = this.gearSetups[event];
+
+    this.gearSlots.forEach((slot: number) => {
+      if (gearSetup[slot]?.name) {
+        this.gear[slot].name = gearSetup[slot].name;
+        this.gear[slot].id = gearSetup[slot].id;
+      }
+      else {
+        this.gear[slot].name = "None";
+        this.gear[slot].id = 0;
+      }
+    });
   }
 }

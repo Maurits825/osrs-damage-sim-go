@@ -7,3 +7,7 @@ export interface GearSlotItems {
 export interface GearSlotItem {
     [key: number]: Item
 }
+
+export interface GearSetup {
+    [key: string]: GearSlotItem
+}
