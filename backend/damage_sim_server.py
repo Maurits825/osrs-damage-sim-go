@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from gear_json import GearJson
+from model.attack_style.weapon_category import WeaponCategory
 from rl_gear_input import RlGearInput
 from wiki_data import WikiData
 
@@ -53,3 +54,19 @@ def get_gear_setups():
                         }
 
     return gear_setups
+
+
+@app.route("/attack-style/<item_id_str>", methods=["GET"])
+def get_attack_style(item_id_str):
+    attack_styles = []
+    item_id = int(item_id_str)
+
+    if item_id == 0:
+        for style in WeaponCategory.UNARMED.value:
+            attack_styles.append(style.name)
+    else:
+        item = WikiData.get_item(item_id)
+        for style in item.weapon_category.value:
+            attack_styles.append(style.name)
+
+    return attack_styles

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GearSetup, GearSlotItem, GearSlotItems } from '../model/gear_slot_items';
+import { Item } from '../model/item';
 import { DamageSimService } from '../services/damage-sim.service';
 import { GearSetupService } from '../services/gear-setups.service';
 import { RlGearService } from '../services/rl-gear.service';
@@ -18,6 +19,14 @@ export class GearSetupComponent implements OnInit {
 
   gearSetups: GearSetup = {};
   selectedGearSetup: GearSlotItem = {};
+
+  setupName: string = "";
+
+  attackStyles: string[] = [];
+  selectedAttackStyle: string = "";
+
+  prayers: string[] = ["eagle_eye", "rigour", "chivalry", "piety"];
+  selectedPrayers: string[] = [];
 
   constructor(
     private damageSimservice: DamageSimService,
@@ -41,15 +50,21 @@ export class GearSetupComponent implements OnInit {
       this.gearSetups["None"] = {};
       this.selectedGearSetup = this.gearSetups["None"];
     });
+
+    this.damageSimservice.getAttackStyles(0).subscribe((styles: string[]) => {
+      this.attackStyles = styles;
+    });
   }
 
   clearAllGear(): void {
     this.selectedGearSetup = this.gearSetups["None"];
+    this.setupName = "";
     
     this.gearSlots.forEach((slot: number) => {
-      this.gear[slot].name = "None";
-      this.gear[slot].id = 0;
+      this.clearGearSlot(slot);
     });
+
+    this.selectedPrayers = [];
   }
 
   loadRlGear(): void {
@@ -61,32 +76,69 @@ export class GearSetupComponent implements OnInit {
           if (gearSlotItem[slot]?.name) {
             this.gear[slot].name = gearSlotItem[slot].name;
             this.gear[slot].id = gearSlotItem[slot].id;
+
+            if (slot == 3) {
+              this.setupName = gearSlotItem[slot].name;
+              this.updateAttackStyle(gearSlotItem[slot].id);
+            }
           }
           else {
-            this.gear[slot].name = "None";
-            this.gear[slot].id = 0;
+            this.clearGearSlot(slot);
           }
         });
     });
   }
 
   clearGearSlot(slot: number): void {
-    this.gear[slot].name = "None";
-    this.gear[slot].id = 0;
+    this.gear[slot] = {name: "None", id: 0};
+
+    if (slot == 3) {
+      this.damageSimservice.getAttackStyles(0).subscribe((styles: string[]) => {
+        this.attackStyles = styles;
+        this.selectedAttackStyle = "";
+      });
+    }
   }
 
-  loadGearSetup(event: string) {
-    const gearSetup = this.gearSetups[event];
+  loadGearSetup(setupName: string) {
+    const gearSetup = this.gearSetups[setupName];
+    this.setupName = setupName;
 
     this.gearSlots.forEach((slot: number) => {
       if (gearSetup[slot]?.name) {
         this.gear[slot].name = gearSetup[slot].name;
         this.gear[slot].id = gearSetup[slot].id;
+
+        if (slot == 3) {
+          this.updateAttackStyle(gearSetup[slot].id);
+        }
       }
       else {
-        this.gear[slot].name = "None";
-        this.gear[slot].id = 0;
+        this.clearGearSlot(slot);
       }
     });
+  }
+
+  gearSlotChange(item: Item, slot: number): void {
+    this.selectedGearSetup = this.gearSetups['None'];
+
+    if (slot == 3) {
+      this.updateAttackStyle(item.id);
+    }
+  }
+
+  updateAttackStyle(itemId: number): void {
+    this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
+      this.attackStyles = styles;
+      this.selectedAttackStyle = "";
+    });
+  }
+
+  addPrayer(prayer: string): void {
+    this.selectedPrayers.push(prayer);
+  }
+
+  removePrayer(prayer: string): void {
+    this.selectedPrayers = this.selectedPrayers.filter(p => p !== prayer);
   }
 }
