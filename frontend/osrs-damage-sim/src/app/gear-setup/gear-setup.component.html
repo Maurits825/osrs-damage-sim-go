@@ -47,28 +47,26 @@
     <table class="table table-borderless">
         <tbody>
             <tr>
-                <td class="col-3">
-                    <label for="attackStyle">Attack style:</label>
-                </td>
-                <td class="col-8">
-                    <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle" [clearable]="false">
-                        <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
-                    </ng-select>
+                <td class="col-11">
+                    <div class="row">
+                        <div class="col-3"><label for="attackStyle">Attack style</label></div>
+                        <div class="col-9">
+                            <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle" [clearable]="false">
+                                <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
                 </td>
                 <td class="col-1">
                     <button type="button" class="btn btn-danger" (click)="selectedAttackStyle = '';">X</button>
                 </td>
             </tr>
-        </tbody>
-    </table>
-    <table class="table table-borderless">
-        <tbody>
             <tr>
-                <td class="col-3">
-                    <label for="attackStyle">Prayers:</label>
-                </td>
                 <td class="col-8">
                     <div class="row">
+                        <div class="col">
+                            <label for="attackStyle">Prayers</label>
+                        </div>
                         <div *ngFor="let prayer of prayers" class="col">
                             <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
                                 <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
@@ -84,6 +82,19 @@
                 </td>
                 <td class="col-1">
                     <button type="button" class="btn btn-danger" (click)="selectedPrayers=[];">X</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-11">
+                    <div class="row">
+                        <div class="col"><label for="attackCount">Attack count</label></div>
+                        <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder=""></div>
+                        <div class="col"><label for="isSpecial">Special attack</label></div>
+                        <div class="col"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
+                    </div>
+                </td>
+                <td class="col-1">
+                    <button type="button" class="btn btn-danger" (click)="attackCount=0; isSpecialAttack=false;">X</button>
                 </td>
             </tr>
         </tbody>

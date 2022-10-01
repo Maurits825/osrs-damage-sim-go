@@ -28,6 +28,9 @@ export class GearSetupComponent implements OnInit {
   prayers: string[] = ["eagle_eye", "rigour", "chivalry", "piety"];
   selectedPrayers: string[] = [];
 
+  attackCount: number = 0;
+  isSpecialAttack: boolean = false;
+
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
@@ -65,6 +68,8 @@ export class GearSetupComponent implements OnInit {
     });
 
     this.selectedPrayers = [];
+    this.attackCount = 0;
+    this.isSpecialAttack = false;
   }
 
   loadRlGear(): void {
