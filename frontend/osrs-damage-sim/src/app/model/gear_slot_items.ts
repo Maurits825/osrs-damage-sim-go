@@ -5,5 +5,5 @@ export interface GearSlotItems {
 }
 
 export interface GearSlotItem {
-    [key: string]: Item
+    [key: number]: Item
 }

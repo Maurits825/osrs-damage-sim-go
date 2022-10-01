@@ -7,12 +7,13 @@ import { AppComponent } from './app.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
 import { WikiItemIconPipe } from './pipes/wiki-item-icon.pipe';
 import { DamageSimService } from './services/damage-sim.service';
+import { RlGearService } from './services/rl-gear.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     GearSetupComponent,
-    WikiItemIconPipe,
+    WikiItemIconPipe
   ],
   imports: [
     NgSelectModule,
@@ -21,7 +22,7 @@ import { DamageSimService } from './services/damage-sim.service';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [DamageSimService],
+  providers: [DamageSimService, RlGearService],
   bootstrap: [AppComponent, GearSetupComponent]
 })
 export class AppModule { }

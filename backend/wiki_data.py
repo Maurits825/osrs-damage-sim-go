@@ -82,7 +82,7 @@ class WikiData:
 
             gear_slot_items[item["slot"]].append({
                 "name": item["name"],
-                "id": item_id
+                "id": int(item_id)
             })
 
         with open("./wiki_data/gear_slot_items.json", 'w') as json_file:

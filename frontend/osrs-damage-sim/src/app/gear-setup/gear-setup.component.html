@@ -1,21 +1,28 @@
 <div>
-    <button type="button" class="btn btn-danger" (click)="clearAllGear()">Clear all</button>
     <table class="table table-borderless">
         <tbody>
-            <tr *ngFor="let slot of gearSlots" class="col-1">
-                <td>
+            <tr>
+                <td><button type="button" class="btn btn-primary" (click)="loadRlGear()">Load RL gear</button></td>
+                <td class="text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()">Clear all</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-borderless">
+        <tbody>
+            <tr *ngFor="let slot of gearSlots">
+                <td class="col-1">
                     <div *ngIf="gear[slot]?.id; else other_content">
                         <img src="{{ gear[slot].name | wikiItemIcon }}">
                     </div>
                     <ng-template #other_content> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
                 </td>
-                <td class="col-3">
-                    id: {{gear[slot]?.id}}
-                </td>
-                <td class="col-8">
-                    <ng-select [(ngModel)]="gear[slot]">
+                <td class="col-10">
+                    <ng-select [(ngModel)]="gear[slot]" [clearable]="false">
                         <ng-option *ngFor="let item of gearSlotItems[slot]" [value]="item">{{item.name}}</ng-option>
-                     </ng-select>
+                    </ng-select>
+                </td>
+                <td class="col-1">
+                    <button type="button" class="btn btn-danger" (click)="clearGearSlot(slot)">X</button>
                 </td>
             </tr>
         </tbody>
