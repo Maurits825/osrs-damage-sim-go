@@ -1,1 +1,32 @@
-<p>general setup</p>
+<div>
+    <h3 class="text-center mb-3">General Setup</h3>
+    <div class="row mb-3">
+        <div class="col" *ngFor="let skill of skillLevel | keyvalue">
+            <div class="row">
+                <div class="col-3">
+                    <img src="assets/img/skills/{{skill.key}}.png">
+                </div>
+                <div class="col">
+                    <input class="form-control" type="number" [(ngModel)]="skill.value" (ngModelChange)="this.skillLevel.set(skill.key, $event)" max="99" min="1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Boosts</label>
+        </div>
+        <!-- TODO just make diff icons in photoshop -->
+        <div class="col" *ngFor="let boost of boosts">
+            <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
+                <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
+            </div>
+            <ng-template #selectedBoost>
+                <div class="prayers-wrapper" (click)="removeBoost(boost)">
+                    <img class="prayer-icon" src="assets/img/boosts/{{boost}}.png">
+                    <img class="selected-icon" src="assets/img/boosts/activated_background.png">
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

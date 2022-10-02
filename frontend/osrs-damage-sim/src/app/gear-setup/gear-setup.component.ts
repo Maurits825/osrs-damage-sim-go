@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GearSetup, GearSlotItem, GearSlotItems } from '../model/gear_slot_items';
-import { Item } from '../model/item';
+import { GearSetup, GearSlotItem, GearSlotItems } from '../model/gear_slot_items.model';
+import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
 import { GearSetupService } from '../services/gear-setups.service';
 import { RlGearService } from '../services/rl-gear.service';

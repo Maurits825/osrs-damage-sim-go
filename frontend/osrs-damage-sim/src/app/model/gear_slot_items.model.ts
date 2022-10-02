@@ -1,4 +1,4 @@
-import { Item } from "./item";
+import { Item } from "./item.model";
 
 export interface GearSlotItems {
     [key: string]: Item[]

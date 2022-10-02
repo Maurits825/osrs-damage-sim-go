@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GearSlotItem } from '../model/gear_slot_items';
+import { GearSlotItem } from '../model/gear_slot_items.model';
 import { DAMAGE_SIM_SERVER_URL } from './server-url.cons';
 
 @Injectable()

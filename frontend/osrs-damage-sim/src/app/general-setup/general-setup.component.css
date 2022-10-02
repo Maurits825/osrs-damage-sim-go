@@ -1,0 +1,15 @@
+.prayers-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.selected-icon {
+    width: 100%;
+    max-width: 100%;
+}
+
+.prayer-icon {
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+}
