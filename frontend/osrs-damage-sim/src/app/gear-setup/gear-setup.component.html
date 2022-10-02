@@ -1,5 +1,5 @@
 <!-- TODO remove all tables execpt for gear setup, just use row/col -->
-<div>
+<div class="mx-3">
     <h3 class="text-center">Gear Setup</h3>
     <table class="table table-borderless">
         <tbody>
@@ -7,8 +7,8 @@
                 <td class="col-3">
                     <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
                 </td>
-                <td>
-                    <button type="button" class="btn btn-primary mb-3" (click)="removeGearSetup()">Remove gear setup</button>
+                <td colspan="2" class="text-end">
+                    <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
                 </td>
             </tr>
             <tr>
@@ -16,7 +16,7 @@
                 <td class="col-8">
                     <div class="row">
                         <label class="col-4 text-center" for="customGear">Load setup:</label>
-                        <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
+                        <ng-select class="col-8" labelForId="customGear" [ngModel]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
                             <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
                         </ng-select>
                     </div>
