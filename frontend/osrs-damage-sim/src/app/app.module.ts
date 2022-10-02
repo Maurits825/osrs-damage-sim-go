@@ -32,8 +32,6 @@ import { RlGearService } from './services/rl-gear.service';
   ],
   bootstrap: [
     AppComponent,
-    GearSetupComponent,
-    GeneralSetupComponent,
   ]
 })
 export class AppModule { }

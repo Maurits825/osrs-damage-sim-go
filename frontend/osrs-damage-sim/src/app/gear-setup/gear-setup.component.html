@@ -1,13 +1,15 @@
+<!-- TODO remove all tables execpt for gear setup, just use row/col -->
 <div>
-    <h3 class="text-center">Setup 1</h3>
+    <h3 class="text-center">Gear Setup</h3>
     <table class="table table-borderless">
         <tbody>
             <tr>
                 <td class="col-3">
                     <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
                 </td>
-                <td class="col-8"></td>
-                <td class="col-1"></td>
+                <td>
+                    <button type="button" class="btn btn-primary mb-3" (click)="removeGearSetup()">Remove gear setup</button>
+                </td>
             </tr>
             <tr>
                 <td class="col-3 mx-auto"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></td>

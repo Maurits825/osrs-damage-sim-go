@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { GeneralSetupComponent } from '../general-setup/general-setup.component';
 import { GearSetup, GearSlotItem, GearSlotItems } from '../model/gear_slot_items.model';
 import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
@@ -11,6 +12,9 @@ import { RlGearService } from '../services/rl-gear.service';
   styleUrls: ['./gear-setup.component.css']
 })
 export class GearSetupComponent implements OnInit {
+  setupId!: number;
+  generalSetupComponentRef!: GeneralSetupComponent;
+
   gearSlots: Array<any> = [0, 1, 2, 3, 4, 5, 7, 9, 10, 12, 13];
 
   gear: GearSlotItem = {};
@@ -95,7 +99,10 @@ export class GearSetupComponent implements OnInit {
   }
 
   clearGearSlot(slot: number): void {
-    this.gear[slot] = {name: "None", id: 0};
+    this.gear[slot].name = "None";
+    this.gear[slot].id = 0;
+
+    this.selectedGearSetup = this.gearSetups["None"];
 
     if (slot == 3) {
       this.damageSimservice.getAttackStyles(0).subscribe((styles: string[]) => {
@@ -145,5 +152,9 @@ export class GearSetupComponent implements OnInit {
 
   removePrayer(prayer: string): void {
     this.selectedPrayers = this.selectedPrayers.filter(p => p !== prayer);
+  }
+
+  removeGearSetup(): void {
+    this.generalSetupComponentRef.removeGearSetup(this.setupId);
   }
 }
