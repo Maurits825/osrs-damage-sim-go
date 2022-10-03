@@ -18,7 +18,7 @@
                 <div class="col">
                     <label>Boosts</label>
                 </div>
-                <!-- TODO just make diff icons in photoshop -->
+                <!-- TODO just make the selected icons in photoshop -->
                 <div class="col" *ngFor="let boost of boosts">
                     <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
                         <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
@@ -31,10 +31,6 @@
                     </ng-template>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary mb-3" (click)="addNewGearSetup()">Add new gear setup</button>
         </div>
-    </div>
-    <div class="d-flex flex-wrap">
-        <ng-template #gearSetupsContainer></ng-template>
     </div>
 </div>

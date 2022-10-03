@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { GeneralSetupComponent } from '../general-setup/general-setup.component';
+import { Component, OnInit } from '@angular/core';
+import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { GearSetup, GearSlotItem, GearSlotItems } from '../model/gear_slot_items.model';
 import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
@@ -13,9 +13,15 @@ import { RlGearService } from '../services/rl-gear.service';
 })
 export class GearSetupComponent implements OnInit {
   setupId!: number;
-  generalSetupComponentRef!: GeneralSetupComponent;
+  gearSetUpTabRef!: GearSetupTabComponent;
 
   gearSlots: Array<any> = [0, 1, 2, 3, 4, 5, 7, 9, 10, 12, 13];
+
+  //TODO maybe refactor to use maps, with [ngmodel] and (change)=map.set(), theres too many small bugs with clearing values and nulls
+  //it wouldnt fix the default clear on ng-select i think because the Item would still be nulled?
+  //unless gearSlotItems is a map also, then we can always set to a an Item from there, fixing any ref issues i think
+  //then anywhere where the model is being set, we would just do map.set(slot, gearSlotItems.get(itemId)) or something?
+  //essentially only set the model to a Item ref that is in gearSlotItems
 
   gear: GearSlotItem = {};
 
@@ -102,7 +108,7 @@ export class GearSetupComponent implements OnInit {
     this.gear[slot].name = "None";
     this.gear[slot].id = 0;
 
-    this.selectedGearSetup = this.gearSetups["None"];
+    this.selectedGearSetup = this.gearSetups["None"]; //TODO doesnt seem to clear the option
 
     if (slot == 3) {
       this.damageSimservice.getAttackStyles(0).subscribe((styles: string[]) => {
@@ -136,6 +142,10 @@ export class GearSetupComponent implements OnInit {
 
     if (slot == 3) {
       this.updateAttackStyle(item.id);
+
+      if (!this.setupName) {
+        this.setupName = item.name;
+      }
     }
   }
 
@@ -155,6 +165,6 @@ export class GearSetupComponent implements OnInit {
   }
 
   removeGearSetup(): void {
-    this.generalSetupComponentRef.removeGearSetup(this.setupId);
+    this.gearSetUpTabRef.removeGearSetup(this.setupId);
   }
 }
