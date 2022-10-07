@@ -11,7 +11,7 @@ import { RlGearService } from '../services/rl-gear.service';
   styleUrls: ['./gear-setup.component.css']
 })
 export class GearSetupComponent implements OnInit {
-  setupId!: number;
+  setupCount!: number;
   gearSetUpTabRef!: GearSetupTabComponent;
 
   gearSlots: Array<any> = [0, 1, 2, 3, 4, 5, 7, 9, 10, 12, 13];
@@ -145,6 +145,6 @@ export class GearSetupComponent implements OnInit {
   }
 
   removeGearSetup(): void {
-    this.gearSetUpTabRef.removeGearSetup(this.setupId);
+    this.gearSetUpTabRef.removeGearSetup(this.setupCount);
   }
 }

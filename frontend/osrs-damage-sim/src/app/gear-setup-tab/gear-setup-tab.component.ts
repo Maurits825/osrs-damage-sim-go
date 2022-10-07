@@ -13,7 +13,6 @@ export class GearSetupTabComponent implements OnInit {
   id: number = 0;
   
   gearSetups: ComponentRef<GearSetupComponent>[] = [];
-  gearSetupId: number = 0;
   
   constructor() { }
 
@@ -22,22 +21,26 @@ export class GearSetupTabComponent implements OnInit {
 
   addNewGearSetup(): void {
     let gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent)
-    gearSetupRef.instance.setupId = ++this.gearSetupId;
+    gearSetupRef.instance.setupCount = this.gearSetups.length + 1;
     gearSetupRef.instance.gearSetUpTabRef = this;
 
     this.gearSetups.push(gearSetupRef);
   }
 
   removeGearSetup(id: number): void {
-    let gearSetupRef = this.gearSetups.find(setup => setup.instance.setupId == id);
+    let gearSetupRef = this.gearSetups.find(setup => setup.instance.setupCount == id);
 
     let gearSetupsContainerIndex: number = this.gearSetupsContainer.indexOf(gearSetupRef!.hostView);
 
     this.gearSetupsContainer.remove(gearSetupsContainerIndex);
 
     this.gearSetups = this.gearSetups.filter(
-      setup => setup.instance.setupId !== id
+      setup => setup.instance.setupCount !== id
     );
+
+    for (let index = 0; index < this.gearSetups.length; index++) {
+      this.gearSetups[index].instance.setupCount = index + 1;
+    }
   }
 
 }

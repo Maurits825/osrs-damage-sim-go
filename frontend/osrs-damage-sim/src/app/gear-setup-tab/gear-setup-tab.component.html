@@ -1,7 +1,9 @@
 <div [hidden]="!active">
-    <button type="button" class="btn btn-primary mb-2" (click)="addNewGearSetup()">+ Add gear setup</button>
-    
+    <!-- TODO: other stuff like copy tabs and stuff, QOL things -->    
     <div class="d-flex flex-wrap">
         <ng-template #gearSetupsContainer></ng-template>
+        <div>
+            <button type="button" class="btn btn-primary mb-2" (click)="addNewGearSetup()">+ Add gear setup</button>
+        </div>
     </div>
 </div>
