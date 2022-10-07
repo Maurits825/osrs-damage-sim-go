@@ -28,12 +28,11 @@ def get_rl_gear():
     gear = {}
     for item_id in rl_gear_list:
         for slot, gear_slot_items in WikiData.gear_slot_items.items():
-            for item in gear_slot_items:
-                if item["id"] == item_id:
-                    gear[slot] = {
-                        "name": item["name"],
-                        "id": item_id
-                    }
+            if str(item_id) in gear_slot_items:
+                gear[slot] = {
+                    "name": gear_slot_items[str(item_id)]["name"],
+                    "id": item_id
+                }
 
     return gear
 
@@ -46,12 +45,11 @@ def get_gear_setups():
         gear_setups[name] = {}
         for item_id in item_ids:
             for slot, gear_slot_items in WikiData.gear_slot_items.items():
-                for item in gear_slot_items:
-                    if item["id"] == item_id:
-                        gear_setups[name][slot] = {
-                            "name": item["name"],
-                            "id": item_id
-                        }
+                if str(item_id) in gear_slot_items:
+                    gear_setups[name][slot] = {
+                        "name": gear_slot_items[str(item_id)]["name"],
+                        "id": item_id
+                    }
 
     return gear_setups
 
@@ -70,3 +68,5 @@ def get_attack_style(item_id_str):
             attack_styles.append(style.name)
 
     return attack_styles
+
+get_gear_setups()

@@ -78,12 +78,12 @@ class WikiData:
         gear_slot_items = {}
         for item_id, item in WikiData.items_json.items():
             if item["slot"] not in gear_slot_items:
-                gear_slot_items[item["slot"]] = []
+                gear_slot_items[item["slot"]] = {}
 
-            gear_slot_items[item["slot"]].append({
+            gear_slot_items[item["slot"]][int(item_id)] = {
                 "name": item["name"],
                 "id": int(item_id)
-            })
+            }
 
         with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)

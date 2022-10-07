@@ -1,3 +1,4 @@
+<!-- TODO: maybe have this be part of each gear, to compare salted vs potted and stuff -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-auto">
@@ -9,7 +10,7 @@
                             <img src="assets/img/skills/{{skill.key}}.png">
                         </div>
                         <div class="col">
-                            <input class="form-control" type="number" [(ngModel)]="skill.value" (ngModelChange)="this.skillLevel.set(skill.key, $event)" max="99" min="1">
+                            <input class="form-control" type="number" [ngModel]="skill.value" (ngModelChange)="this.skillLevel.set(skill.key, $event)" max="99" min="1">
                         </div>
                     </div>
                 </div>

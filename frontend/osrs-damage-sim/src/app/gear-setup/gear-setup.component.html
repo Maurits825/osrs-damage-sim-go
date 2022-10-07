@@ -4,25 +4,25 @@
     <table class="table table-borderless">
         <tbody>
             <tr>
-                <td class="col-3">
+                <td class="col-4">
                     <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
                 </td>
-                <td colspan="2" class="text-end">
+                <td class="text-end">
                     <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
                 </td>
+                <td class="col-1"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></td>
             </tr>
             <tr>
-                <td class="col-3 mx-auto"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></td>
-                <td class="col-8">
+                <td class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></td>
+                <td  colspan="2" class="col-8">
                     <div class="row">
                         <label class="col-4 text-center" for="customGear">Load setup:</label>
-                        <ng-select class="col-8" labelForId="customGear" [ngModel]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
+                        <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
                             <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
                         </ng-select>
                     </div>
                     
                 </td>
-                <td class="col-1"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></td>
             </tr>
         </tbody>
     </table>
@@ -30,18 +30,15 @@
         <tbody>
             <tr *ngFor="let slot of gearSlots">
                 <td class="col-1">
-                    <div *ngIf="gear[slot]?.id; else placeholder">
-                        <img src="{{ gear[slot].name | wikiItemIcon }}">
+                    <div *ngIf="currentGear[slot]?.id; else placeholder">
+                        <img src="{{ currentGear[slot].name | wikiItemIcon }}">
                     </div>
                     <ng-template #placeholder> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
                 </td>
                 <td class="col-10">
-                    <ng-select [(ngModel)]="gear[slot]" [clearable]="false" (change)="gearSlotChange($event, slot)">
-                        <ng-option *ngFor="let item of gearSlotItems[slot]" [value]="item">{{item.name}}</ng-option>
+                    <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">
+                        <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">{{item.value.name}}</ng-option>
                     </ng-select>
-                </td>
-                <td class="col-1">
-                    <button type="button" class="btn btn-outline-danger" (click)="clearGearSlot(slot)">X</button>
                 </td>
             </tr>
         </tbody>
@@ -53,14 +50,11 @@
                     <div class="row">
                         <div class="col-3"><label for="attackStyle">Attack style</label></div>
                         <div class="col-9">
-                            <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle" [clearable]="false">
+                            <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle">
                                 <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
                             </ng-select>
                         </div>
                     </div>
-                </td>
-                <td class="col-1">
-                    <button type="button" class="btn btn-outline-danger" (click)="selectedAttackStyle = '';">X</button>
                 </td>
             </tr>
             <tr>
@@ -82,9 +76,6 @@
                         </div>
                     </div>
                 </td>
-                <td class="col-1">
-                    <button type="button" class="btn btn-outline-danger" (click)="selectedPrayers=[];">X</button>
-                </td>
             </tr>
             <tr>
                 <td class="col-11">
@@ -94,9 +85,6 @@
                         <div class="col"><label for="isSpecial">Special attack</label></div>
                         <div class="col"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
                     </div>
-                </td>
-                <td class="col-1">
-                    <button type="button" class="btn btn-outline-danger" (click)="attackCount=0; isSpecialAttack=false;">X</button>
                 </td>
             </tr>
         </tbody>

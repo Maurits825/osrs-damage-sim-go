@@ -29,16 +29,16 @@ class DamageSim:
     def get_input_setup(self) -> InputSetup:
         # first get inputs
         # TODO input for this
-        raid_level = 150
+        raid_level = 450
         path_level = 0
         team_size = 1
         # TODO get npc by name
-        #npc = self.wiki_data.get_npc(11751)  # Obelisk
+        npc = self.wiki_data.get_npc(11751)  # Obelisk
         # npc = self.wiki_data.get_npc(11762)  # Tumeken's Warden
         # npc = self.wiki_data.get_npc(11797)  # akkah shadow
-        # npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        # npc = self.wiki_data.get_npc(11730)  # Zebak
-        npc = self.wiki_data.get_npc(11719)  # Kephri
+        #npc = self.wiki_data.get_npc(11778)  # Ba-Ba
+        #npc = self.wiki_data.get_npc(11730)  # Zebak
+        #npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
         if npc.location == Location.TOMBS_OF_AMASCUT:
             path_level_mult = 0.08 if path_level > 0 else 0.05
@@ -59,12 +59,12 @@ class DamageSim:
         # GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 2, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+                GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR])
             ],
             [
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], 4, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
+                GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
+                GearSetupInput.load_gear_setup("My 500 blowpipe", "Rapid", [Prayer.RIGOUR])
             ],
         ]
         # TODO boosts and prayer input
