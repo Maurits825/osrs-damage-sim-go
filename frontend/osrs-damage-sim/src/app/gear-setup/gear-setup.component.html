@@ -1,91 +1,109 @@
-<!-- TODO remove all tables execpt for gear setup, just use row/col -->
-<div class="mx-3">
+<div class="mx-1">
     <h3 class="text-center">Gear Setup - {{setupCount}}</h3>
-    <table class="table table-borderless">
-        <tbody>
-            <tr>
-                <td class="col-4">
-                    <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
-                </td>
-                <td class="text-end">
-                    <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
-                </td>
-                <td class="col-1"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></td>
-            </tr>
-            <tr>
-                <td class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></td>
-                <td  colspan="2" class="col-8">
-                    <div class="row">
-                        <label class="col-4 text-center" for="customGear">Load setup:</label>
-                        <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
-                            <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
-                        </ng-select>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-borderless">
-        <tbody>
-            <tr *ngFor="let slot of gearSlots">
-                <td class="col-1">
-                    <div *ngIf="currentGear[slot]?.id; else placeholder">
-                        <img src="{{ currentGear[slot].name | wikiItemIcon }}">
-                    </div>
-                    <ng-template #placeholder> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
-                </td>
-                <td class="col-10">
-                    <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">
-                        <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">{{item.value.name}}</ng-option>
+    <div class="row mb-3">
+        <div class="row mb-2">
+            <div class="col-3">
+                <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
+            </div>
+            <div class="col text-end">
+                <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
+            </div>
+            <div class="col-1 text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></div>
+        </div>
+        <div class="row">
+            <div class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></div>
+            <div class="col">
+                <div class="row">
+                    <label class="col-4 text-center" for="customGear">Load setup:</label>
+                    <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
+                        <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
                     </ng-select>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-borderless">
-        <tbody>
-            <tr>
-                <td class="col-11">
-                    <div class="row">
-                        <div class="col-3"><label for="attackStyle">Attack style</label></div>
-                        <div class="col-9">
-                            <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle">
-                                <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
-                            </ng-select>
-                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="row mb-2" *ngFor="let slot of gearSlots">
+            <div class="col-1">
+                <div *ngIf="currentGear[slot]?.id; else placeholder">
+                    <img src="{{ currentGear[slot].name | wikiItemIcon }}">
+                </div>
+                <ng-template #placeholder> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
+            </div>
+            <div class="col-11">
+                <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">
+                    <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">{{item.value.name}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="row mb-2">
+            <div class="col-3"><label for="attackStyle">Attack style</label></div>
+            <div class="col-9">
+                <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle">
+                    <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col"><label for="attackCount">Attack count</label></div>
+            <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder=""></div>
+            <div class="col"><label for="isSpecial">Special attack</label></div>
+            <div class="col"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="row mb-2">
+            <div class="col">
+                <label>Prayers</label>
+            </div>
+            <div *ngFor="let prayer of prayers" class="col">
+                <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
+                    <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
+                </div>
+                <ng-template #selectedPrayer>
+                    <div class="prayers-wrapper" (click)="removePrayer(prayer)">
+                        <img class="prayer-icon" src="assets/img/prayer/{{prayer}}.png">
+                        <img class="selected-icon" src="assets/img/prayer/activated_background.png">
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-8">
-                    <div class="row">
-                        <div class="col">
-                            <label>Prayers</label>
-                        </div>
-                        <div *ngFor="let prayer of prayers" class="col">
-                            <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
-                                <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
-                            </div>
-                            <ng-template #selectedPrayer>
-                                <div class="prayers-wrapper" (click)="removePrayer(prayer)">
-                                    <img class="prayer-icon" src="assets/img/prayer/{{prayer}}.png">
-                                    <img class="selected-icon" src="assets/img/prayer/activated_background.png">
-                                </div>
-                            </ng-template>
-                        </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <label>Combat Stats</label>
+            </div>
+            <div class="col" *ngFor="let skill of skillLevel | keyvalue">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="assets/img/skills/{{skill.key}}.png">
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-11">
-                    <div class="row">
-                        <div class="col"><label for="attackCount">Attack count</label></div>
-                        <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder=""></div>
-                        <div class="col"><label for="isSpecial">Special attack</label></div>
-                        <div class="col"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
+                    <div class="col">
+                        <input class="form-control" type="number" [ngModel]="skill.value" (ngModelChange)="this.skillLevel.set(skill.key, $event)" max="99" min="1">
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <label>Boosts</label>
+            </div>
+            <!-- TODO just make the selected icons in photoshop -->
+            <div class="col" *ngFor="let boost of boosts">
+                <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
+                    <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
+                </div>
+                <ng-template #selectedBoost>
+                    <div class="prayers-wrapper" (click)="removeBoost(boost)">
+                        <img class="prayer-icon" src="assets/img/boosts/{{boost}}.png">
+                        <img class="selected-icon" src="assets/img/boosts/activated_background.png">
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
 </div>

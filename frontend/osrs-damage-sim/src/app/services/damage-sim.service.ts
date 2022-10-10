@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Item } from '../model/item.model';
+import { Npc } from '../model/npc.model';
 import { DAMAGE_SIM_SERVER_URL } from './server-url.cons';
 
 @Injectable()
@@ -20,5 +21,9 @@ export class DamageSimService {
 
   getAttackStyles(itemId: number): Observable<string[]> {
     return this.http.get<string[]>(DAMAGE_SIM_SERVER_URL + '/attack-style/' + itemId);
+  }
+
+  getAllNpcs(): Observable<Record<number, Npc>> {
+    return this.http.get<Record<number, Npc>>(DAMAGE_SIM_SERVER_URL + '/npcs');
   }
 }

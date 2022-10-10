@@ -42,5 +42,4 @@ export class GearSetupTabComponent implements OnInit {
       this.gearSetups[index].instance.setupCount = index + 1;
     }
   }
-
 }

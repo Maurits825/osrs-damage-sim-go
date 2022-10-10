@@ -6,7 +6,7 @@ import { GearSetupService } from '../services/gear-setups.service';
 import { RlGearService } from '../services/rl-gear.service';
 
 @Component({
-  selector: 'app-gear-setup',
+  selector: 'app-gear-setup.col-md-6',
   templateUrl: './gear-setup.component.html',
   styleUrls: ['./gear-setup.component.css']
 })
@@ -34,6 +34,14 @@ export class GearSetupComponent implements OnInit {
   attackCount: number = 0;
   isSpecialAttack: boolean = false;
 
+  //TODO maybe refactor to enums
+  skills: string[] = ["attack", "strength", "ranged", "magic"];
+
+  skillLevel: Map<string, number> = new Map;
+
+  boosts: string[] = ["smelling_salts", "super_combat_pot", "ranged_pot"]
+  selectedBoosts: string[] = [];
+
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
@@ -51,6 +59,10 @@ export class GearSetupComponent implements OnInit {
 
     this.damageSimservice.getAttackStyles(0).subscribe((styles: string[]) => {
       this.attackStyles = styles;
+    });
+
+    this.skills.forEach(skill => {
+      this.skillLevel.set(skill, 99);
     });
   }
 
@@ -123,6 +135,7 @@ export class GearSetupComponent implements OnInit {
     if (slot == 3) {
       this.updateAttackStyle(item.id);
 
+      //TODO maybe check if user has input value, how though?
       if (!this.setupName) {
         this.setupName = item.name;
       }
@@ -146,5 +159,13 @@ export class GearSetupComponent implements OnInit {
 
   removeGearSetup(): void {
     this.gearSetUpTabRef.removeGearSetup(this.setupCount);
+  }
+
+  addBoost(boost: string): void {
+    this.selectedBoosts.push(boost);
+  }
+
+  removeBoost(boost: string): void {
+    this.selectedBoosts = this.selectedBoosts.filter(b => b !== boost);
   }
 }

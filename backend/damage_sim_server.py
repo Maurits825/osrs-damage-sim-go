@@ -69,4 +69,7 @@ def get_attack_style(item_id_str):
 
     return attack_styles
 
-get_gear_setups()
+
+@app.route("/npcs", methods=["GET"])
+def get_npcs():
+    return WikiData().npcs_json

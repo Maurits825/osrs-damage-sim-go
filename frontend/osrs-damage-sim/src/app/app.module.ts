@@ -5,22 +5,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
-import { GeneralSetupComponent } from './general-setup/general-setup.component';
 import { WikiItemIconPipe } from './pipes/wiki-item-icon.pipe';
 import { DamageSimService } from './services/damage-sim.service';
 import { GearSetupService } from './services/gear-setups.service';
 import { RlGearService } from './services/rl-gear.service';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
+import { NpcInputComponent } from './npc-input/npc-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GearSetupComponent,
     WikiItemIconPipe,
-    GeneralSetupComponent,
     GearSetupTabComponent,
     GearSetupTabsComponent,
+    NpcInputComponent,
   ],
   imports: [
     NgSelectModule,
