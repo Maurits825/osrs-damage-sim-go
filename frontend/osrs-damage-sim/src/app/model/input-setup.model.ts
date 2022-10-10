@@ -1,15 +1,22 @@
 export interface InputSetup {
+    iterations: number,
     npc: number,
     gearInputSetups: GearInputSetup[][],
+
+    raidLevel: number,
+    pathLevel: number,
+    teamSize: number,
 }
 
 export interface GearInputSetup {
     name: string,
     gear: number[],
+    weapon: number,
+    blowpipeDarts: number,
     attackStyle: string,
     attackCount: number,
     isSpecial: boolean,
     prayers: string[],
-    combatStats: Map<string, number>,
+    combatStats: Record<string, number>,
     boosts: string[],
 }

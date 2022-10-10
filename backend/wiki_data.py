@@ -87,3 +87,7 @@ class WikiData:
 
         with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)
+
+
+if __name__ == '__main__':
+    WikiData.update_gear_slot_items_list()

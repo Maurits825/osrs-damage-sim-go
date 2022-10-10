@@ -22,7 +22,7 @@ class PrayerMultiplier:
             rng += prayer.value.ranged
             rngstr += prayer.value.ranged_strength
 
-        return PrayerMultiplier(att, stre, rng, rngstr)
+        return PrayerMultiplier(max(att, 1), max(stre, 1), max(rng, 1), max(rngstr, 1))
 
 
 class Prayer(Enum):

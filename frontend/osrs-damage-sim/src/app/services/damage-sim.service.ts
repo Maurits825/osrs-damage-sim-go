@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { DamageSimResults } from '../model/damage-sim-results.model';
+import { InputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { Npc } from '../model/npc.model';
 import { DAMAGE_SIM_SERVER_URL } from './server-url.cons';
@@ -25,5 +27,9 @@ export class DamageSimService {
 
   getAllNpcs(): Observable<Record<number, Npc>> {
     return this.http.get<Record<number, Npc>>(DAMAGE_SIM_SERVER_URL + '/npcs');
+  }
+
+  runDamageSim(inputSetup: InputSetup): Observable<DamageSimResults> {
+    return this.http.post<DamageSimResults>(DAMAGE_SIM_SERVER_URL + '/run-damage-sim', inputSetup);
   }
 }

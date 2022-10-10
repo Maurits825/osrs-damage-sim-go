@@ -62,12 +62,17 @@ class DamageSimStats:
 
         print(text)
 
+        return text
+
     @staticmethod
     def print_stats(stats: SimStats, label: str):
-        print(label + ": Average: " + str(round(stats.average, 4)) + ", " +
-              "Frequent: " + str(round(stats.most_frequent, 4)) + ", " +
-              "Max: " + str(round(stats.maximum, 4)) + ", " +
-              "Min: " + str(round(stats.minimum, 4)))
+        text = label + ": Average: " + str(round(stats.average, 4)) + ", " + \
+               "Frequent: " + str(round(stats.most_frequent, 4)) + ", " + \
+               "Max: " + str(round(stats.maximum, 4)) + ", " + \
+               "Min: " + str(round(stats.minimum, 4))
+        print(text)
+
+        return text
 
     @staticmethod
     def format_ticks_to_time(ticks):
@@ -140,6 +145,7 @@ class DamageSimStats:
                 text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 
         print(text[:-1])
+        return text[:-1]
 
     @staticmethod
     def get_gear_setup_label(gear_setups: list[GearSetup]):

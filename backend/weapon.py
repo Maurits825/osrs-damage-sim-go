@@ -31,6 +31,24 @@ class Weapon:
         self.void_skill_attack_boost = 1
         self.void_skill_str_boost = 1
 
+    def initialize(self, attack_style, attack_speed,
+                   void_attack, void_strength,
+                   combat_stats: CombatStats,
+                   prayer: PrayerMultiplier,
+                   total_gear_stats, raid_level, is_special_attack,
+                   npc: NpcStats):
+        self.set_attack_style_and_speed(attack_style, attack_speed)
+        self.set_void_boost(void_attack, void_strength)
+        self.set_combat_stats(combat_stats)
+        self.set_prayer(prayer)
+        self.set_total_gear_stats(total_gear_stats)
+        self.set_raid_level(raid_level)
+        self.set_is_special_attack(is_special_attack)
+        self.set_npc(npc)
+
+        self.update_attack_roll()
+        self.update_max_hit()
+
     def set_attack_style_and_speed(self, attack_style, attack_speed):
         self.attack_style = attack_style
         self.attack_speed = attack_speed

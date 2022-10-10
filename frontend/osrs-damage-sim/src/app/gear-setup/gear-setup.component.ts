@@ -38,10 +38,17 @@ export class GearSetupComponent implements OnInit {
   //TODO maybe refactor to enums
   skills: string[] = ["attack", "strength", "ranged", "magic"];
 
-  combatStats: Map<string, number> = new Map;
+  combatStats: Record<string, number> = {};
 
-  boosts: string[] = ["smelling_salts", "super_combat_pot", "ranged_pot"]
+  boosts: string[] = ["smelling_salts", "super_combat_pot", "ranged_pot"];
   selectedBoosts: string[] = [];
+
+  weapon_slot = 3;
+
+  blowpipeId = 12926;
+  dragonDartId = 11230;
+  selectedDart: Item;
+  dartItems: Item[] = [];
 
   constructor(
     private damageSimservice: DamageSimService,
@@ -52,6 +59,12 @@ export class GearSetupComponent implements OnInit {
   ngOnInit(): void {
     this.damageSimservice.getGearSlotItems().subscribe((gearSlotItems: Record<number, Record<number, Item>>) => {
       this.allGearSlotItems = gearSlotItems;
+      for (const itemId in this.allGearSlotItems[this.weapon_slot]){
+        if (this.allGearSlotItems[this.weapon_slot][itemId].name.match("dart$")) {
+          this.dartItems.push(this.allGearSlotItems[this.weapon_slot][itemId]);
+        }
+      }
+      this.selectedDart = this.allGearSlotItems[this.weapon_slot][this.dragonDartId];
     });
 
     this.gearSetupService.getGearSetups().subscribe((gearSetups: Record<string, Record<number, Item>>) => {
@@ -63,7 +76,7 @@ export class GearSetupComponent implements OnInit {
     });
 
     this.skills.forEach(skill => {
-      this.combatStats.set(skill, 99);
+      this.combatStats[skill] = 99;
     });
   }
 
@@ -78,6 +91,8 @@ export class GearSetupComponent implements OnInit {
     return {
       name: this.setupName,
       gear: gearList,
+      weapon: this.currentGear[this.weapon_slot].id,
+      blowpipeDarts: this.selectedDart.id,
       attackStyle: this.selectedAttackStyle,
       attackCount: this.attackCount,
       isSpecial: this.isSpecialAttack,
@@ -166,7 +181,7 @@ export class GearSetupComponent implements OnInit {
   updateAttackStyle(itemId: number): void {
     this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
       this.attackStyles = styles;
-      this.selectedAttackStyle = null;
+      this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
     });
   }
 

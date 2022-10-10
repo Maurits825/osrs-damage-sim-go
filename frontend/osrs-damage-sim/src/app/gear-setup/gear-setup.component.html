@@ -31,9 +31,14 @@
                 </div>
                 <ng-template #placeholder> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
             </div>
-            <div class="col-11">
+            <div class="col">
                 <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">
                     <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">{{item.value.name}}</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-5" *ngIf="currentGear[slot]?.id == blowpipeId">
+                <ng-select [(ngModel)]="selectedDart">
+                    <ng-option *ngFor="let dart of dartItems" [value]="dart">{{dart.name}}</ng-option>
                 </ng-select>
             </div>
         </div>
@@ -83,7 +88,7 @@
                         <img src="assets/img/skills/{{skill.key}}.png">
                     </div>
                     <div class="col">
-                        <input class="form-control" type="number" [ngModel]="skill.value" (ngModelChange)="this.combatStats.set(skill.key, $event)" max="99" min="1">
+                        <input class="form-control" type="number" [(ngModel)]="combatStats[skill.key]" max="99" min="1">
                     </div>
                 </div>
             </div>

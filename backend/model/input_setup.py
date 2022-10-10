@@ -15,15 +15,14 @@ class GearSetup:
     weapon: Weapon
     attack_count: int
     prayers: list[Prayer]
+    combat_stats: CombatStats
+    boosts: list[Boost]
 
 
 @dataclass()
 class InputSetup:
     npc: NpcStats
-    combat_stats: CombatStats
     gear_setups: list[list[GearSetup]]
-
-    boosts: list[Boost]
 
     raid_level: int = None
     path_level: int = None

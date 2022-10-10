@@ -1,13 +1,17 @@
 from flask import Flask, request
 from flask_cors import CORS
 
+from damage_sim import DamageSim
 from gear_json import GearJson
+from gear_setup_input import GearSetupInput
 from model.attack_style.weapon_category import WeaponCategory
 from rl_gear_input import RlGearInput
 from wiki_data import WikiData
 
 app = Flask(__name__)
 CORS(app)
+
+damage_sim = DamageSim()
 
 
 @app.route("/status", methods=["GET"])
@@ -73,3 +77,13 @@ def get_attack_style(item_id_str):
 @app.route("/npcs", methods=["GET"])
 def get_npcs():
     return WikiData().npcs_json
+
+
+@app.route("/run-damage-sim", methods=["POST"])
+def run_damage_sim():
+    json_request = request.get_json()
+
+    input_setup = GearSetupInput.get_input_setup(json_request)
+    text_results = damage_sim.run(json_request["iterations"], input_setup)
+
+    return {"textResults": text_results}
