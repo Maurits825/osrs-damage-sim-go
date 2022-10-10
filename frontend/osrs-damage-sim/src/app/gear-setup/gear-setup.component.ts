@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
+import { GearInputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
 import { GearSetupService } from '../services/gear-setups.service';
@@ -37,7 +38,7 @@ export class GearSetupComponent implements OnInit {
   //TODO maybe refactor to enums
   skills: string[] = ["attack", "strength", "ranged", "magic"];
 
-  skillLevel: Map<string, number> = new Map;
+  combatStats: Map<string, number> = new Map;
 
   boosts: string[] = ["smelling_salts", "super_combat_pot", "ranged_pot"]
   selectedBoosts: string[] = [];
@@ -62,8 +63,28 @@ export class GearSetupComponent implements OnInit {
     });
 
     this.skills.forEach(skill => {
-      this.skillLevel.set(skill, 99);
+      this.combatStats.set(skill, 99);
     });
+  }
+
+  getGearInputSetup(): GearInputSetup {
+    const gearList = [];
+    for (const gearSlot in this.currentGear) {
+      if (this.currentGear[gearSlot]) {
+        gearList.push(this.currentGear[gearSlot].id);
+      }
+    }
+
+    return {
+      name: this.setupName,
+      gear: gearList,
+      attackStyle: this.selectedAttackStyle,
+      attackCount: this.attackCount,
+      isSpecial: this.isSpecialAttack,
+      prayers: this.selectedPrayers,
+      combatStats: this.combatStats,
+      boosts: this.selectedBoosts
+    };
   }
 
   clearAllGear(): void {

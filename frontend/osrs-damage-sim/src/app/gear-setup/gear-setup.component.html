@@ -77,13 +77,13 @@
             <div class="col">
                 <label>Combat Stats</label>
             </div>
-            <div class="col" *ngFor="let skill of skillLevel | keyvalue">
+            <div class="col" *ngFor="let skill of combatStats | keyvalue">
                 <div class="row">
                     <div class="col-3">
                         <img src="assets/img/skills/{{skill.key}}.png">
                     </div>
                     <div class="col">
-                        <input class="form-control" type="number" [ngModel]="skill.value" (ngModelChange)="this.skillLevel.set(skill.key, $event)" max="99" min="1">
+                        <input class="form-control" type="number" [ngModel]="skill.value" (ngModelChange)="this.combatStats.set(skill.key, $event)" max="99" min="1">
                     </div>
                 </div>
             </div>
