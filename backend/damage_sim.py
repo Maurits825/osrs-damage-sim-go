@@ -1,10 +1,10 @@
 import copy
+import math
 
 from constants import TOA_PATH_LEVEL_NPCS
 from damage_sim_stats import DamageSimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
-from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.input_setup import InputSetup, GearSetup
 from model.npc.npc_stats import NpcStats
@@ -22,8 +22,7 @@ class DamageSimData:
 
 class DamageSim:
     def __init__(self):
-        self.wiki_data = WikiData()
-
+        self.damage_sim_stats = DamageSimStats()
         self.initial_npc_stats = None
 
     def get_input_setup(self) -> InputSetup:
@@ -33,11 +32,11 @@ class DamageSim:
         path_level = 3
         team_size = 1
         # TODO get npc by name
-        npc = self.wiki_data.get_npc(11751)  # Obelisk
+        #npc = WikiData.get_npc(11751)  # Obelisk
         #npc = self.wiki_data.get_npc(11762)  # Tumeken's Warden
         # npc = self.wiki_data.get_npc(11797)  # akkah shadow
         #npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        #npc = self.wiki_data.get_npc(11730)  # Zebak
+        npc = WikiData.get_npc(11730)  # Zebak
         #npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
         if npc.name in TOA_PATH_LEVEL_NPCS:
@@ -59,18 +58,16 @@ class DamageSim:
         # GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("My 500 fang", "Lunge", [Prayer.PIETY], [BoostType.SMELLING_SALTS], combat_stats)
+                GearSetupInput.load_gear_setup("My 500 tbow", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)], combat_stats)
             ],
             [
-                GearSetupInput.load_gear_setup("My 500 blowpipe", "Rapid", [Prayer.RIGOUR], [BoostType.SMELLING_SALTS], combat_stats)
+                GearSetupInput.load_gear_setup("My 500 tbow", "Rapid", [Prayer.RIGOUR],
+                                               [Boost(BoostType.RANGED_POT)], combat_stats)
             ],
             [
-                GearSetupInput.load_gear_setup("My 500 BGS", "Slash", [Prayer.PIETY], [BoostType.SMELLING_SALTS], combat_stats, 2, True),
-                GearSetupInput.load_gear_setup("My 500 blowpipe", "Rapid", [Prayer.RIGOUR])
-            ],
-            [
-                GearSetupInput.load_gear_setup("My 500 BGS", "Slash", [Prayer.PIETY], [BoostType.SMELLING_SALTS], combat_stats, 2, True),
-                GearSetupInput.load_gear_setup("My 500 fang", "Lunge", [Prayer.PIETY], [BoostType.SMELLING_SALTS], combat_stats)
+                GearSetupInput.load_gear_setup("My 500 BGS", "Slash", [Prayer.PIETY],[Boost(BoostType.SMELLING_SALTS)], combat_stats, 2, True),
+                GearSetupInput.load_gear_setup("My 500 tbow", "Rapid", [Prayer.RIGOUR],
+                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats)
             ],
 
         ]
@@ -78,7 +75,7 @@ class DamageSim:
         # TODO set cmb stats,prayers & gear bonus here?
         for gear_setup in gear_setups:
             for gear in gear_setup:
-                gear.weapon.set_combat_stats(combat_stats)
+                gear.weapon.set_combat_stats(gear.combat_stats)
                 if gear.prayers:
                     gear.weapon.set_prayer(PrayerMultiplier.sum_prayers(gear.prayers))
 
@@ -96,6 +93,8 @@ class DamageSim:
         return InputSetup(
             npc=npc,
             gear_setups=gear_setups,
+            raid_level=raid_level,
+            path_level=path_level,
         )
 
     def run(self, iterations, input_setup):
@@ -104,6 +103,7 @@ class DamageSim:
 
         # TODO refactor print stuff to just return text, then decide to print or just return
         max_ticks = 0
+        min_ticks = math.inf
         for gear_setup in input_setup.gear_setups:
             ticks_to_kill, weapon_sim_dps = self.run_simulator(iterations, gear_setup)
             ttk_stats = DamageSimStats.get_data_stats(ticks_to_kill)
@@ -119,11 +119,12 @@ class DamageSim:
             print("")
 
             max_ticks = max(max_ticks, ttk_stats.maximum)
-            DamageSimStats.graph_n_cumulative_tick_count(ticks_to_kill, gear_setup)
+            min_ticks = min(min_ticks, ttk_stats.minimum)
+            self.damage_sim_stats.graph_n_cumulative_tick_count(ticks_to_kill, gear_setup)
 
-        DamageSimStats.show_cumulative_graph(max_ticks, input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
+        figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
 
-        return printed_text
+        return printed_text, figure
 
     def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> (list, list):
         ticks_to_kill_list = []

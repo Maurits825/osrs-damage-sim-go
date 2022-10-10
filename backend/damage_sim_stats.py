@@ -1,10 +1,11 @@
 import math
-
 import numpy as np
-import matplotlib.pyplot as plt
 from dataclasses import dataclass
-
 from model.input_setup import GearSetup, InputSetup
+
+import matplotlib
+matplotlib.use('Agg') #TODO better way?
+import matplotlib.pyplot as plt
 
 
 @dataclass()
@@ -18,6 +19,10 @@ class SimStats:
 
 
 class DamageSimStats:
+    def __init__(self):
+        self.figure = plt.figure(figsize=(19.20, 10.80))
+        self.axes = self.figure.add_subplot()
+
     @staticmethod
     def get_data_stats(data) -> SimStats:
         np_data = np.array(data)
@@ -80,7 +85,8 @@ class DamageSimStats:
         minutes = math.floor(total_seconds / 60)
         seconds = round(total_seconds % 60, 1)
 
-        return str(minutes) + ":" + str(seconds)
+        seconds_str = ("0" + str(seconds))[-4:]
+        return str(minutes) + ":" + seconds_str
 
     @staticmethod
     def graph_tick_counts(tick_count, weapon):
@@ -98,12 +104,11 @@ class DamageSimStats:
         plt.title(DamageSimStats.get_gear_setup_label(gear_setups))
         plt.show()
 
-    @staticmethod
-    def graph_n_cumulative_tick_count(tick_count, gear_setups: list[GearSetup]) -> list[float]:
+    def graph_n_cumulative_tick_count(self, tick_count, gear_setups: list[GearSetup]) -> list[float]:
         bin_count = np.bincount(tick_count) / len(tick_count)
         cum_sum = np.cumsum(bin_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
-        plt.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
+        self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
         return cum_sum
 
@@ -112,13 +117,14 @@ class DamageSimStats:
         bin_count = np.bincount(data) / len(data)
         return np.cumsum(bin_count)
 
-    @staticmethod
-    def show_cumulative_graph(max_ticks, input_setup: InputSetup, iterations, hitpoints):
-        plt.xticks(np.arange(0, max_ticks, 20))  # TODO time labels are kind big so this need to be like 10+
-        plt.yticks(np.arange(0, 1.1, 0.1))
+    def show_cumulative_graph(self, min_ticks, max_ticks, input_setup: InputSetup, iterations, hitpoints):
+        self.axes.set_xticks(np.linspace(min_ticks, max_ticks, 30))  # TODO time labels are kind big so this need to be like 10+
+        self.axes.set_yticks(np.arange(0, 1.1, 0.1))
 
-        plt.xlabel("Time to kill")
-        plt.ylabel("Cummulative chance")
+        self.axes.set_xlim(min_ticks-6, max_ticks+6)
+
+        self.axes.set_xlabel("Time to kill")
+        self.axes.set_ylabel("Cummulative chance")
 
         title = "Cumulative Time to Kill: "
         title += input_setup.npc.name + ", HP: " + str(hitpoints)
@@ -130,9 +136,16 @@ class DamageSimStats:
 
         title += ", iterations: " + str(iterations)
 
-        plt.title(title)
-        plt.legend()
-        plt.show()
+        self.axes.set_title(title)
+        self.axes.legend()
+        self.figure.tight_layout()
+        self.axes.margins(x=0.02, y=0.04)
+        self.axes.set_facecolor(color="lightgrey")
+        self.axes.grid(linewidth=0.2, color="white")
+
+        #plt.show() #TODO add a flag or something
+
+        return self.figure
 
     @staticmethod
     def print_setup(gear_setup: list[GearSetup], sim_dps_stats: list[SimStats]):
@@ -140,7 +153,8 @@ class DamageSimStats:
         for idx, gear in enumerate(gear_setup):
             text += gear.name + ": " + str(gear.attack_count)
             if gear.attack_count != math.inf:
-                text += ", Avg Damage: " + str(round(gear.attack_count * sim_dps_stats[idx].average * 0.6 * gear.weapon.attack_speed)) + "\n"
+                text += ", Avg Damage: " + str(
+                    round(gear.attack_count * sim_dps_stats[idx].average * 0.6 * gear.weapon.attack_speed)) + "\n"
             else:
                 text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 
@@ -149,7 +163,14 @@ class DamageSimStats:
 
     @staticmethod
     def get_gear_setup_label(gear_setups: list[GearSetup]):
-        info = ""
+        label = ""
         for gear in gear_setups:
-            info = info + gear.name + ": " + str(gear.attack_count) + ", "
-        return info[:-2]
+            prayer_and_boost_text = " ("
+            for prayer in gear.prayers:
+                prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
+
+            for boost in gear.boosts:
+                prayer_and_boost_text += boost.boost_type.name.lower().replace("_", " ").capitalize() + ", "
+
+            label = label + gear.name + prayer_and_boost_text[:-2] + "): " + str(gear.attack_count) + ", "
+        return label[:-2]

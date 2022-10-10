@@ -111,6 +111,7 @@ export class GearSetupComponent implements OnInit {
     });
 
     this.selectedPrayers = [];
+    this.selectedBoosts = [];
     this.attackCount = 0;
     this.isSpecialAttack = false;
   }

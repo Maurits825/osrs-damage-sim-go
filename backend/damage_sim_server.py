@@ -1,4 +1,6 @@
-from flask import Flask, request
+from io import BytesIO
+
+from flask import Flask, request, send_file, abort
 from flask_cors import CORS
 
 from damage_sim import DamageSim
@@ -12,6 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 damage_sim = DamageSim()
+RESULT_FIGURE = None
 
 
 @app.route("/status", methods=["GET"])
@@ -84,6 +87,19 @@ def run_damage_sim():
     json_request = request.get_json()
 
     input_setup = GearSetupInput.get_input_setup(json_request)
-    text_results = damage_sim.run(json_request["iterations"], input_setup)
+    global RESULT_FIGURE
+    text_results, RESULT_FIGURE = damage_sim.run(json_request["iterations"], input_setup)
 
     return {"textResults": text_results}
+
+
+@app.route("/damage-sim-graph", methods=["GET"])
+def get_damage_sim_graph():
+    global RESULT_FIGURE
+    if RESULT_FIGURE:
+        graph_image = BytesIO()
+        RESULT_FIGURE.savefig(graph_image, dpi=100)
+        graph_image.seek(0)
+        return send_file(graph_image, mimetype='image/png')
+    else:
+        abort(404)

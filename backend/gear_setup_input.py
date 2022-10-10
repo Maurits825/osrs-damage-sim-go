@@ -17,7 +17,7 @@ from wiki_data import WikiData
 class GearSetupInput:
     @staticmethod
     def load_gear_setup(name: str, attack_style_name: str, prayers: [Prayer] = None,
-                        boosts: [Boost] = None, combat_stats: CombatStats = None, attacks: int = math.inf, is_special=False) -> GearSetup:
+                        boosts: [Boost] = [], combat_stats: CombatStats = None, attacks: int = math.inf, is_special=False) -> GearSetup:
         gear_dict = GearJson.load_gear()
         gear = gear_dict[name]
 
@@ -47,8 +47,9 @@ class GearSetupInput:
                     weapon.set_is_special_attack(is_special)
 
         # TODO calc boosted stats here?
+        combat_stats_copy = copy.deepcopy(combat_stats)
         for boost in boosts:
-            boost.apply_boost(combat_stats)
+            boost.apply_boost(combat_stats_copy)
 
         return GearSetup(name=name,
                          gear_stats=total_gear_stats,
@@ -56,7 +57,7 @@ class GearSetupInput:
                          attack_count=attacks,
                          prayers=prayers,
                          boosts=boosts,
-                         combat_stats=combat_stats)
+                         combat_stats=combat_stats_copy)
 
     @staticmethod
     def get_gear_void_bonuses(gear):
