@@ -21,22 +21,22 @@ class DamageSimData:
 
 
 class DamageSim:
-    def __init__(self):
-        self.damage_sim_stats = DamageSimStats()
+    def __init__(self, show_plots):
+        self.damage_sim_stats = DamageSimStats(show_plots)
         self.initial_npc_stats = None
 
     def get_input_setup(self) -> InputSetup:
         # first get inputs
         # TODO input for this
-        raid_level = 500
-        path_level = 3
+        raid_level = 300
+        path_level = 0
         team_size = 1
         # TODO get npc by name
-        #npc = WikiData.get_npc(11751)  # Obelisk
-        #npc = self.wiki_data.get_npc(11762)  # Tumeken's Warden
+        npc = WikiData.get_npc(11751)  # Obelisk
+        #npc = WikiData.get_npc(11762)  # Tumeken's Warden
         # npc = self.wiki_data.get_npc(11797)  # akkah shadow
         #npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        npc = WikiData.get_npc(11730)  # Zebak
+        #npc = WikiData.get_npc(11730)  # Zebak
         #npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
         if npc.name in TOA_PATH_LEVEL_NPCS:
@@ -58,17 +58,29 @@ class DamageSim:
         # GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("My 500 tbow", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)], combat_stats)
-            ],
-            [
-                GearSetupInput.load_gear_setup("My 500 tbow", "Rapid", [Prayer.RIGOUR],
-                                               [Boost(BoostType.RANGED_POT)], combat_stats)
-            ],
-            [
-                GearSetupInput.load_gear_setup("My 500 BGS", "Slash", [Prayer.PIETY],[Boost(BoostType.SMELLING_SALTS)], combat_stats, 2, True),
-                GearSetupInput.load_gear_setup("My 500 tbow", "Rapid", [Prayer.RIGOUR],
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)], combat_stats, 2, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
+                GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR],
                                                [Boost(BoostType.SMELLING_SALTS)], combat_stats)
             ],
+            [
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)],
+                                               combat_stats, 2, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY],
+                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], [Boost(BoostType.SMELLING_SALTS)],
+                                               combat_stats)
+            ],
+            [
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)],
+                                               combat_stats, 2, True),
+                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY],
+                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
+                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], [Boost(BoostType.SMELLING_SALTS)],
+                                               combat_stats, 1),
+                GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR],
+                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats)
+            ]
 
         ]
 
@@ -180,5 +192,5 @@ class DamageSim:
 
 
 if __name__ == '__main__':
-    sim = DamageSim()
+    sim = DamageSim(True)
     sim.run(20000, sim.get_input_setup())

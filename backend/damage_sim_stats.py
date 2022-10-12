@@ -3,10 +3,6 @@ import numpy as np
 from dataclasses import dataclass
 from model.input_setup import GearSetup, InputSetup
 
-import matplotlib
-matplotlib.use('Agg') #TODO better way?
-import matplotlib.pyplot as plt
-
 
 @dataclass()
 class SimStats:
@@ -19,7 +15,18 @@ class SimStats:
 
 
 class DamageSimStats:
-    def __init__(self):
+    def __init__(self, show_plots):
+        self.show_plots = show_plots
+
+        global matplotlib
+        matplotlib = __import__('matplotlib', globals(), locals())
+        if not self.show_plots:
+            matplotlib.use('Agg')
+
+        global plt
+        matplotlib = __import__('matplotlib.pyplot', globals(), locals())
+        plt = matplotlib.pyplot
+
         self.figure = plt.figure(figsize=(19.20, 10.80))
         self.axes = self.figure.add_subplot()
 
@@ -118,6 +125,8 @@ class DamageSimStats:
         return np.cumsum(bin_count)
 
     def show_cumulative_graph(self, min_ticks, max_ticks, input_setup: InputSetup, iterations, hitpoints):
+        # TODO figure out how to get nice evenly space ticks
+        # TODO maybe just try to set interval as 1,10,20 ticks with np.arange() until total timestamps are below 30
         self.axes.set_xticks(np.linspace(min_ticks, max_ticks, 30))  # TODO time labels are kind big so this need to be like 10+
         self.axes.set_yticks(np.arange(0, 1.1, 0.1))
 
@@ -140,10 +149,11 @@ class DamageSimStats:
         self.axes.legend()
         self.figure.tight_layout()
         self.axes.margins(x=0.02, y=0.04)
-        self.axes.set_facecolor(color="lightgrey")
+        self.axes.set_facecolor(color="lightgrey") #TODO maybe better colors
         self.axes.grid(linewidth=0.2, color="white")
 
-        #plt.show() #TODO add a flag or something
+        if self.show_plots:
+            plt.show()
 
         return self.figure
 

@@ -13,7 +13,7 @@ from wiki_data import WikiData
 app = Flask(__name__)
 CORS(app)
 
-damage_sim = DamageSim()
+damage_sim = DamageSim(False)
 RESULT_FIGURE = None
 
 
