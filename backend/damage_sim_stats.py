@@ -2,6 +2,8 @@ import math
 import numpy as np
 from dataclasses import dataclass
 from model.input_setup import GearSetup, InputSetup
+global matplotlib
+global plt
 
 
 @dataclass()
@@ -27,6 +29,11 @@ class DamageSimStats:
         matplotlib = __import__('matplotlib.pyplot', globals(), locals())
         plt = matplotlib.pyplot
 
+        self.figure = plt.figure(figsize=(19.20, 10.80))
+        self.axes = self.figure.add_subplot()
+
+    def reset_plots(self):
+        plt.clf()
         self.figure = plt.figure(figsize=(19.20, 10.80))
         self.axes = self.figure.add_subplot()
 

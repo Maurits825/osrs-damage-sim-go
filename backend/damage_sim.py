@@ -111,6 +111,7 @@ class DamageSim:
 
     def run(self, iterations, input_setup):
         self.initial_npc_stats = copy.deepcopy(input_setup.npc)
+        self.damage_sim_stats.reset_plots()
         printed_text = []
 
         # TODO refactor print stuff to just return text, then decide to print or just return
