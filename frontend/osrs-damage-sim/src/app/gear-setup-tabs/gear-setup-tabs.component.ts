@@ -9,14 +9,18 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
 export class GearSetupTabsComponent implements OnInit {
   @ViewChild('gearSetupTabContainer', {read: ViewContainerRef}) gearSetupTabContainer!: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
-  
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  openNewSetupTab() {
+  openNewSetupTab(tabToCopy?: GearSetupTabComponent): void {
     let gearSetupTabRef = this.gearSetupTabContainer.createComponent(GearSetupTabComponent);
+
+    if (tabToCopy) {
+      gearSetupTabRef.instance.tabToCopy = tabToCopy;
+    }
 
     // set the according properties on our component instance
     const tabInstance: GearSetupTabComponent = gearSetupTabRef.instance as GearSetupTabComponent;
@@ -27,18 +31,19 @@ export class GearSetupTabsComponent implements OnInit {
     this.gearSetupTabs.push(tabInstance);
 
     // set it active
-    this.selectTab(this.gearSetupTabs[this.gearSetupTabs.length - 1]);
+    this.selectTab(tabInstance);
   }
 
-  selectTab(tab: GearSetupTabComponent) {
+  selectTab(tab: GearSetupTabComponent): void {
     // deactivate all tabs
+    debugger;
     this.gearSetupTabs.forEach((gearSetupTab) => (gearSetupTab.active = false));
 
     // activate the tab the user has clicked on.
     tab.active = true;
   }
 
-  closeTab(tab: GearSetupTabComponent) {
+  closeTab(tab: GearSetupTabComponent): void {
     for (let i = 0; i < this.gearSetupTabs.length; i++) {
       if (this.gearSetupTabs[i] === tab) {
         // remove the tab from our array
@@ -54,5 +59,9 @@ export class GearSetupTabsComponent implements OnInit {
         }
       }
     }
+  }
+
+  copyTab(tabToCopy: GearSetupTabComponent): void {
+    this.openNewSetupTab(tabToCopy);
   }
 }

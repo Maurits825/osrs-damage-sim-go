@@ -6,7 +6,8 @@
                 <li class="nav-item" *ngFor="let tab of gearSetupTabs" (click)="selectTab(tab)">
                     <!-- TODO href for pointer but also causes scroll up -->
                     <a class="nav-link" [class.active]="tab.active" href="#"> 
-                        <span class="mx-3">Setup - {{tab.id}}</span>
+                        <span class="mx-2">Setup - {{tab.id}}</span>
+                        <button type="button" class="btn btn-primary mx-3" (click)="copyTab(tab)"><i class="bi bi-clipboard-plus"></i></button>
                         <button type="button" class="btn btn-outline-danger btn-sm" (click)="closeTab(tab)">X</button>
                     </a>
                 </li>
