@@ -5,10 +5,10 @@
             <div class="col-3">
                 <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
             </div>
-            <div class="col text-end">
+            <div class="col-4 offset-md-3">
                 <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
             </div>
-            <div class="col-1 text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></div>
+            <div class="col-2 text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></div>

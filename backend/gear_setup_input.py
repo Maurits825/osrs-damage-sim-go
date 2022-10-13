@@ -85,7 +85,7 @@ class GearSetupInput:
         raid_level = json_data.get("raidLevel", None)
         path_level = json_data.get("pathLevel", None)
 
-        if path_level and npc.name in TOA_PATH_LEVEL_NPCS:
+        if npc.name in TOA_PATH_LEVEL_NPCS:
             path_level_mult = 0.08 if path_level > 0 else 0.05
             npc.combat_stats.hitpoints = int(
                 round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) * (

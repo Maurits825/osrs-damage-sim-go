@@ -12,8 +12,8 @@ export class NpcInputComponent implements OnInit {
   allNpcs: Record<number, Npc>;
   selectedNpcId: number;
 
-  raidLevel: number;
-  pathLeveL: number;
+  raidLevel: number = 0;
+  pathLeveL: number = 0;
   showPathLevel = false;
   showRaidLevel = false;
 
