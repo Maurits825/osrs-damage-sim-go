@@ -36,7 +36,6 @@ export class GearSetupTabsComponent implements OnInit {
 
   selectTab(tab: GearSetupTabComponent): void {
     // deactivate all tabs
-    debugger;
     this.gearSetupTabs.forEach((gearSetupTab) => (gearSetupTab.active = false));
 
     // activate the tab the user has clicked on.
