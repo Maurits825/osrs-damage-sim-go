@@ -20,9 +20,14 @@ export class AppComponent { //TODO refactor to another component?
   teamSize: number = 1;
 
   damageSimResults: DamageSimResults;
+
+  loading = false;
+
   constructor(private damageSimservice: DamageSimService) {}
 
   submit(): void {
+    this.loading = true;
+
     const inputSetup: InputSetup = {
       iterations: this.iterations,
       teamSize: this.teamSize,
@@ -43,6 +48,11 @@ export class AppComponent { //TODO refactor to another component?
 
     this.damageSimservice.runDamageSim(inputSetup).subscribe((results: DamageSimResults) => {
       this.damageSimResults = results;
+      this.loading = false;
+    },
+    error => {
+      //TODO show some error
+      this.loading = false;
     });
   }
 }

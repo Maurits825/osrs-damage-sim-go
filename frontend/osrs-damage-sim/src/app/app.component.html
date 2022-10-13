@@ -13,7 +13,11 @@
     <div class="col-2"><input class="form-control" type="number" [(ngModel)]="iterations" min="1"></div>
     <label class="col-2">Team size</label>
     <div class="col-2"><input class="form-control" type="number" [(ngModel)]="teamSize" min="1"></div>
-    <button type="button" class="col-3 btn btn-primary" (click)="submit()">Submit</button>
+    <button class="col-3 btn btn-primary" type="button" (click)="submit()" [disabled]="loading">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
+      <span *ngIf="loading" class="sr-only"> Loading...</span>
+    </button>
   </div>
   <app-npc-input></app-npc-input>
   <app-gear-setup-tabs #gearSetupTabs></app-gear-setup-tabs>
