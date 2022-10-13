@@ -7,13 +7,27 @@ global plt
 
 
 @dataclass()
+class TimeSimStats:
+    average: str
+    maximum: str
+    minimum: str
+    most_frequent: str
+
+    chance_to_kill: list[str]
+
+    label: str = None
+
+
+@dataclass()
 class SimStats:
-    average: int
+    average: float
     maximum: int
     minimum: int
     most_frequent: int
 
     chance_to_kill: list
+
+    label: str = None
 
 
 class DamageSimStats:
@@ -38,7 +52,7 @@ class DamageSimStats:
         self.axes = self.figure.add_subplot()
 
     @staticmethod
-    def get_data_stats(data) -> SimStats:
+    def get_data_stats(data, label: str) -> SimStats:
         np_data = np.array(data)
         average = np.average(np_data)
         maximum = np.max(np_data)
@@ -46,9 +60,9 @@ class DamageSimStats:
 
         cumulative_sum = DamageSimStats.get_cumulative_sum(data)
         chance_to_kill = [
-            np.argmax(cumulative_sum >= 0.25),
-            np.argmax(cumulative_sum >= 0.50),
-            np.argmax(cumulative_sum >= 0.75)
+            int(np.argmax(cumulative_sum >= 0.25)),
+            int(np.argmax(cumulative_sum >= 0.50)),
+            int(np.argmax(cumulative_sum >= 0.75))
         ]
 
         try:
@@ -56,16 +70,26 @@ class DamageSimStats:
         except TypeError:
             frequent = 0
 
-        return SimStats(average, maximum, minimum, frequent, chance_to_kill)
+        return SimStats(float(average), int(maximum), int(minimum), int(frequent), list(chance_to_kill), label)
 
     @staticmethod
-    def get_data_2d_stats(data_list) -> list[SimStats]:
+    def get_ticks_stats(sim_stats: SimStats) -> TimeSimStats:
+        return TimeSimStats(DamageSimStats.format_ticks_to_time(sim_stats.average),
+                            DamageSimStats.format_ticks_to_time(sim_stats.maximum),
+                            DamageSimStats.format_ticks_to_time(sim_stats.minimum),
+                            DamageSimStats.format_ticks_to_time(sim_stats.most_frequent),
+                            [DamageSimStats.format_ticks_to_time(chance) for chance in sim_stats.chance_to_kill],
+                            sim_stats.label
+                            )
+
+    @staticmethod
+    def get_data_2d_stats(data_list, gear_setups: list[GearSetup]) -> list[SimStats]:
         sim_stats_list = []
         dps = []
         for index in range(len(data_list[0])):
             for data in data_list:
                 dps.append(data[index])
-            sim_stats_list.append(DamageSimStats.get_data_stats(dps))
+            sim_stats_list.append(DamageSimStats.get_data_stats(dps, gear_setups[index].name))
             dps.clear()
         return sim_stats_list
 
@@ -81,8 +105,6 @@ class DamageSimStats:
 
         print(text)
 
-        return text
-
     @staticmethod
     def print_stats(stats: SimStats, label: str):
         text = label + ": Average: " + str(round(stats.average, 4)) + ", " + \
@@ -90,8 +112,6 @@ class DamageSimStats:
                "Max: " + str(round(stats.maximum, 4)) + ", " + \
                "Min: " + str(round(stats.minimum, 4))
         print(text)
-
-        return text
 
     @staticmethod
     def format_ticks_to_time(ticks):
@@ -176,18 +196,20 @@ class DamageSimStats:
                 text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 
         print(text[:-1])
-        return text[:-1]
 
     @staticmethod
     def get_gear_setup_label(gear_setups: list[GearSetup]):
         label = ""
         for gear in gear_setups:
-            prayer_and_boost_text = " ("
+            prayer_and_boost_text = ""
             for prayer in gear.prayers:
                 prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
 
             for boost in gear.boosts:
                 prayer_and_boost_text += boost.boost_type.name.lower().replace("_", " ").capitalize() + ", "
 
-            label = label + gear.name + prayer_and_boost_text[:-2] + "): " + str(gear.attack_count) + ", "
+            if prayer_and_boost_text:
+                prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
+
+            label = label + gear.name + prayer_and_boost_text + ": " + str(gear.attack_count) + ", "
         return label[:-2]

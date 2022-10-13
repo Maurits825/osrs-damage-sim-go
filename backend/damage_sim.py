@@ -112,23 +112,24 @@ class DamageSim:
     def run(self, iterations, input_setup):
         self.initial_npc_stats = copy.deepcopy(input_setup.npc)
         self.damage_sim_stats.reset_plots()
-        printed_text = []
 
         # TODO refactor print stuff to just return text, then decide to print or just return
         max_ticks = 0
         min_ticks = math.inf
+        ttk_stats_list = []
         for gear_setup in input_setup.gear_setups:
             ticks_to_kill, weapon_sim_dps = self.run_simulator(iterations, gear_setup)
-            ttk_stats = DamageSimStats.get_data_stats(ticks_to_kill)
-            sim_dps_stats = DamageSimStats.get_data_2d_stats(weapon_sim_dps)
+            ttk_stats = DamageSimStats.get_data_stats(ticks_to_kill, DamageSimStats.get_gear_setup_label(gear_setup))
+            ttk_stats_list.append(DamageSimStats.get_ticks_stats(ttk_stats))
+            sim_dps_stats = DamageSimStats.get_data_2d_stats(weapon_sim_dps, gear_setup)
 
             for gear in gear_setup:
                 gear.weapon.set_npc(copy.deepcopy(self.initial_npc_stats))
-            printed_text.append(DamageSimStats.print_setup(gear_setup, sim_dps_stats))
+            DamageSimStats.print_setup(gear_setup, sim_dps_stats)
 
             for idx, dps in enumerate(sim_dps_stats):
-                printed_text.append(DamageSimStats.print_stats(dps, gear_setup[idx].name + " Sim DPS"))
-            printed_text.append(DamageSimStats.print_ticks_stats(ttk_stats, "Time"))
+                DamageSimStats.print_stats(dps, gear_setup[idx].name + " Sim DPS")
+            DamageSimStats.print_ticks_stats(ttk_stats, "Time")
             print("")
 
             max_ticks = max(max_ticks, ttk_stats.maximum)
@@ -137,7 +138,7 @@ class DamageSim:
 
         figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
 
-        return printed_text, figure
+        return ttk_stats_list, figure
 
     def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> (list, list):
         ticks_to_kill_list = []

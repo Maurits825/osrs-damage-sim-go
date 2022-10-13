@@ -1,13 +1,31 @@
 <div class="container">
   <h1 class="text-center display-1 mb-5">Damage Simulator</h1>
-  <div class="row mb-1">
-    <div class="col">Results</div>
+  
+  <div class="row mb-3" *ngIf="damageSimResults?.setupTtkStats">
+    <h2 class="mb-1 ps-0">Time Results</h2>
+    <table class="table table-striped table-bordered mb-4">
+      <thead>
+        <tr>
+          <th scope="col">Setup</th>
+          <th scope="col">Average</th>
+          <th scope="col">Frequent</th>
+          <th scope="col">Min</th>
+          <th scope="col">Max</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let simStats of damageSimResults.setupTtkStats">
+          <th scope="row">{{simStats.label}}</th>
+          <td>{{simStats.average}}</td>
+          <td>{{simStats.most_frequent}}</td>
+          <td>{{simStats.minimum}}</td>
+          <td>{{simStats.maximum}}</td>
+      </tbody>
+    </table>
+
+    <hr>
   </div>
-  <div class="row mb-3" *ngIf="damageSimResults?.textResults">
-    <div class="row" *ngFor="let text of damageSimResults.textResults">
-      <div class="col">{{text}}</div>
-    </div>
-  </div>
+
   <div class="row mb-3">
     <label class="col-2">Iterations</label>
     <div class="col-2"><input class="form-control" type="number" [(ngModel)]="iterations" min="1"></div>
@@ -19,6 +37,7 @@
       <span *ngIf="loading" class="sr-only"> Loading...</span>
     </button>
   </div>
+
   <app-npc-input></app-npc-input>
   <app-gear-setup-tabs #gearSetupTabs></app-gear-setup-tabs>
 </div>

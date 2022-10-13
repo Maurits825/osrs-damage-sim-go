@@ -88,9 +88,9 @@ def run_damage_sim():
 
     input_setup = GearSetupInput.get_input_setup(json_request)
     global RESULT_FIGURE
-    text_results, RESULT_FIGURE = damage_sim.run(json_request["iterations"], input_setup)
+    ttk_stats_list, RESULT_FIGURE = damage_sim.run(json_request["iterations"], input_setup)
 
-    return {"textResults": text_results}
+    return {"setupTtkStats": ttk_stats_list}
 
 
 @app.route("/damage-sim-graph", methods=["GET"])
