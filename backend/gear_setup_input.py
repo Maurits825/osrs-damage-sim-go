@@ -12,6 +12,7 @@ from model.npc.combat_stats import CombatStats
 from model.prayer import Prayer, PrayerMultiplier
 from model.weapon_stats import WeaponStats
 from weapon import Weapon
+from weapons.custom_weapons import CUSTOM_WEAPONS
 from wiki_data import WikiData
 
 

@@ -1,7 +1,6 @@
 import copy
 import math
 
-from constants import TOA_PATH_LEVEL_NPCS
 from damage_sim_stats import DamageSimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
@@ -41,11 +40,11 @@ class DamageSim:
         path_level = 0
         team_size = 1
         # TODO get npc by name
-        npc = WikiData.get_npc(11751)  # Obelisk
+        #npc = WikiData.get_npc(11751)  # Obelisk
         #npc = WikiData.get_npc(11762)  # Tumeken's Warden
         # npc = self.wiki_data.get_npc(11797)  # akkah shadow
         #npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        #npc = WikiData.get_npc(11730)  # Zebak
+        npc = WikiData.get_npc(11730)  # Zebak
         #npc = self.wiki_data.get_npc(11719)  # Kephri
         # TODO do this here?
         if npc.location == Location.TOMBS_OF_AMASCUT:
@@ -67,29 +66,11 @@ class DamageSim:
         # GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
         gear_setups = [
             [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)], combat_stats, 2, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
-                GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR],
+                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR],
+                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
+                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR],
                                                [Boost(BoostType.SMELLING_SALTS)], combat_stats)
             ],
-            [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)],
-                                               combat_stats, 2, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY],
-                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], [Boost(BoostType.SMELLING_SALTS)],
-                                               combat_stats)
-            ],
-            [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], [Boost(BoostType.SMELLING_SALTS)],
-                                               combat_stats, 2, True),
-                GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY],
-                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
-                GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY], [Boost(BoostType.SMELLING_SALTS)],
-                                               combat_stats, 1),
-                GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR],
-                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats)
-            ]
 
         ]
 

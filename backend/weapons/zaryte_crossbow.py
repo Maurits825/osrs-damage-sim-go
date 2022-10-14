@@ -1,8 +1,10 @@
 import math
 import random
 
-from dps_calculator import DpsCalculator
+from constants import RUBY_SPEC_DIARY_CHANCE
 from weapon import Weapon
+
+ZCB_RUBY_MAX_HIT = 110
 
 
 class ZaryteCrossbow(Weapon):
@@ -14,7 +16,12 @@ class ZaryteCrossbow(Weapon):
         hit = random.random()
         damage = 0
         if hit <= self.accuracy:
-            damage = min(110, math.floor(0.22 * self.npc.combat_stats.hitpoints))
+            damage = min(ZCB_RUBY_MAX_HIT, math.floor(0.22 * self.npc.combat_stats.hitpoints))
+        else:
+            # TODO figure out how to properly hande bolts
+            ruby = random.random()
+            if ruby <= RUBY_SPEC_DIARY_CHANCE:
+                damage = min(ZCB_RUBY_MAX_HIT, math.floor(0.22 * self.npc.combat_stats.hitpoints))
 
         return damage
 
@@ -26,6 +33,8 @@ class ZaryteCrossbow(Weapon):
 
     def get_dps(self):
         if self.is_special_attack:
-            return 0
+            self.accuracy = self.get_accuracy()
+            return ((ZCB_RUBY_MAX_HIT * self.accuracy) +
+                    ((1 - self.accuracy) * RUBY_SPEC_DIARY_CHANCE * ZCB_RUBY_MAX_HIT)) / (self.attack_speed * 0.6)
         else:
-            return DpsCalculator.get_dps(self.max_hit, self.accuracy, self.attack_speed)
+            return super().get_dps()
