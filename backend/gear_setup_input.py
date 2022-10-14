@@ -7,6 +7,7 @@ from gear_json import GearJson
 from model.attack_style.attack_style import AttackStyle
 from model.boost import Boost, BoostType
 from model.input_setup import GearSetup, InputSetup
+from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.prayer import Prayer, PrayerMultiplier
 from model.weapon_stats import WeaponStats
@@ -83,9 +84,9 @@ class GearSetupInput:
     def get_input_setup(json_data) -> InputSetup:
         npc = WikiData.get_npc(json_data["npc"])
         raid_level = json_data.get("raidLevel", None)
-        path_level = json_data.get("pathLevel", None)
+        path_level = json_data.get("pathLevel", 0)
 
-        if npc.name in TOA_PATH_LEVEL_NPCS:
+        if npc.location == Location.TOMBS_OF_AMASCUT:
             path_level_mult = 0.08 if path_level > 0 else 0.05
             npc.combat_stats.hitpoints = int(
                 round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) * (

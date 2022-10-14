@@ -1,14 +1,17 @@
 export interface DamageSimResults {
-    setupTtkStats: SimStats[],
+    ttk_stats: SimStats[],
+    total_dmg_stats: SimStats[][],
+    sim_dps_stats: SimStats[][],
+    theoretical_dps: number[][],
 }
 
 export interface SimStats {
-    average: string
-    maximum: string
-    minimum: string
-    most_frequent: string
+    average: string | number,
+    maximum: string | number,
+    minimum: string | number,
+    most_frequent: string | number,
     
-    chance_to_kill: string[]
+    chance_to_kill: string[] | number[],
     
-    label: string
+    label: string | number,
 }

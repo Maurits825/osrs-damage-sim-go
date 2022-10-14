@@ -39,7 +39,7 @@ class DamageSimStats:
         if not self.show_plots:
             matplotlib.use('Agg')
 
-        global plt
+        global plt  # TODO consider making plt a class var?
         matplotlib = __import__('matplotlib.pyplot', globals(), locals())
         plt = matplotlib.pyplot
 
@@ -48,6 +48,8 @@ class DamageSimStats:
 
     def reset_plots(self):
         plt.clf()
+        if self.show_plots:
+            plt.close()
         self.figure = plt.figure(figsize=(19.20, 10.80))
         self.axes = self.figure.add_subplot()
 
@@ -83,14 +85,14 @@ class DamageSimStats:
                             )
 
     @staticmethod
-    def get_data_2d_stats(data_list, gear_setups: list[GearSetup]) -> list[SimStats]:
+    def get_data_2d_stats(data_list2d, gear_setups: list[GearSetup]) -> list[SimStats]:
         sim_stats_list = []
-        dps = []
-        for index in range(len(data_list[0])):
-            for data in data_list:
-                dps.append(data[index])
-            sim_stats_list.append(DamageSimStats.get_data_stats(dps, gear_setups[index].name))
-            dps.clear()
+        data_list = []
+        for index in range(len(data_list2d[0])):
+            for data in data_list2d:
+                data_list.append(data[index])
+            sim_stats_list.append(DamageSimStats.get_data_stats(data_list, DamageSimStats.get_gear_label(gear_setups[index])))
+            data_list.clear()
         return sim_stats_list
 
     @staticmethod
@@ -185,15 +187,13 @@ class DamageSimStats:
         return self.figure
 
     @staticmethod
-    def print_setup(gear_setup: list[GearSetup], sim_dps_stats: list[SimStats]):
+    def print_setup(gear_setup: list[GearSetup], total_damage_stats: list[SimStats]):
         text = ""
         for idx, gear in enumerate(gear_setup):
             text += gear.name + ": " + str(gear.attack_count)
-            if gear.attack_count != math.inf:
-                text += ", Avg Damage: " + str(
-                    round(gear.attack_count * sim_dps_stats[idx].average * 0.6 * gear.weapon.attack_speed)) + "\n"
-            else:
-                text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
+            text += ", Avg Total Damage: " + str(round(total_damage_stats[idx].average, 1))
+
+            text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
 
         print(text[:-1])
 
@@ -201,15 +201,22 @@ class DamageSimStats:
     def get_gear_setup_label(gear_setups: list[GearSetup]):
         label = ""
         for gear in gear_setups:
-            prayer_and_boost_text = ""
-            for prayer in gear.prayers:
-                prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
-
-            for boost in gear.boosts:
-                prayer_and_boost_text += boost.boost_type.name.lower().replace("_", " ").capitalize() + ", "
-
-            if prayer_and_boost_text:
-                prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
-
-            label = label + gear.name + prayer_and_boost_text + ": " + str(gear.attack_count) + ", "
+            label += DamageSimStats.get_gear_label(gear) + ", "
         return label[:-2]
+
+    @staticmethod
+    def get_gear_label(gear: GearSetup):
+        label = ""
+        prayer_and_boost_text = ""
+        for prayer in gear.prayers:
+            prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
+
+        for boost in gear.boosts:
+            prayer_and_boost_text += boost.boost_type.name.lower().replace("_", " ").capitalize() + ", "
+
+        if prayer_and_boost_text:
+            prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
+
+        label = label + gear.name + prayer_and_boost_text + ": " + str(gear.attack_count)
+        return label
+

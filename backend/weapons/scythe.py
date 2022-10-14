@@ -4,7 +4,7 @@ import random
 from dps_calculator import DpsCalculator
 from weapon import Weapon
 
-#TODO test
+
 class Scythe(Weapon):
     def roll_damage(self) -> int:
         self.accuracy = self.get_accuracy()
