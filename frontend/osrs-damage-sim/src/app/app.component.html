@@ -41,9 +41,9 @@
           <ng-container *ngFor="let simDps of simDpsSetup; let gearIndex = index">
             <tr>
               <th scope="row">{{simDps.label}}</th>
-              <td>{{damageSimResults.theoretical_dps[setupIndex][gearIndex] | number: '1.1-1'}}</td>
-              <td>{{simDps.average | number: '1.1-1'}}</td>
-              <td>{{damageSimResults.total_dmg_stats[setupIndex][gearIndex].average | number: '1.1-1'}}</td>
+              <td>{{damageSimResults.theoretical_dps[setupIndex][gearIndex] | number: '1.2-2'}}</td>
+              <td>{{simDps.average | number: '1.2-2'}}</td>
+              <td>{{damageSimResults.total_dmg_stats[setupIndex][gearIndex].average | number: '1.2-2'}}</td>
             </tr>
           </ng-container>
         </ng-container>
