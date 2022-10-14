@@ -6,8 +6,10 @@ from flask_cors import CORS
 from damage_sim import DamageSim
 from gear_json import GearJson
 from gear_setup_input import GearSetupInput
+from model.attack_style.attack_type import AttackType
 from model.attack_style.weapon_category import WeaponCategory
 from rl_gear_input import RlGearInput
+from weapon import Weapon
 from wiki_data import WikiData
 
 app = Flask(__name__)
@@ -109,3 +111,18 @@ def get_damage_sim_graph():
         return send_file(graph_image, mimetype='image/png')
     else:
         abort(404)
+
+
+@app.route("/attack-type/<item_id_str>", methods=["GET"])
+def get_attack_type(item_id_str):
+    item_id = int(item_id_str)
+    item = WikiData.get_item(item_id)
+    attack_type = "Unkown"
+    if item.weapon_category.value[0].attack_type in Weapon.MELEE_TYPES:
+        attack_type = "melee"
+    elif item.weapon_category.value[0].attack_type == AttackType.RANGED:
+        attack_type = "ranged"
+    elif item.weapon_category.value[0].attack_type == AttackType.MAGIC:
+        attack_type = "magic"
+
+    return attack_type

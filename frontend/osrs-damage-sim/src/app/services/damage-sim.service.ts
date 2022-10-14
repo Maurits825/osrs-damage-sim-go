@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AttackType } from '../model/attack-type.enum';
 import { DamageSimResults } from '../model/damage-sim-results.model';
 import { InputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
@@ -31,5 +32,9 @@ export class DamageSimService {
 
   runDamageSim(inputSetup: InputSetup): Observable<DamageSimResults> {
     return this.http.post<DamageSimResults>(DAMAGE_SIM_SERVER_URL + '/run-damage-sim', inputSetup);
+  }
+
+  getAttackType(itemId: number): Observable<string> {
+    return this.http.get(DAMAGE_SIM_SERVER_URL + '/attack-type/' + itemId, {responseType: 'text'});
   }
 }

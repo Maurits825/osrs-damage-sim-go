@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
+import { AttackType } from '../model/attack-type.enum';
 import { GearInputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
@@ -157,9 +158,7 @@ export class GearSetupComponent implements OnInit {
       if (gearSetup[slot]?.name) {
         this.currentGear[slot] = this.allGearSlotItems[slot][gearSetup[slot].id];
 
-        if (slot == 3) {
-          this.updateAttackStyle(gearSetup[slot].id);
-        }
+        this.gearSlotChange(this.currentGear[slot], slot, false);
       }
       else {
         this.clearGearSlot(slot);
@@ -167,15 +166,38 @@ export class GearSetupComponent implements OnInit {
     });
   }
 
-  gearSlotChange(item: Item, slot: number): void {
-    this.selectedGearSetup = null;
+  gearSlotChange(item: Item, slot: number, clearSelectedGearSetup: boolean = true): void {
+    if (clearSelectedGearSetup) {
+      this.selectedGearSetup = null;
+    }
 
     if (slot == 3) {
-      this.updateAttackStyle(item.id);
-
+      if (item?.id) {
+        this.updateAttackStyle(item.id);
+      }
+      else {
+        this.updateAttackStyle(0);
+      }
+      
       //TODO maybe check if user has input value, how though?
       if (!this.setupName) {
         this.setupName = item.name;
+      }
+
+      if (this.selectedPrayers.length == 0) {
+        this.damageSimservice.getAttackType(item.id).subscribe((attackType: string) => {
+          switch (attackType as AttackType) {
+            case AttackType.MELEE:
+              this.selectedPrayers.push("piety")
+              break;
+            case AttackType.RANGED:
+              this.selectedPrayers.push("rigour")
+              break;
+          
+            default:
+              break;
+          }
+        });
       }
     }
   }
