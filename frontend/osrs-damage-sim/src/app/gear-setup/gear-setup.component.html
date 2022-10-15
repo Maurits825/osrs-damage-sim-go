@@ -71,10 +71,7 @@
                     <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
                 </div>
                 <ng-template #selectedPrayer>
-                    <div class="prayers-wrapper" (click)="removePrayer(prayer)">
-                        <img class="prayer-icon" src="assets/img/prayer/{{prayer}}.png">
-                        <img class="selected-icon" src="assets/img/prayer/activated_background.png">
-                    </div>
+                    <img src="assets/img/prayer/selected_{{prayer}}.png" (click)="removePrayer(prayer)">
                 </ng-template>
             </div>
         </div>
@@ -97,16 +94,12 @@
             <div class="col">
                 <label>Boosts</label>
             </div>
-            <!-- TODO just make the selected icons in photoshop -->
             <div class="col" *ngFor="let boost of boosts">
                 <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
                     <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
                 </div>
                 <ng-template #selectedBoost>
-                    <div class="prayers-wrapper" (click)="removeBoost(boost)">
-                        <img class="prayer-icon" src="assets/img/boosts/{{boost}}.png">
-                        <img class="selected-icon" src="assets/img/boosts/activated_background.png">
-                    </div>
+                    <img src="assets/img/boosts/selected_{{boost}}.png" (click)="removeBoost(boost)">
                 </ng-template>
             </div>
         </div>
