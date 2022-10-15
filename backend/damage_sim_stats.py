@@ -140,13 +140,10 @@ class DamageSimStats:
         plt.title(DamageSimStats.get_gear_setup_label(gear_setups))
         plt.show()
 
-    def graph_n_cumulative_tick_count(self, tick_count, gear_setups: list[GearSetup]) -> list[float]:
-        bin_count = np.bincount(tick_count) / len(tick_count)
-        cum_sum = np.cumsum(bin_count)
+    def graph_n_cumulative_tick_count(self, tick_count, gear_setups: list[GearSetup]):
+        cum_sum = DamageSimStats.get_cumulative_sum(tick_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
         self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
-
-        return cum_sum
 
     @staticmethod
     def get_cumulative_sum(data):

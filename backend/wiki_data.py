@@ -88,6 +88,17 @@ class WikiData:
         with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)
 
+    @staticmethod
+    def get_unique_npcs():
+        seen_npc_name = []
+        unique_npcs = {}
+        for npc_id, npc in WikiData.npcs_json.items():
+            if npc["name"] not in seen_npc_name:
+                unique_npcs[npc_id] = npc
+                seen_npc_name.append(npc["name"])
+
+        return unique_npcs
+
 
 if __name__ == '__main__':
     WikiData.update_gear_slot_items_list()

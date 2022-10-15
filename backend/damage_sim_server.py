@@ -81,7 +81,7 @@ def get_attack_style(item_id_str):
 
 @app.route("/npcs", methods=["GET"])
 def get_npcs():
-    return WikiData().npcs_json
+    return WikiData().get_unique_npcs()
 
 
 @app.route("/run-damage-sim", methods=["POST"])
@@ -90,14 +90,15 @@ def run_damage_sim():
 
     input_setup = GearSetupInput.get_input_setup(json_request)
     global RESULT_FIGURE
-    ttk_stats_list, total_damage_stats_list, sim_dps_stats_list, theoretical_dps_list, RESULT_FIGURE = \
-        damage_sim.run(json_request["iterations"], input_setup)
+    ttk_stats_list, total_damage_stats_list, sim_dps_stats_list, theoretical_dps_list, cummulative_chances_list, \
+        RESULT_FIGURE = damage_sim.run(json_request["iterations"], input_setup)
 
     return {
         "ttk_stats": ttk_stats_list,
         "total_dmg_stats": total_damage_stats_list,
         "sim_dps_stats": sim_dps_stats_list,
         "theoretical_dps": theoretical_dps_list,
+        "cummulative_chances": cummulative_chances_list,
     }
 
 

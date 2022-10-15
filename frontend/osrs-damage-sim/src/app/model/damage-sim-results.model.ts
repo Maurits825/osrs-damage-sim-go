@@ -3,6 +3,7 @@ export interface DamageSimResults {
     total_dmg_stats: SimStats[][],
     sim_dps_stats: SimStats[][],
     theoretical_dps: number[][],
+    cummulative_chances: number[][]
 }
 
 export interface SimStats {

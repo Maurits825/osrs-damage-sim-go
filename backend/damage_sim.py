@@ -67,7 +67,7 @@ class DamageSim:
         gear_setups = [
             [
                 GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR],
-                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 1, True),
+                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 3, True),
                 GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR],
                                                [Boost(BoostType.SMELLING_SALTS)], combat_stats)
             ],
@@ -110,6 +110,7 @@ class DamageSim:
         sim_dps_stats_list = []
         total_damage_stats_list = []
         theoretical_dps_list = []
+        cummulative_chances_list = []
         for gear_setup in input_setup.gear_setups:
             sim_data = self.run_simulator(iterations, gear_setup)
 
@@ -121,6 +122,8 @@ class DamageSim:
 
             total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, gear_setup)
             total_damage_stats_list.append(total_damage_stats)
+
+            cummulative_chances_list.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
 
             theoretical_dps = []
             for gear in gear_setup:
@@ -140,7 +143,8 @@ class DamageSim:
 
         figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
 
-        return ttk_stats_list, total_damage_stats_list, sim_dps_stats_list, theoretical_dps_list, figure
+        # TODO maybe refactor to a data class?
+        return ttk_stats_list, total_damage_stats_list, sim_dps_stats_list, theoretical_dps_list, cummulative_chances_list, figure
 
     def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> TotalDamageSimData:
         total_damage_sim_data = TotalDamageSimData([], [], [])

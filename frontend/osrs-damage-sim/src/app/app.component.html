@@ -53,11 +53,34 @@
     </table>
   </div>
 
+  <div class="row mb-3">
+    <div class="row mb-1" *ngIf="damageSimResults?.cummulative_chances">
+      <div class="row">
+        <h2 class="col ps-0">Chance to kill under target time</h2>
+        <label class="col-2">Target Time</label>
+        <div class="col-3"><input class="form-control" type="text" #targetTimeInput (change)="targetTimeChanged(targetTimeInput.value)" placeholder="mm:ss.m"></div>
+      </div>
+      <table class="table table-striped table-bordered mb-4">
+        <thead>
+          <tr>
+            <th scope="col">Setup Name (prayer, boosts): attack count</th>
+            <th scope="col">Chance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let chance of targetTimeChance;  let setupIndex = index">
+            <th scope="row">{{damageSimResults.ttk_stats[setupIndex].label}}</th>
+            <td>{{(chance * 100) | number: '1.2-2'}}%</td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <hr class="row mb-5">
 
   <div class="row mb-3">
     <label class="col-2">Iterations</label>
-    <div class="col-2"><input class="form-control" type="number" [(ngModel)]="iterations" min="1"></div>
+    <div class="col-2"><input class="form-control" type="text" [(ngModel)]="iterations" min="1"></div>
     <label class="col-2">Team size</label>
     <div class="col-2"><input class="form-control" type="number" [(ngModel)]="teamSize" min="1"></div>
     <button class="col-3 btn btn-primary" type="button" (click)="submit()" [disabled]="loading">
