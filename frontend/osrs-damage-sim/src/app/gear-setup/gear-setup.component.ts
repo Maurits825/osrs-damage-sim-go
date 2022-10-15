@@ -184,8 +184,8 @@ export class GearSetupComponent implements OnInit {
         this.setupName = item.name;
       }
 
-      if (this.selectedPrayers.length == 0) {
-        this.damageSimservice.getAttackType(item.id).subscribe((attackType: string) => {
+      this.damageSimservice.getAttackType(item.id).subscribe((attackType: string) => {
+        if (this.selectedPrayers.length == 0) {
           switch (attackType as AttackType) {
             case AttackType.MELEE:
               this.selectedPrayers.push("piety")
@@ -197,8 +197,8 @@ export class GearSetupComponent implements OnInit {
             default:
               break;
           }
-        });
-      }
+        }
+      });
     }
   }
 
@@ -238,8 +238,8 @@ export class GearSetupComponent implements OnInit {
     this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle;
     this.attackCount = gearSetupComponent.attackCount;
     this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
-    this.selectedPrayers = gearSetupComponent.selectedPrayers;
-    this.combatStats = gearSetupComponent.combatStats;
-    this.selectedBoosts = gearSetupComponent.selectedBoosts;
+    this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
+    this.combatStats = {... gearSetupComponent.combatStats};
+    this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
   }
 }
