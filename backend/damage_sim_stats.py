@@ -1,7 +1,11 @@
 import math
 import numpy as np
 from dataclasses import dataclass
+
+from constants import TOA_PATH_LEVEL_NPCS
 from model.input_setup import GearSetup, InputSetup
+from model.locations import Location
+
 global matplotlib
 global plt
 
@@ -164,10 +168,10 @@ class DamageSimStats:
         title = "Cumulative Time to Kill: "
         title += input_setup.npc.name + ", HP: " + str(hitpoints)
 
-        if input_setup.raid_level is not None:
+        if input_setup.npc.location == Location.TOMBS_OF_AMASCUT:
             title += ", raid level: " + str(input_setup.raid_level)
-        if input_setup.path_level is not None:
-            title += ", path level: " + str(input_setup.path_level)
+            if input_setup.npc.name in TOA_PATH_LEVEL_NPCS:
+                title += ", path level: " + str(input_setup.path_level)
 
         title += ", iterations: " + str(iterations)
 

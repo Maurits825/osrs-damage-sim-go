@@ -190,17 +190,12 @@ export class AppComponent { //TODO refactor to another component?
   }
 
   targetTimeChanged(targetTime: string): void {
-    console.log(targetTime);
     const matches = targetTime.match(/^([0-9]*):([0-9]*)\.([0-9]*)$/);
-    console.log(matches);
 
     const targetSeconds = (+matches[1] * 60) + +matches[2] + +matches[3]/10;
-    console.log(targetSeconds);
     const targetTicks = Math.ceil(targetSeconds / 0.6);
-    console.log(targetTicks);
 
     this.targetTimeChance = [];
-    debugger;
     this.damageSimResults.cummulative_chances.forEach((chances: number[]) => {
       this.targetTimeChance.push(chances[targetTicks])
     });

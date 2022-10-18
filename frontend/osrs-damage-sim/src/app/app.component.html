@@ -80,7 +80,7 @@
 
   <div class="row mb-3">
     <label class="col-2">Iterations</label>
-    <div class="col-2"><input class="form-control" type="text" [(ngModel)]="iterations" min="1"></div>
+    <div class="col-2"><input class="form-control" type="number" [(ngModel)]="iterations" min="1"></div>
     <label class="col-2">Team size</label>
     <div class="col-2"><input class="form-control" type="number" [(ngModel)]="teamSize" min="1"></div>
     <button class="col-3 btn btn-primary" type="button" (click)="submit()" [disabled]="loading">
