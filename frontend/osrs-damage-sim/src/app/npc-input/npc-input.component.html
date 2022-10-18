@@ -6,7 +6,9 @@
             </div>
             <div class="col">
                 <ng-select [(ngModel)]="selectedNpcId" (change)="selectedNpcChange($event)">
-                    <ng-option *ngFor="let npc of allNpcs | keyvalue" [value]="npc.key">{{npc.value.name}} ({{npc.value.combat}})</ng-option>
+                    <ng-option *ngFor="let npc of allNpcs | keyvalue" [value]="npc.key">
+                        {{npc.value.name}} (Lvl: {{npc.value.combat}}, HP:  {{npc.value.hitpoints}})
+                    </ng-option>
                 </ng-select>
             </div>
             <div class="col-2" *ngIf="showRaidLevel">

@@ -1,19 +1,22 @@
-from enum import Enum
+from aenum import Enum, NoAlias
 from dataclasses import dataclass
 
 
 @dataclass()
 class CombatStyleBoost:
-    attack: float = 0
-    strength: float = 0
-    ranged: float = 0
+    attack: int = 0
+    strength: int = 0
+    ranged: int = 0
+    magic: int = 0
 
 
 class CombatStyle(Enum):
-    ACCURATE = CombatStyleBoost(attack=3, ranged=3)
+    _settings_ = NoAlias
+
+    ACCURATE = CombatStyleBoost(attack=3, ranged=3, magic=2)
     AGGRESSIVE = CombatStyleBoost(strength=3)
-    DEFENSIVE = CombatStyleBoost()
     CONTROLLED = CombatStyleBoost(attack=1, strength=1)
-    LONGRANGE = CombatStyleBoost()
     RAPID = CombatStyleBoost()
+    DEFENSIVE = CombatStyleBoost()
+    LONGRANGE = CombatStyleBoost()
     AUTOCAST = CombatStyleBoost()

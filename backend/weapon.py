@@ -1,3 +1,4 @@
+import math
 import random
 from dps_calculator import DpsCalculator
 from model.attack_style.attack_type import AttackType
@@ -7,6 +8,10 @@ from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from model.weapon_stats import WeaponStats
 
+
+SANG_STAFF = [22323, 25731]
+TRIDENT_SWAMP = [12899, 22292]
+SHADOW_STAFF = [27275]
 
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
@@ -122,8 +127,7 @@ class Weapon:
             gear_bonus = 1
             return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength, gear_bonus)
         elif self.attack_style.attack_type == AttackType.MAGIC:
-            #TODO
-            return 0
+            return self.get_magic_max_hit()
 
     def get_defence_roll(self, npc: NpcStats):
         target_defence = 0
@@ -145,7 +149,6 @@ class Weapon:
 
         return DpsCalculator.get_defence_roll(target_defence, target_defence_style)
 
-    # TODO void boost & magic
     def get_attack_roll(self):
         effective_skill_attack_lvl = 0
         gear_skill_bonus = 0
@@ -174,7 +177,12 @@ class Weapon:
             )
             gear_skill_bonus = self.gear_stats.ranged
         elif self.attack_style.attack_type == AttackType.MAGIC:
-            #TODO effective mage lvl
+            effective_skill_attack_lvl = DpsCalculator.get_effective_magic_level(
+                prayer=self.prayer,
+                magic_lvl=self.combat_stats.magic,
+                attack_style_boost=self.attack_style.combat_style.value.magic,
+                void_boost=self.void_skill_attack_boost
+            )
             gear_skill_bonus = self.gear_stats.magic
 
         # TODO gear bonus: blackmask/slayer hem, salve amulet/ei
@@ -184,3 +192,16 @@ class Weapon:
     def get_dps(self):
         self.accuracy = self.get_accuracy()
         return DpsCalculator.get_dps(self.max_hit, self.accuracy, self.attack_speed)
+
+    # TODO spells / shadow staff
+    def get_magic_max_hit(self):
+        base_max_hit = 0
+        if self.gear_stats.id in SANG_STAFF:
+            base_max_hit = math.floor(self.combat_stats.magic / 3) - 1
+        elif self.gear_stats.id in TRIDENT_SWAMP:
+            base_max_hit = math.floor(self.combat_stats.magic / 3) - 2
+        elif self.gear_stats.id in SHADOW_STAFF:
+            pass
+
+        magic_dmg = 1 + (self.gear_stats.magic_strength / 100)
+        return math.floor(base_max_hit * magic_dmg)

@@ -1,0 +1,13 @@
+<div class="row mb-3">
+    <div class="col">
+        <label>Global Boosts</label>
+    </div>
+    <div class="col" *ngFor="let boost of boosts">
+        <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
+            <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
+        </div>
+        <ng-template #selectedBoost>
+            <img src="assets/img/boosts/selected_{{boost}}.png" (click)="removeBoost(boost)">
+        </ng-template>
+    </div>
+</div>

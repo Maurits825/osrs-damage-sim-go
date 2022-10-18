@@ -23,6 +23,7 @@ class Boost:
             combat_stats.strength += math.floor(combat_stats.strength * 16 / 100) + 11
             combat_stats.defence += math.floor(combat_stats.defence * 16 / 100) + 11
             combat_stats.ranged += math.floor(combat_stats.ranged * 16 / 100) + 11
+            combat_stats.magic += math.floor(combat_stats.magic * 16 / 100) + 11
         elif self.boost_type == BoostType.SUPER_ATTACK_POT:
             combat_stats.attack += math.floor(combat_stats.attack * 15 / 100) + 5
         elif self.boost_type == BoostType.SUPER_STRENGTH_POT:

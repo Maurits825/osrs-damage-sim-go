@@ -12,6 +12,8 @@ import { RlGearService } from './services/rl-gear.service';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { NpcInputComponent } from './npc-input/npc-input.component';
+import { GlobalBoostComponent } from './global-boost/global-boost.component';
+import { GlobalBoostService } from './services/global-boost.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { NpcInputComponent } from './npc-input/npc-input.component';
     GearSetupTabComponent,
     GearSetupTabsComponent,
     NpcInputComponent,
+    GlobalBoostComponent,
   ],
   imports: [
     NgSelectModule,
@@ -33,6 +36,7 @@ import { NpcInputComponent } from './npc-input/npc-input.component';
     DamageSimService,
     RlGearService,
     GearSetupService,
+    GlobalBoostService,
   ],
   bootstrap: [
     AppComponent,

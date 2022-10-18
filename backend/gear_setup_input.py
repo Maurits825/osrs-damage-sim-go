@@ -45,6 +45,8 @@ class GearSetupInput:
                 void_att, void_str = GearSetupInput.get_gear_void_bonuses(gear)
                 weapon.set_void_boost(void_att, void_str)
 
+                total_gear_stats.id = weapon_stats.id
+
                 if is_special:
                     weapon.set_is_special_attack(is_special)
 
@@ -123,6 +125,8 @@ class GearSetupInput:
 
                 if weapon_item.id == BLOWPIPE:
                     total_gear_stats.ranged_strength += WikiData.get_item(gear_setup["blowpipeDarts"]).ranged_strength
+
+                total_gear_stats.id = weapon_item.id
 
                 attack_style = weapon_item.weapon_category.value[0]
                 for style in weapon_item.weapon_category.value:

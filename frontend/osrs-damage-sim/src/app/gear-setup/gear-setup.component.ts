@@ -6,6 +6,7 @@ import { GearInputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
 import { GearSetupService } from '../services/gear-setups.service';
+import { GlobalBoostService } from '../services/global-boost.service';
 import { RlGearService } from '../services/rl-gear.service';
 
 @Component({
@@ -31,7 +32,7 @@ export class GearSetupComponent implements OnInit {
   attackStyles: string[] = [];
   selectedAttackStyle: string = null;
 
-  prayers: string[] = ["eagle_eye", "rigour", "chivalry", "piety"];
+  prayers: string[] = ["eagle_eye", "rigour", "chivalry", "piety", "augury"];
   selectedPrayers: string[] = [];
 
   attackCount: number = 0;
@@ -58,6 +59,7 @@ export class GearSetupComponent implements OnInit {
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
     private gearSetupService: GearSetupService,
+    private globalBoostService: GlobalBoostService,
     ) {}
 
   ngOnInit(): void {
@@ -84,6 +86,9 @@ export class GearSetupComponent implements OnInit {
       if (this.gearToCopy) {
         this.setGearSetup(this.gearToCopy);
       }
+
+      this.selectedBoosts = [... this.globalBoostService.getGlobalBoosts()];
+      this.globalBoostService.globalBoostsChanged.subscribe(boosts => this.selectedBoosts = [...boosts]);
     });
   }
 
@@ -235,11 +240,11 @@ export class GearSetupComponent implements OnInit {
 
     this.setCurrentGear(gearSetupComponent.currentGear)
 
-    this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle;
+    this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle; //TODO doesnt work
     this.attackCount = gearSetupComponent.attackCount;
     this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
-    this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
+    this.selectedBoosts = [...gearSetupComponent.selectedBoosts]; //TODO doesnt really work beacuse of global boost, cant guarantee order
   }
 }

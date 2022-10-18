@@ -34,6 +34,10 @@ class DpsCalculator:
         return math.floor(0.5 + ((effective_ranged_str * (gear_ranged_strength + 64)) / 640) * gear_bonus)
 
     @staticmethod
+    def get_effective_magic_level(prayer: PrayerMultiplier, magic_lvl, attack_style_boost, void_boost):
+        return math.floor((math.floor(magic_lvl * prayer.magic) * void_boost) + attack_style_boost + 9)
+
+    @staticmethod
     def get_attack_roll(effective_skill_lvl, gear_skill_bonus, gear_bonus):
         return math.floor((effective_skill_lvl * (gear_skill_bonus + 64)) * gear_bonus)
 
