@@ -67,19 +67,22 @@ class GearSetupInput:
     def get_gear_void_bonuses(gear):
         void_att = 1
         void_str = 1
-        # TODO mage void
+
         if VOID.issubset(gear) or ELITE_VOID.issubset(gear):
-            if MELEE_VOID in gear:
+            if MELEE_VOID in gear or RANGED_VOID in gear:
                 void_att = 1.1
                 void_str = 1.1
 
-            if ELITE_VOID.issubset(gear):
-                if RANGED_VOID in gear:
-                    void_att = 1.1
-                    void_str = 1.125
-            else:
+            if ELITE_VOID.issubset(gear) and RANGED_VOID in gear:
                 void_att = 1.1
-                void_str = 1.1
+                void_str = 1.125
+
+            if MAGE_VOID in gear:
+                void_att = 1.45
+                void_str = 1
+
+                if ELITE_VOID.issubset(gear):
+                    void_str = 1.025
 
         return void_att, void_str
 

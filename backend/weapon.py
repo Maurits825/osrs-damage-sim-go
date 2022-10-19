@@ -2,6 +2,7 @@ import math
 import random
 from dps_calculator import DpsCalculator
 from model.attack_style.attack_type import AttackType
+from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.attack_style.combat_style import CombatStyle
 from model.npc.npc_stats import NpcStats
@@ -183,7 +184,11 @@ class Weapon:
                 attack_style_boost=self.attack_style.combat_style.value.magic,
                 void_boost=self.void_skill_attack_boost
             )
-            gear_skill_bonus = self.gear_stats.magic
+            if self.gear_stats.id in SHADOW_STAFF:
+                shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
+                gear_skill_bonus = self.gear_stats.magic * shadow_mult
+            else:
+                gear_skill_bonus = self.gear_stats.magic
 
         # TODO gear bonus: blackmask/slayer hem, salve amulet/ei
         gear_bonus = 1
@@ -193,15 +198,20 @@ class Weapon:
         self.accuracy = self.get_accuracy()
         return DpsCalculator.get_dps(self.max_hit, self.accuracy, self.attack_speed)
 
-    # TODO spells / shadow staff
+    # TODO spells
     def get_magic_max_hit(self):
         base_max_hit = 0
+        magic_dmg_multiplier = 1 + (self.gear_stats.magic_strength / 100)
+
         if self.gear_stats.id in SANG_STAFF:
             base_max_hit = math.floor(self.combat_stats.magic / 3) - 1
         elif self.gear_stats.id in TRIDENT_SWAMP:
             base_max_hit = math.floor(self.combat_stats.magic / 3) - 2
         elif self.gear_stats.id in SHADOW_STAFF:
-            pass
+            base_max_hit = math.floor(self.combat_stats.magic / 3) + 1
+            shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
+            magic_dmg_multiplier = 1 + (shadow_mult * (self.gear_stats.magic_strength / 100))
 
-        magic_dmg = 1 + (self.gear_stats.magic_strength / 100)
-        return math.floor(base_max_hit * magic_dmg)
+        # TODO salve bonus here
+        magic_dmg_multiplier += self.void_skill_str_boost - 1
+        return math.floor(base_max_hit * magic_dmg_multiplier)

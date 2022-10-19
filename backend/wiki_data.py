@@ -93,9 +93,10 @@ class WikiData:
         seen_npc_name = []
         unique_npcs = {}
         for npc_id, npc in WikiData.npcs_json.items():
-            if npc["name"] not in seen_npc_name:
+            npc_key = npc["name"] + str(npc.get("combat", 0))
+            if npc_key not in seen_npc_name:
                 unique_npcs[npc_id] = npc
-                seen_npc_name.append(npc["name"])
+                seen_npc_name.append(npc_key)
 
         return unique_npcs
 

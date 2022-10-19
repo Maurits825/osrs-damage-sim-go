@@ -198,6 +198,9 @@ export class GearSetupComponent implements OnInit {
             case AttackType.RANGED:
               this.selectedPrayers.push("rigour")
               break;
+            case AttackType.MAGIC:
+              this.selectedPrayers.push("augury")
+              break;
           
             default:
               break;
