@@ -14,6 +14,7 @@ SANG_STAFF = [22323, 25731]
 TRIDENT_SWAMP = [12899, 22292]
 SHADOW_STAFF = [27275]
 
+
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
@@ -105,7 +106,7 @@ class Weapon:
             defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
         return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
 
-    # TODO gear bonus & style void boosts
+    # TODO gear bonus
     def get_max_hit(self):
         if self.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
