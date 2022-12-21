@@ -8,7 +8,7 @@ Damage simulator for OSRS with a angular web app frontend.
 - navigate to osrs-damage-sim/backend
 - create a virtual environment `python -m venv ./venv`
 - activate venv `. venv/Scripts/activate`
-- install dependencies `pip -r requirements.txt`
+- install dependencies `pip install -r requirements.txt`
 
 ### Angular
 - download npm
