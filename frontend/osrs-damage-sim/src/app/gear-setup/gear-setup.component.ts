@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { AttackType } from '../model/attack-type.enum';
+import { Condition } from '../model/condition.model';
 import { GearInputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { DamageSimService } from '../services/damage-sim.service';
@@ -37,6 +38,7 @@ export class GearSetupComponent implements OnInit {
 
   attackCount: number = 0;
   isSpecialAttack: boolean = false;
+  isFill: boolean = false;
 
   //TODO maybe refactor to enums
   skills: string[] = ["attack", "strength", "ranged", "magic"];
@@ -54,6 +56,7 @@ export class GearSetupComponent implements OnInit {
   dartItems: Item[] = [];
 
   gearToCopy: GearSetupComponent;
+  conditions: Condition[] = [];
 
   constructor(
     private damageSimservice: DamageSimService,
@@ -110,7 +113,9 @@ export class GearSetupComponent implements OnInit {
       isSpecial: this.isSpecialAttack,
       prayers: this.selectedPrayers,
       combatStats: this.combatStats,
-      boosts: this.selectedBoosts
+      boosts: this.selectedBoosts,
+      isFill: this.isFill,
+      conditions: this.conditions,
     };
   }
 
@@ -246,8 +251,14 @@ export class GearSetupComponent implements OnInit {
     this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle; //TODO doesnt work
     this.attackCount = gearSetupComponent.attackCount;
     this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
+    this.isFill = gearSetupComponent.isFill;
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
     this.selectedBoosts = [...gearSetupComponent.selectedBoosts]; //TODO doesnt really work beacuse of global boost, cant guarantee order
+    this.conditions = [... gearSetupComponent.conditions];
+  }
+
+  updateConditions(conditions: Condition[]): void {
+    this.conditions = conditions;
   }
 }

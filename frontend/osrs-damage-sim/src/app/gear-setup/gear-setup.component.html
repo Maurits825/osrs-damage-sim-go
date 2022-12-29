@@ -45,7 +45,7 @@
     </div>
 
     <div class="row mb-3">
-        <div class="row mb-2">
+        <div class="row mb-3 align-items-center">
             <div class="col-3"><label for="attackStyle">Attack style</label></div>
             <div class="col-9">
                 <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle">
@@ -53,17 +53,9 @@
                 </ng-select>
             </div>
         </div>
-        <div class="row mb-2">
-            <div class="col"><label for="attackCount">Attack count</label></div>
-            <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder=""></div>
-            <div class="col"><label for="isSpecial">Special attack</label></div>
-            <div class="col"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <div class="row mb-2">
-            <div class="col">
+        <div class="row mb-3 align-items-center">
+            <div class="col-3">
                 <label>Prayers</label>
             </div>
             <div *ngFor="let prayer of prayers" class="col">
@@ -75,12 +67,13 @@
                 </ng-template>
             </div>
         </div>
-        <div class="row mb-2">
-            <div class="col">
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-3">
                 <label>Combat Stats</label>
             </div>
             <div class="col" *ngFor="let skill of combatStats | keyvalue">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-3">
                         <img src="assets/img/skills/{{skill.key}}.png">
                     </div>
@@ -90,8 +83,9 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-2">
-            <div class="col">
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-3">
                 <label>Boosts</label>
             </div>
             <div class="col" *ngFor="let boost of boosts">
@@ -102,6 +96,19 @@
                     <img src="assets/img/boosts/selected_{{boost}}.png" (click)="removeBoost(boost)">
                 </ng-template>
             </div>
+        </div>
+
+        <div class="row mb-3 align-items-center">
+            <div class="col"><label for="attackCount">Attack count</label></div>
+            <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder="" [disabled]="isFill"></div>
+            <div class="col text-end"><label for="isFill">Fill weapon</label></div>
+            <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isFill" id="isFill"></div>
+            <div class="col text-end"><label for="isSpecial">Special attack</label></div>
+            <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
+        </div>
+
+        <div class="row mb-3">
+            <app-condition [isFill]="isFill" (conditionsChanged)="updateConditions($event)"></app-condition>
         </div>
     </div>
 </div>

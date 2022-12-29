@@ -1,7 +1,11 @@
 import copy
 import math
 
-from damage_sim_stats import DamageSimStats
+from matplotlib.figure import Figure
+
+from condition_evaluator import ConditionEvaluator
+from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
+from damage_sim_stats import DamageSimStats, TimeSimStats, SimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
 from model.locations import Location
@@ -17,15 +21,28 @@ from dataclasses import dataclass
 @dataclass()
 class SingleDamageSimData:
     ticks_to_kill: int
-    gear_total_dmg: list[list]
-    gear_dps: list[list]
+    gear_total_dmg: list[int]
+    gear_attack_count: list[int]
+    gear_dps: list[float]
 
 
 @dataclass()
 class TotalDamageSimData:
     ticks_to_kill: list[int]
-    gear_total_dmg: list[list[list]]
-    gear_dps: list[list[list]]
+    gear_total_dmg: list[list[int]]
+    gear_attack_count: list[list[int]]
+    gear_dps: list[list[float]]
+
+
+@dataclass()
+class DamageSimResults:
+    ttk_stats_list: list[TimeSimStats]
+    total_damage_stats_list: list[list[SimStats]]
+    attack_count_stats_list: list[list[SimStats]]
+    sim_dps_stats_list: list[list[SimStats]]
+    theoretical_dps_list: list[list[float]]
+    cumulative_chances_list: list[list[float]]
+    figure: Figure
 
 
 class DamageSim:
@@ -99,7 +116,7 @@ class DamageSim:
             path_level=path_level,
         )
 
-    def run(self, iterations, input_setup):
+    def run(self, iterations, input_setup) -> DamageSimResults:
         self.initial_npc_stats = copy.deepcopy(input_setup.npc)
         self.damage_sim_stats.reset_plots()
 
@@ -109,6 +126,7 @@ class DamageSim:
         ttk_stats_list = []
         sim_dps_stats_list = []
         total_damage_stats_list = []
+        attack_count_stats_list = []
         theoretical_dps_list = []
         cummulative_chances_list = []
         for gear_setup in input_setup.gear_setups:
@@ -122,6 +140,9 @@ class DamageSim:
 
             total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, gear_setup)
             total_damage_stats_list.append(total_damage_stats)
+
+            attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, gear_setup)
+            attack_count_stats_list.append(attack_count_stats)
 
             cummulative_chances_list.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
 
@@ -143,22 +164,38 @@ class DamageSim:
 
         figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
 
-        # TODO maybe refactor to a data class?
-        return ttk_stats_list, total_damage_stats_list, sim_dps_stats_list, theoretical_dps_list, cummulative_chances_list, figure
+        return DamageSimResults(ttk_stats_list, total_damage_stats_list, attack_count_stats_list, sim_dps_stats_list,
+                                theoretical_dps_list, cummulative_chances_list, figure)
 
     def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> TotalDamageSimData:
-        total_damage_sim_data = TotalDamageSimData([], [], [])
+        total_damage_sim_data = TotalDamageSimData([], [], [], [])
         for i in range(iterations):
             dmg_sim_data = self.run_damage_sim(gear_setup)
             total_damage_sim_data.ticks_to_kill.append(dmg_sim_data.ticks_to_kill)
             total_damage_sim_data.gear_total_dmg.append(dmg_sim_data.gear_total_dmg)
+            total_damage_sim_data.gear_attack_count.append(dmg_sim_data.gear_attack_count)
             total_damage_sim_data.gear_dps.append(dmg_sim_data.gear_dps)
         return total_damage_sim_data
 
-    def run_damage_sim(self, gear_setups: list[GearSetup]) -> SingleDamageSimData:
+    def run_damage_sim(self, all_gear_setups: list[GearSetup]) -> SingleDamageSimData:
         ticks_to_kill = 0
         current_weapon_att_count = 0
         weapons_index = 0
+
+        gear_setups = []
+        fill_setups = []
+        fill_gear_damage = []
+        fill_gear_att_count = []
+        fill_gear_indices = []
+        is_fill_gear_used = False
+        for idx, setup in enumerate(all_gear_setups):
+            if setup.is_fill:
+                fill_setups.append(setup)
+                fill_gear_damage.append([])
+                fill_gear_att_count.append(0)
+                fill_gear_indices.append(idx)
+            else:
+                gear_setups.append(setup)
 
         gear_setup = gear_setups[weapons_index]
         weapon: Weapon = gear_setup.weapon
@@ -168,12 +205,54 @@ class DamageSim:
         gear_dps = []
         gear_damage = []
         gear_total_dmg = []
+        gear_att_count = []
+
+        special_attack = MAX_SPECIAL_ATTACK
+        spec_regen_tick_counter = -weapon.attack_speed  # start with -attack for first loop
 
         while npc.combat_stats.hitpoints > 0:
+            is_fill_gear_used = False
+
+            if special_attack == MAX_SPECIAL_ATTACK:
+                spec_regen_tick_counter = 0
+            else:
+                spec_regen_tick_counter += weapon.attack_speed
+
+            if spec_regen_tick_counter >= SPEC_REGEN_TICKS:
+                spec_regen_tick_counter -= SPEC_REGEN_TICKS
+                special_attack = min(special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
+
+            # TODO have to figure out if we use a fill weapon now, how do we keep track of the fill weapon data?
+            # TODO we have to keep track of indexes in the lists of SingleDamageSimData
+            # TODO we have to check the conditions first, get what the fill weapon is, then check if enough spec?
+            # TODO we can just go through each condition every time?
+            for idx, setup in enumerate(fill_setups):
+                if ConditionEvaluator.evaluate_condition(setup.conditions, npc.combat_stats.hitpoints,
+                                                         sum(fill_gear_damage[idx])):
+                    # TODO also have to check if enough spec if its a spec fill weapon and minus the spec
+                    # TODO we have to get spec amount info from wiki?
+                    # TODO duplicate code...
+                    fill_weapon = fill_setups[idx].weapon
+                    fill_weapon.set_npc(npc)
+                    damage = fill_weapon.roll_damage()
+                    npc.combat_stats.hitpoints -= damage
+                    fill_gear_damage[idx].append(damage)
+                    fill_gear_att_count[idx] += 1
+
+                    ticks_to_kill += fill_weapon.attack_speed
+
+                    is_fill_gear_used = True
+                    continue
+
+            if is_fill_gear_used:
+                weapon.set_npc(npc)
+                continue
+
             if current_weapon_att_count >= gear_setup.attack_count:
                 ticks_to_kill += current_weapon_att_count * weapon.attack_speed
                 gear_dps.append(DamageSim.get_dps(gear_damage, current_weapon_att_count, weapon.attack_speed))
                 gear_total_dmg.append(sum(gear_damage))
+                gear_att_count.append(current_weapon_att_count)
 
                 current_weapon_att_count = 0
                 gear_damage.clear()
@@ -189,21 +268,31 @@ class DamageSim:
             gear_damage.append(damage)
             current_weapon_att_count += 1
 
-        # remove overkill damage
-        gear_damage[-1] = gear_damage[-1] + npc.combat_stats.hitpoints
+        if not is_fill_gear_used:
+            # remove overkill damage
+            gear_damage[-1] = gear_damage[-1] + npc.combat_stats.hitpoints
+            # by default remove the last weapon att, overkill attack speed only relevant if att something else after
+            # in practice kill would be maybe 1-3 tick slower because of hitsplat delay and stuff
+            ticks_to_kill += (current_weapon_att_count - 1) * weapon.attack_speed
+
         gear_dps.append(DamageSim.get_dps(gear_damage, current_weapon_att_count, weapon.attack_speed))
         gear_total_dmg.append(sum(gear_damage))
-
-        # TODO by default remove the last weapon att, overkill attack speed only relevant if att something else after
-        # TODO in practice kill would be maybe 1-3 tick slower because of hitsplat delay and stuff
-        ticks_to_kill += (current_weapon_att_count - 1) * weapon.attack_speed
+        gear_att_count.append(current_weapon_att_count)
 
         # pad unused setups with zeros
         for _ in range(len(gear_dps), len(gear_setups)):
             gear_dps.append(0)
             gear_total_dmg.append(0)
+            gear_att_count.append(0)
 
-        return SingleDamageSimData(ticks_to_kill, gear_total_dmg, gear_dps)
+        # add in fill gear stats
+        for idx, setup in enumerate(fill_setups):
+            gear_total_dmg.insert(idx, sum(fill_gear_damage[idx]))
+            gear_att_count.insert(idx, fill_gear_att_count[idx])
+            gear_dps.insert(idx, DamageSim.get_dps(fill_gear_damage[idx], fill_gear_att_count[idx],
+                                                   setup.weapon.attack_speed))
+
+        return SingleDamageSimData(ticks_to_kill, gear_total_dmg, gear_att_count, gear_dps)
 
     @staticmethod
     def get_dps(damages, attack_count, attack_speed):

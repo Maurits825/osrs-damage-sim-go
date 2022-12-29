@@ -14,6 +14,7 @@ import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.compon
 import { NpcInputComponent } from './npc-input/npc-input.component';
 import { GlobalBoostComponent } from './global-boost/global-boost.component';
 import { GlobalBoostService } from './services/global-boost.service';
+import { ConditionComponent } from './condition/condition.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GlobalBoostService } from './services/global-boost.service';
     GearSetupTabsComponent,
     NpcInputComponent,
     GlobalBoostComponent,
+    ConditionComponent,
   ],
   imports: [
     NgSelectModule,

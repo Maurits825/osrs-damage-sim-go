@@ -2,7 +2,7 @@ import math
 import numpy as np
 from dataclasses import dataclass
 
-from constants import TOA_PATH_LEVEL_NPCS
+from constants import TOA_PATH_LEVEL_NPCS, TICK_LENGTH, MAX_X_TICKS_LABEL
 from model.input_setup import GearSetup, InputSetup
 from model.locations import Location
 
@@ -121,7 +121,7 @@ class DamageSimStats:
 
     @staticmethod
     def format_ticks_to_time(ticks):
-        total_seconds = ticks * 0.6
+        total_seconds = ticks * TICK_LENGTH
         minutes = math.floor(total_seconds / 60)
         seconds = round(total_seconds % 60, 1)
 
@@ -150,17 +150,20 @@ class DamageSimStats:
         self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
     @staticmethod
-    def get_cumulative_sum(data):
+    def get_cumulative_sum(data): # TODO remove the first zero?
         bin_count = np.bincount(data) / len(data)
         return np.cumsum(bin_count)
 
     def show_cumulative_graph(self, min_ticks, max_ticks, input_setup: InputSetup, iterations, hitpoints):
         # TODO figure out how to get nice evenly space ticks
         # TODO maybe just try to set interval as 1,10,20 ticks with np.arange() until total timestamps are below 30
-        self.axes.set_xticks(np.linspace(min_ticks, max_ticks, 30))  # TODO time labels are kind big so this need to be like 10+
+        # TODO xticks should also be multiples of ticks
+        x_ticks, interval = DamageSimStats.get_x_ticks(min_ticks, max_ticks)
+        self.axes.set_xticks(x_ticks)  # TODO time labels are kind big so this need to be like 10+
         self.axes.set_yticks(np.arange(0, 1.1, 0.1))
 
-        self.axes.set_xlim(min_ticks-6, max_ticks+6)
+        # TODO figure out margins
+        self.axes.set_xlim(max(min_ticks-interval, 0), max_ticks+interval)
 
         self.axes.set_xlabel("Time to kill")
         self.axes.set_ylabel("Cummulative chance")
@@ -186,6 +189,18 @@ class DamageSimStats:
             plt.show()
 
         return self.figure
+
+    @staticmethod
+    def get_x_ticks(min_ticks, max_ticks):
+        interval_multiplier = 1
+        while True:
+            interval = TICK_LENGTH * interval_multiplier
+            label_count = (max_ticks - min_ticks) / interval
+
+            if label_count <= MAX_X_TICKS_LABEL:
+                return [min_ticks + (i * interval) for i in range(math.ceil(label_count))], interval
+            else:
+                interval_multiplier += 1
 
     @staticmethod
     def print_setup(gear_setup: list[GearSetup], total_damage_stats: list[SimStats]):

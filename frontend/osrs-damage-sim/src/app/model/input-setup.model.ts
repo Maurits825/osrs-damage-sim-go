@@ -1,3 +1,5 @@
+import { Condition } from "./condition.model";
+
 export interface InputSetup {
     iterations: number,
     npc: number,
@@ -19,4 +21,6 @@ export interface GearInputSetup {
     prayers: string[],
     combatStats: Record<string, number>,
     boosts: string[],
+    isFill: boolean,
+    conditions: Condition[],
 }

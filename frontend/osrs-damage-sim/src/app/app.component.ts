@@ -1,4 +1,5 @@
 import { Component, ComponentRef, ViewChild } from '@angular/core';
+import { damageSimResults } from './damage-sim-results.const';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
@@ -21,140 +22,9 @@ export class AppComponent { //TODO refactor to another component?
 
   targetTimeChance: number[];
 
-  damageSimResults: DamageSimResults = {
-    ttk_stats: [
-      {
-        average: "1:43.6",
-        maximum: "1:43.6",
-        minimum: "1:43.6",
-        most_frequent: "1:43.6",
-        
-        chance_to_kill: ["0:23.6","1:10.6","2:43.6"],
-        
-        label: "Max Tbow",
-      },
-      {
-        average: "1:23.6",
-        maximum: "1:23.6",
-        minimum: "1:23.6",
-        most_frequent: "1:13.6",
-        
-        chance_to_kill: ["0:23.6","1:23.6","2:43.6"],
-        
-        label: "Max Tbow 2",
-      },
-    ],
-    total_dmg_stats: [[
-      {
-        average: "50",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max BGS",
-      },
-      {
-        average: "30",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max claws",
-      },
-      {
-        average: "240",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max tbow",
-      },
-    ], [
-      {
-        average: "24",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max claws",
-      },
-      {
-        average: "260",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max tbow",
-      },
-    ]],
-    sim_dps_stats: [[
-      {
-        average: "5.6",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max BGS",
-      },
-      {
-        average: "20.2",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max claws",
-      },
-      {
-        average: "8.7",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max tbow",
-      },
-    ], [
-      {
-        average: "19.4",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max claws",
-      },
-      {
-        average: "8.5",
-        maximum: "",
-        minimum: "",
-        most_frequent: "",
-        
-        chance_to_kill: [],
-        
-        label: "Max tbow",
-      },
-    ]],
-    theoretical_dps: [[5.4, 20.3, 8.3], [20.1, 8.1]],
-    cummulative_chances: [[0, 0.5, 0.7, 1], [0, 0.2, 0.4, 0.9]],
-  };
-
   loading = false;
+
+  damageSimResults = damageSimResults;
 
   constructor(private damageSimservice: DamageSimService) {}
 
@@ -196,7 +66,7 @@ export class AppComponent { //TODO refactor to another component?
     const targetTicks = Math.ceil(targetSeconds / 0.6);
 
     this.targetTimeChance = [];
-    this.damageSimResults.cummulative_chances.forEach((chances: number[]) => {
+    this.damageSimResults.cumulative_chances.forEach((chances: number[]) => {
       this.targetTimeChance.push(chances[targetTicks])
     });
   }

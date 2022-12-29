@@ -90,15 +90,17 @@ def run_damage_sim():
 
     input_setup = GearSetupInput.get_input_setup(json_request)
     global RESULT_FIGURE
-    ttk_stats_list, total_damage_stats_list, sim_dps_stats_list, theoretical_dps_list, cummulative_chances_list, \
-        RESULT_FIGURE = damage_sim.run(json_request["iterations"], input_setup)
+
+    damage_sim_results = damage_sim.run(json_request["iterations"], input_setup)
+    RESULT_FIGURE = damage_sim_results.figure
 
     return {
-        "ttk_stats": ttk_stats_list,
-        "total_dmg_stats": total_damage_stats_list,
-        "sim_dps_stats": sim_dps_stats_list,
-        "theoretical_dps": theoretical_dps_list,
-        "cummulative_chances": cummulative_chances_list,
+        "ttk_stats": damage_sim_results.ttk_stats_list,
+        "total_dmg_stats": damage_sim_results.total_damage_stats_list,
+        "attack_count_stats": damage_sim_results.attack_count_stats_list,
+        "sim_dps_stats": damage_sim_results.sim_dps_stats_list,
+        "theoretical_dps": damage_sim_results.theoretical_dps_list,
+        "cumulative_chances": damage_sim_results.cumulative_chances_list,
     }
 
 

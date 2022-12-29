@@ -6,6 +6,7 @@ from constants import *
 from gear_json import GearJson
 from model.attack_style.attack_style import AttackStyle
 from model.boost import Boost, BoostType
+from model.condition import Condition, ConditionVariables, ConditionComparison
 from model.input_setup import GearSetup, InputSetup
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
@@ -61,7 +62,10 @@ class GearSetupInput:
                          attack_count=attacks,
                          prayers=prayers,
                          boosts=boosts,
-                         combat_stats=combat_stats_copy)
+                         combat_stats=combat_stats_copy,
+                         other_gear=[], #TODO
+                         is_fill=False,
+                         conditions=[])
 
     @staticmethod
     def get_gear_void_bonuses(gear):
@@ -136,6 +140,11 @@ class GearSetupInput:
                     if gear_setup["attackStyle"] == style.name:
                         attack_style = style
 
+                conditions = [Condition(ConditionVariables[condition["variable"]],
+                                        ConditionComparison[condition["comparison"]],
+                                        condition["value"], ConditionComparison[condition["nextComparison"]])
+                              for condition in gear_setup["conditions"]]
+
                 weapon.initialize(attack_style=attack_style, attack_speed=weapon_item.attack_speed,
                                   void_attack=void_att, void_strength=void_str,
                                   combat_stats=combat_stats, prayer=PrayerMultiplier.sum_prayers(prayers),
@@ -151,7 +160,10 @@ class GearSetupInput:
                         attack_count=attack_count,
                         prayers=prayers,
                         boosts=boosts,
-                        combat_stats=combat_stats
+                        combat_stats=combat_stats,
+                        other_gear=[],  # TODO
+                        is_fill=gear_setup["isFill"],
+                        conditions=conditions
                     )
                 )
 

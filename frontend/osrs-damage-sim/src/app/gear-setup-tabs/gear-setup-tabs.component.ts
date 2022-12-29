@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 
 @Component({
@@ -6,13 +6,17 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
   templateUrl: './gear-setup-tabs.component.html',
   styleUrls: ['./gear-setup-tabs.component.css']
 })
-export class GearSetupTabsComponent implements OnInit {
+export class GearSetupTabsComponent implements OnInit, AfterViewInit {
   @ViewChild('gearSetupTabContainer', {read: ViewContainerRef}) gearSetupTabContainer!: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.openNewSetupTab(); //TODO causes ExpressionChangedAfterItHasBeenCheckedError
   }
 
   openNewSetupTab(tabToCopy?: GearSetupTabComponent): void {

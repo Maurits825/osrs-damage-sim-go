@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from model.condition import Condition, ConditionComparison
 from weapon import Weapon
 from model.boost import Boost
 from model.npc.combat_stats import CombatStats
@@ -17,6 +18,11 @@ class GearSetup:
     prayers: list[Prayer]
     combat_stats: CombatStats
     boosts: list[Boost]
+
+    is_fill: bool
+    conditions: list[Condition]
+
+    other_gear: list[int]  # TODO list of gear ids for things like brimstone ring, light bearer and stuff
 
 
 @dataclass()
