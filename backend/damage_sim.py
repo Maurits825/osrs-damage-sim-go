@@ -187,7 +187,7 @@ class DamageSim:
         fill_gear_damage = []
         fill_gear_att_count = []
         fill_gear_indices = []
-        is_fill_gear_used = False
+        last_fill_gear_used = -1
         for idx, setup in enumerate(all_gear_setups):
             if setup.is_fill:
                 fill_setups.append(setup)
@@ -211,7 +211,7 @@ class DamageSim:
         spec_regen_tick_counter = -weapon.attack_speed  # start with -attack for first loop
 
         while npc.combat_stats.hitpoints > 0:
-            is_fill_gear_used = False
+            last_fill_gear_used = -1
 
             if special_attack == MAX_SPECIAL_ATTACK:
                 spec_regen_tick_counter = 0
@@ -222,34 +222,30 @@ class DamageSim:
                 spec_regen_tick_counter -= SPEC_REGEN_TICKS
                 special_attack = min(special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
 
-            # TODO have to figure out if we use a fill weapon now, how do we keep track of the fill weapon data?
-            # TODO we have to keep track of indexes in the lists of SingleDamageSimData
-            # TODO we have to check the conditions first, get what the fill weapon is, then check if enough spec?
-            # TODO we can just go through each condition every time?
             for idx, setup in enumerate(fill_setups):
                 if ConditionEvaluator.evaluate_condition(setup.conditions, npc.combat_stats.hitpoints,
                                                          sum(fill_gear_damage[idx])):
-                    # TODO also have to check if enough spec if its a spec fill weapon and minus the spec
-                    # TODO we have to get spec amount info from wiki?
-                    # TODO duplicate code...
+                    # TODO duplicate code... -> refactor to function or maybe even class?
                     fill_weapon = fill_setups[idx].weapon
-                    fill_weapon.set_npc(npc)
-                    damage = fill_weapon.roll_damage()
-                    npc.combat_stats.hitpoints -= damage
-                    fill_gear_damage[idx].append(damage)
-                    fill_gear_att_count[idx] += 1
+                    if fill_weapon.special_attack_cost <= special_attack: # TODO check if acutally a spec weapon?
+                        fill_weapon.set_npc(npc)
+                        damage = fill_weapon.roll_damage()
+                        npc.combat_stats.hitpoints -= damage
+                        fill_gear_damage[idx].append(damage)
+                        fill_gear_att_count[idx] += 1
 
-                    ticks_to_kill += fill_weapon.attack_speed
+                        ticks_to_kill += fill_weapon.attack_speed
+                        last_fill_gear_used = idx
 
-                    is_fill_gear_used = True
+                        special_attack -= fill_weapon.special_attack_cost # TODO check if spec regen is correct after using here
+
                     continue
 
-            if is_fill_gear_used:
+            if last_fill_gear_used >= 0:
                 weapon.set_npc(npc)
                 continue
 
             if current_weapon_att_count >= gear_setup.attack_count:
-                ticks_to_kill += current_weapon_att_count * weapon.attack_speed
                 gear_dps.append(DamageSim.get_dps(gear_damage, current_weapon_att_count, weapon.attack_speed))
                 gear_total_dmg.append(sum(gear_damage))
                 gear_att_count.append(current_weapon_att_count)
@@ -267,14 +263,19 @@ class DamageSim:
 
             gear_damage.append(damage)
             current_weapon_att_count += 1
+            ticks_to_kill += weapon.attack_speed
 
-        if not is_fill_gear_used:
-            # remove overkill damage
+        # remove overkill damage
+        # remove the last weapon att, overkill attack speed only relevant if att something else after
+        if last_fill_gear_used >= 0:
+            fill_gear_damage[last_fill_gear_used][-1] += npc.combat_stats.hitpoints
+            ticks_to_kill -= fill_setups[last_fill_gear_used].weapon.attack_speed
+        else:
             gear_damage[-1] = gear_damage[-1] + npc.combat_stats.hitpoints
-            # by default remove the last weapon att, overkill attack speed only relevant if att something else after
-            # in practice kill would be maybe 1-3 tick slower because of hitsplat delay and stuff
-            ticks_to_kill += (current_weapon_att_count - 1) * weapon.attack_speed
+            ticks_to_kill -= weapon.attack_speed
 
+        # add one tick because it dies on this tick
+        ticks_to_kill += 1
         gear_dps.append(DamageSim.get_dps(gear_damage, current_weapon_att_count, weapon.attack_speed))
         gear_total_dmg.append(sum(gear_damage))
         gear_att_count.append(current_weapon_att_count)
@@ -287,15 +288,17 @@ class DamageSim:
 
         # add in fill gear stats
         for idx, setup in enumerate(fill_setups):
-            gear_total_dmg.insert(idx, sum(fill_gear_damage[idx]))
-            gear_att_count.insert(idx, fill_gear_att_count[idx])
-            gear_dps.insert(idx, DamageSim.get_dps(fill_gear_damage[idx], fill_gear_att_count[idx],
-                                                   setup.weapon.attack_speed))
+            gear_total_dmg.insert(idx + 1, sum(fill_gear_damage[idx]))
+            gear_att_count.insert(idx + 1, fill_gear_att_count[idx])
+            gear_dps.insert(idx + 1, DamageSim.get_dps(fill_gear_damage[idx], fill_gear_att_count[idx],
+                                                       setup.weapon.attack_speed))
 
         return SingleDamageSimData(ticks_to_kill, gear_total_dmg, gear_att_count, gear_dps)
 
     @staticmethod
     def get_dps(damages, attack_count, attack_speed):
+        if attack_count == 0:
+            return 0
         return sum(damages) / (attack_count * attack_speed * 0.6)
 
 

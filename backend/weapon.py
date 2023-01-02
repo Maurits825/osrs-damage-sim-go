@@ -2,6 +2,7 @@ import math
 import random
 from dps_calculator import DpsCalculator
 from model.attack_style.attack_type import AttackType
+from model.combat_boost import CombatBoost
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.attack_style.combat_style import CombatStyle
@@ -18,6 +19,7 @@ SHADOW_STAFF = [27275]
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
+    # TODO better way to handle dataclass with none?
     def __init__(self):
         self.attack_style = None
         self.attack_speed = 0
@@ -32,18 +34,26 @@ class Weapon:
         self.max_hit = 0
 
         self.is_special_attack = False
+        self.special_attack_cost = 0
 
         self.raid_level = None
 
         self.void_skill_attack_boost = 1
         self.void_skill_str_boost = 1
 
+        self.gear = dict()
+
+        self.special_gear_bonus: CombatBoost = CombatBoost()
+
     def initialize(self, attack_style, attack_speed,
                    void_attack, void_strength,
                    combat_stats: CombatStats,
                    prayer: PrayerMultiplier,
-                   total_gear_stats, raid_level, is_special_attack,
-                   npc: NpcStats):
+                   total_gear_stats, raid_level, is_special_attack, special_attack_cost,
+                   npc: NpcStats, gear):
+        self.special_attack_cost = special_attack_cost
+        self.gear = gear
+
         self.set_attack_style_and_speed(attack_style, attack_speed)
         self.set_void_boost(void_attack, void_strength)
         self.set_combat_stats(combat_stats)
@@ -52,6 +62,8 @@ class Weapon:
         self.set_raid_level(raid_level)
         self.set_is_special_attack(is_special_attack)
         self.set_npc(npc)
+
+        self.update_special_bonus()
 
         self.update_attack_roll()
         self.update_max_hit()
@@ -85,6 +97,21 @@ class Weapon:
     def set_npc(self, npc):
         self.npc = npc
 
+    # TODO other bonuses like wildy weapons and salve
+    def update_special_bonus(self):
+        if "slayer helmet (i)" in '\t'.join(self.gear["name"]):
+            self.special_gear_bonus.melee.attack_boost = 7 / 6
+            self.special_gear_bonus.melee.strength_boost = 7 / 6
+
+            self.special_gear_bonus.ranged.attack_boost = 1.15
+            self.special_gear_bonus.ranged.strength_boost = 1.15
+
+            self.special_gear_bonus.magic.attack_boost = 1.15
+            self.special_gear_bonus.magic.strength_boost = 1.15
+        elif "slayer helmet" in self.gear["name"]:
+            self.special_gear_bonus.melee.attack_boost = 7 / 6
+            self.special_gear_bonus.melee.strength_boost = 7 / 6
+
     def update_attack_roll(self):
         self.attack_roll = self.get_attack_roll()
 
@@ -106,7 +133,6 @@ class Weapon:
             defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
         return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
 
-    # TODO gear bonus
     def get_max_hit(self):
         if self.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
@@ -116,8 +142,8 @@ class Weapon:
                 melee_void_boost=self.void_skill_str_boost
             )
             gear_melee_strength = self.gear_stats.melee_strength
-            gear_bonus = 1
-            return DpsCalculator.get_melee_max_hit(effective_melee_str, gear_melee_strength, gear_bonus)
+            return DpsCalculator.get_melee_max_hit(effective_melee_str, gear_melee_strength,
+                                                   self.special_gear_bonus.melee.strength_boost)
         elif self.attack_style.attack_type == AttackType.RANGED:
             effective_ranged_str = DpsCalculator.get_effective_ranged_str(
                 prayer=self.prayer,
@@ -126,8 +152,8 @@ class Weapon:
                 ranged_void_boost=self.void_skill_str_boost
             )
             gear_ranged_strength = self.gear_stats.ranged_strength
-            gear_bonus = 1
-            return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength, gear_bonus)
+            return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength,
+                                                    self.special_gear_bonus.ranged.strength_boost)
         elif self.attack_style.attack_type == AttackType.MAGIC:
             return self.get_magic_max_hit()
 
@@ -154,8 +180,10 @@ class Weapon:
     def get_attack_roll(self):
         effective_skill_attack_lvl = 0
         gear_skill_bonus = 0
+        gear_attack_bonus = 1
 
         if self.attack_style.attack_type in Weapon.MELEE_TYPES:
+            gear_attack_bonus = self.special_gear_bonus.melee.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_melee_attack(
                 prayer=self.prayer,
                 attack_lvl=self.combat_stats.attack,
@@ -171,6 +199,7 @@ class Weapon:
                 gear_skill_bonus = self.gear_stats.crush
 
         elif self.attack_style.attack_type == AttackType.RANGED:
+            gear_attack_bonus = self.special_gear_bonus.ranged.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_ranged_attack(
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
@@ -179,6 +208,7 @@ class Weapon:
             )
             gear_skill_bonus = self.gear_stats.ranged
         elif self.attack_style.attack_type == AttackType.MAGIC:
+            gear_attack_bonus = self.special_gear_bonus.magic.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_magic_level(
                 prayer=self.prayer,
                 magic_lvl=self.combat_stats.magic,
@@ -191,9 +221,7 @@ class Weapon:
             else:
                 gear_skill_bonus = self.gear_stats.magic
 
-        # TODO gear bonus: blackmask/slayer hem, salve amulet/ei
-        gear_bonus = 1
-        return DpsCalculator.get_attack_roll(effective_skill_attack_lvl, gear_skill_bonus, gear_bonus)
+        return DpsCalculator.get_attack_roll(effective_skill_attack_lvl, gear_skill_bonus, gear_attack_bonus)
 
     def get_dps(self):
         self.accuracy = self.get_accuracy()
@@ -213,6 +241,8 @@ class Weapon:
             shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
             magic_dmg_multiplier = 1 + (shadow_mult * (self.gear_stats.magic_strength / 100))
 
-        # TODO salve bonus here
+        # TODO test slayer bonus and salve later
         magic_dmg_multiplier += self.void_skill_str_boost - 1
-        return math.floor(base_max_hit * magic_dmg_multiplier)
+        max_hit = math.floor(math.floor(base_max_hit * magic_dmg_multiplier) *
+                             self.special_gear_bonus.magic.strength_boost)
+        return max_hit

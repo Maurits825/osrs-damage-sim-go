@@ -1,5 +1,8 @@
 import json
 
+import requests
+from bs4 import BeautifulSoup
+
 from model.npc.aggressive_stats import AggressiveStats
 from model.npc.combat_stats import CombatStats
 from model.npc.defensive_stats import DefensiveStats
@@ -14,6 +17,7 @@ class WikiData:
     npcs_json = json.load(open("./wiki_data/npcs-dps-calc.json"))
     extra_data = json.load(open("./wiki_data/extra_data.json"))
     gear_slot_items = json.load(open("./wiki_data/gear_slot_items.json"))
+    special_attack = json.load(open("./wiki_data/special_attack.json"))
 
     @staticmethod
     def get_item(item_id: int) -> WeaponStats:
@@ -74,6 +78,14 @@ class WikiData:
         )
 
     @staticmethod
+    def get_special_attack(item_name: str) -> int:
+        for key in WikiData.special_attack:
+            if key in item_name:
+                return WikiData.special_attack[key]
+
+        return 0
+
+    @staticmethod
     def update_gear_slot_items_list():
         gear_slot_items = {}
         for item_id, item in WikiData.items_json.items():
@@ -100,6 +112,46 @@ class WikiData:
 
         return unique_npcs
 
+    @staticmethod
+    def update_special_attack_json():
+        special_attack_dict = WikiData.get_special_attack_weapons()
+        with open("./wiki_data/special_attack.json", "w") as outfile:
+            json.dump(special_attack_dict, outfile)
+
+    @staticmethod
+    def get_special_attack_weapons() -> dict:
+        url = 'https://oldschool.runescape.wiki/w/Special_attacks'
+        response = requests.get(url)
+
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        all_tables = soup.findAll('table', {'class': 'wikitable'})
+
+        weapons = {}
+        weapon_names = []
+        for table in all_tables:
+            for row in table.find_all('tr'):
+                header = row.find_all('th')
+                if len(header) == 1:
+                    a_links = header[0].find_all('a')
+                    weapon_names = set([link.attrs['title'] for link in a_links])
+                else:
+                    cells = row.find_all('td')
+                    try:
+                        energy = cells[2].text.strip()
+                        energy = energy.replace('%', '')
+                        try:
+                            energy = int(energy)
+                        except ValueError:
+                            break
+                    except IndexError:
+                        return weapons
+
+                    for name in weapon_names:
+                        weapons[name] = energy
+                    break
+
 
 if __name__ == '__main__':
     WikiData.update_gear_slot_items_list()
+    WikiData.update_special_attack_json()

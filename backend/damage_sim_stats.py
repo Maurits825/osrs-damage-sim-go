@@ -149,21 +149,19 @@ class DamageSimStats:
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
         self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
+    # TODO this np.cumsum is not correct for this scenario, the graph has to be shifted to the left
+    # TODO it should round up to the next attack cycle or something
     @staticmethod
     def get_cumulative_sum(data): # TODO remove the first zero?
         bin_count = np.bincount(data) / len(data)
         return np.cumsum(bin_count)
 
     def show_cumulative_graph(self, min_ticks, max_ticks, input_setup: InputSetup, iterations, hitpoints):
-        # TODO figure out how to get nice evenly space ticks
-        # TODO maybe just try to set interval as 1,10,20 ticks with np.arange() until total timestamps are below 30
-        # TODO xticks should also be multiples of ticks
         x_ticks, interval = DamageSimStats.get_x_ticks(min_ticks, max_ticks)
-        self.axes.set_xticks(x_ticks)  # TODO time labels are kind big so this need to be like 10+
+        self.axes.set_xticks(x_ticks)
         self.axes.set_yticks(np.arange(0, 1.1, 0.1))
 
-        # TODO figure out margins
-        self.axes.set_xlim(max(min_ticks-interval, 0), max_ticks+interval)
+        self.axes.set_xlim(max(min_ticks-interval, 0), x_ticks[-1])
 
         self.axes.set_xlabel("Time to kill")
         self.axes.set_ylabel("Cummulative chance")
@@ -192,15 +190,14 @@ class DamageSimStats:
 
     @staticmethod
     def get_x_ticks(min_ticks, max_ticks):
-        interval_multiplier = 1
+        interval = 1
         while True:
-            interval = TICK_LENGTH * interval_multiplier
             label_count = (max_ticks - min_ticks) / interval
 
             if label_count <= MAX_X_TICKS_LABEL:
-                return [min_ticks + (i * interval) for i in range(math.ceil(label_count))], interval
+                return [min_ticks + (i * interval) for i in range(math.ceil(label_count) + 1)], interval
             else:
-                interval_multiplier += 1
+                interval += 1
 
     @staticmethod
     def print_setup(gear_setup: list[GearSetup], total_damage_stats: list[SimStats]):

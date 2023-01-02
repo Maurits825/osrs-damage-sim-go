@@ -22,7 +22,8 @@ class GearSetup:
     is_fill: bool
     conditions: list[Condition]
 
-    other_gear: list[int]  # TODO list of gear ids for things like brimstone ring, light bearer and stuff
+    gear: dict  # TODO list of gear ids for things like brimstone ring, light bearer and stuff
+    # TODO could also put void in this and refactor using Combat boost data class, also fix the bug
 
 
 @dataclass()

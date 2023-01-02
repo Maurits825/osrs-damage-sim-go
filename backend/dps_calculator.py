@@ -31,7 +31,7 @@ class DpsCalculator:
 
     @staticmethod
     def get_ranged_max_hit(effective_ranged_str, gear_ranged_strength, gear_bonus):
-        return math.floor(0.5 + ((effective_ranged_str * (gear_ranged_strength + 64)) / 640) * gear_bonus)
+        return math.floor(math.floor(0.5 + ((effective_ranged_str * (gear_ranged_strength + 64)) / 640)) * gear_bonus)
 
     @staticmethod
     def get_effective_magic_level(prayer: PrayerMultiplier, magic_lvl, attack_style_boost, void_boost):

@@ -63,10 +63,11 @@ class GearSetupInput:
                          prayers=prayers,
                          boosts=boosts,
                          combat_stats=combat_stats_copy,
-                         other_gear=[], #TODO
+                         gear=dict(), #TODO
                          is_fill=False,
                          conditions=[])
 
+    # TODO probably bug if wearing ranged void with say a whip, still gives you the bonuses
     @staticmethod
     def get_gear_void_bonuses(gear):
         void_att = 1
@@ -118,8 +119,10 @@ class GearSetupInput:
                     boost.apply_boost(combat_stats)
 
                 total_gear_stats = WeaponStats(name=gear_setup["name"])
+                gear = {"id": gear_setup["gear"], "name": []}
                 for gear_id in gear_setup["gear"]:
                     weapon_stats = WikiData.get_item(gear_id)
+                    gear["name"].append(weapon_stats.name.lower())
                     total_gear_stats += weapon_stats
 
                 void_att, void_str = GearSetupInput.get_gear_void_bonuses(gear_setup["gear"])
@@ -149,7 +152,9 @@ class GearSetupInput:
                                   void_attack=void_att, void_strength=void_str,
                                   combat_stats=combat_stats, prayer=PrayerMultiplier.sum_prayers(prayers),
                                   total_gear_stats=total_gear_stats, raid_level=raid_level,
-                                  is_special_attack=gear_setup["isSpecial"], npc=npc
+                                  is_special_attack=gear_setup["isSpecial"],
+                                  special_attack_cost=WikiData.get_special_attack(weapon_item.name), npc=npc,
+                                  gear=gear
                                   )
 
                 gear_setups.append(
@@ -161,7 +166,7 @@ class GearSetupInput:
                         prayers=prayers,
                         boosts=boosts,
                         combat_stats=combat_stats,
-                        other_gear=[],  # TODO
+                        gear=gear,
                         is_fill=gear_setup["isFill"],
                         conditions=conditions
                     )
