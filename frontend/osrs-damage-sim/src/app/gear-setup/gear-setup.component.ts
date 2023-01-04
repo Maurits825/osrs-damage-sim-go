@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { ConditionComponent } from '../condition/condition.component';
 import { POTIONS } from '../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { AttackType } from '../model/attack-type.enum';
@@ -58,6 +59,8 @@ export class GearSetupComponent implements OnInit {
 
   gearToCopy: GearSetupComponent;
   conditions: Condition[] = [];
+  
+  @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   constructor(
     private damageSimservice: DamageSimService,
@@ -219,7 +222,12 @@ export class GearSetupComponent implements OnInit {
   updateAttackStyle(itemId: number): void {
     this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
       this.attackStyles = styles;
-      this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
+      if (this.gearToCopy) {
+        this.selectedAttackStyle = this.gearToCopy.selectedAttackStyle;
+      }
+      else {
+        this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
+      }
     });
   }
 
@@ -249,14 +257,13 @@ export class GearSetupComponent implements OnInit {
 
     this.setCurrentGear(gearSetupComponent.currentGear)
 
-    this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle; //TODO doesnt work
     this.attackCount = gearSetupComponent.attackCount;
     this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
     this.isFill = gearSetupComponent.isFill;
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
-    this.selectedBoosts = [...gearSetupComponent.selectedBoosts]; //TODO doesnt really work beacuse of global boost, cant guarantee order
-    this.conditions = [... gearSetupComponent.conditions];//TODO condition copy doesnt work
+    this.selectedBoosts = [...gearSetupComponent.selectedBoosts]; //TODO it will copy global boosts, not the tab
+    this.conditionComponent.conditions = [... gearSetupComponent.conditions]
   }
 
   updateConditions(conditions: Condition[]): void {

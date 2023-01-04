@@ -1,6 +1,5 @@
 <div class="container">
   <h1 class="text-center display-1 mb-5">Damage Simulator</h1>
-  <!-- use align-items-center -->
   <div class="row mb-1" *ngIf="damageSimResults?.ttk_stats">
     <h2 class="mb-1 ps-0">Time Results</h2>
     <table class="table table-striped table-bordered mb-4">
@@ -84,15 +83,18 @@
   <hr class="row mb-5">
 
   <div class="row mb-3 align-items-center">
-    <label class="col-2">Iterations</label>
+    <div class="col-2">Global settings</div>
+    <label class="col-1 text-end">Iterations</label>
     <div class="col-2"><input class="form-control" type="number" [(ngModel)]="iterations" min="1"></div>
-    <label class="col-2">Team size</label>
-    <div class="col-2"><input class="form-control" type="number" [(ngModel)]="teamSize" min="1"></div>
-    <button class="col-3 btn btn-primary" type="button" (click)="submit()" [disabled]="loading">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
-      <span *ngIf="loading" class="sr-only"> Loading...</span>
-    </button>
+    <label class="col-1 text-end">Team size</label>
+    <div class="col-1"><input class="form-control" type="number" [(ngModel)]="teamSize" min="1"></div>
+    <div class="col">
+      <button class="btn btn-primary w-100" type="button" (click)="submit()" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
+        <span *ngIf="loading" class="sr-only"> Loading...</span>
+      </button>
+    </div>
   </div>
 
   <app-npc-input></app-npc-input>

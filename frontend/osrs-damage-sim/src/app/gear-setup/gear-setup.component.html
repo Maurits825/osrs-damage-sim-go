@@ -14,7 +14,7 @@
             <div class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></div>
             <div class="col">
                 <div class="row align-items-center">
-                    <label class="col-4 text-center" for="customGear">Load setup:</label>
+                    <label class="col-4 text-end" for="customGear">Load setup:</label>
                     <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
                         <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
                     </ng-select>
@@ -27,7 +27,7 @@
         <div class="row mb-2" *ngFor="let slot of gearSlots">
             <div class="col-1">
                 <div *ngIf="currentGear[slot]?.id; else placeholder">
-                    <img src="{{ currentGear[slot].name | wikiItemIcon }}">
+                    <img src="{{ currentGear[slot].name | wikiItemIcon | async }}">
                 </div>
                 <ng-template #placeholder> <img src="assets/img/equip/slot_{{slot}}.png"></ng-template>                    
             </div>
@@ -37,7 +37,7 @@
                 </ng-select>
             </div>
             <div class="col-5" *ngIf="currentGear[slot]?.id == blowpipeId">
-                <ng-select [(ngModel)]="selectedDart">
+                <ng-select [(ngModel)]="selectedDart" [clearable]="false">
                     <ng-option *ngFor="let dart of dartItems" [value]="dart">{{dart.name}}</ng-option>
                 </ng-select>
             </div>
@@ -48,16 +48,14 @@
         <div class="row mb-3 align-items-center">
             <div class="col-3"><label for="attackStyle">Attack style</label></div>
             <div class="col-9">
-                <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle">
+                <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle" [clearable]="false">
                     <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
                 </ng-select>
             </div>
         </div>
 
         <div class="row mb-3 align-items-center">
-            <div class="col-3">
-                <label>Prayers</label>
-            </div>
+            <div class="col-3"><label>Prayers</label></div>
             <div *ngFor="let prayer of prayers" class="col">
                 <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
                     <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
@@ -69,9 +67,7 @@
         </div>
 
         <div class="row mb-3 align-items-center">
-            <div class="col-3">
-                <label>Combat Stats</label>
-            </div>
+            <div class="col-3"><label>Combat Stats</label></div>
             <div class="col" *ngFor="let skill of combatStats | keyvalue">
                 <div class="row align-items-center">
                     <div class="col-3">
@@ -85,9 +81,7 @@
         </div>
 
         <div class="row mb-3 align-items-center">
-            <div class="col-3">
-                <label>Boosts</label>
-            </div>
+            <div class="col-3"><label>Boosts</label></div>
             <div class="col" *ngFor="let boost of boosts">
                 <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
                     <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
@@ -106,9 +100,7 @@
             <div class="col text-end"><label for="isSpecial">Special attack</label></div>
             <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
         </div>
-
-        <div class="row mb-3">
-            <app-condition [isFill]="isFill" (conditionsChanged)="updateConditions($event)"></app-condition>
-        </div>
+        <div class="row mb-3"><app-condition [isFill]="isFill" (conditionsChanged)="updateConditions($event)"></app-condition></div>
+        
     </div>
 </div>

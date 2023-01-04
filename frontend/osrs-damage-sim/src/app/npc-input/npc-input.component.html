@@ -1,8 +1,6 @@
 <div>
     <div class="row mb-3 align-items-center">
-        <div class="col-1">
-            Npc
-        </div>
+        <div class="col-2">Npc</div>
         <div class="col">
             <ng-select [(ngModel)]="selectedNpcId" (change)="selectedNpcChange($event)">
                 <ng-option *ngFor="let npc of allNpcs | keyvalue" [value]="npc.key">
