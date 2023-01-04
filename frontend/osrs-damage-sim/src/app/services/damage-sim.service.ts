@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AttackType } from '../model/attack-type.enum';
+import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { DamageSimResults } from '../model/damage-sim-results.model';
 import { InputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { Npc } from '../model/npc.model';
-import { DAMAGE_SIM_SERVER_URL } from './server-url.cons';
 
 @Injectable()
 export class DamageSimService {

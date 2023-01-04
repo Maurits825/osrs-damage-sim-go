@@ -18,6 +18,9 @@ class ConditionEvaluator:
 
     @staticmethod
     def evaluate_condition(conditions: list[Condition], npc_hitpoints, dmg_dealt):
+        if len(conditions) == 0:
+            return True
+
         bool_conditions = []
 
         for condition in conditions:

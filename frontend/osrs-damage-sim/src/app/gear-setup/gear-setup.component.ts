@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { POTIONS } from '../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { AttackType } from '../model/attack-type.enum';
 import { Condition } from '../model/condition.model';
@@ -45,7 +46,7 @@ export class GearSetupComponent implements OnInit {
 
   combatStats: Record<string, number> = {};
 
-  boosts: string[] = ["smelling_salts", "super_combat_pot", "ranged_pot"];
+  boosts: string[] = POTIONS;
   selectedBoosts: string[] = [];
 
   weaponSlot = 3;
@@ -255,7 +256,7 @@ export class GearSetupComponent implements OnInit {
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
     this.selectedBoosts = [...gearSetupComponent.selectedBoosts]; //TODO doesnt really work beacuse of global boost, cant guarantee order
-    this.conditions = [... gearSetupComponent.conditions];
+    this.conditions = [... gearSetupComponent.conditions];//TODO condition copy doesnt work
   }
 
   updateConditions(conditions: Condition[]): void {

@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></div>
             <div class="col">
-                <div class="row">
+                <div class="row align-items-center">
                     <label class="col-4 text-center" for="customGear">Load setup:</label>
                     <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
                         <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>

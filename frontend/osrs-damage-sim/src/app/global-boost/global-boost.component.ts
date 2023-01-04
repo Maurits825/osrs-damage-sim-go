@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { POTIONS } from '../constants.const';
 import { GlobalBoostService } from '../services/global-boost.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { GlobalBoostService } from '../services/global-boost.service';
   styleUrls: ['./global-boost.component.css']
 })
 export class GlobalBoostComponent implements OnInit {
-  boosts: string[] = ["smelling_salts", "super_combat_pot", "ranged_pot"];
+  boosts: string[] = POTIONS;
   selectedBoosts: string[] = [];
 
   globalBoostsChanged = new EventEmitter<string[]>();

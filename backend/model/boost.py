@@ -11,6 +11,7 @@ class BoostType(Enum):
     SUPER_DEFENCE_POT = 4
     SUPER_COMBAT_POT = 5
     RANGED_POT = 6
+    LIQUID_ADRENALINE = 7
 
 
 class Boost:

@@ -1,28 +1,26 @@
 <div>
-    <div class="row mb-3">
-        <div class="row mb-2">
-            <div class="col-1">
-                Npc
+    <div class="row mb-3 align-items-center">
+        <div class="col-1">
+            Npc
+        </div>
+        <div class="col">
+            <ng-select [(ngModel)]="selectedNpcId" (change)="selectedNpcChange($event)">
+                <ng-option *ngFor="let npc of allNpcs | keyvalue" [value]="npc.key">
+                    {{npc.value.name}} (Lvl: {{npc.value.combat}}, HP:  {{npc.value.hitpoints}})
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-2" *ngIf="showRaidLevel">
+            <div class="row align-items-center">
+                <label class="col text-end">Raid Level</label>
+                <input class="form-control col" type="number" [(ngModel)]="raidLevel" min="0">
             </div>
-            <div class="col">
-                <ng-select [(ngModel)]="selectedNpcId" (change)="selectedNpcChange($event)">
-                    <ng-option *ngFor="let npc of allNpcs | keyvalue" [value]="npc.key">
-                        {{npc.value.name}} (Lvl: {{npc.value.combat}}, HP:  {{npc.value.hitpoints}})
-                    </ng-option>
-                </ng-select>
+        </div>
+        <div class="col-2" *ngIf="showPathLevel">
+            <div class="row align-items-center">
+                <label class="col text-end">Path Level</label>
+                <input class="form-control col" type="number" [(ngModel)]="pathLeveL" min="0">
             </div>
-            <div class="col-2" *ngIf="showRaidLevel">
-                <div class="row">
-                    <label class="col">Raid Level</label>
-                    <input class="form-control col" type="number" [(ngModel)]="raidLevel" min="0">
-                </div>
-            </div>
-            <div class="col-2" *ngIf="showPathLevel">
-                <div class="row">
-                    <label class="col">Path Level</label>
-                    <input class="form-control col" type="number" [(ngModel)]="pathLeveL" min="0">
-                </div>
-            </div>
-        </div>        
-    </div>
+        </div>
+    </div>        
 </div>

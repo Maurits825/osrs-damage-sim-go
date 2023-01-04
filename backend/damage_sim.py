@@ -4,7 +4,7 @@ import math
 from matplotlib.figure import Figure
 
 from condition_evaluator import ConditionEvaluator
-from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
+from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT, LIGHTBEARER
 from damage_sim_stats import DamageSimStats, TimeSimStats, SimStats
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
@@ -208,26 +208,45 @@ class DamageSim:
         gear_att_count = []
 
         special_attack = MAX_SPECIAL_ATTACK
-        spec_regen_tick_counter = -weapon.attack_speed  # start with -attack for first loop
+        spec_regen_tick_counter = 0
+        spec_regen_ticks = SPEC_REGEN_TICKS
 
+        # TODO handle special attack with attack count, maybe just dont allow?
+        # TODO then add a attack count condition?
         while npc.combat_stats.hitpoints > 0:
-            last_fill_gear_used = -1
-
             if special_attack == MAX_SPECIAL_ATTACK:
                 spec_regen_tick_counter = 0
             else:
-                spec_regen_tick_counter += weapon.attack_speed
+                if last_fill_gear_used >= 0:
+                    last_gear_setup = fill_setups[last_fill_gear_used]
+                else:
+                    last_gear_setup = gear_setup
 
-            if spec_regen_tick_counter >= SPEC_REGEN_TICKS:
-                spec_regen_tick_counter -= SPEC_REGEN_TICKS
+                spec_regen_tick_counter += last_gear_setup.weapon.attack_speed
+                if LIGHTBEARER in last_gear_setup.gear["id"]:
+                    spec_regen_ticks = SPEC_REGEN_TICKS/2
+                else:
+                    spec_regen_ticks = SPEC_REGEN_TICKS
+
+            if spec_regen_tick_counter >= spec_regen_ticks:
+                spec_regen_tick_counter -= spec_regen_ticks
                 special_attack = min(special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
+
+            last_fill_gear_used = -1
 
             for idx, setup in enumerate(fill_setups):
                 if ConditionEvaluator.evaluate_condition(setup.conditions, npc.combat_stats.hitpoints,
                                                          sum(fill_gear_damage[idx])):
                     # TODO duplicate code... -> refactor to function or maybe even class?
                     fill_weapon = fill_setups[idx].weapon
-                    if fill_weapon.special_attack_cost <= special_attack: # TODO check if acutally a spec weapon?
+
+                    if any(boost.boost_type == BoostType.LIQUID_ADRENALINE for boost in fill_setups[idx].boosts):
+                        special_attack_cost = fill_weapon.special_attack_cost / 2
+                    else:
+                        special_attack_cost = fill_weapon.special_attack_cost
+
+                    if not fill_weapon.is_special_attack or \
+                            (fill_weapon.is_special_attack and special_attack_cost <= special_attack):
                         fill_weapon.set_npc(npc)
                         damage = fill_weapon.roll_damage()
                         npc.combat_stats.hitpoints -= damage
@@ -237,9 +256,9 @@ class DamageSim:
                         ticks_to_kill += fill_weapon.attack_speed
                         last_fill_gear_used = idx
 
-                        special_attack -= fill_weapon.special_attack_cost # TODO check if spec regen is correct after using here
+                        special_attack -= special_attack_cost
 
-                    continue
+                    break
 
             if last_fill_gear_used >= 0:
                 weapon.set_npc(npc)
@@ -288,10 +307,11 @@ class DamageSim:
 
         # add in fill gear stats
         for idx, setup in enumerate(fill_setups):
-            gear_total_dmg.insert(idx + 1, sum(fill_gear_damage[idx]))
-            gear_att_count.insert(idx + 1, fill_gear_att_count[idx])
-            gear_dps.insert(idx + 1, DamageSim.get_dps(fill_gear_damage[idx], fill_gear_att_count[idx],
-                                                       setup.weapon.attack_speed))
+            insert_index = fill_gear_indices[idx]
+            gear_total_dmg.insert(insert_index, sum(fill_gear_damage[idx]))
+            gear_att_count.insert(insert_index, fill_gear_att_count[idx])
+            gear_dps.insert(insert_index, DamageSim.get_dps(fill_gear_damage[idx], fill_gear_att_count[idx],
+                                                            setup.weapon.attack_speed))
 
         return SingleDamageSimData(ticks_to_kill, gear_total_dmg, gear_att_count, gear_dps)
 

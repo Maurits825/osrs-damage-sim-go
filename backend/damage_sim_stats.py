@@ -140,7 +140,7 @@ class DamageSimStats:
         cum_sum = DamageSimStats.get_cumulative_sum(tick_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
         plt.plot(time_stamps, cum_sum)
-        plt.xticks(np.arange(0, len(cum_sum) + 1, 20))  # TODO time labels are kind big so this need to be like 10+
+        plt.xticks(np.arange(0, len(cum_sum) + 1, 20))
         plt.title(DamageSimStats.get_gear_setup_label(gear_setups))
         plt.show()
 
@@ -149,10 +149,9 @@ class DamageSimStats:
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
         self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
-    # TODO this np.cumsum is not correct for this scenario, the graph has to be shifted to the left
-    # TODO it should round up to the next attack cycle or something
+    # TODO graphing a line graph is not correct, but it looks better that a scatter graph
     @staticmethod
-    def get_cumulative_sum(data): # TODO remove the first zero?
+    def get_cumulative_sum(data):
         bin_count = np.bincount(data) / len(data)
         return np.cumsum(bin_count)
 
@@ -217,6 +216,7 @@ class DamageSimStats:
             label += DamageSimStats.get_gear_label(gear) + ", "
         return label[:-2]
 
+    # TODO update with avg att count maybe, or no attack count info
     @staticmethod
     def get_gear_label(gear: GearSetup):
         label = ""

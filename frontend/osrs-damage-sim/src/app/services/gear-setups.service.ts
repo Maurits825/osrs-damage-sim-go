@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { Item } from '../model/item.model';
-import { DAMAGE_SIM_SERVER_URL } from './server-url.cons';
 
 @Injectable()
 export class GearSetupService {
