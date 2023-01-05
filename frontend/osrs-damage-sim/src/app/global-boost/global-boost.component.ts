@@ -11,12 +11,10 @@ export class GlobalBoostComponent implements OnInit {
   boosts: string[] = POTIONS;
   selectedBoosts: string[] = [];
 
-  globalBoostsChanged = new EventEmitter<string[]>();
-
   constructor(private globalBoostService: GlobalBoostService) { }
 
   ngOnInit(): void {
-    this.globalBoostService.globalBoostsChanged.subscribe(boosts => this.selectedBoosts = [...boosts]);
+    this.globalBoostService.boostsChanged.subscribe(boosts => this.selectedBoosts = [...boosts]);
   }
 
   addBoost(boost: string): void {

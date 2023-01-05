@@ -93,9 +93,16 @@ export class GearSetupComponent implements OnInit {
       if (this.gearToCopy) {
         this.setGearSetup(this.gearToCopy);
       }
+      else {
+        this.selectedBoosts = [... this.globalBoostService.getGlobalBoosts()];
+      }
 
-      this.selectedBoosts = [... this.globalBoostService.getGlobalBoosts()];
-      this.globalBoostService.globalBoostsChanged.subscribe(boosts => this.selectedBoosts = [...boosts]);
+      this.globalBoostService.boostsAdded.subscribe(boost => {
+        if (!this.selectedBoosts.includes(boost)) {
+          this.selectedBoosts.push(boost)
+        }
+      });
+      this.globalBoostService.boostsRemoved.subscribe(boost => this.selectedBoosts = this.selectedBoosts.filter(b => b !== boost));
     });
   }
 
@@ -262,11 +269,15 @@ export class GearSetupComponent implements OnInit {
     this.isFill = gearSetupComponent.isFill;
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
-    this.selectedBoosts = [...gearSetupComponent.selectedBoosts]; //TODO it will copy global boosts, not the tab
+    this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
     this.conditionComponent.conditions = [... gearSetupComponent.conditions]
   }
 
   updateConditions(conditions: Condition[]): void {
     this.conditions = conditions;
+  }
+
+  copyGearSetup(): void {
+    this.gearSetUpTabRef.addNewGearSetup(this);
   }
 }

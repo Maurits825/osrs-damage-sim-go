@@ -1,24 +1,28 @@
 <div class="mx-1">
-    <h3 class="text-center">Gear Setup - {{setupCount}}</h3>
+    <div class="row mb-2 justify-content-center">
+        <div class="col-auto"><h3 class="text-end">Gear Setup:</h3></div>
+        <div class="col-5"><input class="form-control" type="text" [(ngModel)]="setupName" placeholder="Setup name"></div>
+    </div>
     <div class="row mb-3">
         <div class="row mb-2">
-            <div class="col-3">
-                <input type="text" [(ngModel)]="setupName" class="form-control" placeholder="Setup name">
-            </div>
-            <div class="col-4 offset-md-3">
-                <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
-            </div>
-            <div class="col-2 text-end"><button type="button" class="btn btn-danger" (click)="clearAllGear()"><i class="bi bi-arrow-clockwise"></i></button></div>
-        </div>
-        <div class="row">
-            <div class="col-3"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></div>
-            <div class="col">
+            <div class="col-7 me-auto">
                 <div class="row align-items-center">
-                    <label class="col-4 text-end" for="customGear">Load setup:</label>
-                    <ng-select class="col-8" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
+                    <label class="col-auto" for="customGear">Load setup:</label>
+                    <ng-select class="col" labelForId="customGear" [(ngModel)]="selectedGearSetup" [clearable]="false" (change)="loadGearSetup($event)">
                         <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{gearSetup.key}}</ng-option>
                     </ng-select>
                 </div>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary" (click)="copyGearSetup()">
+                    Duplicate <i class="bi bi-clipboard-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7 me-auto"><button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button></div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
             </div>
         </div>
     </div>
@@ -101,6 +105,5 @@
             <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
         </div>
         <div class="row mb-3"><app-condition [isFill]="isFill" (conditionsChanged)="updateConditions($event)"></app-condition></div>
-        
     </div>
 </div>
