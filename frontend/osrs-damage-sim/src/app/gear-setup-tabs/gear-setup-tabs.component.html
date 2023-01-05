@@ -6,11 +6,17 @@
                 <li class="nav-item" *ngFor="let tab of gearSetupTabs">
                     <a class="nav-link" [class.active]="tab.active"> 
                         <button type="button" class="btn btn-lg mr-3" (click)="selectTab(tab)">Setup - {{tab.id}}</button>
-                        <button type="button" class="btn btn-primary mx-3" (click)="copyTab(tab)"><i class="bi bi-clipboard-plus"></i></button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" (click)="closeTab(tab)">X</button>
+                        <button type="button" class="btn btn-primary mx-3" (click)="copyTab(tab)">
+                            <i class="bi bi-clipboard-plus"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" (click)="closeTab(tab)">
+                            <i class="bi bi-x"></i>
+                        </button>
                     </a>
                 </li>
-                <button type="button" class="btn btn-primary mx-3" (click)="openNewSetupTab()">+ Add setup</button>
+                <button type="button" class="btn btn-primary mx-3 my-2" (click)="openNewSetupTab()">
+                    <i class="bi bi-plus"></i> Add setup
+                </button>
             </ul>
         </div>
     </nav>

@@ -26,30 +26,23 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
       gearSetupTabRef.instance.tabToCopy = tabToCopy;
     }
 
-    // set the according properties on our component instance
     const tabInstance: GearSetupTabComponent = gearSetupTabRef.instance as GearSetupTabComponent;
-    tabInstance.id = this.gearSetupTabs.length + 1; //TODO kinda scuffed
+    tabInstance.id = this.gearSetupTabs.length + 1;
 
-    // remember the dynamic component for rendering the
-    // tab navigation headers
     this.gearSetupTabs.push(tabInstance);
 
-    // set it active
     this.selectTab(tabInstance);
   }
 
   selectTab(tab: GearSetupTabComponent): void {
-    // deactivate all tabs
     this.gearSetupTabs.forEach((gearSetupTab) => (gearSetupTab.active = false));
 
-    // activate the tab the user has clicked on.
     tab.active = true;
   }
 
   closeTab(tab: GearSetupTabComponent): void {
     for (let i = 0; i < this.gearSetupTabs.length; i++) {
       if (this.gearSetupTabs[i] === tab) {
-        // remove the tab from our array
         this.gearSetupTabs.splice(i, 1);
 
         let viewContainerRef = this.gearSetupTabContainer;
@@ -60,6 +53,10 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
           break;
         }
       }
+    }
+
+    for (let index = 0; index < this.gearSetupTabs.length; index++) {
+      this.gearSetupTabs[index].id = index + 1;
     }
   }
 
