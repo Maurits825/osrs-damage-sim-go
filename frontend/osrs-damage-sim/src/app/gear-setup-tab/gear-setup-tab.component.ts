@@ -27,12 +27,15 @@ export class GearSetupTabComponent implements OnInit, AfterViewInit {
       this.tabToCopy.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
         this.addNewGearSetup(gearSetupRef.instance);
       });
+    } 
+    else {
+      this.addNewGearSetup();
     }
     this.cd.detectChanges();
   }
 
   addNewGearSetup(gearToCopy?: GearSetupComponent): void {
-    let gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent)
+    let gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent);
     if (gearToCopy) {
       gearSetupRef.instance.gearToCopy = gearToCopy;
     }
