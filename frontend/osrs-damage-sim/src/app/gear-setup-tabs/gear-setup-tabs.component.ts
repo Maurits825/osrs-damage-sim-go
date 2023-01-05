@@ -55,9 +55,8 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
         let viewContainerRef = this.gearSetupTabContainer;
         viewContainerRef.remove(i);
 
-        // set tab index to 1st one
-        if (this.gearSetupTabs.length > 1) {
-          this.selectTab(this.gearSetupTabs[0]);
+        if (tab.active && this.gearSetupTabs.length >= 1) {
+          this.selectTab(this.gearSetupTabs[i - 1]);
           break;
         }
       }
