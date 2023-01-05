@@ -224,7 +224,7 @@ class DamageSim:
 
                 spec_regen_tick_counter += last_gear_setup.weapon.attack_speed
                 if LIGHTBEARER in last_gear_setup.gear["id"]:
-                    spec_regen_ticks = SPEC_REGEN_TICKS/2
+                    spec_regen_ticks = SPEC_REGEN_TICKS / 2
                 else:
                     spec_regen_ticks = SPEC_REGEN_TICKS
 

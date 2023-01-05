@@ -60,13 +60,17 @@
 
         <div class="row mb-3 align-items-center">
             <div class="col-3"><label>Prayers</label></div>
-            <div *ngFor="let prayer of prayers" class="col">
-                <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
-                    <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
+            <div class="col">
+                <div class="row justify-content-between">
+                    <div *ngFor="let prayer of prayers" class="col-auto">
+                        <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
+                            <img src="assets/img/prayer/{{prayer}}.png" (click)="addPrayer(prayer)">
+                        </div>
+                        <ng-template #selectedPrayer>
+                            <img src="assets/img/prayer/selected_{{prayer}}.png" (click)="removePrayer(prayer)">
+                        </ng-template>
+                    </div>
                 </div>
-                <ng-template #selectedPrayer>
-                    <img src="assets/img/prayer/selected_{{prayer}}.png" (click)="removePrayer(prayer)">
-                </ng-template>
             </div>
         </div>
 
@@ -86,13 +90,17 @@
 
         <div class="row mb-3 align-items-center">
             <div class="col-3"><label>Boosts</label></div>
-            <div class="col" *ngFor="let boost of boosts">
-                <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
-                    <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
+            <div class="col">
+                <div class="row justify-content-between">
+                    <div class="col-auto" *ngFor="let boost of boosts">
+                        <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
+                            <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
+                        </div>
+                        <ng-template #selectedBoost>
+                            <img src="assets/img/boosts/selected_{{boost}}.png" (click)="removeBoost(boost)">
+                        </ng-template>
+                    </div>
                 </div>
-                <ng-template #selectedBoost>
-                    <img src="assets/img/boosts/selected_{{boost}}.png" (click)="removeBoost(boost)">
-                </ng-template>
             </div>
         </div>
 
