@@ -174,12 +174,14 @@ export class GearSetupComponent implements OnInit {
     this.setCurrentGear(gearSetup);
   }
 
-  setCurrentGear(gearSetup: Record<number, Item>): void {
+  setCurrentGear(gearSetup: Record<number, Item>, triggerSlotChange: boolean = true): void {
     this.gearSlots.forEach((slot: number) => {
       if (gearSetup[slot]?.name) {
         this.currentGear[slot] = this.allGearSlotItems[slot][gearSetup[slot].id];
 
-        this.gearSlotChange(this.currentGear[slot], slot, false);
+        if (triggerSlotChange) {
+          this.gearSlotChange(this.currentGear[slot], slot, false);
+        }
       }
       else {
         this.clearGearSlot(slot);
@@ -229,12 +231,7 @@ export class GearSetupComponent implements OnInit {
   updateAttackStyle(itemId: number): void {
     this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
       this.attackStyles = styles;
-      if (this.gearToCopy) {
-        this.selectedAttackStyle = this.gearToCopy.selectedAttackStyle;
-      }
-      else {
-        this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
-      }
+      this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
     });
   }
 
@@ -262,7 +259,9 @@ export class GearSetupComponent implements OnInit {
     this.setupName = gearSetupComponent.setupName;
     this.selectedGearSetup = gearSetupComponent.selectedGearSetup;
 
-    this.setCurrentGear(gearSetupComponent.currentGear)
+    this.attackStyles = [... gearSetupComponent.attackStyles];
+    this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle;
+    this.setCurrentGear(gearSetupComponent.currentGear, false);
 
     this.attackCount = gearSetupComponent.attackCount;
     this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
@@ -270,7 +269,7 @@ export class GearSetupComponent implements OnInit {
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
     this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
-    this.conditionComponent.conditions = [... gearSetupComponent.conditions]
+    this.conditionComponent.conditions = [... gearSetupComponent.conditions];
   }
 
   updateConditions(conditions: Condition[]): void {
