@@ -88,14 +88,18 @@ class WikiData:
     @staticmethod
     def update_gear_slot_items_list():
         gear_slot_items = {}
+        seen_item_names = []
         for item_id, item in WikiData.items_json.items():
             if item["slot"] not in gear_slot_items:
                 gear_slot_items[item["slot"]] = {}
 
-            gear_slot_items[item["slot"]][int(item_id)] = {
-                "name": item["name"],
-                "id": int(item_id)
-            }
+            if item["name"] not in seen_item_names:
+                gear_slot_items[item["slot"]][int(item_id)] = {
+                    "name": item["name"],
+                    "id": int(item_id)
+                }
+
+                seen_item_names.append(item["name"])
 
         with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)
