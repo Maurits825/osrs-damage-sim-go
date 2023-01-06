@@ -1,10 +1,10 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass()
 class DpsBoost:
-    attack_boost: float = 1
-    strength_boost: float = 1
+    attack_boost: list[float] = field(default_factory=list)
+    strength_boost: list[float] = field(default_factory=list)
 
 
 @dataclass()

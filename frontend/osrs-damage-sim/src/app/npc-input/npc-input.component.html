@@ -8,6 +8,21 @@
                 </ng-option>
             </ng-select>
         </div>
+
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isKalphite">
+            <div class="row align-items-center">
+                <div class="col">Kalphite</div>
+                <!-- todo image or something, allow to uncheck? -->
+            </div>
+        </div>
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isDemon">
+            <div class="row align-items-center">
+                <div class="col">Demon</div>
+                <!-- todo image or something, allow to uncheck? -->
+            </div>
+        </div>
+        <!-- todo other types -->
+
         <div class="col-2" *ngIf="showRaidLevel">
             <div class="row align-items-center">
                 <div class="col text-end"><label>Raid Level</label></div>

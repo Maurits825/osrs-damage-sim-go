@@ -43,7 +43,6 @@ class GearSetupInput:
                     weapon = Weapon()
 
                 weapon.set_attack_style_and_speed(attack_style, weapon_stats.attack_speed)
-                void_att, void_str = GearSetupInput.get_gear_void_bonuses(gear)
                 weapon.set_void_boost(void_att, void_str)
 
                 total_gear_stats.id = weapon_stats.id
@@ -66,30 +65,6 @@ class GearSetupInput:
                          gear=dict(), #TODO
                          is_fill=False,
                          conditions=[])
-
-    # TODO probably bug if wearing ranged void with say a whip, still gives you the bonuses
-    @staticmethod
-    def get_gear_void_bonuses(gear):
-        void_att = 1
-        void_str = 1
-
-        if VOID.issubset(gear) or ELITE_VOID.issubset(gear):
-            if MELEE_VOID in gear or RANGED_VOID in gear:
-                void_att = 1.1
-                void_str = 1.1
-
-            if ELITE_VOID.issubset(gear) and RANGED_VOID in gear:
-                void_att = 1.1
-                void_str = 1.125
-
-            if MAGE_VOID in gear:
-                void_att = 1.45
-                void_str = 1
-
-                if ELITE_VOID.issubset(gear):
-                    void_str = 1.025
-
-        return void_att, void_str
 
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
@@ -125,8 +100,6 @@ class GearSetupInput:
                     gear["name"].append(weapon_stats.name.lower())
                     total_gear_stats += weapon_stats
 
-                void_att, void_str = GearSetupInput.get_gear_void_bonuses(gear_setup["gear"])
-
                 weapon_item = WikiData.get_item(gear_setup["weapon"])
                 if weapon_item.name in CUSTOM_WEAPONS:
                     weapon = copy.deepcopy(CUSTOM_WEAPONS[weapon_item.name])
@@ -149,12 +122,14 @@ class GearSetupInput:
                               for condition in gear_setup["conditions"]]
 
                 weapon.initialize(attack_style=attack_style, attack_speed=weapon_item.attack_speed,
-                                  void_attack=void_att, void_strength=void_str,
                                   combat_stats=combat_stats, prayer=PrayerMultiplier.sum_prayers(prayers),
                                   total_gear_stats=total_gear_stats, raid_level=raid_level,
                                   is_special_attack=gear_setup["isSpecial"],
                                   special_attack_cost=WikiData.get_special_attack(weapon_item.name), npc=npc,
-                                  gear=gear
+                                  gear=gear, is_on_slayer_task=gear_setup["isOnSlayerTask"],
+                                  is_in_wilderness=gear_setup["isInWilderness"],
+                                  max_hp=gear_setup["maxHp"], current_hp=gear_setup["currentHp"],
+                                  mining_lvl=gear_setup["miningLvl"]
                                   )
 
                 gear_setups.append(

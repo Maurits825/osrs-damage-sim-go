@@ -74,7 +74,13 @@ class WikiData:
                 ranged=npc.get("drange", 0),
             ),
             min_defence=min_defence,
-            location=location
+            location=location,
+            is_kalphite=npc.get("isKalphite", False),
+            is_demon=npc.get("isDemon", False),
+            is_dragon=npc.get("isDragon", False),
+            is_undead=npc.get("isUndead", False),
+            is_leafy=npc.get("isLeafy", False),
+            is_xerician=npc.get("isXerician", False),
         )
 
     @staticmethod
@@ -92,6 +98,14 @@ class WikiData:
         for item_id, item in WikiData.items_json.items():
             if item["slot"] not in gear_slot_items:
                 gear_slot_items[item["slot"]] = {}
+
+            if any(number in item["name"] for number in ["0", "25", "50", "75", "100"]):
+                if any(barrows in item["name"].lower() for barrows in
+                       ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
+                    continue
+
+            if "(nz)" in item["name"]:
+                continue
 
             if item["name"] not in seen_item_names:
                 gear_slot_items[item["slot"]][int(item_id)] = {

@@ -15,12 +15,22 @@ export interface GearInputSetup {
     gear: number[],
     weapon: number,
     blowpipeDarts: number,
+
     attackStyle: string,
     attackCount: number,
     isSpecial: boolean,
     prayers: string[],
     combatStats: Record<string, number>,
     boosts: string[],
+
     isFill: boolean,
     conditions: Condition[],
+
+    isOnSlayerTask: boolean,
+    isInWilderness: boolean,
+
+    maxHp: number,
+    currentHp: number,
+
+    miningLvl: number,
 }

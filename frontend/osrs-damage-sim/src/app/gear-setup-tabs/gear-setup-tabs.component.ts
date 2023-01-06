@@ -49,7 +49,7 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
         viewContainerRef.remove(i);
 
         if (tab.active && this.gearSetupTabs.length >= 1) {
-          this.selectTab(this.gearSetupTabs[i - 1]);
+          this.selectTab(this.gearSetupTabs[i - 1]); //TODO index error here
           break;
         }
       }

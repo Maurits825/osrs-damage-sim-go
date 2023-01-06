@@ -28,7 +28,7 @@
     </div>
 
     <div class="row mb-3">
-        <div class="row mb-2" *ngFor="let slot of gearSlots">
+        <div class="row mb-2 align-items-center" *ngFor="let slot of gearSlots">
             <div class="col-1">
                 <div *ngIf="currentGear[slot]?.id; else placeholder">
                     <img src="{{ currentGear[slot].name | wikiItemIcon | async }}">
@@ -44,6 +44,32 @@
                 <ng-select [(ngModel)]="selectedDart" [clearable]="false">
                     <ng-option *ngFor="let dart of dartItems" [value]="dart">{{dart.name}}</ng-option>
                 </ng-select>
+            </div>
+            <div class="col-auto" *ngIf="isSlayerHelm(currentGear[slot]?.name)">
+                <div class="row align-items-center">
+                    <div class="col-auto text-end"><label for="isOnSlayerTask">Slayer task</label></div>
+                    <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isOnSlayerTask" id="isOnSlayerTask"></div>
+                </div>
+            </div>
+            <div class="col-auto" *ngIf="isWildernessWeapon(currentGear[slot]?.name)">
+                <div class="row align-items-center">
+                    <div class="col-auto text-end"><label for="isInWilderness">Wilderness</label></div>
+                    <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isInWilderness" id="isInWilderness"></div>
+                </div>
+            </div>
+            <div class="col-6" *ngIf="slot == 3 && isDharokSet()">
+                <div class="row align-items-center justify-content-end">
+                    <div class="col-auto"><img src="assets/img/skills/hitpoints.png"></div>
+                    <div class="col-4"><input class="form-control" type="number" [(ngModel)]="currentHp" max="99" min="1" id="currentHp"></div>
+                    <div class="col-1">/</div>
+                    <div class="col-4"><input class="form-control" type="number" [(ngModel)]="maxHp" max="99" min="1" id="maxHp"></div>
+                </div>
+            </div>
+            <div class="col-3" *ngIf="slot == 3 && currentGear[slot]?.name.includes('pickaxe')">
+                <div class="row align-items-center justify-content-end">
+                    <div class="col-3"><img src="assets/img/skills/mining.png"></div>
+                    <div class="col-9"><input class="form-control" type="number" [(ngModel)]="miningLvl" max="99" min="1" id="miningLvl"></div>
+                </div>
             </div>
         </div>
     </div>

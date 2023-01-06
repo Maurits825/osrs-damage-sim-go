@@ -36,5 +36,4 @@ export class NpcInputComponent implements OnInit {
       this.showRaidLevel = true;
     }
   }
-
 }

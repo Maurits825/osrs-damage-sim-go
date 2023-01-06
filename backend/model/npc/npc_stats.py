@@ -19,6 +19,16 @@ class NpcStats:
 
     min_defence: int = 0
 
+    is_kalphite: bool = False
+    is_demon: bool = False
+    is_dragon: bool = False
+    is_undead: bool = False
+    is_vampyre1: bool = False
+    is_vampyre2: bool = False
+    is_vampyre3: bool = False
+    is_leafy: bool = False
+    is_xerician: bool = False
+
     def drain_defence(self, amount):
         self.combat_stats.defence = max(self.min_defence, self.combat_stats.defence - amount)
 

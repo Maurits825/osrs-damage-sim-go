@@ -57,9 +57,17 @@ export class GearSetupComponent implements OnInit {
   selectedDart: Item;
   dartItems: Item[] = [];
 
+  isOnSlayerTask: boolean = true;
+  isInWilderness: boolean = true;
+
   gearToCopy: GearSetupComponent;
   conditions: Condition[] = [];
-  
+
+  maxHp: number = 99;
+  currentHp: number = 1;
+
+  miningLvl: number = 99;
+
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   constructor(
@@ -127,6 +135,11 @@ export class GearSetupComponent implements OnInit {
       boosts: this.selectedBoosts,
       isFill: this.isFill,
       conditions: this.conditions,
+      isOnSlayerTask: this.isOnSlayerTask,
+      isInWilderness: this.isInWilderness,
+      maxHp: this.maxHp,
+      currentHp: this.currentHp,
+      miningLvl: this.miningLvl,
     };
   }
 
@@ -266,6 +279,14 @@ export class GearSetupComponent implements OnInit {
     this.attackCount = gearSetupComponent.attackCount;
     this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
     this.isFill = gearSetupComponent.isFill;
+
+    this.isOnSlayerTask = gearSetupComponent.isOnSlayerTask;
+    this.isInWilderness = gearSetupComponent.isInWilderness;
+
+    this.currentHp = gearSetupComponent.currentHp;
+    this.maxHp = gearSetupComponent.maxHp;
+    this.miningLvl = gearSetupComponent.miningLvl;
+
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
     this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
@@ -278,5 +299,25 @@ export class GearSetupComponent implements OnInit {
 
   copyGearSetup(): void {
     this.gearSetUpTabRef.addNewGearSetup(this);
+  }
+
+  isSlayerHelm(itemName: string): boolean {
+    if (!itemName) {
+      return false;
+    }
+
+    const name = itemName.toLowerCase();
+    return name.includes("slayer helmet") || name.includes("black mask");
+  }
+
+  isWildernessWeapon(itemName: string): boolean {
+    return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace"
+  }
+
+  isDharokSet(): boolean {
+    return this.currentGear[0]?.id == 4716 &&
+    this.currentGear[3]?.id == 4718 && 
+    this.currentGear[4]?.id == 4720 && 
+    this.currentGear[7]?.id == 4722;
   }
 }

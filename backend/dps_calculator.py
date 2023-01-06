@@ -26,12 +26,21 @@ class DpsCalculator:
 
     @staticmethod
     def get_melee_max_hit(effective_melee_str, gear_melee_strength, gear_bonus):
-        return math.floor(math.floor(((effective_melee_str * (gear_melee_strength + 64)) + 320) / 640) *
-                          gear_bonus)
+        base_hit = math.floor(((effective_melee_str * (gear_melee_strength + 64)) + 320) / 640)
+        return DpsCalculator.apply_gear_bonus(base_hit, gear_bonus)
 
     @staticmethod
     def get_ranged_max_hit(effective_ranged_str, gear_ranged_strength, gear_bonus):
-        return math.floor(math.floor(0.5 + ((effective_ranged_str * (gear_ranged_strength + 64)) / 640)) * gear_bonus)
+        base_hit = math.floor(0.5 + ((effective_ranged_str * (gear_ranged_strength + 64)) / 640))
+        return DpsCalculator.apply_gear_bonus(base_hit, gear_bonus)
+
+    @staticmethod
+    def apply_gear_bonus(base_hit, gear_bonus):
+        max_hit = base_hit
+        for bonus in gear_bonus:
+            max_hit = math.floor(max_hit * bonus)
+
+        return max_hit
 
     @staticmethod
     def get_effective_magic_level(prayer: PrayerMultiplier, magic_lvl, attack_style_boost, void_boost):

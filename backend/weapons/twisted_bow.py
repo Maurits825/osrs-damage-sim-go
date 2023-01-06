@@ -21,7 +21,6 @@ class TwistedBow(Weapon):
             250 + ((((10 * 3 * magic) / 10) - 14) / 100) - (((((3 * magic) / 10) - 140) ** 2) / 100)
         )
 
-        # TODO dmg_mult rounding instead of floor, but its how the dps spreadsheet does it
         return math.floor(super().get_max_hit() * (round(damage_multiplier) / 100))
 
     def get_magic(self):
