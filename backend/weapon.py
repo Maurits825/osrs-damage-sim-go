@@ -1,6 +1,8 @@
 import math
 import random
+
 from dps_calculator import DpsCalculator
+from gear_bonus import GearBonus
 from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.locations import Location
@@ -35,33 +37,41 @@ class Weapon:
 
         self.is_special_attack = False
         self.special_attack_cost = 0
+        self.is_on_slayer_task = False
+        self.is_in_wilderness = False
+        self.max_hp = 0
+        self.current_hp = 0
+        self.mining_lvl = 99
 
         self.raid_level = None
 
-        self.void_skill_attack_boost = 1
-        self.void_skill_str_boost = 1
-
         self.gear = dict()
 
-        self.special_gear_bonus: CombatBoost = CombatBoost()
+        self.void_bonus = CombatBoost()
+        self.special_gear_bonus = CombatBoost()
 
     def initialize(self, attack_style, attack_speed,
-                   void_attack, void_strength,
                    combat_stats: CombatStats,
                    prayer: PrayerMultiplier,
                    total_gear_stats, raid_level, is_special_attack, special_attack_cost,
-                   npc: NpcStats, gear):
+                   npc: NpcStats, gear, is_on_slayer_task, is_in_wilderness, max_hp, current_hp, mining_lvl):
         self.special_attack_cost = special_attack_cost
         self.gear = gear
 
+        self.combat_stats = combat_stats
+        self.prayer = prayer
+        self.gear_stats = total_gear_stats
+        self.raid_level = raid_level
+        self.is_special_attack = is_special_attack
+        self.npc = npc
+
+        self.is_on_slayer_task = is_on_slayer_task
+        self.is_in_wilderness = is_in_wilderness
+        self.max_hp = max_hp
+        self.current_hp = current_hp
+        self.mining_lvl = mining_lvl
+
         self.set_attack_style_and_speed(attack_style, attack_speed)
-        self.set_void_boost(void_attack, void_strength)
-        self.set_combat_stats(combat_stats)
-        self.set_prayer(prayer)
-        self.set_total_gear_stats(total_gear_stats)
-        self.set_raid_level(raid_level)
-        self.set_is_special_attack(is_special_attack)
-        self.set_npc(npc)
 
         self.update_special_bonus()
 
@@ -75,42 +85,12 @@ class Weapon:
         if self.attack_style.combat_style == CombatStyle.RAPID:
             self.attack_speed -= 1
 
-    def set_void_boost(self, attack, strength):
-        self.void_skill_attack_boost = attack
-        self.void_skill_str_boost = strength
-
-    def set_combat_stats(self, combat_stats: CombatStats):
-        self.combat_stats = combat_stats
-
-    def set_prayer(self, prayer: PrayerMultiplier):
-        self.prayer = prayer
-
-    def set_total_gear_stats(self, total_gear_stats):
-        self.gear_stats = total_gear_stats
-
-    def set_raid_level(self, raid_level):
-        self.raid_level = raid_level
-
-    def set_is_special_attack(self, is_special_attack):
-        self.is_special_attack = is_special_attack
-
-    def set_npc(self, npc):
-        self.npc = npc
-
     # TODO other bonuses like wildy weapons and salve
     def update_special_bonus(self):
-        if "slayer helmet (i)" in '\t'.join(self.gear["name"]):
-            self.special_gear_bonus.melee.attack_boost = 7 / 6
-            self.special_gear_bonus.melee.strength_boost = 7 / 6
-
-            self.special_gear_bonus.ranged.attack_boost = 1.15
-            self.special_gear_bonus.ranged.strength_boost = 1.15
-
-            self.special_gear_bonus.magic.attack_boost = 1.15
-            self.special_gear_bonus.magic.strength_boost = 1.15
-        elif "slayer helmet" in self.gear["name"]:
-            self.special_gear_bonus.melee.attack_boost = 7 / 6
-            self.special_gear_bonus.melee.strength_boost = 7 / 6
+        self.special_gear_bonus = GearBonus.get_gear_bonus(self.gear, self.attack_style,
+                                                           self.is_on_slayer_task, self.is_in_wilderness,
+                                                           self.npc, self.current_hp, self.max_hp, self.mining_lvl)
+        self.void_bonus = GearBonus.get_gear_void_bonuses(self.gear)
 
     def update_attack_roll(self):
         self.attack_roll = self.get_attack_roll()
@@ -139,7 +119,7 @@ class Weapon:
                 prayer=self.prayer,
                 strength_lvl=self.combat_stats.strength,
                 attack_style_boost=self.attack_style.combat_style.value.strength,
-                melee_void_boost=self.void_skill_str_boost
+                melee_void_boost=self.void_bonus.melee.strength_boost[0]
             )
             gear_melee_strength = self.gear_stats.melee_strength
             return DpsCalculator.get_melee_max_hit(effective_melee_str, gear_melee_strength,
@@ -149,7 +129,7 @@ class Weapon:
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.attack_style.combat_style.value.ranged,
-                ranged_void_boost=self.void_skill_str_boost
+                ranged_void_boost=self.void_bonus.ranged.strength_boost[0]
             )
             gear_ranged_strength = self.gear_stats.ranged_strength
             return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength,
@@ -188,7 +168,7 @@ class Weapon:
                 prayer=self.prayer,
                 attack_lvl=self.combat_stats.attack,
                 attack_style_boost=self.attack_style.combat_style.value.attack,
-                void_boost=self.void_skill_attack_boost
+                void_boost=self.void_bonus.melee.attack_boost[0]
             )
 
             if self.attack_style.attack_type == AttackType.STAB:
@@ -204,7 +184,7 @@ class Weapon:
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.attack_style.combat_style.value.ranged,
-                void_boost=self.void_skill_attack_boost
+                void_boost=self.void_bonus.ranged.attack_boost[0]
             )
             gear_skill_bonus = self.gear_stats.ranged
         elif self.attack_style.attack_type == AttackType.MAGIC:
@@ -213,7 +193,7 @@ class Weapon:
                 prayer=self.prayer,
                 magic_lvl=self.combat_stats.magic,
                 attack_style_boost=self.attack_style.combat_style.value.magic,
-                void_boost=self.void_skill_attack_boost
+                void_boost=self.void_bonus.magic.attack_boost[0]
             )
             if self.gear_stats.id in SHADOW_STAFF:
                 shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
@@ -242,7 +222,7 @@ class Weapon:
             magic_dmg_multiplier = 1 + (shadow_mult * (self.gear_stats.magic_strength / 100))
 
         # TODO test slayer bonus and salve later
-        magic_dmg_multiplier += self.void_skill_str_boost - 1
-        max_hit = math.floor(math.floor(base_max_hit * magic_dmg_multiplier) *
-                             self.special_gear_bonus.magic.strength_boost)
+        magic_dmg_multiplier += self.void_bonus.magic.strength_boost[0] - 1
+        base_hit = math.floor(base_max_hit * magic_dmg_multiplier)
+        max_hit = DpsCalculator.apply_gear_bonus(base_hit, self.special_gear_bonus.magic.strength_boost)
         return max_hit
