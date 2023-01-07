@@ -81,6 +81,7 @@ class WikiData:
             is_undead=npc.get("isUndead", False),
             is_leafy=npc.get("isLeafy", False),
             is_xerician=npc.get("isXerician", False),
+            is_shade=npc.get("isShade", False),
         )
 
     @staticmethod

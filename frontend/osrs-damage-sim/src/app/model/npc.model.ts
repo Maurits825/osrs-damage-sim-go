@@ -8,4 +8,5 @@ export interface Npc {
     isUndead: boolean,
     isLeafy: boolean,
     isXerician: boolean,
+    isShade: boolean,
 }

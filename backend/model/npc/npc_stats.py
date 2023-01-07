@@ -28,6 +28,7 @@ class NpcStats:
     is_vampyre3: bool = False
     is_leafy: bool = False
     is_xerician: bool = False
+    is_shade: bool = False
 
     def drain_defence(self, amount):
         self.combat_stats.defence = max(self.min_defence, self.combat_stats.defence - amount)

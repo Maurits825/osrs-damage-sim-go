@@ -3,6 +3,7 @@ import random
 
 from dps_calculator import DpsCalculator
 from gear_bonus import GearBonus
+from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF
 from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.locations import Location
@@ -11,11 +12,6 @@ from model.attack_style.combat_style import CombatStyle
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from model.weapon_stats import WeaponStats
-
-
-SANG_STAFF = [22323, 25731]
-TRIDENT_SWAMP = [12899, 22292]
-SHADOW_STAFF = [27275]
 
 
 class Weapon:
