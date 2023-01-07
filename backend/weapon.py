@@ -94,6 +94,9 @@ class Weapon:
     def update_max_hit(self):
         self.max_hit = self.get_max_hit()
 
+    def set_npc(self, npc):
+        self.npc = npc
+
     def roll_damage(self) -> int:
         self.accuracy = self.get_accuracy()
         hit = random.random()
@@ -115,7 +118,7 @@ class Weapon:
                 prayer=self.prayer,
                 strength_lvl=self.combat_stats.strength,
                 attack_style_boost=self.attack_style.combat_style.value.strength,
-                melee_void_boost=self.void_bonus.melee.strength_boost[0]
+                melee_void_boost=self.void_bonus.melee.strength_boost[-1]
             )
             gear_melee_strength = self.gear_stats.melee_strength
             return DpsCalculator.get_melee_max_hit(effective_melee_str, gear_melee_strength,
@@ -125,7 +128,7 @@ class Weapon:
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.attack_style.combat_style.value.ranged,
-                ranged_void_boost=self.void_bonus.ranged.strength_boost[0]
+                ranged_void_boost=self.void_bonus.ranged.strength_boost[-1]
             )
             gear_ranged_strength = self.gear_stats.ranged_strength
             return DpsCalculator.get_ranged_max_hit(effective_ranged_str, gear_ranged_strength,
@@ -164,7 +167,7 @@ class Weapon:
                 prayer=self.prayer,
                 attack_lvl=self.combat_stats.attack,
                 attack_style_boost=self.attack_style.combat_style.value.attack,
-                void_boost=self.void_bonus.melee.attack_boost[0]
+                void_boost=self.void_bonus.melee.attack_boost[-1]
             )
 
             if self.attack_style.attack_type == AttackType.STAB:
@@ -180,7 +183,7 @@ class Weapon:
                 prayer=self.prayer,
                 ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.attack_style.combat_style.value.ranged,
-                void_boost=self.void_bonus.ranged.attack_boost[0]
+                void_boost=self.void_bonus.ranged.attack_boost[-1]
             )
             gear_skill_bonus = self.gear_stats.ranged
         elif self.attack_style.attack_type == AttackType.MAGIC:
@@ -189,7 +192,7 @@ class Weapon:
                 prayer=self.prayer,
                 magic_lvl=self.combat_stats.magic,
                 attack_style_boost=self.attack_style.combat_style.value.magic,
-                void_boost=self.void_bonus.magic.attack_boost[0]
+                void_boost=self.void_bonus.magic.attack_boost[-1]
             )
             if self.gear_stats.id in SHADOW_STAFF:
                 shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
@@ -218,7 +221,7 @@ class Weapon:
             magic_dmg_multiplier = 1 + (shadow_mult * (self.gear_stats.magic_strength / 100))
 
         # TODO test slayer bonus and salve later
-        magic_dmg_multiplier += self.void_bonus.magic.strength_boost[0] - 1
+        magic_dmg_multiplier += self.void_bonus.magic.strength_boost[-1] - 1
         base_hit = math.floor(base_max_hit * magic_dmg_multiplier)
         max_hit = DpsCalculator.apply_gear_bonus(base_hit, self.special_gear_bonus.magic.strength_boost)
         return max_hit

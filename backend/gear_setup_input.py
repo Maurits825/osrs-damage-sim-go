@@ -2,7 +2,7 @@ import copy
 import math
 import re
 
-from constants import *
+from gear_ids import BLOWPIPE
 from gear_json import GearJson
 from model.attack_style.attack_style import AttackStyle
 from model.boost import Boost, BoostType
@@ -43,7 +43,6 @@ class GearSetupInput:
                     weapon = Weapon()
 
                 weapon.set_attack_style_and_speed(attack_style, weapon_stats.attack_speed)
-                weapon.set_void_boost(void_att, void_str)
 
                 total_gear_stats.id = weapon_stats.id
 

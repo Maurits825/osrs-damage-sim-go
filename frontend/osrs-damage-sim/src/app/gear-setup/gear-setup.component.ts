@@ -221,21 +221,22 @@ export class GearSetupComponent implements OnInit {
       }
 
       this.damageSimservice.getAttackType(item.id).subscribe((attackType: string) => {
-        if (this.selectedPrayers.length == 0) {
-          switch (attackType as AttackType) {
-            case AttackType.MELEE:
-              this.selectedPrayers.push("piety")
-              break;
-            case AttackType.RANGED:
-              this.selectedPrayers.push("rigour")
-              break;
-            case AttackType.MAGIC:
-              this.selectedPrayers.push("augury")
-              break;
-          
-            default:
-              break;
-          }
+        switch (attackType as AttackType) {
+          case AttackType.MELEE:
+            this.selectedPrayers = [];
+            this.selectedPrayers.push("piety")
+            break;
+          case AttackType.RANGED:
+            this.selectedPrayers = [];
+            this.selectedPrayers.push("rigour")
+            break;
+          case AttackType.MAGIC:
+            this.selectedPrayers = [];
+            this.selectedPrayers.push("augury")
+            break;
+        
+          default:
+            break;
         }
       });
     }

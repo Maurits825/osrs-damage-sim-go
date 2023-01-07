@@ -48,7 +48,8 @@ class DpsCalculator:
 
     @staticmethod
     def get_attack_roll(effective_skill_lvl, gear_skill_bonus, gear_bonus):
-        return math.floor((effective_skill_lvl * (gear_skill_bonus + 64)) * gear_bonus)
+        attack_roll = math.floor(effective_skill_lvl * (gear_skill_bonus + 64))
+        return DpsCalculator.apply_gear_bonus(attack_roll, gear_bonus)
 
     @staticmethod
     def get_defence_roll(target_defence, target_defence_style):

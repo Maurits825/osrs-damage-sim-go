@@ -1,14 +1,14 @@
 from dataclasses import dataclass, field
 
 
-@dataclass()
 class DpsBoost:
-    attack_boost: list[float] = field(default_factory=list)
-    strength_boost: list[float] = field(default_factory=list)
+    def __init__(self):
+        self.attack_boost = [1]
+        self.strength_boost = [1]
 
 
-@dataclass()
 class CombatBoost:
-    melee: DpsBoost = DpsBoost()
-    ranged: DpsBoost = DpsBoost()
-    magic: DpsBoost = DpsBoost()
+    def __init__(self):
+        self.melee: DpsBoost = DpsBoost()
+        self.ranged: DpsBoost = DpsBoost()
+        self.magic: DpsBoost = DpsBoost()

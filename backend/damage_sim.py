@@ -4,8 +4,9 @@ import math
 from matplotlib.figure import Figure
 
 from condition_evaluator import ConditionEvaluator
-from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT, LIGHTBEARER
+from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
 from damage_sim_stats import DamageSimStats, TimeSimStats, SimStats
+from gear_ids import LIGHTBEARER
 from gear_setup_input import GearSetupInput
 from model.boost import BoostType, Boost
 from model.locations import Location

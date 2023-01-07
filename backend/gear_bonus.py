@@ -137,7 +137,10 @@ class GearBonus:
             if any(obsidian_weapon in gear["id"] for obsidian_weapon in OBSIDIAN_MELEE_WEAPONS):
                 special_gear_bonus.melee.strength_boost.append(1.2)
 
-        if DHAROK_SET.issubset(gear["id"]):
+        # TODO some dmg bonuses are applied after dmg roll, so this has to be a custom weapon i think
+        # TODO dps is floor(base_dmg * bonus)*acc/2, not max_hit*acc/2. dmg is rolled between 0 and base, then mult
+        # TODO and rounded down
+        if set(DHAROK_SET).issubset(gear["id"]):
             special_gear_bonus.melee.strength_boost.append(1 + (((max_hp - current_hp) / 100) * (max_hp / 100)))
 
         if npc.is_leafy and LEAF_BATTLE_AXE in gear["id"]:
@@ -161,24 +164,24 @@ class GearBonus:
     def get_gear_void_bonuses(gear) -> CombatBoost:
         void_bonus = CombatBoost()
 
-        if VOID.issubset(gear):
-            if MELEE_VOID in gear:
+        if VOID.issubset(gear["id"]):
+            if MELEE_VOID in gear["id"]:
                 void_bonus.melee.attack_boost.append(1.1)
                 void_bonus.melee.strength_boost.append(1.1)
-            elif RANGED_VOID in gear:
+            elif RANGED_VOID in gear["id"]:
                 void_bonus.ranged.attack_boost.append(1.1)
                 void_bonus.ranged.strength_boost.append(1.1)
-            elif MAGE_VOID in gear:
+            elif MAGE_VOID in gear["id"]:
                 void_bonus.magic.attack_boost.append(1.45)
 
-        elif ELITE_VOID.issubset(gear):
-            if MELEE_VOID in gear:
+        elif ELITE_VOID.issubset(gear["id"]):
+            if MELEE_VOID in gear["id"]:
                 void_bonus.melee.attack_boost.append(1.1)
                 void_bonus.melee.strength_boost.append(1.1)
-            elif RANGED_VOID in gear:
+            elif RANGED_VOID in gear["id"]:
                 void_bonus.ranged.attack_boost.append(1.1)
                 void_bonus.ranged.strength_boost.append(1.125)
-            elif MAGE_VOID in gear:
+            elif MAGE_VOID in gear["id"]:
                 void_bonus.magic.attack_boost.append(1.45)
                 void_bonus.ranged.strength_boost.append(1.025)
 
