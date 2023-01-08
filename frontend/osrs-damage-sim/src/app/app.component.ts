@@ -34,7 +34,7 @@ export class AppComponent { //TODO refactor to another component?
     const inputSetup: InputSetup = {
       iterations: this.iterations,
       teamSize: this.teamSize,
-      npc: this.npcInputComponent.selectedNpcId,
+      npc: this.npcInputComponent.selectedNpc.id,
       gearInputSetups: [],
       raidLevel: this.npcInputComponent.raidLevel,
       pathLevel: this.npcInputComponent.pathLeveL,

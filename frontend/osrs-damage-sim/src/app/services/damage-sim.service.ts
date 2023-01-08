@@ -25,8 +25,8 @@ export class DamageSimService {
     return this.http.get<string[]>(DAMAGE_SIM_SERVER_URL + '/attack-style/' + itemId);
   }
 
-  getAllNpcs(): Observable<Record<number, Npc>> {
-    return this.http.get<Record<number, Npc>>(DAMAGE_SIM_SERVER_URL + '/npcs');
+  getAllNpcs(): Observable<Npc[]> {
+    return this.http.get<Npc[]>(DAMAGE_SIM_SERVER_URL + '/npcs');
   }
 
   runDamageSim(inputSetup: InputSetup): Observable<DamageSimResults> {

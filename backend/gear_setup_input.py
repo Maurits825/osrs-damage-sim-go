@@ -69,15 +69,19 @@ class GearSetupInput:
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
         npc = WikiData.get_npc(json_data["npc"])
-        raid_level = json_data.get("raidLevel", None)
-        path_level = json_data.get("pathLevel", 0)
 
         if npc.location == Location.TOMBS_OF_AMASCUT:
+            raid_level = json_data.get("raidLevel")
+            path_level = json_data.get("pathLevel")
+
             path_level_mult = 0.08 if path_level > 0 else 0.05
             npc.combat_stats.hitpoints = int(
                 round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) * (
                             1 + (path_level - 1) * 0.05 + path_level_mult) * json_data["teamSize"], 0) * 10
             )
+        else:
+            raid_level = None
+            path_level = None
 
         setups = []
         for setup in json_data["gearInputSetups"]:

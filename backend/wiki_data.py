@@ -122,13 +122,15 @@ class WikiData:
     @staticmethod
     def get_unique_npcs():
         seen_npc_name = []
-        unique_npcs = {}
+        unique_npcs = []
         for npc_id, npc in WikiData.npcs_json.items():
             npc_key = npc["name"] + str(npc.get("combat", 0))
             if npc_key not in seen_npc_name:
-                unique_npcs[npc_id] = npc
+                npc["id"] = npc_id
+                unique_npcs.append(npc)
                 seen_npc_name.append(npc_key)
 
+        unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
         return unique_npcs
 
     @staticmethod
