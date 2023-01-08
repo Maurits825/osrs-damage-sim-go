@@ -1,6 +1,7 @@
 import math
 import random
 
+from constants import TICK_LENGTH
 from dps_calculator import DpsCalculator
 from gear_bonus import GearBonus
 from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF
@@ -30,6 +31,7 @@ class Weapon:
         self.attack_roll = 0
         self.accuracy = 0
         self.max_hit = 0
+        self.damage_multiplier = 1
 
         self.is_special_attack = False
         self.special_attack_cost = 0
@@ -85,8 +87,10 @@ class Weapon:
     def update_special_bonus(self):
         self.special_gear_bonus = GearBonus.get_gear_bonus(self.gear, self.attack_style,
                                                            self.is_on_slayer_task, self.is_in_wilderness,
-                                                           self.npc, self.current_hp, self.max_hp, self.mining_lvl)
+                                                           self.npc, self.mining_lvl)
         self.void_bonus = GearBonus.get_gear_void_bonuses(self.gear)
+        self.damage_multiplier = GearBonus.get_damage_multiplier(self.gear, self.npc, self.current_hp, self.max_hp,
+                                                                 self.mining_lvl)
 
     def update_attack_roll(self):
         self.attack_roll = self.get_attack_roll()
@@ -104,7 +108,7 @@ class Weapon:
         if hit <= self.accuracy:
             damage = random.randint(0, self.max_hit)
 
-        return damage
+        return math.floor(damage * self.damage_multiplier)
 
     def get_accuracy(self):
         defence_roll = self.get_defence_roll(self.npc)
@@ -204,7 +208,8 @@ class Weapon:
 
     def get_dps(self):
         self.accuracy = self.get_accuracy()
-        return DpsCalculator.get_dps(self.max_hit, self.accuracy, self.attack_speed)
+        avg_dmg = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(self.max_hit + 1)]) / (self.max_hit + 1)
+        return (avg_dmg * self.accuracy) / (self.attack_speed * TICK_LENGTH)
 
     # TODO spells
     def get_magic_max_hit(self):

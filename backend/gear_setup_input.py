@@ -14,6 +14,7 @@ from model.prayer import Prayer, PrayerMultiplier
 from model.weapon_stats import WeaponStats
 from weapon import Weapon
 from weapons.custom_weapons import CUSTOM_WEAPONS
+from weapons.weapon_loader import WeaponLoader
 from wiki_data import WikiData
 
 
@@ -100,10 +101,7 @@ class GearSetupInput:
                     total_gear_stats += weapon_stats
 
                 weapon_item = WikiData.get_item(gear_setup["weapon"])
-                if weapon_item.name in CUSTOM_WEAPONS:
-                    weapon = copy.deepcopy(CUSTOM_WEAPONS[weapon_item.name])
-                else:
-                    weapon = Weapon()
+                weapon = WeaponLoader.load_weapon(weapon_item)
 
                 if weapon_item.id == BLOWPIPE:
                     total_gear_stats.ranged_strength += WikiData.get_item(gear_setup["blowpipeDarts"]).ranged_strength

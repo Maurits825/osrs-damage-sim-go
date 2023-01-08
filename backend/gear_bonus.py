@@ -9,7 +9,7 @@ from model.npc.npc_stats import NpcStats
 class GearBonus:
     @staticmethod
     def get_gear_bonus(gear, attack_style, is_on_slayer_task, is_in_wilderness, npc: NpcStats,
-                       current_hp, max_hp, mining_lvl) -> CombatBoost:
+                       mining_lvl) -> CombatBoost:
         # gear bonus list order is important, taken as from dps calc sheet
 
         all_gear_names = '\t'.join(gear["name"])
@@ -133,30 +133,8 @@ class GearBonus:
                 special_gear_bonus.melee.attack_boost.append(1.05)
                 special_gear_bonus.melee.strength_boost.append(1.25)
 
-        if any(b_necklace in gear["id"] for b_necklace in BERSERKER_NECKLACE):
-            if any(obsidian_weapon in gear["id"] for obsidian_weapon in OBSIDIAN_MELEE_WEAPONS):
-                special_gear_bonus.melee.strength_boost.append(1.2)
-
-        # TODO some dmg bonuses are applied after dmg roll, so this has to be a custom weapon i think
-        # TODO dps is floor(base_dmg * bonus)*acc/2, not max_hit*acc/2. dmg is rolled between 0 and base, then mult
-        # TODO and rounded down
-        if set(DHAROK_SET).issubset(gear["id"]):
-            special_gear_bonus.melee.strength_boost.append(1 + (((max_hp - current_hp) / 100) * (max_hp / 100)))
-
         if npc.is_leafy and LEAF_BATTLE_AXE in gear["id"]:
             special_gear_bonus.melee.attack_boost.append(1.175)
-            special_gear_bonus.melee.strength_boost.append(1.175)
-
-        if npc.name == "Guardian":
-            for pickaxe in PICKAXES:
-                if pickaxe[1] in gear["id"]:
-                    special_gear_bonus.melee.strength_boost.append(
-                        (50 + min(100, mining_lvl) + min(61, pickaxe[0]) / 150)
-                    )
-                    break
-
-        if npc.is_shade and GADDERHAMMER in gear["id"]:
-            special_gear_bonus.melee.strength_boost.append(1.25)
 
         return special_gear_bonus
 
@@ -186,3 +164,25 @@ class GearBonus:
                 void_bonus.ranged.strength_boost.append(1.025)
 
         return void_bonus
+
+    @staticmethod
+    def get_damage_multiplier(gear, npc, current_hp, max_hp, mining_lvl) -> float:
+        if set(DHAROK_SET).issubset(gear["id"]):
+            return 1 + (((max_hp - current_hp) / 100) * (max_hp / 100))
+
+        if any(b_necklace in gear["id"] for b_necklace in BERSERKER_NECKLACE):
+            if any(obsidian_weapon in gear["id"] for obsidian_weapon in OBSIDIAN_MELEE_WEAPONS):
+                return 1.2
+
+        if npc.is_shade and GADDERHAMMER in gear["id"]:
+            return 1.25
+
+        if npc.is_leafy and LEAF_BATTLE_AXE in gear["id"]:
+            return 1.175
+
+        if npc.name == "Guardian":
+            for pickaxe in PICKAXES:
+                if pickaxe[1] in gear["id"]:
+                    return (50 + min(100, mining_lvl) + min(61, pickaxe[0])) / 150
+
+        return 1
