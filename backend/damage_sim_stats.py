@@ -150,6 +150,7 @@ class DamageSimStats:
         self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
 
     # TODO graphing a line graph is not correct, but it looks better that a scatter graph
+    #TODO also have a graph of the ttk stats?
     @staticmethod
     def get_cumulative_sum(data):
         bin_count = np.bincount(data) / len(data)
@@ -179,7 +180,7 @@ class DamageSimStats:
         self.axes.legend()
         self.figure.tight_layout()
         self.axes.margins(x=0.02, y=0.04)
-        self.axes.set_facecolor(color="lightgrey") #TODO maybe better colors
+        self.axes.set_facecolor(color="lightgrey")
         self.axes.grid(linewidth=0.2, color="white")
 
         if self.show_plots:

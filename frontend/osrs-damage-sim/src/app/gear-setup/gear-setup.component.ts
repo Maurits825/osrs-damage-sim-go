@@ -284,6 +284,7 @@ export class GearSetupComponent implements OnInit {
     this.attackCount = gearSetupComponent.attackCount;
     this.useSpecialAttack = gearSetupComponent.useSpecialAttack;
     this.isFill = gearSetupComponent.isFill;
+    this.isSpecialWeapon = gearSetupComponent.isSpecialWeapon;
 
     this.isOnSlayerTask = gearSetupComponent.isOnSlayerTask;
     this.isInWilderness = gearSetupComponent.isInWilderness;
