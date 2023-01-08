@@ -133,9 +133,6 @@ class GearBonus:
                 special_gear_bonus.melee.attack_boost.append(1.05)
                 special_gear_bonus.melee.strength_boost.append(1.25)
 
-        if npc.is_leafy and LEAF_BATTLE_AXE in gear["id"]:
-            special_gear_bonus.melee.attack_boost.append(1.175)
-
         return special_gear_bonus
 
     @staticmethod
