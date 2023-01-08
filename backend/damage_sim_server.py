@@ -129,3 +129,8 @@ def get_attack_type(item_id_str):
         attack_type = "magic"
 
     return attack_type
+
+
+@app.route("/special-weapon", methods=["GET"])
+def get_special_weapons():
+    return WikiData.special_attack

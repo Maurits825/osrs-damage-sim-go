@@ -134,9 +134,13 @@
             <div class="col"><label for="attackCount">Attack count</label></div>
             <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder="" [disabled]="isFill"></div>
             <div class="col text-end"><label for="isFill">Fill weapon</label></div>
-            <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isFill" id="isFill"></div>
-            <div class="col text-end"><label for="isSpecial">Special attack</label></div>
-            <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isSpecialAttack" id="isSpecial"></div>
+            <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isFill" id="isFill" [disabled]="useSpecialAttack"></div>
+            <ng-container *ngIf="isSpecialWeapon">
+                <div class="col text-end"><label for="useSpecialAttack">Special attack</label></div>
+                <div class="col-auto">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="useSpecialAttack" id="useSpecialAttack" (change)="isFill = useSpecialAttack">
+                </div>
+            </ng-container>
         </div>
         <div class="row mb-3"><app-condition [isFill]="isFill" (conditionsChanged)="updateConditions($event)"></app-condition></div>
     </div>

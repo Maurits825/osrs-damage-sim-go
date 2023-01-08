@@ -7,6 +7,7 @@ import { AttackType } from '../model/attack-type.enum';
 import { Condition } from '../model/condition.model';
 import { GearInputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
+import { SpecialAttack } from '../model/special-attack.model';
 import { DamageSimService } from '../services/damage-sim.service';
 import { GearSetupService } from '../services/gear-setups.service';
 import { GlobalBoostService } from '../services/global-boost.service';
@@ -39,7 +40,9 @@ export class GearSetupComponent implements OnInit {
   selectedPrayers: string[] = [];
 
   attackCount: number = 0;
-  isSpecialAttack: boolean = false;
+  useSpecialAttack: boolean = false;
+  isSpecialWeapon: boolean = false;
+  specialWeapons: SpecialAttack;
   isFill: boolean = false;
 
   //TODO maybe refactor to enums
@@ -82,9 +85,12 @@ export class GearSetupComponent implements OnInit {
       gearSlotItems: this.damageSimservice.getGearSlotItems(),
       gearSetups: this.gearSetupService.getGearSetups(),
       styles: this.damageSimservice.getAttackStyles(0),
+      specialWeapons: this.damageSimservice.getSpecialWeapons(),
     })
-    .subscribe(({gearSlotItems, gearSetups, styles}) => {
+    .subscribe(({gearSlotItems, gearSetups, styles, specialWeapons}) => {
       this.allGearSlotItems = gearSlotItems;
+      this.specialWeapons = specialWeapons;
+
       for (const itemId in this.allGearSlotItems[this.weaponSlot]){
         if (this.allGearSlotItems[this.weaponSlot][itemId].name.match("dart$")) {
           this.dartItems.push(this.allGearSlotItems[this.weaponSlot][itemId]);
@@ -129,7 +135,7 @@ export class GearSetupComponent implements OnInit {
       blowpipeDarts: this.selectedDart.id,
       attackStyle: this.selectedAttackStyle,
       attackCount: this.attackCount,
-      isSpecial: this.isSpecialAttack,
+      isSpecial: this.useSpecialAttack,
       prayers: this.selectedPrayers,
       combatStats: this.combatStats,
       boosts: this.selectedBoosts,
@@ -154,7 +160,7 @@ export class GearSetupComponent implements OnInit {
     this.selectedPrayers = [];
     this.selectedBoosts = [];
     this.attackCount = 0;
-    this.isSpecialAttack = false;
+    this.useSpecialAttack = false;
   }
 
   loadRlGear(): void {
@@ -235,6 +241,8 @@ export class GearSetupComponent implements OnInit {
             break;
         }
       });
+
+      this.isSpecialWeapon = !!(this.specialWeapons[item.name]);
     }
   }
 
@@ -274,7 +282,7 @@ export class GearSetupComponent implements OnInit {
     this.setCurrentGear(gearSetupComponent.currentGear, false);
 
     this.attackCount = gearSetupComponent.attackCount;
-    this.isSpecialAttack = gearSetupComponent.isSpecialAttack;
+    this.useSpecialAttack = gearSetupComponent.useSpecialAttack;
     this.isFill = gearSetupComponent.isFill;
 
     this.isOnSlayerTask = gearSetupComponent.isOnSlayerTask;
@@ -316,5 +324,11 @@ export class GearSetupComponent implements OnInit {
     this.currentGear[3]?.id == 4718 && 
     this.currentGear[4]?.id == 4720 && 
     this.currentGear[7]?.id == 4722;
+  }
+
+  useSpecialAttackChange(): void {
+    if (this.useSpecialAttack) {
+      this.isFill = true;
+    }
   }
 }

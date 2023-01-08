@@ -6,6 +6,7 @@ import { DamageSimResults } from '../model/damage-sim-results.model';
 import { InputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { Npc } from '../model/npc.model';
+import { SpecialAttack } from '../model/special-attack.model';
 
 @Injectable()
 export class DamageSimService {
@@ -35,5 +36,9 @@ export class DamageSimService {
 
   getAttackType(itemId: number): Observable<string> {
     return this.http.get(DAMAGE_SIM_SERVER_URL + '/attack-type/' + itemId, {responseType: 'text'});
+  }
+
+  getSpecialWeapons(): Observable<SpecialAttack> {
+    return this.http.get<SpecialAttack>(DAMAGE_SIM_SERVER_URL + '/special-weapon');
   }
 }
