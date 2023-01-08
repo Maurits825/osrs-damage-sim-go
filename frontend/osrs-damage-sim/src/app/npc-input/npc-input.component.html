@@ -4,24 +4,48 @@
         <div class="col">
             <ng-select [(ngModel)]="selectedNpcId" (change)="selectedNpcChange($event)">
                 <ng-option *ngFor="let npc of allNpcs | keyvalue" [value]="npc.key">
-                    {{npc.value.name}} (Lvl: {{npc.value.combat}}, HP:  {{npc.value.hitpoints}})
+                    {{npc.value.name}} -&nbsp;
+                    <img src="assets/img/skills/combat.png"> {{npc.value.combat ? npc.value.combat : 'N/A'}}&nbsp;
+                    <img src="assets/img/skills/hitpoints.png"> {{npc.value.hitpoints}}
                 </ng-option>
             </ng-select>
         </div>
 
         <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isKalphite">
             <div class="row align-items-center">
-                <div class="col">Kalphite</div>
-                <!-- todo image or something, allow to uncheck? -->
+                <div class="col"><img src="assets/img/npc_race/kalphite.png" title="Kalphite"></div>
             </div>
         </div>
         <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isDemon">
             <div class="row align-items-center">
-                <div class="col">Demon</div>
-                <!-- todo image or something, allow to uncheck? -->
+                <div class="col"><img src="assets/img/npc_race/demon.png" title="Demon"></div>
             </div>
         </div>
-        <!-- todo other types -->
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isDragon">
+            <div class="row align-items-center">
+                <div class="col"><img src="assets/img/npc_race/dragon.png" title="Dragon"></div>
+            </div>
+        </div>
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isUndead">
+            <div class="row align-items-center">
+                <div class="col"><img src="assets/img/npc_race/undead.png" title="Undead"></div>
+            </div>
+        </div>
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isLeafy">
+            <div class="row align-items-center">
+                <div class="col"><img src="assets/img/npc_race/leafy.png" title="Leafy"></div>
+            </div>
+        </div>
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isXerician">
+            <div class="row align-items-center">
+                <div class="col"><img src="assets/img/npc_race/xerician.png" title="Xerician"></div>
+            </div>
+        </div>
+        <div class="col-auto" *ngIf="allNpcs && allNpcs[selectedNpcId]?.isShade">
+            <div class="row align-items-center">
+                <div class="col"><img src="assets/img/npc_race/shade.png" title="Shade"></div>
+            </div>
+        </div>
 
         <div class="col-2" *ngIf="showRaidLevel">
             <div class="row align-items-center">

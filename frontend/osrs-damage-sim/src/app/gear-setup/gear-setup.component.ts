@@ -182,9 +182,8 @@ export class GearSetupComponent implements OnInit {
 
   loadGearSetup(setupName: string) {
     const gearSetup = this.gearSetups[setupName];
-    this.setupName = setupName;
-
     this.setCurrentGear(gearSetup);
+    this.setupName = setupName;
   }
 
   setCurrentGear(gearSetup: Record<number, Item>, triggerSlotChange: boolean = true): void {
@@ -215,10 +214,7 @@ export class GearSetupComponent implements OnInit {
         this.updateAttackStyle(0);
       }
       
-      //TODO maybe check if user has input value, how though?
-      if (!this.setupName) {
-        this.setupName = item.name;
-      }
+      this.setupName = item.name;
 
       this.damageSimservice.getAttackType(item.id).subscribe((attackType: string) => {
         switch (attackType as AttackType) {
