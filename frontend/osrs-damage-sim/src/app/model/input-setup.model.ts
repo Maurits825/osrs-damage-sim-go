@@ -33,4 +33,6 @@ export interface GearInputSetup {
     currentHp: number,
 
     miningLvl: number,
+
+    isKandarinDiary: boolean,
 }

@@ -130,7 +130,7 @@ class GearSetupInput:
                                   gear=gear, is_on_slayer_task=gear_setup["isOnSlayerTask"],
                                   is_in_wilderness=gear_setup["isInWilderness"],
                                   max_hp=gear_setup["maxHp"], current_hp=gear_setup["currentHp"],
-                                  mining_lvl=gear_setup["miningLvl"]
+                                  mining_lvl=gear_setup["miningLvl"], is_kandarin_diary=gear_setup["isKandarinDiary"],
                                   )
 
                 gear_setups.append(

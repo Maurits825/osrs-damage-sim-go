@@ -1,6 +1,3 @@
-from dataclasses import dataclass, field
-
-
 class DpsBoost:
     def __init__(self):
         self.attack_boost = [1]

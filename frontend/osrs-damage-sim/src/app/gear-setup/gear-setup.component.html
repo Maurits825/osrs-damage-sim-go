@@ -71,6 +71,12 @@
                     <div class="col-9"><input class="form-control" type="number" [(ngModel)]="miningLvl" max="99" min="1" id="miningLvl"></div>
                 </div>
             </div>
+            <div class="col-auto" *ngIf="slot == 13 && isSpecialBolt()">
+                <div class="row align-items-center justify-content-end">
+                    <div class="col-auto text-end"><label for="isKandarinDiary">Kandarin diary</label></div>
+                    <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isKandarinDiary" id="isKandarinDiary"></div>
+                </div>
+            </div>
         </div>
     </div>
 

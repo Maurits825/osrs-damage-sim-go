@@ -70,6 +70,7 @@ export class GearSetupComponent implements OnInit {
   currentHp: number = 1;
 
   miningLvl: number = 99;
+  isKandarinDiary: boolean = true;
 
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
@@ -128,10 +129,12 @@ export class GearSetupComponent implements OnInit {
       }
     }
 
+    const weaponId = this.currentGear[this.weaponSlot] ? this.currentGear[this.weaponSlot].id : 3689; // lyre id, same att speed as unarmed
+
     return {
       name: this.setupName,
       gear: gearList,
-      weapon: this.currentGear[this.weaponSlot].id,
+      weapon: weaponId,
       blowpipeDarts: this.selectedDart.id,
       attackStyle: this.selectedAttackStyle,
       attackCount: this.attackCount,
@@ -146,6 +149,7 @@ export class GearSetupComponent implements OnInit {
       maxHp: this.maxHp,
       currentHp: this.currentHp,
       miningLvl: this.miningLvl,
+      isKandarinDiary: this.isKandarinDiary,
     };
   }
 
@@ -293,6 +297,8 @@ export class GearSetupComponent implements OnInit {
     this.maxHp = gearSetupComponent.maxHp;
     this.miningLvl = gearSetupComponent.miningLvl;
 
+    this.isKandarinDiary = gearSetupComponent.isKandarinDiary;
+
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
     this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
@@ -325,6 +331,17 @@ export class GearSetupComponent implements OnInit {
     this.currentGear[3]?.id == 4718 && 
     this.currentGear[4]?.id == 4720 && 
     this.currentGear[7]?.id == 4722;
+  }
+
+  isSpecialBolt(): boolean {
+    const specBolts = [9242, 21944, 9243, 21946];
+
+    for (let bolt of specBolts) {
+      if (this.currentGear[13]?.id == bolt) {
+        return true
+      };
+    }
+    return false;
   }
 
   useSpecialAttackChange(): void {

@@ -1,11 +1,13 @@
 import math
 import random
 
+from bolt_special_attack import BoltSpecialAttack
 from constants import TICK_LENGTH
 from dps_calculator import DpsCalculator
 from gear_bonus import GearBonus
 from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF
 from model.attack_style.attack_type import AttackType
+from model.bolt import Bolt
 from model.combat_boost import CombatBoost
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
@@ -40,8 +42,11 @@ class Weapon:
         self.max_hp = 0
         self.current_hp = 0
         self.mining_lvl = 99
+        self.is_kandarin_dairy = True
 
         self.raid_level = None
+
+        self.special_bolt: Bolt | None = None
 
         self.gear = dict()
 
@@ -52,7 +57,8 @@ class Weapon:
                    combat_stats: CombatStats,
                    prayer: PrayerMultiplier,
                    total_gear_stats, raid_level, is_special_attack, special_attack_cost,
-                   npc: NpcStats, gear, is_on_slayer_task, is_in_wilderness, max_hp, current_hp, mining_lvl):
+                   npc: NpcStats, gear, is_on_slayer_task, is_in_wilderness, max_hp, current_hp, mining_lvl,
+                   is_kandarin_diary):
         self.special_attack_cost = special_attack_cost
         self.gear = gear
 
@@ -68,6 +74,7 @@ class Weapon:
         self.max_hp = max_hp
         self.current_hp = current_hp
         self.mining_lvl = mining_lvl
+        self.is_kandarin_dairy = is_kandarin_diary
 
         self.set_attack_style_and_speed(attack_style, attack_speed)
 
@@ -83,14 +90,13 @@ class Weapon:
         if self.attack_style.combat_style == CombatStyle.RAPID:
             self.attack_speed -= 1
 
-    # TODO other bonuses like wildy weapons and salve
     def update_special_bonus(self):
         self.special_gear_bonus = GearBonus.get_gear_bonus(self.gear, self.attack_style,
-                                                           self.is_on_slayer_task, self.is_in_wilderness,
-                                                           self.npc, self.mining_lvl)
+                                                           self.is_on_slayer_task, self.is_in_wilderness, self.npc)
         self.void_bonus = GearBonus.get_gear_void_bonuses(self.gear)
         self.damage_multiplier = GearBonus.get_damage_multiplier(self.gear, self.npc, self.current_hp, self.max_hp,
                                                                  self.mining_lvl)
+        self.special_bolt = BoltSpecialAttack.get_equipped_special_bolt(self.gear, self.is_kandarin_dairy)
 
     def update_attack_roll(self):
         self.attack_roll = self.get_attack_roll()
@@ -103,6 +109,12 @@ class Weapon:
 
     def roll_damage(self) -> int:
         self.accuracy = self.get_accuracy()
+
+        if self.special_bolt:
+            bolt_damage = BoltSpecialAttack.roll_damage(self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints)
+            if bolt_damage:
+                return bolt_damage
+
         hit = random.random()
         damage = 0
         if hit <= self.accuracy:
@@ -208,6 +220,9 @@ class Weapon:
 
     def get_dps(self):
         self.accuracy = self.get_accuracy()
+        if self.special_bolt:
+            return BoltSpecialAttack.get_dps(self.special_bolt, self.accuracy, self.max_hit, self.attack_speed)
+
         avg_dmg = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(self.max_hit + 1)]) / (self.max_hit + 1)
         return (avg_dmg * self.accuracy) / (self.attack_speed * TICK_LENGTH)
 

@@ -8,8 +8,7 @@ from model.npc.npc_stats import NpcStats
 
 class GearBonus:
     @staticmethod
-    def get_gear_bonus(gear, attack_style, is_on_slayer_task, is_in_wilderness, npc: NpcStats,
-                       mining_lvl) -> CombatBoost:
+    def get_gear_bonus(gear, attack_style, is_on_slayer_task, is_in_wilderness, npc: NpcStats) -> CombatBoost:
         # gear bonus list order is important, taken as from dps calc sheet
 
         all_gear_names = '\t'.join(gear["name"])
