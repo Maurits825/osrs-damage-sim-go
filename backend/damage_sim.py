@@ -7,15 +7,10 @@ from condition_evaluator import ConditionEvaluator
 from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
 from damage_sim_stats import DamageSimStats, TimeSimStats, SimStats
 from gear_ids import LIGHTBEARER
-from gear_setup_input import GearSetupInput
-from model.boost import BoostType, Boost
-from model.locations import Location
-from model.npc.combat_stats import CombatStats
-from model.input_setup import InputSetup, GearSetup
+from model.boost import BoostType
+from model.input_setup import GearSetup
 from model.npc.npc_stats import NpcStats
-from model.prayer import Prayer, PrayerMultiplier
 from weapon import Weapon
-from wiki_data import WikiData
 from dataclasses import dataclass
 
 
@@ -50,72 +45,6 @@ class DamageSim:
     def __init__(self, show_plots):
         self.damage_sim_stats = DamageSimStats(show_plots)
         self.initial_npc_stats = None
-
-    def get_input_setup(self) -> InputSetup:
-        # first get inputs
-        # TODO input for this
-        raid_level = 300
-        path_level = 0
-        team_size = 1
-        # TODO get npc by name
-        #npc = WikiData.get_npc(11751)  # Obelisk
-        #npc = WikiData.get_npc(11762)  # Tumeken's Warden
-        # npc = self.wiki_data.get_npc(11797)  # akkah shadow
-        #npc = self.wiki_data.get_npc(11778)  # Ba-Ba
-        npc = WikiData.get_npc(11730)  # Zebak
-        #npc = self.wiki_data.get_npc(11719)  # Kephri
-        # TODO do this here?
-        if npc.location == Location.TOMBS_OF_AMASCUT:
-            path_level_mult = 0.08 if path_level > 0 else 0.05
-            npc.combat_stats.hitpoints = int(
-                round(npc.combat_stats.hitpoints/10 * (1 + raid_level * 0.004) * (1 + (path_level - 1) * 0.05 + path_level_mult) * team_size, 0) * 10
-            )
-        # TODO better way? - this is input, non boosted stats
-        combat_stats = CombatStats(99, 99, 99, 99, 99, 99)
-        # TODO as input maybe or something, list or setup names
-        # TODO prayer input here?
-        # GearSetupInput.load_gear_setup("Max bone dagger", "Lunge", [Prayer.PIETY], 1, True),
-        # GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR], 2, True),
-        # GearSetupInput.load_gear_setup("Max dragon claws", "Slash", [Prayer.PIETY], 1, True),
-        # GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR])
-        # GearSetupInput.load_gear_setup("Max BGS", "Slash", [Prayer.PIETY], 2, True),
-        # GearSetupInput.load_gear_setup("Max fang", "Lunge", [Prayer.PIETY])
-        # GearSetupInput.load_gear_setup("Max blowpipe", "Rapid", [Prayer.RIGOUR])
-        # GearSetupInput.load_gear_setup("Max scythe", "Chop", [Prayer.PIETY])
-        gear_setups = [
-            [
-                GearSetupInput.load_gear_setup("Max ZCB", "Rapid", [Prayer.RIGOUR],
-                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats, 3, True),
-                GearSetupInput.load_gear_setup("Max Tbow", "Rapid", [Prayer.RIGOUR],
-                                               [Boost(BoostType.SMELLING_SALTS)], combat_stats)
-            ],
-
-        ]
-
-        # TODO set cmb stats,prayers & gear bonus here?
-        for gear_setup in gear_setups:
-            for gear in gear_setup:
-                gear.weapon.set_combat_stats(gear.combat_stats)
-                if gear.prayers:
-                    gear.weapon.set_prayer(PrayerMultiplier.sum_prayers(gear.prayers))
-
-                # TODO make a func for this?
-                gear.weapon.set_total_gear_stats(gear.gear_stats)
-                if "blowpipe" in gear.gear_stats.name:  # TODO where to put this
-                    gear.gear_stats.ranged_strength += 35
-
-                gear.weapon.set_npc(npc)
-                gear.weapon.set_raid_level(raid_level)
-
-                gear.weapon.update_attack_roll()
-                gear.weapon.update_max_hit()
-
-        return InputSetup(
-            npc=npc,
-            gear_setups=gear_setups,
-            raid_level=raid_level,
-            path_level=path_level,
-        )
 
     def run(self, iterations, input_setup) -> DamageSimResults:
         self.initial_npc_stats = copy.deepcopy(input_setup.npc)
@@ -316,13 +245,9 @@ class DamageSim:
 
         return SingleDamageSimData(ticks_to_kill, gear_total_dmg, gear_att_count, gear_dps)
 
+    # TODO should this be here?
     @staticmethod
     def get_dps(damages, attack_count, attack_speed):
         if attack_count == 0:
             return 0
         return sum(damages) / (attack_count * attack_speed * 0.6)
-
-
-if __name__ == '__main__':
-    sim = DamageSim(True)
-    sim.run(20000, sim.get_input_setup())
