@@ -2,7 +2,6 @@ import math
 import random
 
 from dps_calculator import DpsCalculator
-from model.npc.npc_stats import NpcStats
 from weapon import Weapon
 
 
@@ -11,30 +10,25 @@ class DragonClaws(Weapon):
         if not self.is_special_attack:
             return super().roll_damage()
 
-        self.accuracy = self.get_accuracy()
-        hit = random.random()
-        if hit <= self.accuracy:
+        if self.roll_hit():
             hit1 = random.randint(math.floor(self.max_hit / 2), self.max_hit - 1)
             hit2 = math.floor(hit1 / 2)
             hit3 = math.floor(hit2 / 2)
             hit4 = hit3 + round(random.random())
         else:
-            hit = random.random()
-            if hit <= self.accuracy:
+            if self.roll_hit():
                 hit1 = 0
                 hit2 = random.randint(math.floor(self.max_hit * (3/8)), math.floor(self.max_hit * (7/8)))
                 hit3 = math.floor(hit2 / 2)
                 hit4 = hit3 + round(random.random())
             else:
-                hit = random.random()
-                if hit <= self.accuracy:
+                if self.roll_hit():
                     hit1 = 0
                     hit2 = 0
                     hit3 = random.randint(math.floor(self.max_hit * (1/4)), math.floor(self.max_hit * (3/4)))
                     hit4 = hit3 + round(random.random())
                 else:
-                    hit = random.random()
-                    if hit <= self.accuracy:
+                    if self.roll_hit():
                         hit1 = 0
                         hit2 = 0
                         hit3 = 0
@@ -47,14 +41,18 @@ class DragonClaws(Weapon):
 
         return hit1 + hit2 + hit3 + hit4
 
-    def get_defence_roll(self, npc: NpcStats):
+    def get_defence_roll(self):
         if not self.is_special_attack:
-            return super().get_defence_roll(npc)
+            return super().get_defence_roll()
 
-        target_defence = npc.combat_stats.defence
+        target_defence = self.npc.combat_stats.defence
         # always roll against slash
-        target_defence_style = npc.defensive_stats.slash
-        return DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+        target_defence_style = self.npc.defensive_stats.slash
+        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+        if self.raid_level:
+            defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
+
+        return defence_roll
 
     def get_dps(self):
         if self.is_special_attack:

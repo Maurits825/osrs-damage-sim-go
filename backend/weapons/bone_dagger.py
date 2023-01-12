@@ -10,6 +10,12 @@ class BoneDagger(Weapon):
 
     def get_accuracy(self):
         if self.is_special_attack:
-            return 1  # always assume first hit
+            return 1
         else:
             return super().get_accuracy()
+
+    def roll_hit(self) -> bool:
+        if self.is_special_attack:
+            return True
+
+        return super().roll_hit()

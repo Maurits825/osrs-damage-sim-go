@@ -7,13 +7,11 @@ from weapon import Weapon
 
 class Scythe(Weapon):
     def roll_damage(self) -> int:
-        self.accuracy = self.get_accuracy()
         return self.roll_single_hit(1) + self.roll_single_hit(0.5) + self.roll_single_hit(0.25)
 
     def roll_single_hit(self, reduction) -> int:
-        hit = random.random()
         damage = 0
-        if hit <= self.accuracy:
+        if self.roll_hit():
             damage = random.randint(0, self.max_hit)
 
         return math.floor(damage * reduction)

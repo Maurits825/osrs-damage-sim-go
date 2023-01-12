@@ -21,10 +21,7 @@ class ZaryteCrossbow(Weapon):
         if not self.is_special_attack or not self.special_bolt:
             return super().roll_damage()
 
-        self.accuracy = self.get_accuracy()
-        hit = random.random()
-
-        if hit <= self.accuracy:
+        if self.roll_hit():
             return self.special_bolt.roll_damage(self.max_hit, self.npc.combat_stats.hitpoints)
         else:
             bolt_damage = BoltSpecialAttack.roll_damage(self.special_bolt, self.max_hit,

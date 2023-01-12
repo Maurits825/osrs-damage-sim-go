@@ -18,8 +18,6 @@ class Fang(Weapon):
         self.true_max_hit = self.max_hit - math.floor(self.max_hit * 0.15)
 
     def roll_damage(self) -> int:
-        self.accuracy = self.get_accuracy()
-        hit = random.random()
         damage = 0
 
         if self.is_special_attack:
@@ -27,11 +25,10 @@ class Fang(Weapon):
         else:
             max_hit = self.true_max_hit
 
-        if hit <= self.accuracy:
+        if self.roll_hit():
             damage = random.randint(self.true_min_hit, max_hit)
         else:
-            hit = random.random()
-            if hit <= self.accuracy:
+            if self.roll_hit():
                 damage = random.randint(self.true_min_hit, max_hit)
 
         return damage
