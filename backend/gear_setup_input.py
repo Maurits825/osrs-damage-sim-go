@@ -2,6 +2,7 @@ import copy
 import math
 import re
 
+from constants import TOA_TEAM_SCALING
 from gear_ids import BLOWPIPE
 from gear_json import GearJson
 from model.attack_style.attack_style import AttackStyle
@@ -76,8 +77,9 @@ class GearSetupInput:
 
             path_level_mult = 0.08 if path_level > 0 else 0.05
             npc.combat_stats.hitpoints = int(
-                round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) * (
-                            1 + (path_level - 1) * 0.05 + path_level_mult) * json_data["teamSize"], 0) * 10
+                round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) *
+                      (1 + (path_level - 1) * 0.05 + path_level_mult) *
+                      TOA_TEAM_SCALING[json_data["teamSize"] - 1], 0) * 10
             )
         else:
             raid_level = None
