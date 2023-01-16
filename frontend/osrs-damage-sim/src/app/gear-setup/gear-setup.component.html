@@ -136,13 +136,12 @@
             </div>
         </div>
 
-        <div class="row mb-3 align-items-center">
-            <div class="col"><label for="attackCount">Attack count</label></div>
-            <div class="col"><input type="number" [(ngModel)]="attackCount" class="form-control" placeholder="" [disabled]="isFill"></div>
-            <div class="col text-end"><label for="isFill">Fill weapon</label></div>
+        <div class="row mb-3 align-items-center justify-content-start">
+            <div class="col-3"><label>Other</label></div>
+            <div class="col-auto text-end"><label for="isFill">Fill weapon</label></div>
             <div class="col-auto"><input class="form-check-input" type="checkbox" [(ngModel)]="isFill" id="isFill" [disabled]="useSpecialAttack"></div>
             <ng-container *ngIf="isSpecialWeapon">
-                <div class="col text-end"><label for="useSpecialAttack">Special attack</label></div>
+                <div class="col-auto text-end ps-4"><label for="useSpecialAttack">Special attack</label></div>
                 <div class="col-auto">
                     <input class="form-check-input" type="checkbox" [(ngModel)]="useSpecialAttack" id="useSpecialAttack" (change)="isFill = useSpecialAttack">
                 </div>

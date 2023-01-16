@@ -5,6 +5,7 @@ from enum import Enum
 class ConditionVariables(Enum):
     NPC_HITPOINTS = 1,
     DMG_DEALT = 2,
+    ATTACK_COUNT = 3,
 
 
 class ConditionComparison(Enum):

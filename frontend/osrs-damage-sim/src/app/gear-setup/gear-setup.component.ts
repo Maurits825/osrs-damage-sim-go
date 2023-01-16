@@ -301,8 +301,8 @@ export class GearSetupComponent implements OnInit {
 
     this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
     this.combatStats = {... gearSetupComponent.combatStats};
-    this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
-    this.conditionComponent.conditions = [... gearSetupComponent.conditions];
+    this.selectedBoosts = [... gearSetupComponent.selectedBoosts];
+    this.conditionComponent.conditions = gearSetupComponent.conditions.map(condition => Object.assign({}, condition));
   }
 
   updateConditions(conditions: Condition[]): void {

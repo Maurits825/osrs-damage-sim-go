@@ -10,6 +10,7 @@ export class ConditionComponent implements OnInit {
   conditionVariables = {
     "NPC_HITPOINTS": "Npc hitpoints",
     "DMG_DEALT": "Damage dealt",
+    "ATTACK_COUNT": "Attack count",
   }
   
   conditionComparisons1 = {

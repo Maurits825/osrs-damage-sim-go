@@ -166,7 +166,7 @@ class DamageSim:
 
             for idx, setup in enumerate(fill_setups):
                 if ConditionEvaluator.evaluate_condition(setup.conditions, npc.combat_stats.hitpoints,
-                                                         sum(fill_gear_damage[idx])):
+                                                         sum(fill_gear_damage[idx]), fill_gear_att_count[idx]):
                     # TODO duplicate code... -> refactor to function or maybe even class?
                     fill_weapon = fill_setups[idx].weapon
 
