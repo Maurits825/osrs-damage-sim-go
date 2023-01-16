@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from model.condition import Condition, ConditionComparison
+from model.condition import Condition
 from weapon import Weapon
 from model.boost import Boost
 from model.npc.combat_stats import CombatStats
@@ -22,8 +22,7 @@ class GearSetup:
     is_fill: bool
     conditions: list[Condition]
 
-    gear: dict  # TODO list of gear ids for things like brimstone ring, light bearer and stuff
-    # TODO could also put void in this and refactor using Combat boost data class, also fix the bug
+    gear: dict
 
 
 @dataclass()
