@@ -18,6 +18,7 @@ class WikiData:
     extra_data = json.load(open("./wiki_data/extra_data.json"))
     gear_slot_items = json.load(open("./wiki_data/gear_slot_items.json"))
     special_attack = json.load(open("./wiki_data/special_attack.json"))
+    magic_spells = json.load(open("./wiki_data/magic_spells.json"))
 
     @staticmethod
     def get_item(item_id: int) -> WeaponStats:
