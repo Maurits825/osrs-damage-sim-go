@@ -4,15 +4,16 @@ import copy
 
 from constants import TICK_LENGTH
 from model.bolt import ALL_BOLTS, Bolt, RubyBolts, DiamondBolts
+from model.equipped_gear import EquippedGear
 
 
 class BoltSpecialAttack:
 
     @staticmethod
-    def get_equipped_special_bolt(gear, is_kandarin_diary) -> Bolt | None:
+    def get_equipped_special_bolt(gear: EquippedGear, is_kandarin_diary) -> Bolt | None:
         for bolt in ALL_BOLTS:
             for bolt_id in bolt.ids:
-                if bolt_id in gear["id"]:
+                if bolt_id in gear.ids:
                     spec_bolt = copy.deepcopy(bolt)
                     if is_kandarin_diary:
                         spec_bolt.proc_chance = spec_bolt.proc_chance * 1.1

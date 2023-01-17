@@ -6,19 +6,19 @@ from weapon import Weapon
 
 class BandosGodsword(Weapon):
     def get_max_hit(self):
-        if self.is_special_attack:
-            return math.floor(super().get_max_hit() * 1.21)
+        if self.gear_setup.is_special_attack:
+            return math.floor(math.floor(super().get_max_hit() * 1.1) * 1.1)
         else:
             return super().get_max_hit()
 
     def get_attack_roll(self):
-        if self.is_special_attack:
+        if self.gear_setup.is_special_attack:
             return 2 * super().get_attack_roll()
         else:
             return super().get_attack_roll()
 
     def get_defence_roll(self):
-        if not self.is_special_attack:
+        if not self.gear_setup.is_special_attack:
             return super().get_defence_roll()
 
         target_defence = self.npc.combat_stats.defence
@@ -32,6 +32,6 @@ class BandosGodsword(Weapon):
 
     def roll_damage(self) -> int:
         damage = super().roll_damage()
-        if self.is_special_attack:
+        if self.gear_setup.is_special_attack:
             self.npc.drain_defence(damage)
         return damage

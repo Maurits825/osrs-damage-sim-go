@@ -23,4 +23,4 @@ class Gadderhammer(Weapon):
     def get_dps(self):
         self.accuracy = self.get_accuracy()
         avg_dmg = sum([math.floor(dmg * AVG_DMG_BOOST) for dmg in range(self.max_hit + 1)]) / (self.max_hit + 1)
-        return (avg_dmg * self.accuracy) / (self.attack_speed * TICK_LENGTH)
+        return (avg_dmg * self.accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)

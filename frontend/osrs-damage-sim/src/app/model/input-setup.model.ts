@@ -2,7 +2,7 @@ import { Condition } from "./condition.model";
 
 export interface InputSetup {
     iterations: number,
-    npc: number,
+    npcId: number,
     gearInputSetups: GearInputSetup[][],
 
     raidLevel: number,
@@ -17,7 +17,6 @@ export interface GearInputSetup {
     blowpipeDarts: number,
 
     attackStyle: string,
-    attackCount: number,
     isSpecial: boolean,
     prayers: string[],
     combatStats: Record<string, number>,

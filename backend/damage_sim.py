@@ -8,7 +8,7 @@ from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
 from damage_sim_stats import DamageSimStats, TimeSimStats, SimStats
 from gear_ids import LIGHTBEARER
 from model.boost import BoostType
-from model.input_setup import GearSetup
+from model.input_setup import InputSetup
 from model.npc.npc_stats import NpcStats
 from weapon import Weapon
 from dataclasses import dataclass
@@ -46,7 +46,7 @@ class DamageSim:
         self.damage_sim_stats = DamageSimStats(show_plots)
         self.initial_npc_stats = None
 
-    def run(self, iterations, input_setup) -> DamageSimResults:
+    def run(self, iterations, input_setup: InputSetup) -> DamageSimResults:
         self.initial_npc_stats = copy.deepcopy(input_setup.npc)
         self.damage_sim_stats.reset_plots()
 
@@ -58,56 +58,60 @@ class DamageSim:
         total_damage_stats_list = []
         attack_count_stats_list = []
         theoretical_dps_list = []
-        cummulative_chances_list = []
-        for gear_setup in input_setup.gear_setups:
-            sim_data = self.run_simulator(iterations, gear_setup)
+        cumulative_chances_list = []
+        for weapon_setups in input_setup.all_weapons_setups:
+            sim_data = self.run_simulator(iterations, weapon_setups)
 
-            ttk_stats = DamageSimStats.get_data_stats(sim_data.ticks_to_kill, DamageSimStats.get_gear_setup_label(gear_setup))
+            ttk_stats = DamageSimStats.get_data_stats(
+                sim_data.ticks_to_kill, DamageSimStats.get_weapon_setup_label(weapon_setups)
+            )
             ttk_stats_list.append(DamageSimStats.get_ticks_stats(ttk_stats))
 
-            sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, gear_setup)
+            sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, weapon_setups)
             sim_dps_stats_list.append(sim_dps_stats)
 
-            total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, gear_setup)
+            total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, weapon_setups)
             total_damage_stats_list.append(total_damage_stats)
 
-            attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, gear_setup)
+            attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, weapon_setups)
             attack_count_stats_list.append(attack_count_stats)
 
-            cummulative_chances_list.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
+            cumulative_chances_list.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
 
             theoretical_dps = []
-            for gear in gear_setup:
-                gear.weapon.set_npc(copy.deepcopy(self.initial_npc_stats))
-                theoretical_dps.append(gear.weapon.get_dps())
-            DamageSimStats.print_setup(gear_setup, total_damage_stats)
+            for weapon in weapon_setups:
+                weapon.set_npc(copy.deepcopy(self.initial_npc_stats))
+                theoretical_dps.append(weapon.get_dps())
+
+            DamageSimStats.print_setup(weapon_setups, total_damage_stats)
             theoretical_dps_list.append(theoretical_dps)
 
             for idx, dps in enumerate(sim_dps_stats):
-                DamageSimStats.print_stats(dps, gear_setup[idx].name + " Sim DPS")
+                DamageSimStats.print_stats(dps, weapon_setups[idx].gear_setup.name + " Sim DPS")
             DamageSimStats.print_ticks_stats(ttk_stats, "Time")
             print("")
 
             max_ticks = max(max_ticks, ttk_stats.maximum)
             min_ticks = min(min_ticks, ttk_stats.minimum)
-            self.damage_sim_stats.graph_n_cumulative_tick_count(sim_data.ticks_to_kill, gear_setup)
+            self.damage_sim_stats.graph_n_cumulative_tick_count(sim_data.ticks_to_kill, weapon_setups)
 
-        figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations, self.initial_npc_stats.combat_stats.hitpoints)
+        figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations,
+                                                             self.initial_npc_stats.combat_stats.hitpoints)
 
         return DamageSimResults(ttk_stats_list, total_damage_stats_list, attack_count_stats_list, sim_dps_stats_list,
-                                theoretical_dps_list, cummulative_chances_list, figure)
+                                theoretical_dps_list, cumulative_chances_list, figure)
 
-    def run_simulator(self, iterations, gear_setup: list[GearSetup]) -> TotalDamageSimData:
+    def run_simulator(self, iterations, weapon_setups: list[Weapon]) -> TotalDamageSimData:
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
         for i in range(iterations):
-            dmg_sim_data = self.run_damage_sim(gear_setup)
+            dmg_sim_data = self.run_damage_sim(weapon_setups)
             total_damage_sim_data.ticks_to_kill.append(dmg_sim_data.ticks_to_kill)
             total_damage_sim_data.gear_total_dmg.append(dmg_sim_data.gear_total_dmg)
             total_damage_sim_data.gear_attack_count.append(dmg_sim_data.gear_attack_count)
             total_damage_sim_data.gear_dps.append(dmg_sim_data.gear_dps)
         return total_damage_sim_data
 
-    def run_damage_sim(self, all_gear_setups: list[GearSetup]) -> SingleDamageSimData:
+    def run_damage_sim(self, all_gear_setups: list[Weapon]) -> SingleDamageSimData:
         ticks_to_kill = 0
         current_weapon_att_count = 0
         weapons_index = 0

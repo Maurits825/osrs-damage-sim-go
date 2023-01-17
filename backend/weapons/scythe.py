@@ -19,4 +19,4 @@ class Scythe(Weapon):
     def get_dps(self):
         self.accuracy = self.get_accuracy()
         effective_max_hit = self.max_hit + math.floor(self.max_hit * 0.5) + math.floor(self.max_hit * 0.25)
-        return DpsCalculator.get_dps(effective_max_hit, self.accuracy, self.attack_speed)
+        return DpsCalculator.get_dps(effective_max_hit, self.accuracy, self.gear_setup.gear_stats.attack_speed)

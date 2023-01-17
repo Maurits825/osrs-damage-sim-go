@@ -7,7 +7,7 @@ from weapon import Weapon
 
 class DragonClaws(Weapon):
     def roll_damage(self) -> int:
-        if not self.is_special_attack:
+        if not self.gear_setup.is_special_attack:
             return super().roll_damage()
 
         if self.roll_hit():
@@ -42,7 +42,7 @@ class DragonClaws(Weapon):
         return hit1 + hit2 + hit3 + hit4
 
     def get_defence_roll(self):
-        if not self.is_special_attack:
+        if not self.gear_setup.is_special_attack:
             return super().get_defence_roll()
 
         target_defence = self.npc.combat_stats.defence
@@ -55,7 +55,7 @@ class DragonClaws(Weapon):
         return defence_roll
 
     def get_dps(self):
-        if self.is_special_attack:
+        if self.gear_setup.is_special_attack:
             self.accuracy = self.get_accuracy()
 
             avg_total_hit = 0
@@ -95,6 +95,6 @@ class DragonClaws(Weapon):
             avg_hit4 = avg_hit3
             avg_total_hit += accuracy * (avg_hit1 + avg_hit2 + avg_hit3 + avg_hit4)
 
-            return avg_total_hit / (self.attack_speed * 0.6)
+            return avg_total_hit / (self.gear_setup.gear_stats.attack_speed * 0.6)
         else:
             return super().get_dps()

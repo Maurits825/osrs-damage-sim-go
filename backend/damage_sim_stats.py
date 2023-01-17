@@ -3,8 +3,9 @@ import numpy as np
 from dataclasses import dataclass
 
 from constants import TOA_PATH_LEVEL_NPCS, TICK_LENGTH, MAX_X_TICKS_LABEL
-from model.input_setup import GearSetup, InputSetup
+from model.input_setup import InputSetup
 from model.locations import Location
+from weapon import Weapon
 
 global matplotlib
 global plt
@@ -89,13 +90,14 @@ class DamageSimStats:
                             )
 
     @staticmethod
-    def get_data_2d_stats(data_list2d, gear_setups: list[GearSetup]) -> list[SimStats]:
+    def get_data_2d_stats(data_list2d, weapon_setups: list[Weapon]) -> list[SimStats]:
         sim_stats_list = []
         data_list = []
         for index in range(len(data_list2d[0])):
             for data in data_list2d:
                 data_list.append(data[index])
-            sim_stats_list.append(DamageSimStats.get_data_stats(data_list, DamageSimStats.get_gear_label(gear_setups[index])))
+            sim_stats_list.append(DamageSimStats.get_data_stats(data_list,
+                                                                DamageSimStats.get_weapon_label(weapon_setups[index])))
             data_list.clear()
         return sim_stats_list
 
@@ -136,18 +138,18 @@ class DamageSimStats:
         plt.show()
 
     @staticmethod
-    def graph_cummulative_tick_count(tick_count, gear_setups: list[GearSetup]):
+    def graph_cumulative_tick_count(tick_count, weapon_setups: list[Weapon]):
         cum_sum = DamageSimStats.get_cumulative_sum(tick_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
         plt.plot(time_stamps, cum_sum)
         plt.xticks(np.arange(0, len(cum_sum) + 1, 20))
-        plt.title(DamageSimStats.get_gear_setup_label(gear_setups))
+        plt.title(DamageSimStats.get_weapon_setup_label(weapon_setups))
         plt.show()
 
-    def graph_n_cumulative_tick_count(self, tick_count, gear_setups: list[GearSetup]):
+    def graph_n_cumulative_tick_count(self, tick_count, weapon_setups: list[Weapon]):
         cum_sum = DamageSimStats.get_cumulative_sum(tick_count)
         time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
-        self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_gear_setup_label(gear_setups))
+        self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_weapon_setup_label(weapon_setups))
 
     # TODO graphing a line graph is not correct, but it looks better that a scatter graph
     #TODO also have a graph of the ttk stats?
@@ -200,27 +202,28 @@ class DamageSimStats:
                 interval += 1
 
     @staticmethod
-    def print_setup(gear_setup: list[GearSetup], total_damage_stats: list[SimStats]):
+    def print_setup(weapon_setups: list[Weapon], total_damage_stats: list[SimStats]):
         text = ""
-        for idx, gear in enumerate(gear_setup):
-            text += gear.name + ": " + str(gear.attack_count)
+        for idx, weapon in enumerate(weapon_setups):
+            text += weapon.gear_setup.name  # TODO ... + ": " + str(weapon.attack_count)
             text += ", Avg Total Damage: " + str(round(total_damage_stats[idx].average, 1))
 
-            text += ", DPS: " + str(round(gear.weapon.get_dps(), 4)) + "\n"
+            text += ", DPS: " + str(round(weapon.get_dps(), 4)) + "\n"
 
         print(text[:-1])
 
     @staticmethod
-    def get_gear_setup_label(gear_setups: list[GearSetup]):
+    def get_weapon_setup_label(weapon_setups: list[Weapon]):
         label = ""
-        for gear in gear_setups:
-            label += DamageSimStats.get_gear_label(gear) + ", "
+        for weapon in weapon_setups:
+            label += DamageSimStats.get_weapon_label(weapon) + ", "
         return label[:-2]
 
     # TODO update with avg att count maybe, or no attack count info
     @staticmethod
-    def get_gear_label(gear: GearSetup):
+    def get_weapon_label(weapon: Weapon):
         label = ""
+        gear = weapon.gear_setup
         prayer_and_boost_text = ""
         for prayer in gear.prayers:
             prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
@@ -231,6 +234,6 @@ class DamageSimStats:
         if prayer_and_boost_text:
             prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
 
-        label = label + gear.name + prayer_and_boost_text + ": " + str(gear.attack_count)
+        label = label + gear.name + prayer_and_boost_text  # TODO ... + ": " + str(gear.attack_count)
         return label
 

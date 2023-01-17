@@ -3,7 +3,7 @@
     "expectedDps": 11.52638006,
     "iterations": 10000,
     "teamSize": 1,
-    "npc": "8059",
+    "npcId": "8059",
     "gearInputSetups": [
       [
         {
@@ -56,7 +56,7 @@
     "expectedDps": 12.59982607,
     "iterations": 10000,
     "teamSize": 1,
-    "npc": "5862",
+    "npcId": "5862",
     "gearInputSetups": [
       [
         {
@@ -108,7 +108,7 @@
     "expectedDps": 11.70621133,
     "iterations": 10000,
     "teamSize": 1,
-    "npc": "7551",
+    "npcId": "7551",
     "gearInputSetups": [
       [
         {
@@ -142,6 +142,158 @@
           "boosts": [
             "overload_plus"
           ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 0,
+    "pathLevel": 0
+  },
+  "Maiden void BGS spec": {
+    "expectedDps": 9.18022121,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "8360",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Max BGS",
+          "gear": [
+            11665,
+            21285,
+            19553,
+            11804,
+            8839,
+            8840,
+            8842,
+            13239,
+            11773,
+            22947
+          ],
+          "weapon": 11804,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Slash (Slash/Aggressive)",
+          "isSpecial": true,
+          "prayers": [
+            "piety"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [
+            "super_combat_pot"
+          ],
+          "isFill": true,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 0,
+    "pathLevel": 0
+  },
+  "Zebak max ZCB spec": {
+    "expectedDps": 9.85873409,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "11730",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Max ZCB",
+          "gear": [
+            27235,
+            27363,
+            19547,
+            26374,
+            27238,
+            27241,
+            26235,
+            13237,
+            11771,
+            21946
+          ],
+          "weapon": 26374,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "isSpecial": true,
+          "prayers": [
+            "rigour"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [
+            "smelling_salts"
+          ],
+          "isFill": true,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 0,
+    "pathLevel": 0
+  },
+  "Tekton max fang": {
+    "expectedDps": 3.45439992,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "7540",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Max fang",
+          "gear": [
+            26382,
+            21285,
+            19553,
+            26219,
+            26384,
+            22322,
+            26386,
+            22981,
+            13239,
+            11773,
+            22947
+          ],
+          "weapon": 26219,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Lunge (Stab/Aggressive)",
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [],
           "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,

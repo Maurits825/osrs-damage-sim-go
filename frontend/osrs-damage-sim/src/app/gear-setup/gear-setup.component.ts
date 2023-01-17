@@ -137,7 +137,6 @@ export class GearSetupComponent implements OnInit {
       weapon: weaponId,
       blowpipeDarts: this.selectedDart.id,
       attackStyle: this.selectedAttackStyle,
-      attackCount: this.attackCount,
       isSpecial: this.useSpecialAttack,
       prayers: this.selectedPrayers,
       combatStats: this.combatStats,
