@@ -152,7 +152,7 @@ class DamageSimStats:
         self.axes.plot(time_stamps, cum_sum, label=DamageSimStats.get_weapon_setup_label(weapon_setups))
 
     # TODO graphing a line graph is not correct, but it looks better that a scatter graph
-    #TODO also have a graph of the ttk stats?
+    # TODO also have a graph of the ttk stats?
     @staticmethod
     def get_cumulative_sum(data):
         bin_count = np.bincount(data) / len(data)
@@ -236,4 +236,3 @@ class DamageSimStats:
 
         label = label + gear.name + prayer_and_boost_text  # TODO ... + ": " + str(gear.attack_count)
         return label
-

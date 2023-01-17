@@ -35,4 +35,3 @@ class NpcStats:
 
     def drain_defence_percent(self, percent):
         self.combat_stats.defence = max(self.min_defence, math.ceil(self.combat_stats.defence * (percent / 100)))
-

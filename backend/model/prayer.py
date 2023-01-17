@@ -35,4 +35,3 @@ class Prayer(Enum):
     RIGOUR = PrayerMultiplier(ranged=1.20, ranged_strength=1.23)
     EAGLE_EYE = PrayerMultiplier(ranged=1.15, ranged_strength=1.15)
     AUGURY = PrayerMultiplier(magic=1.25)
-
