@@ -3,7 +3,7 @@ from io import BytesIO
 from flask import Flask, request, send_file, abort
 from flask_cors import CORS
 
-from damage_sim import DamageSim
+from damage_sim_runner import DamageSim
 from gear_json import GearJson
 from gear_setup_input import GearSetupInput
 from model.attack_style.attack_type import AttackType

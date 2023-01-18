@@ -1,51 +1,23 @@
 import copy
 import math
 
-from matplotlib.figure import Figure
-
 from condition_evaluator import ConditionEvaluator
 from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
-from damage_sim_stats import DamageSimStats, TimeSimStats, SimStats
+from damage_sim_stats import DamageSimStats
 from gear_ids import LIGHTBEARER
 from model.boost import BoostType
+from model.damage_sim_results import DamageSimResults
 from model.input_setup import InputSetup
 from model.npc.npc_stats import NpcStats
 from weapon import Weapon
-from dataclasses import dataclass
 
 
-@dataclass()
-class SingleDamageSimData:
-    ticks_to_kill: int
-    gear_total_dmg: list[int]
-    gear_attack_count: list[int]
-    gear_dps: list[float]
-
-
-@dataclass()
-class TotalDamageSimData:
-    ticks_to_kill: list[int]
-    gear_total_dmg: list[list[int]]
-    gear_attack_count: list[list[int]]
-    gear_dps: list[list[float]]
-
-
-@dataclass()
-class DamageSimResults:
-    ttk_stats_list: list[TimeSimStats]
-    total_damage_stats_list: list[list[SimStats]]
-    attack_count_stats_list: list[list[SimStats]]
-    sim_dps_stats_list: list[list[SimStats]]
-    theoretical_dps_list: list[list[float]]
-    cumulative_chances_list: list[list[float]]
-    figure: Figure
-
-
-class DamageSim:
-    def __init__(self, show_plots):
+class DamageSimRunner:
+    def __init__(self, show_plots=False):
         self.damage_sim_stats = DamageSimStats(show_plots)
         self.initial_npc_stats = None
 
+    # TODO function names 4Head
     def run(self, iterations, input_setup: InputSetup) -> DamageSimResults:
         self.initial_npc_stats = copy.deepcopy(input_setup.npc)
         self.damage_sim_stats.reset_plots()
