@@ -1,15 +1,9 @@
-import copy
 import math
 
-from condition_evaluator import ConditionEvaluator
-from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_stats import DamageSimStats
-from gear_ids import LIGHTBEARER
-from model.boost import BoostType
 from model.damage_sim_results import DamageSimResults, TotalDamageSimData
 from model.input_setup import InputSetup
-from model.npc.npc_stats import NpcStats
 from weapon import Weapon
 
 
@@ -73,7 +67,6 @@ class DamageSimRunner:
 
     def run_damage_sim(self, iterations, npc, weapon_setups: list[Weapon]) -> TotalDamageSimData:
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
-        # TODO test
         damage_sim = DamageSim(npc, weapon_setups)
         for i in range(iterations):
             dmg_sim_data = damage_sim.run()

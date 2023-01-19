@@ -1,7 +1,6 @@
 import math
 import random
 
-from dps_calculator import DpsCalculator
 from weapon import Weapon
 
 

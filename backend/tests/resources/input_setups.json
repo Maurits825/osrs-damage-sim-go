@@ -307,5 +307,57 @@
     ],
     "raidLevel": 0,
     "pathLevel": 0
+  },
+  "Ba-ba 300 max d claws spec": {
+    "expectedDps": 17.63303251,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "11778",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Max dragon claws bring",
+          "gear": [
+            26382,
+            21285,
+            19553,
+            13652,
+            26384,
+            26386,
+            22981,
+            13239,
+            11773,
+            22947
+          ],
+          "weapon": 13652,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Slash (Slash/Aggressive)",
+          "isSpecial": true,
+          "prayers": [
+            "piety"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [
+            "smelling_salts",
+            "liquid_adrenaline"
+          ],
+          "isFill": true,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 300,
+    "pathLevel": 0
   }
 }
