@@ -20,7 +20,7 @@ class GearSetupInput:
     def get_input_setup(json_data) -> InputSetup:
         npc = WikiData.get_npc(json_data["npcId"])
 
-        raid_level = GearSetupInput.get_raid_level(npc, json_data)
+        raid_level, path_level = GearSetupInput.get_raid_level(npc, json_data)
 
         weapons_setups = []
         for setup in json_data["gearInputSetups"]:
@@ -39,12 +39,13 @@ class GearSetupInput:
         return InputSetup(
             npc=npc,
             all_weapons_setups=weapons_setups,
+            raid_level=raid_level,
+            path_level=path_level,
         )
 
     @staticmethod
     def get_gear_setup(gear_setup) -> GearSetup:
-        prayer_list = [Prayer[prayer.upper()] for prayer in gear_setup["prayers"]]
-        prayers = PrayerMultiplier.sum_prayers(prayer_list)
+        prayers = [Prayer[prayer.upper()] for prayer in gear_setup["prayers"]]
 
         boosts = [Boost(BoostType[boost.upper()]) for boost in gear_setup["boosts"]]
         combat_stats = CombatStats(hitpoints=gear_setup["maxHp"],
@@ -109,6 +110,9 @@ class GearSetupInput:
 
     @staticmethod
     def get_raid_level(npc: NpcStats, json_data):
+        raid_level = None
+        path_level = None
+
         if npc.location == Location.TOMBS_OF_AMASCUT:
             raid_level = json_data.get("raidLevel")
             path_level = json_data.get("pathLevel")
@@ -119,7 +123,5 @@ class GearSetupInput:
                       (1 + (path_level - 1) * 0.05 + path_level_mult) *
                       TOA_TEAM_SCALING[json_data["teamSize"] - 1], 0) * 10
             )
-        else:
-            raid_level = None
 
-        return raid_level
+        return raid_level, path_level

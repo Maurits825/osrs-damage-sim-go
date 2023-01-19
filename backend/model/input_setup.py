@@ -8,3 +8,5 @@ from weapon import Weapon
 class InputSetup:
     npc: NpcStats
     all_weapons_setups: list[list[Weapon]]
+    raid_level: int
+    path_level: int

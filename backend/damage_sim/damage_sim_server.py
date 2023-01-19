@@ -3,7 +3,7 @@ from io import BytesIO
 from flask import Flask, request, send_file, abort
 from flask_cors import CORS
 
-from damage_sim_runner import DamageSim
+from damage_sim.damage_sim_runner import DamageSimRunner
 from gear_json import GearJson
 from gear_setup_input import GearSetupInput
 from model.attack_style.attack_type import AttackType
@@ -15,7 +15,7 @@ from wiki_data import WikiData
 app = Flask(__name__)
 CORS(app)
 
-damage_sim = DamageSim(False)
+damage_sim_runner = DamageSimRunner()
 RESULT_FIGURE = None
 
 
@@ -91,7 +91,7 @@ def run_damage_sim():
     input_setup = GearSetupInput.get_input_setup(json_request)
     global RESULT_FIGURE
 
-    damage_sim_results = damage_sim.run(json_request["iterations"], input_setup)
+    damage_sim_results = damage_sim_runner.run(json_request["iterations"], input_setup)
     RESULT_FIGURE = damage_sim_results.figure
 
     return {

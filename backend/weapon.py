@@ -12,6 +12,7 @@ from model.combat_boost import CombatBoost
 from model.gear_setup import GearSetup
 from model.locations import Location
 from model.npc.npc_stats import NpcStats
+from model.prayer import PrayerMultiplier
 
 
 class Weapon:
@@ -23,6 +24,7 @@ class Weapon:
         self.raid_level = raid_level
 
         self.special_attack_cost = special_attack_cost
+        self.prayer_multiplier = PrayerMultiplier.sum_prayers(self.gear_setup.prayers)
 
         self.attack_roll = 0
         self.accuracy = 0
@@ -76,7 +78,7 @@ class Weapon:
     def get_max_hit(self):
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
-                prayer=self.gear_setup.prayers,
+                prayer=self.prayer_multiplier,
                 strength_lvl=self.gear_setup.combat_stats.strength,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.strength,
                 melee_void_boost=self.void_bonus.melee.strength_boost[-1]
@@ -86,7 +88,7 @@ class Weapon:
                                                    self.special_gear_bonus.melee.strength_boost)
         elif self.gear_setup.attack_style.attack_type == AttackType.RANGED:
             effective_ranged_str = DpsCalculator.get_effective_ranged_str(
-                prayer=self.gear_setup.prayers,
+                prayer=self.prayer_multiplier,
                 ranged_lvl=self.gear_setup.combat_stats.ranged,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.ranged,
                 ranged_void_boost=self.void_bonus.ranged.strength_boost[-1]
@@ -98,8 +100,18 @@ class Weapon:
             return self.get_magic_max_hit()
 
     def get_defence_roll(self):
+        target_defence, target_defence_style = self.get_npc_defence_style()
+        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+
+        if self.raid_level:
+            defence_roll = math.floor(defence_roll * (1 + (self.raid_level * 0.004)))
+
+        return defence_roll
+
+    def get_npc_defence_style(self) -> (int, int):
         target_defence = 0
         target_defence_style = 0
+
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             target_defence = self.npc.combat_stats.defence
             if self.gear_setup.attack_style.attack_type == AttackType.STAB:
@@ -115,11 +127,7 @@ class Weapon:
             target_defence = self.npc.combat_stats.magic
             target_defence_style = self.npc.defensive_stats.magic
 
-        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
-        if self.raid_level:
-            defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
-
-        return defence_roll
+        return target_defence, target_defence_style
 
     def get_attack_roll(self):
         effective_skill_attack_lvl = 0
@@ -129,7 +137,7 @@ class Weapon:
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             gear_attack_bonus = self.special_gear_bonus.melee.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_melee_attack(
-                prayer=self.gear_setup.prayers,
+                prayer=self.prayer_multiplier,
                 attack_lvl=self.gear_setup.combat_stats.attack,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.attack,
                 void_boost=self.void_bonus.melee.attack_boost[-1]
@@ -145,7 +153,7 @@ class Weapon:
         elif self.gear_setup.attack_style.attack_type == AttackType.RANGED:
             gear_attack_bonus = self.special_gear_bonus.ranged.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_ranged_attack(
-                prayer=self.gear_setup.prayers,
+                prayer=self.prayer_multiplier,
                 ranged_lvl=self.gear_setup.combat_stats.ranged,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.ranged,
                 void_boost=self.void_bonus.ranged.attack_boost[-1]
@@ -154,7 +162,7 @@ class Weapon:
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
             gear_attack_bonus = self.special_gear_bonus.magic.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_magic_level(
-                prayer=self.gear_setup.prayers,
+                prayer=self.prayer_multiplier,
                 magic_lvl=self.gear_setup.combat_stats.magic,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.magic,
                 void_boost=self.void_bonus.magic.attack_boost[-1]

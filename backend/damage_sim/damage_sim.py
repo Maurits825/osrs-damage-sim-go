@@ -1,8 +1,9 @@
 import copy
 
 from condition_evaluator import ConditionEvaluator
-from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
+from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT, TICK_LENGTH
 from gear_ids import LIGHTBEARER
+from model.boost import BoostType
 from model.damage_sim_results import SingleDamageSimData
 from model.npc.npc_stats import NpcStats
 from weapon import Weapon
@@ -25,6 +26,7 @@ class DamageSim:
         self.special_attack = 0
         self.spec_regen_tick_timer = 0
         self.ticks_to_spec_regen = []
+        self.special_attack_cost = []
 
         self.setup_damage_sim()
 
@@ -65,6 +67,13 @@ class DamageSim:
         # remove last weapon attack time
         self.sim_data.ticks_to_kill -= self.current_weapon.gear_setup.gear_stats.attack_speed
 
+        for index, weapon in enumerate(self.weapons_setups):
+            self.sim_data.gear_dps[index] = DamageSim.get_sim_dps(
+                self.sim_data.gear_total_dmg[index],
+                self.sim_data.gear_attack_count[index],
+                weapon.gear_setup.gear_stats.attack_speed
+            )
+
         return self.sim_data
 
     def get_next_weapon(self) -> tuple[int, Weapon]:
@@ -78,7 +87,12 @@ class DamageSim:
                     self.sim_data.gear_attack_count[self.current_weapon_index]
             )
             if use_fill_weapon:
-                return index, weapon
+                if (not weapon.gear_setup.is_special_attack or
+                        (weapon.gear_setup.is_special_attack and
+                         self.special_attack_cost[index] <= self.special_attack)):
+                    return index, weapon
+                else:
+                    return self.main_weapon_index, self.main_weapon
 
         return self.main_weapon_index, self.main_weapon
 
@@ -107,8 +121,19 @@ class DamageSim:
             else:
                 self.ticks_to_spec_regen.append(SPEC_REGEN_TICKS)
 
+            if any(boost.boost_type == BoostType.LIQUID_ADRENALINE for boost in weapon.gear_setup.boosts):
+                self.special_attack_cost.append(weapon.special_attack_cost / 2)
+            else:
+                self.special_attack_cost.append(weapon.special_attack_cost)
+
             weapon.set_npc(self.npc)
 
             self.sim_data.gear_total_dmg.append(0)
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
+
+    @staticmethod
+    def get_sim_dps(total_damage, attack_count, attack_speed):
+        if attack_count == 0:
+            return 0
+        return total_damage / (attack_count * attack_speed * TICK_LENGTH)

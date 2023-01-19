@@ -5,7 +5,7 @@ from model.boost import Boost
 from model.condition import Condition
 from model.equipped_gear import EquippedGear
 from model.npc.combat_stats import CombatStats
-from model.prayer import PrayerMultiplier
+from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 
 
@@ -14,7 +14,7 @@ class GearSetup:
     name: str
     gear_stats: WeaponStats
     attack_style: AttackStyle
-    prayers: PrayerMultiplier
+    prayers: list[Prayer]
     combat_stats: CombatStats
     boosts: list[Boost]
 

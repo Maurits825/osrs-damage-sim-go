@@ -1,5 +1,6 @@
 import math
 
+from constants import TICK_LENGTH
 from model.prayer import PrayerMultiplier
 
 
@@ -64,4 +65,4 @@ class DpsCalculator:
 
     @staticmethod
     def get_dps(max_hit, hit_chance, attack_speed):
-        return ((max_hit * hit_chance) / 2) / (attack_speed * 0.6)
+        return ((max_hit * hit_chance) / 2) / (attack_speed * TICK_LENGTH)

@@ -4,7 +4,7 @@ import math
 from condition_evaluator import ConditionEvaluator
 from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT
 from damage_sim.damage_sim import DamageSim
-from damage_sim_stats import DamageSimStats
+from damage_sim.damage_sim_stats import DamageSimStats
 from gear_ids import LIGHTBEARER
 from model.boost import BoostType
 from model.damage_sim_results import DamageSimResults, TotalDamageSimData
@@ -30,7 +30,7 @@ class DamageSimRunner:
         theoretical_dps_list = []
         cumulative_chances_list = []
         for weapon_setups in input_setup.all_weapons_setups:
-            sim_data = self.run_simulator(iterations, input_setup.npc, weapon_setups)
+            sim_data = self.run_damage_sim(iterations, input_setup.npc, weapon_setups)
 
             ttk_stats = DamageSimStats.get_data_stats(
                 sim_data.ticks_to_kill, DamageSimStats.get_weapon_setup_label(weapon_setups)
@@ -71,8 +71,7 @@ class DamageSimRunner:
         return DamageSimResults(ttk_stats_list, total_damage_stats_list, attack_count_stats_list, sim_dps_stats_list,
                                 theoretical_dps_list, cumulative_chances_list, figure)
 
-    # TODO naming
-    def run_simulator(self, iterations, npc, weapon_setups: list[Weapon]) -> TotalDamageSimData:
+    def run_damage_sim(self, iterations, npc, weapon_setups: list[Weapon]) -> TotalDamageSimData:
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
         # TODO test
         damage_sim = DamageSim(npc, weapon_setups)
@@ -83,11 +82,3 @@ class DamageSimRunner:
             total_damage_sim_data.gear_attack_count.append(dmg_sim_data.gear_attack_count)
             total_damage_sim_data.gear_dps.append(dmg_sim_data.gear_dps)
         return total_damage_sim_data
-
-
-    # TODO should this be here?
-    @staticmethod
-    def get_dps(damages, attack_count, attack_speed):
-        if attack_count == 0:
-            return 0
-        return sum(damages) / (attack_count * attack_speed * 0.6)

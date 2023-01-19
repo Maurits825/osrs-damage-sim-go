@@ -17,18 +17,14 @@ class BandosGodsword(Weapon):
         else:
             return super().get_attack_roll()
 
-    def get_defence_roll(self):
+    def get_npc_defence_style(self):
         if not self.gear_setup.is_special_attack:
-            return super().get_defence_roll()
+            return super().get_npc_defence_style()
 
         target_defence = self.npc.combat_stats.defence
         # always roll against slash
         target_defence_style = self.npc.defensive_stats.slash
-        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
-        if self.raid_level:
-            defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
-
-        return defence_roll
+        return target_defence, target_defence_style
 
     def roll_damage(self) -> int:
         damage = super().roll_damage()
