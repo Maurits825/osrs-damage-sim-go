@@ -15,7 +15,6 @@ class DamageSim:
         self.npc = copy.deepcopy(npc)
         self.weapons_setups = weapon_setups
 
-        # TODO only one instance, check if actually works in runner
         self.sim_data: SingleDamageSimData = SingleDamageSimData(0, [], [], [])
 
         self.main_weapon: Weapon | None = None
@@ -56,7 +55,7 @@ class DamageSim:
             self.npc.combat_stats.hitpoints -= damage
 
             if self.current_weapon.gear_setup.is_special_attack:
-                self.special_attack -= self.current_weapon.special_attack_cost
+                self.special_attack -= self.special_attack_cost[self.current_weapon_index]
 
             self.sim_data.ticks_to_kill += self.current_weapon.gear_setup.gear_stats.attack_speed
             self.sim_data.gear_total_dmg[self.current_weapon_index] += damage
