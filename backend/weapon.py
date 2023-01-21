@@ -5,7 +5,7 @@ from bolt_special_attack import BoltSpecialAttack
 from constants import TICK_LENGTH
 from dps_calculator import DpsCalculator
 from gear_bonus import GearBonus
-from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF
+from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS, DAWNBRINGER
 from model.attack_style.attack_type import AttackType
 from model.bolt import Bolt
 from model.combat_boost import CombatBoost
@@ -13,6 +13,7 @@ from model.gear_setup import GearSetup
 from model.locations import Location
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
+from wiki_data import WikiData
 
 
 class Weapon:
@@ -29,6 +30,7 @@ class Weapon:
         self.attack_roll = 0
         self.accuracy = 0
         self.max_hit = 0
+
         self.damage_multiplier = GearBonus.get_damage_multiplier(
             self.gear_setup.equipped_gear, self.npc, self.gear_setup.current_hp,
             self.gear_setup.combat_stats.hitpoints, self.gear_setup.mining_lvl
@@ -42,14 +44,19 @@ class Weapon:
         self.void_bonus: CombatBoost() = GearBonus.get_gear_void_bonuses(self.gear_setup.equipped_gear)
         self.special_gear_bonus: CombatBoost() = GearBonus.get_gear_bonus(
             self.gear_setup.equipped_gear, self.gear_setup.attack_style, self.gear_setup.is_on_slayer_task,
-            self.gear_setup.is_in_wilderness, self.npc
+            self.gear_setup.is_in_wilderness, self.npc, self.gear_setup.spell
         )
 
+        self.is_brimstone = self.get_is_brimstone()
         self.attack_roll = self.get_attack_roll()
         self.max_hit = self.get_max_hit()
 
     def set_npc(self, npc):
         self.npc = npc
+
+    def get_is_brimstone(self):
+        return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
+                BRIMSTONE in self.gear_setup.equipped_gear.ids)
 
     def roll_hit(self) -> bool:
         attack_roll = random.randint(0, self.attack_roll)
@@ -72,7 +79,7 @@ class Weapon:
         return math.floor(damage * self.damage_multiplier)
 
     def get_accuracy(self):
-        defence_roll = self.get_defence_roll()
+        defence_roll = self.get_average_defence_roll()
         return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
 
     def get_max_hit(self):
@@ -103,10 +110,27 @@ class Weapon:
         target_defence, target_defence_style = self.get_npc_defence_style()
         defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
 
+        if self.is_brimstone:
+            brimstone_roll = random.randint(1, 4)
+            if brimstone_roll == 1:
+                defence_roll -= max(0, math.floor(defence_roll * 0.1))
+
         if self.raid_level:
             defence_roll = math.floor(defence_roll * (1 + (self.raid_level * 0.004)))
 
         return defence_roll
+
+    def get_average_defence_roll(self):
+        target_defence, target_defence_style = self.get_npc_defence_style()
+        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+
+        if self.is_brimstone:
+            defence_roll -= math.floor(defence_roll * 0.1) / 4
+
+        if self.raid_level:
+            defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
+
+        return math.floor(defence_roll)
 
     def get_npc_defence_style(self) -> (int, int):
         target_defence = 0
@@ -186,22 +210,36 @@ class Weapon:
         avg_dmg = dmg_sum / (self.max_hit + 1)
         return (avg_dmg * self.accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
-    # TODO spells
+    # TODO add uts
     def get_magic_max_hit(self):
-        base_max_hit = 0
-        magic_dmg_multiplier = 1 + (self.gear_setup.gear_stats.magic_strength / 100)
+        base_max_hit = self.get_magic_base_hit()
 
-        if self.gear_setup.gear_stats.id in SANG_STAFF:
-            base_max_hit = math.floor(self.gear_setup.combat_stats.magic / 3) - 1
-        elif self.gear_setup.gear_stats.id in TRIDENT_SWAMP:
-            base_max_hit = math.floor(self.gear_setup.combat_stats.magic / 3) - 2
-        elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
-            base_max_hit = math.floor(self.gear_setup.combat_stats.magic / 3) + 1
+        if CHAOS_GAUNTLETS in self.gear_setup.equipped_gear.ids and "Bolt" in self.gear_setup.spell:
+            base_max_hit += 3
+
+        magic_dmg_multiplier = self.gear_setup.gear_stats.magic_strength / 100
+
+        if self.gear_setup.gear_stats.id in SHADOW_STAFF:
             shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
-            magic_dmg_multiplier = 1 + (shadow_mult * (self.gear_setup.gear_stats.magic_strength / 100))
+            magic_dmg_multiplier *= shadow_mult
 
-        # TODO test slayer bonus and salve later
-        magic_dmg_multiplier += self.void_bonus.magic.strength_boost[-1] - 1
+        magic_dmg_multiplier += self.void_bonus.magic.strength_boost[-1]
         base_hit = math.floor(base_max_hit * magic_dmg_multiplier)
         max_hit = DpsCalculator.apply_gear_bonus(base_hit, self.special_gear_bonus.magic.strength_boost)
         return max_hit
+
+    def get_magic_base_hit(self):
+        if self.gear_setup.spell:
+            return WikiData.magic_spells["all_spells"][self.gear_setup.spell]
+
+        if self.gear_setup.gear_stats.id in TRIDENT_SEAS:
+            return math.floor(self.gear_setup.combat_stats.magic / 3) - 5
+        elif self.gear_setup.gear_stats.id in TRIDENT_SWAMP:
+            return math.floor(self.gear_setup.combat_stats.magic / 3) - 2
+        elif self.gear_setup.gear_stats.id in SANG_STAFF:
+            return math.floor(self.gear_setup.combat_stats.magic / 3) - 1
+        elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
+            return math.floor(self.gear_setup.combat_stats.magic / 3) + 1
+        elif self.gear_setup.gear_stats.id in DAWNBRINGER:
+            return math.floor(self.gear_setup.combat_stats.magic / 6) - 1
+

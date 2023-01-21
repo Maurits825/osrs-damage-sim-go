@@ -14,6 +14,7 @@ class GearSetup:
     name: str
     gear_stats: WeaponStats
     attack_style: AttackStyle
+    spell: str
     prayers: list[Prayer]
     combat_stats: CombatStats
     boosts: list[Boost]

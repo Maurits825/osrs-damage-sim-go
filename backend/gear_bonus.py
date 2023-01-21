@@ -5,12 +5,13 @@ from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.equipped_gear import EquippedGear
 from model.npc.npc_stats import NpcStats
+from wiki_data import WikiData
 
 
 class GearBonus:
     @staticmethod
     def get_gear_bonus(gear: EquippedGear, attack_style,
-                       is_on_slayer_task, is_in_wilderness, npc: NpcStats) -> CombatBoost:
+                       is_on_slayer_task, is_in_wilderness, npc: NpcStats, spell) -> CombatBoost:
         # gear bonus list order is important, taken as from dps calc sheet
 
         all_gear_names = '\t'.join(gear.names)
@@ -74,6 +75,11 @@ class GearBonus:
                 special_gear_bonus.melee.attack_boost.append(7 / 6)
                 special_gear_bonus.melee.strength_boost.append(7 / 6)
 
+        if any(smoke in gear.ids for smoke in SMOKE_STAFF):
+            if spell in WikiData.get_standard_spells():
+                special_gear_bonus.magic.attack_boost.append(1.1)
+                special_gear_bonus.magic.strength_boost.append(1.1)
+
         if npc.is_kalphite and "keris" in all_gear_names:
             if any(keris in gear.ids for keris in [KERIS, KERIS_PARTISAN, KERIS_SUN, KERIS_CORRUPTION]):
                 special_gear_bonus.melee.strength_boost.append(1.33)
@@ -103,6 +109,15 @@ class GearBonus:
             elif THAMMARON_SCEPTRE in gear.ids:
                 special_gear_bonus.magic.attack_boost.append(2)
                 special_gear_bonus.magic.strength_boost.append(1.25)
+
+        if TOME_OF_WATER in gear.ids:
+            if "Water" in spell:
+                special_gear_bonus.magic.attack_boost.append(1.2)
+                special_gear_bonus.magic.strength_boost.append(1.2)
+
+        if TOME_OF_FIRE in gear.ids:
+            if "Fire" in spell and spell in WikiData.get_standard_spells():
+                special_gear_bonus.magic.strength_boost.append(1.5)
 
         if OBSIDIAN_ARMOUR.issubset(gear.ids):
             if any(obsidian_weapon in gear.ids for obsidian_weapon in OBSIDIAN_MELEE_WEAPONS):
@@ -159,7 +174,7 @@ class GearBonus:
                 void_bonus.ranged.strength_boost.append(1.125)
             elif MAGE_VOID in gear.ids:
                 void_bonus.magic.attack_boost.append(1.45)
-                void_bonus.ranged.strength_boost.append(1.025)
+                void_bonus.magic.strength_boost.append(1.025)
 
         return void_bonus
 

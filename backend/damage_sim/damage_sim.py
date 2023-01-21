@@ -38,11 +38,11 @@ class DamageSim:
 
         self.npc.combat_stats.set_stats(self.initial_combat_stats)
 
-        self.sim_data.ticks_to_kill = 0
+        self.sim_data = SingleDamageSimData(0, [], [], [])
         for index, _ in enumerate(self.weapons_setups):
-            self.sim_data.gear_total_dmg[index] = 0
-            self.sim_data.gear_attack_count[index] = 0
-            self.sim_data.gear_dps[index] = 0
+            self.sim_data.gear_total_dmg.append(0)
+            self.sim_data.gear_attack_count.append(0)
+            self.sim_data.gear_dps.append(0)
 
     def run(self) -> SingleDamageSimData:
         self.reset()

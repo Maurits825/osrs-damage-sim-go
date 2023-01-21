@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { DamageSimResults } from '../model/damage-sim-results.model';
 import { InputSetup } from '../model/input-setup.model';
@@ -24,6 +24,13 @@ export class DamageSimService {
 
   getAttackStyles(itemId: number): Observable<string[]> {
     return this.http.get<string[]>(DAMAGE_SIM_SERVER_URL + '/attack-style/' + itemId);
+  }
+
+  getAllSpells(): Observable<string[]> {
+    return this.http.get<Object>(DAMAGE_SIM_SERVER_URL + '/all-spells')
+    .pipe(
+      map((obj) => Object.keys(obj))
+    );
   }
 
   getAllNpcs(): Observable<Npc[]> {

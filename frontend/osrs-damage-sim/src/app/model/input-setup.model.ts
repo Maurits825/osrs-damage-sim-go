@@ -17,6 +17,8 @@ export interface GearInputSetup {
     blowpipeDarts: number,
 
     attackStyle: string,
+    spell: string,
+
     isSpecial: boolean,
     prayers: string[],
     combatStats: Record<string, number>,

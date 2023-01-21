@@ -79,6 +79,11 @@ def get_attack_style(item_id_str):
     return attack_styles
 
 
+@app.route("/all-spells", methods=["GET"])
+def get_all_spells():
+    return WikiData.get_all_spells()
+
+
 @app.route("/npcs", methods=["GET"])
 def get_npcs():
     return WikiData().get_unique_npcs()
@@ -121,12 +126,13 @@ def get_attack_type(item_id_str):
     item_id = int(item_id_str)
     item = WikiData.get_item(item_id)
     attack_type = "Unkown"
-    if item.weapon_category.value[0].attack_type in Weapon.MELEE_TYPES:
+    if item.weapon_category.value[-1].attack_type == AttackType.MAGIC:
+        attack_type = "magic"
+    elif item.weapon_category.value[0].attack_type in Weapon.MELEE_TYPES:
         attack_type = "melee"
     elif item.weapon_category.value[0].attack_type == AttackType.RANGED:
         attack_type = "ranged"
-    elif item.weapon_category.value[0].attack_type == AttackType.MAGIC:
-        attack_type = "magic"
+
 
     return attack_type
 

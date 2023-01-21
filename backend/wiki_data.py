@@ -135,6 +135,14 @@ class WikiData:
         return unique_npcs
 
     @staticmethod
+    def get_all_spells():
+        return WikiData.magic_spells["all_spells"]
+
+    @staticmethod
+    def get_standard_spells():
+        return WikiData.magic_spells["standard_spells"]
+
+    @staticmethod
     def update_special_attack_json():
         special_attack_dict = WikiData.get_special_attack_weapons()
         with open("./wiki_data/special_attack.json", "w") as outfile:

@@ -1,6 +1,7 @@
 from constants import TOA_TEAM_SCALING
 from gear_ids import BLOWPIPE
 from model.attack_style.combat_style import CombatStyle
+from model.attack_style.weapon_category import WeaponCategory
 from model.boost import Boost, BoostType
 from model.condition import Condition, ConditionVariables, ConditionComparison
 from model.equipped_gear import EquippedGear
@@ -9,7 +10,7 @@ from model.input_setup import InputSetup
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
-from model.prayer import Prayer, PrayerMultiplier
+from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapons.weapon_loader import WeaponLoader
 from wiki_data import WikiData
@@ -71,16 +72,19 @@ class GearSetupInput:
             gear_stats.ranged_strength += WikiData.get_item(gear_setup["blowpipeDarts"]).ranged_strength
 
         gear_stats.id = weapon_item.id
+        gear_stats.attack_speed = weapon_item.attack_speed
 
-        attack_style = weapon_item.weapon_category.value[0]
-        for style in weapon_item.weapon_category.value:
-            if gear_setup["attackStyle"] == style.name:
-                attack_style = style
+        if gear_setup["spell"]:
+            attack_style = WeaponCategory.STAFF.value[3]
+            gear_stats.attack_speed = 5
+        else:
+            attack_style = weapon_item.weapon_category.value[0]
+            for style in weapon_item.weapon_category.value:
+                if gear_setup["attackStyle"] == style.name:
+                    attack_style = style
 
         if attack_style.combat_style == CombatStyle.RAPID:
             gear_stats.attack_speed = weapon_item.attack_speed - 1
-        else:
-            gear_stats.attack_speed = weapon_item.attack_speed
 
         conditions = [
             Condition(
@@ -94,6 +98,7 @@ class GearSetupInput:
             name=gear_setup["name"],
             gear_stats=gear_stats,
             attack_style=attack_style,
+            spell=gear_setup["spell"],
             prayers=prayers,
             combat_stats=combat_stats,
             boosts=boosts,

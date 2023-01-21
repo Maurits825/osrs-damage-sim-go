@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { ConditionComponent } from '../condition/condition.component';
-import { POTIONS } from '../constants.const';
+import { AUTOCAST_STLYE, POTIONS } from '../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { AttackType } from '../model/attack-type.enum';
 import { Condition } from '../model/condition.model';
@@ -35,6 +35,8 @@ export class GearSetupComponent implements OnInit {
 
   attackStyles: string[] = [];
   selectedAttackStyle: string = null;
+  allSpells: string[] = [];
+  selectedSpell: string = null;
 
   prayers: string[] = ["eagle_eye", "rigour", "chivalry", "piety", "augury"];
   selectedPrayers: string[] = [];
@@ -86,9 +88,10 @@ export class GearSetupComponent implements OnInit {
       gearSlotItems: this.damageSimservice.getGearSlotItems(),
       gearSetups: this.gearSetupService.getGearSetups(),
       styles: this.damageSimservice.getAttackStyles(0),
+      allSpells: this.damageSimservice.getAllSpells(),
       specialWeapons: this.damageSimservice.getSpecialWeapons(),
     })
-    .subscribe(({gearSlotItems, gearSetups, styles, specialWeapons}) => {
+    .subscribe(({gearSlotItems, gearSetups, styles, allSpells, specialWeapons}) => {
       this.allGearSlotItems = gearSlotItems;
       this.specialWeapons = specialWeapons;
 
@@ -101,6 +104,8 @@ export class GearSetupComponent implements OnInit {
 
       this.gearSetups = gearSetups;
       this.attackStyles = styles;
+      this.allSpells = allSpells;
+
       this.skills.forEach(skill => {
         this.combatStats[skill] = 99;
       });
@@ -137,6 +142,7 @@ export class GearSetupComponent implements OnInit {
       weapon: weaponId,
       blowpipeDarts: this.selectedDart.id,
       attackStyle: this.selectedAttackStyle,
+      spell: this.selectedSpell,
       isSpecial: this.useSpecialAttack,
       prayers: this.selectedPrayers,
       combatStats: this.combatStats,
@@ -216,43 +222,48 @@ export class GearSetupComponent implements OnInit {
     }
 
     if (slot == 3) {
+      let itemId = 0
       if (item?.id) {
-        this.updateAttackStyle(item.id);
-      }
-      else {
-        this.updateAttackStyle(0);
+        itemId = item.id;
+        this.setupName = item.name;
+        this.isSpecialWeapon = !!(this.specialWeapons[item.name]);
+
+        this.damageSimservice.getAttackType(itemId).subscribe((attackType: string) => {
+          switch (attackType as AttackType) {
+            case AttackType.MELEE:
+              this.selectedSpell = null;
+              this.selectedPrayers = [];
+              this.selectedPrayers.push("piety")
+              break;
+            case AttackType.RANGED:
+              this.selectedSpell = null;
+              this.selectedPrayers = [];
+              this.selectedPrayers.push("rigour")
+              break;
+            case AttackType.MAGIC:
+              this.selectedPrayers = [];
+              this.selectedPrayers.push("augury")
+              break;
+          
+            default:
+              break;
+          }
+        });
       }
       
-      this.setupName = item.name;
-
-      this.damageSimservice.getAttackType(item.id).subscribe((attackType: string) => {
-        switch (attackType as AttackType) {
-          case AttackType.MELEE:
-            this.selectedPrayers = [];
-            this.selectedPrayers.push("piety")
-            break;
-          case AttackType.RANGED:
-            this.selectedPrayers = [];
-            this.selectedPrayers.push("rigour")
-            break;
-          case AttackType.MAGIC:
-            this.selectedPrayers = [];
-            this.selectedPrayers.push("augury")
-            break;
-        
-          default:
-            break;
-        }
-      });
-
-      this.isSpecialWeapon = !!(this.specialWeapons[item.name]);
+      this.updateAttackStyle(itemId);
     }
   }
 
   updateAttackStyle(itemId: number): void {
     this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
       this.attackStyles = styles;
-      this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
+      if (this.attackStyles.includes(AUTOCAST_STLYE)){
+        this.selectedAttackStyle = AUTOCAST_STLYE;
+      }
+      else {
+        this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
+      }
     });
   }
 
@@ -282,6 +293,10 @@ export class GearSetupComponent implements OnInit {
 
     this.attackStyles = [... gearSetupComponent.attackStyles];
     this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle;
+
+    this.allSpells = [... gearSetupComponent.allSpells];
+    this.selectedSpell = gearSetupComponent.selectedSpell;
+
     this.setCurrentGear(gearSetupComponent.currentGear, false);
 
     this.attackCount = gearSetupComponent.attackCount;
@@ -346,6 +361,15 @@ export class GearSetupComponent implements OnInit {
   useSpecialAttackChange(): void {
     if (this.useSpecialAttack) {
       this.isFill = true;
+    }
+  }
+
+  selectedSpellChange(): void {
+    if (this.attackStyles.includes(AUTOCAST_STLYE)) {
+      this.selectedAttackStyle = AUTOCAST_STLYE;
+    }
+    else {
+      this.selectedAttackStyle = null;
     }
   }
 }

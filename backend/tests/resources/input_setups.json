@@ -45,7 +45,8 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
@@ -97,7 +98,8 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
@@ -149,7 +151,8 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
@@ -200,7 +203,8 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
@@ -251,7 +255,8 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
@@ -301,7 +306,8 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
@@ -353,11 +359,118 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "spell": null
         }
       ]
     ],
     "raidLevel": 300,
+    "pathLevel": 0
+  },
+  "Vorkath sang void ei brim": {
+    "expectedDps": 4.32377426,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "8059",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Max sang",
+          "gear": [
+            11663,
+            21780,
+            12018,
+            22323,
+            13072,
+            27253,
+            13073,
+            8842,
+            13235,
+            22975,
+            22947
+          ],
+          "weapon": 22323,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Accurate (Magic/Accurate)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "augury"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [
+            "overload_plus"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 0,
+    "pathLevel": 0
+  },
+  "Nech max kodai ice barrage": {
+    "expectedDps": 7.94313678,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "8",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Kodai wand",
+          "gear": [
+            25912,
+            21780,
+            12002,
+            21006,
+            24666,
+            27253,
+            24668,
+            19544,
+            13235,
+            11770,
+            22947
+          ],
+          "weapon": 21006,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Spell (Magic/Autocast)",
+          "spell": "Ice Barrage",
+          "isSpecial": false,
+          "prayers": [
+            "augury"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [
+            "smelling_salts"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 0,
     "pathLevel": 0
   }
 }

@@ -1,5 +1,5 @@
 {
-  "spells": {
+  "all_spells": {
     "Wind Strike": 2,
     "Water Strike": 4,
     "Earth Strike": 6,
@@ -41,5 +41,31 @@
     "Shadow Barrage": 28,
     "Blood Barrage": 29,
     "Ice Barrage": 30
-  }
+  },
+  "standard_spells": [
+    "Wind Strike",
+    "Water Strike",
+    "Earth Strike",
+    "Fire Strike",
+    "Wind Bolt",
+    "Water Bolt",
+    "Earth Bolt",
+    "Fire Bolt",
+    "Wind Blast",
+    "Water Blast",
+    "Crumble Undead",
+    "Earth Blast",
+    "Fire Blast",
+    "Wind Wave",
+    "Water Wave",
+    "Earth Wave",
+    "Saradomin Strike",
+    "Claws of Guthix",
+    "Flames of Zamorak",
+    "Fire Wave",
+    "Wind Surge",
+    "Water Surge",
+    "Earth Surge",
+    "Fire Surge"
+  ]
 }

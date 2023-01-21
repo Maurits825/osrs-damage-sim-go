@@ -14,10 +14,11 @@ class TestWeapon(unittest.TestCase):
 
     def test_input_setups_dps(self):
         for setup in self.input_setups:
-            input_setup = GearSetupInput.get_input_setup(self.input_setups[setup])
-            dps = round(input_setup.all_weapons_setups[0][0].get_dps(), 8)
+            with self.subTest():
+                input_setup = GearSetupInput.get_input_setup(self.input_setups[setup])
+                dps = round(input_setup.all_weapons_setups[0][0].get_dps(), 8)
 
-            self.assertEqual(self.input_setups[setup]["expectedDps"], dps, setup)
+                self.assertEqual(self.input_setups[setup]["expectedDps"], dps, setup)
 
 
 if __name__ == '__main__':

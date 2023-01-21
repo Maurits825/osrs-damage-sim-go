@@ -84,8 +84,22 @@
         <div class="row mb-3 align-items-center">
             <div class="col-3"><label for="attackStyle">Attack style</label></div>
             <div class="col-9">
-                <ng-select labelForId="attackStyle" [(ngModel)]="selectedAttackStyle" [clearable]="false">
+                <ng-select [(ngModel)]="selectedAttackStyle" (change)="selectedSpell = null">
                     <ng-option *ngFor="let style of attackStyles" [value]="style">{{style}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-3"><label for="attackStyle">Spell</label></div>
+            <div class="col-9">
+                <ng-select [items]="allSpells" [(ngModel)]="selectedSpell" (change)="selectedSpellChange()">
+                    <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index">
+                        <div class="row">
+                            <div class="col-1"><img src="assets/img/magic_spells/{{item}}.png"></div>
+                            <div class="col-auto">{{item}}</div>
+                        </div>
+                    </ng-template>
                 </ng-select>
             </div>
         </div>
