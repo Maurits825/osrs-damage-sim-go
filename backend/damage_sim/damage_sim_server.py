@@ -133,7 +133,6 @@ def get_attack_type(item_id_str):
     elif item.weapon_category.value[0].attack_type == AttackType.RANGED:
         attack_type = "ranged"
 
-
     return attack_type
 
 

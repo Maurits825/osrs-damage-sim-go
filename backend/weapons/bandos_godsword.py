@@ -1,6 +1,5 @@
 import math
 
-from dps_calculator import DpsCalculator
 from weapon import Weapon
 
 

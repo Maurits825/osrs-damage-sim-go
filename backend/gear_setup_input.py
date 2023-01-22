@@ -76,15 +76,11 @@ class GearSetupInput:
 
         if gear_setup["spell"]:
             attack_style = WeaponCategory.STAFF.value[3]
-            gear_stats.attack_speed = 5
         else:
             attack_style = weapon_item.weapon_category.value[0]
             for style in weapon_item.weapon_category.value:
                 if gear_setup["attackStyle"] == style.name:
                     attack_style = style
-
-        if attack_style.combat_style == CombatStyle.RAPID:
-            gear_stats.attack_speed = weapon_item.attack_speed - 1
 
         conditions = [
             Condition(

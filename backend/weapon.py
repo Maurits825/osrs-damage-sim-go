@@ -5,8 +5,10 @@ from bolt_special_attack import BoltSpecialAttack
 from constants import TICK_LENGTH
 from dps_calculator import DpsCalculator
 from gear_bonus import GearBonus
-from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS, DAWNBRINGER
+from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS, DAWNBRINGER, \
+    HARM_STAFF
 from model.attack_style.attack_type import AttackType
+from model.attack_style.combat_style import CombatStyle
 from model.bolt import Bolt
 from model.combat_boost import CombatBoost
 from model.gear_setup import GearSetup
@@ -48,6 +50,8 @@ class Weapon:
         )
 
         self.is_brimstone = self.get_is_brimstone()
+        self.set_attack_speed()
+
         self.attack_roll = self.get_attack_roll()
         self.max_hit = self.get_max_hit()
 
@@ -57,6 +61,17 @@ class Weapon:
     def get_is_brimstone(self):
         return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
                 BRIMSTONE in self.gear_setup.equipped_gear.ids)
+
+    def set_attack_speed(self):
+        if self.gear_setup.attack_style.combat_style == CombatStyle.RAPID:
+            self.gear_setup.gear_stats.attack_speed -= 1
+
+        if self.gear_setup.spell:
+            self.gear_setup.gear_stats.attack_speed = 5
+
+            if (HARM_STAFF in self.gear_setup.equipped_gear.ids and
+                    self.gear_setup.spell in WikiData.get_standard_spells()):
+                self.gear_setup.gear_stats.attack_speed = 4
 
     def roll_hit(self) -> bool:
         attack_roll = random.randint(0, self.attack_roll)
@@ -210,7 +225,6 @@ class Weapon:
         avg_dmg = dmg_sum / (self.max_hit + 1)
         return (avg_dmg * self.accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
-    # TODO add uts
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
 
@@ -230,7 +244,7 @@ class Weapon:
 
     def get_magic_base_hit(self):
         if self.gear_setup.spell:
-            return WikiData.magic_spells["all_spells"][self.gear_setup.spell]
+            return WikiData.get_all_spells()[self.gear_setup.spell]
 
         if self.gear_setup.gear_stats.id in TRIDENT_SEAS:
             return math.floor(self.gear_setup.combat_stats.magic / 3) - 5
@@ -242,4 +256,3 @@ class Weapon:
             return math.floor(self.gear_setup.combat_stats.magic / 3) + 1
         elif self.gear_setup.gear_stats.id in DAWNBRINGER:
             return math.floor(self.gear_setup.combat_stats.magic / 6) - 1
-
