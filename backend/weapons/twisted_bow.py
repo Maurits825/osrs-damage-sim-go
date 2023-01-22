@@ -17,7 +17,7 @@ class TwistedBow(Weapon):
         magic = self.get_magic()
         damage_multiplier = min(
             250.0,
-            250 + ((((10 * 3 * magic) / 10) - 14) / 100) - (((((3 * magic) / 10) - 140) ** 2) / 100)
+            250 + int(((10 * int(3 * magic / 10)) - 14) / 100) - int(((((3 * magic) / 10) - 140) ** 2) / 100)
         )
 
         return math.floor(super().get_max_hit() * (round(damage_multiplier) / 100))
