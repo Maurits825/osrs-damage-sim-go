@@ -3,6 +3,9 @@ TOA_PATH_LEVEL_NPCS = {
 }
 
 TOA_TEAM_SCALING = [1, 1.9, 2.8, 3.4, 4, 4.6, 5.2, 5.8]
+TOA_MAX_TEAM = 8
+
+TOB_MAX_TEAM = 5
 
 SPEC_REGEN_PER_TICK = 0.2  # 10% per 30 sec or 0.2% per tick
 SPEC_REGEN_TICKS = 50

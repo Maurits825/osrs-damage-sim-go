@@ -1,4 +1,6 @@
-from constants import TOA_TEAM_SCALING
+import math
+
+from constants import TOA_TEAM_SCALING, TOA_MAX_TEAM, TOB_MAX_TEAM
 from gear_ids import BLOWPIPE
 from model.attack_style.weapon_category import WeaponCategory
 from model.boost import Boost, BoostType
@@ -21,6 +23,9 @@ class GearSetupInput:
         npc = WikiData.get_npc(json_data["npcId"])
 
         raid_level, path_level = GearSetupInput.get_raid_level(npc, json_data)
+
+        if npc.is_tob_entry_mode or npc.is_tob_normal_mode or npc.is_tob_hard_mode:
+            GearSetupInput.scale_tob_hp(npc, json_data)
 
         weapons_setups = []
         for setup in json_data["gearInputSetups"]:
@@ -121,7 +126,16 @@ class GearSetupInput:
             npc.combat_stats.hitpoints = int(
                 round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) *
                       (1 + (path_level - 1) * 0.05 + path_level_mult) *
-                      TOA_TEAM_SCALING[json_data["teamSize"] - 1], 0) * 10
+                      TOA_TEAM_SCALING[min(json_data["teamSize"], TOA_MAX_TEAM) - 1], 0) * 10
             )
 
         return raid_level, path_level
+
+    @staticmethod
+    def scale_tob_hp(npc: NpcStats, json_data):
+        team_size = min(json_data["teamSize"], TOB_MAX_TEAM)
+
+        if team_size == 4:
+            npc.combat_stats.hitpoints = math.floor(0.875 * npc.combat_stats.hitpoints)
+        elif team_size in [1, 2, 3]:
+            npc.combat_stats.hitpoints = math.floor(0.75 * npc.combat_stats.hitpoints)
