@@ -1,6 +1,5 @@
 from constants import TOA_TEAM_SCALING
 from gear_ids import BLOWPIPE
-from model.attack_style.combat_style import CombatStyle
 from model.attack_style.weapon_category import WeaponCategory
 from model.boost import Boost, BoostType
 from model.condition import Condition, ConditionVariables, ConditionComparison

@@ -13,7 +13,12 @@
                 (scrollToEnd)="onScrollToEnd(select.searchTerm)"
                 #select>
                 <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index" let-search="searchTerm">
-                    {{item.name}} -&nbsp;
+                    {{item.name}} 
+                    <span *ngIf="item.isChallengeMode">(Challenge Mode) </span>
+                    <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
+                    <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
+                    <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
+                    -&nbsp;
                     <img src="assets/img/skills/combat.png"> {{item.combat ? item.combat : 'N/A'}}&nbsp;
                     <img src="assets/img/skills/hitpoints.png"> {{item.hitpoints}}
                 </ng-template>

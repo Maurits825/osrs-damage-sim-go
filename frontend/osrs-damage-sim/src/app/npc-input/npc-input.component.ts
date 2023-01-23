@@ -56,7 +56,6 @@ export class NpcInputComponent implements OnInit {
   }
 
   onScrollToEnd(searchTerm: string) {
-    console.log("end");
     this.fetchMore(searchTerm);
   }
 

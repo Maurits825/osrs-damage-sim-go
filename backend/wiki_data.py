@@ -14,7 +14,8 @@ from model.weapon_stats import WeaponStats
 
 class WikiData:
     items_json = json.load(open("./wiki_data/items-dps-calc.json"))
-    npcs_json = json.load(open("./wiki_data/npcs-dps-calc.json"))
+    npcs_json = json.load(open("./wiki_data/npcs-dmg-sim.json"))
+    unique_npcs = json.load(open("./wiki_data/unique_npcs.json"))
     extra_data = json.load(open("./wiki_data/extra_data.json"))
     gear_slot_items = json.load(open("./wiki_data/gear_slot_items.json"))
     special_attack = json.load(open("./wiki_data/special_attack.json"))
@@ -82,7 +83,11 @@ class WikiData:
             is_undead=npc.get("isUndead", False),
             is_leafy=npc.get("isLeafy", False),
             is_xerician=npc.get("isXerician", False),
+            is_challenge_mode=npc.get("isChallengeMode", False),
             is_shade=npc.get("isShade", False),
+            is_tob_entry_mode=npc.get("isTobEntryMode", False),
+            is_tob_normal_mode=npc.get("isTobNormalMode", False),
+            is_tob_hard_mode=npc.get("isTobHardMode", False),
         )
 
     @staticmethod
@@ -122,17 +127,29 @@ class WikiData:
 
     @staticmethod
     def get_unique_npcs():
+        return WikiData.unique_npcs["unique_npcs"]
+
+    @staticmethod
+    def update_unique_npcs_json():
         seen_npc_name = []
         unique_npcs = []
         for npc_id, npc in WikiData.npcs_json.items():
-            npc_key = npc["name"] + str(npc.get("combat", 0))
+            npc_key = (npc["name"] + "_" +
+                       str(npc.get("combat", 0)) + "_" +
+                       str(npc.get("hitpoints", 0)) + "_" +
+                       str(npc.get("isTobHardMode", 0)) + "_" +
+                       str(len(npc))
+                       )
             if npc_key not in seen_npc_name:
                 npc["id"] = npc_id
                 unique_npcs.append(npc)
                 seen_npc_name.append(npc_key)
 
         unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
-        return unique_npcs
+
+        npcs = {"unique_npcs": unique_npcs}
+        with open("./wiki_data/unique_npcs.json", 'w') as json_file:
+            json.dump(npcs, json_file)
 
     @staticmethod
     def get_all_spells():
@@ -185,3 +202,4 @@ class WikiData:
 if __name__ == '__main__':
     WikiData.update_gear_slot_items_list()
     WikiData.update_special_attack_json()
+    WikiData.update_unique_npcs_json()

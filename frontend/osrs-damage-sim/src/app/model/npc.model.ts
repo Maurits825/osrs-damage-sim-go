@@ -9,5 +9,9 @@ export interface Npc {
     isUndead: boolean,
     isLeafy: boolean,
     isXerician: boolean,
+    isChallengeMode: boolean,
     isShade: boolean,
+    isTobEntryMode: boolean,
+    isTobNormalMode: boolean,
+    isTobHardMode: boolean,
 }
