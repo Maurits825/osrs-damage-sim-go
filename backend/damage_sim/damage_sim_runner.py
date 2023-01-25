@@ -17,38 +17,40 @@ class DamageSimRunner:
         # TODO refactor print stuff to just return text, then decide to print or just return
         max_ticks = 0
         min_ticks = math.inf
-        ttk_stats_list = []
-        sim_dps_stats_list = []
-        total_damage_stats_list = []
-        attack_count_stats_list = []
-        theoretical_dps_list = []
-        cumulative_chances_list = []
+        damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], None)
         for weapon_setups in input_setup.all_weapons_setups:
             sim_data = self.run_damage_sim(iterations, input_setup.npc, weapon_setups)
 
             ttk_stats = DamageSimStats.get_data_stats(
                 sim_data.ticks_to_kill, DamageSimStats.get_weapon_setup_label(weapon_setups)
             )
-            ttk_stats_list.append(DamageSimStats.get_ticks_stats(ttk_stats))
+            damage_sim_results.ttk_stats_list.append(DamageSimStats.get_ticks_stats(ttk_stats))
 
             sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, weapon_setups)
-            sim_dps_stats_list.append(sim_dps_stats)
+            damage_sim_results.sim_dps_stats_list.append(sim_dps_stats)
 
             total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, weapon_setups)
-            total_damage_stats_list.append(total_damage_stats)
+            damage_sim_results.total_damage_stats_list.append(total_damage_stats)
 
             attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, weapon_setups)
-            attack_count_stats_list.append(attack_count_stats)
+            damage_sim_results.attack_count_stats_list.append(attack_count_stats)
 
-            cumulative_chances_list.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
+            damage_sim_results.cumulative_chances_list.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
 
             theoretical_dps = []
+            max_hit = []
+            accuracy = []
             for weapon in weapon_setups:
                 weapon.set_npc(input_setup.npc)
                 theoretical_dps.append(weapon.get_dps())
+                max_hit.append(weapon.get_max_hit())
+                accuracy.append(weapon.get_accuracy())
+
+            damage_sim_results.theoretical_dps_list.append(theoretical_dps)
+            damage_sim_results.max_hit.append(max_hit)
+            damage_sim_results.accuracy.append(accuracy)
 
             DamageSimStats.print_setup(weapon_setups, total_damage_stats)
-            theoretical_dps_list.append(theoretical_dps)
 
             for idx, dps in enumerate(sim_dps_stats):
                 DamageSimStats.print_stats(dps, weapon_setups[idx].gear_setup.name + " Sim DPS")
@@ -59,11 +61,11 @@ class DamageSimRunner:
             min_ticks = min(min_ticks, ttk_stats.minimum)
             self.damage_sim_stats.graph_n_cumulative_tick_count(sim_data.ticks_to_kill, weapon_setups)
 
-        figure = self.damage_sim_stats.show_cumulative_graph(min_ticks, max_ticks, input_setup, iterations,
-                                                             input_setup.npc.combat_stats.hitpoints)
+        damage_sim_results.figure = self.damage_sim_stats.show_cumulative_graph(
+            min_ticks, max_ticks, input_setup, iterations, input_setup.npc.combat_stats.hitpoints
+        )
 
-        return DamageSimResults(ttk_stats_list, total_damage_stats_list, attack_count_stats_list, sim_dps_stats_list,
-                                theoretical_dps_list, cumulative_chances_list, figure)
+        return damage_sim_results
 
     def run_damage_sim(self, iterations, npc, weapon_setups: list[Weapon]) -> TotalDamageSimData:
         total_damage_sim_data = TotalDamageSimData([], [], [], [])

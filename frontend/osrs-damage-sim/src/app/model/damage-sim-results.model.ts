@@ -4,7 +4,9 @@ export interface DamageSimResults {
     attack_count_stats: SimStats[][],
     sim_dps_stats: SimStats[][],
     theoretical_dps: number[][],
-    cumulative_chances: number[][]
+    cumulative_chances: number[][],
+    max_hit: number[][],
+    accuracy: number[][],
 }
 
 export interface SimStats {

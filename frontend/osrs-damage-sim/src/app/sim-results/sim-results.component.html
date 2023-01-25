@@ -1,0 +1,92 @@
+<div>
+    <h1 class="text-center display-1 mb-5">Damage Simulator</h1>
+    <div class="row mb-1" *ngIf="damageSimResults?.ttk_stats">
+        <h2 class="mb-1 ps-0">Time Results</h2>
+        <table class="table table-striped table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th scope="col">Setup Name (prayer, boosts): attack count</th>
+                    <th scope="col">Average</th>
+                    <th scope="col">Frequent</th>
+                    <th scope="col">Min</th>
+                    <th scope="col">Max</th>
+                    <th scope="col">50% Kill time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let simStats of damageSimResults.ttk_stats">
+                    <th scope="row">{{simStats.label}}</th>
+                    <td>{{simStats.average}}</td>
+                    <td>{{simStats.most_frequent}}</td>
+                    <td>{{simStats.minimum}}</td>
+                    <td>{{simStats.maximum}}</td>
+                    <td>{{simStats.chance_to_kill[1]}}</td>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mb-3" *ngIf="damageSimResults?.sim_dps_stats">
+        <h2 class="mb-1 ps-0">Sim Damage & DPS Results</h2>
+        <table class="table table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th scope="col">Setup Name (prayer, boosts): attack count</th>
+                    <th scope="col">Theoretical DPS</th>
+                    <th scope="col">Average Sim DPS</th>
+                    <th scope="col">Average Damage</th>
+                    <th scope="col">Average Attack Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let simDpsSetup of damageSimResults.sim_dps_stats; let setupIndex = index">
+                    <tr>
+                        <td colspan="5" class="table-active">Setup - {{setupIndex + 1}}</td>
+                    </tr>
+                    <ng-container *ngFor="let simDps of simDpsSetup; let gearIndex = index">
+                        <tr>
+                            <th scope="row">{{simDps.label}}</th>
+                            <td>{{damageSimResults.theoretical_dps[setupIndex][gearIndex] | number: '1.2-2'}}</td>
+                            <td>{{simDps.average | number: '1.2-2'}}</td>
+                            <td>{{damageSimResults.total_dmg_stats[setupIndex][gearIndex].average | number: '1.2-2'}}
+                            </td>
+                            <td>{{damageSimResults.attack_count_stats[setupIndex][gearIndex].average | number: '1.2-2'}}
+                            </td>
+                        </tr>
+                    </ng-container>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mb-3" *ngIf="damageSimResults?.cumulative_chances">
+        <div class="col">
+            <div class="row mb-1 align-items-center">
+                <h2 class="col-auto me-auto ps-0">Chance to kill under target time</h2>
+                <label class="col-auto">Target Time</label>
+                <div class="col-auto pe-0"><input class="form-control" type="text" #targetTimeInput
+                        (change)="targetTimeChanged(targetTimeInput.value)" placeholder="mm:ss.m"></div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th scope="col">Setup Name (prayer, boosts): attack count</th>
+                    <th scope="col">Chance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chance of targetTimeChance;  let setupIndex = index">
+                    <th scope="row">{{damageSimResults.ttk_stats[setupIndex].label}}</th>
+                    <td>{{(chance * 100) | number: '1.2-2'}}%</td>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-auto ps-0">
+            <a href="http://127.0.0.1:5000/damage-sim-graph" target="_blank" class="btn btn-secondary">
+                Open cummulative chance graph <i class="bi bi-arrow-up-right-square"></i>
+            </a>
+        </div>
+    </div>
+</div>

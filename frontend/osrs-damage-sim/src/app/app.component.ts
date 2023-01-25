@@ -13,7 +13,7 @@ import { DamageSimService } from './services/damage-sim.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent { //TODO refactor to another component?
+export class AppComponent {
   @ViewChild(GearSetupTabsComponent) gearSetupTabsComponent: GearSetupTabsComponent;
   @ViewChild(NpcInputComponent) npcInputComponent: NpcInputComponent;
 
@@ -24,7 +24,7 @@ export class AppComponent { //TODO refactor to another component?
 
   loading = false;
 
-  damageSimResults = damageSimResults;
+  damageSimResults: DamageSimResults = damageSimResults;
 
   constructor(private damageSimservice: DamageSimService) {}
 
@@ -56,18 +56,6 @@ export class AppComponent { //TODO refactor to another component?
     error => {
       //TODO show some error
       this.loading = false;
-    });
-  }
-
-  targetTimeChanged(targetTime: string): void {
-    const matches = targetTime.match(/^([0-9]*):([0-9]*)\.([0-9]*)$/);
-
-    const targetSeconds = (+matches[1] * 60) + +matches[2] + +matches[3]/10;
-    const targetTicks = Math.ceil(targetSeconds / 0.6);
-
-    this.targetTimeChance = [];
-    this.damageSimResults.cumulative_chances.forEach((chances: number[]) => {
-      this.targetTimeChance.push(chances[targetTicks])
     });
   }
 }

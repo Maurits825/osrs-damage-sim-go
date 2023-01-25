@@ -15,6 +15,7 @@ import { NpcInputComponent } from './npc-input/npc-input.component';
 import { GlobalBoostComponent } from './global-boost/global-boost.component';
 import { GlobalBoostService } from './services/global-boost.service';
 import { ConditionComponent } from './condition/condition.component';
+import { SimResultsComponent } from './sim-results/sim-results.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ConditionComponent } from './condition/condition.component';
     NpcInputComponent,
     GlobalBoostComponent,
     ConditionComponent,
+    SimResultsComponent,
   ],
   imports: [
     NgSelectModule,

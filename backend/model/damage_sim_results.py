@@ -29,4 +29,6 @@ class DamageSimResults:
     sim_dps_stats_list: list[list[SimStats]]
     theoretical_dps_list: list[list[float]]
     cumulative_chances_list: list[list[float]]
-    figure: Figure
+    max_hit: list[list[int]]
+    accuracy: list[list[float]]
+    figure: Figure | None

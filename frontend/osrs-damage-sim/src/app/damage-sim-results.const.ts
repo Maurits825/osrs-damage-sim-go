@@ -130,6 +130,8 @@ export const damageSimResults: DamageSimResults = {
       },
     ]],
     theoretical_dps: [[5.4, 20.3, 8.3], [20.1, 8.1]],
+    max_hit: [[5.4, 20.3, 8.3], [20.1, 8.1]],
+    accuracy: [[5.4, 20.3, 8.3], [20.1, 8.1]],
     cumulative_chances: [[0, 0.5, 0.7, 1], [0, 0.2, 0.4, 0.9]],
     attack_count_stats: [[
         {
