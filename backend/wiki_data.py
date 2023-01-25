@@ -77,6 +77,7 @@ class WikiData:
             ),
             min_defence=min_defence,
             location=location,
+            size=npc.get("size", 0),
             is_kalphite=npc.get("isKalphite", False),
             is_demon=npc.get("isDemon", False),
             is_dragon=npc.get("isDragon", False),

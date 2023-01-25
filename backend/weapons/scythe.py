@@ -7,7 +7,14 @@ from weapon import Weapon
 
 class Scythe(Weapon):
     def roll_damage(self) -> int:
-        return self.roll_single_hit(1) + self.roll_single_hit(0.5) + self.roll_single_hit(0.25)
+        damage = self.roll_single_hit(1)
+
+        if self.npc.size > 1:
+            damage += self.roll_single_hit(0.5)
+        if self.npc.size > 2:
+            damage += self.roll_single_hit(0.25)
+
+        return damage
 
     def roll_single_hit(self, reduction) -> int:
         damage = 0
@@ -18,5 +25,11 @@ class Scythe(Weapon):
 
     def get_dps(self):
         self.accuracy = self.get_accuracy()
-        effective_max_hit = self.max_hit + math.floor(self.max_hit * 0.5) + math.floor(self.max_hit * 0.25)
+
+        effective_max_hit = self.max_hit
+        if self.npc.size > 1:
+            effective_max_hit += math.floor(self.max_hit * 0.5)
+        if self.npc.size > 2:
+            effective_max_hit += math.floor(self.max_hit * 0.25)
+
         return DpsCalculator.get_dps(effective_max_hit, self.accuracy, self.gear_setup.gear_stats.attack_speed)

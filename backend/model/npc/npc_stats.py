@@ -16,6 +16,7 @@ class NpcStats:
     defensive_stats: DefensiveStats
 
     location: Location
+    size: int
 
     min_defence: int = 0
 
