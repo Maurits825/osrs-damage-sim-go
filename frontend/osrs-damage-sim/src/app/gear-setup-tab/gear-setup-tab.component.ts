@@ -1,25 +1,33 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ComponentRef,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
 
 @Component({
   selector: 'app-gear-setup-tab',
   templateUrl: './gear-setup-tab.component.html',
-  styleUrls: ['./gear-setup-tab.component.css']
+  styleUrls: ['./gear-setup-tab.component.css'],
 })
 export class GearSetupTabComponent implements OnInit, AfterViewInit {
   @Input() active = false;
   @ViewChild('gearSetupsContainer', { read: ViewContainerRef }) gearSetupsContainer!: ViewContainerRef;
-  
+
   id: number = 0;
-  
+
   gearSetups: ComponentRef<GearSetupComponent>[] = [];
 
   tabToCopy: GearSetupTabComponent;
-  
-  constructor(private cd: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-  }
+  constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnInit(): void {}
 
   public ngAfterViewInit(): void {
     //TODO is there a chance that this gets called before tabToCopy is set?
@@ -27,8 +35,7 @@ export class GearSetupTabComponent implements OnInit, AfterViewInit {
       this.tabToCopy.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
         this.addNewGearSetup(gearSetupRef.instance);
       });
-    } 
-    else {
+    } else {
       this.addNewGearSetup();
     }
     this.cd.detectChanges();
@@ -47,15 +54,13 @@ export class GearSetupTabComponent implements OnInit, AfterViewInit {
   }
 
   removeGearSetup(id: number): void {
-    let gearSetupRef = this.gearSetups.find(setup => setup.instance.setupCount == id);
+    let gearSetupRef = this.gearSetups.find((setup) => setup.instance.setupCount == id);
 
     let gearSetupsContainerIndex: number = this.gearSetupsContainer.indexOf(gearSetupRef!.hostView);
 
     this.gearSetupsContainer.remove(gearSetupsContainerIndex);
 
-    this.gearSetups = this.gearSetups.filter(
-      setup => setup.instance.setupCount !== id
-    );
+    this.gearSetups = this.gearSetups.filter((setup) => setup.instance.setupCount !== id);
 
     for (let index = 0; index < this.gearSetups.length; index++) {
       this.gearSetups[index].instance.setupCount = index + 1;

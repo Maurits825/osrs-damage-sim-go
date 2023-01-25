@@ -8,9 +8,8 @@ describe('GlobalBoostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GlobalBoostComponent ]
-    })
-    .compileComponents();
+      declarations: [GlobalBoostComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GlobalBoostComponent);
     component = fixture.componentInstance;

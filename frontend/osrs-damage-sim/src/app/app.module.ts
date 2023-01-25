@@ -29,21 +29,8 @@ import { SimResultsComponent } from './sim-results/sim-results.component';
     ConditionComponent,
     SimResultsComponent,
   ],
-  imports: [
-    NgSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    HttpClientModule,
-  ],
-  providers: [
-    DamageSimService,
-    RlGearService,
-    GearSetupService,
-    GlobalBoostService,
-  ],
-  bootstrap: [
-    AppComponent,
-  ]
+  imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
+  providers: [DamageSimService, RlGearService, GearSetupService, GlobalBoostService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

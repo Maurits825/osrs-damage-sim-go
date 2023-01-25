@@ -11,7 +11,7 @@ import { DamageSimService } from './services/damage-sim.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   @ViewChild(GearSetupTabsComponent) gearSetupTabsComponent: GearSetupTabsComponent;
@@ -49,13 +49,15 @@ export class AppComponent {
       inputSetup.gearInputSetups.push(gearInputSetups);
     });
 
-    this.damageSimservice.runDamageSim(inputSetup).subscribe((results: DamageSimResults) => {
-      this.damageSimResults = results;
-      this.loading = false;
-    },
-    error => {
-      //TODO show some error
-      this.loading = false;
-    });
+    this.damageSimservice.runDamageSim(inputSetup).subscribe(
+      (results: DamageSimResults) => {
+        this.damageSimResults = results;
+        this.loading = false;
+      },
+      (error) => {
+        //TODO show some error
+        this.loading = false;
+      }
+    );
   }
 }

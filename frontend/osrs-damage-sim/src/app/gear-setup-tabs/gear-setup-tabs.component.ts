@@ -4,16 +4,15 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
 @Component({
   selector: 'app-gear-setup-tabs',
   templateUrl: './gear-setup-tabs.component.html',
-  styleUrls: ['./gear-setup-tabs.component.css']
+  styleUrls: ['./gear-setup-tabs.component.css'],
 })
 export class GearSetupTabsComponent implements OnInit, AfterViewInit {
-  @ViewChild('gearSetupTabContainer', {read: ViewContainerRef}) gearSetupTabContainer!: ViewContainerRef;
+  @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer!: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.openNewSetupTab(); //TODO causes ExpressionChangedAfterItHasBeenCheckedError
@@ -49,7 +48,7 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
         viewContainerRef.remove(i);
 
         if (tab.active && this.gearSetupTabs.length >= 1) {
-          const index = i == 0 ? i : i - 1
+          const index = i == 0 ? i : i - 1;
           this.selectTab(this.gearSetupTabs[index]);
           break;
         }

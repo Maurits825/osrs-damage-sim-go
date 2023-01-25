@@ -16,7 +16,7 @@ import { RlGearService } from '../services/rl-gear.service';
 @Component({
   selector: 'app-gear-setup.col-md-6',
   templateUrl: './gear-setup.component.html',
-  styleUrls: ['./gear-setup.component.css']
+  styleUrls: ['./gear-setup.component.css'],
 })
 export class GearSetupComponent implements OnInit {
   setupCount!: number;
@@ -29,16 +29,16 @@ export class GearSetupComponent implements OnInit {
   allGearSlotItems: Record<number, Record<number, Item>> = {};
 
   gearSetups: Record<string, Record<number, Item>> = {};
-  selectedGearSetup: string = "";
+  selectedGearSetup: string = '';
 
-  setupName: string = "";
+  setupName: string = '';
 
   attackStyles: string[] = [];
   selectedAttackStyle: string = null;
   allSpells: string[] = [];
   selectedSpell: string = null;
 
-  prayers: string[] = ["eagle_eye", "rigour", "chivalry", "piety", "augury"];
+  prayers: string[] = ['eagle_eye', 'rigour', 'chivalry', 'piety', 'augury'];
   selectedPrayers: string[] = [];
 
   attackCount: number = 0;
@@ -48,7 +48,7 @@ export class GearSetupComponent implements OnInit {
   isFill: boolean = false;
 
   //TODO maybe refactor to enums
-  skills: string[] = ["attack", "strength", "ranged", "magic"];
+  skills: string[] = ['attack', 'strength', 'ranged', 'magic'];
 
   combatStats: Record<string, number> = {};
 
@@ -80,8 +80,8 @@ export class GearSetupComponent implements OnInit {
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
     private gearSetupService: GearSetupService,
-    private globalBoostService: GlobalBoostService,
-    ) {}
+    private globalBoostService: GlobalBoostService
+  ) {}
 
   ngOnInit(): void {
     forkJoin({
@@ -90,13 +90,12 @@ export class GearSetupComponent implements OnInit {
       styles: this.damageSimservice.getAttackStyles(0),
       allSpells: this.damageSimservice.getAllSpells(),
       specialWeapons: this.damageSimservice.getSpecialWeapons(),
-    })
-    .subscribe(({gearSlotItems, gearSetups, styles, allSpells, specialWeapons}) => {
+    }).subscribe(({ gearSlotItems, gearSetups, styles, allSpells, specialWeapons }) => {
       this.allGearSlotItems = gearSlotItems;
       this.specialWeapons = specialWeapons;
 
-      for (const itemId in this.allGearSlotItems[this.weaponSlot]){
-        if (this.allGearSlotItems[this.weaponSlot][itemId].name.match("dart$")) {
+      for (const itemId in this.allGearSlotItems[this.weaponSlot]) {
+        if (this.allGearSlotItems[this.weaponSlot][itemId].name.match('dart$')) {
           this.dartItems.push(this.allGearSlotItems[this.weaponSlot][itemId]);
         }
       }
@@ -106,23 +105,24 @@ export class GearSetupComponent implements OnInit {
       this.attackStyles = styles;
       this.allSpells = allSpells;
 
-      this.skills.forEach(skill => {
+      this.skills.forEach((skill) => {
         this.combatStats[skill] = 99;
       });
 
       if (this.gearToCopy) {
         this.setGearSetup(this.gearToCopy);
-      }
-      else {
-        this.selectedBoosts = [... this.globalBoostService.getGlobalBoosts()];
+      } else {
+        this.selectedBoosts = [...this.globalBoostService.getGlobalBoosts()];
       }
 
-      this.globalBoostService.boostsAdded.subscribe(boost => {
+      this.globalBoostService.boostsAdded.subscribe((boost) => {
         if (!this.selectedBoosts.includes(boost)) {
-          this.selectedBoosts.push(boost)
+          this.selectedBoosts.push(boost);
         }
       });
-      this.globalBoostService.boostsRemoved.subscribe(boost => this.selectedBoosts = this.selectedBoosts.filter(b => b !== boost));
+      this.globalBoostService.boostsRemoved.subscribe(
+        (boost) => (this.selectedBoosts = this.selectedBoosts.filter((b) => b !== boost))
+      );
     });
   }
 
@@ -160,8 +160,8 @@ export class GearSetupComponent implements OnInit {
 
   clearAllGear(): void {
     this.selectedGearSetup = null;
-    this.setupName = "";
-    
+    this.setupName = '';
+
     this.gearSlots.forEach((slot: number) => {
       this.clearGearSlot(slot);
     });
@@ -174,13 +174,12 @@ export class GearSetupComponent implements OnInit {
 
   loadRlGear(): void {
     this.selectedGearSetup = null;
-    
-    this.rlGearService.getGear()
-      .subscribe((gearSetup: Record<number, Item>) => {
-        this.setCurrentGear(gearSetup);
-        if (gearSetup[this.weaponSlot]?.name) {
-          this.setupName = gearSetup[this.weaponSlot].name;
-        }
+
+    this.rlGearService.getGear().subscribe((gearSetup: Record<number, Item>) => {
+      this.setCurrentGear(gearSetup);
+      if (gearSetup[this.weaponSlot]?.name) {
+        this.setupName = gearSetup[this.weaponSlot].name;
+      }
     });
   }
 
@@ -209,8 +208,7 @@ export class GearSetupComponent implements OnInit {
         if (triggerSlotChange) {
           this.gearSlotChange(this.currentGear[slot], slot, false);
         }
-      }
-      else {
+      } else {
         this.clearGearSlot(slot);
       }
     });
@@ -222,35 +220,35 @@ export class GearSetupComponent implements OnInit {
     }
 
     if (slot == 3) {
-      let itemId = 0
+      let itemId = 0;
       if (item?.id) {
         itemId = item.id;
         this.setupName = item.name;
-        this.isSpecialWeapon = !!(this.specialWeapons[item.name]);
+        this.isSpecialWeapon = !!this.specialWeapons[item.name];
 
         this.damageSimservice.getAttackType(itemId).subscribe((attackType: string) => {
           switch (attackType as AttackType) {
             case AttackType.MELEE:
               this.selectedSpell = null;
               this.selectedPrayers = [];
-              this.selectedPrayers.push("piety")
+              this.selectedPrayers.push('piety');
               break;
             case AttackType.RANGED:
               this.selectedSpell = null;
               this.selectedPrayers = [];
-              this.selectedPrayers.push("rigour")
+              this.selectedPrayers.push('rigour');
               break;
             case AttackType.MAGIC:
               this.selectedPrayers = [];
-              this.selectedPrayers.push("augury")
+              this.selectedPrayers.push('augury');
               break;
-          
+
             default:
               break;
           }
         });
       }
-      
+
       this.updateAttackStyle(itemId);
     }
   }
@@ -258,10 +256,9 @@ export class GearSetupComponent implements OnInit {
   updateAttackStyle(itemId: number): void {
     this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
       this.attackStyles = styles;
-      if (this.attackStyles.includes(AUTOCAST_STLYE)){
+      if (this.attackStyles.includes(AUTOCAST_STLYE)) {
         this.selectedAttackStyle = AUTOCAST_STLYE;
-      }
-      else {
+      } else {
         this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
       }
     });
@@ -272,7 +269,7 @@ export class GearSetupComponent implements OnInit {
   }
 
   removePrayer(prayer: string): void {
-    this.selectedPrayers = this.selectedPrayers.filter(p => p !== prayer);
+    this.selectedPrayers = this.selectedPrayers.filter((p) => p !== prayer);
   }
 
   removeGearSetup(): void {
@@ -284,17 +281,17 @@ export class GearSetupComponent implements OnInit {
   }
 
   removeBoost(boost: string): void {
-    this.selectedBoosts = this.selectedBoosts.filter(b => b !== boost);
+    this.selectedBoosts = this.selectedBoosts.filter((b) => b !== boost);
   }
 
   setGearSetup(gearSetupComponent: GearSetupComponent): void {
     this.setupName = gearSetupComponent.setupName;
     this.selectedGearSetup = gearSetupComponent.selectedGearSetup;
 
-    this.attackStyles = [... gearSetupComponent.attackStyles];
+    this.attackStyles = [...gearSetupComponent.attackStyles];
     this.selectedAttackStyle = gearSetupComponent.selectedAttackStyle;
 
-    this.allSpells = [... gearSetupComponent.allSpells];
+    this.allSpells = [...gearSetupComponent.allSpells];
     this.selectedSpell = gearSetupComponent.selectedSpell;
 
     this.setCurrentGear(gearSetupComponent.currentGear, false);
@@ -313,10 +310,10 @@ export class GearSetupComponent implements OnInit {
 
     this.isKandarinDiary = gearSetupComponent.isKandarinDiary;
 
-    this.selectedPrayers = [... gearSetupComponent.selectedPrayers];
-    this.combatStats = {... gearSetupComponent.combatStats};
-    this.selectedBoosts = [... gearSetupComponent.selectedBoosts];
-    this.conditionComponent.conditions = gearSetupComponent.conditions.map(condition => Object.assign({}, condition));
+    this.selectedPrayers = [...gearSetupComponent.selectedPrayers];
+    this.combatStats = { ...gearSetupComponent.combatStats };
+    this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
+    this.conditionComponent.conditions = gearSetupComponent.conditions.map((condition) => Object.assign({}, condition));
   }
 
   updateConditions(conditions: Condition[]): void {
@@ -333,18 +330,20 @@ export class GearSetupComponent implements OnInit {
     }
 
     const name = itemName.toLowerCase();
-    return name.includes("slayer helmet") || name.includes("black mask");
+    return name.includes('slayer helmet') || name.includes('black mask');
   }
 
   isWildernessWeapon(itemName: string): boolean {
-    return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace"
+    return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace";
   }
 
   isDharokSet(): boolean {
-    return this.currentGear[0]?.id == 4716 &&
-    this.currentGear[3]?.id == 4718 && 
-    this.currentGear[4]?.id == 4720 && 
-    this.currentGear[7]?.id == 4722;
+    return (
+      this.currentGear[0]?.id == 4716 &&
+      this.currentGear[3]?.id == 4718 &&
+      this.currentGear[4]?.id == 4720 &&
+      this.currentGear[7]?.id == 4722
+    );
   }
 
   isSpecialBolt(): boolean {
@@ -352,8 +351,8 @@ export class GearSetupComponent implements OnInit {
 
     for (let bolt of specBolts) {
       if (this.currentGear[13]?.id == bolt) {
-        return true
-      };
+        return true;
+      }
     }
     return false;
   }
@@ -367,8 +366,7 @@ export class GearSetupComponent implements OnInit {
   selectedSpellChange(): void {
     if (this.attackStyles.includes(AUTOCAST_STLYE)) {
       this.selectedAttackStyle = AUTOCAST_STLYE;
-    }
-    else {
+    } else {
       this.selectedAttackStyle = null;
     }
   }

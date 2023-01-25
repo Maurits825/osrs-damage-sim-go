@@ -6,7 +6,6 @@ import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 
 @Injectable()
 export class RlGearService {
-
   constructor(private http: HttpClient) {}
 
   getGear(): Observable<Record<number, Item>> {

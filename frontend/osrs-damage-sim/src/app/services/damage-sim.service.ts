@@ -10,7 +10,6 @@ import { SpecialAttack } from '../model/special-attack.model';
 
 @Injectable()
 export class DamageSimService {
-
   constructor(private http: HttpClient) {}
 
   getStatus(): Observable<string> {
@@ -27,10 +26,7 @@ export class DamageSimService {
   }
 
   getAllSpells(): Observable<string[]> {
-    return this.http.get<Object>(DAMAGE_SIM_SERVER_URL + '/all-spells')
-    .pipe(
-      map((obj) => Object.keys(obj))
-    );
+    return this.http.get<Object>(DAMAGE_SIM_SERVER_URL + '/all-spells').pipe(map((obj) => Object.keys(obj)));
   }
 
   getAllNpcs(): Observable<Npc[]> {
@@ -42,7 +38,7 @@ export class DamageSimService {
   }
 
   getAttackType(itemId: number): Observable<string> {
-    return this.http.get(DAMAGE_SIM_SERVER_URL + '/attack-type/' + itemId, {responseType: 'text'});
+    return this.http.get(DAMAGE_SIM_SERVER_URL + '/attack-type/' + itemId, { responseType: 'text' });
   }
 
   getSpecialWeapons(): Observable<SpecialAttack> {

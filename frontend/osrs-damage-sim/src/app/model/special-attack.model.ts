@@ -1,3 +1,3 @@
 export interface SpecialAttack {
-    [name: string]: number;
+  [name: string]: number;
 }

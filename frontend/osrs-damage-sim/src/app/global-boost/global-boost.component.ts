@@ -5,16 +5,16 @@ import { GlobalBoostService } from '../services/global-boost.service';
 @Component({
   selector: 'app-global-boost',
   templateUrl: './global-boost.component.html',
-  styleUrls: ['./global-boost.component.css']
+  styleUrls: ['./global-boost.component.css'],
 })
 export class GlobalBoostComponent implements OnInit {
   boosts: string[] = POTIONS;
   selectedBoosts: string[] = [];
 
-  constructor(private globalBoostService: GlobalBoostService) { }
+  constructor(private globalBoostService: GlobalBoostService) {}
 
   ngOnInit(): void {
-    this.globalBoostService.boostsChanged.subscribe(boosts => this.selectedBoosts = [...boosts]);
+    this.globalBoostService.boostsChanged.subscribe((boosts) => (this.selectedBoosts = [...boosts]));
   }
 
   addBoost(boost: string): void {

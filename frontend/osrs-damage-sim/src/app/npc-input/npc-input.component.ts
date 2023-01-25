@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, debounceTime } from 'rxjs/operators'
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 import { Npc } from '../model/npc.model';
 import { DamageSimService } from '../services/damage-sim.service';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from './npc.const';
@@ -8,7 +8,7 @@ import { TOA_NPCS, TOA_PATH_LVL_NPCS } from './npc.const';
 @Component({
   selector: 'app-npc-input',
   templateUrl: './npc-input.component.html',
-  styleUrls: ['./npc-input.component.css']
+  styleUrls: ['./npc-input.component.css'],
 })
 export class NpcInputComponent implements OnInit {
   allNpcs: Npc[];
@@ -25,7 +25,7 @@ export class NpcInputComponent implements OnInit {
   showPathLevel = false;
   showRaidLevel = false;
 
-  constructor(private damageSimservice: DamageSimService) { }
+  constructor(private damageSimservice: DamageSimService) {}
 
   ngOnInit(): void {
     this.damageSimservice.getAllNpcs().subscribe((allNpcs: Npc[]) => {
@@ -44,12 +44,10 @@ export class NpcInputComponent implements OnInit {
     if (TOA_PATH_LVL_NPCS.includes(npcName)) {
       this.showPathLevel = true;
       this.showRaidLevel = true;
-    }
-    else if (TOA_NPCS.includes(npcName)) {
+    } else if (TOA_NPCS.includes(npcName)) {
       this.showRaidLevel = true;
       this.pathLeveL = 0;
-    }
-    else {
+    } else {
       this.raidLevel = 0;
       this.pathLeveL = 0;
     }
@@ -67,16 +65,13 @@ export class NpcInputComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
       this.npcBuffer = this.npcBuffer.concat(more);
-    }, 1)
+    }, 1);
   }
 
   onSearch(): void {
-    this.input$.pipe(
-      distinctUntilChanged(),
-    )
-      .subscribe(searchTerm => {
-        this.npcBuffer = this.allNpcs.filter((npc: Npc) => this.npcFilter(npc, searchTerm)).slice(0, this.bufferSize);
-      })
+    this.input$.pipe(distinctUntilChanged()).subscribe((searchTerm) => {
+      this.npcBuffer = this.allNpcs.filter((npc: Npc) => this.npcFilter(npc, searchTerm)).slice(0, this.bufferSize);
+    });
   }
 
   npcFilter(npc: Npc, searchTerm: string): boolean {

@@ -8,9 +8,8 @@ describe('NpcInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NpcInputComponent ]
-    })
-    .compileComponents();
+      declarations: [NpcInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NpcInputComponent);
     component = fixture.componentInstance;

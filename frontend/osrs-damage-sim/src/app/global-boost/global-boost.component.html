@@ -1,17 +1,17 @@
 <div class="row mb-3 align-items-center">
-    <div class="col-2">
-        <label>Global Boosts</label>
-    </div>
-    <div class="col">
-        <div class="row justify-content-between">
-            <div class="col-auto" *ngFor="let boost of boosts">
-                <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
-                    <img src="assets/img/boosts/{{boost}}.png" (click)="addBoost(boost)">
-                </div>
-                <ng-template #selectedBoost>
-                    <img src="assets/img/boosts/selected_{{boost}}.png" (click)="removeBoost(boost)">
-                </ng-template>
-            </div>
+  <div class="col-2">
+    <label>Global Boosts</label>
+  </div>
+  <div class="col">
+    <div class="row justify-content-between">
+      <div class="col-auto" *ngFor="let boost of boosts">
+        <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
+          <img src="assets/img/boosts/{{ boost }}.png" (click)="addBoost(boost)" />
         </div>
+        <ng-template #selectedBoost>
+          <img src="assets/img/boosts/selected_{{ boost }}.png" (click)="removeBoost(boost)" />
+        </ng-template>
+      </div>
     </div>
+  </div>
 </div>

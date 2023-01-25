@@ -1,39 +1,39 @@
-import { Condition } from "./condition.model";
+import { Condition } from './condition.model';
 
 export interface InputSetup {
-    iterations: number,
-    npcId: number,
-    gearInputSetups: GearInputSetup[][],
+  iterations: number;
+  npcId: number;
+  gearInputSetups: GearInputSetup[][];
 
-    raidLevel: number,
-    pathLevel: number,
-    teamSize: number,
+  raidLevel: number;
+  pathLevel: number;
+  teamSize: number;
 }
 
 export interface GearInputSetup {
-    name: string,
-    gear: number[],
-    weapon: number,
-    blowpipeDarts: number,
+  name: string;
+  gear: number[];
+  weapon: number;
+  blowpipeDarts: number;
 
-    attackStyle: string,
-    spell: string,
+  attackStyle: string;
+  spell: string;
 
-    isSpecial: boolean,
-    prayers: string[],
-    combatStats: Record<string, number>,
-    boosts: string[],
+  isSpecial: boolean;
+  prayers: string[];
+  combatStats: Record<string, number>;
+  boosts: string[];
 
-    isFill: boolean,
-    conditions: Condition[],
+  isFill: boolean;
+  conditions: Condition[];
 
-    isOnSlayerTask: boolean,
-    isInWilderness: boolean,
+  isOnSlayerTask: boolean;
+  isInWilderness: boolean;
 
-    maxHp: number,
-    currentHp: number,
+  maxHp: number;
+  currentHp: number;
 
-    miningLvl: number,
+  miningLvl: number;
 
-    isKandarinDiary: boolean,
+  isKandarinDiary: boolean;
 }

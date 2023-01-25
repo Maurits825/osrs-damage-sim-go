@@ -6,7 +6,6 @@ import { Item } from '../model/item.model';
 
 @Injectable()
 export class GearSetupService {
-
   constructor(private http: HttpClient) {}
 
   getGearSetups(): Observable<Record<string, Record<number, Item>>> {
