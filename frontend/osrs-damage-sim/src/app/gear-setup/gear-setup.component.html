@@ -45,7 +45,7 @@
         <div *ngIf="currentGear[slot]?.id; else placeholder">
           <img src="{{ currentGear[slot].name | wikiItemIcon | async }}" />
         </div>
-        <ng-template #placeholder> <img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
+        <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
       </div>
       <div class="col">
         <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">

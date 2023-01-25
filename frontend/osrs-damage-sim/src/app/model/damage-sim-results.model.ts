@@ -1,6 +1,6 @@
 export interface DamageSimResults {
   ttk_stats: SimStats[];
-  total_dmg_stats: SimStats[][];
+  total_damage_stats: SimStats[][];
   attack_count_stats: SimStats[][];
   sim_dps_stats: SimStats[][];
   theoretical_dps: number[][];

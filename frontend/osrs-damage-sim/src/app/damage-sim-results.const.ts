@@ -23,7 +23,7 @@ export const damageSimResults: DamageSimResults = {
       label: 'Max Tbow 2',
     },
   ],
-  total_dmg_stats: [
+  total_damage_stats: [
     [
       {
         average: '50',

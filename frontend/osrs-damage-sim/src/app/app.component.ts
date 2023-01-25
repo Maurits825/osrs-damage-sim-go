@@ -24,7 +24,7 @@ export class AppComponent {
 
   loading = false;
 
-  damageSimResults: DamageSimResults = damageSimResults;
+  damageSimResults: DamageSimResults;
 
   constructor(private damageSimservice: DamageSimService) {}
 

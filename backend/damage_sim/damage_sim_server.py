@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from flask import Flask, request, send_file, abort
+from flask import Flask, request, send_file, abort, jsonify
 from flask_cors import CORS
 
 from damage_sim.damage_sim_runner import DamageSimRunner
@@ -96,17 +96,9 @@ def run_damage_sim():
     input_setup = GearSetupInput.get_input_setup(json_request)
     global RESULT_FIGURE
 
-    damage_sim_results = damage_sim_runner.run(json_request["iterations"], input_setup)
-    RESULT_FIGURE = damage_sim_results.figure
+    damage_sim_results, RESULT_FIGURE = damage_sim_runner.run(json_request["iterations"], input_setup)
 
-    return {
-        "ttk_stats": damage_sim_results.ttk_stats_list,
-        "total_dmg_stats": damage_sim_results.total_damage_stats_list,
-        "attack_count_stats": damage_sim_results.attack_count_stats_list,
-        "sim_dps_stats": damage_sim_results.sim_dps_stats_list,
-        "theoretical_dps": damage_sim_results.theoretical_dps_list,
-        "cumulative_chances": damage_sim_results.cumulative_chances_list,
-    }
+    return jsonify(damage_sim_results)
 
 
 @app.route("/damage-sim-graph", methods=["GET"])

@@ -23,12 +23,11 @@ class TotalDamageSimData:
 
 @dataclass()
 class DamageSimResults:
-    ttk_stats_list: list[TimeSimStats]
-    total_damage_stats_list: list[list[SimStats]]
-    attack_count_stats_list: list[list[SimStats]]
-    sim_dps_stats_list: list[list[SimStats]]
-    theoretical_dps_list: list[list[float]]
-    cumulative_chances_list: list[list[float]]
+    ttk_stats: list[TimeSimStats]
+    total_damage_stats: list[list[SimStats]]
+    attack_count_stats: list[list[SimStats]]
+    sim_dps_stats: list[list[SimStats]]
+    theoretical_dps: list[list[float]]
+    cumulative_chances: list[list[float]]
     max_hit: list[list[int]]
     accuracy: list[list[float]]
-    figure: Figure | None
