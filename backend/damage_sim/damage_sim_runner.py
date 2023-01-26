@@ -3,6 +3,7 @@ import math
 from matplotlib.figure import Figure
 
 from damage_sim.damage_sim import DamageSim
+from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
 from model.damage_sim_results import DamageSimResults, TotalDamageSimData
 from model.input_setup import InputSetup
@@ -11,10 +12,10 @@ from weapon import Weapon
 
 class DamageSimRunner:
     def __init__(self, show_plots=False):
-        self.damage_sim_stats = DamageSimStats(show_plots)
+        self.damage_sim_graph = DamageSimGraph(show_plots)
 
     def run(self, iterations, input_setup: InputSetup) -> (DamageSimResults, Figure):
-        self.damage_sim_stats.reset_plots()
+        self.damage_sim_graph.reset_plots()
 
         # TODO refactor print stuff to just return text, then decide to print or just return
         max_ticks = 0
@@ -61,9 +62,9 @@ class DamageSimRunner:
 
             max_ticks = max(max_ticks, ttk_stats.maximum)
             min_ticks = min(min_ticks, ttk_stats.minimum)
-            self.damage_sim_stats.graph_n_cumulative_tick_count(sim_data.ticks_to_kill, weapon_setups)
+            self.damage_sim_graph.graph_n_cumulative_tick_count(sim_data.ticks_to_kill, weapon_setups)
 
-        figure = self.damage_sim_stats.show_cumulative_graph(
+        figure = self.damage_sim_graph.get_cumulative_graph_figure(
             min_ticks, max_ticks, input_setup, iterations, input_setup.npc.combat_stats.hitpoints
         )
 
