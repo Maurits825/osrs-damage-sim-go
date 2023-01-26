@@ -1,6 +1,7 @@
 import math
 import random
 
+from constants import TICK_LENGTH
 from weapon import Weapon
 
 
@@ -52,44 +53,14 @@ class DragonClaws(Weapon):
     def get_dps(self):
         if self.gear_setup.is_special_attack:
             self.accuracy = self.get_accuracy()
+            max_hit = self.get_max_hit() - 1
+            attack_speed = self.gear_setup.gear_stats.attack_speed * TICK_LENGTH
+            dps = (((1 - self.accuracy)**0 * self.accuracy * 1.5 * max_hit / attack_speed) +
+                   ((1 - self.accuracy)**1 * self.accuracy * 1.25 * max_hit / attack_speed) +
+                   ((1 - self.accuracy)**2 * self.accuracy * 1 * max_hit / attack_speed) +
+                   ((1 - self.accuracy)**3 * self.accuracy * 0.75 * max_hit / attack_speed) +
+                   ((1 - self.accuracy)**4 * 1 / attack_speed))
 
-            avg_total_hit = 0
-
-            accuracy = self.accuracy
-            avg_hit1 = (math.floor(self.max_hit / 2) + (self.max_hit - 1)) / 2
-            avg_hit2 = avg_hit1 / 2
-            avg_hit3 = avg_hit2 / 2
-            avg_hit4 = avg_hit3 + 0.5
-            avg_total_hit += accuracy * (avg_hit1 + avg_hit2 + avg_hit3 + avg_hit4)
-
-            accuracy = (1 - self.accuracy) * self.accuracy
-            avg_hit1 = 0
-            avg_hit2 = (math.floor(self.max_hit * (3/8)) + math.floor(self.max_hit * (7/8))) / 2
-            avg_hit3 = avg_hit2 / 2
-            avg_hit4 = avg_hit3 + 0.5
-            avg_total_hit += accuracy * (avg_hit1 + avg_hit2 + avg_hit3 + avg_hit4)
-
-            accuracy = (1 - self.accuracy)**2 * self.accuracy
-            avg_hit1 = 0
-            avg_hit2 = 0
-            avg_hit3 = (math.floor(self.max_hit * (1/4)) + math.floor(self.max_hit * (3/4))) / 2
-            avg_hit4 = avg_hit3 + 0.5
-            avg_total_hit += accuracy * (avg_hit1 + avg_hit2 + avg_hit3 + avg_hit4)
-
-            accuracy = (1 - self.accuracy)**3 * self.accuracy
-            avg_hit1 = 0
-            avg_hit2 = 0
-            avg_hit3 = 0
-            avg_hit4 = (math.floor(self.max_hit * 0.25) + math.floor(self.max_hit * 1.25)) / 2
-            avg_total_hit += accuracy * (avg_hit1 + avg_hit2 + avg_hit3 + avg_hit4)
-
-            accuracy = (1 - self.accuracy)**4
-            avg_hit1 = 0
-            avg_hit2 = 0
-            avg_hit3 = 0.5
-            avg_hit4 = avg_hit3
-            avg_total_hit += accuracy * (avg_hit1 + avg_hit2 + avg_hit3 + avg_hit4)
-
-            return avg_total_hit / (self.gear_setup.gear_stats.attack_speed * 0.6)
+            return dps
         else:
             return super().get_dps()

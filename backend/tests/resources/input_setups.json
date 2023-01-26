@@ -315,7 +315,7 @@
     "pathLevel": 0
   },
   "Ba-ba 300 max d claws spec": {
-    "expectedDps": 17.63303251,
+    "expectedDps": 17.45856621,
     "iterations": 10000,
     "teamSize": 1,
     "npcId": "11778",
