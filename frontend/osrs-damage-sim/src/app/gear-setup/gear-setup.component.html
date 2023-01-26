@@ -59,7 +59,7 @@
           <ng-option *ngFor="let dart of dartItems" [value]="dart">{{ dart.name }}</ng-option>
         </ng-select>
       </div>
-      <div class="col-auto" *ngIf="isSlayerHelm(currentGear[slot]?.name)">
+      <div class="col-auto" *ngIf="slot == 0 && isSlayerHelm">
         <div class="row align-items-center">
           <div class="col-auto text-end"><label for="isOnSlayerTask">Slayer task</label></div>
           <div class="col-auto">
@@ -67,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="col-auto" *ngIf="isWildernessWeapon(currentGear[slot]?.name)">
+      <div class="col-auto" *ngIf="slot == 3 && isWildernessWeapon">
         <div class="row align-items-center">
           <div class="col-auto text-end"><label for="isInWilderness">Wilderness</label></div>
           <div class="col-auto">
@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6" *ngIf="slot == 3 && isDharokSet()">
+      <div class="col-6" *ngIf="slot == 3 && isDharokSet">
         <div class="row align-items-center justify-content-end">
           <div class="col-auto"><img src="assets/img/skills/hitpoints.png" /></div>
           <div class="col-4">
@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="col-auto" *ngIf="slot == 13 && isSpecialBolt()">
+      <div class="col-auto" *ngIf="slot == 13 && isSpecialBolt">
         <div class="row align-items-center justify-content-end">
           <div class="col-auto text-end"><label for="isKandarinDiary">Kandarin diary</label></div>
           <div class="col-auto">

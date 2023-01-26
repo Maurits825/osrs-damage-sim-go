@@ -74,6 +74,11 @@ export class GearSetupComponent implements OnInit {
   miningLvl: number = 99;
   isKandarinDiary: boolean = true;
 
+  isSlayerHelm: boolean;
+  isWildernessWeapon: boolean;
+  isDharokSet: boolean;
+  isSpecialBolt: boolean;
+
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   constructor(
@@ -251,6 +256,8 @@ export class GearSetupComponent implements OnInit {
 
       this.updateAttackStyle(itemId);
     }
+
+    this.updateSpecialGear(item, slot);
   }
 
   updateAttackStyle(itemId: number): void {
@@ -310,6 +317,11 @@ export class GearSetupComponent implements OnInit {
 
     this.isKandarinDiary = gearSetupComponent.isKandarinDiary;
 
+    this.isSlayerHelm = gearSetupComponent.isSlayerHelm;
+    this.isWildernessWeapon = gearSetupComponent.isWildernessWeapon;
+    this.isDharokSet = gearSetupComponent.isDharokSet;
+    this.isSpecialBolt = gearSetupComponent.isSpecialBolt;
+
     this.selectedPrayers = [...gearSetupComponent.selectedPrayers];
     this.combatStats = { ...gearSetupComponent.combatStats };
     this.selectedBoosts = [...gearSetupComponent.selectedBoosts];
@@ -324,7 +336,19 @@ export class GearSetupComponent implements OnInit {
     this.gearSetUpTabRef.addNewGearSetup(this);
   }
 
-  isSlayerHelm(itemName: string): boolean {
+  updateSpecialGear(item: Item, slot: number): void {
+    if (slot == 0) {
+      this.isSlayerHelm = this.getIsSlayerHelm(item.name);
+    } else if (slot == 3) {
+      this.isWildernessWeapon = this.getIsWildernessWeapon(item.name);
+    } else if (slot == 13) {
+      this.isSpecialBolt = this.getIsSpecialBolt();
+    }
+
+    this.isDharokSet = this.getIsDharokSet();
+  }
+
+  getIsSlayerHelm(itemName: string): boolean {
     if (!itemName) {
       return false;
     }
@@ -333,11 +357,11 @@ export class GearSetupComponent implements OnInit {
     return name.includes('slayer helmet') || name.includes('black mask');
   }
 
-  isWildernessWeapon(itemName: string): boolean {
+  getIsWildernessWeapon(itemName: string): boolean {
     return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace";
   }
 
-  isDharokSet(): boolean {
+  getIsDharokSet(): boolean {
     return (
       this.currentGear[0]?.id == 4716 &&
       this.currentGear[3]?.id == 4718 &&
@@ -346,7 +370,7 @@ export class GearSetupComponent implements OnInit {
     );
   }
 
-  isSpecialBolt(): boolean {
+  getIsSpecialBolt(): boolean {
     const specBolts = [9242, 21944, 9243, 21946];
 
     for (let bolt of specBolts) {
