@@ -101,8 +101,23 @@
 
   <div class="row mb-5">
     <div class="col-auto ps-0">
-      <a href="http://127.0.0.1:5000/damage-sim-graph" target="_blank" class="btn btn-secondary">
+      <a
+        href="http://127.0.0.1:5000/graphs/{{ damageSimResults.graphs.time_to_kill_cumulative }}"
+        target="_blank"
+        class="btn btn-secondary"
+      >
         Open cummulative chance graph <i class="bi bi-arrow-up-right-square"></i>
+      </a>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-auto ps-0">
+      <a
+        href="http://127.0.0.1:5000/graphs/{{ damageSimResults.graphs.time_to_kill_probability }}"
+        target="_blank"
+        class="btn btn-secondary"
+      >
+        Open prob chance graph <i class="bi bi-arrow-up-right-square"></i>
       </a>
     </div>
   </div>

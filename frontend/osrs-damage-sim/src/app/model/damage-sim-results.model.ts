@@ -1,3 +1,5 @@
+import { Graphs } from './graphs.model';
+
 export interface DamageSimResults {
   ttk_stats: SimStats[];
   total_damage_stats: SimStats[][];
@@ -7,6 +9,7 @@ export interface DamageSimResults {
   cumulative_chances: number[][];
   max_hit: number[][];
   accuracy: number[][];
+  graphs: Graphs;
 }
 
 export interface SimStats {

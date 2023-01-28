@@ -1,8 +1,7 @@
-from io import BytesIO
-
-from flask import Flask, request, send_file, abort, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
+from damage_sim.damage_sim_graph import GRAPH_DIRECTORY
 from damage_sim.damage_sim_runner import DamageSimRunner
 from gear_json import GearJson
 from gear_setup_input import GearSetupInput
@@ -16,7 +15,6 @@ app = Flask(__name__)
 CORS(app)
 
 damage_sim_runner = DamageSimRunner()
-RESULT_FIGURE = None
 
 
 @app.route("/status", methods=["GET"])
@@ -94,23 +92,14 @@ def run_damage_sim():
     json_request = request.get_json()
 
     input_setup = GearSetupInput.get_input_setup(json_request)
-    global RESULT_FIGURE
-
-    damage_sim_results, RESULT_FIGURE = damage_sim_runner.run(json_request["iterations"], input_setup)
+    damage_sim_results = damage_sim_runner.run(json_request["iterations"], input_setup)
 
     return jsonify(damage_sim_results)
 
 
-@app.route("/damage-sim-graph", methods=["GET"])
-def get_damage_sim_graph():
-    global RESULT_FIGURE
-    if RESULT_FIGURE:
-        graph_image = BytesIO()
-        RESULT_FIGURE.savefig(graph_image, dpi=100)
-        graph_image.seek(0)
-        return send_file(graph_image, mimetype='image/png')
-    else:
-        abort(404)
+@app.route("/graphs/<graph_name>", methods=["GET"])
+def get_damage_sim_graph(graph_name):
+    return send_from_directory("../" + GRAPH_DIRECTORY, graph_name)
 
 
 @app.route("/attack-type/<item_id_str>", methods=["GET"])

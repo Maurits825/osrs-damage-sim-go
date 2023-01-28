@@ -1,6 +1,10 @@
 import { DamageSimResults } from './model/damage-sim-results.model';
 
 export const damageSimResults: DamageSimResults = {
+  graphs: {
+    time_to_kill_cumulative: '',
+    time_to_kill_probability: '',
+  },
   ttk_stats: [
     {
       average: '1:43.6',

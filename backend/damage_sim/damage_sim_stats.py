@@ -3,11 +3,11 @@ import numpy as np
 
 from constants import TICK_LENGTH
 from model.boost import BoostType
+from model.damage_sim_results import TotalDamageSimData, DamageSimResults
+from model.input_setup import InputSetup
+from model.npc.npc_stats import NpcStats
 from model.sim_stats import SimStats, TimeSimStats
 from weapon import Weapon
-
-global matplotlib
-global plt
 
 BOOST_NAME = {
     BoostType.SMELLING_SALTS: "Salt",
@@ -137,3 +137,61 @@ class DamageSimStats:
 
         label = label + gear.name + prayer_and_boost_text
         return label
+
+    @staticmethod
+    def get_graph_title_info(input_setup: InputSetup, iterations):
+        title = input_setup.npc.name + ", HP: " + str(input_setup.npc.combat_stats.hitpoints)
+
+        if input_setup.raid_level:
+            title += ", raid level: " + str(input_setup.raid_level)
+            if input_setup.path_level:
+                title += ", path level: " + str(input_setup.path_level)
+
+        title += ", iterations: " + str(iterations)
+
+        return title
+
+    @staticmethod
+    def populate_damage_sim_stats(damage_sim_results: DamageSimResults, sim_data: TotalDamageSimData,
+                                  weapon_setups: list[Weapon], npc: NpcStats) -> SimStats:
+        ttk_stats = DamageSimStats.get_data_stats(
+            sim_data.ticks_to_kill, DamageSimStats.get_weapon_setup_label(weapon_setups)
+        )
+        damage_sim_results.ttk_stats.append(DamageSimStats.get_ticks_stats(ttk_stats))
+
+        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, weapon_setups)
+        damage_sim_results.sim_dps_stats.append(sim_dps_stats)
+
+        total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, weapon_setups)
+        damage_sim_results.total_damage_stats.append(total_damage_stats)
+
+        attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, weapon_setups)
+        damage_sim_results.attack_count_stats.append(attack_count_stats)
+
+        damage_sim_results.cumulative_chances.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
+
+        theoretical_dps = []
+        max_hit = []
+        accuracy = []
+        for weapon in weapon_setups:
+            weapon.set_npc(npc)
+            theoretical_dps.append(weapon.get_dps())
+            max_hit.append(weapon.get_max_hit())
+            accuracy.append(weapon.get_accuracy() * 100)
+
+        damage_sim_results.theoretical_dps.append(theoretical_dps)
+        damage_sim_results.max_hit.append(max_hit)
+        damage_sim_results.accuracy.append(accuracy)
+
+        return ttk_stats
+
+    @staticmethod
+    def get_min_and_max_ticks(ttk_stats: list[SimStats]):
+        min_ticks = math.inf
+        max_ticks = 0
+
+        for ttk_stat in ttk_stats:
+            min_ticks = min(min_ticks, ttk_stat.minimum)
+            max_ticks = max(max_ticks, ttk_stat.maximum)
+
+        return min_ticks, max_ticks

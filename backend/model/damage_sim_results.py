@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
-from matplotlib.figure import Figure
-
+from model.graph import GraphType
 from model.sim_stats import TimeSimStats, SimStats
 
 
@@ -31,3 +30,4 @@ class DamageSimResults:
     cumulative_chances: list[list[float]]
     max_hit: list[list[int]]
     accuracy: list[list[float]]
+    graphs: dict[GraphType, str]
