@@ -29,7 +29,7 @@ class DamageSimRunner:
 
         min_ticks, max_ticks = DamageSimStats.get_min_and_max_ticks(ttk_tick_stats)
 
-        damage_sim_results.graphs = self.damage_sim_graph.create_and_save_graphs(
+        damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(
             min_ticks, max_ticks, input_setup, iterations, ttk_list
         )
 

@@ -16,6 +16,7 @@ import { GlobalBoostComponent } from './global-boost/global-boost.component';
 import { GlobalBoostService } from './services/global-boost.service';
 import { ConditionComponent } from './condition/condition.component';
 import { SimResultsComponent } from './sim-results/sim-results.component';
+import { Base64ImagePipe } from './pipes/base64-image.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SimResultsComponent } from './sim-results/sim-results.component';
     GlobalBoostComponent,
     ConditionComponent,
     SimResultsComponent,
+    Base64ImagePipe,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [DamageSimService, RlGearService, GearSetupService, GlobalBoostService],

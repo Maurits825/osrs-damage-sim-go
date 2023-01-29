@@ -1,5 +1,6 @@
+import base64
+import io
 import math
-import uuid
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -12,8 +13,6 @@ from model.input_setup import InputSetup
 
 GRAPH_WIDTH = 19.20
 GRAPH_HEIGHT = 10.80
-
-GRAPH_DIRECTORY = "graphs/"
 
 
 class DamageSimGraph:
@@ -66,8 +65,6 @@ class DamageSimGraph:
 
         DamageSimGraph.format_figure(graph, title)
 
-        return graph.figure
-
     def generate_cumulative_figure(self, min_ticks, max_ticks, input_setup: InputSetup, iterations,
                                    ttk_list: list[list[int]]):
         graph = self.graphs[GraphType.TTK_CUMULATIVE]
@@ -91,24 +88,26 @@ class DamageSimGraph:
 
         DamageSimGraph.format_figure(graph, title)
 
-    def create_and_save_graphs(self, min_ticks, max_ticks, input_setup: InputSetup, iterations,
-                               ttk_list: list[list[int]]) -> dict[GraphType, str]:
+    def get_all_graphs(self, min_ticks, max_ticks, input_setup: InputSetup, iterations,
+                       ttk_list: list[list[int]]) -> dict[GraphType, str]:
         self.reset_plots()
         self.generate_ttk_probability_figure(min_ticks, max_ticks, input_setup, iterations, ttk_list)
         self.generate_cumulative_figure(min_ticks, max_ticks, input_setup, iterations, ttk_list)
 
-        file_names = self.save_all_graphs()
-        return file_names
+        graphs = self.encode_graphs()
+        return graphs
 
-    def save_all_graphs(self) -> dict[GraphType, str]:
-        file_names = {}
+    def encode_graphs(self) -> dict[GraphType, str]:
+        encoded_graphs = {}
         for graph_type in self.graphs.keys():
-            file_name = graph_type.value + "_" + str(uuid.uuid4()) + ".png"
-            file_names[graph_type] = file_name
+            img = io.BytesIO()
+            self.graphs[graph_type].figure.savefig(img, dpi=100)
+            img.seek(0)
 
-            self.graphs[graph_type].figure.savefig(GRAPH_DIRECTORY + file_name, dpi=100)
+            encoded_graph = base64.b64encode(img.getvalue()).decode()
+            encoded_graphs[graph_type] = encoded_graph
 
-        return file_names
+        return encoded_graphs
 
     @staticmethod
     def format_figure(graph: Graph, title):

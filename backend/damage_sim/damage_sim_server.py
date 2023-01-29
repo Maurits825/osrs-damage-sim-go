@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-from damage_sim.damage_sim_graph import GRAPH_DIRECTORY
 from damage_sim.damage_sim_runner import DamageSimRunner
 from gear_json import GearJson
 from gear_setup_input import GearSetupInput
@@ -95,11 +94,6 @@ def run_damage_sim():
     damage_sim_results = damage_sim_runner.run(json_request["iterations"], input_setup)
 
     return jsonify(damage_sim_results)
-
-
-@app.route("/graphs/<graph_name>", methods=["GET"])
-def get_damage_sim_graph(graph_name):
-    return send_from_directory("../" + GRAPH_DIRECTORY, graph_name)
 
 
 @app.route("/attack-type/<item_id_str>", methods=["GET"])

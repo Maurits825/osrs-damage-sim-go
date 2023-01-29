@@ -99,26 +99,20 @@
     </table>
   </div>
 
-  <div class="row mb-5">
-    <div class="col-auto ps-0">
-      <a
-        href="http://127.0.0.1:5000/graphs/{{ damageSimResults.graphs.time_to_kill_cumulative }}"
-        target="_blank"
-        class="btn btn-secondary"
-      >
-        Open cummulative chance graph <i class="bi bi-arrow-up-right-square"></i>
-      </a>
-    </div>
-  </div>
-  <div class="row mb-5">
-    <div class="col-auto ps-0">
-      <a
-        href="http://127.0.0.1:5000/graphs/{{ damageSimResults.graphs.time_to_kill_probability }}"
-        target="_blank"
-        class="btn btn-secondary"
-      >
-        Open prob chance graph <i class="bi bi-arrow-up-right-square"></i>
-      </a>
+  <div class="row mb-5 px-0 justify-content-around">
+    <h2 class="col-auto me-auto ps-0">Graphs</h2>
+    <!-- todo fix links -->
+    <div class="row px-0">
+      <div class="col-6 ps-0">
+        <a [href]="damageSimResults.graphs.time_to_kill_cumulative | base64Image">
+          <img class="img-fluid" [src]="damageSimResults.graphs.time_to_kill_cumulative | base64Image" />
+        </a>
+      </div>
+      <div class="col-6 pe-0">
+        <a [href]="damageSimResults.graphs.time_to_kill_probability | base64Image">
+          <img class="img-fluid" [src]="damageSimResults.graphs.time_to_kill_probability | base64Image" />
+        </a>
+      </div>
     </div>
   </div>
 </div>
