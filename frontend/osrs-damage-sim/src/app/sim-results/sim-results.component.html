@@ -91,9 +91,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let chance of targetTimeChance; let setupIndex = index">
-          <th scope="row">{{ damageSimResults.ttk_stats[setupIndex].label }}</th>
-          <td>{{ chance * 100 | number : "1.2-2" }}%</td>
+        <tr *ngFor="let simStats of damageSimResults.ttk_stats; let setupIndex = index">
+          <th scope="row">{{ simStats.label }}</th>
+          <td *ngIf="targetTimeChance; else timeEmpty">{{ targetTimeChance[setupIndex] * 100 | number : "1.2-2" }}%</td>
+          <ng-template #timeEmpty><td>-</td></ng-template>
         </tr>
       </tbody>
     </table>

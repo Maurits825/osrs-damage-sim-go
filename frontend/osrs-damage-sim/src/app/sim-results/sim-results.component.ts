@@ -17,6 +17,10 @@ export class SimResultsComponent implements OnInit {
   ngOnInit(): void {}
 
   targetTimeChanged(targetTime: string): void {
+    if (!targetTime) {
+      return;
+    }
+
     const matches = targetTime.match(/^([0-9]*):([0-9]*)\.([0-9]*)$/);
 
     const targetSeconds = +matches[1] * 60 + +matches[2] + +matches[3] / 10;
