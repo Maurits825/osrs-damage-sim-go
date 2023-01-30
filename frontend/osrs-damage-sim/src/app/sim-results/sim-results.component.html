@@ -101,16 +101,15 @@
 
   <div class="row mb-5 px-0 justify-content-around">
     <h2 class="col-auto me-auto ps-0">Graphs</h2>
-    <!-- todo fix links -->
     <div class="row px-0">
-      <div class="col-6 ps-0">
-        <a [href]="damageSimResults.graphs.time_to_kill_cumulative | base64Image">
-          <img class="img-fluid" [src]="damageSimResults.graphs.time_to_kill_cumulative | base64Image" />
+      <div class="col-6 ps-0" *ngIf="damageSimResults.graphs.time_to_kill_cumulative | base64Image as cumulative_url">
+        <a [href]="cumulative_url" target="_blank">
+          <img class="img-fluid" [src]="cumulative_url" />
         </a>
       </div>
-      <div class="col-6 pe-0">
-        <a [href]="damageSimResults.graphs.time_to_kill_probability | base64Image">
-          <img class="img-fluid" [src]="damageSimResults.graphs.time_to_kill_probability | base64Image" />
+      <div class="col-6 pe-0" *ngIf="damageSimResults.graphs.time_to_kill_cumulative | base64Image as probability_url">
+        <a [href]="probability_url" target="_blank">
+          <img class="img-fluid" [src]="probability_url" />
         </a>
       </div>
     </div>
