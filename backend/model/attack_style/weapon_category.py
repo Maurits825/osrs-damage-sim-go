@@ -147,3 +147,6 @@ class WeaponCategory(Enum):
         AttackStyle("Lash (Slash/Controlled)", AttackType.SLASH, CombatStyle.CONTROLLED),
         AttackStyle("Deflect (Slash/Defensive)", AttackType.SLASH, CombatStyle.DEFENSIVE)
     ]
+    GUN = [
+        AttackStyle("Kick (Crush/Aggressive)", AttackType.CRUSH, CombatStyle.AGGRESSIVE),
+    ]

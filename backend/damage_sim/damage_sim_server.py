@@ -24,7 +24,7 @@ def get_status():
 
 @app.route("/gear-slot-items", methods=["GET"])
 def get_gear_slot_items():
-    return WikiData().gear_slot_items
+    return WikiData().get_gear_slot_items()
 
 
 @app.route("/rl-gear", methods=["GET"])

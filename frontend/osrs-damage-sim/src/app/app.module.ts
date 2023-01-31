@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
-import { WikiItemIconPipe } from './pipes/wiki-item-icon.pipe';
 import { DamageSimService } from './services/damage-sim.service';
 import { GearSetupService } from './services/gear-setups.service';
 import { RlGearService } from './services/rl-gear.service';
@@ -22,7 +21,6 @@ import { Base64ImagePipe } from './pipes/base64-image.pipe';
   declarations: [
     AppComponent,
     GearSetupComponent,
-    WikiItemIconPipe,
     GearSetupTabComponent,
     GearSetupTabsComponent,
     NpcInputComponent,

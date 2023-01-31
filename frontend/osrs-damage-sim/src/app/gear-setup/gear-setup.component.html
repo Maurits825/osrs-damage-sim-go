@@ -43,15 +43,15 @@
     <div class="row mb-2 align-items-center" *ngFor="let slot of gearSlots">
       <div class="col-1">
         <div *ngIf="currentGear[slot]?.id; else placeholder">
-          <img src="{{ currentGear[slot].name | wikiItemIcon | async }}" />
+          <img src="data:image/png;base64,{{ currentGear[slot].icon }}" />
         </div>
         <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
       </div>
       <div class="col">
         <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">
-          <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">{{
-            item.value.name
-          }}</ng-option>
+          <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">
+            <img src="data:image/png;base64,{{ item.value.icon }}" /> {{ item.value.name }}
+          </ng-option>
         </ng-select>
       </div>
       <div class="col-5" *ngIf="currentGear[slot]?.id == blowpipeId">

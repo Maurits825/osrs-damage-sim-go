@@ -1,8 +1,5 @@
 import json
 
-import requests
-from bs4 import BeautifulSoup
-
 from model.npc.aggressive_stats import AggressiveStats
 from model.npc.combat_stats import CombatStats
 from model.npc.defensive_stats import DefensiveStats
@@ -100,57 +97,8 @@ class WikiData:
         return 0
 
     @staticmethod
-    def update_gear_slot_items_list():
-        gear_slot_items = {}
-        seen_item_names = []
-        for item_id, item in WikiData.items_json.items():
-            if item["slot"] not in gear_slot_items:
-                gear_slot_items[item["slot"]] = {}
-
-            if any(number in item["name"] for number in ["0", "25", "50", "75", "100"]):
-                if any(barrows in item["name"].lower() for barrows in
-                       ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
-                    continue
-
-            if "(nz)" in item["name"]:
-                continue
-
-            if item["name"] not in seen_item_names:
-                gear_slot_items[item["slot"]][int(item_id)] = {
-                    "name": item["name"],
-                    "id": int(item_id)
-                }
-
-                seen_item_names.append(item["name"])
-
-        with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
-            json.dump(gear_slot_items, json_file)
-
-    @staticmethod
     def get_unique_npcs():
         return WikiData.unique_npcs["unique_npcs"]
-
-    @staticmethod
-    def update_unique_npcs_json():
-        seen_npc_name = []
-        unique_npcs = []
-        for npc_id, npc in WikiData.npcs_json.items():
-            npc_key = (npc["name"] + "_" +
-                       str(npc.get("combat", 0)) + "_" +
-                       str(npc.get("hitpoints", 0)) + "_" +
-                       str(npc.get("isTobHardMode", 0)) + "_" +
-                       str(len(npc))
-                       )
-            if npc_key not in seen_npc_name:
-                npc["id"] = npc_id
-                unique_npcs.append(npc)
-                seen_npc_name.append(npc_key)
-
-        unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
-
-        npcs = {"unique_npcs": unique_npcs}
-        with open("./wiki_data/unique_npcs.json", 'w') as json_file:
-            json.dump(npcs, json_file)
 
     @staticmethod
     def get_all_spells():
@@ -161,46 +109,5 @@ class WikiData:
         return WikiData.magic_spells["standard_spells"]
 
     @staticmethod
-    def update_special_attack_json():
-        special_attack_dict = WikiData.get_special_attack_weapons()
-        with open("./wiki_data/special_attack.json", "w") as outfile:
-            json.dump(special_attack_dict, outfile)
-
-    @staticmethod
-    def get_special_attack_weapons() -> dict:
-        url = 'https://oldschool.runescape.wiki/w/Special_attacks'
-        response = requests.get(url)
-
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        all_tables = soup.findAll('table', {'class': 'wikitable'})
-
-        weapons = {}
-        weapon_names = []
-        for table in all_tables:
-            for row in table.find_all('tr'):
-                header = row.find_all('th')
-                if len(header) == 1:
-                    a_links = header[0].find_all('a')
-                    weapon_names = set([link.attrs['title'] for link in a_links])
-                else:
-                    cells = row.find_all('td')
-                    try:
-                        energy = cells[2].text.strip()
-                        energy = energy.replace('%', '')
-                        try:
-                            energy = int(energy)
-                        except ValueError:
-                            break
-                    except IndexError:
-                        return weapons
-
-                    for name in weapon_names:
-                        weapons[name] = energy
-                    break
-
-
-if __name__ == '__main__':
-    WikiData.update_gear_slot_items_list()
-    WikiData.update_special_attack_json()
-    WikiData.update_unique_npcs_json()
+    def get_gear_slot_items():
+        return WikiData.gear_slot_items
