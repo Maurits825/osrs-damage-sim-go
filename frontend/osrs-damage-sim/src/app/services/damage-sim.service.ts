@@ -21,10 +21,6 @@ export class DamageSimService {
     return this.http.get<Record<number, Item[]>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
   }
 
-  getAttackStyles(itemId: number): Observable<string[]> {
-    return this.http.get<string[]>(DAMAGE_SIM_SERVER_URL + '/attack-style/' + itemId);
-  }
-
   getAllSpells(): Observable<string[]> {
     return this.http.get<Object>(DAMAGE_SIM_SERVER_URL + '/all-spells').pipe(map((obj) => Object.keys(obj)));
   }
@@ -35,14 +31,6 @@ export class DamageSimService {
 
   runDamageSim(inputSetup: InputSetup): Observable<DamageSimResults> {
     return this.http.post<DamageSimResults>(DAMAGE_SIM_SERVER_URL + '/run-damage-sim', inputSetup);
-  }
-
-  getAttackType(itemId: number): Observable<string> {
-    return this.http.get(DAMAGE_SIM_SERVER_URL + '/attack-type/' + itemId, { responseType: 'text' });
-  }
-
-  getSpecialWeapons(): Observable<SpecialAttack> {
-    return this.http.get<SpecialAttack>(DAMAGE_SIM_SERVER_URL + '/special-weapon');
   }
 
   getGearSetups(): Observable<Record<string, Record<number, number>>> {

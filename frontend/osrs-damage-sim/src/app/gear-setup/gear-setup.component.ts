@@ -17,8 +17,8 @@ import { RlGearService } from '../services/rl-gear.service';
   styleUrls: ['./gear-setup.component.css'],
 })
 export class GearSetupComponent implements OnInit {
-  setupCount!: number;
-  gearSetUpTabRef!: GearSetupTabComponent;
+  setupCount: number;
+  gearSetUpTabRef: GearSetupTabComponent;
 
   gearSlots: Array<any> = [0, 1, 2, 3, 4, 5, 7, 9, 10, 12, 13];
 
@@ -42,7 +42,6 @@ export class GearSetupComponent implements OnInit {
   attackCount: number = 0;
   useSpecialAttack: boolean = false;
   isSpecialWeapon: boolean = false;
-  specialWeapons: SpecialAttack;
   isFill: boolean = false;
 
   //TODO maybe refactor to enums
@@ -77,6 +76,8 @@ export class GearSetupComponent implements OnInit {
   isDharokSet: boolean;
   isSpecialBolt: boolean;
 
+  unarmedEquivalentId = 3689;
+
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   constructor(
@@ -89,22 +90,19 @@ export class GearSetupComponent implements OnInit {
     forkJoin({
       gearSlotItems: this.damageSimservice.getGearSlotItems(),
       gearSetups: this.damageSimservice.getGearSetups(),
-      styles: this.damageSimservice.getAttackStyles(0),
       allSpells: this.damageSimservice.getAllSpells(),
-      specialWeapons: this.damageSimservice.getSpecialWeapons(),
-    }).subscribe(({ gearSlotItems, gearSetups, styles, allSpells, specialWeapons }) => {
+    }).subscribe(({ gearSlotItems, gearSetups, allSpells }) => {
       this.allGearSlotItems = gearSlotItems;
-      this.specialWeapons = specialWeapons;
 
       this.allGearSlotItems[this.weaponSlot].forEach((item: Item) => {
         if (item.name.match('dart$')) {
           this.dartItems.push(item);
         }
       });
-      this.selectedDart = this.allGearSlotItems[this.weaponSlot].find((item: Item) => item.id === this.dragonDartId);
+      this.selectedDart = this.getItem(this.weaponSlot, this.dragonDartId);
 
       this.gearSetups = gearSetups;
-      this.attackStyles = styles;
+      this.attackStyles = this.getItem(this.weaponSlot, this.unarmedEquivalentId).attackStyles;
       this.allSpells = allSpells;
 
       this.skills.forEach((skill) => {
@@ -126,6 +124,10 @@ export class GearSetupComponent implements OnInit {
         (boost) => (this.selectedBoosts = this.selectedBoosts.filter((b) => b !== boost))
       );
     });
+  }
+
+  getItem(slot: number, id: number): Item {
+    return this.allGearSlotItems[slot].find((item: Item) => item.id === id);
   }
 
   getGearInputSetup(): GearInputSetup {
@@ -181,10 +183,7 @@ export class GearSetupComponent implements OnInit {
   setCurrentGearById(gearIds: Record<number, number>): void {
     this.gearSlots.forEach((slot: number) => {
       if (gearIds[slot]) {
-        this.gearSlotChange(
-          this.allGearSlotItems[slot].find((item: Item) => item.id === gearIds[slot]),
-          slot
-        );
+        this.gearSlotChange(this.getItem(slot, gearIds[slot]), slot);
       } else {
         this.gearSlotChange(null, slot);
       }
@@ -197,33 +196,35 @@ export class GearSetupComponent implements OnInit {
     this.selectedGearSetup = null;
 
     if (slot == 3) {
-      let itemId = 0;
-      if (item?.id) {
+      let itemId = this.unarmedEquivalentId;
+      this.setupName = 'Unarmed';
+      let attackType = 'melee';
+      if (item) {
         itemId = item.id;
         this.setupName = item.name;
-        this.isSpecialWeapon = !!this.specialWeapons[item.name];
+        attackType = item.attackType;
+      }
 
-        this.damageSimservice.getAttackType(itemId).subscribe((attackType: string) => {
-          switch (attackType as AttackType) {
-            case 'melee':
-              this.selectedSpell = null;
-              this.selectedPrayers = [];
-              this.selectedPrayers.push('piety');
-              break;
-            case 'ranged':
-              this.selectedSpell = null;
-              this.selectedPrayers = [];
-              this.selectedPrayers.push('rigour');
-              break;
-            case 'magic':
-              this.selectedPrayers = [];
-              this.selectedPrayers.push('augury');
-              break;
+      this.isSpecialWeapon = !!item?.specialAttackCost;
 
-            default:
-              break;
-          }
-        });
+      switch (attackType) {
+        case 'melee':
+          this.selectedSpell = null;
+          this.selectedPrayers = [];
+          this.selectedPrayers.push('piety');
+          break;
+        case 'ranged':
+          this.selectedSpell = null;
+          this.selectedPrayers = [];
+          this.selectedPrayers.push('rigour');
+          break;
+        case 'magic':
+          this.selectedPrayers = [];
+          this.selectedPrayers.push('augury');
+          break;
+
+        default:
+          break;
       }
 
       this.updateAttackStyle(itemId);
@@ -233,14 +234,12 @@ export class GearSetupComponent implements OnInit {
   }
 
   updateAttackStyle(itemId: number): void {
-    this.damageSimservice.getAttackStyles(itemId).subscribe((styles: string[]) => {
-      this.attackStyles = styles;
-      if (this.attackStyles.includes(AUTOCAST_STLYE)) {
-        this.selectedAttackStyle = AUTOCAST_STLYE;
-      } else {
-        this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
-      }
-    });
+    this.attackStyles = this.getItem(this.weaponSlot, itemId).attackStyles;
+    if (this.attackStyles.includes(AUTOCAST_STLYE)) {
+      this.selectedAttackStyle = AUTOCAST_STLYE;
+    } else {
+      this.selectedAttackStyle = this.attackStyles[1]; //second attack style is most commonly used
+    }
   }
 
   addPrayer(prayer: string): void {
