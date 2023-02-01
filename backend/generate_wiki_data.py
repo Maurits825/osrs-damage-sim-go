@@ -26,35 +26,30 @@ class GenerateWikiData:
         gear_slot_items_old = WikiData.get_gear_slot_items()
 
         for item_id, item in WikiData.items_json.items():
-            slot = str(item["slot"])
+            try:
+                slot = str(item["slot"])
 
-            if slot not in gear_slot_items:
-                gear_slot_items[slot] = {}
+                if slot not in gear_slot_items:
+                    gear_slot_items[slot] = []
 
-            if re.match(r".*\(\d+\)", item["name"]):
-                continue
-
-            if any(number in item["name"] for number in ["0", "25", "50", "75", "100"]):
-                if any(barrows in item["name"].lower() for barrows in
-                       ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
+                if GenerateWikiData.is_filtered_item(item):
+                    print("Filtered: " + item["name"])
                     continue
 
-            if "(nz)" in item["name"]:
-                continue
+                cached_item = GenerateWikiData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
+                if cached_item:
+                    if item["name"] not in seen_item_names:
+                        gear_slot_items[slot].append(cached_item)
+                        seen_item_names.append(item["name"])
+                        print("Cached: " + item["name"])
+                    continue
 
-            if slot in gear_slot_items_old and item_id in gear_slot_items_old[slot]:
-                gear_slot_items[slot][item_id] = gear_slot_items_old[slot][item_id]
-                seen_item_names.append(item["name"])
-                print("Skipped: " + item["name"])
-                continue
+                if item["name"] not in seen_item_names:
+                    item_dict = {
+                        "name": item["name"],
+                        "id": int(item_id),
+                    }
 
-            if item["name"] not in seen_item_names:
-                item_dict = {
-                    "name": item["name"],
-                    "id": int(item_id),
-                }
-
-                try:
                     attack_styles, attack_type = GenerateWikiData.get_attack_style_and_type(item)
                     if attack_styles:
                         item_dict["attackStyles"] = attack_styles
@@ -67,14 +62,80 @@ class GenerateWikiData:
 
                     item_dict["icon"] = GenerateWikiData.get_item_encoded_image(item["name"])
 
-                    gear_slot_items[slot][item_id] = item_dict
+                    gear_slot_items[slot].append(item_dict)
                     seen_item_names.append(item["name"])
-                    print("Added: " + item["name"])
-                except Exception as e:
-                    print(e)
+                    print("Updated: " + item["name"])
+            except Exception as e:
+                print("Error with id: " + str(item_id) + ", name: " + item["name"])
+                print(e)
 
         with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)
+
+    @staticmethod
+    def get_cached_item(gear_slot_items_old, slot, item_id, item_name):
+        if slot in gear_slot_items_old:
+            for item in gear_slot_items_old[slot]:
+                if item["id"] == item_id:
+                    if item_name == item["name"]:
+                        return item
+                    else:
+                        return None
+
+        return None
+
+    @staticmethod
+    def is_filtered_item(item):
+        # teleport charges
+        if re.match(r".*\(\d+\)", item["name"]):
+            return True
+
+        # imbued ring charges
+        if re.match(r".*\(i\d+\)", item["name"]):
+            return True
+
+        # heraldic helms
+        if re.match(r".*\(h\d+\)", item["name"]):
+            return "(h1)" not in item["name"]
+
+        # team capes
+        if re.match(r"Team-\d+ cape", item["name"]):
+            return "Team-1 cape" not in item["name"]
+
+        if "(uncharged)" in item["name"]:
+            return True
+
+        if "Wilderness Wars" in item["name"]:
+            return True
+
+        if "unobtainable item" in item["name"]:
+            return True
+
+        if "(Last Man Standing)" in item["name"]:
+            return True
+
+        # heraldic symbol items
+        if any(symbol in item["name"] for symbol in
+               ["(Asgarnia)", "(Dorgeshuun)", "(Dragon)", "(Fairy)", "(Guthix)", "(HAM)", "(Horse)", "(Jogre)",
+                "(Kandarin)", "(Misthalin)", "(Money)", "(Saradomin)", "(Skull)", "(Varrock)", "(Zamorak)"]):
+            return True
+
+        # graceful variants
+        if any(symbol in item["name"] for symbol in
+               ["(Arceuus)", "(Piscarilius)", "(Lovakengj)", "(Shayzien)", "(Hosidius)", "(Agility Arena)"]):
+            return True
+
+        # barrows item degradation
+        if any(number in item["name"] for number in ["0", "25", "50", "75", "100"]):
+            if any(barrows in item["name"].lower() for barrows in
+                   ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
+                return True
+
+        # nightmare zone items
+        if "(nz)" in item["name"]:
+            return True
+
+        return False
 
     @staticmethod
     def update_unique_npcs_json():

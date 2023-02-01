@@ -50,18 +50,18 @@
 
       <div class="col">
         <ng-select
-          (change)="gearSlotChange($event?.value, slot)"
-          [items]="allGearSlotItems[slot] | keyvalue"
+          (change)="gearSlotChange($event, slot)"
+          [items]="allGearSlotItems[slot]"
           [(ngModel)]="currentGear[slot]"
-          bindLabel="value.name"
+          bindLabel="name"
         >
           <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
           <ng-template ng-option-tmp let-item="item">
             <div class="row align-items-center">
               <div class="col-1 d-flex justify-content-center">
-                <img src="data:image/png;base64,{{ item.value.icon }}" />
+                <img src="data:image/png;base64,{{ item.icon }}" />
               </div>
-              <div class="col ps-0">{{ item.value.name }}</div>
+              <div class="col ps-0">{{ item.name }}</div>
             </div>
           </ng-template>
         </ng-select>

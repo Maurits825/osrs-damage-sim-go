@@ -32,7 +32,7 @@ class GearSetupInput:
             weapons = []
             for gear_setup_dict in setup:
                 gear_setup = GearSetupInput.get_gear_setup(gear_setup_dict)
-                weapon_item = WikiData.get_item(gear_setup_dict["weapon"])
+                weapon_item = WikiData.get_weapon(gear_setup_dict["weapon"])
                 special_attack_cost = WikiData.get_special_attack(weapon_item.name)
 
                 weapon = WeaponLoader.load_weapon(weapon_item.name, gear_setup, npc, raid_level, special_attack_cost)
@@ -66,14 +66,14 @@ class GearSetupInput:
         gear_stats = WeaponStats(name=gear_setup["name"])
         equipped_gear = EquippedGear(gear_setup["gear"], [])
         for gear_id in gear_setup["gear"]:
-            weapon_stats = WikiData.get_item(gear_id)
+            weapon_stats = WikiData.get_weapon(gear_id)
             equipped_gear.names.append(weapon_stats.name.lower())
             gear_stats += weapon_stats
 
-        weapon_item = WikiData.get_item(gear_setup["weapon"])
+        weapon_item = WikiData.get_weapon(gear_setup["weapon"])
 
         if weapon_item.id == BLOWPIPE:
-            gear_stats.ranged_strength += WikiData.get_item(gear_setup["blowpipeDarts"]).ranged_strength
+            gear_stats.ranged_strength += WikiData.get_weapon(gear_setup["blowpipeDarts"]).ranged_strength
 
         gear_stats.id = weapon_item.id
         gear_stats.attack_speed = weapon_item.attack_speed

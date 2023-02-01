@@ -17,8 +17,8 @@ export class DamageSimService {
     return this.http.get<string>(DAMAGE_SIM_SERVER_URL + '/status');
   }
 
-  getGearSlotItems(): Observable<Record<number, Record<number, Item>>> {
-    return this.http.get<Record<number, Record<number, Item>>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
+  getGearSlotItems(): Observable<Record<number, Item[]>> {
+    return this.http.get<Record<number, Item[]>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
   }
 
   getAttackStyles(itemId: number): Observable<string[]> {

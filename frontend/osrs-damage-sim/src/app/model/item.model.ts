@@ -7,4 +7,4 @@ export interface Item {
   specialAttackCost?: number;
 }
 
-type AttackType = 'magic' | 'melee' | 'ranged';
+export type AttackType = 'magic' | 'melee' | 'ranged';

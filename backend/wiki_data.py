@@ -10,7 +10,7 @@ from model.weapon_stats import WeaponStats
 
 
 class WikiData:
-    items_json = json.load(open("./wiki_data/items-dps-calc.json"))
+    items_json = json.load(open("./wiki_data/items-dmg-sim.json"))
     npcs_json = json.load(open("./wiki_data/npcs-dmg-sim.json"))
     unique_npcs = json.load(open("./wiki_data/unique_npcs.json"))
     extra_data = json.load(open("./wiki_data/extra_data.json"))
@@ -19,7 +19,7 @@ class WikiData:
     magic_spells = json.load(open("./wiki_data/magic_spells.json"))
 
     @staticmethod
-    def get_item(item_id: int) -> WeaponStats:
+    def get_weapon(item_id: int) -> WeaponStats:
         weapon = WikiData.items_json[str(item_id)]
         weapon_category = None if weapon.get("weaponCategory", 0) == 0 else WeaponCategory[weapon["weaponCategory"]]
         return WeaponStats(

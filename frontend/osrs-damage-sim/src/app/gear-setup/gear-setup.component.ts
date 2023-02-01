@@ -3,10 +3,9 @@ import { forkJoin } from 'rxjs';
 import { ConditionComponent } from '../condition/condition.component';
 import { AUTOCAST_STLYE, POTIONS } from '../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
-import { AttackType } from '../model/attack-type.enum';
 import { Condition } from '../model/condition.model';
 import { GearInputSetup } from '../model/input-setup.model';
-import { Item } from '../model/item.model';
+import { AttackType, Item } from '../model/item.model';
 import { SpecialAttack } from '../model/special-attack.model';
 import { DamageSimService } from '../services/damage-sim.service';
 import { GlobalBoostService } from '../services/global-boost.service';
@@ -25,8 +24,7 @@ export class GearSetupComponent implements OnInit {
 
   currentGear: Record<number, Item> = {};
 
-  allGearSlotItems: Record<number, Record<number, Item>> = {};
-  //TODO this can be Record<number, Item[]>???
+  allGearSlotItems: Record<number, Item[]> = {};
 
   gearSetups: Record<string, Record<number, number>> = {};
   selectedGearSetup: string = '';
@@ -98,12 +96,12 @@ export class GearSetupComponent implements OnInit {
       this.allGearSlotItems = gearSlotItems;
       this.specialWeapons = specialWeapons;
 
-      for (const itemId in this.allGearSlotItems[this.weaponSlot]) {
-        if (this.allGearSlotItems[this.weaponSlot][itemId].name.match('dart$')) {
-          this.dartItems.push(this.allGearSlotItems[this.weaponSlot][itemId]);
+      this.allGearSlotItems[this.weaponSlot].forEach((item: Item) => {
+        if (item.name.match('dart$')) {
+          this.dartItems.push(item);
         }
-      }
-      this.selectedDart = this.allGearSlotItems[this.weaponSlot][this.dragonDartId];
+      });
+      this.selectedDart = this.allGearSlotItems[this.weaponSlot].find((item: Item) => item.id === this.dragonDartId);
 
       this.gearSetups = gearSetups;
       this.attackStyles = styles;
@@ -183,7 +181,10 @@ export class GearSetupComponent implements OnInit {
   setCurrentGearById(gearIds: Record<number, number>): void {
     this.gearSlots.forEach((slot: number) => {
       if (gearIds[slot]) {
-        this.gearSlotChange(this.allGearSlotItems[slot][gearIds[slot]], slot);
+        this.gearSlotChange(
+          this.allGearSlotItems[slot].find((item: Item) => item.id === gearIds[slot]),
+          slot
+        );
       } else {
         this.gearSlotChange(null, slot);
       }
@@ -204,17 +205,17 @@ export class GearSetupComponent implements OnInit {
 
         this.damageSimservice.getAttackType(itemId).subscribe((attackType: string) => {
           switch (attackType as AttackType) {
-            case AttackType.MELEE:
+            case 'melee':
               this.selectedSpell = null;
               this.selectedPrayers = [];
               this.selectedPrayers.push('piety');
               break;
-            case AttackType.RANGED:
+            case 'ranged':
               this.selectedSpell = null;
               this.selectedPrayers = [];
               this.selectedPrayers.push('rigour');
               break;
-            case AttackType.MAGIC:
+            case 'magic':
               this.selectedPrayers = [];
               this.selectedPrayers.push('augury');
               break;

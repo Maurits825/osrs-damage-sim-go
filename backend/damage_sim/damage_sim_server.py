@@ -50,9 +50,7 @@ def get_gear_setups():
     for name, item_ids in GearJson.load_gear().items():
         gear_setups[name] = {}
         for item_id in item_ids:
-            for slot, gear_slot_items in WikiData.gear_slot_items.items():
-                if str(item_id) in gear_slot_items:
-                    gear_setups[name][slot] = item_id
+            gear_setups[name][WikiData.items_json[str(item_id)]["slot"]] = item_id
 
     return gear_setups
 
@@ -66,7 +64,7 @@ def get_attack_style(item_id_str):
         for style in WeaponCategory.UNARMED.value:
             attack_styles.append(style.name)
     else:
-        item = WikiData.get_item(item_id)
+        item = WikiData.get_weapon(item_id)
         for style in item.weapon_category.value:
             attack_styles.append(style.name)
 
@@ -96,7 +94,7 @@ def run_damage_sim():
 @app.route("/attack-type/<item_id_str>", methods=["GET"])
 def get_attack_type(item_id_str):
     item_id = int(item_id_str)
-    item = WikiData.get_item(item_id)
+    item = WikiData.get_weapon(item_id)
     attack_type = "Unkown"
     if item.weapon_category.value[-1].attack_type == AttackType.MAGIC:
         attack_type = "magic"
