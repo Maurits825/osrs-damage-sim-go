@@ -41,10 +41,10 @@
 
   <div class="row mb-3">
     <div class="row mb-2 align-items-center" *ngFor="let slot of gearSlots">
-      <div class="col-1">
-        <div *ngIf="currentGear[slot]?.id; else placeholder">
+      <div class="col-1 pe-0 d-flex justify-content-center">
+        <ng-container *ngIf="currentGear[slot]?.id; else placeholder">
           <img src="data:image/png;base64,{{ currentGear[slot].icon }}" />
-        </div>
+        </ng-container>
         <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
       </div>
 
@@ -57,7 +57,12 @@
         >
           <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
           <ng-template ng-option-tmp let-item="item">
-            <img src="data:image/png;base64,{{ item.value.icon }}" /> {{ item.value.name }}
+            <div class="row align-items-center">
+              <div class="col-1 d-flex justify-content-center">
+                <img src="data:image/png;base64,{{ item.value.icon }}" />
+              </div>
+              <div class="col ps-0">{{ item.value.name }}</div>
+            </div>
           </ng-template>
         </ng-select>
       </div>
