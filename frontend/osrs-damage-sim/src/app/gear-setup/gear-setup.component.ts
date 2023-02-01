@@ -9,7 +9,6 @@ import { GearInputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { SpecialAttack } from '../model/special-attack.model';
 import { DamageSimService } from '../services/damage-sim.service';
-import { GearSetupService } from '../services/gear-setups.service';
 import { GlobalBoostService } from '../services/global-boost.service';
 import { RlGearService } from '../services/rl-gear.service';
 
@@ -27,8 +26,9 @@ export class GearSetupComponent implements OnInit {
   currentGear: Record<number, Item> = {};
 
   allGearSlotItems: Record<number, Record<number, Item>> = {};
+  //TODO this can be Record<number, Item[]>???
 
-  gearSetups: Record<string, Record<number, Item>> = {};
+  gearSetups: Record<string, Record<number, number>> = {};
   selectedGearSetup: string = '';
 
   setupName: string = '';
@@ -55,7 +55,7 @@ export class GearSetupComponent implements OnInit {
   boosts: string[] = POTIONS;
   selectedBoosts: string[] = [];
 
-  weaponSlot = 3;
+  weaponSlot = 3; // TODO refactor to type
 
   blowpipeId = 12926;
   dragonDartId = 11230;
@@ -84,14 +84,13 @@ export class GearSetupComponent implements OnInit {
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
-    private gearSetupService: GearSetupService,
     private globalBoostService: GlobalBoostService
   ) {}
 
   ngOnInit(): void {
     forkJoin({
       gearSlotItems: this.damageSimservice.getGearSlotItems(),
-      gearSetups: this.gearSetupService.getGearSetups(),
+      gearSetups: this.damageSimservice.getGearSetups(),
       styles: this.damageSimservice.getAttackStyles(0),
       allSpells: this.damageSimservice.getAllSpells(),
       specialWeapons: this.damageSimservice.getSpecialWeapons(),
@@ -163,66 +162,38 @@ export class GearSetupComponent implements OnInit {
     };
   }
 
-  clearAllGear(): void {
-    this.selectedGearSetup = null;
-    this.setupName = '';
-
-    this.gearSlots.forEach((slot: number) => {
-      this.clearGearSlot(slot);
-    });
-
-    this.selectedPrayers = [];
-    this.selectedBoosts = [];
-    this.attackCount = 0;
-    this.useSpecialAttack = false;
-  }
-
+  //TODO fix
   loadRlGear(): void {
-    this.selectedGearSetup = null;
-
-    this.rlGearService.getGear().subscribe((gearSetup: Record<number, Item>) => {
-      this.setCurrentGear(gearSetup);
-      if (gearSetup[this.weaponSlot]?.name) {
-        this.setupName = gearSetup[this.weaponSlot].name;
-      }
-    });
-  }
-
-  clearGearSlot(slot: number): void {
-    this.currentGear[slot] = null;
-
-    if (slot == 3) {
-      this.damageSimservice.getAttackStyles(0).subscribe((styles: string[]) => {
-        this.attackStyles = styles;
-        this.selectedAttackStyle = null;
-      });
-    }
+    // this.selectedGearSetup = null;
+    // this.rlGearService.getGear().subscribe((gearSetup: Record<number, Item>) => {
+    //   this.set__CurrentGear(gearSetup);
+    //   if (gearSetup[this.weaponSlot]?.name) {
+    //     this.setupName = gearSetup[this.weaponSlot].name;
+    //   }
+    // });
   }
 
   loadGearSetup(setupName: string) {
-    const gearSetup = this.gearSetups[setupName];
-    this.setCurrentGear(gearSetup);
+    const gearIds = this.gearSetups[setupName];
+    this.setCurrentGearById(gearIds);
     this.setupName = setupName;
+    this.selectedGearSetup = setupName;
   }
 
-  setCurrentGear(gearSetup: Record<number, Item>, triggerSlotChange: boolean = true): void {
+  setCurrentGearById(gearIds: Record<number, number>): void {
     this.gearSlots.forEach((slot: number) => {
-      if (gearSetup[slot]?.name) {
-        this.currentGear[slot] = this.allGearSlotItems[slot][gearSetup[slot].id];
-
-        if (triggerSlotChange) {
-          this.gearSlotChange(this.currentGear[slot], slot, false);
-        }
+      if (gearIds[slot]) {
+        this.gearSlotChange(this.allGearSlotItems[slot][gearIds[slot]], slot);
       } else {
-        this.clearGearSlot(slot);
+        this.gearSlotChange(null, slot);
       }
     });
   }
 
-  gearSlotChange(item: Item, slot: number, clearSelectedGearSetup: boolean = true): void {
-    if (clearSelectedGearSetup) {
-      this.selectedGearSetup = null;
-    }
+  gearSlotChange(item: Item, slot: number): void {
+    this.currentGear[slot] = item;
+
+    this.selectedGearSetup = null;
 
     if (slot == 3) {
       let itemId = 0;
@@ -257,7 +228,7 @@ export class GearSetupComponent implements OnInit {
       this.updateAttackStyle(itemId);
     }
 
-    this.updateSpecialGear(item, slot);
+    this.updateSpecialGear();
   }
 
   updateAttackStyle(itemId: number): void {
@@ -301,7 +272,7 @@ export class GearSetupComponent implements OnInit {
     this.allSpells = [...gearSetupComponent.allSpells];
     this.selectedSpell = gearSetupComponent.selectedSpell;
 
-    this.setCurrentGear(gearSetupComponent.currentGear, false);
+    this.currentGear = Object.assign({}, gearSetupComponent.currentGear);
 
     this.attackCount = gearSetupComponent.attackCount;
     this.useSpecialAttack = gearSetupComponent.useSpecialAttack;
@@ -336,19 +307,15 @@ export class GearSetupComponent implements OnInit {
     this.gearSetUpTabRef.addNewGearSetup(this);
   }
 
-  updateSpecialGear(item: Item, slot: number): void {
-    if (slot == 0) {
-      this.isSlayerHelm = this.getIsSlayerHelm(item.name);
-    } else if (slot == 3) {
-      this.isWildernessWeapon = this.getIsWildernessWeapon(item.name);
-    } else if (slot == 13) {
-      this.isSpecialBolt = this.getIsSpecialBolt();
-    }
-
+  updateSpecialGear(): void {
+    this.isSlayerHelm = this.getIsSlayerHelm();
+    this.isWildernessWeapon = this.getIsWildernessWeapon();
+    this.isSpecialBolt = this.getIsSpecialBolt();
     this.isDharokSet = this.getIsDharokSet();
   }
 
-  getIsSlayerHelm(itemName: string): boolean {
+  getIsSlayerHelm(): boolean {
+    const itemName = this.currentGear[0]?.name;
     if (!itemName) {
       return false;
     }
@@ -357,7 +324,11 @@ export class GearSetupComponent implements OnInit {
     return name.includes('slayer helmet') || name.includes('black mask');
   }
 
-  getIsWildernessWeapon(itemName: string): boolean {
+  getIsWildernessWeapon(): boolean {
+    const itemName = this.currentGear[3]?.name;
+    if (!itemName) {
+      return false;
+    }
     return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace";
   }
 

@@ -52,10 +52,7 @@ def get_gear_setups():
         for item_id in item_ids:
             for slot, gear_slot_items in WikiData.gear_slot_items.items():
                 if str(item_id) in gear_slot_items:
-                    gear_setups[name][slot] = {
-                        "name": gear_slot_items[str(item_id)]["name"],
-                        "id": item_id
-                    }
+                    gear_setups[name][slot] = item_id
 
     return gear_setups
 

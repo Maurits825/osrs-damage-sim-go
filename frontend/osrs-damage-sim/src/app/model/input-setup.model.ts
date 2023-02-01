@@ -12,7 +12,7 @@ export interface InputSetup {
 
 export interface GearInputSetup {
   name: string;
-  gear: number[];
+  gear: number[]; //TODO make this Record<number, number> --> gearSlot: id
   weapon: number;
   blowpipeDarts: number;
 

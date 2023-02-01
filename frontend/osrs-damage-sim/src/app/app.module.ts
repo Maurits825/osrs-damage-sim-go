@@ -6,7 +6,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
 import { DamageSimService } from './services/damage-sim.service';
-import { GearSetupService } from './services/gear-setups.service';
 import { RlGearService } from './services/rl-gear.service';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
@@ -30,7 +29,7 @@ import { Base64ImagePipe } from './pipes/base64-image.pipe';
     Base64ImagePipe,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
-  providers: [DamageSimService, RlGearService, GearSetupService, GlobalBoostService],
+  providers: [DamageSimService, RlGearService, GlobalBoostService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

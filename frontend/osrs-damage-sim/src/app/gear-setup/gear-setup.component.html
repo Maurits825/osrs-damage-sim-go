@@ -47,18 +47,27 @@
         </div>
         <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
       </div>
+
       <div class="col">
-        <ng-select [(ngModel)]="currentGear[slot]" (change)="gearSlotChange($event, slot)">
-          <ng-option *ngFor="let item of allGearSlotItems[slot] | keyvalue" [value]="item.value">
+        <ng-select
+          (change)="gearSlotChange($event?.value, slot)"
+          [items]="allGearSlotItems[slot] | keyvalue"
+          [(ngModel)]="currentGear[slot]"
+          bindLabel="value.name"
+        >
+          <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
+          <ng-template ng-option-tmp let-item="item">
             <img src="data:image/png;base64,{{ item.value.icon }}" /> {{ item.value.name }}
-          </ng-option>
+          </ng-template>
         </ng-select>
       </div>
+
       <div class="col-5" *ngIf="currentGear[slot]?.id == blowpipeId">
         <ng-select [(ngModel)]="selectedDart" [clearable]="false">
           <ng-option *ngFor="let dart of dartItems" [value]="dart">{{ dart.name }}</ng-option>
         </ng-select>
       </div>
+
       <div class="col-auto" *ngIf="slot == 0 && isSlayerHelm">
         <div class="row align-items-center">
           <div class="col-auto text-end"><label for="isOnSlayerTask">Slayer task</label></div>

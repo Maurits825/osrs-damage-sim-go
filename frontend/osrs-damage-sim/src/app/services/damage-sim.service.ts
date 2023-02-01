@@ -44,4 +44,8 @@ export class DamageSimService {
   getSpecialWeapons(): Observable<SpecialAttack> {
     return this.http.get<SpecialAttack>(DAMAGE_SIM_SERVER_URL + '/special-weapon');
   }
+
+  getGearSetups(): Observable<Record<string, Record<number, number>>> {
+    return this.http.get<Record<string, Record<number, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setups');
+  }
 }
