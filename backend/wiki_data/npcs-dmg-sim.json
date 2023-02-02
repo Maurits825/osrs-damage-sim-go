@@ -46830,7 +46830,7 @@
     "size": 5
   },
   "12077": {
-    "name": "Phantom Muspah",
+    "name": "Phantom Muspah (Ranged)",
     "isSpectral": true,
     "hitpoints": 850,
     "att": 280,
@@ -46853,7 +46853,7 @@
     "size": 5
   },
   "12078": {
-    "name": "Phantom Muspah",
+    "name": "Phantom Muspah (Melee)",
     "isSpectral": true,
     "hitpoints": 850,
     "att": 280,
@@ -46876,7 +46876,7 @@
     "size": 5
   },
   "12079": {
-    "name": "Phantom Muspah",
+    "name": "Phantom Muspah (Shielded)",
     "isSpectral": true,
     "hitpoints": 75,
     "att": 280,
