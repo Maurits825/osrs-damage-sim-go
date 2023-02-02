@@ -88,7 +88,7 @@ class GenerateWikiData:
     def is_filtered_item(item, item_id):
         # teleport charges
         if re.match(r".*\(\d+\)", item["name"]):
-            return True
+            return "Shayzien" not in item["name"]
 
         # imbued ring charges
         if re.match(r".*\(i\d+\)", item["name"]):
@@ -146,6 +146,9 @@ class GenerateWikiData:
         seen_npc_name = []
         unique_npcs = []
         for npc_id, npc in WikiData.npcs_json.items():
+            if npc.get("hitpoints", 0) == 0:
+                continue
+
             npc_key = (
                     npc["name"] + "_" +
                     str(npc.get("combat", 0)) + "_" +
