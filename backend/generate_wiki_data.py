@@ -32,7 +32,7 @@ class GenerateWikiData:
                 if slot not in gear_slot_items:
                     gear_slot_items[slot] = []
 
-                if GenerateWikiData.is_filtered_item(item):
+                if GenerateWikiData.is_filtered_item(item, item_id):
                     print("Filtered: " + item["name"])
                     continue
 
@@ -76,7 +76,7 @@ class GenerateWikiData:
     def get_cached_item(gear_slot_items_old, slot, item_id, item_name):
         if slot in gear_slot_items_old:
             for item in gear_slot_items_old[slot]:
-                if item["id"] == item_id:
+                if str(item["id"]) == item_id:
                     if item_name == item["name"]:
                         return item
                     else:
@@ -85,7 +85,7 @@ class GenerateWikiData:
         return None
 
     @staticmethod
-    def is_filtered_item(item):
+    def is_filtered_item(item, item_id):
         # teleport charges
         if re.match(r".*\(\d+\)", item["name"]):
             return True
@@ -101,6 +101,10 @@ class GenerateWikiData:
         # team capes
         if re.match(r"Team-\d+ cape", item["name"]):
             return "Team-1 cape" not in item["name"]
+
+        # inactive bowfa id
+        if item_id == "25862":
+            return True
 
         if "(uncharged)" in item["name"]:
             return True

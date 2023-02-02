@@ -19,18 +19,18 @@ class GearBonus:
 
         if "bow of faerdhinen" in all_gear_names or CRYSTAL_BOW in gear.ids:
             if CRYSTAL_HELM in gear.ids or CRYSTAL_BODY in gear.ids or CRYSTAL_LEGS in gear.ids:
-                crystal_att = 0
-                crystal_str = 0
+                crystal_att = 1
+                crystal_str = 1
 
                 if CRYSTAL_HELM in gear.ids:
-                    crystal_att += 1.05
-                    crystal_str += 1.025
+                    crystal_att += 0.05
+                    crystal_str += 0.025
                 if CRYSTAL_BODY in gear.ids:
-                    crystal_att += 1.15
-                    crystal_str += 1.075
+                    crystal_att += 0.15
+                    crystal_str += 0.075
                 if CRYSTAL_LEGS in gear.ids:
-                    crystal_att += 1.1
-                    crystal_str += 1.05
+                    crystal_att += 0.1
+                    crystal_str += 0.05
 
                 special_gear_bonus.ranged.attack_boost.append(crystal_att)
                 special_gear_bonus.ranged.strength_boost.append(crystal_str)

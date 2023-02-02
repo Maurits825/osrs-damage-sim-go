@@ -575,5 +575,57 @@
     ],
     "raidLevel": 0,
     "pathLevel": 0
+  },
+  "Zebak bowfa corrupted": {
+    "expectedDps": 8.41333061,
+    "iterations": 10000,
+    "teamSize": 1,
+    "npcId": "11730",
+    "gearInputSetups": [
+      [
+        {
+          "name": "Bow of faerdhinen (c)",
+          "gear": [
+            23971,
+            22109,
+            19547,
+            25867,
+            23975,
+            23979,
+            7462,
+            13237,
+            11771,
+            22947
+          ],
+          "weapon": 25867,
+          "blowpipeDarts": 11230,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "rigour"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99
+          },
+          "boosts": [
+            "ranged_pot"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ]
+    ],
+    "raidLevel": 0,
+    "pathLevel": 0
   }
 }
