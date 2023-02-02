@@ -4,10 +4,7 @@ from flask_cors import CORS
 from damage_sim.damage_sim_runner import DamageSimRunner
 from gear_json import GearJson
 from gear_setup_input import GearSetupInput
-from model.attack_style.attack_type import AttackType
-from model.attack_style.weapon_category import WeaponCategory
 from rl_gear_input import RlGearInput
-from weapon import Weapon
 from wiki_data import WikiData
 
 app = Flask(__name__)
@@ -55,22 +52,6 @@ def get_gear_setups():
     return gear_setups
 
 
-@app.route("/attack-style/<item_id_str>", methods=["GET"])
-def get_attack_style(item_id_str):
-    attack_styles = []
-    item_id = int(item_id_str)
-
-    if item_id == 0:
-        for style in WeaponCategory.UNARMED.value:
-            attack_styles.append(style.name)
-    else:
-        item = WikiData.get_weapon(item_id)
-        for style in item.weapon_category.value:
-            attack_styles.append(style.name)
-
-    return attack_styles
-
-
 @app.route("/all-spells", methods=["GET"])
 def get_all_spells():
     return WikiData.get_all_spells()
@@ -89,23 +70,3 @@ def run_damage_sim():
     damage_sim_results = damage_sim_runner.run(json_request["iterations"], input_setup)
 
     return jsonify(damage_sim_results)
-
-
-@app.route("/attack-type/<item_id_str>", methods=["GET"])
-def get_attack_type(item_id_str):
-    item_id = int(item_id_str)
-    item = WikiData.get_weapon(item_id)
-    attack_type = "Unkown"
-    if item.weapon_category.value[-1].attack_type == AttackType.MAGIC:
-        attack_type = "magic"
-    elif item.weapon_category.value[0].attack_type in Weapon.MELEE_TYPES:
-        attack_type = "melee"
-    elif item.weapon_category.value[0].attack_type == AttackType.RANGED:
-        attack_type = "ranged"
-
-    return attack_type
-
-
-@app.route("/special-weapon", methods=["GET"])
-def get_special_weapons():
-    return WikiData.special_attack
