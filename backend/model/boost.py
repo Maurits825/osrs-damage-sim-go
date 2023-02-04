@@ -53,5 +53,3 @@ class Boost:
             boosted_combat_stats.merge_stats(combat_stats)
 
         return boosted_combat_stats
-
-

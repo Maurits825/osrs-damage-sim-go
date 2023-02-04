@@ -40,7 +40,7 @@ export class GearSetupComponent implements OnInit {
 
   BLOWPIPE_ID = BLOWPIPE_ID;
 
-  gearInputSetup: GearInputSetup = DEFAULT_GEAR_SETUP;
+  gearInputSetup: GearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
 
   allGearSlots: GearSlot[] = Object.values(GearSlot);
 
@@ -76,9 +76,9 @@ export class GearSetupComponent implements OnInit {
   ngOnInit(): void {
     //TODO make these call in a service, then only one call per session, rather than per component
     forkJoin({
-      gearSlotItems: this.damageSimservice.getGearSlotItems(),
-      gearSetupPresets: this.damageSimservice.getGearSetupPresets(),
-      allSpells: this.damageSimservice.getAllSpells(),
+      gearSlotItems: this.damageSimservice.allGearSlotItems$,
+      gearSetupPresets: this.damageSimservice.gearSetupPresets$,
+      allSpells: this.damageSimservice.allSpells$,
     }).subscribe(({ gearSlotItems, gearSetupPresets, allSpells }) => {
       this.allGearSlotItems = gearSlotItems;
       this.allGearSlotItems[GearSlot.Weapon].forEach((item: Item) => {

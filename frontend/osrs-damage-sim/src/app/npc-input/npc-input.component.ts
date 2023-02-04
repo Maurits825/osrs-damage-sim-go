@@ -27,7 +27,7 @@ export class NpcInputComponent implements OnInit {
   constructor(private damageSimservice: DamageSimService) {}
 
   ngOnInit(): void {
-    this.damageSimservice.getAllNpcs().subscribe((allNpcs: Npc[]) => {
+    this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
       this.npcBuffer = this.allNpcs.slice(0, this.bufferSize);
     });

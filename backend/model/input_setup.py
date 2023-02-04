@@ -19,4 +19,3 @@ class GlobalSettings:
 class InputSetup:
     global_settings: GlobalSettings
     all_weapons_setups: list[list[Weapon]]
-
