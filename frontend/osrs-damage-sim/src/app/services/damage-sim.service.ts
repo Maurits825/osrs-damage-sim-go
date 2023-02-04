@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { DamageSimResults } from '../model/damage-sim-results.model';
+import { GearSlot } from '../model/gear-slot.enum';
 import { InputSetup } from '../model/input-setup.model';
 import { Item } from '../model/item.model';
 import { Npc } from '../model/npc.model';
-import { SpecialAttack } from '../model/special-attack.model';
+import { FILTER_PATHS } from './filter-fields.const';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DamageSimService {
   constructor(private http: HttpClient) {}
 
@@ -17,8 +20,8 @@ export class DamageSimService {
     return this.http.get<string>(DAMAGE_SIM_SERVER_URL + '/status');
   }
 
-  getGearSlotItems(): Observable<Record<number, Item[]>> {
-    return this.http.get<Record<number, Item[]>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
+  getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {
+    return this.http.get<Record<GearSlot, Item[]>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
   }
 
   getAllSpells(): Observable<string[]> {
@@ -30,10 +33,27 @@ export class DamageSimService {
   }
 
   runDamageSim(inputSetup: InputSetup): Observable<DamageSimResults> {
-    return this.http.post<DamageSimResults>(DAMAGE_SIM_SERVER_URL + '/run-damage-sim', inputSetup);
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<DamageSimResults>(
+      DAMAGE_SIM_SERVER_URL + '/run-damage-sim',
+      this.convertInputSetupToJson(inputSetup),
+      options
+    );
   }
 
-  getGearSetups(): Observable<Record<string, Record<number, number>>> {
-    return this.http.get<Record<string, Record<number, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setups');
+  getGearSetups(): Observable<Record<string, Record<GearSlot, number>>> {
+    return this.http.get<Record<string, Record<GearSlot, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setups');
+  }
+
+  convertInputSetupToJson(inputSetup: InputSetup): string {
+    return JSON.stringify(inputSetup, (key, value) => {
+      if (value instanceof Set) {
+        return [...value];
+      } else if (FILTER_PATHS.some((field) => key === field)) {
+        return undefined;
+      }
+
+      return value;
+    });
   }
 }

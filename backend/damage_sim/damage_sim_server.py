@@ -67,6 +67,6 @@ def run_damage_sim():
     json_request = request.get_json()
 
     input_setup = GearSetupInput.get_input_setup(json_request)
-    damage_sim_results = damage_sim_runner.run(json_request["iterations"], input_setup)
+    damage_sim_results = damage_sim_runner.run(input_setup)
 
     return jsonify(damage_sim_results)

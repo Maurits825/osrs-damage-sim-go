@@ -5,8 +5,18 @@ from weapon import Weapon
 
 
 @dataclass()
-class InputSetup:
+class GlobalSettings:
     npc: NpcStats
-    all_weapons_setups: list[list[Weapon]]
+
     raid_level: int
     path_level: int
+
+    team_size: int
+    iterations: int
+
+
+@dataclass()
+class InputSetup:
+    global_settings: GlobalSettings
+    all_weapons_setups: list[list[Weapon]]
+

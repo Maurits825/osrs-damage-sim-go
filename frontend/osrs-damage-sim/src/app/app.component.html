@@ -8,23 +8,7 @@
 
   <hr class="row mb-5" />
 
-  <div class="row mb-3 align-items-center">
-    <div class="col-2">Global settings</div>
-    <label class="col-1 text-end">Iterations</label>
-    <div class="col-2"><input class="form-control" type="number" [(ngModel)]="iterations" min="1" /></div>
-    <label class="col-1 text-end">Team size</label>
-    <div class="col-1"><input class="form-control" type="number" [(ngModel)]="teamSize" min="1" /></div>
-    <div class="col">
-      <button class="btn btn-primary w-100" type="button" (click)="submit()" [disabled]="loading">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
-        <span *ngIf="loading" class="sr-only"> Loading...</span>
-      </button>
-    </div>
-  </div>
-
-  <app-npc-input></app-npc-input>
-  <app-global-boost></app-global-boost>
+  <app-global-settings (submitClicked)="runDamageSim($event)"></app-global-settings>
   <app-gear-setup-tabs #gearSetupTabs></app-gear-setup-tabs>
 
   <hr class="row my-4" />

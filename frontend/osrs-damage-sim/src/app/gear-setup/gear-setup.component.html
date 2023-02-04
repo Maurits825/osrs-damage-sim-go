@@ -2,7 +2,7 @@
   <div class="row mb-2 justify-content-center">
     <div class="col-auto"><h3 class="text-end">Gear Setup:</h3></div>
     <div class="col-5">
-      <input class="form-control" type="text" [(ngModel)]="setupName" placeholder="Setup name" />
+      <input class="form-control" type="text" [(ngModel)]="gearInputSetup.setupName" placeholder="Setup name" />
     </div>
   </div>
   <div class="row mb-3">
@@ -13,11 +13,11 @@
           <ng-select
             class="col"
             labelForId="customGear"
-            [(ngModel)]="selectedGearSetup"
+            [(ngModel)]="selectedGearSetupPreset"
             [clearable]="false"
             (change)="loadGearSetup($event)"
           >
-            <ng-option *ngFor="let gearSetup of gearSetups | keyvalue" [value]="gearSetup.key">{{
+            <ng-option *ngFor="let gearSetup of gearSetupPresets | keyvalue" [value]="gearSetup.key">{{
               gearSetup.key
             }}</ng-option>
           </ng-select>
@@ -39,11 +39,11 @@
     </div>
   </div>
 
-  <div class="row mb-3">
-    <div class="row mb-2 align-items-center" *ngFor="let slot of gearSlots">
+  <div class="row mb-3" *ngIf="allGearSlotItems">
+    <div class="row mb-2 align-items-center" *ngFor="let slot of allGearSlots">
       <div class="col-1 pe-0 d-flex justify-content-center">
-        <ng-container *ngIf="currentGear[slot]?.id; else placeholder">
-          <img src="data:image/png;base64,{{ currentGear[slot].icon }}" />
+        <ng-container *ngIf="gearInputSetup.gear[slot]; else placeholder">
+          <img src="data:image/png;base64,{{ gearInputSetup.gear[slot].icon }}" />
         </ng-container>
         <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
       </div>
@@ -52,7 +52,7 @@
         <ng-select
           (change)="gearSlotChange($event, slot)"
           [items]="allGearSlotItems[slot]"
-          [(ngModel)]="currentGear[slot]"
+          [(ngModel)]="gearInputSetup.gear[slot]"
           bindLabel="name"
         >
           <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
@@ -67,13 +67,13 @@
         </ng-select>
       </div>
 
-      <div class="col-5" *ngIf="currentGear[slot]?.id == blowpipeId">
+      <div class="col-5" *ngIf="gearInputSetup.gear[slot]?.id == BLOWPIPE_ID">
         <ng-select [(ngModel)]="selectedDart" [clearable]="false">
           <ng-option *ngFor="let dart of dartItems" [value]="dart">{{ dart.name }}</ng-option>
         </ng-select>
       </div>
 
-      <div class="col-auto" *ngIf="slot == weaponSlot && isSpecialWeapon">
+      <div class="col-auto" *ngIf="slot === GearSlot.Weapon && specialGear.isSpecialWeapon">
         <div class="row align-items-center">
           <div class="col-auto text-end ps-4">
             <label for="useSpecialAttack">Special attack</label>
@@ -82,54 +82,90 @@
             <input
               class="form-check-input"
               type="checkbox"
-              [(ngModel)]="useSpecialAttack"
+              [(ngModel)]="gearInputSetup.isSpecial"
               id="useSpecialAttack"
-              (change)="isFill = useSpecialAttack"
+              (change)="gearInputSetup.isFill = gearInputSetup.isSpecial"
             />
           </div>
         </div>
       </div>
-      <div class="col-auto" *ngIf="slot == 0 && isSlayerHelm">
+      <div class="col-auto" *ngIf="slot === GearSlot.Head && specialGear.isSlayerHelm">
         <div class="row align-items-center">
           <div class="col-auto text-end"><label for="isOnSlayerTask">Slayer task</label></div>
           <div class="col-auto">
-            <input class="form-check-input" type="checkbox" [(ngModel)]="isOnSlayerTask" id="isOnSlayerTask" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="gearInputSetup.isOnSlayerTask"
+              id="isOnSlayerTask"
+            />
           </div>
         </div>
       </div>
-      <div class="col-auto" *ngIf="slot == weaponSlot && isWildernessWeapon">
+      <div class="col-auto" *ngIf="slot === GearSlot.Weapon && specialGear.isWildernessWeapon">
         <div class="row align-items-center">
           <div class="col-auto text-end"><label for="isInWilderness">Wilderness</label></div>
           <div class="col-auto">
-            <input class="form-check-input" type="checkbox" [(ngModel)]="isInWilderness" id="isInWilderness" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="gearInputSetup.isInWilderness"
+              id="isInWilderness"
+            />
           </div>
         </div>
       </div>
-      <div class="col-6" *ngIf="slot == weaponSlot && isDharokSet">
+      <div class="col-6" *ngIf="slot === GearSlot.Weapon && specialGear.isDharokSet">
         <div class="row align-items-center justify-content-end">
           <div class="col-auto"><img src="assets/img/skills/hitpoints.png" /></div>
           <div class="col-4">
-            <input class="form-control" type="number" [(ngModel)]="currentHp" max="99" min="1" id="currentHp" />
+            <input
+              class="form-control"
+              type="number"
+              [(ngModel)]="gearInputSetup.currentHp"
+              max="99"
+              min="1"
+              id="currentHp"
+            />
           </div>
           <div class="col-1">/</div>
           <div class="col-4">
-            <input class="form-control" type="number" [(ngModel)]="maxHp" max="99" min="1" id="maxHp" />
+            <input
+              class="form-control"
+              type="number"
+              [(ngModel)]="this.gearInputSetup.combatStats.hitpoints"
+              max="99"
+              min="1"
+              id="maxHp"
+            />
           </div>
         </div>
       </div>
-      <div class="col-3" *ngIf="slot == weaponSlot && currentGear[slot]?.name.includes('pickaxe')">
+      <div class="col-3" *ngIf="slot === GearSlot.Weapon && gearInputSetup.gear[slot]?.name.includes('pickaxe')">
         <div class="row align-items-center justify-content-end">
           <div class="col-3"><img src="assets/img/skills/mining.png" /></div>
           <div class="col-9">
-            <input class="form-control" type="number" [(ngModel)]="miningLvl" max="99" min="1" id="miningLvl" />
+            <input
+              class="form-control"
+              type="number"
+              [(ngModel)]="gearInputSetup.miningLvl"
+              max="99"
+              min="1"
+              id="miningLvl"
+            />
           </div>
         </div>
       </div>
-      <div class="col-auto" *ngIf="slot == 13 && isSpecialBolt">
+      <div class="col-auto" *ngIf="slot === GearSlot.Ammo && specialGear.isSpecialBolt">
         <div class="row align-items-center justify-content-end">
           <div class="col-auto text-end"><label for="isKandarinDiary">Kandarin diary</label></div>
           <div class="col-auto">
-            <input class="form-check-input" type="checkbox" [(ngModel)]="isKandarinDiary" id="isKandarinDiary" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="gearInputSetup.isKandarinDiary"
+              id="isKandarinDiary"
+            />
           </div>
         </div>
       </div>
@@ -140,7 +176,7 @@
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label for="attackStyle">Attack style</label></div>
       <div class="col-9">
-        <ng-select [(ngModel)]="selectedAttackStyle" (change)="selectedSpell = null">
+        <ng-select [(ngModel)]="gearInputSetup.attackStyle" (change)="gearInputSetup.spell = null">
           <ng-option *ngFor="let style of attackStyles" [value]="style">{{ style }}</ng-option>
         </ng-select>
       </div>
@@ -149,7 +185,7 @@
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label for="attackStyle">Spell</label></div>
       <div class="col-9">
-        <ng-select [items]="allSpells" [(ngModel)]="selectedSpell" (change)="selectedSpellChange()">
+        <ng-select [items]="allSpells" [(ngModel)]="gearInputSetup.spell" (change)="selectedSpellChange()">
           <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index">
             <div class="row">
               <div class="col-1"><img src="assets/img/magic_spells/{{ item }}.png" /></div>
@@ -164,8 +200,8 @@
       <div class="col-3"><label>Prayers</label></div>
       <div class="col">
         <div class="row justify-content-between">
-          <div *ngFor="let prayer of prayers" class="col-auto">
-            <div *ngIf="!selectedPrayers.includes(prayer); else selectedPrayer">
+          <div *ngFor="let prayer of allPrayers" class="col-auto">
+            <div *ngIf="!gearInputSetup.prayers.includes(prayer); else selectedPrayer">
               <img src="assets/img/prayer/{{ prayer }}.png" (click)="addPrayer(prayer)" />
             </div>
             <ng-template #selectedPrayer>
@@ -178,13 +214,19 @@
 
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label>Combat Stats</label></div>
-      <div class="col" *ngFor="let skill of combatStats | keyvalue">
+      <div class="col" *ngFor="let skill of skills">
         <div class="row align-items-center">
           <div class="col-3">
-            <img src="assets/img/skills/{{ skill.key }}.png" />
+            <img src="assets/img/skills/{{ skill }}.png" />
           </div>
           <div class="col">
-            <input class="form-control" type="number" [(ngModel)]="combatStats[skill.key]" max="99" min="1" />
+            <input
+              class="form-control"
+              type="number"
+              [(ngModel)]="gearInputSetup.combatStats[skill]"
+              max="99"
+              min="1"
+            />
           </div>
         </div>
       </div>
@@ -193,16 +235,11 @@
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label>Boosts</label></div>
       <div class="col">
-        <div class="row justify-content-between">
-          <div class="col-auto" *ngFor="let boost of boosts">
-            <div *ngIf="!selectedBoosts.includes(boost); else selectedBoost">
-              <img src="assets/img/boosts/{{ boost }}.png" (click)="addBoost(boost)" />
-            </div>
-            <ng-template #selectedBoost>
-              <img src="assets/img/boosts/selected_{{ boost }}.png" (click)="removeBoost(boost)" />
-            </ng-template>
-          </div>
-        </div>
+        <app-boost-item
+          [selectedBoosts]="gearInputSetup.boosts"
+          (boostAdded)="addBoost($event)"
+          (boostRemoved)="removeBoost($event)"
+        ></app-boost-item>
       </div>
     </div>
 
@@ -213,14 +250,14 @@
         <input
           class="form-check-input"
           type="checkbox"
-          [(ngModel)]="isFill"
+          [(ngModel)]="gearInputSetup.isFill"
           id="isFill"
-          [disabled]="useSpecialAttack"
+          [disabled]="gearInputSetup.isSpecial"
         />
       </div>
     </div>
     <div class="row mb-3">
-      <app-condition [isFill]="isFill" (conditionsChanged)="updateConditions($event)"></app-condition>
+      <app-condition [isFill]="gearInputSetup.isFill" (conditionsChanged)="updateConditions($event)"></app-condition>
     </div>
   </div>
 </div>

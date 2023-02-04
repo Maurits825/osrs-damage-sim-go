@@ -12,16 +12,16 @@ class DamageSimRunner:
     def __init__(self):
         self.damage_sim_graph = DamageSimGraph()
 
-    def run(self, iterations, input_setup: InputSetup) -> (DamageSimResults, Figure, Figure):
+    def run(self, input_setup: InputSetup) -> (DamageSimResults, Figure, Figure):
 
         damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], {})
         ttk_tick_stats = []
         ttk_list = []
         for weapon_setups in input_setup.all_weapons_setups:
-            sim_data = self.run_damage_sim(iterations, input_setup.npc, weapon_setups)
+            sim_data = self.run_damage_sim(input_setup, weapon_setups)
 
             ttk_tick_stat = DamageSimStats.populate_damage_sim_stats(
-                damage_sim_results, sim_data, weapon_setups, input_setup.npc
+                damage_sim_results, sim_data, weapon_setups, input_setup.global_settings.npc
             )
             ttk_tick_stats.append(ttk_tick_stat)
 
@@ -29,16 +29,14 @@ class DamageSimRunner:
 
         min_ticks, max_ticks = DamageSimStats.get_min_and_max_ticks(ttk_tick_stats)
 
-        damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(
-            min_ticks, max_ticks, input_setup, iterations, ttk_list
-        )
+        damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(min_ticks, max_ticks, input_setup, ttk_list)
 
         return damage_sim_results
 
-    def run_damage_sim(self, iterations, npc, weapon_setups: list[Weapon]) -> TotalDamageSimData:
+    def run_damage_sim(self, input_setup: InputSetup, weapon_setups: list[Weapon]) -> TotalDamageSimData:
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
-        damage_sim = DamageSim(npc, weapon_setups)
-        for i in range(iterations):
+        damage_sim = DamageSim(input_setup.global_settings.npc, weapon_setups)
+        for i in range(input_setup.global_settings.iterations):
             dmg_sim_data = damage_sim.run()
             total_damage_sim_data.ticks_to_kill.append(dmg_sim_data.ticks_to_kill)
             total_damage_sim_data.gear_total_dmg.append(dmg_sim_data.gear_total_dmg)

@@ -1,27 +1,27 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Boost } from '../model/boost.type';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class GlobalBoostService {
-  boostsChanged = new EventEmitter<string[]>();
   boostsAdded = new EventEmitter<string>();
   boostsRemoved = new EventEmitter<string>();
-  selectedBoosts: string[] = [];
+  selectedBoosts: Set<Boost> = new Set();
 
   constructor() {}
 
-  getGlobalBoosts(): string[] {
+  getBoosts(): Set<Boost> {
     return this.selectedBoosts;
   }
 
-  addGlobalBoost(boost: string): void {
-    this.selectedBoosts.push(boost);
+  addBoost(boost: Boost): void {
+    this.selectedBoosts.add(boost);
     this.boostsAdded.emit(boost);
-    this.boostsChanged.emit(this.selectedBoosts);
   }
 
-  removeGlobalBoost(boost: string): void {
-    this.selectedBoosts = this.selectedBoosts.filter((b) => b !== boost);
+  removeBoost(boost: Boost): void {
+    this.selectedBoosts.delete(boost);
     this.boostsRemoved.emit(boost);
-    this.boostsChanged.emit(this.selectedBoosts);
   }
 }

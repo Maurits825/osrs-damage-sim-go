@@ -1,19 +1,27 @@
+import { Boost } from './boost.type';
 import { Condition } from './condition.model';
+import { GearSlot } from './gear-slot.enum';
+import { Item } from './item.model';
+import { CombatStats } from './skill.type';
 
 export interface InputSetup {
+  globalSettings: GlobalSettings;
+  gearInputSetups: GearInputSetup[][];
+}
+
+export interface GlobalSettings {
   iterations: number;
   npcId: number;
-  gearInputSetups: GearInputSetup[][];
 
   raidLevel: number;
   pathLevel: number;
+
   teamSize: number;
 }
 
 export interface GearInputSetup {
-  name: string;
-  gear: number[]; //TODO make this Record<number, number> --> gearSlot: id
-  weapon: number;
+  setupName: string;
+  gear: Record<GearSlot, Item>;
   blowpipeDarts: number;
 
   attackStyle: string;
@@ -21,8 +29,8 @@ export interface GearInputSetup {
 
   isSpecial: boolean;
   prayers: string[];
-  combatStats: Record<string, number>;
-  boosts: string[];
+  combatStats: CombatStats;
+  boosts: Set<Boost>;
 
   isFill: boolean;
   conditions: Condition[];
@@ -30,7 +38,6 @@ export interface GearInputSetup {
   isOnSlayerTask: boolean;
   isInWilderness: boolean;
 
-  maxHp: number;
   currentHp: number;
 
   miningLvl: number;

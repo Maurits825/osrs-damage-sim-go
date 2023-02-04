@@ -1,0 +1,34 @@
+<div class="row mb-3 align-items-center">
+  <div class="col-2">Global settings</div>
+  <label class="col-1 text-end">Iterations</label>
+  <div class="col-2"><input class="form-control" type="number" [(ngModel)]="globalSettings.iterations" min="1" /></div>
+  <label class="col-1 text-end">Team size</label>
+  <div class="col-1"><input class="form-control" type="number" [(ngModel)]="globalSettings.teamSize" min="1" /></div>
+  <div class="col">
+    <button class="btn btn-primary w-100" type="button" (click)="submit()" [disabled]="loading">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
+      <span *ngIf="loading" class="sr-only"> Loading...</span>
+    </button>
+  </div>
+</div>
+
+<app-npc-input (npcChanged)="npcChanged($event)"></app-npc-input>
+<div class="col-2" *ngIf="showRaidLevel">
+  <div class="row align-items-center">
+    <div class="col text-end"><label>Raid Level</label></div>
+    <div class="col"><input class="form-control" type="number" [(ngModel)]="globalSettings.raidLevel" min="0" /></div>
+  </div>
+</div>
+<div class="col-2" *ngIf="showPathLevel">
+  <div class="row align-items-center">
+    <div class="col text-end"><label>Path Level</label></div>
+    <div class="col"><input class="form-control" type="number" [(ngModel)]="globalSettings.pathLevel" min="0" /></div>
+  </div>
+</div>
+
+<app-boost-item
+  [selectedBoosts]="selectedBoosts"
+  (boostAdded)="boostAdded($event)"
+  (boostRemoved)="boostRemoved($event)"
+></app-boost-item>

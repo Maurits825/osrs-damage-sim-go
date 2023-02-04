@@ -1,11 +1,9 @@
 import { Component, ComponentRef, ViewChild } from '@angular/core';
-import { damageSimResults } from './damage-sim-results.const';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
 import { DamageSimResults } from './model/damage-sim-results.model';
-import { GearInputSetup, InputSetup } from './model/input-setup.model';
-import { NpcInputComponent } from './npc-input/npc-input.component';
+import { GearInputSetup, GlobalSettings, InputSetup } from './model/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
 
 @Component({
@@ -15,12 +13,6 @@ import { DamageSimService } from './services/damage-sim.service';
 })
 export class AppComponent {
   @ViewChild(GearSetupTabsComponent) gearSetupTabsComponent: GearSetupTabsComponent;
-  @ViewChild(NpcInputComponent) npcInputComponent: NpcInputComponent;
-
-  iterations: number = 10000;
-  teamSize: number = 1;
-
-  targetTimeChance: number[];
 
   loading = false;
 
@@ -28,16 +20,12 @@ export class AppComponent {
 
   constructor(private damageSimservice: DamageSimService) {}
 
-  submit(): void {
+  runDamageSim(globalSettings: GlobalSettings): void {
     this.loading = true;
 
     const inputSetup: InputSetup = {
-      iterations: this.iterations,
-      teamSize: this.teamSize,
-      npcId: this.npcInputComponent.selectedNpc.id,
+      globalSettings: globalSettings,
       gearInputSetups: [],
-      raidLevel: this.npcInputComponent.raidLevel,
-      pathLevel: this.npcInputComponent.pathLeveL,
     };
 
     this.gearSetupTabsComponent.gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {

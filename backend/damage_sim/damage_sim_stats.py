@@ -139,15 +139,17 @@ class DamageSimStats:
         return label
 
     @staticmethod
-    def get_graph_title_info(input_setup: InputSetup, iterations):
-        title = input_setup.npc.name + ", HP: " + str(input_setup.npc.combat_stats.hitpoints)
+    def get_graph_title_info(input_setup: InputSetup):
+        title = (input_setup.global_settings.npc.name +
+                 ", HP: " +
+                 str(input_setup.global_settings.npc.combat_stats.hitpoints))
 
-        if input_setup.raid_level:
-            title += ", raid level: " + str(input_setup.raid_level)
-            if input_setup.path_level:
-                title += ", path level: " + str(input_setup.path_level)
+        if input_setup.global_settings.raid_level:
+            title += ", raid level: " + str(input_setup.global_settings.raid_level)
+            if input_setup.global_settings.path_level:
+                title += ", path level: " + str(input_setup.global_settings.path_level)
 
-        title += ", iterations: " + str(iterations)
+        title += ", iterations: " + str(input_setup.global_settings.iterations)
 
         return title
 

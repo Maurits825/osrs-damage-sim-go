@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { Item } from '../model/item.model';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class RlGearService {
   constructor(private http: HttpClient) {}
 

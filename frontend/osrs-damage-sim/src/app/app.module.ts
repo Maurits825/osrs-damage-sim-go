@@ -10,11 +10,12 @@ import { RlGearService } from './services/rl-gear.service';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { NpcInputComponent } from './npc-input/npc-input.component';
-import { GlobalBoostComponent } from './global-boost/global-boost.component';
 import { GlobalBoostService } from './services/global-boost.service';
 import { ConditionComponent } from './condition/condition.component';
 import { SimResultsComponent } from './sim-results/sim-results.component';
 import { Base64ImagePipe } from './pipes/base64-image.pipe';
+import { BoostItemComponent } from './boost-item/boost-item.component';
+import { GlobalSettingsComponent } from './global-settings/global-settings.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { Base64ImagePipe } from './pipes/base64-image.pipe';
     GearSetupTabComponent,
     GearSetupTabsComponent,
     NpcInputComponent,
-    GlobalBoostComponent,
     ConditionComponent,
     SimResultsComponent,
     Base64ImagePipe,
+    BoostItemComponent,
+    GlobalSettingsComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
-  providers: [DamageSimService, RlGearService, GlobalBoostService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
