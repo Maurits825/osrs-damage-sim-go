@@ -1,27 +1,51 @@
 {
   "Vorkath max dhcb": {
     "expectedDps": 11.52638006,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "8059",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "8059",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Dragon hunter crossbow",
-          "gear": [
-            11664,
-            27363,
-            12018,
-            21012,
-            13072,
-            21000,
-            13073,
-            8842,
-            13237,
-            11771,
-            21944
-          ],
-          "weapon": 21012,
+          "gear": {
+            "0": {
+              "id": 11664
+            },
+            "1": {
+              "id": 27363
+            },
+            "2": {
+              "id": 12018
+            },
+            "3": {
+              "id": 21012
+            },
+            "4": {
+              "id": 13072
+            },
+            "5": {
+              "id": 21000
+            },
+            "7": {
+              "id": 13073
+            },
+            "9": {
+              "id": 8842
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 21944
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Rapid (Ranged/Rapid)",
           "attackCount": 0,
@@ -33,7 +57,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "ranged_pot"
@@ -46,35 +71,56 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Dragon hunter crossbow"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Cerb max scythe inq slayer": {
     "expectedDps": 12.59982607,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "5862",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "5862",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max scythe",
-          "gear": [
-            25912,
-            21285,
-            19553,
-            22325,
-            24420,
-            24421,
-            22981,
-            13239,
-            11773,
-            22947
-          ],
-          "weapon": 22325,
+          "gear": {
+            "0": {
+              "id": 25912
+            },
+            "1": {
+              "id": 21285
+            },
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 22325
+            },
+            "4": {
+              "id": 24420
+            },
+            "7": {
+              "id": 24421
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Jab (Crush/Aggressive)",
           "attackCount": 0,
@@ -86,7 +132,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "super_combat_pot"
@@ -99,35 +146,56 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Max scythe"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Olm max tbow": {
     "expectedDps": 11.70621133,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "7551",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "7551",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max Tbow",
-          "gear": [
-            27235,
-            27363,
-            19547,
-            20997,
-            27238,
-            27241,
-            26235,
-            13237,
-            11771,
-            11212
-          ],
-          "weapon": 20997,
+          "gear": {
+            "0": {
+              "id": 27235
+            },
+            "1": {
+              "id": 27363
+            },
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 20997
+            },
+            "4": {
+              "id": 27238
+            },
+            "7": {
+              "id": 27241
+            },
+            "9": {
+              "id": 26235
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 11212
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Rapid (Ranged/Rapid)",
           "attackCount": 0,
@@ -139,7 +207,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "overload_plus"
@@ -152,35 +221,56 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Max Tbow"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Maiden void BGS spec": {
     "expectedDps": 9.18022121,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "8360",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "8360",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max BGS",
-          "gear": [
-            11665,
-            21285,
-            19553,
-            11804,
-            8839,
-            8840,
-            8842,
-            13239,
-            11773,
-            22947
-          ],
-          "weapon": 11804,
+          "gear": {
+            "0": {
+              "id": 11665
+            },
+            "1": {
+              "id": 21285
+            },
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 11804
+            },
+            "4": {
+              "id": 8839
+            },
+            "7": {
+              "id": 8840
+            },
+            "9": {
+              "id": 8842
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Slash (Slash/Aggressive)",
           "isSpecial": true,
@@ -191,7 +281,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "super_combat_pot"
@@ -204,35 +295,56 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Max BGS"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Zebak max ZCB spec": {
     "expectedDps": 9.85873409,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "11730",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "11730",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max ZCB",
-          "gear": [
-            27235,
-            27363,
-            19547,
-            26374,
-            27238,
-            27241,
-            26235,
-            13237,
-            11771,
-            21946
-          ],
-          "weapon": 26374,
+          "gear": {
+            "0": {
+              "id": 27235
+            },
+            "1": {
+              "id": 27363
+            },
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 26374
+            },
+            "4": {
+              "id": 27238
+            },
+            "7": {
+              "id": 27241
+            },
+            "9": {
+              "id": 26235
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 21946
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Rapid (Ranged/Rapid)",
           "isSpecial": true,
@@ -243,7 +355,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "smelling_salts"
@@ -256,36 +369,59 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Max ZCB"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Tekton max fang": {
     "expectedDps": 3.45439992,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "7540",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "7540",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max fang",
-          "gear": [
-            26382,
-            21285,
-            19553,
-            26219,
-            26384,
-            22322,
-            26386,
-            22981,
-            13239,
-            11773,
-            22947
-          ],
-          "weapon": 26219,
+          "gear": {
+            "0": {
+              "id": 26382
+            },
+            "1": {
+              "id": 21285
+            },
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 26219
+            },
+            "4": {
+              "id": 26384
+            },
+            "5": {
+              "id": 22322
+            },
+            "7": {
+              "id": 26386
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Lunge (Stab/Aggressive)",
           "isSpecial": false,
@@ -296,7 +432,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [],
           "isFill": false,
@@ -307,35 +444,56 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Max fang"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Ba-ba 300 max d claws spec": {
     "expectedDps": 17.45856621,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "11778",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "11778",
+      "raidLevel": 300,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max dragon claws bring",
-          "gear": [
-            26382,
-            21285,
-            19553,
-            13652,
-            26384,
-            26386,
-            22981,
-            13239,
-            11773,
-            22947
-          ],
-          "weapon": 13652,
+          "gear": {
+            "0": {
+              "id": 26382
+            },
+            "1": {
+              "id": 21285
+            },
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 13652
+            },
+            "4": {
+              "id": 26384
+            },
+            "7": {
+              "id": 26386
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Slash (Slash/Aggressive)",
           "isSpecial": true,
@@ -346,7 +504,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "smelling_salts",
@@ -360,36 +519,59 @@
           "currentHp": 1,
           "miningLvl": 99,
           "isKandarinDiary": true,
-          "spell": null
+          "spell": null,
+          "setupName": "Max dragon claws bring"
         }
       ]
-    ],
-    "raidLevel": 300,
-    "pathLevel": 0
+    ]
   },
   "Vorkath sang void ei brim": {
     "expectedDps": 4.32377426,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "8059",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "8059",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max sang",
-          "gear": [
-            11663,
-            21780,
-            12018,
-            22323,
-            13072,
-            27253,
-            13073,
-            8842,
-            13235,
-            22975,
-            22947
-          ],
-          "weapon": 22323,
+          "gear": {
+            "0": {
+              "id": 11663
+            },
+            "1": {
+              "id": 21780
+            },
+            "2": {
+              "id": 12018
+            },
+            "3": {
+              "id": 22323
+            },
+            "4": {
+              "id": 13072
+            },
+            "5": {
+              "id": 27253
+            },
+            "7": {
+              "id": 13073
+            },
+            "9": {
+              "id": 8842
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 22975
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Accurate (Magic/Accurate)",
           "spell": null,
@@ -401,7 +583,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "overload_plus"
@@ -413,36 +596,59 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "setupName": "Max sang"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Nech max kodai ice barrage": {
     "expectedDps": 7.94313678,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "8",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "8",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Kodai wand",
-          "gear": [
-            25912,
-            21780,
-            12002,
-            21006,
-            24666,
-            27253,
-            24668,
-            19544,
-            13235,
-            11770,
-            22947
-          ],
-          "weapon": 21006,
+          "gear": {
+            "0": {
+              "id": 25912
+            },
+            "1": {
+              "id": 21780
+            },
+            "2": {
+              "id": 12002
+            },
+            "3": {
+              "id": 21006
+            },
+            "4": {
+              "id": 24666
+            },
+            "5": {
+              "id": 27253
+            },
+            "7": {
+              "id": 24668
+            },
+            "9": {
+              "id": 19544
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 11770
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Spell (Magic/Autocast)",
           "spell": "Ice Barrage",
@@ -454,7 +660,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "smelling_salts"
@@ -466,36 +673,59 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "setupName": "Kodai wand"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Thermy max harm tome of fire": {
     "expectedDps": 8.64685476,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "499",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "499",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Harmonised nightmare staff",
-          "gear": [
-            21018,
-            21780,
-            12002,
-            24423,
-            24666,
-            20714,
-            24668,
-            19544,
-            13235,
-            11770,
-            22947
-          ],
-          "weapon": 24423,
+          "gear": {
+            "0": {
+              "id": 21018
+            },
+            "1": {
+              "id": 21780
+            },
+            "2": {
+              "id": 12002
+            },
+            "3": {
+              "id": 24423
+            },
+            "4": {
+              "id": 24666
+            },
+            "5": {
+              "id": 20714
+            },
+            "7": {
+              "id": 24668
+            },
+            "9": {
+              "id": 19544
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 11770
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Spell (Magic/Autocast)",
           "spell": "Fire Surge",
@@ -507,7 +737,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [],
           "isFill": false,
@@ -517,35 +748,56 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "setupName": "Harmonised nightmare staff"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Mystic max tbow": {
     "expectedDps": 6.35046859,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "7604",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "7604",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Max Tbow",
-          "gear": [
-            27235,
-            27363,
-            19547,
-            20997,
-            27238,
-            27241,
-            26235,
-            13237,
-            11771,
-            11212
-          ],
-          "weapon": 20997,
+          "gear": {
+            "0": {
+              "id": 27235
+            },
+            "1": {
+              "id": 27363
+            },
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 20997
+            },
+            "4": {
+              "id": 27238
+            },
+            "7": {
+              "id": 27241
+            },
+            "9": {
+              "id": 26235
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 11212
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
@@ -557,7 +809,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "overload_plus"
@@ -569,35 +822,56 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "setupName": "Max Tbow"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   },
   "Zebak bowfa corrupted": {
     "expectedDps": 8.41333061,
-    "iterations": 10000,
-    "teamSize": 1,
-    "npcId": "11730",
+    "globalSettings": {
+      "iterations": 10000,
+      "npcId": "11730",
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "teamSize": 1
+    },
     "gearInputSetups": [
       [
         {
-          "name": "Bow of faerdhinen (c)",
-          "gear": [
-            23971,
-            22109,
-            19547,
-            25867,
-            23975,
-            23979,
-            7462,
-            13237,
-            11771,
-            22947
-          ],
-          "weapon": 25867,
+          "gear": {
+            "0": {
+              "id": 23971
+            },
+            "1": {
+              "id": 22109
+            },
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 25867
+            },
+            "4": {
+              "id": 23975
+            },
+            "7": {
+              "id": 23979
+            },
+            "9": {
+              "id": 7462
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 22947
+            }
+          },
           "blowpipeDarts": 11230,
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
@@ -609,7 +883,8 @@
             "attack": 99,
             "strength": 99,
             "ranged": 99,
-            "magic": 99
+            "magic": 99,
+            "hitpoints": 99
           },
           "boosts": [
             "ranged_pot"
@@ -621,11 +896,10 @@
           "maxHp": 99,
           "currentHp": 1,
           "miningLvl": 99,
-          "isKandarinDiary": true
+          "isKandarinDiary": true,
+          "setupName": "Bow of faerdhinen (c)"
         }
       ]
-    ],
-    "raidLevel": 0,
-    "pathLevel": 0
+    ]
   }
 }

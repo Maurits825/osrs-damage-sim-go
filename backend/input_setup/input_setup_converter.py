@@ -63,7 +63,7 @@ class InputSetupConverter:
         combat_stats = Boost.apply_boosts(combat_stats, boosts)
 
         gear_stats = WeaponStats(name=gear_setup["setupName"])
-        equipped_gear = EquippedGear(gear_setup["gear"], [])
+        equipped_gear = EquippedGear([], [])
         weapon_item = WikiData.get_weapon(UNARMED_EQUIVALENT)
 
         for gear_slot in gear_setup["gear"]:
@@ -71,14 +71,15 @@ class InputSetupConverter:
 
             if not item:
                 continue
-            gear_id = gear_setup["gear"][gear_slot]["id"]
 
+            gear_id = gear_setup["gear"][gear_slot]["id"]
             weapon_stats = WikiData.get_weapon(gear_id)
 
-            if gear_slot == GearSlot.WEAPON:
+            if GearSlot(gear_slot) == GearSlot.WEAPON:
                 weapon_item = weapon_stats
 
             equipped_gear.names.append(weapon_stats.name.lower())
+            equipped_gear.ids.append(gear_id)
             gear_stats += weapon_stats
 
         if weapon_item.id == BLOWPIPE:
