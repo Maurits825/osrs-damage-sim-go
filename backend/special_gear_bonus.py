@@ -8,7 +8,7 @@ from model.npc.npc_stats import NpcStats
 from wiki_data import WikiData
 
 
-class GearBonus:
+class SpecialGearBonus:
     @staticmethod
     def get_gear_bonus(gear: EquippedGear, attack_style,
                        is_on_slayer_task, is_in_wilderness, npc: NpcStats, spell) -> CombatBoost:

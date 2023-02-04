@@ -3,7 +3,7 @@ import json
 GEAR_JSON = "./setups/gear.json"
 
 
-class GearJson:
+class GearSetupPreset:
     @staticmethod
     def load_gear():
         with open(GEAR_JSON) as gear_file:
@@ -11,7 +11,7 @@ class GearJson:
 
     @staticmethod
     def update_gear(name, gear_list):
-        gear = GearJson.load_gear()
+        gear = GearSetupPreset.load_gear()
         if name in gear:
             raise NameError("Name already exists in gear json")
         gear[name] = gear_list

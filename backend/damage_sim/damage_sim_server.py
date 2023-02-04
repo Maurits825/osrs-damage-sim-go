@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 from damage_sim.damage_sim_runner import DamageSimRunner
-from gear_json import GearJson
-from gear_setup_input import GearSetupInput
+from gear_setup_preset import GearSetupPreset
+from input_setup_converter import InputSetupConverter
 from rl_gear_input import RlGearInput
 from wiki_data import WikiData
 
@@ -44,7 +44,7 @@ def get_rl_gear():
 def get_gear_setups():
     gear_setups = {}
 
-    for name, item_ids in GearJson.load_gear().items():
+    for name, item_ids in GearSetupPreset.load_gear().items():
         gear_setups[name] = {}
         for item_id in item_ids:
             gear_setups[name][WikiData.items_json[str(item_id)]["slot"]] = item_id
@@ -66,7 +66,7 @@ def get_npcs():
 def run_damage_sim():
     json_request = request.get_json()
 
-    input_setup = GearSetupInput.get_input_setup(json_request)
+    input_setup = InputSetupConverter.get_input_setup(json_request)
     damage_sim_results = damage_sim_runner.run(input_setup)
 
     return jsonify(damage_sim_results)

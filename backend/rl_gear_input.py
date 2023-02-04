@@ -1,7 +1,7 @@
 import click
 import requests
 
-from gear_json import GearJson
+from gear_setup_preset import GearSetupPreset
 
 
 class RlGearInput:
@@ -18,7 +18,7 @@ class RlGearInput:
 
     @staticmethod
     def save_gear(name: str):
-        GearJson.update_gear(name, RlGearInput.get_gear())
+        GearSetupPreset.update_gear(name, RlGearInput.get_gear())
 
 
 @click.command()

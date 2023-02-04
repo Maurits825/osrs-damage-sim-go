@@ -4,7 +4,7 @@ import random
 from bolt_special_attack import BoltSpecialAttack
 from constants import TICK_LENGTH
 from dps_calculator import DpsCalculator
-from gear_bonus import GearBonus
+from special_gear_bonus import SpecialGearBonus
 from gear_ids import TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS, DAWNBRINGER, \
     HARM_STAFF
 from model.attack_style.attack_type import AttackType
@@ -33,7 +33,7 @@ class Weapon:
         self.accuracy = 0
         self.max_hit = 0
 
-        self.damage_multiplier = GearBonus.get_damage_multiplier(
+        self.damage_multiplier = SpecialGearBonus.get_damage_multiplier(
             self.gear_setup.equipped_gear, self.npc, self.gear_setup.current_hp,
             self.gear_setup.combat_stats.hitpoints, self.gear_setup.mining_lvl
         )
@@ -43,8 +43,8 @@ class Weapon:
             self.gear_setup.is_kandarin_diary,
         )
 
-        self.void_bonus: CombatBoost() = GearBonus.get_gear_void_bonuses(self.gear_setup.equipped_gear)
-        self.special_gear_bonus: CombatBoost() = GearBonus.get_gear_bonus(
+        self.void_bonus: CombatBoost() = SpecialGearBonus.get_gear_void_bonuses(self.gear_setup.equipped_gear)
+        self.special_gear_bonus: CombatBoost() = SpecialGearBonus.get_gear_bonus(
             self.gear_setup.equipped_gear, self.gear_setup.attack_style, self.gear_setup.is_on_slayer_task,
             self.gear_setup.is_in_wilderness, self.npc, self.gear_setup.spell
         )

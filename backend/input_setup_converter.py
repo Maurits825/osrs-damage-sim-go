@@ -18,21 +18,21 @@ from weapons.weapon_loader import WeaponLoader
 from wiki_data import WikiData
 
 
-class GearSetupInput: #TODO just SetupInput or InputSetups plural?
+class InputSetupConverter:
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
         npc = WikiData.get_npc(json_data["globalSettings"]["npcId"])
 
-        raid_level, path_level = GearSetupInput.get_raid_level(npc, json_data)
+        raid_level, path_level = InputSetupConverter.get_raid_level(npc, json_data)
 
         if npc.is_tob_entry_mode or npc.is_tob_normal_mode or npc.is_tob_hard_mode:
-            GearSetupInput.scale_tob_hp(npc, json_data)
+            InputSetupConverter.scale_tob_hp(npc, json_data)
 
         weapons_setups = []
         for setup in json_data["gearInputSetups"]:
             weapons = []
             for gear_setup_dict in setup:
-                gear_setup, weapon_item = GearSetupInput.get_gear_setup(gear_setup_dict)
+                gear_setup, weapon_item = InputSetupConverter.get_gear_setup(gear_setup_dict)
                 special_attack_cost = WikiData.get_special_attack(weapon_item.name)
 
                 weapon = WeaponLoader.load_weapon(weapon_item.name, gear_setup, npc, raid_level, special_attack_cost)
