@@ -2,7 +2,7 @@ import copy
 
 from condition_evaluator import ConditionEvaluator
 from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT, TICK_LENGTH
-from gear_ids import LIGHTBEARER
+from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType
 from model.damage_sim_results import SingleDamageSimData
 from model.npc.npc_stats import NpcStats

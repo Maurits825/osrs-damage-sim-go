@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from input_setup_converter import InputSetupConverter
+from input_setup.input_setup_converter import InputSetupConverter
 
 TEST_RESOURCE_FOLDER = Path(__file__).parent.parent / "tests/resources"
 

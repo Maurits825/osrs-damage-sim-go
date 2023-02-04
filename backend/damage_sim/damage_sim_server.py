@@ -2,9 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 from damage_sim.damage_sim_runner import DamageSimRunner
-from gear_setup_preset import GearSetupPreset
-from input_setup_converter import InputSetupConverter
-from rl_gear_input import RlGearInput
+from input_setup.gear_setup_preset import GearSetupPreset
+from input_setup.input_setup_converter import InputSetupConverter
+from input_setup.rl_gear_input import RlGearInput
 from wiki_data import WikiData
 
 app = Flask(__name__)
@@ -40,7 +40,7 @@ def get_rl_gear():
     return gear
 
 
-@app.route("/gear-setups", methods=["GET"])
+@app.route("/gear-gear_setup_presets_data", methods=["GET"])
 def get_gear_setups():
     gear_setups = {}
 

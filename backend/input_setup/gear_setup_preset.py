@@ -1,6 +1,6 @@
 import json
 
-GEAR_JSON = "./setups/gear.json"
+GEAR_JSON = "./gear_setup_presets_data/gear.json"
 
 
 class GearSetupPreset:
