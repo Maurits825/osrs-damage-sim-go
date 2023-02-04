@@ -41,8 +41,8 @@ export class DamageSimService {
     );
   }
 
-  getGearSetups(): Observable<Record<string, Record<GearSlot, number>>> {
-    return this.http.get<Record<string, Record<GearSlot, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setups');
+  getGearSetupPresets(): Observable<Record<string, Record<GearSlot, number>>> {
+    return this.http.get<Record<string, Record<GearSlot, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setup-presets');
   }
 
   convertInputSetupToJson(inputSetup: InputSetup): string {

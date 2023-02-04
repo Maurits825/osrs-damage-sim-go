@@ -130,7 +130,7 @@ class DamageSimStats:
             prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
 
         for boost in gear.boosts:
-            prayer_and_boost_text += BOOST_NAME[boost.boost_type] + ", "
+            prayer_and_boost_text += BOOST_NAME[boost] + ", "
 
         if prayer_and_boost_text:
             prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"

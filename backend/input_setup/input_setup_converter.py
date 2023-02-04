@@ -1,7 +1,7 @@
 import math
 
 from constants import TOA_TEAM_SCALING, TOA_MAX_TEAM, TOB_MAX_TEAM
-from gear_ids import BLOWPIPE, UNARMED_EQUIVALENT
+from input_setup.gear_ids import BLOWPIPE, UNARMED_EQUIVALENT
 from model.attack_style.weapon_category import WeaponCategory
 from model.boost import Boost, BoostType
 from model.condition import Condition, ConditionVariables, ConditionComparison
@@ -52,7 +52,7 @@ class InputSetupConverter:
     def get_gear_setup(gear_setup) -> (GearSetup, WeaponStats):
         prayers = [Prayer[prayer.upper()] for prayer in gear_setup["prayers"]]
 
-        boosts = [Boost(BoostType[boost.upper()]) for boost in gear_setup["boosts"]]
+        boosts = [BoostType[boost.upper()] for boost in gear_setup["boosts"]]
         combat_stats = CombatStats(hitpoints=gear_setup["combatStats"]["hitpoints"],
                                    attack=gear_setup["combatStats"]["attack"],
                                    strength=gear_setup["combatStats"]["strength"],
@@ -60,8 +60,7 @@ class InputSetupConverter:
                                    magic=gear_setup["combatStats"]["magic"],
                                    ranged=gear_setup["combatStats"]["ranged"])
 
-        for boost in boosts:
-            boost.apply_boost(combat_stats)
+        combat_stats = Boost.apply_boosts(combat_stats, boosts)
 
         gear_stats = WeaponStats(name=gear_setup["setupName"])
         equipped_gear = EquippedGear(gear_setup["gear"], [])

@@ -1,7 +1,7 @@
 import click
 import requests
 
-from gear_setup_preset import GearSetupPreset
+from input_setup.gear_setup_preset import GearSetupPreset
 
 
 class RlGearInput:

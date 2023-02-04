@@ -1,6 +1,6 @@
-from gear_ids import *
 import re
 
+from input_setup.gear_ids import *
 from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.equipped_gear import EquippedGear

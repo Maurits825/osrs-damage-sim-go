@@ -120,7 +120,7 @@ class DamageSim:
             else:
                 self.ticks_to_spec_regen.append(SPEC_REGEN_TICKS)
 
-            if any(boost.boost_type == BoostType.LIQUID_ADRENALINE for boost in weapon.gear_setup.boosts):
+            if any(boost == BoostType.LIQUID_ADRENALINE for boost in weapon.gear_setup.boosts):
                 self.special_attack_cost.append(weapon.special_attack_cost / 2)
             else:
                 self.special_attack_cost.append(weapon.special_attack_cost)

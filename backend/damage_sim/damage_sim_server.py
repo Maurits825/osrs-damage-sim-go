@@ -40,7 +40,7 @@ def get_rl_gear():
     return gear
 
 
-@app.route("/gear-gear_setup_presets_data", methods=["GET"])
+@app.route("/gear-setup-presets", methods=["GET"])
 def get_gear_setups():
     gear_setups = {}
 

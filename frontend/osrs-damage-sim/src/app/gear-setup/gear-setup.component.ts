@@ -77,9 +77,9 @@ export class GearSetupComponent implements OnInit {
     //TODO make these call in a service, then only one call per session, rather than per component
     forkJoin({
       gearSlotItems: this.damageSimservice.getGearSlotItems(),
-      gearSetups: this.damageSimservice.getGearSetups(),
+      gearSetupPresets: this.damageSimservice.getGearSetupPresets(),
       allSpells: this.damageSimservice.getAllSpells(),
-    }).subscribe(({ gearSlotItems, gearSetups, allSpells }) => {
+    }).subscribe(({ gearSlotItems, gearSetupPresets, allSpells }) => {
       this.allGearSlotItems = gearSlotItems;
       this.allGearSlotItems[GearSlot.Weapon].forEach((item: Item) => {
         if (item.name.match('dart$')) {
@@ -88,7 +88,7 @@ export class GearSetupComponent implements OnInit {
       });
       this.selectedDart = this.getItem(GearSlot.Weapon, DRAGON_DARTS_ID);
 
-      this.gearSetupPresets = gearSetups;
+      this.gearSetupPresets = gearSetupPresets;
       this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       this.allSpells = allSpells;
 

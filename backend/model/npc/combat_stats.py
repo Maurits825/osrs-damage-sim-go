@@ -17,3 +17,11 @@ class CombatStats:
         self.defence = combat_stats.defence
         self.magic = combat_stats.magic
         self.ranged = combat_stats.ranged
+
+    def merge_stats(self, combat_stats):
+        self.hitpoints = max(self.hitpoints, combat_stats.hitpoints)
+        self.attack = max(self.attack, combat_stats.attack)
+        self.strength = max(self.strength, combat_stats.strength)
+        self.defence = max(self.defence, combat_stats.defence)
+        self.magic = max(self.magic, combat_stats.magic)
+        self.ranged = max(self.ranged, combat_stats.ranged)
