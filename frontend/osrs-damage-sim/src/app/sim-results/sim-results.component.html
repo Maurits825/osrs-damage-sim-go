@@ -108,7 +108,7 @@
           <img class="img-fluid" [src]="cumulative_url" />
         </a>
       </div>
-      <div class="col-6 pe-0" *ngIf="damageSimResults.graphs.time_to_kill_cumulative | base64Image as probability_url">
+      <div class="col-6 pe-0" *ngIf="damageSimResults.graphs.time_to_kill_probability | base64Image as probability_url">
         <a [href]="probability_url" target="_blank">
           <img class="img-fluid" [src]="probability_url" />
         </a>

@@ -257,7 +257,11 @@
       </div>
     </div>
     <div class="row mb-3">
-      <app-condition [isFill]="gearInputSetup.isFill" (conditionsChanged)="updateConditions($event)"></app-condition>
+      <app-condition
+        [initialConditions]="gearInputSetup.conditions"
+        [isFill]="gearInputSetup.isFill"
+        (conditionsChanged)="updateConditions($event)"
+      ></app-condition>
     </div>
   </div>
 </div>

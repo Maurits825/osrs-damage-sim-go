@@ -219,8 +219,6 @@ export class GearSetupComponent implements OnInit {
     this.attackStyles = [...gearSetupComponent.attackStyles];
 
     this.specialGear = { ...gearSetupComponent.specialGear };
-
-    this.conditionComponent.conditions = this.gearInputSetup.conditions;
   }
 
   updateConditions(conditions: Condition[]): void {

@@ -7,6 +7,9 @@ import { Condition } from '../model/condition.model';
   styleUrls: ['./condition.component.css'],
 })
 export class ConditionComponent implements OnInit {
+  @Input()
+  initialConditions: Condition[];
+
   conditionVariables = {
     NPC_HITPOINTS: 'Npc hitpoints',
     DMG_DEALT: 'Damage dealt',
@@ -32,7 +35,9 @@ export class ConditionComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.conditions = this.initialConditions;
+  }
 
   addCondition(): void {
     this.conditions.push({
