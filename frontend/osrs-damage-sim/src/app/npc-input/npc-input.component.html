@@ -1,65 +1,63 @@
-<div>
-  <div class="row mb-3 align-items-center">
-    <div class="col-2">Npc</div>
-    <div class="col" style="height: '38px'">
-      <ng-select
-        [(ngModel)]="selectedNpc"
-        (change)="selectedNpcChange($event)"
-        [items]="npcBuffer"
-        [virtualScroll]="true"
-        [loading]="loading"
-        placeholder="Select npc"
-        [typeahead]="input$"
-        (scrollToEnd)="onScrollToEnd(select.searchTerm)"
-        #select
-      >
-        <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index" let-search="searchTerm">
-          {{ item.name }}
-          <span *ngIf="item.isChallengeMode">(Challenge Mode) </span>
-          <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
-          <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
-          <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
-          -&nbsp;
-          <img src="assets/img/skills/combat.png" /> {{ item.combat ? item.combat : "N/A" }}&nbsp;
-          <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}
-        </ng-template>
-      </ng-select>
-    </div>
+<div class="row align-items-center">
+  <div class="col-2">Npc</div>
+  <div class="col" style="height: '38px'">
+    <ng-select
+      [(ngModel)]="selectedNpc"
+      (change)="selectedNpcChange($event)"
+      [items]="npcBuffer"
+      [virtualScroll]="true"
+      [loading]="loading"
+      placeholder="Select npc"
+      [typeahead]="input$"
+      (scrollToEnd)="onScrollToEnd(select.searchTerm)"
+      #select
+    >
+      <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index" let-search="searchTerm">
+        {{ item.name }}
+        <span *ngIf="item.isChallengeMode">(Challenge Mode) </span>
+        <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
+        <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
+        <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
+        -&nbsp;
+        <img src="assets/img/skills/combat.png" /> {{ item.combat ? item.combat : "N/A" }}&nbsp;
+        <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}
+      </ng-template>
+    </ng-select>
+  </div>
 
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isKalphite">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/kalphite.png" title="Kalphite" /></div>
-      </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isKalphite">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/kalphite.png" title="Kalphite" /></div>
     </div>
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isDemon">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/demon.png" title="Demon" /></div>
-      </div>
+  </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isDemon">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/demon.png" title="Demon" /></div>
     </div>
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isDragon">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/dragon.png" title="Dragon" /></div>
-      </div>
+  </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isDragon">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/dragon.png" title="Dragon" /></div>
     </div>
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isUndead">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/undead.png" title="Undead" /></div>
-      </div>
+  </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isUndead">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/undead.png" title="Undead" /></div>
     </div>
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isLeafy">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/leafy.png" title="Leafy" /></div>
-      </div>
+  </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isLeafy">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/leafy.png" title="Leafy" /></div>
     </div>
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isXerician">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/xerician.png" title="Xerician" /></div>
-      </div>
+  </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isXerician">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/xerician.png" title="Xerician" /></div>
     </div>
-    <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isShade">
-      <div class="row align-items-center">
-        <div class="col"><img src="assets/img/npc_race/shade.png" title="Shade" /></div>
-      </div>
+  </div>
+  <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isShade">
+    <div class="row align-items-center">
+      <div class="col"><img src="assets/img/npc_race/shade.png" title="Shade" /></div>
     </div>
   </div>
 </div>

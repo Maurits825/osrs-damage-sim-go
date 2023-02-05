@@ -2,6 +2,7 @@ import { Component, ComponentRef, ViewChild } from '@angular/core';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
+import { GlobalSettingsComponent } from './global-settings/global-settings.component';
 import { DamageSimResults } from './model/damage-sim-results.model';
 import { GearInputSetup, GlobalSettings, InputSetup } from './model/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
@@ -13,6 +14,7 @@ import { DamageSimService } from './services/damage-sim.service';
 })
 export class AppComponent {
   @ViewChild(GearSetupTabsComponent) gearSetupTabsComponent: GearSetupTabsComponent;
+  @ViewChild(GlobalSettingsComponent) globalSettingsComponent: GlobalSettingsComponent;
 
   loading = false;
 
@@ -20,11 +22,11 @@ export class AppComponent {
 
   constructor(private damageSimservice: DamageSimService) {}
 
-  runDamageSim(globalSettings: GlobalSettings): void {
+  runDamageSim(): void {
     this.loading = true;
 
     const inputSetup: InputSetup = {
-      globalSettings: globalSettings,
+      globalSettings: this.globalSettingsComponent.globalSettings,
       gearInputSetups: [],
     };
 

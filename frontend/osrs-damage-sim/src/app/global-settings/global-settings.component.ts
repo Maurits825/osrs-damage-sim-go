@@ -11,9 +11,6 @@ import { GlobalBoostService } from '../services/global-boost.service';
   styleUrls: ['./global-settings.component.css'],
 })
 export class GlobalSettingsComponent implements OnInit {
-  @Output()
-  submitClicked = new EventEmitter<GlobalSettings>();
-
   globalSettings: GlobalSettings = {
     npcId: null,
     iterations: 10000,
@@ -33,10 +30,6 @@ export class GlobalSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedBoosts = this.globalBoostService.getBoosts();
-  }
-
-  submit(): void {
-    this.submitClicked.emit(this.globalSettings);
   }
 
   npcChanged(npc: Npc): void {

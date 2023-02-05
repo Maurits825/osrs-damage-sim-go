@@ -74,7 +74,6 @@ export class GearSetupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //TODO make these call in a service, then only one call per session, rather than per component
     forkJoin({
       gearSlotItems: this.damageSimservice.allGearSlotItems$,
       gearSetupPresets: this.damageSimservice.gearSetupPresets$,

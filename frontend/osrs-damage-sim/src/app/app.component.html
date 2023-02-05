@@ -8,7 +8,18 @@
 
   <hr class="row mb-5" />
 
-  <app-global-settings (submitClicked)="runDamageSim($event)"></app-global-settings>
+  <app-global-settings></app-global-settings>
+
+  <div class="row mb-4">
+    <div class="col">
+      <button class="btn btn-primary w-100" type="button" (click)="runDamageSim()" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
+        <span *ngIf="loading" class="sr-only"> Loading...</span>
+      </button>
+    </div>
+  </div>
+
   <app-gear-setup-tabs #gearSetupTabs></app-gear-setup-tabs>
 
   <hr class="row my-4" />
