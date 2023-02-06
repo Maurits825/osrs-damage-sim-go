@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 
 @Component({
@@ -7,22 +15,28 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
   styleUrls: ['./gear-setup-tabs.component.css'],
 })
 export class GearSetupTabsComponent implements OnInit, AfterViewInit {
-  @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer!: ViewContainerRef;
+  @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
-  constructor() {}
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.openNewSetupTab(); //TODO causes ExpressionChangedAfterItHasBeenCheckedError
+    this.openNewSetupTab();
+    this.changeDetector.detectChanges();
   }
 
   openNewSetupTab(tabToCopy?: GearSetupTabComponent): void {
-    let gearSetupTabRef = this.gearSetupTabContainer.createComponent(GearSetupTabComponent);
+    let gearSetupTabRef;
 
     if (tabToCopy) {
-      gearSetupTabRef.instance.tabToCopy = tabToCopy;
+      const injector: Injector = Injector.create({
+        providers: [{ provide: GearSetupTabComponent, useValue: tabToCopy }],
+      });
+      gearSetupTabRef = this.gearSetupTabContainer.createComponent(GearSetupTabComponent, { injector: injector });
+    } else {
+      gearSetupTabRef = this.gearSetupTabContainer.createComponent(GearSetupTabComponent);
     }
 
     const tabInstance: GearSetupTabComponent = gearSetupTabRef.instance as GearSetupTabComponent;

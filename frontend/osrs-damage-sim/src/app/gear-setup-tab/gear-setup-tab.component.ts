@@ -5,7 +5,8 @@ import {
   ComponentRef,
   Injector,
   Input,
-  OnInit,
+  Optional,
+  SkipSelf,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -16,7 +17,7 @@ import { GearSetupComponent } from '../gear-setup/gear-setup.component';
   templateUrl: './gear-setup-tab.component.html',
   styleUrls: ['./gear-setup-tab.component.css'],
 })
-export class GearSetupTabComponent implements OnInit, AfterViewInit {
+export class GearSetupTabComponent implements AfterViewInit {
   @Input() active = false;
   @ViewChild('gearSetupsContainer', { read: ViewContainerRef }) gearSetupsContainer!: ViewContainerRef;
 
@@ -24,22 +25,21 @@ export class GearSetupTabComponent implements OnInit, AfterViewInit {
 
   gearSetups: ComponentRef<GearSetupComponent>[] = [];
 
-  tabToCopy: GearSetupTabComponent;
-
-  constructor(private cd: ChangeDetectorRef) {}
-
-  ngOnInit(): void {}
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    @SkipSelf() @Optional() private gearSetupTabToCopy: GearSetupTabComponent
+  ) {}
 
   public ngAfterViewInit(): void {
-    //TODO is there a chance that this gets called before tabToCopy is set?
-    if (this.tabToCopy) {
-      this.tabToCopy.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
+    if (this.gearSetupTabToCopy) {
+      this.gearSetupTabToCopy.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
         this.addNewGearSetup(gearSetupRef.instance);
       });
     } else {
       this.addNewGearSetup();
     }
-    this.cd.detectChanges();
+
+    this.changeDetector.detectChanges();
   }
 
   addNewGearSetup(gearToCopy?: GearSetupComponent): void {
