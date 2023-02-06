@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { cloneDeep } from 'lodash-es';
+import { Component, Inject, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { clone, cloneDeep } from 'lodash-es';
 import { forkJoin } from 'rxjs';
 import { ConditionComponent } from '../condition/condition.component';
 import { AUTOCAST_STLYE } from '../constants.const';
@@ -17,10 +17,10 @@ import { GlobalBoostService } from '../services/global-boost.service';
 import { RlGearService } from '../services/rl-gear.service';
 import {
   BLOWPIPE_ID,
-  DEFAULT_GEAR_SETUP,
   DRAGON_DARTS_ID,
   SPECIAL_BOLTS,
   UNARMED_EQUIVALENT_ID,
+  DEFAULT_GEAR_SETUP,
 } from './gear-setup.const';
 
 @Component({
@@ -32,15 +32,13 @@ export class GearSetupComponent implements OnInit {
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   setupCount: number;
-  gearSetUpTabRef: GearSetupTabComponent;
-
-  gearToCopy: GearSetupComponent;
+  gearSetupTabRef: GearSetupTabComponent;
 
   GearSlot = GearSlot;
 
   BLOWPIPE_ID = BLOWPIPE_ID;
 
-  gearInputSetup: GearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
+  gearInputSetup: GearInputSetup;
 
   allGearSlots: GearSlot[] = Object.values(GearSlot);
 
@@ -57,7 +55,7 @@ export class GearSetupComponent implements OnInit {
   allSpells: string[] = [];
 
   selectedDart: Item;
-  dartItems: Item[] = [];
+  allDarts: Item[] = [];
 
   specialGear: SpecialGear = {
     isSpecialWeapon: false,
@@ -70,31 +68,30 @@ export class GearSetupComponent implements OnInit {
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
-    private globalBoostService: GlobalBoostService
+    private globalBoostService: GlobalBoostService,
+    @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
 
   ngOnInit(): void {
     forkJoin({
-      gearSlotItems: this.damageSimservice.allGearSlotItems$,
+      allGearSlotItems: this.damageSimservice.allGearSlotItems$,
       gearSetupPresets: this.damageSimservice.gearSetupPresets$,
       allSpells: this.damageSimservice.allSpells$,
-    }).subscribe(({ gearSlotItems, gearSetupPresets, allSpells }) => {
-      this.allGearSlotItems = gearSlotItems;
-      this.allGearSlotItems[GearSlot.Weapon].forEach((item: Item) => {
-        if (item.name.match('dart$')) {
-          this.dartItems.push(item);
-        }
-      });
+      allDarts: this.damageSimservice.allDarts$,
+    }).subscribe(({ allGearSlotItems, gearSetupPresets, allSpells, allDarts }) => {
+      this.allGearSlotItems = allGearSlotItems;
+      this.gearSetupPresets = gearSetupPresets;
+      this.allSpells = allSpells;
+      this.allDarts = allDarts;
+
       this.selectedDart = this.getItem(GearSlot.Weapon, DRAGON_DARTS_ID);
 
-      this.gearSetupPresets = gearSetupPresets;
-      this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
-      this.allSpells = allSpells;
-
-      if (this.gearToCopy) {
-        this.setGearSetup(this.gearToCopy);
+      if (this.gearSetupToCopy) {
+        this.setGearSetup(this.gearSetupToCopy);
       } else {
+        this.gearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
         this.gearInputSetup.boosts = new Set(this.globalBoostService.getBoosts());
+        this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
       this.globalBoostService.boostsAdded.subscribe((boost: Boost) => this.addBoost(boost));
@@ -200,7 +197,7 @@ export class GearSetupComponent implements OnInit {
   }
 
   removeGearSetup(): void {
-    this.gearSetUpTabRef.removeGearSetup(this.setupCount);
+    this.gearSetupTabRef.removeGearSetup(this.setupCount);
   }
 
   addBoost(boost: Boost): void {
@@ -216,7 +213,6 @@ export class GearSetupComponent implements OnInit {
 
     this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
     this.attackStyles = [...gearSetupComponent.attackStyles];
-
     this.specialGear = { ...gearSetupComponent.specialGear };
   }
 
@@ -224,8 +220,8 @@ export class GearSetupComponent implements OnInit {
     this.gearInputSetup.conditions = conditions;
   }
 
-  copyGearSetup(): void {
-    this.gearSetUpTabRef.addNewGearSetup(this);
+  duplicateGearSetup(): void {
+    this.gearSetupTabRef.addNewGearSetup(this);
   }
 
   updateSpecialGear(): void {

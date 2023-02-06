@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentRef,
+  Injector,
   Input,
   OnInit,
   ViewChild,
@@ -42,13 +43,19 @@ export class GearSetupTabComponent implements OnInit, AfterViewInit {
   }
 
   addNewGearSetup(gearToCopy?: GearSetupComponent): void {
-    let gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent);
+    let gearSetupRef;
+
     if (gearToCopy) {
-      gearSetupRef.instance.gearToCopy = gearToCopy;
+      const injector: Injector = Injector.create({
+        providers: [{ provide: GearSetupComponent, useValue: gearToCopy }],
+      });
+      gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent, { injector: injector });
+    } else {
+      gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent);
     }
 
     gearSetupRef.instance.setupCount = this.gearSetups.length + 1;
-    gearSetupRef.instance.gearSetUpTabRef = this;
+    gearSetupRef.instance.gearSetupTabRef = this;
 
     this.gearSetups.push(gearSetupRef);
   }
@@ -56,7 +63,7 @@ export class GearSetupTabComponent implements OnInit, AfterViewInit {
   removeGearSetup(id: number): void {
     let gearSetupRef = this.gearSetups.find((setup) => setup.instance.setupCount == id);
 
-    let gearSetupsContainerIndex: number = this.gearSetupsContainer.indexOf(gearSetupRef!.hostView);
+    let gearSetupsContainerIndex: number = this.gearSetupsContainer.indexOf(gearSetupRef.hostView);
 
     this.gearSetupsContainer.remove(gearSetupsContainerIndex);
 

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
+import { filter } from 'lodash-es';
 import { map, Observable, shareReplay } from 'rxjs';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { DamageSimResults } from '../model/damage-sim-results.model';
@@ -17,12 +19,14 @@ export class DamageSimService {
   public gearSetupPresets$: Observable<Record<string, Record<GearSlot, number>>>;
   public allSpells$: Observable<string[]>;
   public allNpcs$: Observable<Npc[]>;
+  public allDarts$: Observable<Item[]>;
 
   constructor(private http: HttpClient) {
     this.allGearSlotItems$ = this.getGearSlotItems().pipe(shareReplay(1));
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
-    this.allSpells$ = this.getAllSpells().pipe(shareReplay(1));
-    this.allNpcs$ = this.getAllNpcs().pipe(shareReplay(1));
+    this.allSpells$ = this.getSpells().pipe(shareReplay(1));
+    this.allNpcs$ = this.getNpcs().pipe(shareReplay(1));
+    this.allDarts$ = this.getDarts().pipe(shareReplay(1));
   }
 
   public getStatus(): Observable<string> {
@@ -43,16 +47,24 @@ export class DamageSimService {
     return this.http.get<Record<GearSlot, Item[]>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
   }
 
-  private getAllSpells(): Observable<string[]> {
+  private getSpells(): Observable<string[]> {
     return this.http.get<Object>(DAMAGE_SIM_SERVER_URL + '/all-spells').pipe(map((obj) => Object.keys(obj)));
   }
 
-  private getAllNpcs(): Observable<Npc[]> {
+  private getNpcs(): Observable<Npc[]> {
     return this.http.get<Npc[]>(DAMAGE_SIM_SERVER_URL + '/npcs');
   }
 
   private getGearSetupPresets(): Observable<Record<string, Record<GearSlot, number>>> {
     return this.http.get<Record<string, Record<GearSlot, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setup-presets');
+  }
+
+  private getDarts(): Observable<Item[]> {
+    return this.allGearSlotItems$.pipe(
+      map((gearSlotItem: Record<GearSlot, Item[]>) =>
+        gearSlotItem[GearSlot.Weapon].filter((item: Item) => item.name.match('dart$'))
+      )
+    );
   }
 
   private convertInputSetupToJson(inputSetup: InputSetup): string {
