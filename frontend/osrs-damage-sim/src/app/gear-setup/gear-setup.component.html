@@ -235,11 +235,11 @@
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label>Boosts</label></div>
       <div class="col">
-        <app-boost-item
+        <app-boost-selection
           [selectedBoosts]="gearInputSetup.boosts"
           (boostAdded)="addBoost($event)"
           (boostRemoved)="removeBoost($event)"
-        ></app-boost-item>
+        ></app-boost-selection>
       </div>
     </div>
 

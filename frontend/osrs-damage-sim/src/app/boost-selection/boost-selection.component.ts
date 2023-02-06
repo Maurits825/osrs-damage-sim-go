@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { allBoosts, Boost } from '../model/osrs/boost.type';
 
 @Component({
-  selector: 'app-boost-item',
-  templateUrl: './boost-item.component.html',
-  styleUrls: ['./boost-item.component.css'],
+  selector: 'app-boost-selection',
+  templateUrl: './boost-selection.component.html',
+  styleUrls: ['./boost-selection.component.css'],
 })
-export class BoostItemComponent {
+export class BoostSelectionComponent {
   @Input()
   selectedBoosts: Set<Boost>;
 

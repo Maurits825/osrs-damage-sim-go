@@ -11,8 +11,9 @@ import { NpcInputComponent } from './npc-input/npc-input.component';
 import { ConditionComponent } from './condition/condition.component';
 import { SimResultsComponent } from './sim-results/sim-results.component';
 import { Base64ImagePipe } from './pipes/base64-image.pipe';
-import { BoostItemComponent } from './boost-item/boost-item.component';
 import { GlobalSettingsComponent } from './global-settings/global-settings.component';
+import { PrayerSelectionComponent } from './prayer-selection/prayer-selection.component';
+import { BoostSelectionComponent } from './boost-selection/boost-selection.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,9 @@ import { GlobalSettingsComponent } from './global-settings/global-settings.compo
     ConditionComponent,
     SimResultsComponent,
     Base64ImagePipe,
-    BoostItemComponent,
+    BoostSelectionComponent,
     GlobalSettingsComponent,
+    PrayerSelectionComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [],

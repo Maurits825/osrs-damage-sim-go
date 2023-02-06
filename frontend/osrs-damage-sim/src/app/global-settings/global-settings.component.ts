@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Boost } from '../model/osrs/boost.type';
 import { GlobalSettings } from '../model/damage-sim/input-setup.model';
 import { Npc } from '../model/osrs/npc.model';
