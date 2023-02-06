@@ -3,8 +3,8 @@ import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
 import { GlobalSettingsComponent } from './global-settings/global-settings.component';
-import { DamageSimResults } from './model/damage-sim-results.model';
-import { GearInputSetup, GlobalSettings, InputSetup } from './model/input-setup.model';
+import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
+import { GearInputSetup, GlobalSettings, InputSetup } from './model/damage-sim/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
 
 @Component({

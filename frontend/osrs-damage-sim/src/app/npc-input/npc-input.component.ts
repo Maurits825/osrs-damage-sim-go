@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
-import { Npc } from '../model/npc.model';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { Npc } from '../model/osrs/npc.model';
 import { DamageSimService } from '../services/damage-sim.service';
 
 @Component({

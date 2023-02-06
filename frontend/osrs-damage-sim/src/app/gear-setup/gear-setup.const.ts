@@ -1,5 +1,5 @@
-import { GearSlot } from '../model/gear-slot.enum';
-import { GearInputSetup } from '../model/input-setup.model';
+import { GearSlot } from '../model/osrs/gear-slot.enum';
+import { GearInputSetup } from '../model/damage-sim/input-setup.model';
 
 export const SPECIAL_BOLTS = [9242, 21944, 9243, 21946];
 export const DRAGON_DARTS_ID = 11230;

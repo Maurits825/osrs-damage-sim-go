@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { allBoosts, Boost } from '../model/boost.type';
+import { allBoosts, Boost } from '../model/osrs/boost.type';
 
 @Component({
   selector: 'app-boost-item',

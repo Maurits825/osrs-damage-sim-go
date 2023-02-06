@@ -1,8 +1,8 @@
-import { Boost } from './boost.type';
+import { Boost } from '../osrs/boost.type';
 import { Condition } from './condition.model';
-import { GearSlot } from './gear-slot.enum';
-import { Item } from './item.model';
-import { CombatStats } from './skill.type';
+import { GearSlot } from '../osrs/gear-slot.enum';
+import { Item } from '../osrs/item.model';
+import { CombatStats } from '../osrs/skill.type';
 
 export interface InputSetup {
   globalSettings: GlobalSettings;

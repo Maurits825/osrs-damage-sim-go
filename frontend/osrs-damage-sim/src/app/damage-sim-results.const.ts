@@ -1,4 +1,4 @@
-import { DamageSimResults } from './model/damage-sim-results.model';
+import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
 
 export const damageSimResults: DamageSimResults = {
   graphs: {

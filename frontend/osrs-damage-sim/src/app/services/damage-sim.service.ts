@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ItemsList } from '@ng-select/ng-select/lib/items-list';
-import { filter } from 'lodash-es';
 import { map, Observable, shareReplay } from 'rxjs';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
-import { DamageSimResults } from '../model/damage-sim-results.model';
-import { GearSlot } from '../model/gear-slot.enum';
-import { InputSetup } from '../model/input-setup.model';
-import { Item } from '../model/item.model';
-import { Npc } from '../model/npc.model';
+import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
+import { GearSlot } from '../model/osrs/gear-slot.enum';
+import { InputSetup } from '../model/damage-sim/input-setup.model';
+import { Item } from '../model/osrs/item.model';
+import { Npc } from '../model/osrs/npc.model';
 import { FILTER_PATHS } from './filter-fields.const';
 
 @Injectable({

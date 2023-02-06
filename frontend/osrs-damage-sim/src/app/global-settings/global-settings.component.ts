@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Boost } from '../model/boost.type';
-import { GlobalSettings } from '../model/input-setup.model';
-import { Npc } from '../model/npc.model';
+import { Boost } from '../model/osrs/boost.type';
+import { GlobalSettings } from '../model/damage-sim/input-setup.model';
+import { Npc } from '../model/osrs/npc.model';
 import { TOA_PATH_LVL_NPCS, TOA_NPCS } from '../npc-input/npc.const';
 import { GlobalBoostService } from '../services/global-boost.service';
 

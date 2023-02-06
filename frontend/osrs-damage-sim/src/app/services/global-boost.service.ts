@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Boost } from '../model/boost.type';
+import { Boost } from '../model/osrs/boost.type';
 
 @Injectable({
   providedIn: 'root',
