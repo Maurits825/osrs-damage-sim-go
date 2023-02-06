@@ -14,6 +14,7 @@ import { Base64ImagePipe } from './shared/pipes/base64-image.pipe';
 import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { BoostSelectionComponent } from './shared/boost-selection/boost-selection.component';
 import { PrayerSelectionComponent } from './shared/prayer-selection/prayer-selection.component';
+import { PrayerModalComponent } from './shared/prayer-modal/prayer-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PrayerSelectionComponent } from './shared/prayer-selection/prayer-selec
     BoostSelectionComponent,
     GlobalSettingsComponent,
     PrayerSelectionComponent,
+    PrayerModalComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [],
