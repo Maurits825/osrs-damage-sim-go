@@ -2,19 +2,19 @@ import { Component, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core'
 import { cloneDeep } from 'lodash-es';
 import { forkJoin } from 'rxjs';
 import { ConditionComponent } from '../condition/condition.component';
-import { AUTOCAST_STLYE } from '../constants.const';
+import { AUTOCAST_STLYE } from '../../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
-import { allBoosts, Boost } from '../model/osrs/boost.type';
-import { Condition } from '../model/damage-sim/condition.model';
-import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { GearInputSetup } from '../model/damage-sim/input-setup.model';
-import { Item } from '../model/osrs/item.model';
-import { Prayer } from '../model/osrs/prayer.enum';
-import { allSkills, Skill } from '../model/osrs/skill.type';
-import { SpecialGear } from '../model/damage-sim/special-gear.model';
-import { DamageSimService } from '../services/damage-sim.service';
-import { GlobalBoostService } from '../services/global-boost.service';
-import { RlGearService } from '../services/rl-gear.service';
+import { allBoosts, Boost } from '../../model/osrs/boost.type';
+import { Condition } from '../../model/damage-sim/condition.model';
+import { GearSlot } from '../../model/osrs/gear-slot.enum';
+import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
+import { Item } from '../../model/osrs/item.model';
+import { Prayer } from '../../model/osrs/prayer.enum';
+import { allSkills, Skill } from '../../model/osrs/skill.type';
+import { SpecialGear } from '../../model/damage-sim/special-gear.model';
+import { DamageSimService } from '../../services/damage-sim.service';
+import { GlobalBoostService } from '../../services/global-boost.service';
+import { RlGearService } from '../../services/rl-gear.service';
 import {
   BLOWPIPE_ID,
   DRAGON_DARTS_ID,

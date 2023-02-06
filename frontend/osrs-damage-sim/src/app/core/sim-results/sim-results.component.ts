@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
+import { DamageSimResults } from '../../model/damage-sim/damage-sim-results.model';
 
 @Component({
   selector: 'app-sim-results',

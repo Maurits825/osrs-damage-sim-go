@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Condition } from '../model/damage-sim/condition.model';
+import { Condition } from '../../model/damage-sim/condition.model';
 
 @Component({
   selector: 'app-condition',

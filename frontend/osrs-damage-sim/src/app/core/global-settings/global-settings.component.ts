@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Boost } from '../model/osrs/boost.type';
-import { GlobalSettings } from '../model/damage-sim/input-setup.model';
-import { Npc } from '../model/osrs/npc.model';
-import { TOA_PATH_LVL_NPCS, TOA_NPCS } from '../npc-input/npc.const';
-import { GlobalBoostService } from '../services/global-boost.service';
+import { Boost } from '../../model/osrs/boost.type';
+import { GlobalSettings } from '../../model/damage-sim/input-setup.model';
+import { Npc } from '../../model/osrs/npc.model';
+import { TOA_PATH_LVL_NPCS, TOA_NPCS } from '../../shared/npc-input/npc.const';
+import { GlobalBoostService } from '../../services/global-boost.service';
 
 @Component({
   selector: 'app-global-settings',

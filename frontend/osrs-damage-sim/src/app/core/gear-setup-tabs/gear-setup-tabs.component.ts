@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
+import { GearSetupTabComponent } from '../../shared/gear-setup-tab/gear-setup-tab.component';
 
 @Component({
   selector: 'app-gear-setup-tabs',
