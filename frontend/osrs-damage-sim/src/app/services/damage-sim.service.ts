@@ -30,7 +30,6 @@ export class DamageSimService {
   }
 
   public getStatus(): Observable<string> {
-    console.log('Getting status');
     return this.http.get<string>(DAMAGE_SIM_SERVER_URL + '/status');
   }
 

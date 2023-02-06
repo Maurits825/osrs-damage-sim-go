@@ -16,7 +16,7 @@ damage_sim_runner = DamageSimRunner()
 @app.route("/status", methods=["GET"])
 def get_status():
     status = "damage-sim server is running!"
-    return status
+    return {"status": status}
 
 
 @app.route("/gear-slot-items", methods=["GET"])

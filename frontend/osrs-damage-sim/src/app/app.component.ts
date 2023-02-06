@@ -1,4 +1,4 @@
-import { Component, ComponentRef, ViewChild } from '@angular/core';
+import { Component, ComponentRef, OnInit, ViewChild } from '@angular/core';
 import { GearSetupTabComponent } from './gear-setup-tab/gear-setup-tab.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearSetupComponent } from './gear-setup/gear-setup.component';
@@ -12,7 +12,7 @@ import { DamageSimService } from './services/damage-sim.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild(GearSetupTabsComponent) gearSetupTabsComponent: GearSetupTabsComponent;
   @ViewChild(GlobalSettingsComponent) globalSettingsComponent: GlobalSettingsComponent;
 
@@ -20,7 +20,20 @@ export class AppComponent {
 
   damageSimResults: DamageSimResults;
 
+  isDamageSimActive = false;
+
   constructor(private damageSimservice: DamageSimService) {}
+
+  ngOnInit(): void {
+    this.damageSimservice.getStatus().subscribe({
+      next: (status) => {
+        this.isDamageSimActive = true;
+      },
+      error: (e) => {
+        this.isDamageSimActive = false;
+      },
+    });
+  }
 
   runDamageSim(): void {
     this.loading = true;
