@@ -218,6 +218,7 @@ export class GearSetupComponent implements OnInit {
 
   setGearSetup(gearSetupComponent: GearSetupComponent): void {
     this.gearInputSetup = cloneDeep(gearSetupComponent.gearInputSetup);
+    this.gearInputSetup.prayers = new Set([...gearSetupComponent.gearInputSetup.prayers]);
 
     this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
     this.attackStyles = [...gearSetupComponent.attackStyles];
