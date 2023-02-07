@@ -9,7 +9,6 @@ import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
 import { Item } from '../../model/osrs/item.model';
-import { Prayer } from '../../model/osrs/prayer.enum';
 import { allSkills, Skill } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
@@ -22,6 +21,7 @@ import {
   UNARMED_EQUIVALENT_ID,
   DEFAULT_GEAR_SETUP,
 } from './gear-setup.const';
+import { Augury, Piety, Prayer, Rigour } from 'src/app/model/osrs/prayer.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -47,7 +47,7 @@ export class GearSetupComponent implements OnInit {
   gearSetupPresets: Record<string, Record<GearSlot, number>> = {};
   selectedGearSetupPreset: string = '';
 
-  allPrayers: Prayer[] = Object.values(Prayer);
+  //allPrayers: Prayer[] = Object.values(Prayer);
   allBoosts = allBoosts;
   skills: Skill[] = allSkills.filter((skill) => skill !== 'hitpoints');
 
@@ -156,17 +156,17 @@ export class GearSetupComponent implements OnInit {
       switch (attackType) {
         case 'melee':
           this.gearInputSetup.spell = null;
-          this.gearInputSetup.prayers = [];
-          this.gearInputSetup.prayers.push('piety');
+          this.gearInputSetup.prayers.clear();
+          this.gearInputSetup.prayers.add(Piety);
           break;
         case 'ranged':
           this.gearInputSetup.spell = null;
-          this.gearInputSetup.prayers = [];
-          this.gearInputSetup.prayers.push('rigour');
+          this.gearInputSetup.prayers.clear();
+          this.gearInputSetup.prayers.add(Rigour);
           break;
         case 'magic':
-          this.gearInputSetup.prayers = [];
-          this.gearInputSetup.prayers.push('augury');
+          this.gearInputSetup.prayers.clear();
+          this.gearInputSetup.prayers.add(Augury);
           break;
 
         default:
@@ -188,13 +188,21 @@ export class GearSetupComponent implements OnInit {
     }
   }
 
-  addPrayer(prayer: string): void {
-    this.gearInputSetup.prayers.push(prayer);
+  togglePrayer(prayer: Prayer): void {
+    if (this.gearInputSetup.prayers.has(prayer)) {
+      this.gearInputSetup.prayers.delete(prayer);
+    } else {
+      this.gearInputSetup.prayers.add(prayer);
+    }
   }
 
-  removePrayer(prayer: string): void {
-    this.gearInputSetup.prayers = this.gearInputSetup.prayers.filter((p) => p !== prayer);
-  }
+  // addPrayer(prayer: string): void {
+  //   this.gearInputSetup.prayers.push(prayer);
+  // }
+
+  // removePrayer(prayer: string): void {
+  //   this.gearInputSetup.prayers = this.gearInputSetup.prayers.filter((p) => p !== prayer);
+  // }
 
   removeGearSetup(): void {
     this.gearSetupTabRef.removeGearSetup(this.setupCount);

@@ -3,6 +3,7 @@ import { Condition } from './condition.model';
 import { GearSlot } from '../osrs/gear-slot.enum';
 import { Item } from '../osrs/item.model';
 import { CombatStats } from '../osrs/skill.type';
+import { Prayer } from '../osrs/prayer.model';
 
 export interface InputSetup {
   globalSettings: GlobalSettings;
@@ -28,7 +29,7 @@ export interface GearInputSetup {
   spell: string;
 
   isSpecial: boolean;
-  prayers: string[];
+  prayers: Set<Prayer>;
   combatStats: CombatStats;
   boosts: Set<Boost>;
 

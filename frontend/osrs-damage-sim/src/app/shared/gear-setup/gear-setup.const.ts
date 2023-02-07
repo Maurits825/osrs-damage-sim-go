@@ -25,7 +25,7 @@ export const DEFAULT_GEAR_SETUP: GearInputSetup = {
   attackStyle: null,
   spell: null,
   isSpecial: false,
-  prayers: [],
+  prayers: new Set(),
   combatStats: {
     attack: 99,
     strength: 99,
