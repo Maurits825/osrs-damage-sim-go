@@ -1,1 +1,15 @@
-<p>prayer-modal works!</p>
+<div class="modal-header">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+  <div class="flex-row d-flex mb-3" *ngFor="let row of rows">
+    <div class="mx-2" *ngFor="let col of cols">
+      <ng-container *ngIf="allPrayers[row * 5 + col]; let prayer">
+        <div [class.prayer-active]="selectedPrayers.has(prayer)">
+          <img class="center-img" src="assets/img/prayer/{{ prayer.name }}.png" (click)="togglePrayer(prayer)" />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
