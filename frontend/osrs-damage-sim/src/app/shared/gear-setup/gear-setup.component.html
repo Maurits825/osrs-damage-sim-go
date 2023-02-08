@@ -41,7 +41,7 @@
 
   <div class="row mb-3" *ngIf="allGearSlotItems">
     <div class="row mb-2 align-items-center" *ngFor="let slot of allGearSlots">
-      <div class="col-1 pe-0 d-flex justify-content-center">
+      <div class="col-1 pe-0 d-flex">
         <ng-container *ngIf="gearInputSetup.gear[slot]; else placeholder">
           <img src="data:image/png;base64,{{ gearInputSetup.gear[slot].icon }}" />
         </ng-container>
@@ -197,14 +197,17 @@
     </div>
 
     <div class="row mb-3 align-items-center">
-      <app-prayer-selection
-        [selectedPrayers]="gearInputSetup.prayers"
-        (prayerToggle)="togglePrayer($event)"
-      ></app-prayer-selection>
+      <div class="col-3">Prayer</div>
+      <div class="col">
+        <app-prayer-selection
+          [selectedPrayers]="gearInputSetup.prayers"
+          (prayerToggle)="togglePrayer($event)"
+        ></app-prayer-selection>
+      </div>
     </div>
 
     <div class="row mb-3 align-items-center">
-      <div class="col-3"><label>Combat Stats</label></div>
+      <div class="col-3">Combat Stats</div>
       <div class="col" *ngFor="let skill of skills">
         <div class="row align-items-center">
           <div class="col-3">
@@ -224,7 +227,7 @@
     </div>
 
     <div class="row mb-3 align-items-center">
-      <div class="col-3"><label>Boosts</label></div>
+      <div class="col-3">Boosts</div>
       <div class="col">
         <app-boost-selection
           [selectedBoosts]="gearInputSetup.boosts"
@@ -235,7 +238,7 @@
     </div>
 
     <div class="row mb-3 align-items-center justify-content-start">
-      <div class="col-3"><label>Other</label></div>
+      <div class="col-3">Other</div>
       <div class="col-auto text-end"><label for="isFill">Fill weapon</label></div>
       <div class="col-auto">
         <input

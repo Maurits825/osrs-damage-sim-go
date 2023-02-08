@@ -1,8 +1,15 @@
-<div class="row justify-content-between">
-  <div class="col"><button class="btn btn-outline-primary" (click)="open()">Prayers</button></div>
-  <div class="col-auto" *ngFor="let prayer of selectedPrayers">
-    <div>
-      <img src="assets/img/prayer/{{ prayer.name }}.png" (click)="removePrayer(prayer)" />
+<div class="row d-flex">
+  <div class="col flex-grow-1">
+    <div class="row">
+      <div class="col-auto" *ngFor="let prayer of quickPrayerSelected ? quickPrayers : selectedPrayers">
+        <div [class.prayer-active]="selectedPrayers.has(prayer)">
+          <img src="assets/img/prayer/{{ prayer }}.png" (click)="togglePrayer(prayer)" />
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="col-auto">
+    <button class="btn btn-primary" (click)="open()">All prayers</button>
   </div>
 </div>

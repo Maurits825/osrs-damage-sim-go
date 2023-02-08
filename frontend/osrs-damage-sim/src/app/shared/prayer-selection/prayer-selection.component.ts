@@ -16,6 +16,8 @@ export class PrayerSelectionComponent implements OnInit {
   prayerToggle = new EventEmitter<Prayer>();
 
   allPrayers = allPrayers;
+  quickPrayers: Set<Prayer> = new Set(['piety', 'rigour', 'augury']);
+  quickPrayerSelected = true;
 
   constructor(private modalService: NgbModal) {}
 
@@ -33,5 +35,15 @@ export class PrayerSelectionComponent implements OnInit {
 
   togglePrayer(prayer: Prayer): void {
     this.prayerToggle.emit(prayer);
+    this.quickPrayerSelected = this.isOnlyQuickPrayerSelected();
+  }
+
+  isOnlyQuickPrayerSelected(): boolean {
+    for (const selectedPrayer of this.selectedPrayers) {
+      if (!this.quickPrayers.has(selectedPrayer)) {
+        return false;
+      }
+    }
+    return true;
   }
 }

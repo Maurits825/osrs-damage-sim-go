@@ -21,7 +21,7 @@ import {
   UNARMED_EQUIVALENT_ID,
   DEFAULT_GEAR_SETUP,
 } from './gear-setup.const';
-import { Augury, Piety, Prayer, Rigour } from 'src/app/model/osrs/prayer.model';
+import { Prayer } from 'src/app/model/osrs/prayer.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -157,16 +157,16 @@ export class GearSetupComponent implements OnInit {
         case 'melee':
           this.gearInputSetup.spell = null;
           this.gearInputSetup.prayers.clear();
-          this.gearInputSetup.prayers.add(Piety);
+          this.gearInputSetup.prayers.add('piety');
           break;
         case 'ranged':
           this.gearInputSetup.spell = null;
           this.gearInputSetup.prayers.clear();
-          this.gearInputSetup.prayers.add(Rigour);
+          this.gearInputSetup.prayers.add('rigour');
           break;
         case 'magic':
           this.gearInputSetup.prayers.clear();
-          this.gearInputSetup.prayers.add(Augury);
+          this.gearInputSetup.prayers.add('augury');
           break;
 
         default:
