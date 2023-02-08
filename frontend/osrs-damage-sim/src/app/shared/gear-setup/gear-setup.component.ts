@@ -22,6 +22,7 @@ import {
   DEFAULT_GEAR_SETUP,
 } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
+import { PrayerService } from 'src/app/services/prayer.service';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -69,6 +70,7 @@ export class GearSetupComponent implements OnInit {
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
     private globalBoostService: GlobalBoostService,
+    private prayerService: PrayerService,
     @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
 
@@ -189,20 +191,8 @@ export class GearSetupComponent implements OnInit {
   }
 
   togglePrayer(prayer: Prayer): void {
-    if (this.gearInputSetup.prayers.has(prayer)) {
-      this.gearInputSetup.prayers.delete(prayer);
-    } else {
-      this.gearInputSetup.prayers.add(prayer);
-    }
+    this.prayerService.togglePrayer(prayer, this.gearInputSetup.prayers);
   }
-
-  // addPrayer(prayer: string): void {
-  //   this.gearInputSetup.prayers.push(prayer);
-  // }
-
-  // removePrayer(prayer: string): void {
-  //   this.gearInputSetup.prayers = this.gearInputSetup.prayers.filter((p) => p !== prayer);
-  // }
 
   removeGearSetup(): void {
     this.gearSetupTabRef.removeGearSetup(this.setupCount);

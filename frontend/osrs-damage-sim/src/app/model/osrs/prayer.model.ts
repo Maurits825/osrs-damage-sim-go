@@ -31,3 +31,7 @@ export const allPrayers = [
 ] as const;
 
 export type Prayer = typeof allPrayers[number];
+
+export type ReplacePrayer = {
+  [name in Prayer]: Set<Prayer>;
+};
