@@ -11,3 +11,8 @@
   display: block;
   margin: 0 auto;
 }
+
+.prayer-disabled {
+  -webkit-filter: grayscale(90%);
+  filter: grayscale(90%);
+}

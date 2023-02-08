@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerModalComponent } from '../prayer-modal/prayer-modal.component';
+import { disabledPrayers } from './disabled-prayers.const';
 
 @Component({
   selector: 'app-prayer-selection',
@@ -26,6 +27,7 @@ export class PrayerSelectionComponent implements OnInit {
   open() {
     const prayerModal = this.modalService.open(PrayerModalComponent, { size: 'sm', animation: false });
     prayerModal.componentInstance.selectedPrayers = this.selectedPrayers;
+    prayerModal.componentInstance.disabledPrayers = disabledPrayers;
     prayerModal.componentInstance.prayerToggle.subscribe((prayer: Prayer) => {
       this.togglePrayer(prayer);
     });

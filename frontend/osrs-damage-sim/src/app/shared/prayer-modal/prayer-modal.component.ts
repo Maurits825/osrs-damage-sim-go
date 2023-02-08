@@ -11,6 +11,9 @@ export class PrayerModalComponent implements OnInit {
   @Input()
   selectedPrayers: Set<Prayer>;
 
+  @Input()
+  disabledPrayers: Set<Prayer>;
+
   @Output()
   prayerToggle = new EventEmitter<Prayer>();
 
@@ -28,6 +31,8 @@ export class PrayerModalComponent implements OnInit {
   ngOnInit(): void {}
 
   togglePrayer(prayer: Prayer): void {
-    this.prayerToggle.emit(prayer);
+    if (!this.disabledPrayers.has(prayer)) {
+      this.prayerToggle.emit(prayer);
+    }
   }
 }
