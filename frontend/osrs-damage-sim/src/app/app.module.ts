@@ -15,6 +15,7 @@ import { GlobalSettingsComponent } from './core/global-settings/global-settings.
 import { BoostSelectionComponent } from './shared/boost-selection/boost-selection.component';
 import { PrayerSelectionComponent } from './shared/prayer-selection/prayer-selection.component';
 import { PrayerModalComponent } from './shared/prayer-modal/prayer-modal.component';
+import { BoostModalComponent } from './shared/boost-modal/boost-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PrayerModalComponent } from './shared/prayer-modal/prayer-modal.compone
     GlobalSettingsComponent,
     PrayerSelectionComponent,
     PrayerModalComponent,
+    BoostModalComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [],

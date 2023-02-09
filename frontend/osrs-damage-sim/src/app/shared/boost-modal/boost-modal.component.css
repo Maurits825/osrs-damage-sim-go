@@ -1,0 +1,13 @@
+.modal-body {
+  background-color: rgb(77, 67, 54);
+}
+
+.boost-active {
+  border-radius: 100%;
+  background-color: burlywood;
+}
+
+.center-img {
+  display: block;
+  margin: 0 auto;
+}

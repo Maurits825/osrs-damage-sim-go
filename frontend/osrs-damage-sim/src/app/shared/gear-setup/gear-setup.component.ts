@@ -206,6 +206,10 @@ export class GearSetupComponent implements OnInit {
     this.gearInputSetup.boosts.delete(boost);
   }
 
+  toggleBoost(boost: Boost): void {
+    //todo
+  }
+
   setGearSetup(gearSetupComponent: GearSetupComponent): void {
     this.gearInputSetup = cloneDeep(gearSetupComponent.gearInputSetup);
     this.gearInputSetup.prayers = new Set([...gearSetupComponent.gearInputSetup.prayers]);

@@ -22,7 +22,9 @@ export class PrayerSelectionComponent implements OnInit {
 
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quickPrayerSelected = this.isOnlyQuickPrayerSelected();
+  }
 
   open() {
     const prayerModal = this.modalService.open(PrayerModalComponent, { size: 'sm', animation: false });
@@ -32,8 +34,6 @@ export class PrayerSelectionComponent implements OnInit {
       this.togglePrayer(prayer);
     });
   }
-
-  removePrayer(prayer: Prayer): void {}
 
   togglePrayer(prayer: Prayer): void {
     this.prayerToggle.emit(prayer);

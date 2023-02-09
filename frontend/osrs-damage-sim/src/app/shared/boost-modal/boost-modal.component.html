@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h5 class="modal-title">Select prayers</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+  <div class="flex-row d-flex mb-3" *ngFor="let row of rows">
+    <div class="mx-2" *ngFor="let col of cols">
+      <ng-container *ngIf="allBoosts[row * 5 + col]; let boost">
+        <div [class.boost-active]="selectedBoosts.has(boost)">
+          <img class="center-img" src="assets/img/boosts/{{ boost }}.png" (click)="toggleBoost(boost)" />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

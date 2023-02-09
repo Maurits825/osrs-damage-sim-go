@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { allBoosts, Boost } from '../../model/osrs/boost.type';
+import { BoostModalComponent } from '../boost-modal/boost-modal.component';
 
 @Component({
   selector: 'app-boost-selection',
@@ -11,19 +13,37 @@ export class BoostSelectionComponent {
   selectedBoosts: Set<Boost>;
 
   @Output()
-  boostAdded = new EventEmitter<Boost>();
-  @Output()
-  boostRemoved = new EventEmitter<Boost>();
+  boostToggle = new EventEmitter<Boost>();
 
   allBoosts = allBoosts;
+  quickBoosts: Set<Boost> = new Set(['overload_plus', 'super_combat_pot', 'ranged_pot']);
+  quickBoostSelected = true;
 
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
-  addBoost(boost: Boost): void {
-    this.boostAdded.emit(boost);
+  ngOnInit(): void {
+    this.quickBoostSelected = this.isOnlyQuickBoostSelected();
   }
 
-  removeBoost(boost: Boost): void {
-    this.boostRemoved.emit(boost);
+  open() {
+    const boostModal = this.modalService.open(BoostModalComponent, { size: 'sm', animation: false });
+    boostModal.componentInstance.selectedBoosts = this.selectedBoosts;
+    boostModal.componentInstance.boostToggle.subscribe((boost: Boost) => {
+      this.toggleBoost(boost);
+    });
+  }
+
+  toggleBoost(boost: Boost): void {
+    this.boostToggle.emit(boost);
+    this.quickBoostSelected = this.isOnlyQuickBoostSelected();
+  }
+
+  isOnlyQuickBoostSelected(): boolean {
+    for (const selectedBoost of this.selectedBoosts) {
+      if (!this.quickBoosts.has(selectedBoost)) {
+        return false;
+      }
+    }
+    return true;
   }
 }

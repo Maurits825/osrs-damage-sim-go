@@ -24,4 +24,8 @@ export class GlobalBoostService {
     this.selectedBoosts.delete(boost);
     this.boostsRemoved.emit(boost);
   }
+
+  toggleBoost(boost: Boost): void {
+    //TODO
+  }
 }

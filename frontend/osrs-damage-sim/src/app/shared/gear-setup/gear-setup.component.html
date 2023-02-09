@@ -231,8 +231,7 @@
       <div class="col">
         <app-boost-selection
           [selectedBoosts]="gearInputSetup.boosts"
-          (boostAdded)="addBoost($event)"
-          (boostRemoved)="removeBoost($event)"
+          (boostToggle)="toggleBoost($event)"
         ></app-boost-selection>
       </div>
     </div>

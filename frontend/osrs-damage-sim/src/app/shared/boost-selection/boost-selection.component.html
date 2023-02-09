@@ -1,10 +1,15 @@
-<div class="row justify-content-between">
-  <div class="col-auto" *ngFor="let boost of allBoosts">
-    <div *ngIf="!selectedBoosts.has(boost); else selectedBoost">
-      <img src="assets/img/boosts/{{ boost }}.png" (click)="addBoost(boost)" />
+<div class="row d-flex">
+  <div class="col flex-grow-1">
+    <div class="row">
+      <div class="col-auto" *ngFor="let boost of quickBoostSelected ? quickBoosts : selectedBoosts">
+        <div [class.boost-active]="selectedBoosts.has(boost)">
+          <img src="assets/img/boosts/{{ boost }}.png" (click)="toggleBoost(boost)" />
+        </div>
+      </div>
     </div>
-    <ng-template #selectedBoost>
-      <img src="assets/img/boosts/selected_{{ boost }}.png" (click)="removeBoost(boost)" />
-    </ng-template>
+  </div>
+
+  <div class="col-auto">
+    <button class="btn btn-primary" (click)="open()">All Boosts <i class="bi bi-box-arrow-in-up-right"></i></button>
   </div>
 </div>

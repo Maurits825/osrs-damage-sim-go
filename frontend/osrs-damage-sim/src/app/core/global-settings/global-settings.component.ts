@@ -58,4 +58,8 @@ export class GlobalSettingsComponent implements OnInit {
   boostRemoved(boost: Boost): void {
     this.globalBoostService.removeBoost(boost);
   }
+
+  toggleBoost(boost: Boost): void {
+    this.globalBoostService.toggleBoost(boost);
+  }
 }

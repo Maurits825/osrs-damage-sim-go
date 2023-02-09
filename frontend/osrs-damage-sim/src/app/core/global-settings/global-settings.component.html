@@ -25,10 +25,10 @@
   </div>
 </div>
 
+<!-- TODO make this a default setting type thing. For prayer have three app-prayer for 3 cmt styles -->
 <div class="row mb-2">
-  <app-boost-selection
-    [selectedBoosts]="selectedBoosts"
-    (boostAdded)="boostAdded($event)"
-    (boostRemoved)="boostRemoved($event)"
-  ></app-boost-selection>
+  <div class="col-2">Default Boost</div>
+  <div class="col">
+    <app-boost-selection [selectedBoosts]="selectedBoosts" (boostToggle)="toggleBoost($event)"></app-boost-selection>
+  </div>
 </div>
