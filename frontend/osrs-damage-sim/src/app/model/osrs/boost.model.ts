@@ -19,6 +19,7 @@ export const allBoosts = [
   'saturated_heart',
   'ranging',
   'divine_ranging',
+  'liquid_adrenaline',
 ] as const;
 
 export type Boost = typeof allBoosts[number];

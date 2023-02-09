@@ -17,7 +17,7 @@ export class PrayerSelectionComponent implements OnInit {
   prayerToggle = new EventEmitter<Prayer>();
 
   allPrayers = allPrayers;
-  quickPrayers: Set<Prayer> = new Set(['piety', 'rigour', 'augury']);
+  quickPrayers: Set<Prayer> = new Set(['piety', 'chivalry', 'rigour', 'eagle_eye', 'augury', 'mystic_might']);
   quickPrayerSelected = true;
 
   constructor(private modalService: NgbModal) {}

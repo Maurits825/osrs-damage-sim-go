@@ -18,5 +18,13 @@ const magicBoosts: Set<Boost> = new Set([
   'saturated_heart',
 ]);
 const rangedBoosts: Set<Boost> = new Set(['ranging', 'divine_ranging']);
+const otherBoosts: Set<Boost> = new Set(['liquid_adrenaline']);
 
-export const gridBoosts: Set<Boost>[] = [attackBoosts, strengthBoosts, multiBoosts, rangedBoosts, magicBoosts];
+export const gridBoosts: Set<Boost>[] = [
+  attackBoosts,
+  strengthBoosts,
+  multiBoosts,
+  rangedBoosts,
+  magicBoosts,
+  otherBoosts,
+];

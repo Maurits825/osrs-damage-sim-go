@@ -16,7 +16,7 @@ export class BoostSelectionComponent {
   boostToggle = new EventEmitter<Boost>();
 
   allBoosts = allBoosts;
-  quickBoosts: Set<Boost> = new Set(['overload_plus', 'super_combat']);
+  quickBoosts: Set<Boost> = new Set(['overload_plus', 'smelling_salts', 'super_combat', 'ranging', 'saturated_heart']);
   quickBoostSelected = true;
 
   constructor(private modalService: NgbModal) {}
