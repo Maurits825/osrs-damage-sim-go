@@ -59,6 +59,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   allDarts: Item[] = [];
 
   private globalBoostsSubscription: Subscription;
+  private globalPrayerSubscription: Subscription;
 
   specialGear: SpecialGear = {
     isSpecialWeapon: false,
@@ -104,6 +105,13 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
       this.globalBoostsSubscription = this.boostService.globalBoosts$.subscribe(
         (boosts: Set<Boost>) => (this.gearInputSetup.boosts = new Set(boosts))
+      );
+
+      this.globalPrayerSubscription = this.prayerService.globalPrayers$.subscribe(
+        (prayers: Record<AttackType, Set<Prayer>>) =>
+          (this.gearInputSetup.prayers = new Set(
+            prayers[this.gearInputSetup.gear[GearSlot.Weapon]?.attackType || 'melee']
+          ))
       );
     });
   }
@@ -161,26 +169,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       }
 
       this.specialGear.isSpecialWeapon = !!item?.specialAttackCost;
-
-      switch (attackType) {
-        case 'melee':
-          this.gearInputSetup.spell = null;
-          this.gearInputSetup.prayers.clear();
-          this.gearInputSetup.prayers.add('piety');
-          break;
-        case 'ranged':
-          this.gearInputSetup.spell = null;
-          this.gearInputSetup.prayers.clear();
-          this.gearInputSetup.prayers.add('rigour');
-          break;
-        case 'magic':
-          this.gearInputSetup.prayers.clear();
-          this.gearInputSetup.prayers.add('augury');
-          break;
-
-        default:
-          break;
-      }
+      this.gearInputSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[attackType]);
 
       this.updateAttackStyle(itemId);
     }

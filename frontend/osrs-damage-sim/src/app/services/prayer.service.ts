@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { AttackType } from '../model/osrs/item.model';
 import { replacePrayers } from '../model/osrs/prayer-replace.const';
 import { Prayer } from '../model/osrs/prayer.model';
 
@@ -6,6 +8,8 @@ import { Prayer } from '../model/osrs/prayer.model';
   providedIn: 'root',
 })
 export class PrayerService {
+  globalPrayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(null);
+
   constructor() {}
 
   togglePrayer(prayer: Prayer, selectedPrayers: Set<Prayer>): void {

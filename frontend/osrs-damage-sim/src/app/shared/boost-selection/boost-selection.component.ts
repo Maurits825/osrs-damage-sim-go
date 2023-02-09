@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs';
-import { BoostService } from 'src/app/services/boost.service';
 import { allBoosts, Boost } from '../../model/osrs/boost.model';
 import { BoostModalComponent } from '../boost-modal/boost-modal.component';
 
@@ -10,7 +8,7 @@ import { BoostModalComponent } from '../boost-modal/boost-modal.component';
   templateUrl: './boost-selection.component.html',
   styleUrls: ['./boost-selection.component.css'],
 })
-export class BoostSelectionComponent implements OnInit, OnDestroy {
+export class BoostSelectionComponent implements OnInit, OnChanges {
   @Input()
   selectedBoosts: Set<Boost>;
 
@@ -21,19 +19,14 @@ export class BoostSelectionComponent implements OnInit, OnDestroy {
   quickBoosts: Set<Boost> = new Set(['overload_plus', 'smelling_salts', 'super_combat', 'ranging', 'saturated_heart']);
   quickBoostSelected = true;
 
-  private globalBoostsSubscription: Subscription;
+  constructor(private modalService: NgbModal) {}
 
-  constructor(private modalService: NgbModal, private boostService: BoostService) {}
-
-  ngOnDestroy(): void {
-    this.globalBoostsSubscription.unsubscribe();
+  ngOnChanges(_: SimpleChanges): void {
+    this.quickBoostSelected = this.isOnlyQuickBoostSelected();
   }
 
   ngOnInit(): void {
     this.quickBoostSelected = this.isOnlyQuickBoostSelected();
-    this.globalBoostsSubscription = this.boostService.globalBoosts$.subscribe((_: Set<Boost>) => {
-      this.quickBoostSelected = this.isOnlyQuickBoostSelected();
-    });
   }
 
   open() {

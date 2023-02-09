@@ -29,9 +29,9 @@ export class GlobalSettingsComponent implements OnInit {
 
   allAttackTypes = allAttackTypes;
   selectedPrayers: Record<AttackType, Set<Prayer>> = {
-    magic: new Set(),
-    melee: new Set(),
-    ranged: new Set(),
+    magic: new Set(['augury']),
+    melee: new Set(['piety']),
+    ranged: new Set(['rigour']),
   };
   quickPrayers: Record<AttackType, Set<Prayer>> = {
     magic: new Set(['augury']),
@@ -43,7 +43,9 @@ export class GlobalSettingsComponent implements OnInit {
 
   constructor(private boostService: BoostService, private prayerService: PrayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.prayerService.globalPrayers$.next(this.selectedPrayers);
+  }
 
   npcChanged(npc: Npc): void {
     this.globalSettings.npcId = npc.id;
@@ -71,5 +73,6 @@ export class GlobalSettingsComponent implements OnInit {
 
   toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
     this.prayerService.togglePrayer(prayer, this.selectedPrayers[attackType]);
+    this.prayerService.globalPrayers$.next(this.selectedPrayers);
   }
 }

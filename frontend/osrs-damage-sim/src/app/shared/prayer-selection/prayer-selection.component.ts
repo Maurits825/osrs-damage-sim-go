@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerModalComponent } from '../prayer-modal/prayer-modal.component';
@@ -9,7 +9,7 @@ import { disabledPrayers } from './disabled-prayers.const';
   templateUrl: './prayer-selection.component.html',
   styleUrls: ['./prayer-selection.component.css'],
 })
-export class PrayerSelectionComponent implements OnInit {
+export class PrayerSelectionComponent implements OnInit, OnChanges {
   @Input()
   selectedPrayers: Set<Prayer>;
 
@@ -24,6 +24,9 @@ export class PrayerSelectionComponent implements OnInit {
   quickPrayerSelected = true;
 
   constructor(private modalService: NgbModal) {}
+  ngOnChanges(_: SimpleChanges): void {
+    this.quickPrayerSelected = this.isOnlyQuickPrayerSelected();
+  }
 
   ngOnInit(): void {
     this.quickPrayerSelected = this.isOnlyQuickPrayerSelected();
