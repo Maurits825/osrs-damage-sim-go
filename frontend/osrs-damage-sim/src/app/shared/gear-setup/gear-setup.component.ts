@@ -1,6 +1,6 @@
-import { Component, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { ConditionComponent } from '../condition/condition.component';
 import { AUTOCAST_STLYE } from '../../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
@@ -29,7 +29,7 @@ import { PrayerService } from 'src/app/services/prayer.service';
   templateUrl: './gear-setup.component.html',
   styleUrls: ['./gear-setup.component.css'],
 })
-export class GearSetupComponent implements OnInit {
+export class GearSetupComponent implements OnInit, OnDestroy {
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   setupCount: number;
@@ -58,6 +58,8 @@ export class GearSetupComponent implements OnInit {
   selectedDart: Item;
   allDarts: Item[] = [];
 
+  private globalBoostsSubscription: Subscription;
+
   specialGear: SpecialGear = {
     isSpecialWeapon: false,
     isSlayerHelm: false,
@@ -73,6 +75,10 @@ export class GearSetupComponent implements OnInit {
     private prayerService: PrayerService,
     @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
+
+  ngOnDestroy(): void {
+    this.globalBoostsSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     forkJoin({
@@ -96,7 +102,9 @@ export class GearSetupComponent implements OnInit {
         this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.boostService.globalBoosts$.subscribe((boosts: Set<Boost>) => (this.gearInputSetup.boosts = boosts));
+      this.globalBoostsSubscription = this.boostService.globalBoosts$.subscribe(
+        (boosts: Set<Boost>) => (this.gearInputSetup.boosts = new Set(boosts))
+      );
     });
   }
 
