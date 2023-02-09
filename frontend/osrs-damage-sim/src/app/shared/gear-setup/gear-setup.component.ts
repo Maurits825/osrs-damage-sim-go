@@ -14,13 +14,7 @@ import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
 import { BoostService } from '../../services/boost.service';
 import { RlGearService } from '../../services/rl-gear.service';
-import {
-  BLOWPIPE_ID,
-  DRAGON_DARTS_ID,
-  SPECIAL_BOLTS,
-  UNARMED_EQUIVALENT_ID,
-  DEFAULT_GEAR_SETUP,
-} from './gear-setup.const';
+import { DRAGON_DARTS_ID, SPECIAL_BOLTS, UNARMED_EQUIVALENT_ID, DEFAULT_GEAR_SETUP } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 
@@ -36,8 +30,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   gearSetupTabRef: GearSetupTabComponent;
 
   GearSlot = GearSlot;
-
-  BLOWPIPE_ID = BLOWPIPE_ID;
 
   gearInputSetup: GearInputSetup;
 
@@ -79,6 +71,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.globalBoostsSubscription.unsubscribe();
+    this.globalPrayerSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -250,9 +243,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   getIsSpecialBolt(): boolean {
-    return SPECIAL_BOLTS.some((boltId: number) => {
-      this.gearInputSetup.gear[GearSlot.Ammo]?.id === boltId;
-    });
+    return SPECIAL_BOLTS.some((boltId: number) => this.gearInputSetup.gear[GearSlot.Ammo]?.id === boltId);
   }
 
   useSpecialAttackChange(): void {
