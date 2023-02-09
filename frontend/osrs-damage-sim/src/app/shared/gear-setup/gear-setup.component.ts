@@ -8,7 +8,7 @@ import { allBoosts, Boost } from '../../model/osrs/boost.model';
 import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
-import { Item } from '../../model/osrs/item.model';
+import { AttackType, Item } from '../../model/osrs/item.model';
 import { allSkills, Skill } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
@@ -153,7 +153,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     if (slot === GearSlot.Weapon) {
       let itemId = UNARMED_EQUIVALENT_ID;
       this.gearInputSetup.setupName = 'Unarmed';
-      let attackType = 'melee';
+      let attackType: AttackType = 'melee';
       if (item) {
         itemId = item.id;
         this.gearInputSetup.setupName = item.name;

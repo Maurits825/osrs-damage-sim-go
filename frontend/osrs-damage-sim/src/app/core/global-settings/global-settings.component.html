@@ -25,9 +25,28 @@
   </div>
 </div>
 
-<!-- TODO make this a default setting type thing. For prayer have three app-prayer for 3 cmt styles -->
 <div class="row mb-2">
-  <div class="col-2">Default Boost</div>
+  <div class="col-auto">Global Prayers</div>
+  <div class="col">
+    <div class="row">
+      <div class="col-auto" *ngFor="let attackType of allAttackTypes">
+        <div class="row align-items-center">
+          <div class="col-auto"><img src="assets/img/skills/{{ attackType }}.png" /></div>
+          <div class="col-auto me-3">
+            <app-prayer-selection
+              [quickPrayers]="quickPrayers[attackType]"
+              [selectedPrayers]="selectedPrayers[attackType]"
+              (prayerToggle)="toggleAttackTypePrayer($event, attackType)"
+            ></app-prayer-selection>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-2">
+  <div class="col-2">Global Boost</div>
   <div class="col">
     <app-boost-selection [selectedBoosts]="selectedBoosts" (boostToggle)="toggleBoost($event)"></app-boost-selection>
   </div>

@@ -7,4 +7,6 @@ export interface Item {
   specialAttackCost?: number;
 }
 
-export type AttackType = 'magic' | 'melee' | 'ranged';
+export const allAttackTypes = ['melee', 'ranged', 'magic'] as const;
+
+export type AttackType = typeof allAttackTypes[number];
