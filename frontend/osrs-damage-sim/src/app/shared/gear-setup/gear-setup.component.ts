@@ -4,7 +4,7 @@ import { forkJoin } from 'rxjs';
 import { ConditionComponent } from '../condition/condition.component';
 import { AUTOCAST_STLYE } from '../../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
-import { allBoosts, Boost } from '../../model/osrs/boost.type';
+import { allBoosts, Boost } from '../../model/osrs/boost.model';
 import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
@@ -12,7 +12,7 @@ import { Item } from '../../model/osrs/item.model';
 import { allSkills, Skill } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
-import { GlobalBoostService } from '../../services/global-boost.service';
+import { BoostService } from '../../services/boost.service';
 import { RlGearService } from '../../services/rl-gear.service';
 import {
   BLOWPIPE_ID,
@@ -69,7 +69,7 @@ export class GearSetupComponent implements OnInit {
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
-    private globalBoostService: GlobalBoostService,
+    private boostService: BoostService,
     private prayerService: PrayerService,
     @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
@@ -92,12 +92,11 @@ export class GearSetupComponent implements OnInit {
         this.setGearSetup(this.gearSetupToCopy);
       } else {
         this.gearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
-        this.gearInputSetup.boosts = new Set(this.globalBoostService.getBoosts());
+        this.gearInputSetup.boosts = this.boostService.globalBoosts$.getValue();
         this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.globalBoostService.boostsAdded.subscribe((boost: Boost) => this.addBoost(boost));
-      this.globalBoostService.boostsRemoved.subscribe((boost: Boost) => this.removeBoost(boost));
+      this.boostService.globalBoosts$.subscribe((boosts: Set<Boost>) => (this.gearInputSetup.boosts = boosts));
     });
   }
 
@@ -194,20 +193,12 @@ export class GearSetupComponent implements OnInit {
     this.prayerService.togglePrayer(prayer, this.gearInputSetup.prayers);
   }
 
+  toggleBoost(boost: Boost): void {
+    this.boostService.toggleBoost(boost, this.gearInputSetup.boosts);
+  }
+
   removeGearSetup(): void {
     this.gearSetupTabRef.removeGearSetup(this.setupCount);
-  }
-
-  addBoost(boost: Boost): void {
-    this.gearInputSetup.boosts.add(boost);
-  }
-
-  removeBoost(boost: Boost): void {
-    this.gearInputSetup.boosts.delete(boost);
-  }
-
-  toggleBoost(boost: Boost): void {
-    //todo
   }
 
   setGearSetup(gearSetupComponent: GearSetupComponent): void {

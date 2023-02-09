@@ -1,4 +1,4 @@
-import { Boost } from '../osrs/boost.type';
+import { Boost } from '../osrs/boost.model';
 import { Condition } from './condition.model';
 import { GearSlot } from '../osrs/gear-slot.enum';
 import { Item } from '../osrs/item.model';

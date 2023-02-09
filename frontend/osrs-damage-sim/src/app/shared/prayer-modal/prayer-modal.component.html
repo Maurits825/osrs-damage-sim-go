@@ -8,7 +8,12 @@
     <div class="mx-2" *ngFor="let col of cols">
       <ng-container *ngIf="allPrayers[row * 5 + col]; let prayer">
         <div [class.prayer-active]="selectedPrayers.has(prayer)" [class.prayer-disabled]="disabledPrayers.has(prayer)">
-          <img class="center-img" src="assets/img/prayer/{{ prayer }}.png" (click)="togglePrayer(prayer)" />
+          <img
+            class="center-img"
+            src="assets/img/prayer/{{ prayer }}.png"
+            (click)="togglePrayer(prayer)"
+            [title]="prayer.replaceAll('_', ' ')"
+          />
         </div>
       </ng-container>
     </div>

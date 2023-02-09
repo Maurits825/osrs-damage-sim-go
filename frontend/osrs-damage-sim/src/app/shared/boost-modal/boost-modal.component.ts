@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { allBoosts, Boost } from 'src/app/model/osrs/boost.type';
+import { allBoosts, Boost } from 'src/app/model/osrs/boost.model';
+import { gridBoosts } from './boost-grid.const';
 
 @Component({
   selector: 'app-boost-modal',
@@ -14,13 +15,7 @@ export class BoostModalComponent {
   @Output()
   boostToggle = new EventEmitter<Boost>();
 
-  rows = Array(6)
-    .fill(0)
-    .map((_, i) => i);
-  cols = Array(5)
-    .fill(0)
-    .map((_, i) => i);
-
+  gridBoosts = gridBoosts;
   allBoosts = allBoosts;
 
   constructor(public activeModal: NgbActiveModal) {}

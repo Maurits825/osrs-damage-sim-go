@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Boost } from '../../model/osrs/boost.type';
+import { Boost } from '../../model/osrs/boost.model';
 import { GlobalSettings } from '../../model/damage-sim/input-setup.model';
 import { Npc } from '../../model/osrs/npc.model';
 import { TOA_PATH_LVL_NPCS, TOA_NPCS } from '../../shared/npc-input/npc.const';
-import { GlobalBoostService } from '../../services/global-boost.service';
+import { BoostService } from '../../services/boost.service';
 
 @Component({
   selector: 'app-global-settings',
@@ -22,15 +22,13 @@ export class GlobalSettingsComponent implements OnInit {
   showPathLevel = false;
   showRaidLevel = false;
 
-  selectedBoosts: Set<Boost>;
+  selectedBoosts: Set<Boost> = new Set();
 
   loading = false;
 
-  constructor(private globalBoostService: GlobalBoostService) {}
+  constructor(private boostService: BoostService) {}
 
-  ngOnInit(): void {
-    this.selectedBoosts = this.globalBoostService.getBoosts();
-  }
+  ngOnInit(): void {}
 
   npcChanged(npc: Npc): void {
     this.globalSettings.npcId = npc.id;
@@ -51,15 +49,8 @@ export class GlobalSettingsComponent implements OnInit {
     }
   }
 
-  boostAdded(boost: Boost): void {
-    this.globalBoostService.addBoost(boost);
-  }
-
-  boostRemoved(boost: Boost): void {
-    this.globalBoostService.removeBoost(boost);
-  }
-
   toggleBoost(boost: Boost): void {
-    this.globalBoostService.toggleBoost(boost);
+    this.boostService.toggleBoost(boost, this.selectedBoosts);
+    this.boostService.globalBoosts$.next(this.selectedBoosts);
   }
 }

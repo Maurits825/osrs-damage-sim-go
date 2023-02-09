@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { allBoosts, Boost } from '../../model/osrs/boost.type';
+import { allBoosts, Boost } from '../../model/osrs/boost.model';
 import { BoostModalComponent } from '../boost-modal/boost-modal.component';
 
 @Component({
@@ -16,7 +16,7 @@ export class BoostSelectionComponent {
   boostToggle = new EventEmitter<Boost>();
 
   allBoosts = allBoosts;
-  quickBoosts: Set<Boost> = new Set(['overload_plus', 'super_combat_pot', 'ranged_pot']);
+  quickBoosts: Set<Boost> = new Set(['overload_plus', 'super_combat']);
   quickBoostSelected = true;
 
   constructor(private modalService: NgbModal) {}
