@@ -18,6 +18,8 @@ export class BoostModalComponent {
   gridBoosts = gridBoosts;
   allBoosts = allBoosts;
 
+  boostCategoryIcons: string[] = ['attack', 'strength', 'combat', 'ranged', 'magic', 'vial'];
+
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {}
