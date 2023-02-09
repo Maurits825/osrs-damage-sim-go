@@ -2,8 +2,8 @@
   <div class="col flex-grow-1">
     <div class="row">
       <div class="col-auto" *ngFor="let boost of quickBoostSelected ? quickBoosts : selectedBoosts">
-        <div [class.boost-active]="selectedBoosts.has(boost)" class="img-cell text-center">
-          <img class="mt-1" src="assets/img/boosts/{{ boost }}.png" (click)="toggleBoost(boost)" />
+        <div [class.boost-active]="selectedBoosts.has(boost)" class="img-cell text-center" (click)="toggleBoost(boost)">
+          <img class="mt-1" src="assets/img/boosts/{{ boost }}.png" />
         </div>
       </div>
     </div>

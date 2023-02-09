@@ -2,3 +2,7 @@
 body {
   background-color: rgb(192, 168, 134) !important;
 }
+
+.modal-content {
+  width: fit-content;
+}

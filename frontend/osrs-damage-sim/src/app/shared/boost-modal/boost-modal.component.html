@@ -6,13 +6,8 @@
 <div class="modal-body">
   <div class="flex-row d-flex mb-3" *ngFor="let boostRow of gridBoosts">
     <div class="mx-2" *ngFor="let boost of boostRow">
-      <div [class.boost-active]="selectedBoosts.has(boost)" class="img-cell text-center">
-        <img
-          class="mt-1"
-          src="assets/img/boosts/{{ boost }}.png"
-          (click)="toggleBoost(boost)"
-          [title]="boost.replaceAll('_', ' ')"
-        />
+      <div [class.boost-active]="selectedBoosts.has(boost)" class="img-cell text-center" (click)="toggleBoost(boost)">
+        <img class="mt-1" src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
       </div>
     </div>
   </div>
