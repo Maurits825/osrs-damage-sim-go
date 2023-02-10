@@ -40,7 +40,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   gearSetupPresets: Record<string, Record<GearSlot, number>> = {};
   selectedGearSetupPreset: string = '';
 
-  //allPrayers: Prayer[] = Object.values(Prayer);
   allBoosts = allBoosts;
   skills: Skill[] = allSkills.filter((skill) => skill !== 'hitpoints');
 
