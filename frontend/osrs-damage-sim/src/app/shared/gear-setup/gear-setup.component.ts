@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 import { forkJoin, Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
 import { ConditionComponent } from '../condition/condition.component';
 import { AUTOCAST_STLYE } from '../../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
@@ -9,7 +10,7 @@ import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
 import { AttackType, Item } from '../../model/osrs/item.model';
-import { allSkills, CombatStats, Skill } from '../../model/osrs/skill.type';
+import { CombatStats } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
 import { BoostService } from '../../services/boost.service';
@@ -17,6 +18,7 @@ import { RlGearService } from '../../services/rl-gear.service';
 import { DRAGON_DARTS_ID, SPECIAL_BOLTS, UNARMED_EQUIVALENT_ID, DEFAULT_GEAR_SETUP } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
+import { CombatStatService } from 'src/app/services/combat-stat.service';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -48,8 +50,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   selectedDart: Item;
   allDarts: Item[] = [];
 
-  private globalBoostsSubscription: Subscription;
-  private globalPrayerSubscription: Subscription;
+  private subscriptions: Subscription = new Subscription();
 
   specialGear: SpecialGear = {
     isSpecialWeapon: false,
@@ -64,12 +65,12 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private rlGearService: RlGearService,
     private boostService: BoostService,
     private prayerService: PrayerService,
+    private combatStatService: CombatStatService,
     @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
 
   ngOnDestroy(): void {
-    this.globalBoostsSubscription.unsubscribe();
-    this.globalPrayerSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -90,19 +91,32 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.setGearSetup(this.gearSetupToCopy);
       } else {
         this.gearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
-        this.gearInputSetup.boosts = this.boostService.globalBoosts$.getValue();
+        this.gearInputSetup.boosts = new Set(this.boostService.globalBoosts$.getValue());
+        this.gearInputSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()['melee']);
         this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.globalBoostsSubscription = this.boostService.globalBoosts$.subscribe(
-        (boosts: Set<Boost>) => (this.gearInputSetup.boosts = new Set(boosts))
+      this.subscriptions.add(
+        this.boostService.globalBoosts$
+          .pipe(skip(1))
+          .subscribe((boosts: Set<Boost>) => (this.gearInputSetup.boosts = new Set(boosts)))
       );
 
-      this.globalPrayerSubscription = this.prayerService.globalPrayers$.subscribe(
-        (prayers: Record<AttackType, Set<Prayer>>) =>
-          (this.gearInputSetup.prayers = new Set(
-            prayers[this.gearInputSetup.gear[GearSlot.Weapon]?.attackType || 'melee']
-          ))
+      this.subscriptions.add(
+        this.prayerService.globalPrayers$
+          .pipe(skip(1))
+          .subscribe(
+            (prayers: Record<AttackType, Set<Prayer>>) =>
+              (this.gearInputSetup.prayers = new Set(
+                prayers[this.gearInputSetup.gear[GearSlot.Weapon]?.attackType || 'melee']
+              ))
+          )
+      );
+
+      this.subscriptions.add(
+        this.combatStatService.globalCombatStats$
+          .pipe(skip(1))
+          .subscribe((combatStats: CombatStats) => (this.gearInputSetup.combatStats = { ...combatStats }))
       );
     });
   }
@@ -195,7 +209,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   setGearSetup(gearSetupComponent: GearSetupComponent): void {
     this.gearInputSetup = cloneDeep(gearSetupComponent.gearInputSetup);
-    this.gearInputSetup.prayers = new Set([...gearSetupComponent.gearInputSetup.prayers]);
 
     this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
     this.attackStyles = [...gearSetupComponent.attackStyles];

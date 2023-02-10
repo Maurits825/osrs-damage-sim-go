@@ -51,3 +51,13 @@
     <app-boost-selection [selectedBoosts]="selectedBoosts" (boostToggle)="toggleBoost($event)"></app-boost-selection>
   </div>
 </div>
+
+<div class="row mb-3">
+  <div class="col-2">Global Combat Stats</div>
+  <div class="col-4">
+    <app-combat-stat-selection
+      [combatStats]="combatStats"
+      (combatStatsChanged)="combatStatsChanged($event)"
+    ></app-combat-stat-selection>
+  </div>
+</div>

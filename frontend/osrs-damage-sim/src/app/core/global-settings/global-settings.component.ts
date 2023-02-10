@@ -7,6 +7,8 @@ import { BoostService } from '../../services/boost.service';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { PrayerService } from 'src/app/services/prayer.service';
+import { CombatStats } from 'src/app/model/osrs/skill.type';
+import { CombatStatService } from 'src/app/services/combat-stat.service';
 
 @Component({
   selector: 'app-global-settings',
@@ -39,9 +41,21 @@ export class GlobalSettingsComponent implements OnInit {
     ranged: new Set(['rigour']),
   };
 
+  combatStats: CombatStats = {
+    attack: 99,
+    strength: 99,
+    ranged: 99,
+    magic: 99,
+    hitpoints: 99,
+  };
+
   loading = false;
 
-  constructor(private boostService: BoostService, private prayerService: PrayerService) {}
+  constructor(
+    private boostService: BoostService,
+    private prayerService: PrayerService,
+    private combatStatService: CombatStatService
+  ) {}
 
   ngOnInit(): void {
     this.prayerService.globalPrayers$.next(this.selectedPrayers);
@@ -74,5 +88,9 @@ export class GlobalSettingsComponent implements OnInit {
   toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
     this.prayerService.togglePrayer(prayer, this.selectedPrayers[attackType]);
     this.prayerService.globalPrayers$.next(this.selectedPrayers);
+  }
+
+  combatStatsChanged(combatStats: CombatStats): void {
+    this.combatStatService.globalCombatStats$.next(combatStats);
   }
 }
