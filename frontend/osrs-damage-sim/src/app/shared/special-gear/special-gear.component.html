@@ -26,21 +26,17 @@
   <input class="ms-2 form-check-input" type="checkbox" [(ngModel)]="gearInputSetup.isInWilderness" />
 </div>
 
-<div class="row align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isDharokSet">
-  <div class="col-auto"><img src="assets/img/skills/hitpoints.png" /></div>
-  <div class="col-4">
-    <input class="form-control" type="number" [(ngModel)]="gearInputSetup.currentHp" max="99" min="1" />
-  </div>
-  <div class="col-1">/</div>
-  <div class="col-4">
-    <input
-      class="form-control"
-      type="number"
-      [(ngModel)]="this.gearInputSetup.combatStats.hitpoints"
-      max="99"
-      min="1"
-    />
-  </div>
+<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isDharokSet">
+  <img src="assets/img/skills/hitpoints.png" />
+  <input class="ms-2 form-control input-level" type="number" [(ngModel)]="gearInputSetup.currentHp" max="99" min="1" />
+  <div class="ms-2">/</div>
+  <input
+    class="ms-2 form-control input-level"
+    type="number"
+    [(ngModel)]="this.gearInputSetup.combatStats.hitpoints"
+    max="99"
+    min="1"
+  />
 </div>
 
 <div
@@ -49,7 +45,7 @@
 >
   <img src="assets/img/skills/mining.png" />
   <div class="flex-shrink-1 ms-2">
-    <input class="form-control" type="number" [(ngModel)]="gearInputSetup.miningLvl" max="99" min="1" />
+    <input class="form-control input-level" type="number" [(ngModel)]="gearInputSetup.miningLvl" max="99" min="1" />
   </div>
 </div>
 

@@ -9,7 +9,7 @@ import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
 import { AttackType, Item } from '../../model/osrs/item.model';
-import { allSkills, Skill } from '../../model/osrs/skill.type';
+import { allSkills, CombatStats, Skill } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
 import { BoostService } from '../../services/boost.service';
@@ -41,7 +41,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   selectedGearSetupPreset: string = '';
 
   allBoosts = allBoosts;
-  skills: Skill[] = allSkills.filter((skill) => skill !== 'hitpoints');
 
   attackStyles: string[] = [];
   allSpells: string[] = [];
@@ -184,6 +183,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   toggleBoost(boost: Boost): void {
     this.boostService.toggleBoost(boost, this.gearInputSetup.boosts);
+  }
+
+  combatStatsChanged(combatStats: CombatStats): void {
+    this.gearInputSetup.combatStats = { ...combatStats };
   }
 
   removeGearSetup(): void {

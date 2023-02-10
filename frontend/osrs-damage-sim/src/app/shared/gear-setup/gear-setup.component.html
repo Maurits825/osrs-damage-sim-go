@@ -124,22 +124,11 @@
 
     <div class="row mb-3 align-items-center">
       <div class="col-3">Combat Stats</div>
-      <div class="col" *ngFor="let skill of skills">
-        <div class="row align-items-center">
-          <div class="col-3 me-1">
-            <img src="assets/img/skills/{{ skill }}.png" />
-          </div>
-          <div class="col">
-            <input
-              class="form-control"
-              type="number"
-              inputmode="numeric"
-              [(ngModel)]="gearInputSetup.combatStats[skill]"
-              max="99"
-              min="1"
-            />
-          </div>
-        </div>
+      <div class="col">
+        <app-combat-stat-selection
+          [combatStats]="gearInputSetup.combatStats"
+          (combatStatsChanged)="combatStatsChanged($event)"
+        ></app-combat-stat-selection>
       </div>
     </div>
 

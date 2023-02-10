@@ -17,6 +17,7 @@ import { PrayerSelectionComponent } from './shared/prayer-selection/prayer-selec
 import { PrayerModalComponent } from './shared/prayer-modal/prayer-modal.component';
 import { BoostModalComponent } from './shared/boost-modal/boost-modal.component';
 import { SpecialGearComponent } from './shared/special-gear/special-gear.component';
+import { CombatStatSelectionComponent } from './shared/combat-stat-selection/combat-stat-selection.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SpecialGearComponent } from './shared/special-gear/special-gear.compone
     PrayerModalComponent,
     BoostModalComponent,
     SpecialGearComponent,
+    CombatStatSelectionComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [],
