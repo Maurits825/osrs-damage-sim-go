@@ -1,4 +1,4 @@
-<div class="me-3" *ngIf="gearInputSetup">
+<div class="me-4" *ngIf="gearInputSetup">
   <div class="row mb-2 justify-content-center">
     <div class="col-auto"><h3 class="text-end">Gear Setup:</h3></div>
     <div class="col-5">
@@ -39,9 +39,9 @@
     </div>
   </div>
 
-  <div class="row mb-3" *ngIf="allGearSlotItems">
-    <div class="d-flex mb-2 align-items-center" *ngFor="let slot of allGearSlots">
-      <div class="col-1">
+  <div class="mb-3" *ngIf="allGearSlotItems">
+    <div class="d-flex flex-wrap mb-2 align-items-center" *ngFor="let slot of allGearSlots">
+      <div class="col-1 text-center">
         <ng-container *ngIf="gearInputSetup.gear[slot]; else placeholder">
           <img src="data:image/png;base64,{{ gearInputSetup.gear[slot].icon }}" />
         </ng-container>
@@ -67,19 +67,18 @@
         </ng-select>
       </div>
 
-      <div class="flex-shrink-1">
-        <app-special-gear
-          [gearInputSetup]="gearInputSetup"
-          [specialGear]="specialGear"
-          [selectedDart]="selectedDart"
-          [slot]="slot"
-          [allDarts]="allDarts"
-        ></app-special-gear>
-      </div>
+      <app-special-gear
+        class="d-flex"
+        [gearInputSetup]="gearInputSetup"
+        [specialGear]="specialGear"
+        [selectedDart]="selectedDart"
+        [slot]="slot"
+        [allDarts]="allDarts"
+      ></app-special-gear>
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div class="mb-3">
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label for="attackStyle">Attack style</label></div>
       <div class="col-9">
