@@ -24,5 +24,4 @@ export class SpecialGearComponent {
   allDarts: Item[];
 
   GearSlot = GearSlot;
-  BLOWPIPE_ID = BLOWPIPE_ID;
 }

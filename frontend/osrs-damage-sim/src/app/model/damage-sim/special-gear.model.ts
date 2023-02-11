@@ -4,4 +4,6 @@ export interface SpecialGear {
   isWildernessWeapon: boolean;
   isDharokSet: boolean;
   isSpecialBolt: boolean;
+  isBlowpipe: boolean;
+  isPickaxe: boolean;
 }

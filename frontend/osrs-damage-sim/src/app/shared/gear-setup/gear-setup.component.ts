@@ -15,10 +15,11 @@ import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
 import { BoostService } from '../../services/boost.service';
 import { RlGearService } from '../../services/rl-gear.service';
-import { DRAGON_DARTS_ID, SPECIAL_BOLTS, UNARMED_EQUIVALENT_ID, DEFAULT_GEAR_SETUP } from './gear-setup.const';
+import { DRAGON_DARTS_ID, UNARMED_EQUIVALENT_ID, DEFAULT_GEAR_SETUP } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 import { CombatStatService } from 'src/app/services/combat-stat.service';
+import { SpecialGearService } from 'src/app/services/special-gear.service';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -49,15 +50,17 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   allDarts: Item[];
 
-  private subscriptions: Subscription = new Subscription();
-
   specialGear: SpecialGear = {
     isSpecialWeapon: false,
     isSlayerHelm: false,
     isWildernessWeapon: false,
     isDharokSet: false,
     isSpecialBolt: false,
+    isBlowpipe: false,
+    isPickaxe: false,
   };
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private damageSimservice: DamageSimService,
@@ -65,6 +68,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private boostService: BoostService,
     private prayerService: PrayerService,
     private combatStatService: CombatStatService,
+    private specialGearService: SpecialGearService,
     @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
 
@@ -173,7 +177,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         attackType = item.attackType;
       }
 
-      this.specialGear.isSpecialWeapon = !!item?.specialAttackCost;
       this.gearInputSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[attackType]);
 
       this.updateAttackStyle(itemId);
@@ -224,41 +227,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   updateSpecialGear(): void {
-    this.specialGear.isSlayerHelm = this.getIsSlayerHelm();
-    this.specialGear.isWildernessWeapon = this.getIsWildernessWeapon();
-    this.specialGear.isSpecialBolt = this.getIsSpecialBolt();
-    this.specialGear.isDharokSet = this.getIsDharokSet();
-  }
-
-  getIsSlayerHelm(): boolean {
-    const itemName = this.gearInputSetup.gear[GearSlot.Head]?.name;
-    if (!itemName) {
-      return false;
-    }
-
-    const name = itemName.toLowerCase();
-    return name.includes('slayer helmet') || name.includes('black mask');
-  }
-
-  getIsWildernessWeapon(): boolean {
-    const itemName = this.gearInputSetup.gear[GearSlot.Weapon]?.name;
-    if (!itemName) {
-      return false;
-    }
-    return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace";
-  }
-
-  getIsDharokSet(): boolean {
-    return (
-      this.gearInputSetup.gear[GearSlot.Head]?.id === 4716 &&
-      this.gearInputSetup.gear[GearSlot.Weapon]?.id === 4718 &&
-      this.gearInputSetup.gear[GearSlot.Body]?.id === 4720 &&
-      this.gearInputSetup.gear[GearSlot.Legs]?.id === 4722
-    );
-  }
-
-  getIsSpecialBolt(): boolean {
-    return SPECIAL_BOLTS.some((boltId: number) => this.gearInputSetup.gear[GearSlot.Ammo]?.id === boltId);
+    this.specialGear = this.specialGearService.getSpecialGear(this.gearInputSetup);
   }
 
   useSpecialAttackChange(): void {
