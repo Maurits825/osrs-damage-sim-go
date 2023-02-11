@@ -46,9 +46,10 @@
         </button>
       </div>
     </div>
-
-    <button type="button" class="btn btn-primary w-100" (click)="addCondition()" [disabled]="!isFill">
-      Add condition
-    </button>
+    <div class="text-end">
+      <button type="button" class="btn btn-primary w-50" (click)="addCondition()" [disabled]="!isFill">
+        <i class="bi bi-plus"></i> Add condition
+      </button>
+    </div>
   </div>
 </div>
