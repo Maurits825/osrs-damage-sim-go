@@ -21,7 +21,7 @@ export const DEFAULT_GEAR_SETUP: GearInputSetup = {
     [GearSlot.Ring]: null,
     [GearSlot.Ammo]: null,
   },
-  blowpipeDarts: DRAGON_DARTS_ID,
+  blowpipeDarts: null,
   attackStyle: null,
   spell: null,
   isSpecial: false,

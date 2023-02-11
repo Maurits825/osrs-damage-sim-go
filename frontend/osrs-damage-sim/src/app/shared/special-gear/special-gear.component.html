@@ -1,6 +1,14 @@
 <div class="d-flex align-items-center ms-4" *ngIf="gearInputSetup.gear[slot]?.id == BLOWPIPE_ID">
-  <ng-select [(ngModel)]="selectedDart" [clearable]="false">
-    <ng-option *ngFor="let dart of allDarts" [value]="dart">{{ dart.name }}</ng-option>
+  <ng-select [items]="allDarts" [(ngModel)]="gearInputSetup.blowpipeDarts" bindLabel="name">
+    <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
+    <ng-template ng-option-tmp let-item="item">
+      <div class="d-flex flex-row align-items-center">
+        <div class="text-center" style="flex: 0 0 35px">
+          <img src="data:image/png;base64,{{ item.icon }}" />
+        </div>
+        <div class="ps-2">{{ item.name }}</div>
+      </div>
+    </ng-template>
   </ng-select>
 </div>
 
@@ -49,9 +57,7 @@
   </div>
 </div>
 
-<div class="row align-items-center justify-content-end" *ngIf="slot === GearSlot.Ammo && specialGear.isSpecialBolt">
-  <div class="col-auto text-end"><label>Kandarin diary</label></div>
-  <div class="col-auto">
-    <input class="form-check-input" type="checkbox" [(ngModel)]="gearInputSetup.isKandarinDiary" />
-  </div>
+<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Ammo && specialGear.isSpecialBolt">
+  <label>Kandarin diary</label>
+  <input class="form-check-input ms-2" type="checkbox" [(ngModel)]="gearInputSetup.isKandarinDiary" />
 </div>

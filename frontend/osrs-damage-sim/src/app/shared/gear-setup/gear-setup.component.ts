@@ -44,11 +44,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   allBoosts = allBoosts;
 
-  attackStyles: string[] = [];
-  allSpells: string[] = [];
+  attackStyles: string[];
+  allSpells: string[];
 
-  selectedDart: Item;
-  allDarts: Item[] = [];
+  allDarts: Item[];
 
   private subscriptions: Subscription = new Subscription();
 
@@ -85,12 +84,13 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.allSpells = allSpells;
       this.allDarts = allDarts;
 
-      this.selectedDart = this.getItem(GearSlot.Weapon, DRAGON_DARTS_ID);
-
       if (this.gearSetupToCopy) {
         this.setGearSetup(this.gearSetupToCopy);
       } else {
         this.gearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
+
+        this.gearInputSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
+
         this.gearInputSetup.boosts = new Set(this.boostService.globalBoosts$.getValue());
         this.gearInputSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()['melee']);
         this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;

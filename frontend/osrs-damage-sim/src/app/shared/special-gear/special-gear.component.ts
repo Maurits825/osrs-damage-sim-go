@@ -18,9 +18,6 @@ export class SpecialGearComponent {
   specialGear: SpecialGear;
 
   @Input()
-  selectedDart: Item;
-
-  @Input()
   slot: GearSlot;
 
   @Input()

@@ -23,7 +23,7 @@ export interface GlobalSettings {
 export interface GearInputSetup {
   setupName: string;
   gear: Record<GearSlot, Item>;
-  blowpipeDarts: number;
+  blowpipeDarts: Item;
 
   attackStyle: string;
   spell: string;
