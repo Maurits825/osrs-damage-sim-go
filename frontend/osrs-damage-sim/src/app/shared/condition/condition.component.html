@@ -2,9 +2,9 @@
   <div class="col-auto">
     <label>Conditions</label>
   </div>
-  <div class="col">
+  <div class="col ps-0">
     <div class="row align-items-center mb-1" *ngFor="let condition of conditions; first as isFirst">
-      <div class="col-2">
+      <div class="col-2 pe-0">
         <ng-container *ngIf="!isFirst">
           <ng-select [(ngModel)]="condition.nextComparison" [clearable]="false" [disabled]="!isFill">
             <ng-option
@@ -16,14 +16,16 @@
           </ng-select>
         </ng-container>
       </div>
-      <div class="col">
+
+      <div class="col px-1">
         <ng-select [(ngModel)]="condition.variable" [clearable]="false" [disabled]="!isFill">
           <ng-option *ngFor="let conditionVariable of conditionVariables | keyvalue" [value]="conditionVariable.key">
             {{ conditionVariable.value }}
           </ng-option>
         </ng-select>
       </div>
-      <div class="col-2">
+
+      <div class="col-2 px-1">
         <ng-select [(ngModel)]="condition.comparison" [clearable]="false" [disabled]="!isFill">
           <ng-option
             *ngFor="let conditionComparison of conditionComparisons2 | keyvalue"
@@ -33,15 +35,18 @@
           </ng-option>
         </ng-select>
       </div>
-      <div class="col-2">
+
+      <div class="col-2 px-1">
         <input type="number" [(ngModel)]="condition.value" class="form-control" placeholder="" [disabled]="!isFill" />
       </div>
-      <div class="col-auto">
+
+      <div class="col-auto ps-1">
         <button type="button" class="btn btn-danger btn-sm" (click)="removeCondition(condition)" [disabled]="!isFill">
           X
         </button>
       </div>
     </div>
+
     <button type="button" class="btn btn-primary w-100" (click)="addCondition()" [disabled]="!isFill">
       Add condition
     </button>
