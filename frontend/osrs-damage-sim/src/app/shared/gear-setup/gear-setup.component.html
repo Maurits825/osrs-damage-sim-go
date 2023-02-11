@@ -5,37 +5,33 @@
       <input class="form-control" type="text" [(ngModel)]="gearInputSetup.setupName" placeholder="Setup name" />
     </div>
   </div>
-  <div class="row mb-3">
-    <div class="row mb-2">
-      <div class="col-7 me-auto">
-        <div class="row align-items-center">
-          <label class="col-auto" for="customGear">Load setup:</label>
-          <ng-select
-            class="col"
-            labelForId="customGear"
-            [(ngModel)]="selectedGearSetupPreset"
-            [clearable]="false"
-            (change)="loadGearSetup($event)"
-          >
-            <ng-option *ngFor="let gearSetup of gearSetupPresets | keyvalue" [value]="gearSetup.key">{{
-              gearSetup.key
-            }}</ng-option>
-          </ng-select>
-        </div>
-      </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary" (click)="duplicateGearSetup()">
-          Duplicate <i class="bi bi-clipboard-plus"></i>
-        </button>
+
+  <div class="mb-2 d-flex">
+    <div class="row flex-grow-1 align-items-center">
+      <div class="col-auto pe-0"><label>Load setup:</label></div>
+      <div class="col col-md-10 col-lg-6">
+        <ng-select [(ngModel)]="selectedGearSetupPreset" [clearable]="false" (change)="loadGearSetup($event)">
+          <ng-option *ngFor="let gearSetup of gearSetupPresets | keyvalue" [value]="gearSetup.key">{{
+            gearSetup.key
+          }}</ng-option>
+        </ng-select>
       </div>
     </div>
-    <div class="row">
-      <div class="col-7 me-auto">
-        <button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button>
-      </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
-      </div>
+
+    <div class="ms-4">
+      <button type="button" class="btn btn-primary" (click)="duplicateGearSetup()">
+        Duplicate <i class="bi bi-clipboard-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <div class="me-auto">
+      <button type="button" class="btn btn-primary w-100" (click)="loadRlGear()">Load RL gear</button>
+    </div>
+
+    <div class="div">
+      <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove gear setup</button>
     </div>
   </div>
 
