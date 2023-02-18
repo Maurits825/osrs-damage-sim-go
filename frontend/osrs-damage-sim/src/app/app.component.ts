@@ -4,7 +4,7 @@ import { GearSetupTabsComponent } from './core/gear-setup-tabs/gear-setup-tabs.c
 import { GearSetupComponent } from './shared/gear-setup/gear-setup.component';
 import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
-import { GearInputSetup, GlobalSettings, InputSetup } from './model/damage-sim/input-setup.model';
+import { GearSetup, GlobalSettings, InputGearSetup, InputSetup } from './model/damage-sim/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
 
 @Component({
@@ -40,16 +40,20 @@ export class AppComponent implements OnInit {
 
     const inputSetup: InputSetup = {
       globalSettings: this.globalSettingsComponent.globalSettings,
-      gearInputSetups: [],
+      inputGearSetups: [],
     };
 
     this.gearSetupTabsComponent.gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
-      const gearInputSetups: GearInputSetup[] = [];
+      const inputGearSetup: InputGearSetup = {
+        gearSetupSettings: gearSetupTab.getGearSetupSettings(),
+        gearSetups: [],
+      };
+
       gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
-        gearInputSetups.push(gearSetupRef.instance.getGearInputSetup());
+        inputGearSetup.gearSetups.push(gearSetupRef.instance.getGearSetup());
       });
 
-      inputSetup.gearInputSetups.push(gearInputSetups);
+      inputSetup.inputGearSetups.push(inputGearSetup);
     });
 
     this.damageSimservice.runDamageSim(inputSetup).subscribe(

@@ -8,7 +8,7 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
 import { allBoosts, Boost } from '../../model/osrs/boost.model';
 import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
-import { GearInputSetup } from '../../model/damage-sim/input-setup.model';
+import { GearSetup } from '../../model/damage-sim/input-setup.model';
 import { AttackType, Item } from '../../model/osrs/item.model';
 import { CombatStats } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
@@ -34,7 +34,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   GearSlot = GearSlot;
 
-  gearInputSetup: GearInputSetup;
+  gearSetup: GearSetup;
 
   allGearSlots: GearSlot[] = Object.values(GearSlot);
 
@@ -91,36 +91,27 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       if (this.gearSetupToCopy) {
         this.setGearSetup(this.gearSetupToCopy);
       } else {
-        this.gearInputSetup = cloneDeep(DEFAULT_GEAR_SETUP);
+        this.gearSetup = cloneDeep(DEFAULT_GEAR_SETUP);
 
-        this.gearInputSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
+        this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
 
-        this.gearInputSetup.boosts = new Set(this.boostService.globalBoosts$.getValue());
-        this.gearInputSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()['melee']);
+        this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()['melee']);
         this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
-
-      this.subscriptions.add(
-        this.boostService.globalBoosts$
-          .pipe(skip(1))
-          .subscribe((boosts: Set<Boost>) => (this.gearInputSetup.boosts = new Set(boosts)))
-      );
 
       this.subscriptions.add(
         this.prayerService.globalPrayers$
           .pipe(skip(1))
           .subscribe(
             (prayers: Record<AttackType, Set<Prayer>>) =>
-              (this.gearInputSetup.prayers = new Set(
-                prayers[this.gearInputSetup.gear[GearSlot.Weapon]?.attackType || 'melee']
-              ))
+              (this.gearSetup.prayers = new Set(prayers[this.gearSetup.gear[GearSlot.Weapon]?.attackType || 'melee']))
           )
       );
 
       this.subscriptions.add(
         this.combatStatService.globalCombatStats$
           .pipe(skip(1))
-          .subscribe((combatStats: CombatStats) => (this.gearInputSetup.combatStats = { ...combatStats }))
+          .subscribe((combatStats: CombatStats) => (this.gearSetup.combatStats = { ...combatStats }))
       );
     });
   }
@@ -129,8 +120,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     return this.allGearSlotItems[slot].find((item: Item) => item.id === id);
   }
 
-  getGearInputSetup(): GearInputSetup {
-    return this.gearInputSetup;
+  getGearSetup(): GearSetup {
+    return this.gearSetup;
   }
 
   //TODO fix
@@ -147,7 +138,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   loadGearSetup(setupName: string) {
     const gearIds = this.gearSetupPresets[setupName];
     this.setCurrentGearById(gearIds);
-    this.gearInputSetup.setupName = setupName;
+    this.gearSetup.setupName = setupName;
     this.selectedGearSetupPreset = setupName;
   }
 
@@ -156,10 +147,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       if (gearIds[slot]) {
         const item = this.getItem(slot, gearIds[slot]);
         this.gearSlotChange(item, slot);
-        this.gearInputSetup.gear[slot] = item;
+        this.gearSetup.gear[slot] = item;
       } else {
         this.gearSlotChange(null, slot);
-        this.gearInputSetup.gear[slot] = null;
+        this.gearSetup.gear[slot] = null;
       }
     });
   }
@@ -169,15 +160,15 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
     if (slot === GearSlot.Weapon) {
       let itemId = UNARMED_EQUIVALENT_ID;
-      this.gearInputSetup.setupName = 'Unarmed';
+      this.gearSetup.setupName = 'Unarmed';
       let attackType: AttackType = 'melee';
       if (item) {
         itemId = item.id;
-        this.gearInputSetup.setupName = item.name;
+        this.gearSetup.setupName = item.name;
         attackType = item.attackType;
       }
 
-      this.gearInputSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[attackType]);
+      this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[attackType]);
 
       this.updateAttackStyle(itemId);
     }
@@ -188,22 +179,18 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   updateAttackStyle(itemId: number): void {
     this.attackStyles = this.getItem(GearSlot.Weapon, itemId).attackStyles;
     if (this.attackStyles.includes(AUTOCAST_STLYE)) {
-      this.gearInputSetup.attackStyle = AUTOCAST_STLYE;
+      this.gearSetup.attackStyle = AUTOCAST_STLYE;
     } else {
-      this.gearInputSetup.attackStyle = this.attackStyles[1]; //second attack style is most commonly used
+      this.gearSetup.attackStyle = this.attackStyles[1]; //second attack style is most commonly used
     }
   }
 
   togglePrayer(prayer: Prayer): void {
-    this.prayerService.togglePrayer(prayer, this.gearInputSetup.prayers);
-  }
-
-  toggleBoost(boost: Boost): void {
-    this.boostService.toggleBoost(boost, this.gearInputSetup.boosts);
+    this.prayerService.togglePrayer(prayer, this.gearSetup.prayers);
   }
 
   combatStatsChanged(combatStats: CombatStats): void {
-    this.gearInputSetup.combatStats = { ...combatStats };
+    this.gearSetup.combatStats = { ...combatStats };
   }
 
   removeGearSetup(): void {
@@ -211,7 +198,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   setGearSetup(gearSetupComponent: GearSetupComponent): void {
-    this.gearInputSetup = cloneDeep(gearSetupComponent.gearInputSetup);
+    this.gearSetup = cloneDeep(gearSetupComponent.gearSetup);
 
     this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
     this.attackStyles = [...gearSetupComponent.attackStyles];
@@ -219,7 +206,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   updateConditions(conditions: Condition[]): void {
-    this.gearInputSetup.conditions = conditions;
+    this.gearSetup.conditions = conditions;
   }
 
   duplicateGearSetup(): void {
@@ -227,20 +214,20 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   updateSpecialGear(): void {
-    this.specialGear = this.specialGearService.getSpecialGear(this.gearInputSetup);
+    this.specialGear = this.specialGearService.getSpecialGear(this.gearSetup);
   }
 
   useSpecialAttackChange(): void {
-    if (this.gearInputSetup.isSpecial) {
-      this.gearInputSetup.isFill = true;
+    if (this.gearSetup.isSpecial) {
+      this.gearSetup.isFill = true;
     }
   }
 
   selectedSpellChange(): void {
     if (this.attackStyles.includes(AUTOCAST_STLYE)) {
-      this.gearInputSetup.attackStyle = AUTOCAST_STLYE;
+      this.gearSetup.attackStyle = AUTOCAST_STLYE;
     } else {
-      this.gearInputSetup.attackStyle = null;
+      this.gearSetup.attackStyle = null;
     }
   }
 }

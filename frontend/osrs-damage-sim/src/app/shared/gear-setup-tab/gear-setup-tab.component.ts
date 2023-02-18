@@ -10,6 +10,8 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
+import { GearSetupSettingsComponent } from '../gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
 
 @Component({
@@ -19,7 +21,9 @@ import { GearSetupComponent } from '../gear-setup/gear-setup.component';
 })
 export class GearSetupTabComponent implements AfterViewInit {
   @Input() active = false;
-  @ViewChild('gearSetupsContainer', { read: ViewContainerRef }) gearSetupsContainer!: ViewContainerRef;
+
+  @ViewChild('gearSetupsContainer', { read: ViewContainerRef }) gearSetupsContainer: ViewContainerRef;
+  @ViewChild(GearSetupSettingsComponent) gearSetupSettingsComponent: GearSetupSettingsComponent;
 
   id: number = 0;
 
@@ -72,5 +76,9 @@ export class GearSetupTabComponent implements AfterViewInit {
     for (let index = 0; index < this.gearSetups.length; index++) {
       this.gearSetups[index].instance.setupCount = index + 1;
     }
+  }
+
+  getGearSetupSettings(): GearSetupSettings {
+    return this.gearSetupSettingsComponent.gearSetupSettings;
   }
 }

@@ -1,8 +1,8 @@
-<div class="me-4" *ngIf="gearInputSetup">
+<div class="me-4" *ngIf="gearSetup">
   <div class="row mb-2 justify-content-center">
     <div class="col-auto"><h3 class="text-end">Gear Setup:</h3></div>
     <div class="col-5">
-      <input class="form-control" type="text" [(ngModel)]="gearInputSetup.setupName" placeholder="Setup name" />
+      <input class="form-control" type="text" [(ngModel)]="gearSetup.setupName" placeholder="Setup name" />
     </div>
   </div>
 
@@ -38,8 +38,8 @@
   <div class="mb-3" *ngIf="allGearSlotItems">
     <div class="d-flex flex-wrap mb-2 align-items-center" *ngFor="let slot of allGearSlots">
       <div class="col-1 text-center">
-        <ng-container *ngIf="gearInputSetup.gear[slot]; else placeholder">
-          <img src="data:image/png;base64,{{ gearInputSetup.gear[slot].icon }}" />
+        <ng-container *ngIf="gearSetup.gear[slot]; else placeholder">
+          <img src="data:image/png;base64,{{ gearSetup.gear[slot].icon }}" />
         </ng-container>
         <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
       </div>
@@ -48,7 +48,7 @@
         <ng-select
           (change)="gearSlotChange($event, slot)"
           [items]="allGearSlotItems[slot]"
-          [(ngModel)]="gearInputSetup.gear[slot]"
+          [(ngModel)]="gearSetup.gear[slot]"
           bindLabel="name"
         >
           <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
@@ -65,7 +65,7 @@
 
       <app-special-gear
         class="d-flex"
-        [gearInputSetup]="gearInputSetup"
+        [gearSetup]="gearSetup"
         [specialGear]="specialGear"
         [slot]="slot"
         [allDarts]="allDarts"
@@ -77,7 +77,7 @@
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label for="attackStyle">Attack style</label></div>
       <div class="col-9">
-        <ng-select [(ngModel)]="gearInputSetup.attackStyle" (change)="gearInputSetup.spell = null">
+        <ng-select [(ngModel)]="gearSetup.attackStyle" (change)="gearSetup.spell = null">
           <ng-option *ngFor="let style of attackStyles" [value]="style">{{ style }}</ng-option>
         </ng-select>
       </div>
@@ -86,7 +86,7 @@
     <div class="row mb-3 align-items-center">
       <div class="col-3"><label for="attackStyle">Spell</label></div>
       <div class="col-9">
-        <ng-select [items]="allSpells" [(ngModel)]="gearInputSetup.spell" (change)="selectedSpellChange()">
+        <ng-select [items]="allSpells" [(ngModel)]="gearSetup.spell" (change)="selectedSpellChange()">
           <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index">
             <div class="row">
               <div class="col-1"><img src="assets/img/magic_spells/{{ item }}.png" /></div>
@@ -101,19 +101,9 @@
       <div class="col-3">Prayer</div>
       <div class="col">
         <app-prayer-selection
-          [selectedPrayers]="gearInputSetup.prayers"
+          [selectedPrayers]="gearSetup.prayers"
           (prayerToggle)="togglePrayer($event)"
         ></app-prayer-selection>
-      </div>
-    </div>
-
-    <div class="row mb-3 align-items-center">
-      <div class="col-3">Boosts</div>
-      <div class="col">
-        <app-boost-selection
-          [selectedBoosts]="gearInputSetup.boosts"
-          (boostToggle)="toggleBoost($event)"
-        ></app-boost-selection>
       </div>
     </div>
 
@@ -121,16 +111,9 @@
       <div class="col-3">Combat Stats</div>
       <div class="col">
         <app-combat-stat-selection
-          [combatStats]="gearInputSetup.combatStats"
+          [combatStats]="gearSetup.combatStats"
           (combatStatsChanged)="combatStatsChanged($event)"
         ></app-combat-stat-selection>
-      </div>
-    </div>
-
-    <div class="row mb-3 align-items-center">
-      <div class="col-3">Combat Stat Drain</div>
-      <div class="col">
-        <app-stat-drain-selection></app-stat-drain-selection>
       </div>
     </div>
 
@@ -141,17 +124,17 @@
         <input
           class="form-check-input"
           type="checkbox"
-          [(ngModel)]="gearInputSetup.isFill"
+          [(ngModel)]="gearSetup.isFill"
           id="isFill"
-          [disabled]="gearInputSetup.isSpecial"
+          [disabled]="gearSetup.isSpecial"
         />
       </div>
     </div>
 
     <div class="row mb-3">
       <app-condition
-        [initialConditions]="gearInputSetup.conditions"
-        [isFill]="gearInputSetup.isFill"
+        [initialConditions]="gearSetup.conditions"
+        [isFill]="gearSetup.isFill"
         (conditionsChanged)="updateConditions($event)"
       ></app-condition>
     </div>

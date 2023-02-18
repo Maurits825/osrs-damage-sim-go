@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GearInputSetup } from '../model/damage-sim/input-setup.model';
+import { GearSetup } from '../model/damage-sim/input-setup.model';
 import { SpecialGear } from '../model/damage-sim/special-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { BLOWPIPE_ID, SPECIAL_BOLTS } from '../shared/gear-setup/gear-setup.const';
@@ -10,7 +10,7 @@ import { BLOWPIPE_ID, SPECIAL_BOLTS } from '../shared/gear-setup/gear-setup.cons
 export class SpecialGearService {
   constructor() {}
 
-  getSpecialGear(gearInputSetup: GearInputSetup): SpecialGear {
+  getSpecialGear(gearInputSetup: GearSetup): SpecialGear {
     return {
       isSlayerHelm: this.getIsSlayerHelm(gearInputSetup),
       isWildernessWeapon: this.getIsWildernessWeapon(gearInputSetup),
@@ -22,7 +22,7 @@ export class SpecialGearService {
     };
   }
 
-  private getIsSlayerHelm(gearInputSetup: GearInputSetup): boolean {
+  private getIsSlayerHelm(gearInputSetup: GearSetup): boolean {
     const itemName = gearInputSetup.gear[GearSlot.Head]?.name;
     if (!itemName) {
       return false;
@@ -32,7 +32,7 @@ export class SpecialGearService {
     return name.includes('slayer helmet') || name.includes('black mask');
   }
 
-  private getIsWildernessWeapon(gearInputSetup: GearInputSetup): boolean {
+  private getIsWildernessWeapon(gearInputSetup: GearSetup): boolean {
     const itemName = gearInputSetup.gear[GearSlot.Weapon]?.name;
     if (!itemName) {
       return false;
@@ -40,7 +40,7 @@ export class SpecialGearService {
     return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace";
   }
 
-  private getIsDharokSet(gearInputSetup: GearInputSetup): boolean {
+  private getIsDharokSet(gearInputSetup: GearSetup): boolean {
     return (
       gearInputSetup.gear[GearSlot.Head]?.id === 4716 &&
       gearInputSetup.gear[GearSlot.Weapon]?.id === 4718 &&
@@ -49,19 +49,19 @@ export class SpecialGearService {
     );
   }
 
-  private getIsSpecialBolt(gearInputSetup: GearInputSetup): boolean {
+  private getIsSpecialBolt(gearInputSetup: GearSetup): boolean {
     return SPECIAL_BOLTS.some((boltId: number) => gearInputSetup.gear[GearSlot.Ammo]?.id === boltId);
   }
 
-  private getIsSpecialWeapon(gearInputSetup: GearInputSetup): boolean {
+  private getIsSpecialWeapon(gearInputSetup: GearSetup): boolean {
     return !!gearInputSetup.gear[GearSlot.Weapon]?.specialAttackCost;
   }
 
-  private getIsBlowpipe(gearInputSetup: GearInputSetup): boolean {
+  private getIsBlowpipe(gearInputSetup: GearSetup): boolean {
     return gearInputSetup.gear[GearSlot.Weapon]?.id === BLOWPIPE_ID;
   }
 
-  private getIsPickaxe(gearInputSetup: GearInputSetup): boolean {
+  private getIsPickaxe(gearInputSetup: GearSetup): boolean {
     return gearInputSetup.gear[GearSlot.Weapon]?.name.includes('pickaxe');
   }
 }

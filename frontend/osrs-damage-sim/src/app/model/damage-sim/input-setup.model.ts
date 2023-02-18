@@ -8,7 +8,7 @@ import { StatDrain } from './stat-drain.model';
 
 export interface InputSetup {
   globalSettings: GlobalSettings;
-  gearInputSetups: GearInputSetup[][];
+  inputGearSetups: InputGearSetup[];
 }
 
 export interface GlobalSettings {
@@ -21,7 +21,17 @@ export interface GlobalSettings {
   teamSize: number;
 }
 
-export interface GearInputSetup {
+export interface InputGearSetup {
+  gearSetupSettings: GearSetupSettings;
+  gearSetups: GearSetup[];
+}
+
+export interface GearSetupSettings {
+  statDrains: StatDrain[];
+  boosts: Set<Boost>;
+}
+
+export interface GearSetup {
   setupName: string;
   gear: Record<GearSlot, Item>;
   blowpipeDarts: Item;
@@ -32,7 +42,6 @@ export interface GearInputSetup {
   isSpecial: boolean;
   prayers: Set<Prayer>;
   combatStats: CombatStats;
-  boosts: Set<Boost>;
 
   isFill: boolean;
   conditions: Condition[];
