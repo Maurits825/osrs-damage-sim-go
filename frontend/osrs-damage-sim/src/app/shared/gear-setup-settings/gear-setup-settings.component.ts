@@ -4,6 +4,7 @@ import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { BoostService } from 'src/app/services/boost.service';
+import { StatDrainService } from 'src/app/services/stat-drain.service';
 
 @Component({
   selector: 'app-gear-setup-settings',
@@ -18,19 +19,23 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private boostService: BoostService) {}
+  constructor(private boostService: BoostService, private statDrainService: StatDrainService) {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.gearSetupSettings.boosts = new Set(this.boostService.globalBoosts$.getValue());
+    this.subscriptions.add(
+      this.boostService.globalBoosts$.subscribe(
+        (boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts))
+      )
+    );
 
     this.subscriptions.add(
-      this.boostService.globalBoosts$
-        .pipe(skip(1))
-        .subscribe((boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts)))
+      this.statDrainService.globalStatDrain$.subscribe(
+        (statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains])
+      )
     );
   }
 

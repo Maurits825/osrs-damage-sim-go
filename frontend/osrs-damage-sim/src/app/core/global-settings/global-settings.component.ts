@@ -10,6 +10,7 @@ import { PrayerService } from 'src/app/services/prayer.service';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
+import { StatDrainService } from 'src/app/services/stat-drain.service';
 
 @Component({
   selector: 'app-global-settings',
@@ -57,7 +58,8 @@ export class GlobalSettingsComponent implements OnInit {
   constructor(
     private boostService: BoostService,
     private prayerService: PrayerService,
-    private combatStatService: CombatStatService
+    private combatStatService: CombatStatService,
+    private statDrainService: StatDrainService
   ) {}
 
   ngOnInit(): void {
@@ -97,5 +99,7 @@ export class GlobalSettingsComponent implements OnInit {
     this.combatStatService.globalCombatStats$.next(combatStats);
   }
 
-  statDrainChanged(statDrain: StatDrain[]): void {}
+  statDrainChanged(statDrains: StatDrain[]): void {
+    this.statDrainService.globalStatDrain$.next(statDrains);
+  }
 }
