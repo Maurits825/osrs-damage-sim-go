@@ -6,7 +6,13 @@ import { CombatStats } from '../model/osrs/skill.type';
   providedIn: 'root',
 })
 export class CombatStatService {
-  globalCombatStats$: BehaviorSubject<CombatStats> = new BehaviorSubject(null);
+  globalCombatStats$: BehaviorSubject<CombatStats> = new BehaviorSubject({
+    attack: 99,
+    strength: 99,
+    ranged: 99,
+    magic: 99,
+    hitpoints: 99,
+  });
 
   constructor() {}
 }

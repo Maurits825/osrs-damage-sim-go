@@ -26,13 +26,6 @@ export const DEFAULT_GEAR_SETUP: GearSetup = {
   spell: null,
   isSpecial: false,
   prayers: new Set(),
-  combatStats: {
-    attack: 99,
-    strength: 99,
-    ranged: 99,
-    magic: 99,
-    hitpoints: 99,
-  },
   isFill: false,
   conditions: [],
   statDrain: [],

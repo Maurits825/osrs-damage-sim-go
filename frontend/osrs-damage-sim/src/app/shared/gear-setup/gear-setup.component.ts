@@ -65,7 +65,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
     private prayerService: PrayerService,
-    private combatStatService: CombatStatService,
     private specialGearService: SpecialGearService,
     @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
   ) {}
@@ -104,12 +103,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
             (prayers: Record<AttackType, Set<Prayer>>) =>
               (this.gearSetup.prayers = new Set(prayers[this.gearSetup.gear[GearSlot.Weapon]?.attackType || 'melee']))
           )
-      );
-
-      this.subscriptions.add(
-        this.combatStatService.globalCombatStats$
-          .pipe(skip(1))
-          .subscribe((combatStats: CombatStats) => (this.gearSetup.combatStats = { ...combatStats }))
       );
     });
   }
@@ -185,10 +178,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   togglePrayer(prayer: Prayer): void {
     this.prayerService.togglePrayer(prayer, this.gearSetup.prayers);
-  }
-
-  combatStatsChanged(combatStats: CombatStats): void {
-    this.gearSetup.combatStats = { ...combatStats };
   }
 
   removeGearSetup(): void {

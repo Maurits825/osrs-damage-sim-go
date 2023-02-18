@@ -13,7 +13,7 @@ export class CombatStatSelectionComponent {
   @Output()
   combatStatsChanged = new EventEmitter<CombatStats>();
 
-  skills: Skill[] = allSkills.filter((skill) => skill !== 'hitpoints');
+  allSkills = allSkills;
 
   onCombatStatsChanged(): void {
     this.combatStatsChanged.emit(this.combatStats);

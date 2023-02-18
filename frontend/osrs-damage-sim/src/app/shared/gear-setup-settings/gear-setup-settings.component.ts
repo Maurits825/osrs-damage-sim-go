@@ -3,7 +3,9 @@ import { Subscription, skip } from 'rxjs';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
+import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { BoostService } from 'src/app/services/boost.service';
+import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { StatDrainService } from 'src/app/services/stat-drain.service';
 
 @Component({
@@ -13,13 +15,18 @@ import { StatDrainService } from 'src/app/services/stat-drain.service';
 })
 export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   public gearSetupSettings: GearSetupSettings = {
-    statDrains: [],
-    boosts: new Set<Boost>(),
+    statDrains: null,
+    boosts: null,
+    combatStats: null,
   };
 
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private boostService: BoostService, private statDrainService: StatDrainService) {}
+  constructor(
+    private boostService: BoostService,
+    private statDrainService: StatDrainService,
+    private combatStatService: CombatStatService
+  ) {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -37,6 +44,12 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
         (statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains])
       )
     );
+
+    this.subscriptions.add(
+      this.combatStatService.globalCombatStats$.subscribe(
+        (combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats })
+      )
+    );
   }
 
   toggleBoost(boost: Boost): void {
@@ -45,5 +58,9 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   statDrainsChanged(statDrains: StatDrain[]): void {
     this.gearSetupSettings.statDrains = statDrains;
+  }
+
+  combatStatsChanged(combatStats: CombatStats): void {
+    this.gearSetupSettings.combatStats = { ...combatStats };
   }
 }

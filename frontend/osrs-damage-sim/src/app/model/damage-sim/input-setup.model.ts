@@ -28,6 +28,7 @@ export interface InputGearSetup {
 
 export interface GearSetupSettings {
   statDrains: StatDrain[];
+  combatStats: CombatStats;
   boosts: Set<Boost>;
 }
 
@@ -41,7 +42,6 @@ export interface GearSetup {
 
   isSpecial: boolean;
   prayers: Set<Prayer>;
-  combatStats: CombatStats;
 
   isFill: boolean;
   conditions: Condition[];

@@ -37,14 +37,6 @@
 <div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isDharokSet">
   <img src="assets/img/skills/hitpoints.png" />
   <input class="ms-2 form-control input-level" type="number" [(ngModel)]="gearSetup.currentHp" max="99" min="1" />
-  <div class="ms-2">/</div>
-  <input
-    class="ms-2 form-control input-level"
-    type="number"
-    [(ngModel)]="this.gearSetup.combatStats.hitpoints"
-    max="99"
-    min="1"
-  />
 </div>
 
 <div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isPickaxe">
