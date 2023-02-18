@@ -12,6 +12,8 @@
     </ng-select>
   </div>
 
+  <div class="col-1 pe-0">{{ statDrainLabels[statDrain.name] }}</div>
+
   <div class="col">
     <input type="number" [(ngModel)]="statDrain.value" class="form-control" />
   </div>
