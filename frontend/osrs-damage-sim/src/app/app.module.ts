@@ -19,6 +19,7 @@ import { BoostModalComponent } from './shared/boost-modal/boost-modal.component'
 import { SpecialGearComponent } from './shared/special-gear/special-gear.component';
 import { CombatStatSelectionComponent } from './shared/combat-stat-selection/combat-stat-selection.component';
 import { StatDrainSelectionComponent } from './shared/stat-drain-selection/stat-drain-selection.component';
+import { GearSetupSettingsComponent } from './shared/gear-setup-settings/gear-setup-settings.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StatDrainSelectionComponent } from './shared/stat-drain-selection/stat-
     SpecialGearComponent,
     CombatStatSelectionComponent,
     StatDrainSelectionComponent,
+    GearSetupSettingsComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [],

@@ -36,6 +36,7 @@ export const DEFAULT_GEAR_SETUP: GearInputSetup = {
   boosts: new Set(),
   isFill: false,
   conditions: [],
+  statDrain: [],
   isOnSlayerTask: true,
   isInWilderness: true,
   currentHp: 1,

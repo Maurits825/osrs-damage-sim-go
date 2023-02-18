@@ -9,6 +9,7 @@ import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { CombatStatService } from 'src/app/services/combat-stat.service';
+import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 
 @Component({
   selector: 'app-global-settings',
@@ -48,6 +49,8 @@ export class GlobalSettingsComponent implements OnInit {
     magic: 99,
     hitpoints: 99,
   };
+
+  statDrains: StatDrain[] = [];
 
   loading = false;
 
@@ -93,4 +96,6 @@ export class GlobalSettingsComponent implements OnInit {
   combatStatsChanged(combatStats: CombatStats): void {
     this.combatStatService.globalCombatStats$.next(combatStats);
   }
+
+  statDrainChanged(statDrain: StatDrain[]): void {}
 }

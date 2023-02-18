@@ -4,6 +4,7 @@ import { GearSlot } from '../osrs/gear-slot.enum';
 import { Item } from '../osrs/item.model';
 import { CombatStats } from '../osrs/skill.type';
 import { Prayer } from '../osrs/prayer.model';
+import { StatDrain } from './stat-drain.model';
 
 export interface InputSetup {
   globalSettings: GlobalSettings;
@@ -35,6 +36,8 @@ export interface GearInputSetup {
 
   isFill: boolean;
   conditions: Condition[];
+
+  statDrain: StatDrain[];
 
   isOnSlayerTask: boolean;
   isInWilderness: boolean;

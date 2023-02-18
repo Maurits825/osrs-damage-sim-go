@@ -1,1 +1,28 @@
-<p>stat-drain-selection works!</p>
+<div class="row align-items-center mb-1" *ngFor="let statDrain of statDrains">
+  <div class="col">
+    <ng-select [items]="allStatDrains" [(ngModel)]="statDrain.name" bindValue="name" [searchable]="false">
+      <ng-template ng-label-tmp ng-option-tmp let-item="item">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <img src="assets/img/stat_drain/{{ item.replaceAll(' ', '_') | lowercase }}.png" />
+          </div>
+          <div class="ps-2">{{ item }}</div>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+
+  <div class="col">
+    <input type="number" [(ngModel)]="statDrain.value" class="form-control" />
+  </div>
+
+  <div class="col-auto ps-1">
+    <button type="button" class="btn btn-danger btn-sm" (click)="removeStatDrain(statDrain)">X</button>
+  </div>
+</div>
+
+<div>
+  <button type="button" class="btn btn-primary w-50" (click)="addStatDrain()">
+    <i class="bi bi-plus"></i> Add Stat drain
+  </button>
+</div>
