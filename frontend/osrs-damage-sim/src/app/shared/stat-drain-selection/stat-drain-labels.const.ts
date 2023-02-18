@@ -7,5 +7,5 @@ export type StatDrainLabel = {
 export const statDrainLabels: StatDrainLabel = {
   'Dragon warhammer': 'Hits',
   'Bandos godsword': 'Damage',
-  Arclight: 'damage',
+  Arclight: 'Damage',
 };

@@ -3,9 +3,7 @@ import { Subscription, skip } from 'rxjs';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
-import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { BoostService } from 'src/app/services/boost.service';
-import { CombatStatService } from 'src/app/services/combat-stat.service';
 
 @Component({
   selector: 'app-gear-setup-settings',
@@ -18,7 +16,6 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     boosts: new Set<Boost>(),
   };
 
-  statDrains: StatDrain[] = [];
   private subscriptions: Subscription = new Subscription();
 
   constructor(private boostService: BoostService) {}
@@ -41,5 +38,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     this.boostService.toggleBoost(boost, this.gearSetupSettings.boosts);
   }
 
-  statDrainChanged(statDrain: StatDrain[]): void {}
+  statDrainsChanged(statDrains: StatDrain[]): void {
+    this.gearSetupSettings.statDrains = statDrains;
+  }
 }

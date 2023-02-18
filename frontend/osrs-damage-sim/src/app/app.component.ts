@@ -4,7 +4,7 @@ import { GearSetupTabsComponent } from './core/gear-setup-tabs/gear-setup-tabs.c
 import { GearSetupComponent } from './shared/gear-setup/gear-setup.component';
 import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
-import { GearSetup, GlobalSettings, InputGearSetup, InputSetup } from './model/damage-sim/input-setup.model';
+import { InputGearSetup, InputSetup } from './model/damage-sim/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
 
 @Component({

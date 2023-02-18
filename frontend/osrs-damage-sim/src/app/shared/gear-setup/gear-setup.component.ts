@@ -5,7 +5,7 @@ import { skip } from 'rxjs/operators';
 import { ConditionComponent } from '../condition/condition.component';
 import { AUTOCAST_STLYE } from '../../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
-import { allBoosts, Boost } from '../../model/osrs/boost.model';
+import { allBoosts } from '../../model/osrs/boost.model';
 import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearSetup } from '../../model/damage-sim/input-setup.model';
@@ -13,7 +13,6 @@ import { AttackType, Item } from '../../model/osrs/item.model';
 import { CombatStats } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
-import { BoostService } from '../../services/boost.service';
 import { RlGearService } from '../../services/rl-gear.service';
 import { DRAGON_DARTS_ID, UNARMED_EQUIVALENT_ID, DEFAULT_GEAR_SETUP } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
@@ -65,7 +64,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
-    private boostService: BoostService,
     private prayerService: PrayerService,
     private combatStatService: CombatStatService,
     private specialGearService: SpecialGearService,

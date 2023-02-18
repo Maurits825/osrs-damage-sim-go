@@ -12,10 +12,10 @@
     </ng-select>
   </div>
 
-  <div class="col-1 pe-0">{{ statDrainLabels[statDrain.name] }}</div>
+  <div class="col-auto pe-1">{{ statDrainLabels[statDrain.name] }}</div>
 
-  <div class="col">
-    <input type="number" [(ngModel)]="statDrain.value" class="form-control" />
+  <div class="col-2 px-1">
+    <input type="number" [(ngModel)]="statDrain.value" class="form-control" min="0" />
   </div>
 
   <div class="col-auto ps-1">
@@ -24,7 +24,7 @@
 </div>
 
 <div>
-  <button type="button" class="btn btn-primary w-50" (click)="addStatDrain()">
+  <button type="button" class="btn btn-primary" (click)="addStatDrain()">
     <i class="bi bi-plus"></i> Add Stat drain
   </button>
 </div>

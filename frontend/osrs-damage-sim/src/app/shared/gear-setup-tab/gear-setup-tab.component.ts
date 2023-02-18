@@ -10,6 +10,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { cloneDeep } from 'lodash-es';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSetupSettingsComponent } from '../gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
@@ -36,6 +37,7 @@ export class GearSetupTabComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     if (this.gearSetupTabToCopy) {
+      this.gearSetupSettingsComponent.gearSetupSettings = cloneDeep(this.gearSetupTabToCopy.getGearSetupSettings());
       this.gearSetupTabToCopy.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
         this.addNewGearSetup(gearSetupRef.instance);
       });
