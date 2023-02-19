@@ -106,6 +106,10 @@ class GenerateWikiData:
         if item_id == "25862":
             return True
 
+        # no r str blowpipe
+        if item_id == "12924":
+            return True
+
         if "(uncharged)" in item["name"]:
             return True
 
