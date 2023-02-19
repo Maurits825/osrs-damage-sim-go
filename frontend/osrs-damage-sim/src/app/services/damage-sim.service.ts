@@ -65,14 +65,27 @@ export class DamageSimService {
   }
 
   private convertInputSetupToJson(inputSetup: InputSetup): string {
-    return JSON.stringify(inputSetup, (key, value) => {
-      if (value instanceof Set) {
-        return [...value];
-      } else if (FILTER_PATHS.some((field) => key === field)) {
-        return undefined;
-      }
+    return JSON.stringify(
+      inputSetup,
+      this.replacerWithPath((key: string, value: any, path: any) => {
+        if (value instanceof Set) {
+          return [...value];
+        } else if (FILTER_PATHS.some((filter_path) => filter_path.test(path))) {
+          return undefined;
+        }
 
-      return value;
-    });
+        return value;
+      })
+    );
+  }
+
+  replacerWithPath(replacer: (this: any, key: string, value: any, path: string) => any) {
+    let m = new Map<any, string>();
+
+    return function (this: any, field: string, value: any) {
+      let path = m.get(this) + (Array.isArray(this) ? `[${field}]` : '.' + field);
+      if (value === Object(value)) m.set(value, path);
+      return replacer.call(this, field, value, path.replace(/undefined\.\.?/, ''));
+    };
   }
 }

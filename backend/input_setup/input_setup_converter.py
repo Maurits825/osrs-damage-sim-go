@@ -79,7 +79,7 @@ class InputSetupConverter:
             gear_stats += weapon_stats
 
         if weapon_item.id == BLOWPIPE:
-            gear_stats.ranged_strength += WikiData.get_weapon(gear_setup["blowpipeDarts"]).ranged_strength
+            gear_stats.ranged_strength += WikiData.get_weapon(gear_setup["blowpipeDarts"]["id"]).ranged_strength
 
         gear_stats.id = weapon_item.id
         gear_stats.attack_speed = weapon_item.attack_speed
