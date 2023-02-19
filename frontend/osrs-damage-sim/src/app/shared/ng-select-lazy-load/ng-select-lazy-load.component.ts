@@ -32,7 +32,6 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
   bufferSize = 50;
   numberOfItemsFromEndBeforeFetchingMore = 10;
 
-  loading = false;
   input$ = new Subject<string>();
 
   private destroy$ = new Subject();
@@ -64,9 +63,7 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
       .slice(len, this.bufferSize + len);
 
     // TODO timeout is needed because otherwise the onScrollToEnd only triggers once, can maybe use OnScroll instead
-    this.loading = true;
     setTimeout(() => {
-      this.loading = false;
       this.valuesBuffer = this.valuesBuffer.concat(more);
     }, 1);
   }
