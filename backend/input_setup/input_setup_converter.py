@@ -58,7 +58,7 @@ class InputSetupConverter:
     def get_gear_setup(gear_setup) -> (GearSetup, WeaponStats):
         prayers = [Prayer[prayer.upper()] for prayer in gear_setup["prayers"]]
 
-        gear_stats = WeaponStats(name=gear_setup["setupName"])
+        gear_stats = WeaponStats(name="")
         equipped_gear = EquippedGear([], [])
         weapon_item = WikiData.get_weapon(UNARMED_EQUIVALENT)
 
@@ -100,6 +100,7 @@ class InputSetupConverter:
             ) for condition in gear_setup["conditions"]
         ]
 
+        gear_stats.name = weapon_item.name
         return GearSetup(
             name=gear_setup["setupName"],
             gear_stats=gear_stats,

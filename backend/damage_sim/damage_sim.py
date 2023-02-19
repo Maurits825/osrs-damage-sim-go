@@ -115,7 +115,8 @@ class DamageSim:
             self.special_attack = min(self.special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
 
     def setup_damage_sim(self):
-        Boost.apply_boosts(self.combat_stats, self.gear_setup_settings.boosts)
+        Boost.apply_boosts(self.initial_combat_stats, self.gear_setup_settings.boosts)
+        self.combat_stats.set_stats(self.initial_combat_stats)
 
         self.reset_npc_combat_stats()
 
