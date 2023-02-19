@@ -12,6 +12,8 @@ class NpcStats:
     name: str
 
     combat_stats: CombatStats
+    base_combat_stats: CombatStats
+
     aggressive_stats: AggressiveStats
     defensive_stats: DefensiveStats
 
@@ -34,9 +36,3 @@ class NpcStats:
     is_tob_entry_mode: bool = False
     is_tob_normal_mode: bool = False
     is_tob_hard_mode: bool = False
-
-    def drain_defence(self, amount):
-        self.combat_stats.defence = max(self.min_defence, self.combat_stats.defence - amount)
-
-    def drain_defence_percent(self, percent):
-        self.combat_stats.defence = max(self.min_defence, math.ceil(self.combat_stats.defence * (percent / 100)))

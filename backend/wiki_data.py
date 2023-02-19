@@ -1,3 +1,4 @@
+import copy
 import json
 
 from model.npc.aggressive_stats import AggressiveStats
@@ -47,16 +48,14 @@ class WikiData:
         else:
             location = Location.NONE
 
+        combat_stats = CombatStats(hitpoints=npc.get("hitpoints", 0), attack=npc.get("att", 0),
+                                   strength=npc.get("str", 0), defence=npc.get("def", 0),
+                                   magic=npc.get("mage", 0), ranged=npc.get("range", 0))
+
         return NpcStats(
             name=npc_name,
-            combat_stats=CombatStats(
-                hitpoints=npc.get("hitpoints", 0),
-                attack=npc.get("att", 0),
-                strength=npc.get("str", 0),
-                defence=npc.get("def", 0),
-                magic=npc.get("mage", 0),
-                ranged=npc.get("range", 0),
-            ),
+            combat_stats=combat_stats,
+            base_combat_stats=copy.deepcopy(combat_stats),
             aggressive_stats=AggressiveStats(
                 attack=npc.get("attbns", 0),
                 magic=npc.get("amagic", 0),

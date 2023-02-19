@@ -1,48 +1,67 @@
 import math
 from copy import deepcopy
-from enum import Enum
+from dataclasses import dataclass
+from aenum import Enum, NoAlias
 
 from model.npc.combat_stats import CombatStats
 
 
+@dataclass()
+class BoostAmount:
+    percent: float
+    base: int
+
+
+@dataclass()
+class BoostStat:
+    attack: BoostAmount = BoostAmount(0, 0)
+    strength: BoostAmount = BoostAmount(0, 0)
+    defence: BoostAmount = BoostAmount(0, 0)
+    ranged: BoostAmount = BoostAmount(0, 0)
+    magic: BoostAmount = BoostAmount(0, 0)
+
+
 class BoostType(Enum):
-    SMELLING_SALTS = 1
-    SUPER_ATTACK_POT = 2
-    SUPER_STRENGTH_POT = 3
-    SUPER_DEFENCE_POT = 4
-    SUPER_COMBAT_POT = 5
-    RANGED_POT = 6
-    LIQUID_ADRENALINE = 7
-    OVERLOAD_PLUS = 8
+    _settings_ = NoAlias
+
+    ATTACK = BoostStat(attack=BoostAmount(10, 3))
+    SUPER_ATTACK = BoostStat(attack=BoostAmount(15, 5))
+    DIVINE_SUPER_ATTACK = BoostStat(attack=BoostAmount(15, 5))
+    STRENGTH = BoostStat(strength=BoostAmount(10, 3))
+    SUPER_STRENGTH = BoostStat(strength=BoostAmount(15, 5))
+    DIVINE_SUPER_STRENGTH = BoostStat(strength=BoostAmount(15, 5))
+    COMBAT = BoostStat(attack=BoostAmount(10, 3), strength=BoostAmount(10, 3))
+    SUPER_COMBAT = BoostStat(attack=BoostAmount(15, 5), strength=BoostAmount(15, 5), defence=BoostAmount(15, 5))
+    DIVINE_SUPER_COMBAT = BoostStat(attack=BoostAmount(15, 5), strength=BoostAmount(15, 5), defence=BoostAmount(15, 5))
+    ZAMORAK_BREW = BoostStat(attack=BoostAmount(20, 2), strength=BoostAmount(12, 2))
+    OVERLOAD_PLUS = BoostStat(attack=BoostAmount(16, 6), strength=BoostAmount(16, 6), defence=BoostAmount(16, 6),
+                              ranged=BoostAmount(16, 6), magic=BoostAmount(16, 6))
+    SMELLING_SALTS = BoostStat(attack=BoostAmount(16, 11), strength=BoostAmount(16, 11), defence=BoostAmount(16, 11),
+                               ranged=BoostAmount(16, 11), magic=BoostAmount(16, 11))
+    MAGIC = BoostStat(magic=BoostAmount(0, 4))
+    DIVINE_MAGIC = BoostStat(magic=BoostAmount(0, 4))
+    ANCIENT_BREW = BoostStat(magic=BoostAmount(5, 2))
+    FORGOTTEN_BREW = BoostStat(magic=BoostAmount(8, 3))
+    IMBUED_HEART = BoostStat(magic=BoostAmount(10, 1))
+    SATURATED_HEART = BoostStat(magic=BoostAmount(10, 4))
+    RANGING = BoostStat(ranged=BoostAmount(10, 4))
+    DIVINE_RANGING = BoostStat(ranged=BoostAmount(10, 4))
+    LIQUID_ADRENALINE = BoostStat()
 
 
 class Boost:
     @staticmethod
-    def apply_boost(boost_type, combat_stats: CombatStats):
-        if boost_type == BoostType.SMELLING_SALTS:
-            combat_stats.attack += math.floor(combat_stats.attack * 16/100) + 11
-            combat_stats.strength += math.floor(combat_stats.strength * 16 / 100) + 11
-            combat_stats.defence += math.floor(combat_stats.defence * 16 / 100) + 11
-            combat_stats.ranged += math.floor(combat_stats.ranged * 16 / 100) + 11
-            combat_stats.magic += math.floor(combat_stats.magic * 16 / 100) + 11
-        elif boost_type == BoostType.OVERLOAD_PLUS:
-            combat_stats.attack += math.floor(combat_stats.attack * 16 / 100) + 6
-            combat_stats.strength += math.floor(combat_stats.strength * 16 / 100) + 6
-            combat_stats.defence += math.floor(combat_stats.defence * 16 / 100) + 6
-            combat_stats.ranged += math.floor(combat_stats.ranged * 16 / 100) + 6
-            combat_stats.magic += math.floor(combat_stats.magic * 16 / 100) + 6
-        elif boost_type == BoostType.SUPER_ATTACK_POT:
-            combat_stats.attack += math.floor(combat_stats.attack * 15 / 100) + 5
-        elif boost_type == BoostType.SUPER_STRENGTH_POT:
-            combat_stats.strength += math.floor(combat_stats.strength * 15 / 100) + 5
-        elif boost_type == BoostType.SUPER_DEFENCE_POT:
-            combat_stats.defence += math.floor(combat_stats.defence * 15 / 100) + 5
-        elif boost_type == BoostType.SUPER_COMBAT_POT:
-            combat_stats.attack += math.floor(combat_stats.attack * 15 / 100) + 5
-            combat_stats.strength += math.floor(combat_stats.strength * 15 / 100) + 5
-            combat_stats.defence += math.floor(combat_stats.defence * 15 / 100) + 5
-        elif boost_type == BoostType.RANGED_POT:
-            combat_stats.ranged += math.floor(combat_stats.ranged * 1 / 10) + 4
+    def apply_boost(boost_type: BoostType, combat_stats: CombatStats):
+        combat_stats.attack += (math.floor(combat_stats.attack * (boost_type.value.attack.percent / 100)) +
+                                boost_type.value.attack.base)
+        combat_stats.strength += (math.floor(combat_stats.strength * (boost_type.value.strength.percent / 100)) +
+                                  boost_type.value.strength.base)
+        combat_stats.defence += (math.floor(combat_stats.defence * (boost_type.value.defence.percent / 100)) +
+                                 boost_type.value.defence.base)
+        combat_stats.ranged += (math.floor(combat_stats.ranged * (boost_type.value.ranged.percent / 100)) +
+                                boost_type.value.ranged.base)
+        combat_stats.magic += (math.floor(combat_stats.magic * (boost_type.value.magic.percent / 100)) +
+                               boost_type.value.magic.base)
 
     @staticmethod
     def apply_boosts(initial_combat_stats: CombatStats, boosts: list[BoostType]):

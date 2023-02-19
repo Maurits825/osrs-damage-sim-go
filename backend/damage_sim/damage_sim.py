@@ -7,13 +7,13 @@ from model.boost import BoostType, Boost
 from model.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.npc.npc_stats import NpcStats
+from model.stat_drain_type import StatDrainType
 from weapon import Weapon
 
 
 class DamageSim:
     def __init__(self, npc: NpcStats, input_gear_setup: InputGearSetup):
-        self.initial_npc_stats = npc.combat_stats
-        self.npc = copy.deepcopy(npc)
+        self.npc = npc
 
         self.weapons_setups = input_gear_setup.weapons
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
@@ -136,7 +136,6 @@ class DamageSim:
             else:
                 self.special_attack_cost.append(weapon.special_attack_cost)
 
-            weapon.set_npc(self.npc)
             weapon.set_combat_stats(self.combat_stats)
 
             self.sim_data.gear_total_dmg.append(0)
@@ -144,10 +143,14 @@ class DamageSim:
             self.sim_data.gear_dps.append(0)
 
     def reset_npc_combat_stats(self):
-        self.npc.combat_stats.set_stats(self.initial_npc_stats)
+        self.npc.combat_stats.set_stats(self.npc.base_combat_stats)
 
         for stat_drain in self.gear_setup_settings.stat_drains:
-            stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
+            if stat_drain.weapon.stat_drain_type == StatDrainType.DAMAGE:
+                stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
+            else:
+                for hit in range(stat_drain.value):
+                    stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
 
     def get_weapon_dps_stats(self) -> GearSetupDpsStats:
         theoretical_dps = []
@@ -159,10 +162,6 @@ class DamageSim:
             accuracy.append(weapon.get_accuracy() * 100)
 
         return GearSetupDpsStats(theoretical_dps, max_hit, accuracy)
-
-    @staticmethod
-    def apply_stat_drain():
-        pass
 
     @staticmethod
     def get_sim_dps(total_damage, attack_count, attack_speed):

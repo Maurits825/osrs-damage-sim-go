@@ -1,3 +1,4 @@
+from weapons.arclight import Arclight
 from weapons.bandos_godsword import BandosGodsword
 from weapons.bone_dagger import BoneDagger
 from weapons.dragon_claws import DragonClaws
@@ -18,6 +19,7 @@ CUSTOM_WEAPONS = {
     "Dragon warhammer": DragonWarhammer,
     "Scythe of vitur": Scythe,
     "Gadderhammer": Gadderhammer,
+    "Arclight": Arclight,
 }
 # TODO generic KERIS weapon for the 1/51 triple dmg?
 # TODO verac flail i guess for the 25% guranteed hit

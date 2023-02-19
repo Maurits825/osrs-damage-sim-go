@@ -11,11 +11,10 @@ from weapon import Weapon
 
 BOOST_NAME = {
     BoostType.SMELLING_SALTS: "Salt",
-    BoostType.SUPER_ATTACK_POT: "Super att",
-    BoostType.SUPER_STRENGTH_POT: "Super str",
-    BoostType.SUPER_DEFENCE_POT: "super def",
-    BoostType.SUPER_COMBAT_POT: "SCP",
-    BoostType.RANGED_POT: "Ranged",
+    BoostType.SUPER_ATTACK: "Super att",
+    BoostType.SUPER_STRENGTH: "Super str",
+    BoostType.SUPER_COMBAT: "SCP",
+    BoostType.RANGING: "Ranged",
     BoostType.LIQUID_ADRENALINE: "Adrenaline",
     BoostType.OVERLOAD_PLUS: "Overload+",
 }
@@ -130,7 +129,7 @@ class DamageSimStats:
             prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
 
         for boost in input_gear_setup.gear_setup_settings.boosts:
-            prayer_and_boost_text += BOOST_NAME[boost] + ", "
+            prayer_and_boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower()) + ", "
 
         if prayer_and_boost_text:
             prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
