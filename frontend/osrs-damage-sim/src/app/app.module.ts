@@ -20,6 +20,7 @@ import { SpecialGearComponent } from './shared/special-gear/special-gear.compone
 import { CombatStatSelectionComponent } from './shared/combat-stat-selection/combat-stat-selection.component';
 import { StatDrainSelectionComponent } from './shared/stat-drain-selection/stat-drain-selection.component';
 import { GearSetupSettingsComponent } from './shared/gear-setup-settings/gear-setup-settings.component';
+import { NgSelectLazyLoadComponent } from './shared/ng-select-lazy-load/ng-select-lazy-load.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { GearSetupSettingsComponent } from './shared/gear-setup-settings/gear-se
     CombatStatSelectionComponent,
     StatDrainSelectionComponent,
     GearSetupSettingsComponent,
+    NgSelectLazyLoadComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
   providers: [],

@@ -1,28 +1,26 @@
 <div class="row align-items-center">
   <div class="col-auto">Npc</div>
   <div class="col pe-0" style="height: '38px'">
-    <ng-select
-      [(ngModel)]="selectedNpc"
-      (change)="selectedNpcChange($event)"
-      [items]="npcBuffer"
-      [virtualScroll]="true"
-      [loading]="loading"
-      placeholder="Select npc"
-      [typeahead]="input$"
-      (scrollToEnd)="onScrollToEnd(select.searchTerm)"
-      #select
-    >
-      <ng-template ng-option-tmp ng-label-tmp let-item="item" let-index="index" let-search="searchTerm">
-        {{ item.name }}
-        <span *ngIf="item.isChallengeMode">(Challenge Mode) </span>
-        <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
-        <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
-        <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
-        -&nbsp;
-        <img src="assets/img/skills/combat.png" /> {{ item.combat ? item.combat : "N/A" }}&nbsp;
-        <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}
-      </ng-template>
-    </ng-select>
+    <ng-container *ngIf="allNpcs">
+      <app-ng-select-lazy-load
+        [valueType]="Npc"
+        [allValues]="allNpcs"
+        searchProperty="name"
+        placeholder="Select npc"
+        (valueChanged)="selectedNpcChange($event)"
+      >
+        <ng-template #dropdownLabel #dropdownOptions let-item="item"
+          >{{ item.name }}
+          <span *ngIf="item.isChallengeMode">(Challenge Mode) </span>
+          <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
+          <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
+          <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
+          -&nbsp;
+          <img src="assets/img/skills/combat.png" /> {{ item.combat ? item.combat : "N/A" }}&nbsp;
+          <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}</ng-template
+        >
+      </app-ng-select-lazy-load>
+    </ng-container>
   </div>
 
   <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isKalphite">
