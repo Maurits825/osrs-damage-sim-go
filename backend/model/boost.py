@@ -52,4 +52,4 @@ class Boost:
             Boost.apply_boost(boost, combat_stats)
             boosted_combat_stats.merge_stats(combat_stats)
 
-        return boosted_combat_stats
+        initial_combat_stats.merge_stats(boosted_combat_stats)

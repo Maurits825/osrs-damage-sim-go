@@ -11,8 +11,9 @@ AVG_DMG_BOOST = 1.2875  # from wiki
 class Gadderhammer(Weapon):
     def roll_damage(self) -> int:
         damage = 0
+        max_hit = self.get_max_hit()
         if self.roll_hit():
-            damage = random.randint(0, self.max_hit)
+            damage = random.randint(0, max_hit)
 
         double_hit = random.random()
         if double_hit <= DOUBLE_DMG_CHANCE:
@@ -21,6 +22,8 @@ class Gadderhammer(Weapon):
             return math.floor(damage * self.damage_multiplier)
 
     def get_dps(self):
-        self.accuracy = self.get_accuracy()
-        avg_dmg = sum([math.floor(dmg * AVG_DMG_BOOST) for dmg in range(self.max_hit + 1)]) / (self.max_hit + 1)
-        return (avg_dmg * self.accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        accuracy = self.get_accuracy()
+        max_hit = self.get_max_hit()
+
+        avg_dmg = sum([math.floor(dmg * AVG_DMG_BOOST) for dmg in range(max_hit + 1)]) / (max_hit + 1)
+        return (avg_dmg * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)

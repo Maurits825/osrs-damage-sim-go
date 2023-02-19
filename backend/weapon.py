@@ -13,6 +13,7 @@ from model.bolt import Bolt
 from model.combat_boost import CombatBoost
 from model.gear_setup import GearSetup
 from model.locations import Location
+from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from wiki_data import WikiData
@@ -21,21 +22,18 @@ from wiki_data import WikiData
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
-    def __init__(self, gear_setup: GearSetup, npc: NpcStats, raid_level, special_attack_cost):
+    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats,  npc: NpcStats, raid_level):
         self.gear_setup = gear_setup
+        self.combat_stats = combat_stats
         self.npc = npc
         self.raid_level = raid_level
 
-        self.special_attack_cost = special_attack_cost
+        self.special_attack_cost = WikiData.get_special_attack(gear_setup.gear_stats.name)
         self.prayer_multiplier = PrayerMultiplier.sum_prayers(self.gear_setup.prayers)
-
-        self.attack_roll = 0
-        self.accuracy = 0
-        self.max_hit = 0
 
         self.damage_multiplier = SpecialGearBonus.get_damage_multiplier(
             self.gear_setup.equipped_gear, self.npc, self.gear_setup.current_hp,
-            self.gear_setup.combat_stats.hitpoints, self.gear_setup.mining_lvl
+            self.combat_stats.hitpoints, self.gear_setup.mining_lvl
         )
 
         self.special_bolt: Bolt | None = BoltSpecialAttack.get_equipped_special_bolt(
@@ -52,11 +50,11 @@ class Weapon:
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
 
-        self.attack_roll = self.get_attack_roll()
-        self.max_hit = self.get_max_hit()
-
     def set_npc(self, npc):
         self.npc = npc
+
+    def set_combat_stats(self, combat_stats):
+        self.combat_stats = combat_stats
 
     def get_is_brimstone(self):
         return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
@@ -74,34 +72,37 @@ class Weapon:
                 self.gear_setup.gear_stats.attack_speed = 4
 
     def roll_hit(self) -> bool:
-        attack_roll = random.randint(0, self.attack_roll)
+        attack_roll = random.randint(0, self.get_attack_roll())
         defence_roll = random.randint(0, self.get_defence_roll())
 
         return attack_roll > defence_roll
 
     def roll_damage(self) -> int:
+        max_hit = self.get_max_hit()
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_damage(
-                self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
+                self.special_bolt, max_hit, self.npc.combat_stats.hitpoints
             )
             if bolt_damage:
                 return bolt_damage
 
         damage = 0
         if self.roll_hit():
-            damage = random.randint(0, self.max_hit)
+            damage = random.randint(0, max_hit)
 
         return math.floor(damage * self.damage_multiplier)
 
     def get_accuracy(self):
+        attack_roll = self.get_attack_roll()
         defence_roll = self.get_average_defence_roll()
-        return DpsCalculator.get_hit_chance(self.attack_roll, defence_roll)
+
+        return DpsCalculator.get_hit_chance(attack_roll, defence_roll)
 
     def get_max_hit(self):
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
                 prayer=self.prayer_multiplier,
-                strength_lvl=self.gear_setup.combat_stats.strength,
+                strength_lvl=self.combat_stats.strength,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.strength,
                 melee_void_boost=self.void_bonus.melee.strength_boost[-1]
             )
@@ -111,7 +112,7 @@ class Weapon:
         elif self.gear_setup.attack_style.attack_type == AttackType.RANGED:
             effective_ranged_str = DpsCalculator.get_effective_ranged_str(
                 prayer=self.prayer_multiplier,
-                ranged_lvl=self.gear_setup.combat_stats.ranged,
+                ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.ranged,
                 ranged_void_boost=self.void_bonus.ranged.strength_boost[-1]
             )
@@ -177,7 +178,7 @@ class Weapon:
             gear_attack_bonus = self.special_gear_bonus.melee.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_melee_attack(
                 prayer=self.prayer_multiplier,
-                attack_lvl=self.gear_setup.combat_stats.attack,
+                attack_lvl=self.combat_stats.attack,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.attack,
                 void_boost=self.void_bonus.melee.attack_boost[-1]
             )
@@ -193,7 +194,7 @@ class Weapon:
             gear_attack_bonus = self.special_gear_bonus.ranged.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_ranged_attack(
                 prayer=self.prayer_multiplier,
-                ranged_lvl=self.gear_setup.combat_stats.ranged,
+                ranged_lvl=self.combat_stats.ranged,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.ranged,
                 void_boost=self.void_bonus.ranged.attack_boost[-1]
             )
@@ -202,7 +203,7 @@ class Weapon:
             gear_attack_bonus = self.special_gear_bonus.magic.attack_boost
             effective_skill_attack_lvl = DpsCalculator.get_effective_magic_level(
                 prayer=self.prayer_multiplier,
-                magic_lvl=self.gear_setup.combat_stats.magic,
+                magic_lvl=self.combat_stats.magic,
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.magic,
                 void_boost=self.void_bonus.magic.attack_boost[-1]
             )
@@ -215,15 +216,17 @@ class Weapon:
         return DpsCalculator.get_attack_roll(effective_skill_attack_lvl, gear_skill_bonus, gear_attack_bonus)
 
     def get_dps(self):
-        self.accuracy = self.get_accuracy()
+        accuracy = self.get_accuracy()
+        max_hit = self.get_max_hit()
+
         if self.special_bolt:
             return BoltSpecialAttack.get_dps(
-                self.special_bolt, self.accuracy, self.max_hit, self.gear_setup.gear_stats.attack_speed
+                self.special_bolt, accuracy, max_hit, self.gear_setup.gear_stats.attack_speed
             )
 
-        dmg_sum = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(self.max_hit + 1)])
-        avg_dmg = dmg_sum / (self.max_hit + 1)
-        return (avg_dmg * self.accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        dmg_sum = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(max_hit + 1)])
+        avg_dmg = dmg_sum / (max_hit + 1)
+        return (avg_dmg * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
@@ -247,12 +250,12 @@ class Weapon:
             return WikiData.get_all_spells()[self.gear_setup.spell]
 
         if self.gear_setup.gear_stats.id in TRIDENT_SEAS:
-            return math.floor(self.gear_setup.combat_stats.magic / 3) - 5
+            return math.floor(self.combat_stats.magic / 3) - 5
         elif self.gear_setup.gear_stats.id in TRIDENT_SWAMP:
-            return math.floor(self.gear_setup.combat_stats.magic / 3) - 2
+            return math.floor(self.combat_stats.magic / 3) - 2
         elif self.gear_setup.gear_stats.id in SANG_STAFF:
-            return math.floor(self.gear_setup.combat_stats.magic / 3) - 1
+            return math.floor(self.combat_stats.magic / 3) - 1
         elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
-            return math.floor(self.gear_setup.combat_stats.magic / 3) + 1
+            return math.floor(self.combat_stats.magic / 3) + 1
         elif self.gear_setup.gear_stats.id in DAWNBRINGER:
-            return math.floor(self.gear_setup.combat_stats.magic / 6) - 1
+            return math.floor(self.combat_stats.magic / 6) - 1

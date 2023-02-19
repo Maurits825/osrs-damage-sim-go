@@ -17,19 +17,22 @@ class Scythe(Weapon):
         return damage
 
     def roll_single_hit(self, reduction) -> int:
+        max_hit = self.get_max_hit()
+
         damage = 0
         if self.roll_hit():
-            damage = random.randint(0, self.max_hit)
+            damage = random.randint(0, max_hit)
 
         return math.floor(damage * reduction)
 
     def get_dps(self):
-        self.accuracy = self.get_accuracy()
+        accuracy = self.get_accuracy()
+        max_hit = self.get_max_hit()
 
-        effective_max_hit = self.max_hit
+        effective_max_hit = max_hit
         if self.npc.size > 1:
-            effective_max_hit += math.floor(self.max_hit * 0.5)
+            effective_max_hit += math.floor(max_hit * 0.5)
         if self.npc.size > 2:
-            effective_max_hit += math.floor(self.max_hit * 0.25)
+            effective_max_hit += math.floor(max_hit * 0.25)
 
-        return DpsCalculator.get_dps(effective_max_hit, self.accuracy, self.gear_setup.gear_stats.attack_speed)
+        return DpsCalculator.get_dps(effective_max_hit, accuracy, self.gear_setup.gear_stats.attack_speed)

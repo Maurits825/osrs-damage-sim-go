@@ -36,12 +36,12 @@ class DpsCalculator:
         return DpsCalculator.apply_gear_bonus(base_hit, gear_bonus)
 
     @staticmethod
-    def apply_gear_bonus(base_hit, gear_bonus):
-        max_hit = base_hit
+    def apply_gear_bonus(base_value, gear_bonus):
+        new_value = base_value
         for bonus in gear_bonus:
-            max_hit = math.floor(max_hit * bonus)
+            new_value = math.floor(new_value * bonus)
 
-        return max_hit
+        return new_value
 
     @staticmethod
     def get_effective_magic_level(prayer: PrayerMultiplier, magic_lvl, attack_style_boost, void_boost):

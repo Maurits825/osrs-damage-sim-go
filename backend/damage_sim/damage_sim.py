@@ -3,17 +3,23 @@ import copy
 from condition_evaluator import ConditionEvaluator
 from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT, TICK_LENGTH
 from input_setup.gear_ids import LIGHTBEARER
-from model.boost import BoostType
-from model.damage_sim_results import SingleDamageSimData
+from model.boost import BoostType, Boost
+from model.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
+from model.input_setup.input_gear_setup import InputGearSetup
 from model.npc.npc_stats import NpcStats
 from weapon import Weapon
 
 
 class DamageSim:
-    def __init__(self, npc: NpcStats, weapon_setups: list[Weapon]):
-        self.initial_combat_stats = npc.combat_stats
+    def __init__(self, npc: NpcStats, input_gear_setup: InputGearSetup):
+        self.initial_npc_stats = npc.combat_stats
         self.npc = copy.deepcopy(npc)
-        self.weapons_setups = weapon_setups
+
+        self.weapons_setups = input_gear_setup.weapons
+        self.gear_setup_settings = input_gear_setup.gear_setup_settings
+
+        self.combat_stats = self.gear_setup_settings.combat_stats
+        self.initial_combat_stats = copy.deepcopy(self.combat_stats)
 
         self.sim_data: SingleDamageSimData = SingleDamageSimData(0, [], [], [])
 
@@ -36,7 +42,8 @@ class DamageSim:
         self.special_attack = MAX_SPECIAL_ATTACK
         self.spec_regen_tick_timer = 0
 
-        self.npc.combat_stats.set_stats(self.initial_combat_stats)
+        self.reset_npc_combat_stats()
+        self.combat_stats.set_stats(self.initial_combat_stats)
 
         self.sim_data = SingleDamageSimData(0, [], [], [])
         for index, _ in enumerate(self.weapons_setups):
@@ -108,6 +115,10 @@ class DamageSim:
             self.special_attack = min(self.special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
 
     def setup_damage_sim(self):
+        Boost.apply_boosts(self.combat_stats, self.gear_setup_settings.boosts)
+
+        self.reset_npc_combat_stats()
+
         self.main_weapon = self.weapons_setups[0]
         self.main_weapon_index = 0
         for index, weapon in enumerate(self.weapons_setups):
@@ -120,16 +131,38 @@ class DamageSim:
             else:
                 self.ticks_to_spec_regen.append(SPEC_REGEN_TICKS)
 
-            if any(boost == BoostType.LIQUID_ADRENALINE for boost in weapon.gear_setup.boosts):
+            if any(boost == BoostType.LIQUID_ADRENALINE for boost in self.gear_setup_settings.boosts):
                 self.special_attack_cost.append(weapon.special_attack_cost / 2)
             else:
                 self.special_attack_cost.append(weapon.special_attack_cost)
 
             weapon.set_npc(self.npc)
+            weapon.set_combat_stats(self.combat_stats)
 
             self.sim_data.gear_total_dmg.append(0)
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
+
+    def reset_npc_combat_stats(self):
+        self.npc.combat_stats.set_stats(self.initial_npc_stats)
+
+        for stat_drain in self.gear_setup_settings.stat_drains:
+            stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
+
+    def get_weapon_dps_stats(self) -> GearSetupDpsStats:
+        theoretical_dps = []
+        max_hit = []
+        accuracy = []
+        for weapon in self.weapons_setups:
+            theoretical_dps.append(weapon.get_dps())
+            max_hit.append(weapon.get_max_hit())
+            accuracy.append(weapon.get_accuracy() * 100)
+
+        return GearSetupDpsStats(theoretical_dps, max_hit, accuracy)
+
+    @staticmethod
+    def apply_stat_drain():
+        pass
 
     @staticmethod
     def get_sim_dps(total_damage, attack_count, attack_speed):

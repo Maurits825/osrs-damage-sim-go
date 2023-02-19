@@ -9,7 +9,7 @@ import numpy as np
 from constants import MAX_X_TICKS_LABEL
 from damage_sim.damage_sim_stats import DamageSimStats
 from model.graph import Graph, GraphType
-from model.input_setup import InputSetup
+from model.input_setup.input_setup import InputSetup
 
 GRAPH_WIDTH = 19.20
 GRAPH_HEIGHT = 10.80
@@ -46,8 +46,8 @@ class DamageSimGraph:
         y_list = [100 * (y / max_bin_count) for y in y_list]
 
         graph = self.graphs[GraphType.TTK_PROBABILITY]
-        for i, weapon in enumerate(input_setup.all_weapons_setups):
-            graph.axes.plot(x_list[i], y_list[i], label=DamageSimStats.get_weapon_setup_label(weapon))
+        for i, input_gear_setup in enumerate(input_setup.input_gear_setups):
+            graph.axes.plot(x_list[i], y_list[i], label=DamageSimStats.get_input_gear_setup_label(input_gear_setup))
 
         x_ticks, interval = DamageSimGraph.get_x_ticks(min_ticks, max_ticks)
         graph.axes.set_xticks(x_ticks[:-1])
@@ -70,7 +70,8 @@ class DamageSimGraph:
             cum_sum = DamageSimStats.get_cumulative_sum(ttk)
             time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
             graph.axes.plot(
-                time_stamps, cum_sum, label=DamageSimStats.get_weapon_setup_label(input_setup.all_weapons_setups[index])
+                time_stamps, cum_sum,
+                label=DamageSimStats.get_input_gear_setup_label(input_setup.input_gear_setups[index])
             )
         x_ticks, interval = DamageSimGraph.get_x_ticks(min_ticks, max_ticks)
         graph.axes.set_xticks(x_ticks)

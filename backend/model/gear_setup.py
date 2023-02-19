@@ -1,10 +1,8 @@
 from dataclasses import dataclass
 
 from model.attack_style.attack_style import AttackStyle
-from model.boost import BoostType
 from model.condition import Condition
 from model.equipped_gear import EquippedGear
-from model.npc.combat_stats import CombatStats
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 
@@ -16,8 +14,6 @@ class GearSetup:
     attack_style: AttackStyle
     spell: str
     prayers: list[Prayer]
-    combat_stats: CombatStats
-    boosts: list[BoostType]
 
     is_fill: bool
     conditions: list[Condition]

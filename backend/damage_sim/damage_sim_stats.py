@@ -4,8 +4,8 @@ import numpy as np
 from constants import TICK_LENGTH
 from model.boost import BoostType
 from model.damage_sim_results import TotalDamageSimData, DamageSimResults
-from model.input_setup import InputSetup
-from model.npc.npc_stats import NpcStats
+from model.input_setup.input_gear_setup import InputGearSetup
+from model.input_setup.input_setup import InputSetup
 from model.sim_stats import SimStats, TimeSimStats
 from weapon import Weapon
 
@@ -55,7 +55,7 @@ class DamageSimStats:
         )
 
     @staticmethod
-    def get_data_2d_stats(data_list2d, weapon_setups: list[Weapon]) -> list[SimStats]:
+    def get_data_2d_stats(data_list2d, input_gear_setup: InputGearSetup) -> list[SimStats]:
         sim_stats_list = []
         data_list = []
         for index in range(len(data_list2d[0])):
@@ -64,7 +64,7 @@ class DamageSimStats:
 
             sim_stats_list.append(DamageSimStats.get_data_stats(
                 data_list,
-                DamageSimStats.get_weapon_label(weapon_setups[index]))
+                DamageSimStats.get_weapon_label(input_gear_setup.weapons[index], input_gear_setup))
             )
             data_list.clear()
         return sim_stats_list
@@ -115,21 +115,21 @@ class DamageSimStats:
         print(text[:-1])
 
     @staticmethod
-    def get_weapon_setup_label(weapon_setups: list[Weapon]):
+    def get_input_gear_setup_label(input_gear_setup: InputGearSetup):
         label = ""
-        for weapon in weapon_setups:
-            label += DamageSimStats.get_weapon_label(weapon) + ", "
+        for weapon in input_gear_setup.weapons:
+            label += DamageSimStats.get_weapon_label(weapon, input_gear_setup) + ", "
         return label[:-2]
 
     @staticmethod
-    def get_weapon_label(weapon: Weapon):
+    def get_weapon_label(weapon: Weapon, input_gear_setup: InputGearSetup):
         label = ""
         gear = weapon.gear_setup
         prayer_and_boost_text = ""
         for prayer in gear.prayers:
             prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
 
-        for boost in gear.boosts:
+        for boost in input_gear_setup.gear_setup_settings.boosts:
             prayer_and_boost_text += BOOST_NAME[boost] + ", "
 
         if prayer_and_boost_text:
@@ -155,35 +155,22 @@ class DamageSimStats:
 
     @staticmethod
     def populate_damage_sim_stats(damage_sim_results: DamageSimResults, sim_data: TotalDamageSimData,
-                                  weapon_setups: list[Weapon], npc: NpcStats) -> SimStats:
+                                  input_gear_setup: InputGearSetup) -> SimStats:
         ttk_stats = DamageSimStats.get_data_stats(
-            sim_data.ticks_to_kill, DamageSimStats.get_weapon_setup_label(weapon_setups)
+            sim_data.ticks_to_kill, DamageSimStats.get_input_gear_setup_label(input_gear_setup)
         )
         damage_sim_results.ttk_stats.append(DamageSimStats.get_ticks_stats(ttk_stats))
 
-        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, weapon_setups)
+        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, input_gear_setup)
         damage_sim_results.sim_dps_stats.append(sim_dps_stats)
 
-        total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, weapon_setups)
+        total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, input_gear_setup)
         damage_sim_results.total_damage_stats.append(total_damage_stats)
 
-        attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, weapon_setups)
+        attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, input_gear_setup)
         damage_sim_results.attack_count_stats.append(attack_count_stats)
 
         damage_sim_results.cumulative_chances.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
-
-        theoretical_dps = []
-        max_hit = []
-        accuracy = []
-        for weapon in weapon_setups:
-            weapon.set_npc(npc)
-            theoretical_dps.append(weapon.get_dps())
-            max_hit.append(weapon.get_max_hit())
-            accuracy.append(weapon.get_accuracy() * 100)
-
-        damage_sim_results.theoretical_dps.append(theoretical_dps)
-        damage_sim_results.max_hit.append(max_hit)
-        damage_sim_results.accuracy.append(accuracy)
 
         return ttk_stats
 

@@ -1,9 +1,11 @@
 import math
 
+from model.npc.npc_stats import NpcStats
+from model.stat_drain_weapon import StatDrainWeapon
 from weapon import Weapon
 
 
-class BandosGodsword(Weapon):
+class BandosGodsword(Weapon, StatDrainWeapon):
     def get_max_hit(self):
         if self.gear_setup.is_special_attack:
             return math.floor(math.floor(super().get_max_hit() * 1.1) * 1.1)
@@ -28,5 +30,10 @@ class BandosGodsword(Weapon):
     def roll_damage(self) -> int:
         damage = super().roll_damage()
         if self.gear_setup.is_special_attack:
-            self.npc.drain_defence(damage)
+            BandosGodsword.drain_stats(self.npc, damage)
+
         return damage
+
+    @staticmethod
+    def drain_stats(npc: NpcStats, damage):
+        npc.drain_defence(damage)

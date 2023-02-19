@@ -3,9 +3,10 @@ from matplotlib.figure import Figure
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
-from model.damage_sim_results import DamageSimResults, TotalDamageSimData
-from model.input_setup import InputSetup
-from weapon import Weapon
+from model.damage_sim_results import DamageSimResults, TotalDamageSimData, GearSetupDpsStats
+from model.input_setup.global_settings import GlobalSettings
+from model.input_setup.input_gear_setup import InputGearSetup
+from model.input_setup.input_setup import InputSetup
 
 
 class DamageSimRunner:
@@ -14,32 +15,39 @@ class DamageSimRunner:
 
     def run(self, input_setup: InputSetup) -> (DamageSimResults, Figure, Figure):
 
-        damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], {})
+        damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], {})  # TODO better way?
         ttk_tick_stats = []
         ttk_list = []
-        for weapon_setups in input_setup.all_weapons_setups:
-            sim_data = self.run_damage_sim(input_setup, weapon_setups)
+        for input_gear_setup in input_setup.input_gear_setups:
+            sim_data, gear_setup_dps_stats = self.run_damage_sim(input_setup.global_settings, input_gear_setup)
+
+            damage_sim_results.theoretical_dps.append(gear_setup_dps_stats.theoretical_dps)
+            damage_sim_results.max_hit.append(gear_setup_dps_stats.max_hit)
+            damage_sim_results.accuracy.append(gear_setup_dps_stats.accuracy)
 
             ttk_tick_stat = DamageSimStats.populate_damage_sim_stats(
-                damage_sim_results, sim_data, weapon_setups, input_setup.global_settings.npc
+                damage_sim_results, sim_data, input_gear_setup,
             )
             ttk_tick_stats.append(ttk_tick_stat)
 
             ttk_list.append(sim_data.ticks_to_kill)
 
         min_ticks, max_ticks = DamageSimStats.get_min_and_max_ticks(ttk_tick_stats)
-
         damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(min_ticks, max_ticks, input_setup, ttk_list)
 
         return damage_sim_results
 
-    def run_damage_sim(self, input_setup: InputSetup, weapon_setups: list[Weapon]) -> TotalDamageSimData:
+    def run_damage_sim(self, global_settings: GlobalSettings, input_gear_setup: InputGearSetup
+                       ) -> (TotalDamageSimData, GearSetupDpsStats):
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
-        damage_sim = DamageSim(input_setup.global_settings.npc, weapon_setups)
-        for i in range(input_setup.global_settings.iterations):
+        damage_sim = DamageSim(global_settings.npc, input_gear_setup)
+
+        gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
+
+        for i in range(global_settings.iterations):
             dmg_sim_data = damage_sim.run()
             total_damage_sim_data.ticks_to_kill.append(dmg_sim_data.ticks_to_kill)
             total_damage_sim_data.gear_total_dmg.append(dmg_sim_data.gear_total_dmg)
             total_damage_sim_data.gear_attack_count.append(dmg_sim_data.gear_attack_count)
             total_damage_sim_data.gear_dps.append(dmg_sim_data.gear_dps)
-        return total_damage_sim_data
+        return total_damage_sim_data, gear_setup_dps_stats
