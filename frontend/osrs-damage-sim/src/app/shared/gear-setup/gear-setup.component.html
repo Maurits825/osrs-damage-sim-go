@@ -45,14 +45,15 @@
       </div>
 
       <div class="flex-grow-1">
-        <ng-select
-          (change)="gearSlotChange($event, slot)"
-          [items]="allGearSlotItems[slot]"
-          [(ngModel)]="gearSetup.gear[slot]"
-          bindLabel="name"
+        <app-ng-select-lazy-load
+          [selectedValue]="gearSetup.gear[slot]"
+          [valueType]="Item"
+          [allValues]="allGearSlotItems[slot]"
+          searchProperty="name"
+          (valueChanged)="gearSlotChange($event, slot)"
         >
-          <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
-          <ng-template ng-option-tmp let-item="item">
+          <ng-template #dropdownLabel let-item="item">{{ item.name }}</ng-template>
+          <ng-template #dropdownOptions let-item="item">
             <div class="d-flex align-items-center">
               <div class="text-center" style="flex: 0 0 35px">
                 <img src="data:image/png;base64,{{ item.icon }}" />
@@ -60,7 +61,7 @@
               <div class="ps-2">{{ item.name }}</div>
             </div>
           </ng-template>
-        </ng-select>
+        </app-ng-select-lazy-load>
       </div>
 
       <app-special-gear

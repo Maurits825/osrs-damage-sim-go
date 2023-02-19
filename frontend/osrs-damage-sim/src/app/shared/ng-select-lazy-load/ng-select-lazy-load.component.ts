@@ -14,6 +14,9 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
   allValues: T[];
 
   @Input()
+  selectedValue: T;
+
+  @Input()
   searchProperty: string;
 
   @Input()

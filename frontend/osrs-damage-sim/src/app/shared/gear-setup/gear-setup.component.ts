@@ -59,6 +59,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     isPickaxe: false,
   };
 
+  Item: Item;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(
@@ -147,6 +149,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   gearSlotChange(item: Item, slot: GearSlot): void {
+    this.gearSetup.gear[slot] = item;
     this.selectedGearSetupPreset = null;
 
     if (slot === GearSlot.Weapon) {
