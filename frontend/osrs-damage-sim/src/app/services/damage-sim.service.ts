@@ -7,7 +7,7 @@ import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { InputSetup } from '../model/damage-sim/input-setup.model';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
-import { FILTER_PATHS } from './filter-fields.const';
+import { InputSetupService } from './input-setup.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class DamageSimService {
   public allNpcs$: Observable<Npc[]>;
   public allDarts$: Observable<Item[]>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private inputSetupService: InputSetupService) {
     this.allGearSlotItems$ = this.getGearSlotItems().pipe(shareReplay(1));
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
@@ -35,7 +35,7 @@ export class DamageSimService {
     const options = { headers: { 'Content-Type': 'application/json' } };
     return this.http.post<DamageSimResults>(
       DAMAGE_SIM_SERVER_URL + '/run-damage-sim',
-      this.convertInputSetupToJson(inputSetup),
+      this.inputSetupService.convertInputSetupToJson(inputSetup),
       options
     );
   }
@@ -62,30 +62,5 @@ export class DamageSimService {
         gearSlotItem[GearSlot.Weapon].filter((item: Item) => item.name.match('dart$'))
       )
     );
-  }
-
-  private convertInputSetupToJson(inputSetup: InputSetup): string {
-    return JSON.stringify(
-      inputSetup,
-      this.replacerWithPath((key: string, value: any, path: any) => {
-        if (value instanceof Set) {
-          return [...value];
-        } else if (FILTER_PATHS.some((filter_path) => filter_path.test(path))) {
-          return undefined;
-        }
-
-        return value;
-      })
-    );
-  }
-
-  replacerWithPath(replacer: (this: any, key: string, value: any, path: string) => any) {
-    let m = new Map<any, string>();
-
-    return function (this: any, field: string, value: any) {
-      let path = m.get(this) + (Array.isArray(this) ? `[${field}]` : '.' + field);
-      if (value === Object(value)) m.set(value, path);
-      return replacer.call(this, field, value, path.replace(/undefined\.\.?/, ''));
-    };
   }
 }

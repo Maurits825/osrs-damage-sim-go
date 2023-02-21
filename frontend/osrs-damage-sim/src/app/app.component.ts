@@ -6,6 +6,7 @@ import { GlobalSettingsComponent } from './core/global-settings/global-settings.
 import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
 import { InputGearSetup, InputSetup } from './model/damage-sim/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
+import { InputSetupService } from './services/input-setup.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
 
   isDamageSimActive = false;
 
-  constructor(private damageSimservice: DamageSimService) {}
+  constructor(private damageSimservice: DamageSimService, private gearSetupTabsService: InputSetupService) {}
 
   ngOnInit(): void {
     this.damageSimservice.getStatus().subscribe({
@@ -38,23 +39,10 @@ export class AppComponent implements OnInit {
   runDamageSim(): void {
     this.loading = true;
 
-    const inputSetup: InputSetup = {
-      globalSettings: this.globalSettingsComponent.globalSettings,
-      inputGearSetups: [],
-    };
-
-    this.gearSetupTabsComponent.gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
-      const inputGearSetup: InputGearSetup = {
-        gearSetupSettings: gearSetupTab.getGearSetupSettings(),
-        gearSetups: [],
-      };
-
-      gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
-        inputGearSetup.gearSetups.push(gearSetupRef.instance.getGearSetup());
-      });
-
-      inputSetup.inputGearSetups.push(inputGearSetup);
-    });
+    const inputSetup = this.gearSetupTabsService.getInputSetup(
+      this.globalSettingsComponent.globalSettings,
+      this.gearSetupTabsComponent
+    );
 
     this.damageSimservice.runDamageSim(inputSetup).subscribe(
       (results: DamageSimResults) => {

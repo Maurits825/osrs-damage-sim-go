@@ -21,7 +21,9 @@ import { CombatStatSelectionComponent } from './shared/combat-stat-selection/com
 import { StatDrainSelectionComponent } from './shared/stat-drain-selection/stat-drain-selection.component';
 import { GearSetupSettingsComponent } from './shared/gear-setup-settings/gear-setup-settings.component';
 import { NgSelectLazyLoadComponent } from './shared/ng-select-lazy-load/ng-select-lazy-load.component';
-
+import { ShareInputSetupComponent } from './core/share-input-setup/share-input-setup.component';
+import { ShareInputSetupModalComponent } from './shared/share-input-setup-modal/share-input-setup-modal.component';
+import { ClipboardModule } from 'ngx-clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +44,10 @@ import { NgSelectLazyLoadComponent } from './shared/ng-select-lazy-load/ng-selec
     StatDrainSelectionComponent,
     GearSetupSettingsComponent,
     NgSelectLazyLoadComponent,
+    ShareInputSetupComponent,
+    ShareInputSetupModalComponent,
   ],
-  imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule],
+  imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule, ClipboardModule],
   providers: [],
   bootstrap: [AppComponent],
 })

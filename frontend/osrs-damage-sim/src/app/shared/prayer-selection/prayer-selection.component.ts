@@ -33,7 +33,7 @@ export class PrayerSelectionComponent implements OnInit, OnChanges {
   }
 
   open() {
-    const prayerModal = this.modalService.open(PrayerModalComponent, { size: 'sm', animation: false });
+    const prayerModal = this.modalService.open(PrayerModalComponent, { animation: false });
     prayerModal.componentInstance.selectedPrayers = this.selectedPrayers;
     prayerModal.componentInstance.disabledPrayers = disabledPrayers;
     prayerModal.componentInstance.prayerToggle.subscribe((prayer: Prayer) => {

@@ -8,6 +8,11 @@
 
   <hr class="row mb-5" />
 
+  <app-share-input-setup
+    [globalSettings]="globalSettingsComponent?.globalSettings"
+    [gearSetupTabsComponent]="gearSetupTabsComponent"
+  ></app-share-input-setup>
+
   <app-global-settings></app-global-settings>
 
   <div class="row mb-4">
@@ -20,7 +25,7 @@
     </div>
   </div>
 
-  <app-gear-setup-tabs #gearSetupTabs></app-gear-setup-tabs>
+  <app-gear-setup-tabs></app-gear-setup-tabs>
 
   <hr class="row my-4" />
 
@@ -37,10 +42,12 @@
       </div>
       <div class="col-auto">
         osrs-dmg-sim:
-        <ng-container *ngIf="isDamageSimActive"
-          >Active <i class="bi bi-check-circle-fill text-success"></i
-        ></ng-container>
-        <ng-container *ngIf="!isDamageSimActive">Inactive <i class="bi bi-x-circle-fill text-danger"></i></ng-container>
+        <ng-container *ngIf="isDamageSimActive">
+          Active <i class="bi bi-check-circle-fill text-success"></i>
+        </ng-container>
+        <ng-container *ngIf="!isDamageSimActive">
+          Inactive <i class="bi bi-x-circle-fill text-danger"></i>
+        </ng-container>
       </div>
     </div>
 

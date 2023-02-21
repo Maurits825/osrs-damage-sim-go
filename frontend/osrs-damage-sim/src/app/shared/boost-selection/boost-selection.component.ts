@@ -30,7 +30,7 @@ export class BoostSelectionComponent implements OnInit, OnChanges {
   }
 
   open() {
-    const boostModal = this.modalService.open(BoostModalComponent, { size: 'sm', animation: false });
+    const boostModal = this.modalService.open(BoostModalComponent, { animation: false });
     boostModal.componentInstance.selectedBoosts = this.selectedBoosts;
     boostModal.componentInstance.boostToggle.subscribe((boost: Boost) => {
       this.toggleBoost(boost);
