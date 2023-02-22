@@ -34,7 +34,7 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
 
   input$ = new Subject<string>();
 
-  private destroy$ = new Subject();
+  private destroyed$ = new Subject();
 
   constructor() {}
 
@@ -44,8 +44,8 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroy$.next(null);
-    this.destroy$.complete();
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   selectedValueChange(value: T): void {
@@ -69,7 +69,7 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
   }
 
   onSearch(): void {
-    this.input$.pipe(takeUntil(this.destroy$), distinctUntilChanged()).subscribe((searchTerm) => {
+    this.input$.pipe(takeUntil(this.destroyed$), distinctUntilChanged()).subscribe((searchTerm) => {
       this.valuesBuffer = this.allValues
         .filter((value: T) => this.valueFilter(value, searchTerm))
         .slice(0, this.bufferSize);

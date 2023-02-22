@@ -39,19 +39,25 @@ export class InputSetupService {
     };
 
     gearSetupTabsComponent.gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
-      const inputGearSetup: InputGearSetup = {
-        gearSetupSettings: gearSetupTab.getGearSetupSettings(),
-        gearSetups: [],
-      };
-
-      gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
-        inputGearSetup.gearSetups.push(gearSetupRef.instance.getGearSetup());
-      });
+      const inputGearSetup: InputGearSetup = this.getGearInputSetup(gearSetupTab);
 
       inputSetup.inputGearSetups.push(inputGearSetup);
     });
 
     return inputSetup;
+  }
+
+  getGearInputSetup(gearSetupTab: GearSetupTabComponent): InputGearSetup {
+    const inputGearSetup: InputGearSetup = {
+      gearSetupSettings: gearSetupTab.getGearSetupSettings(),
+      gearSetups: [],
+    };
+
+    gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
+      inputGearSetup.gearSetups.push(gearSetupRef.instance.getGearSetup());
+    });
+
+    return inputGearSetup;
   }
 
   getInputSetupAsJson(globalSettings: GlobalSettings, gearSetupTabsComponent: GearSetupTabsComponent): string {

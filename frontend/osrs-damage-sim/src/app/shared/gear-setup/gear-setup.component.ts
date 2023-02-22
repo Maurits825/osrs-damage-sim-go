@@ -1,24 +1,27 @@
-import { Component, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { forkJoin, Subscription } from 'rxjs';
+import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { ConditionComponent } from '../condition/condition.component';
-import { AUTOCAST_STLYE } from '../../constants.const';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { allBoosts } from '../../model/osrs/boost.model';
 import { Condition } from '../../model/damage-sim/condition.model';
 import { GearSlot } from '../../model/osrs/gear-slot.enum';
 import { GearSetup } from '../../model/damage-sim/input-setup.model';
 import { AttackType, Item } from '../../model/osrs/item.model';
-import { CombatStats } from '../../model/osrs/skill.type';
 import { SpecialGear } from '../../model/damage-sim/special-gear.model';
 import { DamageSimService } from '../../services/damage-sim.service';
 import { RlGearService } from '../../services/rl-gear.service';
-import { DRAGON_DARTS_ID, UNARMED_EQUIVALENT_ID, DEFAULT_GEAR_SETUP } from './gear-setup.const';
+import {
+  DRAGON_DARTS_ID,
+  UNARMED_EQUIVALENT_ID,
+  DEFAULT_GEAR_SETUP,
+  AUTOCAST_STLYE as AUTOCAST_STYLE,
+} from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
-import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
+import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -32,8 +35,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   gearSetupTabRef: GearSetupTabComponent;
 
   GearSlot = GearSlot;
-
-  gearSetup: GearSetup;
 
   allGearSlots: GearSlot[] = Object.values(GearSlot);
 
@@ -61,18 +62,19 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   Item: Item;
 
-  private subscriptions: Subscription = new Subscription();
+  private destroyed$ = new Subject();
 
   constructor(
     private damageSimservice: DamageSimService,
     private rlGearService: RlGearService,
     private prayerService: PrayerService,
     private specialGearService: SpecialGearService,
-    @SkipSelf() @Optional() private gearSetupToCopy: GearSetupComponent
+    @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
   ) {}
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   ngOnInit(): void {
@@ -87,8 +89,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.allSpells = allSpells;
       this.allDarts = allDarts;
 
-      if (this.gearSetupToCopy) {
-        this.setGearSetup(this.gearSetupToCopy);
+      if (this.gearSetup) {
+        this.setGearSetup(this.gearSetup);
       } else {
         this.gearSetup = cloneDeep(DEFAULT_GEAR_SETUP);
 
@@ -98,14 +100,12 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.subscriptions.add(
-        this.prayerService.globalPrayers$
-          .pipe(skip(1))
-          .subscribe(
-            (prayers: Record<AttackType, Set<Prayer>>) =>
-              (this.gearSetup.prayers = new Set(prayers[this.gearSetup.gear[GearSlot.Weapon]?.attackType || 'melee']))
-          )
-      );
+      this.prayerService.globalPrayers$
+        .pipe(takeUntil(this.destroyed$), skip(1))
+        .subscribe(
+          (prayers: Record<AttackType, Set<Prayer>>) =>
+            (this.gearSetup.prayers = new Set(prayers[this.gearSetup.gear[GearSlot.Weapon]?.attackType || 'melee']))
+        );
     });
   }
 
@@ -172,8 +172,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   updateAttackStyle(itemId: number): void {
     this.attackStyles = this.getItem(GearSlot.Weapon, itemId).attackStyles;
-    if (this.attackStyles.includes(AUTOCAST_STLYE)) {
-      this.gearSetup.attackStyle = AUTOCAST_STLYE;
+    if (this.attackStyles.includes(AUTOCAST_STYLE)) {
+      this.gearSetup.attackStyle = AUTOCAST_STYLE;
     } else {
       this.gearSetup.attackStyle = this.attackStyles[1]; //second attack style is most commonly used
     }
@@ -187,12 +187,14 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     this.gearSetupTabRef.removeGearSetup(this.setupCount);
   }
 
-  setGearSetup(gearSetupComponent: GearSetupComponent): void {
-    this.gearSetup = cloneDeep(gearSetupComponent.gearSetup);
+  setGearSetup(gearSetup: GearSetup): void {
+    this.gearSetup = cloneDeep(gearSetup);
 
-    this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
-    this.attackStyles = [...gearSetupComponent.attackStyles];
-    this.specialGear = { ...gearSetupComponent.specialGear };
+    this.attackStyles = this.getItem(GearSlot.Weapon, this.gearSetup.gear[GearSlot.Weapon].id).attackStyles;
+    this.updateSpecialGear();
+
+    //TODO no real way ez way to get this ...
+    // this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
   }
 
   updateConditions(conditions: Condition[]): void {
@@ -200,7 +202,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   duplicateGearSetup(): void {
-    this.gearSetupTabRef.addNewGearSetup(this);
+    this.gearSetupTabRef.addNewGearSetup(this.gearSetup);
   }
 
   updateSpecialGear(): void {
@@ -214,8 +216,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   selectedSpellChange(): void {
-    if (this.attackStyles.includes(AUTOCAST_STLYE)) {
-      this.gearSetup.attackStyle = AUTOCAST_STLYE;
+    if (this.attackStyles.includes(AUTOCAST_STYLE)) {
+      this.gearSetup.attackStyle = AUTOCAST_STYLE;
     } else {
       this.gearSetup.attackStyle = null;
     }

@@ -24,6 +24,7 @@ import { NgSelectLazyLoadComponent } from './shared/ng-select-lazy-load/ng-selec
 import { ShareInputSetupComponent } from './core/share-input-setup/share-input-setup.component';
 import { ShareInputSetupModalComponent } from './shared/share-input-setup-modal/share-input-setup-modal.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from './model/damage-sim/injection-token.const';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,10 @@ import { ClipboardModule } from 'ngx-clipboard';
     ShareInputSetupModalComponent,
   ],
   imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule, ClipboardModule],
-  providers: [],
+  providers: [
+    { provide: INPUT_GEAR_SETUP_TOKEN, useValue: null },
+    { provide: GEAR_SETUP_TOKEN, useValue: null },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

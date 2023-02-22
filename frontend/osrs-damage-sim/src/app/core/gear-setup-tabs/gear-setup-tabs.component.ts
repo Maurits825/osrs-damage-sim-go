@@ -7,6 +7,9 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
+import { InputGearSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { InputSetupService } from 'src/app/services/input-setup.service';
 import { GearSetupTabComponent } from '../../shared/gear-setup-tab/gear-setup-tab.component';
 
 @Component({
@@ -18,7 +21,7 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
   @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
-  constructor(private changeDetector: ChangeDetectorRef) {}
+  constructor(private changeDetector: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
 
   ngOnInit(): void {}
 
@@ -27,12 +30,12 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
     this.changeDetector.detectChanges();
   }
 
-  openNewSetupTab(tabToCopy?: GearSetupTabComponent): void {
+  openNewSetupTab(inputGearSetupToCopy?: InputGearSetup): void {
     let gearSetupTabRef;
 
-    if (tabToCopy) {
+    if (inputGearSetupToCopy) {
       const injector: Injector = Injector.create({
-        providers: [{ provide: GearSetupTabComponent, useValue: tabToCopy }],
+        providers: [{ provide: INPUT_GEAR_SETUP_TOKEN, useValue: inputGearSetupToCopy }],
       });
       gearSetupTabRef = this.gearSetupTabContainer.createComponent(GearSetupTabComponent, { injector: injector });
     } else {
@@ -75,6 +78,6 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
   }
 
   copyTab(tabToCopy: GearSetupTabComponent): void {
-    this.openNewSetupTab(tabToCopy);
+    this.openNewSetupTab(this.inputSetupService.getGearInputSetup(tabToCopy));
   }
 }

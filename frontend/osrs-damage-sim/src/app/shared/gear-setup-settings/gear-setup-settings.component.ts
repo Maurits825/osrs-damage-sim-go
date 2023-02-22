@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, skip } from 'rxjs';
+import { takeUntil, Subject } from 'rxjs';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
@@ -20,7 +20,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     combatStats: null,
   };
 
-  private subscriptions: Subscription = new Subscription();
+  private destroyed$ = new Subject();
 
   constructor(
     private boostService: BoostService,
@@ -29,27 +29,22 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this.boostService.globalBoosts$.subscribe(
-        (boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts))
-      )
-    );
+    this.boostService.globalBoosts$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts)));
 
-    this.subscriptions.add(
-      this.statDrainService.globalStatDrain$.subscribe(
-        (statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains])
-      )
-    );
+    this.statDrainService.globalStatDrain$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains]));
 
-    this.subscriptions.add(
-      this.combatStatService.globalCombatStats$.subscribe(
-        (combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats })
-      )
-    );
+    this.combatStatService.globalCombatStats$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats }));
   }
 
   toggleBoost(boost: Boost): void {

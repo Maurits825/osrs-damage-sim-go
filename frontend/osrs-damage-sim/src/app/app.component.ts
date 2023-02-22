@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   isDamageSimActive = false;
 
-  constructor(private damageSimservice: DamageSimService, private gearSetupTabsService: InputSetupService) {}
+  constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
 
   ngOnInit(): void {
     this.damageSimservice.getStatus().subscribe({
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   runDamageSim(): void {
     this.loading = true;
 
-    const inputSetup = this.gearSetupTabsService.getInputSetup(
+    const inputSetup = this.inputSetupService.getInputSetup(
       this.globalSettingsComponent.globalSettings,
       this.gearSetupTabsComponent
     );

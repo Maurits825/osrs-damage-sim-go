@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentRef,
+  Inject,
   Injector,
   Input,
   Optional,
@@ -11,7 +12,8 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
+import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
+import { GearSetup, GearSetupSettings, InputGearSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSetupSettingsComponent } from '../gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
 
@@ -27,19 +29,18 @@ export class GearSetupTabComponent implements AfterViewInit {
   @ViewChild(GearSetupSettingsComponent) gearSetupSettingsComponent: GearSetupSettingsComponent;
 
   id: number = 0;
-
   gearSetups: ComponentRef<GearSetupComponent>[] = [];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    @SkipSelf() @Optional() private gearSetupTabToCopy: GearSetupTabComponent
+    @SkipSelf() @Optional() @Inject(INPUT_GEAR_SETUP_TOKEN) public inputGearSetupToCopy: InputGearSetup
   ) {}
 
   public ngAfterViewInit(): void {
-    if (this.gearSetupTabToCopy) {
-      this.gearSetupSettingsComponent.gearSetupSettings = cloneDeep(this.gearSetupTabToCopy.getGearSetupSettings());
-      this.gearSetupTabToCopy.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
-        this.addNewGearSetup(gearSetupRef.instance);
+    if (this.inputGearSetupToCopy) {
+      this.gearSetupSettingsComponent.gearSetupSettings = cloneDeep(this.inputGearSetupToCopy.gearSetupSettings);
+      this.inputGearSetupToCopy.gearSetups.forEach((gearSetup: GearSetup) => {
+        this.addNewGearSetup(gearSetup);
       });
     } else {
       this.addNewGearSetup();
@@ -48,12 +49,12 @@ export class GearSetupTabComponent implements AfterViewInit {
     this.changeDetector.detectChanges();
   }
 
-  addNewGearSetup(gearToCopy?: GearSetupComponent): void {
+  addNewGearSetup(gearSetup?: GearSetup): void {
     let gearSetupRef;
 
-    if (gearToCopy) {
+    if (gearSetup) {
       const injector: Injector = Injector.create({
-        providers: [{ provide: GearSetupComponent, useValue: gearToCopy }],
+        providers: [{ provide: GEAR_SETUP_TOKEN, useValue: gearSetup }],
       });
       gearSetupRef = this.gearSetupsContainer.createComponent(GearSetupComponent, { injector: injector });
     } else {
