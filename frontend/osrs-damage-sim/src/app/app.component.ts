@@ -1,10 +1,7 @@
-import { Component, ComponentRef, OnInit, ViewChild } from '@angular/core';
-import { GearSetupTabComponent } from './shared/gear-setup-tab/gear-setup-tab.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GearSetupTabsComponent } from './core/gear-setup-tabs/gear-setup-tabs.component';
-import { GearSetupComponent } from './shared/gear-setup/gear-setup.component';
 import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
-import { InputGearSetup, InputSetup } from './model/damage-sim/input-setup.model';
 import { DamageSimService } from './services/damage-sim.service';
 import { InputSetupService } from './services/input-setup.service';
 
@@ -39,12 +36,12 @@ export class AppComponent implements OnInit {
   runDamageSim(): void {
     this.loading = true;
 
-    const inputSetup = this.inputSetupService.getInputSetup(
+    const inputSetupJson = this.inputSetupService.getInputSetupAsJson(
       this.globalSettingsComponent.globalSettings,
       this.gearSetupTabsComponent
     );
 
-    this.damageSimservice.runDamageSim(inputSetup).subscribe(
+    this.damageSimservice.runDamageSim(inputSetupJson).subscribe(
       (results: DamageSimResults) => {
         this.damageSimResults = results;
         this.loading = false;

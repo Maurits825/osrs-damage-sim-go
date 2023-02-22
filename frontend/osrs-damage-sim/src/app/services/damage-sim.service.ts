@@ -19,7 +19,7 @@ export class DamageSimService {
   public allNpcs$: Observable<Npc[]>;
   public allDarts$: Observable<Item[]>;
 
-  constructor(private http: HttpClient, private inputSetupService: InputSetupService) {
+  constructor(private http: HttpClient) {
     this.allGearSlotItems$ = this.getGearSlotItems().pipe(shareReplay(1));
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
@@ -31,13 +31,9 @@ export class DamageSimService {
     return this.http.get<string>(DAMAGE_SIM_SERVER_URL + '/status');
   }
 
-  public runDamageSim(inputSetup: InputSetup): Observable<DamageSimResults> {
+  public runDamageSim(inputSetupJson: string): Observable<DamageSimResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<DamageSimResults>(
-      DAMAGE_SIM_SERVER_URL + '/run-damage-sim',
-      this.inputSetupService.convertInputSetupToJson(inputSetup),
-      options
-    );
+    return this.http.post<DamageSimResults>(DAMAGE_SIM_SERVER_URL + '/run-damage-sim', inputSetupJson, options);
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {

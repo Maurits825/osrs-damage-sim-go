@@ -5,6 +5,7 @@
       <app-ng-select-lazy-load
         [valueType]="Npc"
         [allValues]="allNpcs"
+        [selectedValue]="selectedNpc"
         searchProperty="name"
         placeholder="Select npc"
         (valueChanged)="selectedNpcChange($event)"

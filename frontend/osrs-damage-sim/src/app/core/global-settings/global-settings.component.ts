@@ -26,6 +26,8 @@ export class GlobalSettingsComponent implements OnInit {
     pathLevel: 0,
   };
 
+  selectedNpc: Npc;
+
   showPathLevel = false;
   showRaidLevel = false;
 
@@ -66,7 +68,30 @@ export class GlobalSettingsComponent implements OnInit {
     this.prayerService.globalPrayers$.next(this.selectedPrayers);
   }
 
+  setGlobalSettings(globalSettings: GlobalSettings): void {
+    this.globalSettings = globalSettings;
+    //TODO we have to get an npc type here... from dmgSimService? get npc from id
+    this.selectedNpc = {
+      id: this.globalSettings.npcId,
+      name: '',
+      combat: 0,
+      hitpoints: 0,
+      isKalphite: false,
+      isDemon: false,
+      isDragon: false,
+      isUndead: false,
+      isLeafy: false,
+      isXerician: false,
+      isChallengeMode: false,
+      isShade: false,
+      isTobEntryMode: false,
+      isTobNormalMode: false,
+      isTobHardMode: false,
+    };
+  }
+
   npcChanged(npc: Npc): void {
+    this.selectedNpc = npc;
     this.globalSettings.npcId = npc.id;
 
     const npcName = npc.name;

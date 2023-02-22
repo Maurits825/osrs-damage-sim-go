@@ -8,7 +8,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { InputGearSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { GearSetupTabComponent } from '../../shared/gear-setup-tab/gear-setup-tab.component';
 
@@ -61,8 +61,7 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
       if (this.gearSetupTabs[i] === tab) {
         this.gearSetupTabs.splice(i, 1);
 
-        let viewContainerRef = this.gearSetupTabContainer;
-        viewContainerRef.remove(i);
+        this.gearSetupTabContainer.remove(i);
 
         if (tab.active && this.gearSetupTabs.length >= 1) {
           const index = i == 0 ? i : i - 1;
@@ -79,5 +78,17 @@ export class GearSetupTabsComponent implements OnInit, AfterViewInit {
 
   copyTab(tabToCopy: GearSetupTabComponent): void {
     this.openNewSetupTab(this.inputSetupService.getGearInputSetup(tabToCopy));
+  }
+
+  loadInputSetup(inputSetup: InputSetup): void {
+    for (let index = 0; index < this.gearSetupTabs.length; index++) {
+      this.gearSetupTabContainer.remove();
+    }
+
+    this.gearSetupTabs.length = 0;
+
+    inputSetup.inputGearSetups.forEach((inputGearSetup: InputGearSetup) => {
+      this.openNewSetupTab(inputGearSetup);
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { ComponentRef, Injectable } from '@angular/core';
+import { map, switchMap, take } from 'rxjs/operators';
 import { GearSetupTabsComponent } from '../core/gear-setup-tabs/gear-setup-tabs.component';
 import {
   GearSetup,
@@ -7,15 +8,22 @@ import {
   InputGearSetup,
   InputSetup,
 } from '../model/damage-sim/input-setup.model';
+import { GearSlot } from '../model/osrs/gear-slot.enum';
+import { Item } from '../model/osrs/item.model';
 import { GearSetupTabComponent } from '../shared/gear-setup-tab/gear-setup-tab.component';
 import { GearSetupComponent } from '../shared/gear-setup/gear-setup.component';
+import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InputSetupService {
-  constructor() {}
+  allGearSlotItems: Record<GearSlot, Item[]>;
+
+  constructor(private damageSimservice: DamageSimService) {
+    this.damageSimservice.allGearSlotItems$.subscribe((items) => (this.allGearSlotItems = items));
+  }
 
   convertInputSetupToJson(inputSetup: InputSetup): string {
     return JSON.stringify(
@@ -66,6 +74,23 @@ export class InputSetupService {
     return this.convertInputSetupToJson(inputSetup);
   }
 
+  getGearFromJson(gearJson: Record<string, Item>): Record<GearSlot, Item> {
+    const gear: Record<GearSlot, Item> = {} as Record<GearSlot, Item>;
+    const gearSlots = Object.values(GearSlot);
+
+    gearSlots.forEach((slot) => {
+      const itemId = gearJson[slot]?.id;
+
+      if (itemId) {
+        gear[slot] = this.allGearSlotItems[slot].find((item: Item) => item.id === itemId);
+      } else {
+        gear[slot] = null;
+      }
+    });
+
+    return gear;
+  }
+
   parseInputSetup(jsonString: string): InputSetup {
     const data = JSON.parse(jsonString);
 
@@ -86,7 +111,7 @@ export class InputSetupService {
 
       const gearSetups: GearSetup[] = inputGearSetup.gearSetups.map((gearSetup: GearSetup) => ({
         setupName: gearSetup.setupName,
-        gear: gearSetup.gear,
+        gear: this.getGearFromJson(gearSetup.gear),
         blowpipeDarts: gearSetup.blowpipeDarts,
         attackStyle: gearSetup.attackStyle,
         spell: gearSetup.spell,
@@ -112,30 +137,6 @@ export class InputSetupService {
       globalSettings,
       inputGearSetups,
     };
-  }
-
-  loadInputSetup(
-    globalSettings: GlobalSettings,
-    inputSetup: InputSetup,
-    gearSetupTabsComponent: GearSetupTabsComponent
-  ): void {
-    inputSetup.inputGearSetups.forEach((inputGearSetup: InputGearSetup) => {
-      gearSetupTabsComponent.openNewSetupTab();
-      inputGearSetup.gearSetups.forEach((gearSetup: GearSetup) => {});
-    });
-
-    // gearSetupTabsComponent.gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
-    //   const inputGearSetup: InputGearSetup = {
-    //     gearSetupSettings: gearSetupTab.getGearSetupSettings(),
-    //     gearSetups: [],
-    //   };
-
-    //   gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
-    //     inputGearSetup.gearSetups.push(gearSetupRef.instance.getGearSetup());
-    //   });
-
-    //   inputSetup.inputGearSetups.push(inputGearSetup);
-    // });
   }
 
   private replacerWithPath(replacer: (this: any, key: string, value: any, path: string) => any) {

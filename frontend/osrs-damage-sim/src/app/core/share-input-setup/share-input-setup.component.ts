@@ -5,6 +5,7 @@ import { GlobalSettings, InputSetup } from 'src/app/model/damage-sim/input-setup
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ShareInputSetupModalComponent } from 'src/app/shared/share-input-setup-modal/share-input-setup-modal.component';
 import { GearSetupTabsComponent } from '../gear-setup-tabs/gear-setup-tabs.component';
+import { GlobalSettingsComponent } from '../global-settings/global-settings.component';
 
 @Component({
   selector: 'app-share-input-setup',
@@ -12,7 +13,7 @@ import { GearSetupTabsComponent } from '../gear-setup-tabs/gear-setup-tabs.compo
   styleUrls: ['./share-input-setup.component.css'],
 })
 export class ShareInputSetupComponent {
-  @Input() globalSettings: GlobalSettings;
+  @Input() globalSettingsComponent: GlobalSettingsComponent;
   @Input() gearSetupTabsComponent: GearSetupTabsComponent;
 
   setupString: string;
@@ -26,7 +27,10 @@ export class ShareInputSetupComponent {
   importSetup(): void {}
 
   getSetupString(): string {
-    const inputSetupJson = this.inputSetupService.getInputSetupAsJson(this.globalSettings, this.gearSetupTabsComponent);
+    const inputSetupJson = this.inputSetupService.getInputSetupAsJson(
+      this.globalSettingsComponent.globalSettings,
+      this.gearSetupTabsComponent
+    );
 
     return window.btoa(inputSetupJson);
   }
@@ -47,14 +51,16 @@ export class ShareInputSetupComponent {
   }
 
   loadSetup(setup: string): void {
-    setup = this.setupString;
+    //setup = this.setupString;
     if (!setup) return;
 
-    console.log('setup', setup);
+    //console.log('setup', setup);
     const inputSetupJson = window.atob(setup);
     const inputSetup = this.inputSetupService.parseInputSetup(inputSetupJson);
     console.log(inputSetup);
     //TODO will have to mostly likely populate items somewhere with items from allGearSlots
+    this.gearSetupTabsComponent.loadInputSetup(inputSetup);
+    this.globalSettingsComponent.setGlobalSettings(inputSetup.globalSettings);
   }
 
   copySetupToClipboard(): void {

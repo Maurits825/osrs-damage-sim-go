@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Npc } from '../../model/osrs/npc.model';
 import { DamageSimService } from '../../services/damage-sim.service';
 
@@ -8,14 +8,15 @@ import { DamageSimService } from '../../services/damage-sim.service';
   styleUrls: ['./npc-input.component.css'],
 })
 export class NpcInputComponent implements OnInit {
+  @Input()
+  selectedNpc: Npc;
+
   @Output()
   npcChanged = new EventEmitter<Npc>();
 
   allNpcs: Npc[];
 
-  selectedNpc: Npc;
-
-  Npc: Npc;
+  Npc: Npc; //TODO do this properly ...
 
   constructor(private damageSimservice: DamageSimService) {}
 
@@ -26,7 +27,6 @@ export class NpcInputComponent implements OnInit {
   }
 
   selectedNpcChange(npc: Npc): void {
-    this.selectedNpc = npc;
     this.npcChanged.emit(npc);
   }
 }
