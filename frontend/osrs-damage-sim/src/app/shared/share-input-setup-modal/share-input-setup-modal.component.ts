@@ -10,6 +10,9 @@ export class ShareInputSetupModalComponent {
   @Input()
   setupString: string;
 
+  @Input()
+  isValidSetup: boolean;
+
   @Output()
   copySetupToClipboard = new EventEmitter();
 

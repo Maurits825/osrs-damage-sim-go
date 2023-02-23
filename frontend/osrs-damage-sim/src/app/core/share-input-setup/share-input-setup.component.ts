@@ -42,7 +42,8 @@ export class ShareInputSetupComponent {
     shareSetupModal.componentInstance.setupString = this.setupString;
 
     shareSetupModal.componentInstance.loadSetup.subscribe((setup: string) => {
-      this.loadSetup(setup);
+      const isValidSetup = this.loadSetup(setup);
+      shareSetupModal.componentInstance.isValidSetup = isValidSetup;
     });
 
     shareSetupModal.componentInstance.copySetupToClipboard.subscribe(() => {
@@ -50,15 +51,20 @@ export class ShareInputSetupComponent {
     });
   }
 
-  loadSetup(setup: string): void {
-    if (!setup) return;
+  loadSetup(setup: string): boolean {
+    if (!setup) return false;
 
-    const inputSetupJson = window.atob(setup);
-    const inputSetup = this.inputSetupService.parseInputSetup(inputSetupJson);
-    console.log(inputSetup);
+    try {
+      const inputSetupJson = window.atob(setup);
+      const inputSetup = this.inputSetupService.parseInputSetup(inputSetupJson);
 
-    this.gearSetupTabsComponent.loadInputSetup(inputSetup);
-    this.globalSettingsComponent.setGlobalSettings(inputSetup.globalSettings);
+      this.gearSetupTabsComponent.loadInputSetup(inputSetup);
+      this.globalSettingsComponent.setGlobalSettings(inputSetup.globalSettings);
+    } catch (error) {
+      return false;
+    }
+
+    return true;
   }
 
   copySetupToClipboard(): void {
