@@ -3,7 +3,7 @@ import { GearSetup } from '../../model/damage-sim/input-setup.model';
 
 export const SPECIAL_BOLTS = [9242, 21944, 9243, 21946];
 export const DRAGON_DARTS_ID = 11230;
-export const BLOWPIPE_ID = 12924;
+export const BLOWPIPE_ID = 12926;
 export const UNARMED_EQUIVALENT_ID = 3689;
 export const AUTOCAST_STLYE = 'Spell (Magic/Autocast)';
 

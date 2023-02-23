@@ -1,4 +1,5 @@
 import { ComponentRef, Injectable } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 import { GearSetupTabsComponent } from '../core/gear-setup-tabs/gear-setup-tabs.component';
 import {
@@ -10,6 +11,7 @@ import {
 } from '../model/damage-sim/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
+import { Npc } from '../model/osrs/npc.model';
 import { GearSetupTabComponent } from '../shared/gear-setup-tab/gear-setup-tab.component';
 import { GearSetupComponent } from '../shared/gear-setup/gear-setup.component';
 import { DamageSimService } from './damage-sim.service';
@@ -20,9 +22,16 @@ import { FILTER_PATHS } from './filter-fields.const';
 })
 export class InputSetupService {
   allGearSlotItems: Record<GearSlot, Item[]>;
+  allNpcs: Npc[];
 
   constructor(private damageSimservice: DamageSimService) {
-    this.damageSimservice.allGearSlotItems$.subscribe((items) => (this.allGearSlotItems = items));
+    forkJoin({
+      allGearSlotItems: this.damageSimservice.allGearSlotItems$,
+      allNpcs: this.damageSimservice.allNpcs$,
+    }).subscribe(({ allGearSlotItems, allNpcs }) => {
+      this.allGearSlotItems = allGearSlotItems;
+      this.allNpcs = allNpcs;
+    });
   }
 
   convertInputSetupToJson(inputSetup: InputSetup): string {
@@ -82,7 +91,7 @@ export class InputSetupService {
       const itemId = gearJson[slot]?.id;
 
       if (itemId) {
-        gear[slot] = this.allGearSlotItems[slot].find((item: Item) => item.id === itemId);
+        gear[slot] = this.getItem(itemId, slot);
       } else {
         gear[slot] = null;
       }
@@ -92,17 +101,18 @@ export class InputSetupService {
   }
 
   parseInputSetup(jsonString: string): InputSetup {
-    const data = JSON.parse(jsonString);
+    const inputSetupJson = JSON.parse(jsonString);
+    const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc.id);
 
     const globalSettings: GlobalSettings = {
-      iterations: data.globalSettings.iterations,
-      npcId: data.globalSettings.npcId,
-      raidLevel: data.globalSettings.raidLevel,
-      pathLevel: data.globalSettings.pathLevel,
-      teamSize: data.globalSettings.teamSize,
+      iterations: inputSetupJson.globalSettings.iterations,
+      npc: npc,
+      raidLevel: inputSetupJson.globalSettings.raidLevel,
+      pathLevel: inputSetupJson.globalSettings.pathLevel,
+      teamSize: inputSetupJson.globalSettings.teamSize,
     };
 
-    const inputGearSetups: InputGearSetup[] = data.inputGearSetups.map((inputGearSetup: InputGearSetup) => {
+    const inputGearSetups: InputGearSetup[] = inputSetupJson.inputGearSetups.map((inputGearSetup: InputGearSetup) => {
       const gearSetupSettings: GearSetupSettings = {
         statDrains: inputGearSetup.gearSetupSettings.statDrains,
         combatStats: inputGearSetup.gearSetupSettings.combatStats,
@@ -112,7 +122,7 @@ export class InputSetupService {
       const gearSetups: GearSetup[] = inputGearSetup.gearSetups.map((gearSetup: GearSetup) => ({
         setupName: gearSetup.setupName,
         gear: this.getGearFromJson(gearSetup.gear),
-        blowpipeDarts: gearSetup.blowpipeDarts,
+        blowpipeDarts: this.getItem(gearSetup.blowpipeDarts.id, GearSlot.Weapon),
         attackStyle: gearSetup.attackStyle,
         spell: gearSetup.spell,
         isSpecial: gearSetup.isSpecial,
@@ -147,5 +157,9 @@ export class InputSetupService {
       if (value === Object(value)) m.set(value, path);
       return replacer.call(this, field, value, path.replace(/undefined\.\.?/, ''));
     };
+  }
+
+  private getItem(itemId: number, slot: GearSlot): Item {
+    return this.allGearSlotItems[slot].find((item: Item) => item.id === itemId);
   }
 }

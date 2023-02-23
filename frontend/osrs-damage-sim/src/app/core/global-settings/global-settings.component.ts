@@ -19,14 +19,12 @@ import { StatDrainService } from 'src/app/services/stat-drain.service';
 })
 export class GlobalSettingsComponent implements OnInit {
   globalSettings: GlobalSettings = {
-    npcId: null,
+    npc: null,
     iterations: 10000,
     teamSize: 1,
     raidLevel: 0,
     pathLevel: 0,
   };
-
-  selectedNpc: Npc;
 
   showPathLevel = false;
   showRaidLevel = false;
@@ -34,11 +32,13 @@ export class GlobalSettingsComponent implements OnInit {
   selectedBoosts: Set<Boost> = new Set();
 
   allAttackTypes = allAttackTypes;
+
   selectedPrayers: Record<AttackType, Set<Prayer>> = {
     magic: new Set(['augury']),
     melee: new Set(['piety']),
     ranged: new Set(['rigour']),
   };
+
   quickPrayers: Record<AttackType, Set<Prayer>> = {
     magic: new Set(['augury']),
     melee: new Set(['piety']),
@@ -70,29 +70,11 @@ export class GlobalSettingsComponent implements OnInit {
 
   setGlobalSettings(globalSettings: GlobalSettings): void {
     this.globalSettings = globalSettings;
-    //TODO we have to get an npc type here... from dmgSimService? get npc from id
-    this.selectedNpc = {
-      id: this.globalSettings.npcId,
-      name: '',
-      combat: 0,
-      hitpoints: 0,
-      isKalphite: false,
-      isDemon: false,
-      isDragon: false,
-      isUndead: false,
-      isLeafy: false,
-      isXerician: false,
-      isChallengeMode: false,
-      isShade: false,
-      isTobEntryMode: false,
-      isTobNormalMode: false,
-      isTobHardMode: false,
-    };
+    this.npcChanged(this.globalSettings.npc);
   }
 
   npcChanged(npc: Npc): void {
-    this.selectedNpc = npc;
-    this.globalSettings.npcId = npc.id;
+    this.globalSettings.npc = npc;
 
     const npcName = npc.name;
     this.showPathLevel = false;

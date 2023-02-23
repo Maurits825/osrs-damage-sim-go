@@ -51,14 +51,12 @@ export class ShareInputSetupComponent {
   }
 
   loadSetup(setup: string): void {
-    //setup = this.setupString;
     if (!setup) return;
 
-    //console.log('setup', setup);
     const inputSetupJson = window.atob(setup);
     const inputSetup = this.inputSetupService.parseInputSetup(inputSetupJson);
     console.log(inputSetup);
-    //TODO will have to mostly likely populate items somewhere with items from allGearSlots
+
     this.gearSetupTabsComponent.loadInputSetup(inputSetup);
     this.globalSettingsComponent.setGlobalSettings(inputSetup.globalSettings);
   }

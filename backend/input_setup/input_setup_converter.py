@@ -26,7 +26,7 @@ from wiki_data import WikiData
 class InputSetupConverter:
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
-        npc = WikiData.get_npc(json_data["globalSettings"]["npcId"])
+        npc = WikiData.get_npc(json_data["globalSettings"]["npc"]["id"])
 
         # TODO maybe do this scaling in weapon or else where, also refactor when its in gear setup settings
         raid_level, path_level = InputSetupConverter.get_raid_level(npc, json_data)
