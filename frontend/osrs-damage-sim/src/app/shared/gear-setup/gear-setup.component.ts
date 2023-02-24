@@ -41,7 +41,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   allGearSlotItems: Record<GearSlot, Item[]>;
 
   gearSetupPresets: Record<string, Record<GearSlot, number>> = {};
-  selectedGearSetupPreset: string = '';
 
   allBoosts = allBoosts;
 
@@ -128,11 +127,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     // });
   }
 
-  loadGearSetup(setupName: string) {
+  loadGearSetupPreset(setupName: string) {
     const gearIds = this.gearSetupPresets[setupName];
     this.setCurrentGearById(gearIds);
     this.gearSetup.setupName = setupName;
-    this.selectedGearSetupPreset = setupName;
+    this.gearSetup.presetName = setupName;
   }
 
   setCurrentGearById(gearIds: Record<GearSlot, number>): void {
@@ -150,7 +149,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   gearSlotChange(item: Item, slot: GearSlot): void {
     this.gearSetup.gear[slot] = item;
-    this.selectedGearSetupPreset = null;
+    this.gearSetup.presetName = null;
 
     if (slot === GearSlot.Weapon) {
       const itemId = UNARMED_EQUIVALENT_ID || item?.id;
@@ -194,9 +193,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
     this.attackStyles = this.getItem(GearSlot.Weapon, itemId).attackStyles;
     this.updateSpecialGear();
-
-    //TODO add to input setup and filter in json
-    // this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
   }
 
   updateConditions(conditions: Condition[]): void {

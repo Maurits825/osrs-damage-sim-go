@@ -9,6 +9,7 @@ export const AUTOCAST_STLYE = 'Spell (Magic/Autocast)';
 
 export const DEFAULT_GEAR_SETUP: GearSetup = {
   setupName: null,
+  presetName: null,
   gear: {
     [GearSlot.Head]: null,
     [GearSlot.Cape]: null,

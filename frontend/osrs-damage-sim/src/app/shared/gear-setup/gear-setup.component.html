@@ -10,7 +10,7 @@
     <div class="row flex-grow-1 align-items-center">
       <div class="col-auto pe-0"><label>Load setup:</label></div>
       <div class="col col-md-10 col-lg-6">
-        <ng-select [(ngModel)]="selectedGearSetupPreset" [clearable]="false" (change)="loadGearSetup($event)">
+        <ng-select [(ngModel)]="gearSetup.presetName" [clearable]="false" (change)="loadGearSetupPreset($event)">
           <ng-option *ngFor="let gearSetup of gearSetupPresets | keyvalue" [value]="gearSetup.key">{{
             gearSetup.key
           }}</ng-option>

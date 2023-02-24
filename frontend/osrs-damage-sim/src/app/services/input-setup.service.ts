@@ -121,6 +121,8 @@ export class InputSetupService {
 
       const gearSetups: GearSetup[] = inputGearSetup.gearSetups.map((gearSetup: GearSetup) => ({
         setupName: gearSetup.setupName,
+        presetName: gearSetup.presetName,
+
         gear: this.getGearFromJson(gearSetup.gear),
         blowpipeDarts: this.getItem(gearSetup.blowpipeDarts.id, GearSlot.Weapon),
         attackStyle: gearSetup.attackStyle,

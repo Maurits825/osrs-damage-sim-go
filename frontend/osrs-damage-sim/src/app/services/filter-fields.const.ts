@@ -4,4 +4,5 @@ export const FILTER_PATHS = [
   /gearSetups.*attackStyles/,
   /gearSetups.*attackType/,
   /gearSetups.*specialAttackCost/,
+  /gearSetups.presetName/,
 ];

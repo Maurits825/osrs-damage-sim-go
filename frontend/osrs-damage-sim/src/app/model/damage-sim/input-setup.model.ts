@@ -35,6 +35,8 @@ export interface GearSetupSettings {
 
 export interface GearSetup {
   setupName: string;
+  presetName: string;
+
   gear: Record<GearSlot, Item>;
   blowpipeDarts: Item;
 
