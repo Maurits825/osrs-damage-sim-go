@@ -152,7 +152,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     this.gearSetup.presetName = null;
 
     if (slot === GearSlot.Weapon) {
-      const itemId = UNARMED_EQUIVALENT_ID || item?.id;
+      const itemId = item?.id || UNARMED_EQUIVALENT_ID;
       this.gearSetup.setupName = 'Unarmed';
       let attackType: AttackType = 'melee';
 
@@ -189,7 +189,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   setGearSetup(gearSetup: GearSetup): void {
     this.gearSetup = cloneDeep(gearSetup);
 
-    const itemId = UNARMED_EQUIVALENT_ID || this.gearSetup.gear[GearSlot.Weapon]?.id;
+    const itemId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
 
     this.attackStyles = this.getItem(GearSlot.Weapon, itemId).attackStyles;
     this.updateSpecialGear();
