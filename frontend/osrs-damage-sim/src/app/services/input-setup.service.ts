@@ -102,7 +102,7 @@ export class InputSetupService {
 
   parseInputSetup(jsonString: string): InputSetup {
     const inputSetupJson = JSON.parse(jsonString);
-    const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc.id);
+    const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
 
     const globalSettings: GlobalSettings = {
       iterations: inputSetupJson.globalSettings.iterations,

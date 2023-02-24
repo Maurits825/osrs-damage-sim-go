@@ -153,11 +153,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     this.selectedGearSetupPreset = null;
 
     if (slot === GearSlot.Weapon) {
-      let itemId = UNARMED_EQUIVALENT_ID;
+      const itemId = UNARMED_EQUIVALENT_ID || item?.id;
       this.gearSetup.setupName = 'Unarmed';
       let attackType: AttackType = 'melee';
+
       if (item) {
-        itemId = item.id;
         this.gearSetup.setupName = item.name;
         attackType = item.attackType;
       }
@@ -190,10 +190,12 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   setGearSetup(gearSetup: GearSetup): void {
     this.gearSetup = cloneDeep(gearSetup);
 
-    this.attackStyles = this.getItem(GearSlot.Weapon, this.gearSetup.gear[GearSlot.Weapon].id).attackStyles;
+    const itemId = UNARMED_EQUIVALENT_ID || this.gearSetup.gear[GearSlot.Weapon]?.id;
+
+    this.attackStyles = this.getItem(GearSlot.Weapon, itemId).attackStyles;
     this.updateSpecialGear();
 
-    //TODO no real way ez way to get this ...
+    //TODO add to input setup and filter in json
     // this.selectedGearSetupPreset = gearSetupComponent.selectedGearSetupPreset;
   }
 

@@ -76,6 +76,8 @@ export class GlobalSettingsComponent implements OnInit {
   npcChanged(npc: Npc): void {
     this.globalSettings.npc = npc;
 
+    if (!npc) return;
+
     const npcName = npc.name;
     this.showPathLevel = false;
     this.showRaidLevel = false;
