@@ -2,10 +2,12 @@
   "Vorkath max dhcb": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "8059",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "8059"
+      }
     },
     "expectedDps": 11.52638006,
     "inputGearSetups": [
@@ -95,10 +97,12 @@
   "Cerb max scythe inq slayer": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "5862",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "5862"
+      }
     },
     "expectedDps": 12.59982607,
     "inputGearSetups": [
@@ -185,10 +189,12 @@
   "Olm max tbow": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "7551",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "7551"
+      }
     },
     "expectedDps": 11.70621133,
     "inputGearSetups": [
@@ -275,10 +281,12 @@
   "Maiden void BGS spec": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "8360",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "8360"
+      }
     },
     "expectedDps": 9.18022121,
     "inputGearSetups": [
@@ -364,10 +372,12 @@
   "Zebak max ZCB spec": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "11730",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "11730"
+      }
     },
     "expectedDps": 9.85873409,
     "inputGearSetups": [
@@ -453,10 +463,12 @@
   "Tekton max fang": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "7540",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "7540"
+      }
     },
     "expectedDps": 3.45439992,
     "inputGearSetups": [
@@ -541,10 +553,12 @@
   "Ba-ba 300 max d claws spec": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "11778",
       "raidLevel": 300,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "11778"
+      }
     },
     "expectedDps": 17.45856621,
     "inputGearSetups": [
@@ -632,10 +646,12 @@
   "Vorkath sang void ei brim": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "8059",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "8059"
+      }
     },
     "expectedDps": 4.32377426,
     "inputGearSetups": [
@@ -724,10 +740,12 @@
   "Nech max kodai ice barrage": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "8",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "8"
+      }
     },
     "expectedDps": 7.94313678,
     "inputGearSetups": [
@@ -816,10 +834,12 @@
   "Thermy max harm tome of fire": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "499",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "499"
+      }
     },
     "expectedDps": 8.64685476,
     "inputGearSetups": [
@@ -904,10 +924,12 @@
   "Mystic max tbow": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "7604",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "7604"
+      }
     },
     "expectedDps": 6.35046859,
     "inputGearSetups": [
@@ -993,10 +1015,12 @@
   "Zebak bowfa corrupted": {
     "globalSettings": {
       "iterations": 10000,
-      "npcId": "11730",
       "raidLevel": 0,
       "pathLevel": 0,
-      "teamSize": 1
+      "teamSize": 1,
+      "npc": {
+        "id": "11730"
+      }
     },
     "expectedDps": 8.41333061,
     "inputGearSetups": [
@@ -1081,11 +1105,13 @@
   },
   "Zebak 500/4 max fang spec": {
     "globalSettings": {
-      "npcId": "11730",
       "iterations": 10000,
       "teamSize": 1,
       "raidLevel": 500,
-      "pathLevel": 4
+      "pathLevel": 4,
+      "npc": {
+        "id": "11730"
+      }
     },
     "expectedDps": 9.03896521,
     "inputGearSetups": [
@@ -1165,11 +1191,13 @@
   },
   "Olm head CM max blowpipe": {
     "globalSettings": {
-      "npcId": "7554",
       "iterations": 10000,
       "teamSize": 1,
       "raidLevel": 0,
-      "pathLevel": 0
+      "pathLevel": 0,
+      "npc": {
+        "id": "7554"
+      }
     },
     "expectedDps": 8.65877863,
     "inputGearSetups": [
@@ -1245,11 +1273,13 @@
   },
   "Olm melee hand scythe crush 1 dwh 50 bgs": {
     "globalSettings": {
-      "npcId": "7552",
       "iterations": 10000,
       "teamSize": 1,
       "raidLevel": 0,
-      "pathLevel": 0
+      "pathLevel": 0,
+      "npc": {
+        "id": "7552"
+      }
     },
     "expectedDps": 11.55880847,
     "inputGearSetups": [
@@ -1336,11 +1366,13 @@
   },
   "Sote 3 man max rapier 3 dwh": {
     "globalSettings": {
-      "npcId": "8387",
       "iterations": 1000,
       "teamSize": 3,
       "raidLevel": 0,
-      "pathLevel": 0
+      "pathLevel": 0,
+      "npc": {
+        "id": "8387"
+      }
     },
     "expectedDps": 8.96201207,
     "inputGearSetups": [
@@ -1426,11 +1458,13 @@
   },
   "Skotizo max arclight 4 arc": {
     "globalSettings": {
-      "npcId": "7286",
       "iterations": 1000,
       "teamSize": 1,
       "raidLevel": 0,
-      "pathLevel": 0
+      "pathLevel": 0,
+      "npc": {
+        "id": "7286"
+      }
     },
     "expectedDps": 9.05897691,
     "inputGearSetups": [

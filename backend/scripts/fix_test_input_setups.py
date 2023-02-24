@@ -66,4 +66,25 @@ def fix2():
     with open("tests/resources/input_setups_new.json", "w") as f:
         f.write(json.dumps(new_input_setups))
 
-fix2()
+
+def fix3():
+    with open("tests/resources/input_setups.json") as f:
+        input_setups = json.load(f)
+        new_input_setups = {}
+        for setup_name in input_setups:
+            old_input_setup = input_setups[setup_name]
+
+            global_settings = old_input_setup["globalSettings"]
+            global_settings["npc"] = {"id": global_settings["npcId"]}
+            del global_settings["npcId"]
+
+            new_input_setups[setup_name] = {
+                "globalSettings": old_input_setup["globalSettings"],
+                "expectedDps": old_input_setup["expectedDps"],
+                "inputGearSetups": old_input_setup["inputGearSetups"]
+            }
+
+    with open("tests/resources/input_setups_new.json", "w") as f:
+        f.write(json.dumps(new_input_setups))
+
+fix3()
