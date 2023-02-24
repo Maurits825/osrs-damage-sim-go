@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DamageSimResults } from '../../model/damage-sim/damage-sim-results.model';
 
 @Component({
@@ -6,15 +6,11 @@ import { DamageSimResults } from '../../model/damage-sim/damage-sim-results.mode
   templateUrl: './sim-results.component.html',
   styleUrls: ['./sim-results.component.css'],
 })
-export class SimResultsComponent implements OnInit {
+export class SimResultsComponent {
   @Input()
   damageSimResults: DamageSimResults;
 
   targetTimeChance: number[];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   targetTimeChanged(targetTime: string): void {
     if (!targetTime) {

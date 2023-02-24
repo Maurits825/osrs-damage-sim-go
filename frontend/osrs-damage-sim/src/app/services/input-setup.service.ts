@@ -1,6 +1,5 @@
 import { ComponentRef, Injectable } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
 import { GearSetupTabsComponent } from '../core/gear-setup-tabs/gear-setup-tabs.component';
 import {
   GearSetup,
@@ -37,7 +36,7 @@ export class InputSetupService {
   convertInputSetupToJson(inputSetup: InputSetup): string {
     return JSON.stringify(
       inputSetup,
-      this.replacerWithPath((key: string, value: any, path: any) => {
+      this.replacerWithPath((key: string, value: unknown, path: string) => {
         if (value instanceof Set) {
           return [...value];
         } else if (FILTER_PATHS.some((filter_path) => filter_path.test(path))) {
@@ -151,11 +150,11 @@ export class InputSetupService {
     };
   }
 
-  private replacerWithPath(replacer: (this: any, key: string, value: any, path: string) => any) {
-    let m = new Map<any, string>();
+  private replacerWithPath(replacer: (this: unknown, key: string, value: unknown, path: string) => unknown) {
+    const m = new Map<unknown, string>();
 
-    return function (this: any, field: string, value: any) {
-      let path = m.get(this) + (Array.isArray(this) ? `[${field}]` : '.' + field);
+    return function (this: unknown, field: string, value: unknown) {
+      const path = m.get(this) + (Array.isArray(this) ? `[${field}]` : '.' + field);
       if (value === Object(value)) m.set(value, path);
       return replacer.call(this, field, value, path.replace(/undefined\.\.?/, ''));
     };

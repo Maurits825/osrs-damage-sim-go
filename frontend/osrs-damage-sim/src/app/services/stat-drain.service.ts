@@ -7,6 +7,4 @@ import { StatDrain } from '../model/damage-sim/stat-drain.model';
 })
 export class StatDrainService {
   globalStatDrain$: BehaviorSubject<StatDrain[]> = new BehaviorSubject([]);
-
-  constructor() {}
 }

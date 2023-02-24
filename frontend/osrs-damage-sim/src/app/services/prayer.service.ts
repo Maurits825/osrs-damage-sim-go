@@ -10,8 +10,6 @@ import { Prayer } from '../model/osrs/prayer.model';
 export class PrayerService {
   globalPrayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(null);
 
-  constructor() {}
-
   togglePrayer(prayer: Prayer, selectedPrayers: Set<Prayer>): void {
     if (selectedPrayers.has(prayer)) {
       selectedPrayers.delete(prayer);

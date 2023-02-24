@@ -22,8 +22,6 @@ export class BoostModalComponent {
 
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {}
-
   toggleBoost(boost: Boost): void {
     this.boostToggle.emit(boost);
   }

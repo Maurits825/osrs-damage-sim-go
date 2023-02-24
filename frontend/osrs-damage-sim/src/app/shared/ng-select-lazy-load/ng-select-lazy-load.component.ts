@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 
 @Component({
@@ -6,7 +6,7 @@ import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
   templateUrl: './ng-select-lazy-load.component.html',
   styleUrls: ['./ng-select-lazy-load.component.css'],
 })
-export class NgSelectLazyLoadComponent<T> implements OnDestroy {
+export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy {
   @Input()
   valueType: T;
 
@@ -35,8 +35,6 @@ export class NgSelectLazyLoadComponent<T> implements OnDestroy {
   input$ = new Subject<string>();
 
   private destroyed$ = new Subject();
-
-  constructor() {}
 
   ngOnInit(): void {
     this.valuesBuffer = this.allValues.slice(0, this.bufferSize);

@@ -13,6 +13,4 @@ export class CombatStatService {
     magic: 99,
     hitpoints: 99,
   });
-
-  constructor() {}
 }

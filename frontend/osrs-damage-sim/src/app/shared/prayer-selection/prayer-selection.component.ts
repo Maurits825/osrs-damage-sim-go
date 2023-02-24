@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerModalComponent } from '../prayer-modal/prayer-modal.component';
@@ -24,7 +24,7 @@ export class PrayerSelectionComponent implements OnInit, OnChanges {
   quickPrayerSelected = true;
 
   constructor(private modalService: NgbModal) {}
-  ngOnChanges(_: SimpleChanges): void {
+  ngOnChanges(): void {
     this.quickPrayerSelected = this.isOnlyQuickPrayerSelected();
   }
 

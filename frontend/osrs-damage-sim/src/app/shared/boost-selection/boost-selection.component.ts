@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { allBoosts, Boost } from '../../model/osrs/boost.model';
 import { BoostModalComponent } from '../boost-modal/boost-modal.component';
@@ -21,7 +21,7 @@ export class BoostSelectionComponent implements OnInit, OnChanges {
 
   constructor(private modalService: NgbModal) {}
 
-  ngOnChanges(_: SimpleChanges): void {
+  ngOnChanges(): void {
     this.quickBoostSelected = this.isOnlyQuickBoostSelected();
   }
 

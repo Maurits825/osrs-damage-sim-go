@@ -33,8 +33,6 @@ export class ConditionComponent implements OnInit {
   @Output() conditionsChanged = new EventEmitter<Condition[]>();
   conditions: Condition[] = [];
 
-  constructor() {}
-
   ngOnInit(): void {
     this.conditions = this.initialConditions;
   }

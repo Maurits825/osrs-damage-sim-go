@@ -8,8 +8,6 @@ import { BLOWPIPE_ID, SPECIAL_BOLTS } from '../shared/gear-setup/gear-setup.cons
   providedIn: 'root',
 })
 export class SpecialGearService {
-  constructor() {}
-
   getSpecialGear(gearInputSetup: GearSetup): SpecialGear {
     return {
       isSlayerHelm: this.getIsSlayerHelm(gearInputSetup),

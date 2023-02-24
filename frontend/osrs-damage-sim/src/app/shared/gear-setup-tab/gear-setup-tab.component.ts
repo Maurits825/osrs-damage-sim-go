@@ -28,7 +28,7 @@ export class GearSetupTabComponent implements AfterViewInit {
   @ViewChild('gearSetupsContainer', { read: ViewContainerRef }) gearSetupsContainer: ViewContainerRef;
   @ViewChild(GearSetupSettingsComponent) gearSetupSettingsComponent: GearSetupSettingsComponent;
 
-  id: number = 0;
+  id = 0;
   gearSetups: ComponentRef<GearSetupComponent>[] = [];
 
   constructor(
@@ -68,9 +68,9 @@ export class GearSetupTabComponent implements AfterViewInit {
   }
 
   removeGearSetup(id: number): void {
-    let gearSetupRef = this.gearSetups.find((setup) => setup.instance.setupCount == id);
+    const gearSetupRef = this.gearSetups.find((setup) => setup.instance.setupCount == id);
 
-    let gearSetupsContainerIndex: number = this.gearSetupsContainer.indexOf(gearSetupRef.hostView);
+    const gearSetupsContainerIndex: number = this.gearSetupsContainer.indexOf(gearSetupRef.hostView);
 
     this.gearSetupsContainer.remove(gearSetupsContainerIndex);
 

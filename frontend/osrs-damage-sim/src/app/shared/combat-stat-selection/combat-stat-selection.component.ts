@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { allSkills, CombatStats, Skill } from 'src/app/model/osrs/skill.type';
+import { allSkills, CombatStats } from 'src/app/model/osrs/skill.type';
 
 @Component({
   selector: 'app-combat-stat-selection',

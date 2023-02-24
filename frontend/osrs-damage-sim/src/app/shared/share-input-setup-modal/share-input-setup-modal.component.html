@@ -15,8 +15,8 @@
             type="text"
             class="form-control"
             [ngClass]="{
-              'is-invalid': isValidSetup != null && !isValidSetup,
-              'is-valid': isValidSetup != null && isValidSetup
+              'is-invalid': isValidSetup !== undefined && !isValidSetup,
+              'is-valid': isValidSetup !== undefined && isValidSetup
             }"
             placeholder="Setup string"
             #setUpString
@@ -27,9 +27,9 @@
         </div>
       </div>
       <div>
-        <div *ngIf="isValidSetup == null">&nbsp;</div>
-        <div *ngIf="isValidSetup != null && !isValidSetup" class="text-danger">Invalid setup string</div>
-        <div *ngIf="isValidSetup != null && isValidSetup" class="text-success">Loaded setup</div>
+        <div *ngIf="isValidSetup === undefined">&nbsp;</div>
+        <div *ngIf="isValidSetup !== undefined && !isValidSetup" class="text-danger">Invalid setup string</div>
+        <div *ngIf="isValidSetup !== undefined && isValidSetup" class="text-success">Loaded setup</div>
       </div>
     </div>
   </div>

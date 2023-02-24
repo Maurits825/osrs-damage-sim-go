@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { replaceBoosts } from '../model/osrs/boost-replace.const';
 import { Boost } from '../model/osrs/boost.model';
@@ -8,8 +8,6 @@ import { Boost } from '../model/osrs/boost.model';
 })
 export class BoostService {
   globalBoosts$: BehaviorSubject<Set<Boost>> = new BehaviorSubject(new Set());
-
-  constructor() {}
 
   toggleBoost(boost: Boost, selectedBoosts: Set<Boost>): void {
     if (selectedBoosts.has(boost)) {

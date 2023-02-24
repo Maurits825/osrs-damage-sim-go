@@ -24,10 +24,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.damageSimservice.getStatus().subscribe({
-      next: (status) => {
+      next: () => {
         this.isDamageSimActive = true;
       },
-      error: (e) => {
+      error: () => {
         this.isDamageSimActive = false;
       },
     });
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
         this.damageSimResults = results;
         this.loading = false;
       },
-      (error) => {
+      () => {
         //TODO show some error
         this.loading = false;
       }

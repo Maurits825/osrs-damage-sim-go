@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Injector,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Injector, ViewChild, ViewContainerRef } from '@angular/core';
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
@@ -17,13 +9,11 @@ import { GearSetupTabComponent } from '../../shared/gear-setup-tab/gear-setup-ta
   templateUrl: './gear-setup-tabs.component.html',
   styleUrls: ['./gear-setup-tabs.component.css'],
 })
-export class GearSetupTabsComponent implements OnInit, AfterViewInit {
+export class GearSetupTabsComponent implements AfterViewInit {
   @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
   constructor(private changeDetector: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.openNewSetupTab();

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
 
@@ -7,7 +7,7 @@ import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
   templateUrl: './prayer-modal.component.html',
   styleUrls: ['./prayer-modal.component.css'],
 })
-export class PrayerModalComponent implements OnInit {
+export class PrayerModalComponent {
   @Input()
   selectedPrayers: Set<Prayer>;
 
@@ -27,8 +27,6 @@ export class PrayerModalComponent implements OnInit {
   allPrayers = allPrayers;
 
   constructor(public activeModal: NgbActiveModal) {}
-
-  ngOnInit(): void {}
 
   togglePrayer(prayer: Prayer): void {
     if (!this.disabledPrayers.has(prayer)) {

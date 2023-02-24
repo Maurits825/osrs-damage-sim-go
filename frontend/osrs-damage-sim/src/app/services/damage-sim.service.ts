@@ -4,10 +4,8 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { InputSetup } from '../model/damage-sim/input-setup.model';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
-import { InputSetupService } from './input-setup.service';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +39,7 @@ export class DamageSimService {
   }
 
   private getSpells(): Observable<string[]> {
-    return this.http.get<Object>(DAMAGE_SIM_SERVER_URL + '/all-spells').pipe(map((obj) => Object.keys(obj)));
+    return this.http.get<string[]>(DAMAGE_SIM_SERVER_URL + '/all-spells').pipe(map((obj) => Object.keys(obj)));
   }
 
   private getNpcs(): Observable<Npc[]> {
