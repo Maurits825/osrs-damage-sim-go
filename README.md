@@ -1,4 +1,4 @@
-[![Checks](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-damage-sim-tests.yml/badge.svg)](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-damage-sim-tests.yml) [![Checks](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-dmg-sim-web-app.yml/badge.svg)](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-dmg-sim-web-app.yml)
+[![Checks](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-damage-sim.yml/badge.svg)](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-damage-sim.yml) [![Checks](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-dmg-sim-web-app.yml/badge.svg)](https://github.com/Maurits825/osrs-damage-sim/actions/workflows/osrs-dmg-sim-web-app.yml)
 
 # Osrs Damage Sim
 Damage simulator for OSRS with a angular web app frontend.
