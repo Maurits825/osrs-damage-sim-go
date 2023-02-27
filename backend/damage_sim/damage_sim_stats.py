@@ -134,7 +134,7 @@ class DamageSimStats:
         if prayer_and_boost_text:
             prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
 
-        label = label + gear.name + prayer_and_boost_text
+        label = label + (gear.name or "unnamed") + prayer_and_boost_text
         return label
 
     @staticmethod
