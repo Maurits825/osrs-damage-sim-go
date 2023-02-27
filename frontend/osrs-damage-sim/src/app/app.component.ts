@@ -41,15 +41,15 @@ export class AppComponent implements OnInit {
       this.gearSetupTabsComponent
     );
 
-    this.damageSimservice.runDamageSim(inputSetupJson).subscribe(
-      (results: DamageSimResults) => {
+    this.damageSimservice.runDamageSim(inputSetupJson).subscribe({
+      next: (results: DamageSimResults) => {
+        this.loading = false;
         this.damageSimResults = results;
-        this.loading = false;
       },
-      () => {
-        //TODO show some error
+      error: (error) => {
         this.loading = false;
-      }
-    );
+        this.damageSimResults = { ...this.damageSimResults, error: error.statusText };
+      },
+    });
   }
 }

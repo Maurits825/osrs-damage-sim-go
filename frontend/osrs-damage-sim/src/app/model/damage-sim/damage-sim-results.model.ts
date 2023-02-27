@@ -1,6 +1,8 @@
 import { Graphs } from './graphs.model';
 
 export interface DamageSimResults {
+  error: string | null;
+
   ttk_stats: SimStats[];
   total_damage_stats: SimStats[][];
   attack_count_stats: SimStats[][];

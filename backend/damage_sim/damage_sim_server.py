@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 from damage_sim.damage_sim_runner import DamageSimRunner
+from damage_sim.damage_sim_validation import DamageSimValidation
 from input_setup.gear_setup_preset import GearSetupPreset
 from input_setup.input_setup_converter import InputSetupConverter
 from input_setup.rl_gear_input import RlGearInput
@@ -65,6 +66,9 @@ def get_npcs():
 @app.route("/run-damage-sim", methods=["POST"])
 def run_damage_sim():
     json_request = request.get_json()
+
+    if not DamageSimValidation.validate_setup(json_request):
+        return {"error": "Invalid setup"}
 
     input_setup = InputSetupConverter.get_input_setup(json_request)
     damage_sim_results = damage_sim_runner.run(input_setup)
