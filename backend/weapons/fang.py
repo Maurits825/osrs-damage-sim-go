@@ -14,11 +14,11 @@ class Fang(Weapon):
             return True
 
         if self.raid_level:
-            attack_roll = random.randint(0, attack_roll)
+            attack_roll = random.randint(0, self.get_attack_roll())
             defence_roll = random.randint(0, self.get_defence_roll())
             return attack_roll > defence_roll
         else:
-            attack_roll = random.randint(0, attack_roll)
+            attack_roll = random.randint(0, self.get_attack_roll())
             return attack_roll > defence_roll
 
     def roll_damage(self) -> int:
