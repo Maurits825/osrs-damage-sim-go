@@ -22,6 +22,7 @@ import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
+import { RlGear } from 'src/app/model/damage-sim/rl-gear.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -116,15 +117,21 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     return this.gearSetup;
   }
 
-  //TODO fix
   loadRlGear(): void {
-    // this.selectedGearSetup = null;
-    // this.rlGearService.getGear().subscribe((gearSetup: Record<number, Item>) => {
-    //   this.set__CurrentGear(gearSetup);
-    //   if (gearSetup[this.weaponSlot]?.name) {
-    //     this.setupName = gearSetup[this.weaponSlot].name;
-    //   }
-    // });
+    this.rlGearService.getGear().subscribe((gearIds: number[]) => {
+      this.allGearSlots.forEach((slot: GearSlot) => {
+        this.gearSlotChange(null, slot);
+        this.gearSetup.gear[slot] = null;
+
+        gearIds.forEach((itemId: number) => {
+          const item = this.getItem(slot, itemId);
+          if (item) {
+            this.gearSlotChange(item, slot);
+            this.gearSetup.gear[slot] = item;
+          }
+        });
+      });
+    });
   }
 
   loadGearSetupPreset(setupName: string) {

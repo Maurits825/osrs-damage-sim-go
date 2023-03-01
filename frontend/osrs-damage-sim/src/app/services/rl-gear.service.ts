@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Item } from '../model/osrs/item.model';
-import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
+import { filter, map, Observable } from 'rxjs';
+import { RUNELITE_GEAR_URL } from '../constants.const';
+import { RlGear } from '../model/damage-sim/rl-gear.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,9 @@ import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 export class RlGearService {
   constructor(private http: HttpClient) {}
 
-  getGear(): Observable<Record<number, Item>> {
-    return this.http.get<Record<number, Item>>(DAMAGE_SIM_SERVER_URL + '/rl-gear');
+  getGear(): Observable<number[]> {
+    return this.http
+      .get<RlGear[]>(RUNELITE_GEAR_URL)
+      .pipe(map((gear: RlGear[]) => gear.filter((item: RlGear) => item.id !== -1).map((item: RlGear) => item.id)));
   }
 }
