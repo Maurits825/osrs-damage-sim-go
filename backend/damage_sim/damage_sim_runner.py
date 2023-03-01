@@ -13,7 +13,7 @@ class DamageSimRunner:
     def __init__(self):
         self.damage_sim_graph = DamageSimGraph()
 
-    def run(self, input_setup: InputSetup) -> (DamageSimResults, Figure, Figure):
+    def run(self, input_setup: InputSetup) -> DamageSimResults:
 
         damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], {})  # TODO better way?
         ttk_tick_stats = []

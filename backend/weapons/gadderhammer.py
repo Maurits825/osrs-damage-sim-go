@@ -11,9 +11,8 @@ AVG_DMG_BOOST = 1.2875  # from wiki
 class Gadderhammer(Weapon):
     def roll_damage(self) -> int:
         damage = 0
-        max_hit = self.get_max_hit()
         if self.roll_hit():
-            damage = random.randint(0, max_hit)
+            damage = random.randint(0, self.max_hit)
 
         double_hit = random.random()
         if double_hit <= DOUBLE_DMG_CHANCE:

@@ -50,11 +50,20 @@ class Weapon:
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
 
+        self.max_hit = 0
+        self.attack_roll = 0
+        self.update_max_hit_and_attack_roll()
+
     def set_npc(self, npc):
         self.npc = npc
 
     def set_combat_stats(self, combat_stats):
         self.combat_stats = combat_stats
+        self.update_max_hit_and_attack_roll()
+
+    def update_max_hit_and_attack_roll(self):
+        self.max_hit = self.get_max_hit()
+        self.attack_roll = self.get_attack_roll()
 
     def get_is_brimstone(self):
         return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
@@ -72,23 +81,22 @@ class Weapon:
                 self.gear_setup.gear_stats.attack_speed = 4
 
     def roll_hit(self) -> bool:
-        attack_roll = random.randint(0, self.get_attack_roll())
+        attack_roll = random.randint(0, self.attack_roll)
         defence_roll = random.randint(0, self.get_defence_roll())
 
         return attack_roll > defence_roll
 
     def roll_damage(self) -> int:
-        max_hit = self.get_max_hit()
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_damage(
-                self.special_bolt, max_hit, self.npc.combat_stats.hitpoints
+                self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
             )
             if bolt_damage:
                 return bolt_damage
 
         damage = 0
         if self.roll_hit():
-            damage = random.randint(0, max_hit)
+            damage = random.randint(0, self.max_hit)
 
         return math.floor(damage * self.damage_multiplier)
 

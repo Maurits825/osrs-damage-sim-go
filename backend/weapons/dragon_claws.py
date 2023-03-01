@@ -10,31 +10,29 @@ class DragonClaws(Weapon):
         if not self.gear_setup.is_special_attack:
             return super().roll_damage()
 
-        max_hit = self.get_max_hit()
-
         if self.roll_hit():
-            hit1 = random.randint(math.floor(max_hit / 2), max_hit - 1)
+            hit1 = random.randint(math.floor(self.max_hit / 2), self.max_hit - 1)
             hit2 = math.floor(hit1 / 2)
             hit3 = math.floor(hit2 / 2)
             hit4 = hit3 + round(random.random())
         else:
             if self.roll_hit():
                 hit1 = 0
-                hit2 = random.randint(math.floor(max_hit * (3/8)), math.floor(max_hit * (7/8)))
+                hit2 = random.randint(math.floor(self.max_hit * (3/8)), math.floor(self.max_hit * (7/8)))
                 hit3 = math.floor(hit2 / 2)
                 hit4 = hit3 + round(random.random())
             else:
                 if self.roll_hit():
                     hit1 = 0
                     hit2 = 0
-                    hit3 = random.randint(math.floor(max_hit * (1/4)), math.floor(max_hit * (3/4)))
+                    hit3 = random.randint(math.floor(self.max_hit * (1/4)), math.floor(self.max_hit * (3/4)))
                     hit4 = hit3 + round(random.random())
                 else:
                     if self.roll_hit():
                         hit1 = 0
                         hit2 = 0
                         hit3 = 0
-                        hit4 = random.randint(math.floor(max_hit * 0.25), math.floor(max_hit * 1.25))
+                        hit4 = random.randint(math.floor(self.max_hit * 0.25), math.floor(self.max_hit * 1.25))
                     else:
                         hit1 = 0
                         hit2 = 0

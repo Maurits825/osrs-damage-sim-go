@@ -22,11 +22,10 @@ class ZaryteCrossbow(Weapon):
         if not self.gear_setup.is_special_attack or not self.special_bolt:
             return super().roll_damage()
 
-        max_hit = self.get_max_hit()
         if self.roll_hit():
-            return self.special_bolt.roll_damage(max_hit, self.npc.combat_stats.hitpoints)
+            return self.special_bolt.roll_damage(self.max_hit, self.npc.combat_stats.hitpoints)
         else:
-            bolt_damage = BoltSpecialAttack.roll_damage(self.special_bolt, max_hit,
+            bolt_damage = BoltSpecialAttack.roll_damage(self.special_bolt, self.max_hit,
                                                         self.npc.combat_stats.hitpoints)
             if bolt_damage:
                 return bolt_damage
