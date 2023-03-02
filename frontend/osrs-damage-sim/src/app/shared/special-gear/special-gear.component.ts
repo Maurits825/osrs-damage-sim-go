@@ -11,6 +11,9 @@ import { Item } from 'src/app/model/osrs/item.model';
 })
 export class SpecialGearComponent {
   @Input()
+  isMainGearSetup: boolean;
+
+  @Input()
   gearSetup: GearSetup;
 
   @Input()

@@ -24,7 +24,8 @@ export interface GlobalSettings {
 
 export interface InputGearSetup {
   gearSetupSettings: GearSetupSettings;
-  gearSetups: GearSetup[];
+  mainGearSetup: GearSetup;
+  fillGearSetups: GearSetup[];
 }
 
 export interface GearSetupSettings {
@@ -46,7 +47,6 @@ export interface GearSetup {
   isSpecial: boolean;
   prayers: Set<Prayer>;
 
-  isFill: boolean;
   conditions: Condition[];
 
   statDrain: StatDrain[];

@@ -66,11 +66,16 @@ export class InputSetupService {
   getGearInputSetup(gearSetupTab: GearSetupTabComponent): InputGearSetup {
     const inputGearSetup: InputGearSetup = {
       gearSetupSettings: gearSetupTab.getGearSetupSettings(),
-      gearSetups: [],
+      mainGearSetup: null,
+      fillGearSetups: [],
     };
 
-    gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>) => {
-      inputGearSetup.gearSetups.push(gearSetupRef.instance.getGearSetup());
+    gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>, index) => {
+      if (index === 0) {
+        inputGearSetup.mainGearSetup = gearSetupRef.instance.getGearSetup();
+      } else {
+        inputGearSetup.fillGearSetups.push(gearSetupRef.instance.getGearSetup());
+      }
     });
 
     return inputGearSetup;
@@ -118,35 +123,42 @@ export class InputSetupService {
         boosts: new Set(Array.from(inputGearSetup.gearSetupSettings.boosts)),
       };
 
-      const gearSetups: GearSetup[] = inputGearSetup.gearSetups.map((gearSetup: GearSetup) => ({
-        setupName: gearSetup.setupName,
-        presetName: gearSetup.presetName,
-
-        gear: this.getGearFromJson(gearSetup.gear),
-        blowpipeDarts: this.getItem(gearSetup.blowpipeDarts.id, GearSlot.Weapon),
-        attackStyle: gearSetup.attackStyle,
-        spell: gearSetup.spell,
-        isSpecial: gearSetup.isSpecial,
-        prayers: new Set(Array.from(gearSetup.prayers)),
-        isFill: gearSetup.isFill,
-        conditions: gearSetup.conditions,
-        statDrain: gearSetup.statDrain,
-        isOnSlayerTask: gearSetup.isOnSlayerTask,
-        isInWilderness: gearSetup.isInWilderness,
-        currentHp: gearSetup.currentHp,
-        miningLvl: gearSetup.miningLvl,
-        isKandarinDiary: gearSetup.isKandarinDiary,
-      }));
+      const mainGearSetup: GearSetup = this.parseGearSetup(inputGearSetup.mainGearSetup);
+      const fillGearSetups: GearSetup[] = inputGearSetup.fillGearSetups.map((gearSetup: GearSetup) =>
+        this.parseGearSetup(gearSetup)
+      );
 
       return {
         gearSetupSettings,
-        gearSetups,
+        mainGearSetup,
+        fillGearSetups,
       };
     });
 
     return {
       globalSettings,
       inputGearSetups,
+    };
+  }
+
+  private parseGearSetup(gearSetup: GearSetup): GearSetup {
+    return {
+      setupName: gearSetup.setupName,
+      presetName: gearSetup.presetName,
+
+      gear: this.getGearFromJson(gearSetup.gear),
+      blowpipeDarts: this.getItem(gearSetup.blowpipeDarts.id, GearSlot.Weapon),
+      attackStyle: gearSetup.attackStyle,
+      spell: gearSetup.spell,
+      isSpecial: gearSetup.isSpecial,
+      prayers: new Set(Array.from(gearSetup.prayers)),
+      conditions: gearSetup.conditions,
+      statDrain: gearSetup.statDrain,
+      isOnSlayerTask: gearSetup.isOnSlayerTask,
+      isInWilderness: gearSetup.isInWilderness,
+      currentHp: gearSetup.currentHp,
+      miningLvl: gearSetup.miningLvl,
+      isKandarinDiary: gearSetup.isKandarinDiary,
     };
   }
 

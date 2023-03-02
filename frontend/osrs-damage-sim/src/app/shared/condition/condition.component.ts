@@ -29,7 +29,6 @@ export class ConditionComponent implements OnInit {
     LESS_EQ_THAN: '<=',
   };
 
-  @Input() isFill: boolean;
   @Output() conditionsChanged = new EventEmitter<Condition[]>();
   conditions: Condition[] = [];
 

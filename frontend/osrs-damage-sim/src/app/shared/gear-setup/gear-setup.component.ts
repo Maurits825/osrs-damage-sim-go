@@ -22,7 +22,6 @@ import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { RlGear } from 'src/app/model/damage-sim/rl-gear.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -33,6 +32,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   setupCount: number;
+  isMainGearSetup = false;
   gearSetupTabRef: GearSetupTabComponent;
 
   GearSlot = GearSlot;
@@ -212,12 +212,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   updateSpecialGear(): void {
     this.specialGear = this.specialGearService.getSpecialGear(this.gearSetup);
-  }
-
-  useSpecialAttackChange(): void {
-    if (this.gearSetup.isSpecial) {
-      this.gearSetup.isFill = true;
-    }
   }
 
   selectedSpellChange(): void {
