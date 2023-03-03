@@ -1,5 +1,6 @@
 {
   "Vorkath max dhcb": {
+    "expectedDps": 11.52638006,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -9,7 +10,6 @@
         "id": "8059"
       }
     },
-    "expectedDps": 11.52638006,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -25,76 +25,76 @@
             "ranging"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 11664
-              },
-              "1": {
-                "id": 27363
-              },
-              "2": {
-                "id": 12018
-              },
-              "3": {
-                "id": 21012
-              },
-              "4": {
-                "id": 13072
-              },
-              "5": {
-                "id": 21000
-              },
-              "7": {
-                "id": 13073
-              },
-              "9": {
-                "id": 8842
-              },
-              "10": {
-                "id": 13237
-              },
-              "12": {
-                "id": 11771
-              },
-              "13": {
-                "id": 21944
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 11664
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Rapid (Ranged/Rapid)",
-            "attackCount": 0,
-            "isSpecial": false,
-            "prayers": [
-              "rigour"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 27363
             },
-            "boosts": [
-              "ranging"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Dragon hunter crossbow"
-          }
-        ]
+            "2": {
+              "id": 12018
+            },
+            "3": {
+              "id": 21012
+            },
+            "4": {
+              "id": 13072
+            },
+            "5": {
+              "id": 21000
+            },
+            "7": {
+              "id": 13073
+            },
+            "9": {
+              "id": 8842
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 21944
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "attackCount": 0,
+          "isSpecial": false,
+          "prayers": [
+            "rigour"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          },
+          "boosts": [
+            "ranging"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "spell": null,
+          "setupName": "Dragon hunter crossbow"
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Cerb max scythe inq slayer": {
+    "expectedDps": 12.59982607,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -104,7 +104,6 @@
         "id": "5862"
       }
     },
-    "expectedDps": 12.59982607,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -120,73 +119,73 @@
             "super_combat"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 25912
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 22325
-              },
-              "4": {
-                "id": 24420
-              },
-              "7": {
-                "id": 24421
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 25912
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Jab (Crush/Aggressive)",
-            "attackCount": 0,
-            "isSpecial": false,
-            "prayers": [
-              "piety"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 21285
             },
-            "boosts": [
-              "super_combat"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Max scythe"
-          }
-        ]
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 22325
+            },
+            "4": {
+              "id": 24420
+            },
+            "7": {
+              "id": 24421
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Jab (Crush/Aggressive)",
+          "attackCount": 0,
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          },
+          "boosts": [
+            "super_combat"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "spell": null,
+          "setupName": "Max scythe"
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Olm max tbow": {
+    "expectedDps": 11.70621133,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -196,7 +195,6 @@
         "id": "7551"
       }
     },
-    "expectedDps": 11.70621133,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -212,87 +210,46 @@
             "overload_plus"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 27235
-              },
-              "1": {
-                "id": 27363
-              },
-              "2": {
-                "id": 19547
-              },
-              "3": {
-                "id": 20997
-              },
-              "4": {
-                "id": 27238
-              },
-              "7": {
-                "id": 27241
-              },
-              "9": {
-                "id": 26235
-              },
-              "10": {
-                "id": 13237
-              },
-              "12": {
-                "id": 11771
-              },
-              "13": {
-                "id": 11212
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 27235
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Rapid (Ranged/Rapid)",
-            "attackCount": 0,
-            "isSpecial": false,
-            "prayers": [
-              "rigour"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 27363
             },
-            "boosts": [
-              "overload_plus"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Max Tbow"
-          }
-        ]
-      }
-    ]
-  },
-  "Maiden void BGS spec": {
-    "globalSettings": {
-      "iterations": 10000,
-      "raidLevel": 0,
-      "pathLevel": 0,
-      "teamSize": 1,
-      "npc": {
-        "id": "8360"
-      }
-    },
-    "expectedDps": 9.18022121,
-    "inputGearSetups": [
-      {
-        "gearSetupSettings": {
-          "statDrains": [],
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 20997
+            },
+            "4": {
+              "id": 27238
+            },
+            "7": {
+              "id": 27241
+            },
+            "9": {
+              "id": 26235
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 11212
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "attackCount": 0,
+          "isSpecial": false,
+          "prayers": [
+            "rigour"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -301,166 +258,25 @@
             "hitpoints": 99
           },
           "boosts": [
-            "super_combat"
-          ]
+            "overload_plus"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "spell": null,
+          "setupName": "Max Tbow"
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 11665
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 11804
-              },
-              "4": {
-                "id": 8839
-              },
-              "7": {
-                "id": 8840
-              },
-              "9": {
-                "id": 8842
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
-            },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Slash (Slash/Aggressive)",
-            "isSpecial": true,
-            "prayers": [
-              "piety"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
-            },
-            "boosts": [
-              "super_combat"
-            ],
-            "isFill": true,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Max BGS"
-          }
-        ]
-      }
-    ]
-  },
-  "Zebak max ZCB spec": {
-    "globalSettings": {
-      "iterations": 10000,
-      "raidLevel": 0,
-      "pathLevel": 0,
-      "teamSize": 1,
-      "npc": {
-        "id": "11730"
-      }
-    },
-    "expectedDps": 9.85873409,
-    "inputGearSetups": [
-      {
-        "gearSetupSettings": {
-          "statDrains": [],
-          "combatStats": {
-            "attack": 99,
-            "strength": 99,
-            "ranged": 99,
-            "magic": 99,
-            "hitpoints": 99
-          },
-          "boosts": [
-            "smelling_salts"
-          ]
-        },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 27235
-              },
-              "1": {
-                "id": 27363
-              },
-              "2": {
-                "id": 19547
-              },
-              "3": {
-                "id": 26374
-              },
-              "4": {
-                "id": 27238
-              },
-              "7": {
-                "id": 27241
-              },
-              "9": {
-                "id": 26235
-              },
-              "10": {
-                "id": 13237
-              },
-              "12": {
-                "id": 11771
-              },
-              "13": {
-                "id": 21946
-              }
-            },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Rapid (Ranged/Rapid)",
-            "isSpecial": true,
-            "prayers": [
-              "rigour"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
-            },
-            "boosts": [
-              "smelling_salts"
-            ],
-            "isFill": true,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Max ZCB"
-          }
-        ]
+        "fillGearSetups": []
       }
     ]
   },
   "Tekton max fang": {
+    "expectedDps": 3.45439992,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -470,7 +286,6 @@
         "id": "7540"
       }
     },
-    "expectedDps": 3.45439992,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -484,87 +299,48 @@
           },
           "boosts": []
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 26382
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 26219
-              },
-              "4": {
-                "id": 26384
-              },
-              "5": {
-                "id": 22322
-              },
-              "7": {
-                "id": 26386
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 26382
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Lunge (Stab/Aggressive)",
-            "isSpecial": false,
-            "prayers": [
-              "piety"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 21285
             },
-            "boosts": [],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Max fang"
-          }
-        ]
-      }
-    ]
-  },
-  "Ba-ba 300 max d claws spec": {
-    "globalSettings": {
-      "iterations": 10000,
-      "raidLevel": 300,
-      "pathLevel": 0,
-      "teamSize": 1,
-      "npc": {
-        "id": "11778"
-      }
-    },
-    "expectedDps": 17.45856621,
-    "inputGearSetups": [
-      {
-        "gearSetupSettings": {
-          "statDrains": [],
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 26219
+            },
+            "4": {
+              "id": 26384
+            },
+            "5": {
+              "id": 22322
+            },
+            "7": {
+              "id": 26386
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Lunge (Stab/Aggressive)",
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -572,78 +348,24 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": [
-            "smelling_salts",
-            "liquid_adrenaline"
-          ]
+          "boosts": [],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "spell": null,
+          "setupName": "Max fang"
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 26382
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 13652
-              },
-              "4": {
-                "id": 26384
-              },
-              "7": {
-                "id": 26386
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
-            },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Slash (Slash/Aggressive)",
-            "isSpecial": true,
-            "prayers": [
-              "piety"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
-            },
-            "boosts": [
-              "smelling_salts",
-              "liquid_adrenaline"
-            ],
-            "isFill": true,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "spell": null,
-            "setupName": "Max dragon claws bring"
-          }
-        ]
+        "fillGearSetups": []
       }
     ]
   },
   "Vorkath sang void ei brim": {
+    "expectedDps": 4.32377426,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -653,7 +375,6 @@
         "id": "8059"
       }
     },
-    "expectedDps": 4.32377426,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -669,75 +390,75 @@
             "overload_plus"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 11663
-              },
-              "1": {
-                "id": 21780
-              },
-              "2": {
-                "id": 12018
-              },
-              "3": {
-                "id": 22323
-              },
-              "4": {
-                "id": 13072
-              },
-              "5": {
-                "id": 27253
-              },
-              "7": {
-                "id": 13073
-              },
-              "9": {
-                "id": 8842
-              },
-              "10": {
-                "id": 13235
-              },
-              "12": {
-                "id": 22975
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 11663
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Accurate (Magic/Accurate)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "augury"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 21780
             },
-            "boosts": [
-              "overload_plus"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "setupName": "Max sang"
-          }
-        ]
+            "2": {
+              "id": 12018
+            },
+            "3": {
+              "id": 22323
+            },
+            "4": {
+              "id": 13072
+            },
+            "5": {
+              "id": 27253
+            },
+            "7": {
+              "id": 13073
+            },
+            "9": {
+              "id": 8842
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 22975
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Accurate (Magic/Accurate)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "augury"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          },
+          "boosts": [
+            "overload_plus"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "setupName": "Max sang"
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Nech max kodai ice barrage": {
+    "expectedDps": 7.94313678,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -747,7 +468,6 @@
         "id": "8"
       }
     },
-    "expectedDps": 7.94313678,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -763,75 +483,75 @@
             "smelling_salts"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 25912
-              },
-              "1": {
-                "id": 21780
-              },
-              "2": {
-                "id": 12002
-              },
-              "3": {
-                "id": 21006
-              },
-              "4": {
-                "id": 24666
-              },
-              "5": {
-                "id": 27253
-              },
-              "7": {
-                "id": 24668
-              },
-              "9": {
-                "id": 19544
-              },
-              "10": {
-                "id": 13235
-              },
-              "12": {
-                "id": 11770
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 25912
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Spell (Magic/Autocast)",
-            "spell": "Ice Barrage",
-            "isSpecial": false,
-            "prayers": [
-              "augury"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 21780
             },
-            "boosts": [
-              "smelling_salts"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "setupName": "Kodai wand"
-          }
-        ]
+            "2": {
+              "id": 12002
+            },
+            "3": {
+              "id": 21006
+            },
+            "4": {
+              "id": 24666
+            },
+            "5": {
+              "id": 27253
+            },
+            "7": {
+              "id": 24668
+            },
+            "9": {
+              "id": 19544
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 11770
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Spell (Magic/Autocast)",
+          "spell": "Ice Barrage",
+          "isSpecial": false,
+          "prayers": [
+            "augury"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          },
+          "boosts": [
+            "smelling_salts"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "setupName": "Kodai wand"
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Thermy max harm tome of fire": {
+    "expectedDps": 8.64685476,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -841,7 +561,6 @@
         "id": "499"
       }
     },
-    "expectedDps": 8.64685476,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -855,73 +574,73 @@
           },
           "boosts": []
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 21018
-              },
-              "1": {
-                "id": 21780
-              },
-              "2": {
-                "id": 12002
-              },
-              "3": {
-                "id": 24423
-              },
-              "4": {
-                "id": 24666
-              },
-              "5": {
-                "id": 20714
-              },
-              "7": {
-                "id": 24668
-              },
-              "9": {
-                "id": 19544
-              },
-              "10": {
-                "id": 13235
-              },
-              "12": {
-                "id": 11770
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 21018
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Spell (Magic/Autocast)",
-            "spell": "Fire Surge",
-            "isSpecial": false,
-            "prayers": [
-              "augury"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 21780
             },
-            "boosts": [],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "setupName": "Harmonised nightmare staff"
-          }
-        ]
+            "2": {
+              "id": 12002
+            },
+            "3": {
+              "id": 24423
+            },
+            "4": {
+              "id": 24666
+            },
+            "5": {
+              "id": 20714
+            },
+            "7": {
+              "id": 24668
+            },
+            "9": {
+              "id": 19544
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 11770
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Spell (Magic/Autocast)",
+          "spell": "Fire Surge",
+          "isSpecial": false,
+          "prayers": [
+            "augury"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          },
+          "boosts": [],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "setupName": "Harmonised nightmare staff"
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Mystic max tbow": {
+    "expectedDps": 6.35046859,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -931,7 +650,6 @@
         "id": "7604"
       }
     },
-    "expectedDps": 6.35046859,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -947,72 +665,72 @@
             "overload_plus"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 27235
-              },
-              "1": {
-                "id": 27363
-              },
-              "2": {
-                "id": 19547
-              },
-              "3": {
-                "id": 20997
-              },
-              "4": {
-                "id": 27238
-              },
-              "7": {
-                "id": 27241
-              },
-              "9": {
-                "id": 26235
-              },
-              "10": {
-                "id": 13237
-              },
-              "12": {
-                "id": 11771
-              },
-              "13": {
-                "id": 11212
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 27235
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Rapid (Ranged/Rapid)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "rigour"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 27363
             },
-            "boosts": [
-              "overload_plus"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "setupName": "Max Tbow"
-          }
-        ]
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 20997
+            },
+            "4": {
+              "id": 27238
+            },
+            "7": {
+              "id": 27241
+            },
+            "9": {
+              "id": 26235
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 11212
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "rigour"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          },
+          "boosts": [
+            "overload_plus"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "setupName": "Max Tbow"
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Zebak bowfa corrupted": {
+    "expectedDps": 8.41333061,
     "globalSettings": {
       "iterations": 10000,
       "raidLevel": 0,
@@ -1022,7 +740,6 @@
         "id": "11730"
       }
     },
-    "expectedDps": 8.41333061,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -1038,88 +755,45 @@
             "ranging"
           ]
         },
-        "gearSetups": [
-          {
-            "gear": {
-              "0": {
-                "id": 23971
-              },
-              "1": {
-                "id": 22109
-              },
-              "2": {
-                "id": 19547
-              },
-              "3": {
-                "id": 25867
-              },
-              "4": {
-                "id": 23975
-              },
-              "7": {
-                "id": 23979
-              },
-              "9": {
-                "id": 7462
-              },
-              "10": {
-                "id": 13237
-              },
-              "12": {
-                "id": 11771
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "gear": {
+            "0": {
+              "id": 23971
             },
-            "blowpipeDarts": 11230,
-            "attackStyle": "Rapid (Ranged/Rapid)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "rigour"
-            ],
-            "combatStats": {
-              "attack": 99,
-              "strength": 99,
-              "ranged": 99,
-              "magic": 99,
-              "hitpoints": 99
+            "1": {
+              "id": 22109
             },
-            "boosts": [
-              "ranging"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "maxHp": 99,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true,
-            "setupName": "Bow of faerdhinen (c)"
-          }
-        ]
-      }
-    ]
-  },
-  "Zebak 500/4 max fang spec": {
-    "globalSettings": {
-      "iterations": 10000,
-      "teamSize": 1,
-      "raidLevel": 500,
-      "pathLevel": 4,
-      "npc": {
-        "id": "11730"
-      }
-    },
-    "expectedDps": 9.03896521,
-    "inputGearSetups": [
-      {
-        "gearSetupSettings": {
-          "statDrains": [],
-          "boosts": [
-            "smelling_salts"
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 25867
+            },
+            "4": {
+              "id": 23975
+            },
+            "7": {
+              "id": 23979
+            },
+            "9": {
+              "id": 7462
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": 11230,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "rigour"
           ],
           "combatStats": {
             "attack": 99,
@@ -1127,69 +801,26 @@
             "ranged": 99,
             "magic": 99,
             "hitpoints": 99
-          }
+          },
+          "boosts": [
+            "ranging"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "maxHp": 99,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "setupName": "Bow of faerdhinen (c)"
         },
-        "gearSetups": [
-          {
-            "setupName": "Max fang",
-            "gear": {
-              "0": {
-                "id": 26382
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 26219
-              },
-              "4": {
-                "id": 26384
-              },
-              "5": {
-                "id": 22322
-              },
-              "7": {
-                "id": 26386
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
-            },
-            "blowpipeDarts": {
-              "id": 11230
-            },
-            "attackStyle": "Lunge (Stab/Aggressive)",
-            "spell": null,
-            "isSpecial": true,
-            "prayers": [
-              "piety"
-            ],
-            "isFill": true,
-            "conditions": [],
-            "statDrain": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true
-          }
-        ]
+        "fillGearSetups": []
       }
     ]
   },
   "Olm head CM max blowpipe": {
+    "expectedDps": 8.65877863,
     "globalSettings": {
       "iterations": 10000,
       "teamSize": 1,
@@ -1199,7 +830,6 @@
         "id": "7554"
       }
     },
-    "expectedDps": 8.65877863,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -1215,63 +845,63 @@
             "hitpoints": 99
           }
         },
-        "gearSetups": [
-          {
-            "setupName": "Max blowpipe",
-            "gear": {
-              "0": {
-                "id": 27235
-              },
-              "1": {
-                "id": 27363
-              },
-              "2": {
-                "id": 19547
-              },
-              "3": {
-                "id": 12926
-              },
-              "4": {
-                "id": 27238
-              },
-              "5": null,
-              "7": {
-                "id": 27241
-              },
-              "9": {
-                "id": 26235
-              },
-              "10": {
-                "id": 13237
-              },
-              "12": {
-                "id": 11771
-              },
-              "13": null
+        "mainGearSetup": {
+          "setupName": "Max blowpipe",
+          "gear": {
+            "0": {
+              "id": 27235
             },
-            "blowpipeDarts": {
-              "id": 11230
+            "1": {
+              "id": 27363
             },
-            "attackStyle": "Rapid (Ranged/Rapid)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "rigour"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "statDrain": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true
-          }
-        ]
+            "2": {
+              "id": 19547
+            },
+            "3": {
+              "id": 12926
+            },
+            "4": {
+              "id": 27238
+            },
+            "5": null,
+            "7": {
+              "id": 27241
+            },
+            "9": {
+              "id": 26235
+            },
+            "10": {
+              "id": 13237
+            },
+            "12": {
+              "id": 11771
+            },
+            "13": null
+          },
+          "blowpipeDarts": {
+            "id": 11230
+          },
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "rigour"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "statDrain": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Olm melee hand scythe crush 1 dwh 50 bgs": {
+    "expectedDps": 11.55880847,
     "globalSettings": {
       "iterations": 10000,
       "teamSize": 1,
@@ -1281,7 +911,6 @@
         "id": "7552"
       }
     },
-    "expectedDps": 11.55880847,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -1306,65 +935,65 @@
             "hitpoints": 99
           }
         },
-        "gearSetups": [
-          {
-            "setupName": "Max scythe dwh",
-            "gear": {
-              "0": {
-                "id": 24419
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 22325
-              },
-              "4": {
-                "id": 24420
-              },
-              "5": null,
-              "7": {
-                "id": 24421
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "setupName": "Max scythe dwh",
+          "gear": {
+            "0": {
+              "id": 24419
             },
-            "blowpipeDarts": {
-              "id": 11230
+            "1": {
+              "id": 21285
             },
-            "attackStyle": "Jab (Crush/Aggressive)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "piety"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "statDrain": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true
-          }
-        ]
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 22325
+            },
+            "4": {
+              "id": 24420
+            },
+            "5": null,
+            "7": {
+              "id": 24421
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": {
+            "id": 11230
+          },
+          "attackStyle": "Jab (Crush/Aggressive)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "statDrain": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Sote 3 man max rapier 3 dwh": {
+    "expectedDps": 8.96201207,
     "globalSettings": {
       "iterations": 1000,
       "teamSize": 3,
@@ -1374,7 +1003,6 @@
         "id": "8387"
       }
     },
-    "expectedDps": 8.96201207,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -1396,67 +1024,67 @@
             "hitpoints": 99
           }
         },
-        "gearSetups": [
-          {
-            "setupName": "Max rapier",
-            "gear": {
-              "0": {
-                "id": 26382
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 22324
-              },
-              "4": {
-                "id": 26384
-              },
-              "5": {
-                "id": 22322
-              },
-              "7": {
-                "id": 26386
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "setupName": "Max rapier",
+          "gear": {
+            "0": {
+              "id": 26382
             },
-            "blowpipeDarts": {
-              "id": 11230
+            "1": {
+              "id": 21285
             },
-            "attackStyle": "Lunge (Stab/Aggressive)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "piety"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "statDrain": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true
-          }
-        ]
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 22324
+            },
+            "4": {
+              "id": 26384
+            },
+            "5": {
+              "id": 22322
+            },
+            "7": {
+              "id": 26386
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": {
+            "id": 11230
+          },
+          "attackStyle": "Lunge (Stab/Aggressive)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "statDrain": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        "fillGearSetups": []
       }
     ]
   },
   "Skotizo max arclight 4 arc": {
+    "expectedDps": 9.05897691,
     "globalSettings": {
       "iterations": 1000,
       "teamSize": 1,
@@ -1466,7 +1094,6 @@
         "id": "7286"
       }
     },
-    "expectedDps": 9.05897691,
     "inputGearSetups": [
       {
         "gearSetupSettings": {
@@ -1488,63 +1115,62 @@
             "hitpoints": 99
           }
         },
-        "gearSetups": [
-          {
-            "setupName": "Arclight",
-            "gear": {
-              "0": {
-                "id": 26382
-              },
-              "1": {
-                "id": 21285
-              },
-              "2": {
-                "id": 19553
-              },
-              "3": {
-                "id": 19675
-              },
-              "4": {
-                "id": 26384
-              },
-              "5": {
-                "id": 22322
-              },
-              "7": {
-                "id": 26386
-              },
-              "9": {
-                "id": 22981
-              },
-              "10": {
-                "id": 13239
-              },
-              "12": {
-                "id": 11773
-              },
-              "13": {
-                "id": 22947
-              }
+        "mainGearSetup": {
+          "setupName": "Arclight",
+          "gear": {
+            "0": {
+              "id": 26382
             },
-            "blowpipeDarts": {
-              "id": 11230
+            "1": {
+              "id": 21285
             },
-            "attackStyle": "Slash (Slash/Aggressive)",
-            "spell": null,
-            "isSpecial": false,
-            "prayers": [
-              "piety"
-            ],
-            "isFill": false,
-            "conditions": [],
-            "statDrain": [],
-            "isOnSlayerTask": true,
-            "isInWilderness": true,
-            "currentHp": 1,
-            "miningLvl": 99,
-            "isKandarinDiary": true
-          }
-        ]
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 19675
+            },
+            "4": {
+              "id": 26384
+            },
+            "5": {
+              "id": 22322
+            },
+            "7": {
+              "id": 26386
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": {
+            "id": 11230
+          },
+          "attackStyle": "Slash (Slash/Aggressive)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
+          "isFill": false,
+          "conditions": [],
+          "statDrain": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        "fillGearSetups": []
       }
     ]
   }
