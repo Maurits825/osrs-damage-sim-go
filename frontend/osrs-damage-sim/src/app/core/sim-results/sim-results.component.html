@@ -13,14 +13,14 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let simStats of damageSimResults.ttk_stats">
+        <ng-container *ngFor="let labels of damageSimResults.labels; let setupIndex = index">
           <tr class="text-end">
-            <th scope="row" class="text-start">{{ simStats.label }}</th>
-            <td>{{ simStats.average }}</td>
-            <td>{{ simStats.most_frequent }}</td>
-            <td>{{ simStats.minimum }}</td>
-            <td>{{ simStats.maximum }}</td>
-            <td>{{ simStats.chance_to_kill[1] }}</td>
+            <th scope="row" class="text-start">{{ labels.input_gear_setup_label }}</th>
+            <td>{{ damageSimResults.ttk_stats[setupIndex].average }}</td>
+            <td>{{ damageSimResults.ttk_stats[setupIndex].most_frequent }}</td>
+            <td>{{ damageSimResults.ttk_stats[setupIndex].minimum }}</td>
+            <td>{{ damageSimResults.ttk_stats[setupIndex].maximum }}</td>
+            <td>{{ damageSimResults.ttk_stats[setupIndex].chance_to_kill[1] }}</td>
           </tr>
         </ng-container>
       </tbody>
@@ -47,17 +47,19 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let simDpsSetup of damageSimResults.sim_dps_stats; let setupIndex = index">
+        <ng-container *ngFor="let labels of damageSimResults.labels; let setupIndex = index">
           <tr>
-            <td colspan="7" class="table-active">Setup - {{ setupIndex + 1 }}</td>
+            <td colspan="7" class="table-active">
+              Setup - {{ setupIndex + 1 }} -- {{ labels.gear_setup_settings_label }}
+            </td>
           </tr>
-          <ng-container *ngFor="let simDps of simDpsSetup; let gearIndex = index">
+          <ng-container *ngFor="let allWeaponLabels of labels.all_weapon_labels; let gearIndex = index">
             <tr class="text-end">
-              <th scope="row" class="text-start">{{ simDps.label }}</th>
+              <th scope="row" class="text-start">{{ allWeaponLabels }}</th>
               <td>{{ damageSimResults.theoretical_dps[setupIndex][gearIndex] | number : "1.2-2" }}</td>
               <td>{{ damageSimResults.max_hit[setupIndex][gearIndex] }}</td>
               <td>{{ damageSimResults.accuracy[setupIndex][gearIndex] | number : "1.2-2" }}%</td>
-              <td>{{ simDps.average | number : "1.2-2" }}</td>
+              <td>{{ damageSimResults.sim_dps_stats[setupIndex][gearIndex].average | number : "1.2-2" }}</td>
               <td>{{ damageSimResults.total_damage_stats[setupIndex][gearIndex].average | number : "1.2-2" }}</td>
               <td>{{ damageSimResults.attack_count_stats[setupIndex][gearIndex].average | number : "1.2-2" }}</td>
             </tr>

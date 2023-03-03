@@ -28,7 +28,16 @@ class TotalDamageSimData:
 
 
 @dataclass()
+class InputGearSetupLabels:
+    input_gear_setup_label: str
+    gear_setup_settings_label: str
+    all_weapon_labels: list[str]
+
+
+@dataclass()
 class DamageSimResults:
+    labels: list[InputGearSetupLabels]
+
     ttk_stats: list[TimeSimStats]
     total_damage_stats: list[list[SimStats]]
     attack_count_stats: list[list[SimStats]]

@@ -7,6 +7,6 @@ from model.npc.combat_stats import CombatStats
 
 @dataclass()
 class GearSetupSettings:
-    stat_drains: list[StatDrain]
-    boosts: list[BoostType]
     combat_stats: CombatStats
+    boosts: list[BoostType]
+    stat_drains: list[StatDrain]

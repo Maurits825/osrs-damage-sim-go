@@ -1,8 +1,8 @@
 export const FILTER_PATHS = [
-  /inputGearSetups.*name/,
-  /inputGearSetups.*icon/,
-  /inputGearSetups.*attackStyles/,
-  /inputGearSetups.*attackType/,
-  /inputGearSetups.*specialAttackCost/,
-  /inputGearSetups.*presetName/,
+  /(?:mainGearSetup|fillGearSetups).*name/,
+  /(?:mainGearSetup|fillGearSetups).*icon/,
+  /(?:mainGearSetup|fillGearSetups).*attackStyles/,
+  /(?:mainGearSetup|fillGearSetups).*attackType/,
+  /(?:mainGearSetup|fillGearSetups).*specialAttackCost/,
+  /(?:mainGearSetup|fillGearSetups).*presetName/,
 ];

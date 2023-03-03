@@ -10,8 +10,6 @@ class TimeSimStats:
 
     chance_to_kill: list[str]
 
-    label: str = None
-
 
 @dataclass()
 class SimStats:
@@ -21,5 +19,3 @@ class SimStats:
     most_frequent: int
 
     chance_to_kill: list
-
-    label: str = None

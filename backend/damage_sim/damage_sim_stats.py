@@ -1,13 +1,20 @@
 import math
+
 import numpy as np
 
 from constants import TICK_LENGTH
 from model.boost import BoostType
-from model.damage_sim_results import TotalDamageSimData, DamageSimResults
+from model.damage_sim_results import TotalDamageSimData, DamageSimResults, InputGearSetupLabels
+from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.input_setup import InputSetup
+from model.input_setup.stat_drain import StatDrain
+from model.npc.combat_stats import CombatStats
 from model.sim_stats import SimStats, TimeSimStats
 from weapon import Weapon
+from weapons.arclight import Arclight
+from weapons.bandos_godsword import BandosGodsword
+from weapons.dragon_warhammer import DragonWarhammer
 
 BOOST_NAME = {
     BoostType.SMELLING_SALTS: "Salt",
@@ -19,10 +26,18 @@ BOOST_NAME = {
     BoostType.OVERLOAD_PLUS: "Overload+",
 }
 
+STAT_DRAIN_NAME = {
+    DragonWarhammer: "DWH",
+    BandosGodsword: "BGS",
+    Arclight: "Arclight",
+}
+
+MAX_COMBAT_STATS = 99
+
 
 class DamageSimStats:
     @staticmethod
-    def get_data_stats(data, label: str) -> SimStats:
+    def get_data_stats(data) -> SimStats:
         np_data = np.array(data)
         average = np.average(np_data)
         maximum = np.max(np_data)
@@ -40,7 +55,7 @@ class DamageSimStats:
         except TypeError:
             frequent = 0
 
-        return SimStats(float(average), int(maximum), int(minimum), int(frequent), list(chance_to_kill), label)
+        return SimStats(float(average), int(maximum), int(minimum), int(frequent), list(chance_to_kill))
 
     @staticmethod
     def get_ticks_stats(sim_stats: SimStats) -> TimeSimStats:
@@ -50,21 +65,17 @@ class DamageSimStats:
             DamageSimStats.format_ticks_to_time(sim_stats.minimum),
             DamageSimStats.format_ticks_to_time(sim_stats.most_frequent),
             [DamageSimStats.format_ticks_to_time(chance) for chance in sim_stats.chance_to_kill],
-            sim_stats.label
         )
 
     @staticmethod
-    def get_data_2d_stats(data_list2d, input_gear_setup: InputGearSetup) -> list[SimStats]:
+    def get_data_2d_stats(data_list2d) -> list[SimStats]:
         sim_stats_list = []
         data_list = []
         for index in range(len(data_list2d[0])):
             for data in data_list2d:
                 data_list.append(data[index])
 
-            sim_stats_list.append(DamageSimStats.get_data_stats(
-                data_list,
-                DamageSimStats.get_weapon_label(input_gear_setup.weapons[index], input_gear_setup))
-            )
+            sim_stats_list.append(DamageSimStats.get_data_stats(data_list))
             data_list.clear()
         return sim_stats_list
 
@@ -114,28 +125,100 @@ class DamageSimStats:
         print(text[:-1])
 
     @staticmethod
-    def get_input_gear_setup_label(input_gear_setup: InputGearSetup):
-        label = ""
-        for weapon in input_gear_setup.weapons:
-            label += DamageSimStats.get_weapon_label(weapon, input_gear_setup) + ", "
-        return label[:-2]
+    def get_input_gear_setup_label(input_gear_setup: InputGearSetup) -> InputGearSetupLabels:
+        gear_setup_settings_label = DamageSimStats.get_gear_setup_settings_label(input_gear_setup.gear_setup_settings)
+        all_weapon_labels = DamageSimStats.get_all_weapons_label(input_gear_setup.all_weapons)
+
+        #TODO
+        input_gear_setup_label = gear_setup_settings_label + " -- "
+        for weapon_label in all_weapon_labels:
+            input_gear_setup_label += weapon_label + ", "
+
+        return InputGearSetupLabels(input_gear_setup_label[:-2], gear_setup_settings_label, all_weapon_labels)
 
     @staticmethod
-    def get_weapon_label(weapon: Weapon, input_gear_setup: InputGearSetup):
+    def get_all_weapons_label(all_weapons: list[Weapon]) -> list[str]:
+        weapon_labels = []
+        for weapon in all_weapons:
+            weapon_labels.append(DamageSimStats.get_weapon_label(weapon))
+        return weapon_labels
+
+    @staticmethod
+    def get_weapon_label(weapon: Weapon) -> str:
         label = ""
         gear = weapon.gear_setup
         prayer_and_boost_text = ""
         for prayer in gear.prayers:
             prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
 
-        for boost in input_gear_setup.gear_setup_settings.boosts:
-            prayer_and_boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower()) + ", "
-
         if prayer_and_boost_text:
             prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
 
         label = label + (gear.name or "unnamed") + prayer_and_boost_text
         return label
+
+    @staticmethod
+    def get_gear_setup_settings_label(gear_setup_settings: GearSetupSettings) -> str:
+        gear_setup_settings_label = ""
+        combat_stats_text = DamageSimStats.get_combat_stats_label(gear_setup_settings.combat_stats)
+        boost_text = DamageSimStats.get_boost_label(gear_setup_settings.boosts)
+        stat_drain_text = DamageSimStats.get_stat_drain_label(gear_setup_settings.stat_drains)
+
+        for text in [combat_stats_text, boost_text, stat_drain_text]:
+            if text:
+                gear_setup_settings_label += text + ", "
+
+        return gear_setup_settings_label[:-2]
+
+    @staticmethod
+    def get_stat_drain_label(stat_drains: list[StatDrain]) -> str | None:
+        stat_drain_text = ""
+        for stat_drain in stat_drains:
+            stat_drain_text += (STAT_DRAIN_NAME[stat_drain.weapon] + ": " + str(stat_drain.value) + " " +
+                                str(stat_drain.weapon.stat_drain_type.name).lower() + ", ")
+
+        if stat_drain_text:
+            return "Stat drain: " + stat_drain_text[:-2]
+
+        return None
+
+    @staticmethod
+    def get_boost_label(boosts: list[BoostType]) -> str | None:
+        boost_text = ""
+        for boost in boosts:
+            boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower()) + ", "
+
+        if boost_text:
+            return "Boosts: " + boost_text[:-2]
+
+        return None
+
+    @staticmethod
+    def get_combat_stats_label(combat_stats: CombatStats) -> str | None:
+        stats_text = ""
+
+        if combat_stats.hitpoints != MAX_COMBAT_STATS:
+            stats_text += "hp: " + str(combat_stats.hitpoints) + ", "
+
+        if combat_stats.attack != MAX_COMBAT_STATS:
+            stats_text += "att: " + str(combat_stats.attack) + ", "
+
+        if combat_stats.strength != MAX_COMBAT_STATS:
+            stats_text += "str: " + str(combat_stats.strength) + ", "
+
+        if combat_stats.defence != MAX_COMBAT_STATS:
+            stats_text += "def: " + str(combat_stats.defence) + ", "
+
+        if combat_stats.magic != MAX_COMBAT_STATS:
+            stats_text += "magic: " + str(combat_stats.magic) + ", "
+
+        if combat_stats.ranged != MAX_COMBAT_STATS:
+            stats_text += "ranged: " + str(combat_stats.ranged) + ", "
+
+        if stats_text:
+            return "Combat stats: " + stats_text[:-2]
+
+        return None
 
     @staticmethod
     def get_graph_title_info(input_setup: InputSetup):
@@ -153,20 +236,18 @@ class DamageSimStats:
         return title
 
     @staticmethod
-    def populate_damage_sim_stats(damage_sim_results: DamageSimResults, sim_data: TotalDamageSimData,
-                                  input_gear_setup: InputGearSetup) -> SimStats:
-        ttk_stats = DamageSimStats.get_data_stats(
-            sim_data.ticks_to_kill, DamageSimStats.get_input_gear_setup_label(input_gear_setup)
-        )
+    def populate_damage_sim_results(damage_sim_results: DamageSimResults, sim_data: TotalDamageSimData) -> SimStats:
+
+        ttk_stats = DamageSimStats.get_data_stats(sim_data.ticks_to_kill)
         damage_sim_results.ttk_stats.append(DamageSimStats.get_ticks_stats(ttk_stats))
 
-        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps, input_gear_setup)
+        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps)
         damage_sim_results.sim_dps_stats.append(sim_dps_stats)
 
-        total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg, input_gear_setup)
+        total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg)
         damage_sim_results.total_damage_stats.append(total_damage_stats)
 
-        attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count, input_gear_setup)
+        attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count)
         damage_sim_results.attack_count_stats.append(attack_count_stats)
 
         damage_sim_results.cumulative_chances.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))

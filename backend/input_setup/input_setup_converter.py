@@ -39,13 +39,18 @@ class InputSetupConverter:
             weapons = []
             gear_setup_settings = InputSetupConverter.get_gear_setup_settings(input_gear_setup["gearSetupSettings"])
 
-            for gear_setup_dict in input_gear_setup["gearSetups"]:
+            main_gear_setup, weapon_item = InputSetupConverter.get_gear_setup(input_gear_setup["mainGearSetup"])
+            main_weapon = WeaponLoader.load_weapon(
+                weapon_item.name, main_gear_setup, gear_setup_settings, npc, raid_level
+            )
+
+            for gear_setup_dict in input_gear_setup["fillGearSetups"]:
                 gear_setup, weapon_item = InputSetupConverter.get_gear_setup(gear_setup_dict)
                 weapon = WeaponLoader.load_weapon(weapon_item.name, gear_setup, gear_setup_settings, npc, raid_level)
 
                 weapons.append(weapon)
 
-            input_gear_setups.append(InputGearSetup(gear_setup_settings, weapons))
+            input_gear_setups.append(InputGearSetup(gear_setup_settings, main_weapon, weapons))
 
         global_settings = GlobalSettings(npc, raid_level, path_level, json_data["globalSettings"]["teamSize"],
                                          json_data["globalSettings"]["iterations"])
@@ -107,7 +112,6 @@ class InputSetupConverter:
             attack_style=attack_style,
             spell=gear_setup["spell"],
             prayers=prayers,
-            is_fill=gear_setup["isFill"],
             conditions=conditions,
             equipped_gear=equipped_gear,
             is_special_attack=gear_setup["isSpecial"],
@@ -132,7 +136,7 @@ class InputSetupConverter:
                                    magic=gear_setup_settings["combatStats"]["magic"],
                                    ranged=gear_setup_settings["combatStats"]["ranged"])
 
-        return GearSetupSettings(stat_drains, boosts, combat_stats)
+        return GearSetupSettings(combat_stats, boosts, stat_drains)
 
     @staticmethod
     def get_raid_level(npc: NpcStats, json_data):

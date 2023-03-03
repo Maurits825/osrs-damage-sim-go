@@ -10,12 +10,16 @@ from model.npc.npc_stats import NpcStats
 from model.stat_drain_type import StatDrainType
 from weapon import Weapon
 
+MAIN_WEAPON_INDEX = 0
+
 
 class DamageSim:
     def __init__(self, npc: NpcStats, input_gear_setup: InputGearSetup):
         self.npc = npc
 
-        self.weapons_setups = input_gear_setup.weapons
+        self.main_weapon: Weapon = input_gear_setup.main_weapon
+        self.fill_weapons: list[Weapon] = input_gear_setup.fill_weapons
+        self.all_weapons = [self.main_weapon, *self.fill_weapons]
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
 
         self.combat_stats = self.gear_setup_settings.combat_stats
@@ -23,9 +27,7 @@ class DamageSim:
 
         self.sim_data: SingleDamageSimData = SingleDamageSimData(0, [], [], [])
 
-        self.main_weapon: Weapon | None = None
-        self.main_weapon_index = 0
-        self.current_weapon: Weapon | None = None
+        self.current_weapon: Weapon = self.main_weapon
         self.current_weapon_index = 0
 
         self.special_attack = 0
@@ -46,7 +48,7 @@ class DamageSim:
         self.combat_stats.set_stats(self.initial_combat_stats)
 
         self.sim_data = SingleDamageSimData(0, [], [], [])
-        for index, _ in enumerate(self.weapons_setups):
+        for index, _ in enumerate(self.all_weapons):
             self.sim_data.gear_total_dmg.append(0)
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
@@ -73,7 +75,7 @@ class DamageSim:
         # remove last weapon attack time
         self.sim_data.ticks_to_kill -= self.current_weapon.gear_setup.gear_stats.attack_speed
 
-        for index, weapon in enumerate(self.weapons_setups):
+        for index, weapon in enumerate(self.all_weapons):
             self.sim_data.gear_dps[index] = DamageSim.get_sim_dps(
                 self.sim_data.gear_total_dmg[index],
                 self.sim_data.gear_attack_count[index],
@@ -83,10 +85,7 @@ class DamageSim:
         return self.sim_data
 
     def get_next_weapon(self) -> tuple[int, Weapon]:
-        for index, weapon in enumerate(self.weapons_setups):
-            if not weapon.gear_setup.is_fill:
-                continue
-
+        for index, weapon in enumerate(self.fill_weapons):
             use_fill_weapon = ConditionEvaluator.evaluate_condition(
                     weapon.gear_setup.conditions, self.npc.combat_stats.hitpoints,
                     self.sim_data.gear_total_dmg[self.current_weapon_index],
@@ -98,9 +97,9 @@ class DamageSim:
                          self.special_attack_cost[index] <= self.special_attack)):
                     return index, weapon
                 else:
-                    return self.main_weapon_index, self.main_weapon
+                    return MAIN_WEAPON_INDEX, self.main_weapon
 
-        return self.main_weapon_index, self.main_weapon
+        return MAIN_WEAPON_INDEX, self.main_weapon
 
     def regenerate_special_attack(self):
         if self.special_attack == MAX_SPECIAL_ATTACK:
@@ -120,13 +119,8 @@ class DamageSim:
 
         self.reset_npc_combat_stats()
 
-        self.main_weapon = self.weapons_setups[0]
-        self.main_weapon_index = 0
-        for index, weapon in enumerate(self.weapons_setups):
-            if not weapon.gear_setup.is_fill:
-                self.main_weapon = weapon
-                self.main_weapon_index = index
-
+        self.special_attack_cost = [0]
+        for index, weapon in enumerate(self.fill_weapons):
             if LIGHTBEARER in weapon.gear_setup.equipped_gear.ids:
                 self.ticks_to_spec_regen.append(SPEC_REGEN_TICKS / 2)
             else:
@@ -157,7 +151,7 @@ class DamageSim:
         theoretical_dps = []
         max_hit = []
         accuracy = []
-        for weapon in self.weapons_setups:
+        for weapon in self.all_weapons:
             theoretical_dps.append(weapon.get_dps())
             max_hit.append(weapon.get_max_hit())
             accuracy.append(weapon.get_accuracy() * 100)

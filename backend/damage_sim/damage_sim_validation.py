@@ -13,4 +13,8 @@ class DamageSimValidation:
         if iterations > MAX_ITERATIONS:
             return False
 
+        for input_gear_setup in input_setup_json["inputGearSetups"]:
+            if input_gear_setup["mainGearSetup"]["isSpecial"]:
+                return False
+
         return True

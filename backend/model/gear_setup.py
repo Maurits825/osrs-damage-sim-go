@@ -15,7 +15,6 @@ class GearSetup:
     spell: str
     prayers: list[Prayer]
 
-    is_fill: bool
     conditions: list[Condition]
 
     equipped_gear: EquippedGear

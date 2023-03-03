@@ -15,19 +15,20 @@ class DamageSimRunner:
 
     def run(self, input_setup: InputSetup) -> DamageSimResults:
 
-        damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], {})  # TODO better way?
+        damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], [], {})  # TODO better way?
         ttk_tick_stats = []
         ttk_list = []
         for input_gear_setup in input_setup.input_gear_setups:
+            input_gear_setup_labels = DamageSimStats.get_input_gear_setup_label(input_gear_setup)
+            damage_sim_results.labels.append(input_gear_setup_labels)
+
             sim_data, gear_setup_dps_stats = self.run_damage_sim(input_setup.global_settings, input_gear_setup)
 
             damage_sim_results.theoretical_dps.append(gear_setup_dps_stats.theoretical_dps)
             damage_sim_results.max_hit.append(gear_setup_dps_stats.max_hit)
             damage_sim_results.accuracy.append(gear_setup_dps_stats.accuracy)
 
-            ttk_tick_stat = DamageSimStats.populate_damage_sim_stats(
-                damage_sim_results, sim_data, input_gear_setup,
-            )
+            ttk_tick_stat = DamageSimStats.populate_damage_sim_results(damage_sim_results, sim_data)
             ttk_tick_stats.append(ttk_tick_stat)
 
             ttk_list.append(sim_data.ticks_to_kill)
