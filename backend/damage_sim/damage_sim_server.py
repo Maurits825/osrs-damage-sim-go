@@ -65,6 +65,7 @@ def get_all_spells():
 
 
 @app.route("/npcs", methods=["GET"])
+@compress.compressed()
 def get_npcs():
     return WikiData().get_unique_npcs()
 
