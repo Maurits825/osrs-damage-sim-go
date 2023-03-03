@@ -1,5 +1,3 @@
-from matplotlib.figure import Figure
-
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
@@ -33,8 +31,11 @@ class DamageSimRunner:
 
             ttk_list.append(sim_data.ticks_to_kill)
 
+        graph_labels = [label.input_gear_setup_label for label in damage_sim_results.labels]
         min_ticks, max_ticks = DamageSimStats.get_min_and_max_ticks(ttk_tick_stats)
-        damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(min_ticks, max_ticks, input_setup, ttk_list)
+        damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(
+            min_ticks, max_ticks, graph_labels, input_setup, ttk_list
+        )
 
         return damage_sim_results
 

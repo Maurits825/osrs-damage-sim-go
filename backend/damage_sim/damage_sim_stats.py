@@ -6,11 +6,12 @@ from constants import TICK_LENGTH
 from model.boost import BoostType
 from model.damage_sim_results import TotalDamageSimData, DamageSimResults, InputGearSetupLabels
 from model.input_setup.gear_setup_settings import GearSetupSettings
+from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
-from model.input_setup.input_setup import InputSetup
 from model.input_setup.stat_drain import StatDrain
 from model.npc.combat_stats import CombatStats
 from model.sim_stats import SimStats, TimeSimStats
+from model.stat_drain_type import StatDrainType
 from weapon import Weapon
 from weapons.arclight import Arclight
 from weapons.bandos_godsword import BandosGodsword
@@ -30,6 +31,11 @@ STAT_DRAIN_NAME = {
     DragonWarhammer: "DWH",
     BandosGodsword: "BGS",
     Arclight: "Arclight",
+}
+
+STAT_DRAIN_TYPE = {
+    StatDrainType.DAMAGE: "dmg",
+    StatDrainType.HITS: "hits",
 }
 
 MAX_COMBAT_STATS = 99
@@ -129,8 +135,7 @@ class DamageSimStats:
         gear_setup_settings_label = DamageSimStats.get_gear_setup_settings_label(input_gear_setup.gear_setup_settings)
         all_weapon_labels = DamageSimStats.get_all_weapons_label(input_gear_setup.all_weapons)
 
-        #TODO
-        input_gear_setup_label = gear_setup_settings_label + " -- "
+        input_gear_setup_label = gear_setup_settings_label + " -> "
         for weapon_label in all_weapon_labels:
             input_gear_setup_label += weapon_label + ", "
 
@@ -166,7 +171,7 @@ class DamageSimStats:
 
         for text in [combat_stats_text, boost_text, stat_drain_text]:
             if text:
-                gear_setup_settings_label += text + ", "
+                gear_setup_settings_label += text + " | "
 
         return gear_setup_settings_label[:-2]
 
@@ -175,10 +180,10 @@ class DamageSimStats:
         stat_drain_text = ""
         for stat_drain in stat_drains:
             stat_drain_text += (STAT_DRAIN_NAME[stat_drain.weapon] + ": " + str(stat_drain.value) + " " +
-                                str(stat_drain.weapon.stat_drain_type.name).lower() + ", ")
+                                STAT_DRAIN_TYPE[stat_drain.weapon.stat_drain_type] + ", ")
 
         if stat_drain_text:
-            return "Stat drain: " + stat_drain_text[:-2]
+            return "Stat drain - " + stat_drain_text[:-2]
 
         return None
 
@@ -189,7 +194,7 @@ class DamageSimStats:
             boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower()) + ", "
 
         if boost_text:
-            return "Boosts: " + boost_text[:-2]
+            return "Boosts - " + boost_text[:-2]
 
         return None
 
@@ -216,22 +221,22 @@ class DamageSimStats:
             stats_text += "ranged: " + str(combat_stats.ranged) + ", "
 
         if stats_text:
-            return "Combat stats: " + stats_text[:-2]
+            return "Combat stats - " + stats_text[:-2]
 
         return None
 
     @staticmethod
-    def get_graph_title_info(input_setup: InputSetup):
-        title = (input_setup.global_settings.npc.name +
-                 ", HP: " +
-                 str(input_setup.global_settings.npc.combat_stats.hitpoints))
+    def get_graph_title_info(global_settings: GlobalSettings):
+        title = (global_settings.npc.name +
+                 " | HP: " +
+                 str(global_settings.npc.base_combat_stats.hitpoints))
 
-        if input_setup.global_settings.raid_level:
-            title += ", raid level: " + str(input_setup.global_settings.raid_level)
-            if input_setup.global_settings.path_level:
-                title += ", path level: " + str(input_setup.global_settings.path_level)
+        if global_settings.raid_level:
+            title += " | raid level: " + str(global_settings.raid_level)
+            if global_settings.path_level:
+                title += ", path level: " + str(global_settings.path_level)
 
-        title += ", iterations: " + str(input_setup.global_settings.iterations)
+        title += " | iterations: " + f"{global_settings.iterations:,}"
 
         return title
 

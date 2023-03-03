@@ -30,7 +30,8 @@ class DamageSimGraph:
         for graph in self.graphs.values():
             graph.reset()
 
-    def generate_ttk_probability_figure(self, min_ticks, max_ticks, input_setup: InputSetup, ttk_list: list[list[int]]):
+    def generate_ttk_probability_figure(self, min_ticks, max_ticks, label,
+                                        input_setup: InputSetup, ttk_list: list[list[int]]):
         bins = np.histogram_bin_edges(np.array(ttk_list).flatten(), bins="auto")
         x_list = []
         y_list = []
@@ -47,7 +48,7 @@ class DamageSimGraph:
 
         graph = self.graphs[GraphType.TTK_PROBABILITY]
         for i, input_gear_setup in enumerate(input_setup.input_gear_setups):
-            graph.axes.plot(x_list[i], y_list[i], label=DamageSimStats.get_input_gear_setup_label(input_gear_setup))
+            graph.axes.plot(x_list[i], y_list[i], label=label[i])
 
         x_ticks, interval = DamageSimGraph.get_x_ticks(min_ticks, max_ticks)
         graph.axes.set_xticks(x_ticks[:-1])
@@ -60,19 +61,17 @@ class DamageSimGraph:
         graph.axes.set_ylabel("Probability %")
 
         title = "Time to Kill Count: "
-        title += DamageSimStats.get_graph_title_info(input_setup)
+        title += DamageSimStats.get_graph_title_info(input_setup.global_settings)
 
         DamageSimGraph.format_figure(graph, title)
 
-    def generate_cumulative_figure(self, min_ticks, max_ticks, input_setup: InputSetup, ttk_list: list[list[int]]):
+    def generate_cumulative_figure(self, min_ticks, max_ticks, label,
+                                   input_setup: InputSetup, ttk_list: list[list[int]]):
         graph = self.graphs[GraphType.TTK_CUMULATIVE]
         for index, ttk in enumerate(ttk_list):
             cum_sum = DamageSimStats.get_cumulative_sum(ttk)
             time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
-            graph.axes.plot(
-                time_stamps, cum_sum,
-                label=DamageSimStats.get_input_gear_setup_label(input_setup.input_gear_setups[index])
-            )
+            graph.axes.plot(time_stamps, cum_sum, label=label[index])
         x_ticks, interval = DamageSimGraph.get_x_ticks(min_ticks, max_ticks)
         graph.axes.set_xticks(x_ticks)
         graph.axes.set_yticks(np.arange(0, 1.1, 0.1))
@@ -83,15 +82,15 @@ class DamageSimGraph:
         graph.axes.set_ylabel("Cumulative chance")
 
         title = "Cumulative Time to Kill: "
-        title += DamageSimStats.get_graph_title_info(input_setup)
+        title += DamageSimStats.get_graph_title_info(input_setup.global_settings)
 
         DamageSimGraph.format_figure(graph, title)
 
-    def get_all_graphs(self, min_ticks, max_ticks, input_setup: InputSetup,
+    def get_all_graphs(self, min_ticks, max_ticks, label, input_setup: InputSetup,
                        ttk_list: list[list[int]]) -> dict[GraphType, str]:
         self.reset_plots()
-        self.generate_ttk_probability_figure(min_ticks, max_ticks, input_setup, ttk_list)
-        self.generate_cumulative_figure(min_ticks, max_ticks, input_setup, ttk_list)
+        self.generate_ttk_probability_figure(min_ticks, max_ticks, label, input_setup, ttk_list)
+        self.generate_cumulative_figure(min_ticks, max_ticks, label, input_setup, ttk_list)
 
         graphs = self.encode_graphs()
         return graphs
