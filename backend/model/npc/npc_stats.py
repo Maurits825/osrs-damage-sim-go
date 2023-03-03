@@ -1,4 +1,3 @@
-import math
 from dataclasses import dataclass
 
 from model.npc.aggressive_stats import AggressiveStats

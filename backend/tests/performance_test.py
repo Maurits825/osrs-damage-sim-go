@@ -15,7 +15,7 @@ class PerformanceTest:
     def run(self):
         damage_sim_runner = DamageSimRunner()
         input_setup = InputSetupConverter.get_input_setup(self.input_setups["Olm max tbow"])
-        damage_sim_results = damage_sim_runner.run(input_setup)
+        _ = damage_sim_runner.run(input_setup)
 
 
 if __name__ == '__main__':

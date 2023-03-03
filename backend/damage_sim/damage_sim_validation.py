@@ -5,7 +5,7 @@ class DamageSimValidation:
     @staticmethod
     def validate_setup(input_setup_json) -> bool:
         try:
-            npc_id = input_setup_json["globalSettings"]["npc"]["id"]
+            _ = input_setup_json["globalSettings"]["npc"]["id"]
         except (KeyError, TypeError):
             return False
 
