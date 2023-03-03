@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_compress import Compress
 
 from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
@@ -11,6 +12,10 @@ from wiki_data import WikiData
 app = Flask(__name__)
 CORS(app)
 
+app.config["COMPRESS_REGISTER"] = False  # disable default compression of all eligible requests
+compress = Compress()
+compress.init_app(app)
+
 damage_sim_runner = DamageSimRunner()
 
 
@@ -21,6 +26,7 @@ def get_status():
 
 
 @app.route("/gear-slot-items", methods=["GET"])
+@compress.compressed()
 def get_gear_slot_items():
     return WikiData().get_gear_slot_items()
 
