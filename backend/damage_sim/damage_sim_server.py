@@ -48,15 +48,8 @@ def get_rl_gear():
 
 
 @app.route("/gear-setup-presets", methods=["GET"])
-def get_gear_setups():
-    gear_setups = {}
-
-    for name, item_ids in GearSetupPreset.load_gear().items():
-        gear_setups[name] = {}
-        for item_id in item_ids:
-            gear_setups[name][WikiData.items_json[str(item_id)]["slot"]] = item_id
-
-    return gear_setups
+def get_gear_setup_presets():
+    return GearSetupPreset.get_gear_presets_with_icons()
 
 
 @app.route("/all-spells", methods=["GET"])

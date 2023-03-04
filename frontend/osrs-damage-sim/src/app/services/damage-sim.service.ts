@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
 import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
+import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
@@ -12,7 +13,7 @@ import { Npc } from '../model/osrs/npc.model';
 })
 export class DamageSimService {
   public allGearSlotItems$: Observable<Record<GearSlot, Item[]>>;
-  public gearSetupPresets$: Observable<Record<string, Record<GearSlot, number>>>;
+  public gearSetupPresets$: Observable<GearSetupPreset[]>;
   public allSpells$: Observable<string[]>;
   public allNpcs$: Observable<Npc[]>;
   public allDarts$: Observable<Item[]>;
@@ -46,8 +47,8 @@ export class DamageSimService {
     return this.http.get<Npc[]>(DAMAGE_SIM_SERVER_URL + '/npcs');
   }
 
-  private getGearSetupPresets(): Observable<Record<string, Record<GearSlot, number>>> {
-    return this.http.get<Record<string, Record<GearSlot, number>>>(DAMAGE_SIM_SERVER_URL + '/gear-setup-presets');
+  private getGearSetupPresets(): Observable<GearSetupPreset[]> {
+    return this.http.get<GearSetupPreset[]>(DAMAGE_SIM_SERVER_URL + '/gear-setup-presets');
   }
 
   private getDarts(): Observable<Item[]> {

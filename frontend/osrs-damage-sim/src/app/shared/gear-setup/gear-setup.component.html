@@ -8,19 +8,31 @@
     </div>
   </div>
 
-  <div class="mb-2 d-flex">
-    <div class="row flex-grow-1 align-items-center">
-      <div class="col-auto pe-0"><label>Load setup:</label></div>
-      <div class="col col-md-10 col-lg-6">
-        <ng-select [(ngModel)]="gearSetup.presetName" [clearable]="false" (change)="loadGearSetupPreset($event)">
-          <ng-option *ngFor="let gearSetup of gearSetupPresets | keyvalue" [value]="gearSetup.key">{{
-            gearSetup.key
-          }}</ng-option>
-        </ng-select>
-      </div>
+  <div class="mb-2 d-flex align-items-center">
+    <div><label>Load setup:</label></div>
+    <div class="ms-2 flex-grow-1">
+      <ng-select
+        [(ngModel)]="gearSetup.presetName"
+        [clearable]="false"
+        [items]="gearSetupPresets"
+        bindValue="name"
+        bindLabel="name"
+        (change)="loadGearSetupPreset($event)"
+      >
+        <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
+
+        <ng-template ng-option-tmp let-item="item">
+          <div class="d-flex align-items-center">
+            <div class="text-center" style="width: 35px">
+              <img src="data:image/png;base64,{{ item.icon }}" />
+            </div>
+            <div class="ps-2">{{ item.name }}</div>
+          </div>
+        </ng-template>
+      </ng-select>
     </div>
 
-    <div class="ms-4">
+    <div class="ms-2">
       <button type="button" class="btn btn-primary" (click)="duplicateGearSetup()">
         Duplicate <i class="bi bi-clipboard-plus"></i>
       </button>

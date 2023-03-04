@@ -23,6 +23,7 @@ import { PrayerService } from 'src/app/services/prayer.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { QuickGear } from 'src/app/model/damage-sim/quick-gear.model';
+import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -42,7 +43,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   allGearSlotItems: Record<GearSlot, Item[]>;
 
-  gearSetupPresets: Record<string, Record<GearSlot, number>> = {};
+  gearSetupPresets: GearSetupPreset[];
 
   allBoosts = allBoosts;
 
@@ -136,11 +137,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadGearSetupPreset(setupName: string) {
-    const gearIds = this.gearSetupPresets[setupName];
-    this.setCurrentGearByGearSlotAndId(gearIds);
-    this.gearSetup.setupName = setupName;
-    this.gearSetup.presetName = setupName;
+  loadGearSetupPreset(gearSetupPreset: GearSetupPreset) {
+    this.setCurrentGearByIds(gearSetupPreset.gearIds);
+    this.gearSetup.setupName = gearSetupPreset.name;
+    this.gearSetup.presetName = gearSetupPreset.name;
   }
 
   setCurrentGearByGearSlotAndId(gearIds: Record<GearSlot, number>): void {
@@ -156,7 +156,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     });
   }
 
-  setCurrentGearByids(gearIds: number[], clearEmtpy = false): void {
+  setCurrentGearByIds(gearIds: number[], clearEmtpy = false): void {
     this.allGearSlots.forEach((slot: GearSlot) => {
       if (clearEmtpy) {
         this.gearSlotChange(null, slot);
@@ -244,6 +244,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   selectQuickGearSetup(quickGear: QuickGear): void {
-    this.setCurrentGearByids(quickGear.itemIds);
+    this.setCurrentGearByIds(quickGear.itemIds);
   }
 }
