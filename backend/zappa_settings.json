@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "app_function": "damage_sim.damage_sim_server.app",
+        "aws_region": "eu-central-1",
+        "profile_name": "default",
+        "project_name": "backend",
+        "runtime": "python3.9",
+        "s3_bucket": "osrs-dmg-sim-service-s3-bucket"
+    }
+}
