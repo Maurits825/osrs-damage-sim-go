@@ -17,6 +17,7 @@
         [items]="gearSetupPresets"
         bindValue="name"
         bindLabel="name"
+        groupBy="attackType"
         (change)="loadGearSetupPreset($event)"
       >
         <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
@@ -27,6 +28,13 @@
               <img src="data:image/png;base64,{{ item.icon }}" />
             </div>
             <div class="ps-2">{{ item.name }}</div>
+          </div>
+        </ng-template>
+
+        <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+          <div class="d-flex align-items-center">
+            <img style="width: 15px; height: auto" src="assets/img/skills/{{ item.attackType }}.png" />
+            <div class="ms-1">{{ item.attackType | titlecase }}</div>
           </div>
         </ng-template>
       </ng-select>

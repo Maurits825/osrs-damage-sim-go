@@ -38,25 +38,25 @@
   "name": "Max ZCB",
   "gearIds": [27235, 27363, 19547, 26374, 27238, 27241, 26235, 13237, 11771, 21944],
   "iconId": 26374,
-  "attackType": "range"
+  "attackType": "ranged"
 },
   {
     "name": "Max Tbow",
     "gearIds": [27235, 27363, 19547, 20997, 27238, 27241, 26235, 13237, 11771, 11212],
     "iconId": 20997,
-    "attackType": "range"
+    "attackType": "ranged"
   },
   {
     "name": "Max Void Tbow",
     "gearIds": [11664, 27363, 19547, 20997, 13072, 13073, 8842, 13237, 11771, 11212],
     "iconId": 20997,
-    "attackType": "range"
+    "attackType": "ranged"
   },
   {
     "name": "Max Blowpipe",
     "gearIds": [27235, 27363, 19547, 12926, 27238, 27241, 26235, 13237, 11771],
     "iconId": 12926,
-    "attackType": "range"
+    "attackType": "ranged"
   },
   {
     "name": "Max Sang",

@@ -20,7 +20,12 @@ export class DamageSimService {
 
   constructor(private http: HttpClient) {
     this.allGearSlotItems$ = this.getGearSlotItems().pipe(shareReplay(1));
-    this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
+    this.gearSetupPresets$ = this.getGearSetupPresets().pipe(
+      map((presets: GearSetupPreset[]) =>
+        presets.sort((a: GearSetupPreset, b: GearSetupPreset) => a.name.localeCompare(b.name))
+      ),
+      shareReplay(1)
+    );
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
     this.allNpcs$ = this.getNpcs().pipe(shareReplay(1));
     this.allDarts$ = this.getDarts().pipe(shareReplay(1));
