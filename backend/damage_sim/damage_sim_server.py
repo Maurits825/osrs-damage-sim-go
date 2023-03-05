@@ -49,7 +49,7 @@ def get_rl_gear():
 
 @app.route("/gear-setup-presets", methods=["GET"])
 def get_gear_setup_presets():
-    return GearSetupPreset.get_gear_presets_with_icons()
+    return GearSetupPreset.get_gear_setup_presets()
 
 
 @app.route("/all-spells", methods=["GET"])
