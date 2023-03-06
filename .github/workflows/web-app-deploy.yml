@@ -31,7 +31,8 @@ jobs:
         run: |
           ls
           ls dist
+          ls osrs-dmg-sim
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./dist
+          folder: ./frontend
