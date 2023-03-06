@@ -21,7 +21,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm ci
+          npm ci -- --legacy-peer-deps
           npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
 
       - name: Deploy
