@@ -23,11 +23,11 @@ class ConditionEvaluator:
         bool_conditions = []
 
         for condition in conditions:
-            if condition == ConditionVariables.NPC_HITPOINTS:
+            if condition.variable == ConditionVariables.NPC_HITPOINTS:
                 variable = npc_hitpoints
-            elif condition == ConditionVariables.DMG_DEALT:
+            elif condition.variable == ConditionVariables.DMG_DEALT:
                 variable = dmg_dealt
-            elif condition == ConditionVariables.ATTACK_COUNT:
+            elif condition.variable == ConditionVariables.ATTACK_COUNT:
                 variable = attack_count
             else:
                 variable = 0

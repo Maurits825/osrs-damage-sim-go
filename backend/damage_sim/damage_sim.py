@@ -86,16 +86,17 @@ class DamageSim:
 
     def get_next_weapon(self) -> tuple[int, Weapon]:
         for index, weapon in enumerate(self.fill_weapons):
+            fill_weapon_index = index + 1
             use_fill_weapon = ConditionEvaluator.evaluate_condition(
                     weapon.gear_setup.conditions, self.npc.combat_stats.hitpoints,
-                    self.sim_data.gear_total_dmg[self.current_weapon_index],
-                    self.sim_data.gear_attack_count[self.current_weapon_index]
+                    self.sim_data.gear_total_dmg[fill_weapon_index],
+                    self.sim_data.gear_attack_count[fill_weapon_index]
             )
             if use_fill_weapon:
                 if (not weapon.gear_setup.is_special_attack or
                         (weapon.gear_setup.is_special_attack and
-                         self.special_attack_cost[index] <= self.special_attack)):
-                    return index, weapon
+                         self.special_attack_cost[fill_weapon_index] <= self.special_attack)):
+                    return fill_weapon_index, weapon
                 else:
                     return MAIN_WEAPON_INDEX, self.main_weapon
 
@@ -119,8 +120,8 @@ class DamageSim:
 
         self.reset_npc_combat_stats()
 
-        self.special_attack_cost = [0]
-        for index, weapon in enumerate(self.fill_weapons):
+        self.special_attack_cost = []
+        for index, weapon in enumerate(self.all_weapons):
             if LIGHTBEARER in weapon.gear_setup.equipped_gear.ids:
                 self.ticks_to_spec_regen.append(SPEC_REGEN_TICKS / 2)
             else:
@@ -133,10 +134,6 @@ class DamageSim:
 
             weapon.set_combat_stats(self.combat_stats)
 
-            self.sim_data.gear_total_dmg.append(0)
-            self.sim_data.gear_attack_count.append(0)
-            self.sim_data.gear_dps.append(0)
-
     def reset_npc_combat_stats(self):
         self.npc.combat_stats.set_stats(self.npc.base_combat_stats)
 
@@ -145,7 +142,7 @@ class DamageSim:
                 stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
             else:
                 for hit in range(stat_drain.value):
-                    stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
+                    stat_drain.weapon.drain_stats(self.npc, 1)
 
     def get_weapon_dps_stats(self) -> GearSetupDpsStats:
         theoretical_dps = []

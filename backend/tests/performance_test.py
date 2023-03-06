@@ -9,12 +9,12 @@ TEST_RESOURCE_FOLDER = Path(__file__).parent.parent / "tests/resources"
 
 class PerformanceTest:
     def __init__(self):
-        with open(TEST_RESOURCE_FOLDER / "input_setups.json") as f:
+        with open(TEST_RESOURCE_FOLDER / "performance_test_input_setups.json") as f:
             self.input_setups = json.load(f)
 
     def run(self):
         damage_sim_runner = DamageSimRunner()
-        input_setup = InputSetupConverter.get_input_setup(self.input_setups["Olm max tbow"])
+        input_setup = InputSetupConverter.get_input_setup(self.input_setups["Performance test setup 1"])
         _ = damage_sim_runner.run(input_setup)
 
 

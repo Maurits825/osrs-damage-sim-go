@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import math
 import random
 
@@ -52,6 +54,8 @@ class Weapon:
 
         self.max_hit = 0
         self.attack_roll = 0
+        self.target_defence = None
+        self.target_defence_style = None
         self.update_max_hit_and_attack_roll()
 
     def set_npc(self, npc):
@@ -64,6 +68,7 @@ class Weapon:
     def update_max_hit_and_attack_roll(self):
         self.max_hit = self.get_max_hit()
         self.attack_roll = self.get_attack_roll()
+        self.target_defence, self.target_defence_style = self.get_npc_defence_style()
 
     def get_is_brimstone(self):
         return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
@@ -81,8 +86,8 @@ class Weapon:
                 self.gear_setup.gear_stats.attack_speed = 4
 
     def roll_hit(self) -> bool:
-        attack_roll = random.randint(0, self.attack_roll)
-        defence_roll = random.randint(0, self.get_defence_roll())
+        attack_roll = int(random.random() * (self.attack_roll + 1))
+        defence_roll = int(random.random() * (self.get_defence_roll() + 1))
 
         return attack_roll > defence_roll
 
@@ -96,7 +101,7 @@ class Weapon:
 
         damage = 0
         if self.roll_hit():
-            damage = random.randint(0, self.max_hit)
+            damage = int(random.random() * (self.max_hit + 1))
 
         return math.floor(damage * self.damage_multiplier)
 
@@ -131,8 +136,7 @@ class Weapon:
             return self.get_magic_max_hit()
 
     def get_defence_roll(self):
-        target_defence, target_defence_style = self.get_npc_defence_style()
-        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+        defence_roll = DpsCalculator.get_defence_roll(self.target_defence[0], self.target_defence_style)
 
         if self.is_brimstone:
             brimstone_roll = random.randint(1, 4)
@@ -146,7 +150,7 @@ class Weapon:
 
     def get_average_defence_roll(self):
         target_defence, target_defence_style = self.get_npc_defence_style()
-        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
+        defence_roll = DpsCalculator.get_defence_roll(target_defence[0], target_defence_style)
 
         if self.is_brimstone:
             defence_roll -= math.floor(defence_roll * 0.1) / 4
@@ -156,12 +160,12 @@ class Weapon:
 
         return math.floor(defence_roll)
 
-    def get_npc_defence_style(self) -> (int, int):
-        target_defence = 0
+    def get_npc_defence_style(self) -> ([int], int):
+        target_defence = []
         target_defence_style = 0
 
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
-            target_defence = self.npc.combat_stats.defence
+            target_defence = [self.npc.combat_stats.defence]
             if self.gear_setup.attack_style.attack_type == AttackType.STAB:
                 target_defence_style = self.npc.defensive_stats.stab
             elif self.gear_setup.attack_style.attack_type == AttackType.SLASH:
@@ -169,10 +173,10 @@ class Weapon:
             elif self.gear_setup.attack_style.attack_type == AttackType.CRUSH:
                 target_defence_style = self.npc.defensive_stats.crush
         elif self.gear_setup.attack_style.attack_type == AttackType.RANGED:
-            target_defence = self.npc.combat_stats.defence
+            target_defence = [self.npc.combat_stats.defence]
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            target_defence = self.npc.combat_stats.magic
+            target_defence = [self.npc.combat_stats.magic]
             target_defence_style = self.npc.defensive_stats.magic
 
         return target_defence, target_defence_style
