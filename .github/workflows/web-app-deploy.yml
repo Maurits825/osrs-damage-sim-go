@@ -1,19 +1,16 @@
 name: web-app-deploy
 
 on:
-  push:
-    branches:
-      - main
-#   workflow_run:
-#     workflows: [web-app-test]
-#     types: [completed]
-    #TODO branches: [main]
+  workflow_run:
+    workflows: [web-app-test]
+    types: [completed]
+    branches: [main]
 
 jobs:
   deploy:
     name: Deploy to GitHub pages
     runs-on: ubuntu-latest
-    #if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     defaults:
       run:
         working-directory: ./frontend/osrs-damage-sim
