@@ -1,6 +1,12 @@
 import base64
 import io
 import math
+import os
+
+print("Stage: " + os.environ.get('STAGE'))
+if os.environ.get('STAGE') == 'production':
+    print("~~ Setting MPLCONFIGDIR ~~")
+    os.environ['MPLCONFIGDIR'] = "/tmp/matplotlib"
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -20,7 +26,7 @@ class DamageSimGraph:
         matplotlib.use('Agg')
 
         self.plt = plt
-
+        #plt.set_loglevel('WARNING') TODO uncomment
         self.graphs = {
             GraphType.TTK_CUMULATIVE: Graph(self.plt, GRAPH_WIDTH, GRAPH_HEIGHT),
             GraphType.TTK_PROBABILITY: Graph(self.plt, GRAPH_WIDTH, GRAPH_HEIGHT)
@@ -76,7 +82,7 @@ class DamageSimGraph:
         graph.axes.set_xticks(x_ticks)
         graph.axes.set_yticks(np.arange(0, 1.1, 0.1))
 
-        graph.axes.set_xlim(max(min_ticks-interval, 0), x_ticks[-1])
+        graph.axes.set_xlim(max(min_ticks - interval, 0), x_ticks[-1])
 
         graph.axes.set_xlabel("Time to kill")
         graph.axes.set_ylabel("Cumulative chance")
