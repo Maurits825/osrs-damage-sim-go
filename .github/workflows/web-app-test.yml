@@ -19,8 +19,8 @@ jobs:
         working-directory: ./frontend/osrs-damage-sim
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
+      - name: Check out
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
