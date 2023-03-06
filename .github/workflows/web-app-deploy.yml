@@ -31,7 +31,8 @@ jobs:
         run: |
           ls
           ls dist
-          ls osrs-damage-sim
+          ls ../
+          
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
