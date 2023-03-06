@@ -28,12 +28,9 @@ jobs:
           npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
 
       - name: Check env
-        run: |
-          ls
-          ls dist
-          ls ../
+        run: ls
           
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./frontend
+          folder: ./frontend/osrs-damage-sim/dist
