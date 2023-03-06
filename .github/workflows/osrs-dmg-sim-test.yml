@@ -16,7 +16,6 @@ permissions:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
     defaults:
       run:
