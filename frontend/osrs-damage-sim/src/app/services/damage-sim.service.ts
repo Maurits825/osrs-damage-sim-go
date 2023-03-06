@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { DAMAGE_SIM_SERVER_URL } from '../constants.const';
+import { environment } from 'src/environments/environment';
 import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
@@ -18,6 +18,8 @@ export class DamageSimService {
   public allNpcs$: Observable<Npc[]>;
   public allDarts$: Observable<Item[]>;
 
+  private damageSimServiceUrl = environment.OSRS_DAMAGE_SIM_SERVICE_URL;
+
   constructor(private http: HttpClient) {
     this.allGearSlotItems$ = this.getGearSlotItems().pipe(shareReplay(1));
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(
@@ -32,28 +34,28 @@ export class DamageSimService {
   }
 
   public getStatus(): Observable<string> {
-    return this.http.get<string>(DAMAGE_SIM_SERVER_URL + '/status');
+    return this.http.get<string>(this.damageSimServiceUrl + '/status');
   }
 
   public runDamageSim(inputSetupJson: string): Observable<DamageSimResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<DamageSimResults>(DAMAGE_SIM_SERVER_URL + '/run-damage-sim', inputSetupJson, options);
+    return this.http.post<DamageSimResults>(this.damageSimServiceUrl + '/run-damage-sim', inputSetupJson, options);
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {
-    return this.http.get<Record<GearSlot, Item[]>>(DAMAGE_SIM_SERVER_URL + '/gear-slot-items');
+    return this.http.get<Record<GearSlot, Item[]>>(this.damageSimServiceUrl + '/gear-slot-items');
   }
 
   private getSpells(): Observable<string[]> {
-    return this.http.get<string[]>(DAMAGE_SIM_SERVER_URL + '/all-spells').pipe(map((obj) => Object.keys(obj)));
+    return this.http.get<string[]>(this.damageSimServiceUrl + '/all-spells').pipe(map((obj) => Object.keys(obj)));
   }
 
   private getNpcs(): Observable<Npc[]> {
-    return this.http.get<Npc[]>(DAMAGE_SIM_SERVER_URL + '/npcs');
+    return this.http.get<Npc[]>(this.damageSimServiceUrl + '/npcs');
   }
 
   private getGearSetupPresets(): Observable<GearSetupPreset[]> {
-    return this.http.get<GearSetupPreset[]>(DAMAGE_SIM_SERVER_URL + '/gear-setup-presets');
+    return this.http.get<GearSetupPreset[]>(this.damageSimServiceUrl + '/gear-setup-presets');
   }
 
   private getDarts(): Observable<Item[]> {
