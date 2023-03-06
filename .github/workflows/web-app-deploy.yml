@@ -1,9 +1,12 @@
 name: web-app-deploy
 
 on:
-  workflow_run:
-    workflows: [web-app-test]
-    types: [completed]
+  push:
+    branches:
+      - main
+#   workflow_run:
+#     workflows: [web-app-test]
+#     types: [completed]
     #TODO branches: [main]
 
 jobs:
@@ -24,6 +27,10 @@ jobs:
           npm install --legacy-peer-deps
           npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
 
+      - name: Check env
+        run: |
+          ls
+          ls frontend
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
