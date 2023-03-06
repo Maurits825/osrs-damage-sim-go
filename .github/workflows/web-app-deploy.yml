@@ -16,8 +16,15 @@ jobs:
         working-directory: ./frontend/osrs-damage-sim
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
 
       - name: Deploy
-        run: ng deploy --base-href=https://maurits825.github.io/osrs-damage-sim/
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .
