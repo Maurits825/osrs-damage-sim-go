@@ -1,4 +1,4 @@
-name: osrs-dmg-sim-web-app
+name: web-app-test
 
 on:
   # Trigger the workflow on push or pull request,
