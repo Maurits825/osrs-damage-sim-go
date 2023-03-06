@@ -1,0 +1,26 @@
+name: web-app-deploy
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Run linters
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend/osrs-damage-sim
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to GitHub pages
+        run: ng deploy --base-href=https://maurits825.github.io/osrs-damage-sim/
