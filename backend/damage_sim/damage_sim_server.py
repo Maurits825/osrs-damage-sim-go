@@ -10,7 +10,7 @@ from input_setup.rl_gear_input import RlGearInput
 from wiki_data import WikiData
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:4200", "https://maurits825.github.io/osrs-damage-sim/"])
+CORS(app, origins=["http://localhost:4200", "https://maurits825.github.io"])
 
 app.config["COMPRESS_REGISTER"] = False  # disable default compression of all eligible requests
 compress = Compress()
