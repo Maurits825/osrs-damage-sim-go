@@ -27,11 +27,7 @@ jobs:
           npm install --legacy-peer-deps
           npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
 
-      - name: Check env
-        run: |
-          ls
-          ls frontend
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: frontend/osrs-damage-sim/dist"
+          folder: dist
