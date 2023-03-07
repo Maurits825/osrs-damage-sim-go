@@ -47,4 +47,6 @@ jobs:
           aws-region: eu-central-1
           
       - name: Zappa deploy to AWS
-        run: . ./.venv/bin/activate && zappa update production
+        run: |
+          . ./.venv/bin/activate
+          zappa update production
