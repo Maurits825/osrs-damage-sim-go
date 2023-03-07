@@ -1,12 +1,10 @@
 name: osrs-dmg-sim-deploy
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_run:
+    workflows: [osrs-dmg-sim-test]
+    types: [completed]
+    branches: [main]
 
 jobs:
   deploy:
@@ -34,9 +32,11 @@ jobs:
 
       - name: Create venv
         if: steps.cache-venv.outputs.cache-hit != 'true'
-        run: python -m venv ./.venv && . ./.venv/bin/activate && 
-             pip install -r requirements.txt
-             
+        run: |
+          python -m venv ./.venv
+          . ./.venv/bin/activate
+          pip install -r requirements.txt
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -45,4 +45,6 @@ jobs:
           aws-region: eu-central-1
           
       - name: Zappa deploy to AWS
-        run: . ./.venv/bin/activate && zappa update production
+        run: |
+          . ./.venv/bin/activate
+          zappa update production
