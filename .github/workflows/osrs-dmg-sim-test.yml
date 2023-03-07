@@ -44,12 +44,12 @@ jobs:
         
     - name: Install dependencies
       run: |
-        . $VENV_FOLDER/activate
+        . $VENV_FOLDER/bin/activate
         pip install flake8 unittest2
         
     - name: Lint with flake8
       run: |
-        . ./.venv/bin/activate
+        . $VENV_FOLDER/bin/activate
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --exclude $VENV_FOLDER --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
