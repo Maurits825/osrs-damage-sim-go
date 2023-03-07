@@ -1,0 +1,48 @@
+name: osrs-dmg-sim-deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      
+      - name: Cache venv
+        id: cache-venv
+        uses: actions/cache@v3
+        with:
+          path: ./.venv/
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
+
+      - name: Create venv
+        if: steps.cache-venv.outputs.cache-hit != 'true'
+        run: python -m venv ./.venv && . ./.venv/bin/activate && 
+             pip install -r requirements.txt
+             
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+          
+      - name: Zappa deploy to AWS
+        run: . ./.venv/bin/activate && zappa update production
