@@ -1,7 +1,7 @@
 name: osrs-dmg-sim-test
 
 env:
-  VENV_FOLDER: ./.venv
+  VENV_FOLDER: ~/.venv
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       id: cache-venv
       uses: actions/cache@v3
       with:
-        path: $VENV_FOLDER/
+        path: $VENV_FOLDER
         key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
         restore-keys: |
           ${{ runner.os }}-venv-
