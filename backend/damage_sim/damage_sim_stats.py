@@ -137,6 +137,7 @@ class DamageSimStats:
         gear_setup_settings_label = DamageSimStats.get_gear_setup_settings_label(input_gear_setup.gear_setup_settings)
         all_weapon_labels = DamageSimStats.get_all_weapons_label(input_gear_setup.all_weapons)
 
+        # TODO if gear_setup_settings_label:
         input_gear_setup_label = gear_setup_settings_label + " -> "
         for weapon_label in all_weapon_labels:
             input_gear_setup_label += weapon_label + ", "
