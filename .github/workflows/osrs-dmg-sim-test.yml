@@ -34,6 +34,8 @@ jobs:
       with:
         path: $VENV_FOLDER/
         key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-venv-
 
     - name: Create venv
       if: steps.cache-venv.outputs.cache-hit != 'true'
