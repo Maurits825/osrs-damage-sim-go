@@ -1,7 +1,7 @@
 <div class="row align-items-center">
   <div class="col-auto">Npc</div>
   <div class="col px-0" style="height: '38px'">
-    <ng-container *ngIf="allNpcs">
+    <ng-container *ngIf="allNpcs; else showSpinner">
       <app-ng-select-lazy-load
         [valueType]="Npc"
         [allValues]="allNpcs"
@@ -22,6 +22,12 @@
         >
       </app-ng-select-lazy-load>
     </ng-container>
+
+    <ng-template #showSpinner>
+      <div class="spinner-border ms-1" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </ng-template>
   </div>
 
   <div class="col-auto" *ngIf="allNpcs && selectedNpc?.isKalphite">
