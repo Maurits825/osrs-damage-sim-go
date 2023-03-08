@@ -19,7 +19,7 @@ class Scythe(Weapon):
     def roll_single_hit(self, reduction) -> int:
         damage = 0
         if self.roll_hit():
-            damage = random.randint(0, self.max_hit)
+            damage = int(random.random() * (self.max_hit + 1))
 
         return math.floor(damage * reduction)
 

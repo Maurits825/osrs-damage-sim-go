@@ -139,8 +139,7 @@ class Weapon:
         defence_roll = DpsCalculator.get_defence_roll(self.target_defence[0], self.target_defence_style)
 
         if self.is_brimstone:
-            brimstone_roll = random.randint(1, 4)
-            if brimstone_roll == 1:
+            if random.random() <= 0.25:
                 defence_roll -= max(0, math.floor(defence_roll * 0.1))
 
         if self.raid_level:

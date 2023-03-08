@@ -19,18 +19,18 @@ class Fang(Weapon):
         super().set_combat_stats(combat_stats)
 
     def roll_hit(self) -> bool:
-        attack_roll = random.randint(0, self.attack_roll)
-        defence_roll = random.randint(0, self.get_defence_roll())
+        attack_roll = int(random.random() * (self.attack_roll + 1))
+        defence_roll = int(random.random() * (self.get_defence_roll() + 1))
 
         if attack_roll > defence_roll:
             return True
 
         if self.raid_level:
-            attack_roll = random.randint(0, self.attack_roll)
-            defence_roll = random.randint(0, self.get_defence_roll())
+            attack_roll = int(random.random() * (self.attack_roll + 1))
+            defence_roll = int(random.random() * (self.get_defence_roll() + 1))
             return attack_roll > defence_roll
         else:
-            attack_roll = random.randint(0, self.attack_roll)
+            attack_roll = int(random.random() * (self.attack_roll + 1))
             return attack_roll > defence_roll
 
     def roll_damage(self) -> int:
@@ -40,7 +40,7 @@ class Fang(Weapon):
             max_hit = self.true_max_hit
 
         if self.roll_hit():
-            damage = random.randint(self.true_min_hit, max_hit)
+            damage = int((random.random() * (max_hit - self.true_min_hit + 1)) + self.true_min_hit)
 
         return damage
 
