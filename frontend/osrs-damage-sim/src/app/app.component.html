@@ -38,17 +38,19 @@
           <i class="bi bi-github"></i
         ></a>
       </div>
-      <div class="col-auto">
+      <div class="col-auto px-0">
         <i class="bi bi-three-dots-vertical"></i>
       </div>
       <div class="col-auto">
-        osrs-dmg-sim:
-        <ng-container *ngIf="isDamageSimActive">
-          Active <i class="bi bi-check-circle-fill text-success"></i>
-        </ng-container>
-        <ng-container *ngIf="!isDamageSimActive">
-          Inactive <i class="bi bi-x-circle-fill text-danger"></i>
-        </ng-container>
+        <a class="text-decoration-none text-dark" target="_blank" [href]="damageSimServiceUrl">
+          osrs-dmg-sim-service:
+          <ng-container *ngIf="isDamageSimActive">
+            Active <i class="bi bi-check-circle-fill text-success"></i>
+          </ng-container>
+          <ng-container *ngIf="!isDamageSimActive">
+            Inactive <i class="bi bi-x-circle-fill text-danger"></i>
+          </ng-container>
+        </a>
       </div>
     </div>
 

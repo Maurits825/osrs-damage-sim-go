@@ -1,4 +1,4 @@
-<div class="me-4" *ngIf="gearSetup">
+<div class="me-4" *ngIf="gearSetup && allGearSlotItems; else showSpinner">
   <div class="row mb-2 justify-content-center">
     <div class="col-auto">
       <h3 class="text-end">{{ isMainGearSetup ? "Main" : "Fill" }} Gear Setup:</h3>
@@ -60,44 +60,42 @@
     </div>
   </div>
 
-  <div class="mb-3" *ngIf="allGearSlotItems">
-    <div class="d-flex flex-wrap mb-2 align-items-center" *ngFor="let slot of allGearSlots">
-      <div class="col-1 text-center">
-        <ng-container *ngIf="gearSetup.gear[slot]; else placeholder">
-          <img src="data:image/png;base64,{{ gearSetup.gear[slot].icon }}" />
-        </ng-container>
-        <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
-      </div>
-
-      <div class="flex-grow-1">
-        <app-ng-select-lazy-load
-          [selectedValue]="gearSetup.gear[slot]"
-          [valueType]="Item"
-          [allValues]="allGearSlotItems[slot]"
-          searchProperty="name"
-          (valueChanged)="gearSlotChange($event, slot)"
-        >
-          <ng-template #dropdownLabel let-item="item">{{ item.name }}</ng-template>
-          <ng-template #dropdownOptions let-item="item">
-            <div class="d-flex align-items-center">
-              <div class="text-center" style="flex: 0 0 35px">
-                <img src="data:image/png;base64,{{ item.icon }}" />
-              </div>
-              <div class="ps-2">{{ item.name }}</div>
-            </div>
-          </ng-template>
-        </app-ng-select-lazy-load>
-      </div>
-
-      <app-special-gear
-        class="d-flex"
-        [isMainGearSetup]="isMainGearSetup"
-        [gearSetup]="gearSetup"
-        [specialGear]="specialGear"
-        [slot]="slot"
-        [allDarts]="allDarts"
-      ></app-special-gear>
+  <div class="d-flex flex-wrap mb-2 align-items-center" *ngFor="let slot of allGearSlots">
+    <div class="col-1 text-center">
+      <ng-container *ngIf="gearSetup.gear[slot]; else placeholder">
+        <img src="data:image/png;base64,{{ gearSetup.gear[slot].icon }}" />
+      </ng-container>
+      <ng-template #placeholder><img src="assets/img/equip/slot_{{ slot }}.png" /></ng-template>
     </div>
+
+    <div class="flex-grow-1">
+      <app-ng-select-lazy-load
+        [selectedValue]="gearSetup.gear[slot]"
+        [valueType]="Item"
+        [allValues]="allGearSlotItems[slot]"
+        searchProperty="name"
+        (valueChanged)="gearSlotChange($event, slot)"
+      >
+        <ng-template #dropdownLabel let-item="item">{{ item.name }}</ng-template>
+        <ng-template #dropdownOptions let-item="item">
+          <div class="d-flex align-items-center">
+            <div class="text-center" style="flex: 0 0 35px">
+              <img src="data:image/png;base64,{{ item.icon }}" />
+            </div>
+            <div class="ps-2">{{ item.name }}</div>
+          </div>
+        </ng-template>
+      </app-ng-select-lazy-load>
+    </div>
+
+    <app-special-gear
+      class="d-flex"
+      [isMainGearSetup]="isMainGearSetup"
+      [gearSetup]="gearSetup"
+      [specialGear]="specialGear"
+      [slot]="slot"
+      [allDarts]="allDarts"
+    ></app-special-gear>
   </div>
 
   <div class="mb-3">
@@ -142,3 +140,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #showSpinner>
+  <div class="d-flex align-items-center justify-content-center">
+    <div>Loading items</div>
+    <div class="spinner-border ms-3" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>

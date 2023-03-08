@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
@@ -50,7 +50,7 @@ import { QuickGearSelectComponent } from './shared/quick-gear-select/quick-gear-
     ShareInputSetupModalComponent,
     QuickGearSelectComponent,
   ],
-  imports: [NgSelectModule, FormsModule, ReactiveFormsModule, BrowserModule, HttpClientModule, ClipboardModule],
+  imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule],
   providers: [
     { provide: INPUT_GEAR_SETUP_TOKEN, useValue: null },
     { provide: GEAR_SETUP_TOKEN, useValue: null },

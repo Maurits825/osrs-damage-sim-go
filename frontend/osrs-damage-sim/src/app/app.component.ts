@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { GearSetupTabsComponent } from './core/gear-setup-tabs/gear-setup-tabs.component';
 import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   damageSimResults: DamageSimResults;
 
   isDamageSimActive = false;
+  damageSimServiceUrl = environment.OSRS_DAMAGE_SIM_SERVICE_URL + '/status';
 
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
 
