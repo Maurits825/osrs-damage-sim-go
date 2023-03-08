@@ -12,7 +12,7 @@ class Gadderhammer(Weapon):
     def roll_damage(self) -> int:
         damage = 0
         if self.roll_hit():
-            damage = random.randint(0, self.max_hit)
+            damage = int(random.random() * (self.max_hit + 1))
 
         double_hit = random.random()
         if double_hit <= DOUBLE_DMG_CHANCE:

@@ -20,7 +20,8 @@ class RubyBolts(Bolt):
 
 class DiamondBolts(Bolt):
     def roll_damage(self, max_hit, hp):
-        return random.randint(0, math.floor(max_hit * (1 + self.effect_value)))
+        actual_max_hit = math.floor(max_hit * (1 + self.effect_value))
+        return int(random.random() * (actual_max_hit + 1))
 
 
 RUBY_BOLTS = RubyBolts([9242, 21944], 0.06, 0.2)
