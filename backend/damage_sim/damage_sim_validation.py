@@ -77,6 +77,11 @@ class DamageSimValidation:
             if error:
                 return error
 
+            all_gear_setups = [input_gear_setup["mainGearSetup"], *input_gear_setup["fillGearSetups"]]
+            error = DamageSimValidation.validate_gear_setups(all_gear_setups)
+            if error:
+                return error
+
             error = DamageSimValidation.validate_fill_gear_setups(input_gear_setup["fillGearSetups"])
             if error:
                 return error
@@ -94,6 +99,14 @@ class DamageSimValidation:
             for condition in conditions:
                 if not DamageSimValidation.is_valid_int(condition["value"]):
                     return DamageSimValidation.invalid_value_message(condition["value"], "condition")
+
+    @staticmethod
+    def validate_gear_setups(gear_setups) -> str | None:
+        for gear_setup in gear_setups:
+            if not gear_setup["attackStyle"]:
+                return DamageSimValidation.invalid_value_message(gear_setup["attackStyle"], "attack style")
+
+        return None
 
     @staticmethod
     def validate_combat_stats(combat_stats) -> str | None:
