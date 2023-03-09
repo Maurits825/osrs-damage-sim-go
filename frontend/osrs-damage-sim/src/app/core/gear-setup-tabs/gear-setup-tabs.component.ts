@@ -13,6 +13,8 @@ export class GearSetupTabsComponent implements AfterViewInit {
   @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
+  maxSetupTabs = 5;
+
   constructor(private changeDetector: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
 
   ngAfterViewInit(): void {

@@ -67,8 +67,9 @@ def get_npcs():
 def run_damage_sim():
     json_request = request.get_json()
 
-    if not DamageSimValidation.validate_setup(json_request):
-        return {"error": "Invalid setup"}
+    error = DamageSimValidation.validate_setup(json_request)
+    if error:
+        return {"error": error}
 
     input_setup = InputSetupConverter.get_input_setup(json_request)
     damage_sim_results = damage_sim_runner.run(input_setup)
