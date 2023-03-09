@@ -4,7 +4,7 @@ export const quickGearSetups: QuickGearSetups = {
   melee: [
     {
       label: 'Void melee',
-      itemIds: [11665, 13072, 13073],
+      itemIds: [11665, 13072, 13073, 8842],
     },
     {
       label: 'Torva',
@@ -27,7 +27,7 @@ export const quickGearSetups: QuickGearSetups = {
   ranged: [
     {
       label: 'Void range',
-      itemIds: [11664, 13072, 13073],
+      itemIds: [11664, 13072, 13073, 8842],
     },
     {
       label: 'Masori',
@@ -50,7 +50,7 @@ export const quickGearSetups: QuickGearSetups = {
   magic: [
     {
       label: 'Void mage',
-      itemIds: [11663, 13072, 13073],
+      itemIds: [11663, 13072, 13073, 8842],
     },
     {
       label: 'Ancestral',

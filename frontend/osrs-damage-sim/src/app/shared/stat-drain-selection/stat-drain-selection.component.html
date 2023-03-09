@@ -21,7 +21,7 @@
   <div class="col-auto pe-1">{{ statDrainLabels[statDrain.name] }}</div>
 
   <div class="col-2 px-1">
-    <input type="number" [(ngModel)]="statDrain.value" class="form-control" min="0" />
+    <input type="number" [(ngModel)]="statDrain.value" class="form-control" min="1" />
   </div>
 
   <div class="col-auto ps-1">
@@ -30,7 +30,12 @@
 </div>
 
 <div>
-  <button type="button" class="btn btn-primary" (click)="addStatDrain()">
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="addStatDrain()"
+    [disabled]="statDrains.length >= maxStatDrains"
+  >
     <i class="bi bi-plus"></i> Add Stat drain
   </button>
 </div>

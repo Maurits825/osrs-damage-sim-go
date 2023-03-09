@@ -45,7 +45,12 @@
       </div>
     </div>
     <div class="text-end">
-      <button type="button" class="btn btn-primary w-50" (click)="addCondition()">
+      <button
+        type="button"
+        class="btn btn-primary w-50"
+        (click)="addCondition()"
+        [disabled]="conditions.length >= maxConditions"
+      >
         <i class="bi bi-plus"></i> Add condition
       </button>
     </div>
