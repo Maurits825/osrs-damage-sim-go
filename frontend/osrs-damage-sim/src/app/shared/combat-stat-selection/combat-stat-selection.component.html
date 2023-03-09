@@ -5,12 +5,13 @@
       <input
         style="width: 45px"
         class="form-control"
-        type="number"
         inputmode="numeric"
+        type="number"
+        min="1"
+        max="99"
         [(ngModel)]="combatStats[skill]"
         (change)="onCombatStatsChanged()"
-        max="99"
-        min="1"
+        required
       />
     </div>
   </div>

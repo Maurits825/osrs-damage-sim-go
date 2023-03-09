@@ -18,10 +18,12 @@ export class StatDrainSelectionComponent {
 
   statDrainLabels = statDrainLabels;
 
+  maxStatDrains = 5;
+
   addStatDrain(): void {
     this.statDrains.push({
       name: 'Dragon warhammer',
-      value: 0,
+      value: 1,
     });
 
     this.statDrainsChanged.emit(this.statDrains);
