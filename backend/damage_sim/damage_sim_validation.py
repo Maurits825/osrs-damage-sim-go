@@ -3,18 +3,22 @@ from __future__ import annotations
 from model.stat_drain_type import StatDrainType
 from weapons.custom_weapons import CUSTOM_WEAPONS
 
-MAX_ITERATIONS = 10_000
 MIN_ITERATIONS = 1
+MAX_ITERATIONS = 10_000
 
 MIN_TEAM_SIZE = 1
+MAX_TEAM_SIZE = 100
 
+MIN_SETUPS = 1
 MAX_SETUPS = 5
 
-MAX_STAT_VALUE = 99
 MIN_STAT_VALUE = 1
+MAX_STAT_VALUE = 99
 
 MAX_STAT_DRAIN_HITS = 100
 MAX_STAT_DRAINS = 5
+
+MAX_CONDITIONS = 5
 
 
 class DamageSimValidation:
@@ -38,31 +42,28 @@ class DamageSimValidation:
             return "Invalid npc"
 
         iterations = global_settings["iterations"]
-        if iterations > MAX_ITERATIONS:
-            return "Max iterations is " + str(MAX_ITERATIONS)
+        if not DamageSimValidation.is_valid_int(iterations):
+            return DamageSimValidation.invalid_value_message(iterations, "iterations")
 
-        if iterations < MIN_ITERATIONS:
-            return "Min iterations is " + str(MIN_ITERATIONS)
-
-        if isinstance(iterations, float):
-            return "Invalid value (" + str(iterations) + ") for iterations"
+        range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
+        if range_error:
+            return range_error
 
         team_size = global_settings["teamSize"]
-        if team_size < MIN_TEAM_SIZE:
-            return "Min team size is " + str(MIN_TEAM_SIZE)
+        if not DamageSimValidation.is_valid_int(team_size):
+            return DamageSimValidation.invalid_value_message(team_size, "team size")
 
-        if isinstance(team_size, float):
-            return "Invalid value (" + str(team_size) + ") for team size"
+        range_error = DamageSimValidation.validate_range(team_size, MIN_TEAM_SIZE, MAX_TEAM_SIZE, "team size")
+        if range_error:
+            return range_error
 
         return None
 
     @staticmethod
     def validate_input_gear_setups(input_gear_setups) -> str | None:
-        if len(input_gear_setups) == 0:
-            return "No setups"
-
-        if len(input_gear_setups) > MAX_SETUPS:
-            return "Max setups is " + str(MAX_SETUPS)
+        range_error = DamageSimValidation.validate_range(len(input_gear_setups), MIN_SETUPS, MAX_SETUPS, "setups")
+        if range_error:
+            return range_error
 
         for input_gear_setup in input_gear_setups:
             if input_gear_setup["mainGearSetup"]["isSpecial"]:
@@ -76,22 +77,35 @@ class DamageSimValidation:
             if error:
                 return error
 
+            error = DamageSimValidation.validate_fill_gear_setups(input_gear_setup["fillGearSetups"])
+            if error:
+                return error
+
         return None
+
+    @staticmethod
+    def validate_fill_gear_setups(fill_gear_setups) -> str | None:
+        for fill_gear_setup in fill_gear_setups:
+            conditions = fill_gear_setup["conditions"]
+
+            if len(conditions) >= MAX_CONDITIONS:
+                return "Max conditions is " + str(MAX_CONDITIONS)
+
+            for condition in conditions:
+                if not DamageSimValidation.is_valid_int(condition["value"]):
+                    return DamageSimValidation.invalid_value_message(condition["value"], "condition")
 
     @staticmethod
     def validate_combat_stats(combat_stats) -> str | None:
         for stat in ["attack", "strength", "ranged", "magic", "hitpoints"]:
             stat_value = combat_stats[stat]
-            error_message = "Invalid value (" + str(stat_value) + ") for " + stat
 
-            if not stat_value:
-                return error_message
+            if not DamageSimValidation.is_valid_int(stat_value):
+                return DamageSimValidation.invalid_value_message(stat_value, stat)
 
-            if isinstance(stat_value, float):
-                return error_message
-
-            if not MIN_STAT_VALUE <= stat_value <= MAX_STAT_VALUE:
-                return error_message
+            range_error = DamageSimValidation.validate_range(stat_value, MIN_STAT_VALUE, MAX_STAT_VALUE, stat)
+            if range_error:
+                return range_error
 
         return None
 
@@ -103,8 +117,8 @@ class DamageSimValidation:
         for stat_drain in stat_drains:
             drain_value = stat_drain["value"]
 
-            if drain_value <= 0 or isinstance(drain_value, float):
-                return "Invalid value (" + str(drain_value) + ") for " + stat_drain["name"]
+            if not DamageSimValidation.is_valid_int(drain_value) or drain_value <= 0:
+                return DamageSimValidation.invalid_value_message(drain_value, stat_drain["name"])
 
             stat_drain_type = CUSTOM_WEAPONS[stat_drain["name"]].stat_drain_type
             if stat_drain_type == StatDrainType.HITS:
@@ -112,3 +126,22 @@ class DamageSimValidation:
                     return "Max stat drain hits is " + str(MAX_STAT_DRAIN_HITS)
 
         return None
+
+    @staticmethod
+    def validate_range(value, min_value, max_value, label) -> str | None:
+        if value > max_value:
+            return "Max " + label + " is " + str(max_value)
+
+        if value < min_value:
+            return "Min " + label + " is " + str(min_value)
+
+        return None
+
+    @staticmethod
+    def is_valid_int(int_value) -> bool:
+        return int_value is not None and not isinstance(int_value, float)
+
+    @staticmethod
+    def invalid_value_message(value, label) -> str:
+        return "Invalid value (" + str(value) + ") for " + label
+

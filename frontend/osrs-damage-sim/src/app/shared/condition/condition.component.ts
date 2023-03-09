@@ -32,6 +32,8 @@ export class ConditionComponent implements OnInit {
   @Output() conditionsChanged = new EventEmitter<Condition[]>();
   conditions: Condition[] = [];
 
+  maxConditions = 5;
+
   ngOnInit(): void {
     this.conditions = this.initialConditions;
   }
@@ -39,7 +41,7 @@ export class ConditionComponent implements OnInit {
   addCondition(): void {
     this.conditions.push({
       variable: 'NPC_HITPOINTS',
-      comparison: '==',
+      comparison: 'EQUAL',
       value: 0,
       nextComparison: 'AND',
     });
