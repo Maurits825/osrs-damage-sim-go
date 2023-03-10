@@ -13,11 +13,12 @@ from model.weapon_stats import WeaponStats
 class WikiData:
     items_json = json.load(open("./wiki_data/items-dmg-sim.json"))
     npcs_json = json.load(open("./wiki_data/npcs-dmg-sim.json"))
-    unique_npcs = json.load(open("./wiki_data/unique_npcs.json"))
     extra_data = json.load(open("./wiki_data/extra_data.json"))
-    gear_slot_items = json.load(open("./wiki_data/gear_slot_items.json"))
     special_attack = json.load(open("./wiki_data/special_attack.json"))
     magic_spells = json.load(open("./wiki_data/magic_spells.json"))
+
+    unique_npcs_file = "./wiki_data/unique_npcs.json"
+    gear_slot_items_file = "./wiki_data/gear_slot_items.json"
 
     @staticmethod
     def get_weapon(item_id: int) -> WeaponStats:
@@ -96,10 +97,6 @@ class WikiData:
         return 0
 
     @staticmethod
-    def get_unique_npcs():
-        return WikiData.unique_npcs["unique_npcs"]
-
-    @staticmethod
     def get_all_spells():
         return WikiData.magic_spells["all_spells"]
 
@@ -107,6 +104,3 @@ class WikiData:
     def get_standard_spells():
         return WikiData.magic_spells["standard_spells"]
 
-    @staticmethod
-    def get_gear_slot_items():
-        return WikiData.gear_slot_items

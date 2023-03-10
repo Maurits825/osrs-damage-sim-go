@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from flask_compress import Compress
 
@@ -6,7 +6,6 @@ from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
 from input_setup.gear_setup_preset import GearSetupPreset
 from input_setup.input_setup_converter import InputSetupConverter
-from input_setup.rl_gear_input import RlGearInput
 from wiki_data import WikiData
 
 app = Flask(__name__)
@@ -28,23 +27,13 @@ def get_status():
 @app.route("/gear-slot-items", methods=["GET"])
 @compress.compressed()
 def get_gear_slot_items():
-    return WikiData().get_gear_slot_items()
+    return send_file(WikiData.gear_slot_items_file)
 
 
-@app.route("/rl-gear", methods=["GET"])
-def get_rl_gear():
-    rl_gear_list = RlGearInput.get_gear()
-
-    gear = {}
-    for item_id in rl_gear_list:
-        for slot, gear_slot_items in WikiData.gear_slot_items.items():
-            if str(item_id) in gear_slot_items:
-                gear[slot] = {
-                    "name": gear_slot_items[str(item_id)]["name"],
-                    "id": item_id
-                }
-
-    return gear
+@app.route("/npcs", methods=["GET"])
+@compress.compressed()
+def get_npcs():
+    return send_file(WikiData.unique_npcs_file)
 
 
 @app.route("/gear-setup-presets", methods=["GET"])
@@ -55,12 +44,6 @@ def get_gear_setup_presets():
 @app.route("/all-spells", methods=["GET"])
 def get_all_spells():
     return WikiData.get_all_spells()
-
-
-@app.route("/npcs", methods=["GET"])
-@compress.compressed()
-def get_npcs():
-    return WikiData().get_unique_npcs()
 
 
 @app.route("/run-damage-sim", methods=["POST"])
