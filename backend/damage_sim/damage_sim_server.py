@@ -24,18 +24,6 @@ def get_status():
     return {"status": status}
 
 
-@app.route("/gear-slot-items", methods=["GET"])
-@compress.compressed()
-def get_gear_slot_items():
-    return send_file(WikiData.gear_slot_items_file)
-
-
-@app.route("/npcs", methods=["GET"])
-@compress.compressed()
-def get_npcs():
-    return send_file(WikiData.unique_npcs_file)
-
-
 @app.route("/gear-setup-presets", methods=["GET"])
 def get_gear_setup_presets():
     return GearSetupPreset.get_gear_setup_presets()
