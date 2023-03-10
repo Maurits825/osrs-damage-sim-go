@@ -167,7 +167,7 @@ class GenerateWikiData:
 
         unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
 
-        npcs = {"unique_npcs": unique_npcs}
+        npcs = unique_npcs
         with open("./wiki_data/unique_npcs.json", 'w') as json_file:
             json.dump(npcs, json_file)
 
