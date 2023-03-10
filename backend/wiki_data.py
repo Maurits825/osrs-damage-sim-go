@@ -1,5 +1,6 @@
 import copy
 import json
+from pathlib import Path
 
 from model.npc.aggressive_stats import AggressiveStats
 from model.npc.combat_stats import CombatStats
@@ -17,8 +18,8 @@ class WikiData:
     special_attack = json.load(open("./wiki_data/special_attack.json"))
     magic_spells = json.load(open("./wiki_data/magic_spells.json"))
 
-    unique_npcs_file = "./wiki_data/unique_npcs.json"
-    gear_slot_items_file = "./wiki_data/gear_slot_items.json"
+    unique_npcs_file = Path(__file__).parent / "wiki_data/unique_npcs.json"
+    gear_slot_items_file = Path(__file__).parent / "wiki_data/gear_slot_items.json"
 
     @staticmethod
     def get_weapon(item_id: int) -> WeaponStats:
