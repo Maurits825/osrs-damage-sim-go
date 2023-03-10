@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, Injector, ViewChild, ViewC
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
-import { GearSetupTabComponent } from '../../shared/gear-setup-tab/gear-setup-tab.component';
+import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/gear-setup-tab.component';
 
 @Component({
   selector: 'app-gear-setup-tabs',

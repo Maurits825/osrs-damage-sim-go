@@ -11,8 +11,8 @@ import {
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
-import { GearSetupTabComponent } from '../shared/gear-setup-tab/gear-setup-tab.component';
-import { GearSetupComponent } from '../shared/gear-setup/gear-setup.component';
+import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-setup-tab.component';
+import { GearSetupComponent } from '../shared/components/gear-setup/gear-setup.component';
 import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
 

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
-import { PrayerModalComponent } from '../prayer-modal/prayer-modal.component';
+import { PrayerModalComponent } from '../../modals/prayer-modal/prayer-modal.component';
 import { disabledPrayers } from './disabled-prayers.const';
 
 @Component({

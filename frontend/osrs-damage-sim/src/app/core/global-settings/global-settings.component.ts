@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Boost } from '../../model/osrs/boost.model';
 import { GlobalSettings } from '../../model/damage-sim/input-setup.model';
 import { Npc } from '../../model/osrs/npc.model';
-import { TOA_PATH_LVL_NPCS, TOA_NPCS } from '../../shared/npc-input/npc.const';
 import { BoostService } from '../../services/boost.service';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
@@ -11,6 +10,7 @@ import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { StatDrainService } from 'src/app/services/stat-drain.service';
+import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 
 @Component({
   selector: 'app-global-settings',

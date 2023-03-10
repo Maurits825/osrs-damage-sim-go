@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { allBoosts, Boost } from '../../model/osrs/boost.model';
-import { BoostModalComponent } from '../boost-modal/boost-modal.component';
+import { allBoosts, Boost } from '../../../model/osrs/boost.model';
+import { BoostModalComponent } from '../../modals/boost-modal/boost-modal.component';
 
 @Component({
   selector: 'app-boost-selection',
