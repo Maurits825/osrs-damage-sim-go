@@ -1,7 +1,7 @@
 name: osrs-dmg-sim-test
 
 env:
-  VENV_FOLDER: /~/.venv
+  VENV_FOLDER: ~/.venv
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
       id: cache-venv
       uses: actions/cache@v3
       with:
-        path: $VENV_FOLDER
+        path: ${{ env.VENV_FOLDER }}
         key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
         restore-keys: |
           ${{ runner.os }}-venv-
@@ -44,24 +44,24 @@ jobs:
     - name: Create venv
       if: ${{ steps.cache-venv.outputs.cache-hit != 'true' }}
       run: |
-        python -m venv $VENV_FOLDER
-        . $VENV_FOLDER/bin/activate
+        python -m venv ${{ env.VENV_FOLDER }}
+        . ${{ env.VENV_FOLDER }}/bin/activate
         pip install -r requirements.txt
         
     - name: Install dependencies
       run: |
-        . $VENV_FOLDER/bin/activate
+        . ${{ env.VENV_FOLDER }}/bin/activate
         pip install flake8 unittest2
         
     - name: Lint with flake8
       run: |
-        . $VENV_FOLDER/bin/activate
+        . ${{ env.VENV_FOLDER }}/bin/activate
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --exclude $VENV_FOLDER --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --exclude ${{ env.VENV_FOLDER }} --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --exclude $VENV_FOLDER --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        flake8 . --exclude ${{ env.VENV_FOLDER }} --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Test with unittest
       run: |
-        . $VENV_FOLDER/bin/activate
+        . ${{ env.VENV_FOLDER }}/bin/activate
         python -m unittest discover -v
