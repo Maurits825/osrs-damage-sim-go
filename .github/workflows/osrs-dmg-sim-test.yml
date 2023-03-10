@@ -42,7 +42,7 @@ jobs:
           ${{ runner.os }}-venv-
 
     - name: Create venv
-      if: steps.cache-venv.outputs.cache-hit != 'true'
+      if: ${{ steps.cache-venv.outputs.cache-hit != 'true' }}
       run: |
         python -m venv $VENV_FOLDER
         . $VENV_FOLDER/bin/activate
