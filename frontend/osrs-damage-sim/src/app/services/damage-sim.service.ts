@@ -43,19 +43,22 @@ export class DamageSimService {
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {
-    return this.http.get<Record<GearSlot, Item[]>>(this.damageSimServiceUrl + '/gear-slot-items');
+    return this.http.get<Record<GearSlot, Item[]>>('assets/json_data/gear_slot_items.json');
   }
 
   private getSpells(): Observable<string[]> {
-    return this.http.get<string[]>(this.damageSimServiceUrl + '/all-spells').pipe(map((obj) => Object.keys(obj)));
+    return this.http.get<Record<string, number>>('assets/json_data/magic_spells.json').pipe(
+      map((spells: Record<string, number>) => spells['all_spells']),
+      map((obj) => Object.keys(obj))
+    );
   }
 
   private getNpcs(): Observable<Npc[]> {
-    return this.http.get<Npc[]>(this.damageSimServiceUrl + '/npcs');
+    return this.http.get<Npc[]>('assets/json_data/unique_npcs.json');
   }
 
   private getGearSetupPresets(): Observable<GearSetupPreset[]> {
-    return this.http.get<GearSetupPreset[]>(this.damageSimServiceUrl + '/gear-setup-presets');
+    return this.http.get<GearSetupPreset[]>('assets/json_data/gear_setup_presets.json');
   }
 
   private getDarts(): Observable<Item[]> {
