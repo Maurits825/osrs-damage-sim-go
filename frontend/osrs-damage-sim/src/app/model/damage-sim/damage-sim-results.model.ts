@@ -12,7 +12,7 @@ export interface SimStats {
   minimum: string | number;
   most_frequent: string | number;
 
-  chance_to_kill: string[] | number[];
+  chance_to_kill: string | number;
 }
 
 export interface Graphs {
