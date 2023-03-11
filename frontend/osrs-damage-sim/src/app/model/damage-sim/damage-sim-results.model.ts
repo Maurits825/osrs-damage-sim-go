@@ -21,6 +21,8 @@ export interface Graphs {
 }
 
 export interface DamageSimResult {
+  [index: string]: any;
+
   labels: InputGearSetupLabels;
 
   ttk_stats: SimStats;

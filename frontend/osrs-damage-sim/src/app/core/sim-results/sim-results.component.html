@@ -6,8 +6,8 @@
         <tr class="text-end">
           <th scope="col" style="width: 25%" class="text-start">Setup Name</th>
           <ng-container *ngFor="let timeSortField of timeSortFields">
-            <th scope="col" style="width: 10%" (click)="sortDamageSimResults(timeSortField)">
-              <button type="button" class="btn w-100 fw-bold px-0 text-end">
+            <th scope="col" style="width: 10%" (click)="sortTimeResults(timeSortField)">
+              <button type="button" class="btn w-100 fw-bold p-0 text-end">
                 {{ sortLabels[timeSortField] }}
                 <ng-container *ngIf="sortConfigs[timeSortField].isSorted; else notSorted">
                   <ng-container *ngIf="sortConfigs[timeSortField].sortOrder === SortOrder.Ascending">
@@ -49,12 +49,24 @@
         </tr>
         <tr class="text-end">
           <th scope="col" style="width: 30%" class="text-start">Setup Name</th>
-          <th scope="col" style="width: 10%">DPS</th>
-          <th scope="col" style="width: 10%">Max hit</th>
-          <th scope="col" style="width: 10%">Accuracy</th>
-          <th scope="col" style="width: 10%">DPS</th>
-          <th scope="col" style="width: 10%">Damage</th>
-          <th scope="col" style="width: 10%">Attack Count</th>
+          <ng-container *ngFor="let dpsSortField of dpsSortFields">
+            <th scope="col" style="width: 10%" (click)="sortDpsResults(dpsSortField)">
+              <button type="button" class="btn w-100 fw-bold p-0 text-end">
+                {{ sortLabels[dpsSortField] }}
+                <ng-container *ngIf="sortConfigs[dpsSortField].isSorted; else notSorted">
+                  <ng-container *ngIf="sortConfigs[dpsSortField].sortOrder === SortOrder.Ascending">
+                    <i class="bi bi-sort-up text-primary"></i>
+                  </ng-container>
+                  <ng-container *ngIf="sortConfigs[dpsSortField].sortOrder === SortOrder.Descending">
+                    <i class="bi bi-sort-down-alt text-primary"></i>
+                  </ng-container>
+                </ng-container>
+                <ng-template #notSorted>
+                  <i class="bi bi-filter text-secondary"></i>
+                </ng-template>
+              </button>
+            </th>
+          </ng-container>
         </tr>
       </thead>
       <tbody>
@@ -80,6 +92,7 @@
     </table>
   </div>
 
+  <!-- TODO fix this -->
   <div class="row mb-3">
     <div class="col">
       <div class="row mb-1 align-items-center">

@@ -1,5 +1,13 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { SortConfigs, TimeSortField, SortOrder, timeSortFields, sortLabels } from 'src/app/model/damage-sim/sort.model';
+import {
+  SortConfigs,
+  TimeSortField,
+  SortOrder,
+  timeSortFields,
+  sortLabels,
+  dpsSortFields,
+  DpsSortField,
+} from 'src/app/model/damage-sim/sort.model';
 import { DamageSimResult, DamageSimResults } from '../../model/damage-sim/damage-sim-results.model';
 
 @Component({
@@ -19,14 +27,22 @@ export class SimResultsComponent implements OnChanges {
     minimum: { sortOrder: SortOrder.Ascending, isSorted: false },
     most_frequent: { sortOrder: SortOrder.Ascending, isSorted: false },
     chance_to_kill: { sortOrder: SortOrder.Ascending, isSorted: false },
+
+    theoretical_dps: { sortOrder: SortOrder.Ascending, isSorted: false },
+    max_hit: { sortOrder: SortOrder.Ascending, isSorted: false },
+    accuracy: { sortOrder: SortOrder.Ascending, isSorted: false },
+    sim_dps_stats: { sortOrder: SortOrder.Ascending, isSorted: false },
+    total_damage_stats: { sortOrder: SortOrder.Ascending, isSorted: false },
+    attack_count_stats: { sortOrder: SortOrder.Ascending, isSorted: false },
   };
 
   SortOrder = SortOrder;
   timeSortFields = timeSortFields;
+  dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['damageSimResults']) this.sortDamageSimResults('average');
+    if (changes['damageSimResults']) this.sortTimeResults('average');
   }
 
   targetTimeChanged(targetTime: string): void {
@@ -43,21 +59,38 @@ export class SimResultsComponent implements OnChanges {
 
   convertTimeStringToSeconds(timeString: string): number {
     const matches = timeString.match(/^([0-9]*):([0-9]*)\.([0-9]*)$/);
-    const sec = +matches[1] * 60 + +matches[2] + +matches[3] / 10;
     return +matches[1] * 60 + +matches[2] + +matches[3] / 10;
   }
 
-  sortDamageSimResults(sortField: TimeSortField): void {
-    const sortOrder = this.sortConfigs[sortField].sortOrder;
+  sortTimeResults(timeSortField: TimeSortField): void {
+    const sortOrder = this.sortConfigs[timeSortField].sortOrder;
 
     this.damageSimResults.results.sort(
       (result1: DamageSimResult, result2: DamageSimResult) =>
         sortOrder *
-        (this.convertTimeStringToSeconds(result1.ttk_stats[sortField] as string) -
-          this.convertTimeStringToSeconds(result2.ttk_stats[sortField] as string))
+        (this.convertTimeStringToSeconds(result1.ttk_stats[timeSortField] as string) -
+          this.convertTimeStringToSeconds(result2.ttk_stats[timeSortField] as string))
     );
 
+    this.updateSortConfigs(timeSortField);
+  }
+
+  sortDpsResults(dpsSortField: DpsSortField): void {
+    const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
+
+    this.damageSimResults.results.sort((result1: DamageSimResult, result2: DamageSimResult) =>
+      typeof result1[dpsSortField][0] === 'number'
+        ? sortOrder * (result1[dpsSortField][0] - result2[dpsSortField][0])
+        : sortOrder * (result1[dpsSortField][0].average - result2[dpsSortField][0].average)
+    );
+
+    this.updateSortConfigs(dpsSortField);
+  }
+
+  updateSortConfigs(sortField: TimeSortField | DpsSortField): void {
     this.timeSortFields.forEach((field: TimeSortField) => (this.sortConfigs[field].isSorted = false));
+    this.dpsSortFields.forEach((field: TimeSortField) => (this.sortConfigs[field].isSorted = false));
+
     this.sortConfigs[sortField].isSorted = true;
     this.sortConfigs[sortField].sortOrder = this.sortConfigs[sortField].sortOrder * -1;
   }
