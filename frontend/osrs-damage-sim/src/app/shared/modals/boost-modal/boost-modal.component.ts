@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { allBoosts, Boost } from 'src/app/model/osrs/boost.model';
+import { Boost } from 'src/app/model/osrs/boost.model';
 import { gridBoosts } from './boost-grid.const';
 
 @Component({
@@ -16,7 +16,6 @@ export class BoostModalComponent {
   boostToggle = new EventEmitter<Boost>();
 
   gridBoosts = gridBoosts;
-  allBoosts = allBoosts;
 
   boostCategoryIcons: string[] = ['attack', 'strength', 'combat', 'ranged', 'magic', 'vial'];
 

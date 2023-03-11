@@ -1,33 +1,44 @@
-<div *ngIf="damageSimResults && !damageSimResults?.error">
-  <div class="row mb-1" *ngIf="damageSimResults?.ttk_stats">
+<div *ngIf="damageSimResults?.results && !damageSimResults?.error">
+  <div class="row mb-1">
     <h2 class="mb-1 ps-0">Time Results</h2>
     <table class="table table-striped table-bordered mb-4">
       <thead>
         <tr class="text-end">
-          <th scope="col" style="width: 30%" class="text-start">Setup Name</th>
-          <th scope="col" style="width: 10%">Average</th>
-          <th scope="col" style="width: 10%">Frequent</th>
-          <th scope="col" style="width: 10%">Min</th>
-          <th scope="col" style="width: 10%">Max</th>
-          <th scope="col" style="width: 10%">50% Kill time</th>
+          <th scope="col" style="width: 25%" class="text-start">Setup Name</th>
+          <ng-container *ngFor="let timeSortField of timeSortFields">
+            <th scope="col" style="width: 10%" (click)="sortDamageSimResults(timeSortField)">
+              <button type="button" class="btn w-100 fw-bold px-0 text-end">
+                {{ sortLabels[timeSortField] }}
+                <ng-container *ngIf="sortConfigs[timeSortField].isSorted; else notSorted">
+                  <ng-container *ngIf="sortConfigs[timeSortField].sortOrder === SortOrder.Ascending">
+                    <i class="bi bi-sort-up text-primary"></i>
+                  </ng-container>
+                  <ng-container *ngIf="sortConfigs[timeSortField].sortOrder === SortOrder.Descending">
+                    <i class="bi bi-sort-down-alt text-primary"></i>
+                  </ng-container>
+                </ng-container>
+                <ng-template #notSorted>
+                  <i class="bi bi-filter text-secondary"></i>
+                </ng-template>
+              </button>
+            </th>
+          </ng-container>
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let labels of damageSimResults.labels; let setupIndex = index">
+        <ng-container *ngFor="let result of damageSimResults.results">
           <tr class="text-end">
-            <th scope="row" class="text-start">{{ labels.input_gear_setup_label }}</th>
-            <td>{{ damageSimResults.ttk_stats[setupIndex].average }}</td>
-            <td>{{ damageSimResults.ttk_stats[setupIndex].most_frequent }}</td>
-            <td>{{ damageSimResults.ttk_stats[setupIndex].minimum }}</td>
-            <td>{{ damageSimResults.ttk_stats[setupIndex].maximum }}</td>
-            <td>{{ damageSimResults.ttk_stats[setupIndex].chance_to_kill[1] }}</td>
+            <th scope="row" class="text-start">{{ result.labels.input_gear_setup_label }}</th>
+            <ng-container *ngFor="let timeSortField of timeSortFields">
+              <td>{{ result.ttk_stats[timeSortField] }}</td>
+            </ng-container>
           </tr>
         </ng-container>
       </tbody>
     </table>
   </div>
 
-  <div class="row mb-3" *ngIf="damageSimResults?.sim_dps_stats">
+  <div class="row mb-3">
     <h2 class="mb-1 ps-0">Sim Damage & DPS Results</h2>
     <table class="table table-bordered mb-4">
       <thead>
@@ -47,21 +58,21 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let labels of damageSimResults.labels; let setupIndex = index">
+        <ng-container *ngFor="let result of damageSimResults.results">
           <tr>
             <td colspan="7" class="table-active">
-              {{ labels.gear_setup_settings_label }}
+              {{ result.labels.gear_setup_settings_label }}
             </td>
           </tr>
-          <ng-container *ngFor="let allWeaponLabels of labels.all_weapon_labels; let gearIndex = index">
+          <ng-container *ngFor="let allWeaponLabels of result.labels.all_weapon_labels; let gearIndex = index">
             <tr class="text-end">
               <th scope="row" class="text-start">{{ allWeaponLabels }}</th>
-              <td>{{ damageSimResults.theoretical_dps[setupIndex][gearIndex] | number : "1.2-2" }}</td>
-              <td>{{ damageSimResults.max_hit[setupIndex][gearIndex] }}</td>
-              <td>{{ damageSimResults.accuracy[setupIndex][gearIndex] | number : "1.2-2" }}%</td>
-              <td>{{ damageSimResults.sim_dps_stats[setupIndex][gearIndex].average | number : "1.2-2" }}</td>
-              <td>{{ damageSimResults.total_damage_stats[setupIndex][gearIndex].average | number : "1.2-2" }}</td>
-              <td>{{ damageSimResults.attack_count_stats[setupIndex][gearIndex].average | number : "1.2-2" }}</td>
+              <td>{{ result.theoretical_dps[gearIndex] | number : "1.2-2" }}</td>
+              <td>{{ result.max_hit[gearIndex] }}</td>
+              <td>{{ result.accuracy[gearIndex] | number : "1.2-2" }}%</td>
+              <td>{{ result.sim_dps_stats[gearIndex].average | number : "1.2-2" }}</td>
+              <td>{{ result.total_damage_stats[gearIndex].average | number : "1.2-2" }}</td>
+              <td>{{ result.attack_count_stats[gearIndex].average | number : "1.2-2" }}</td>
             </tr>
           </ng-container>
         </ng-container>
@@ -69,7 +80,7 @@
     </table>
   </div>
 
-  <div class="row mb-3" *ngIf="damageSimResults?.cumulative_chances">
+  <div class="row mb-3">
     <div class="col">
       <div class="row mb-1 align-items-center">
         <h2 class="col-auto me-auto ps-0">Chance to kill under target time</h2>
@@ -93,8 +104,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let labels of damageSimResults.labels; let setupIndex = index">
-          <th scope="row">{{ labels.input_gear_setup_label }}</th>
+        <tr *ngFor="let result of damageSimResults.results; let setupIndex = index">
+          <th scope="row">{{ result.labels.input_gear_setup_label }}</th>
           <td *ngIf="targetTimeChance; else timeEmpty">{{ targetTimeChance[setupIndex] * 100 | number : "1.2-2" }}%</td>
           <ng-template #timeEmpty><td>-</td></ng-template>
         </tr>
