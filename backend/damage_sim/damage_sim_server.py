@@ -24,16 +24,6 @@ def get_status():
     return {"status": status}
 
 
-@app.route("/gear-setup-presets", methods=["GET"])
-def get_gear_setup_presets():
-    return GearSetupPreset.get_gear_setup_presets()
-
-
-@app.route("/all-spells", methods=["GET"])
-def get_all_spells():
-    return WikiData.get_all_spells()
-
-
 @app.route("/run-damage-sim", methods=["POST"])
 def run_damage_sim():
     json_request = request.get_json()

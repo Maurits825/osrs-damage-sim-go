@@ -6,7 +6,7 @@ import numpy as np
 
 from constants import TICK_LENGTH
 from model.boost import BoostType
-from model.damage_sim_results import TotalDamageSimData, DamageSimResults, InputGearSetupLabels
+from model.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
@@ -244,23 +244,27 @@ class DamageSimStats:
         return title
 
     @staticmethod
-    def populate_damage_sim_results(damage_sim_results: DamageSimResults, sim_data: TotalDamageSimData) -> SimStats:
-
+    def get_damage_sim_result(sim_data: TotalDamageSimData, gear_setup_dps_stats: GearSetupDpsStats,
+                              labels: InputGearSetupLabels) -> (DamageSimResult, SimStats):
         ttk_stats = DamageSimStats.get_data_stats(sim_data.ticks_to_kill)
-        damage_sim_results.ttk_stats.append(DamageSimStats.get_ticks_stats(ttk_stats))
-
-        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps)
-        damage_sim_results.sim_dps_stats.append(sim_dps_stats)
-
+        ttk_stats_ticks = DamageSimStats.get_ticks_stats(ttk_stats)
         total_damage_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_total_dmg)
-        damage_sim_results.total_damage_stats.append(total_damage_stats)
-
         attack_count_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_attack_count)
-        damage_sim_results.attack_count_stats.append(attack_count_stats)
+        sim_dps_stats = DamageSimStats.get_data_2d_stats(sim_data.gear_dps)
+        cumulative_chances = list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill))
 
-        damage_sim_results.cumulative_chances.append(list(DamageSimStats.get_cumulative_sum(sim_data.ticks_to_kill)))
-
-        return ttk_stats
+        damage_sim_result = DamageSimResult(
+            labels=labels,
+            theoretical_dps=gear_setup_dps_stats.theoretical_dps,
+            max_hit=gear_setup_dps_stats.max_hit,
+            accuracy=gear_setup_dps_stats.accuracy,
+            ttk_stats=ttk_stats_ticks,
+            total_damage_stats=total_damage_stats,
+            attack_count_stats=attack_count_stats,
+            sim_dps_stats=sim_dps_stats,
+            cumulative_chances=cumulative_chances
+        )
+        return damage_sim_result, ttk_stats
 
     @staticmethod
     def get_min_and_max_ticks(ttk_stats: list[SimStats]):
