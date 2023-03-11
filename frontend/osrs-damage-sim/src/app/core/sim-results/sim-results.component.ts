@@ -8,7 +8,7 @@ import {
   dpsSortFields,
   DpsSortField,
 } from 'src/app/model/damage-sim/sort.model';
-import { DamageSimResult, DamageSimResults } from '../../model/damage-sim/damage-sim-results.model';
+import { DamageSimResult, DamageSimResults, SimStats } from '../../model/damage-sim/damage-sim-results.model';
 
 @Component({
   selector: 'app-sim-results',
@@ -41,24 +41,47 @@ export class SimResultsComponent implements OnChanges {
   dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
 
+  isTargetTimeValid: boolean = null;
+  targetTime = '';
+
+  timestampPattern = /^(?:([0-9]{0,2}):)?([0-9]{1,2})\.([0-9]+)$/;
+
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['damageSimResults']) this.sortTimeResults('average');
+    if (changes['damageSimResults']) {
+      this.sortTimeResults('average');
+      this.isTargetTimeValid = null;
+      this.targetTime = '';
+    }
   }
 
   targetTimeChanged(targetTime: string): void {
-    if (!targetTime) return;
+    this.isTargetTimeValid = false;
+
+    if (!targetTime || !this.timestampPattern.test(targetTime)) return;
 
     const targetSeconds = this.convertTimeStringToSeconds(targetTime);
+    if (targetSeconds === -1) return;
+
     const targetTicks = Math.ceil(targetSeconds / 0.6);
 
     this.damageSimResults.results.forEach((damageSimResult: DamageSimResult) => {
-      damageSimResult.targetTimeChance = damageSimResult.cumulative_chances[targetTicks] || 1;
+      const chanceIndex = Math.min(targetTicks, damageSimResult.cumulative_chances.length - 1);
+      damageSimResult.targetTimeChance = damageSimResult.cumulative_chances[chanceIndex];
     });
+
+    this.isTargetTimeValid = true;
   }
 
   convertTimeStringToSeconds(timeString: string): number {
-    const matches = timeString.match(/^([0-9]*):([0-9]*)\.([0-9]*)$/);
-    return +matches[1] * 60 + +matches[2] + +matches[3] / 10;
+    const matches = timeString.match(this.timestampPattern);
+
+    const minutes = +matches[1] || 0;
+    const seconds = +matches[2];
+    const milliseconds = +('0.' + matches[3]);
+
+    if (minutes >= 60 || seconds >= 60) return -1;
+
+    return minutes * 60 + seconds + milliseconds;
   }
 
   sortTimeResults(timeSortField: TimeSortField): void {
@@ -79,18 +102,30 @@ export class SimResultsComponent implements OnChanges {
 
     this.damageSimResults.results.sort((result1: DamageSimResult, result2: DamageSimResult) =>
       typeof result1[dpsSortField][0] === 'number'
-        ? sortOrder * (result1[dpsSortField][0] - result2[dpsSortField][0])
-        : sortOrder * (result1[dpsSortField][0].average - result2[dpsSortField][0].average)
+        ? sortOrder * ((result1[dpsSortField][0] as number) - (result2[dpsSortField][0] as number))
+        : sortOrder * ((result1[dpsSortField][0] as SimStats).average as number) -
+          ((result2[dpsSortField][0] as SimStats).average as number)
     );
 
     this.updateSortConfigs(dpsSortField);
   }
 
-  updateSortConfigs(sortField: TimeSortField | DpsSortField): void {
+  sortTargetTimeChange(): void {
+    const sortOrder = this.sortConfigs['targetTimeChance'].sortOrder;
+
+    this.damageSimResults.results.sort(
+      (result1: DamageSimResult, result2: DamageSimResult) =>
+        sortOrder * result1.targetTimeChance - result2.targetTimeChance
+    );
+
+    this.updateSortConfigs('targetTimeChance');
+  }
+
+  updateSortConfigs(sortField: TimeSortField | DpsSortField | 'targetTimeChance'): void {
     this.timeSortFields.forEach((field: TimeSortField) => (this.sortConfigs[field].isSorted = false));
-    this.dpsSortFields.forEach((field: TimeSortField) => (this.sortConfigs[field].isSorted = false));
+    this.dpsSortFields.forEach((field: DpsSortField) => (this.sortConfigs[field].isSorted = false));
 
     this.sortConfigs[sortField].isSorted = true;
-    this.sortConfigs[sortField].sortOrder = this.sortConfigs[sortField].sortOrder * -1;
+    this.sortConfigs[sortField].sortOrder *= -1;
   }
 }

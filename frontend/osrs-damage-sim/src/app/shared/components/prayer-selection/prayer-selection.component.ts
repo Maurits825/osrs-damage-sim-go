@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { allPrayers, Prayer } from 'src/app/model/osrs/prayer.model';
+import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerModalComponent } from '../../modals/prayer-modal/prayer-modal.component';
 import { disabledPrayers } from './disabled-prayers.const';
 
@@ -18,8 +18,6 @@ export class PrayerSelectionComponent implements OnInit, OnChanges {
 
   @Output()
   prayerToggle = new EventEmitter<Prayer>();
-
-  allPrayers = allPrayers;
 
   quickPrayerSelected = true;
 
