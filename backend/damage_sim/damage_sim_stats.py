@@ -42,6 +42,8 @@ STAT_DRAIN_TYPE = {
 
 MAX_COMBAT_STATS = 99
 
+CHANCE_TO_KILL_PERCENT = 0.5
+
 
 class DamageSimStats:
     @staticmethod
@@ -52,18 +54,14 @@ class DamageSimStats:
         minimum = np.min(np_data)
 
         cumulative_sum = DamageSimStats.get_cumulative_sum(data)
-        chance_to_kill = [
-            int(np.argmax(cumulative_sum >= 0.25)),
-            int(np.argmax(cumulative_sum >= 0.50)),
-            int(np.argmax(cumulative_sum >= 0.75))
-        ]
+        chance_to_kill = np.argmax(cumulative_sum >= CHANCE_TO_KILL_PERCENT)
 
         try:
             frequent = int(np.argmax(np.bincount(np_data)))
         except TypeError:
             frequent = 0
 
-        return SimStats(float(average), int(maximum), int(minimum), int(frequent), list(chance_to_kill))
+        return SimStats(float(average), int(maximum), int(minimum), int(frequent), int(chance_to_kill))
 
     @staticmethod
     def get_ticks_stats(sim_stats: SimStats) -> TimeSimStats:
@@ -72,7 +70,7 @@ class DamageSimStats:
             DamageSimStats.format_ticks_to_time(sim_stats.maximum),
             DamageSimStats.format_ticks_to_time(sim_stats.minimum),
             DamageSimStats.format_ticks_to_time(sim_stats.most_frequent),
-            [DamageSimStats.format_ticks_to_time(chance) for chance in sim_stats.chance_to_kill],
+            DamageSimStats.format_ticks_to_time(sim_stats.chance_to_kill),
         )
 
     @staticmethod
@@ -93,9 +91,7 @@ class DamageSimStats:
                "Frequent: " + DamageSimStats.format_ticks_to_time(stats.most_frequent) + ", " + \
                "Max: " + DamageSimStats.format_ticks_to_time(stats.maximum) + ", " + \
                "Min: " + DamageSimStats.format_ticks_to_time(stats.minimum) + ", " + \
-               "25%: " + DamageSimStats.format_ticks_to_time(stats.chance_to_kill[0]) + ", " + \
-               "50%: " + DamageSimStats.format_ticks_to_time(stats.chance_to_kill[1]) + ", " + \
-               "75%: " + DamageSimStats.format_ticks_to_time(stats.chance_to_kill[2])
+               "50%: " + DamageSimStats.format_ticks_to_time(stats.chance_to_kill)
 
         print(text)
 
