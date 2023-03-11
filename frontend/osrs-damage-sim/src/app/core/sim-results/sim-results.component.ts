@@ -19,8 +19,6 @@ export class SimResultsComponent implements OnChanges {
   @Input()
   damageSimResults: DamageSimResults;
 
-  targetTimeChance: number[];
-
   sortConfigs: SortConfigs = {
     average: { sortOrder: SortOrder.Ascending, isSorted: false },
     maximum: { sortOrder: SortOrder.Ascending, isSorted: false },
@@ -34,6 +32,8 @@ export class SimResultsComponent implements OnChanges {
     sim_dps_stats: { sortOrder: SortOrder.Ascending, isSorted: false },
     total_damage_stats: { sortOrder: SortOrder.Ascending, isSorted: false },
     attack_count_stats: { sortOrder: SortOrder.Ascending, isSorted: false },
+
+    targetTimeChance: { sortOrder: SortOrder.Ascending, isSorted: false },
   };
 
   SortOrder = SortOrder;
@@ -51,9 +51,8 @@ export class SimResultsComponent implements OnChanges {
     const targetSeconds = this.convertTimeStringToSeconds(targetTime);
     const targetTicks = Math.ceil(targetSeconds / 0.6);
 
-    this.targetTimeChance = [];
     this.damageSimResults.results.forEach((damageSimResult: DamageSimResult) => {
-      this.targetTimeChance.push(damageSimResult.cumulative_chances[targetTicks]);
+      damageSimResult.targetTimeChance = damageSimResult.cumulative_chances[targetTicks] || 1;
     });
   }
 

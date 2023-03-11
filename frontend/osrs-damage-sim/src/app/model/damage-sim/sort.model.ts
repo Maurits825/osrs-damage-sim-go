@@ -22,11 +22,11 @@ export interface SortConfig {
 }
 
 export type SortConfigs = {
-  [name in TimeSortField | DpsSortField]: SortConfig;
+  [name in TimeSortField | DpsSortField | 'targetTimeChance']: SortConfig;
 };
 
 export type SortLabels = {
-  [name in TimeSortField | DpsSortField]: string;
+  [name in TimeSortField | DpsSortField | 'targetTimeChance']: string;
 };
 
 export const sortLabels: SortLabels = {

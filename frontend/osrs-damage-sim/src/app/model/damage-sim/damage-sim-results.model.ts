@@ -34,6 +34,8 @@ export interface DamageSimResult {
   cumulative_chances: number[];
   max_hit: number[];
   accuracy: number[];
+
+  targetTimeChance?: number;
 }
 
 export interface DamageSimResults {

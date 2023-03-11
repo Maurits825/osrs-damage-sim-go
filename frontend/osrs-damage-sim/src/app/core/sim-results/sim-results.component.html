@@ -119,7 +119,9 @@
       <tbody>
         <tr *ngFor="let result of damageSimResults.results; let setupIndex = index">
           <th scope="row">{{ result.labels.input_gear_setup_label }}</th>
-          <td *ngIf="targetTimeChance; else timeEmpty">{{ targetTimeChance[setupIndex] * 100 | number : "1.2-2" }}%</td>
+          <td *ngIf="result.targetTimeChance !== undefined; else timeEmpty">
+            {{ result.targetTimeChance * 100 | number : "1.2-2" }}%
+          </td>
           <ng-template #timeEmpty><td>-</td></ng-template>
         </tr>
       </tbody>
