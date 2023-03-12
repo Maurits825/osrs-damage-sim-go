@@ -33,11 +33,5 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install --legacy-peer-deps
         
-      - name: Debug
-        run: ls
-        
-      - name: Debug3
-        run: ls node_modules
-        
       - name: Lint
         run: npm run lint
