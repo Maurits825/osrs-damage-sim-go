@@ -1,6 +1,7 @@
 import base64
 import json
 import re
+from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
@@ -10,12 +11,14 @@ from backend.model.attack_style.weapon_category import WeaponCategory
 from backend.weapon import Weapon
 from backend.wiki_data import WikiData
 
+WIKI_DATA_FOLDER = Path(__file__).parent / "backend/wiki_data/"
+
 
 class GenerateWikiData:
     @staticmethod
     def update_special_attack_json():
         special_attack_dict = GenerateWikiData.get_special_attack_weapons()
-        with open("./wiki_data/special_attack.json", "w") as outfile:
+        with open(WIKI_DATA_FOLDER / "special_attack.json", "w") as outfile:
             json.dump(special_attack_dict, outfile)
 
     @staticmethod
@@ -69,7 +72,7 @@ class GenerateWikiData:
                 print("Error with id: " + str(item_id) + ", name: " + item["name"])
                 print(e)
 
-        with open("./wiki_data/gear_slot_items.json", 'w') as json_file:
+        with open(WIKI_DATA_FOLDER / "gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)
 
     @staticmethod
@@ -168,7 +171,7 @@ class GenerateWikiData:
         unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
 
         npcs = unique_npcs
-        with open("./wiki_data/unique_npcs.json", 'w') as json_file:
+        with open(WIKI_DATA_FOLDER / "unique_npcs.json", 'w') as json_file:
             json.dump(npcs, json_file)
 
     @staticmethod
