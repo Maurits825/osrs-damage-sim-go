@@ -6,29 +6,85 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-from backend.model.attack_style.attack_type import AttackType
-from backend.model.attack_style.weapon_category import WeaponCategory
-from backend.weapon import Weapon
-from backend.wiki_data import WikiData
+from model.attack_type import AttackType
+from model.weapon_category import WeaponCategory
 
-WIKI_DATA_FOLDER = Path(__file__).parent / "backend/wiki_data/"
+WIKI_DATA_FOLDER = Path(__file__) / "data_cache"
+NPCS_DMG_SIM_JSON = WIKI_DATA_FOLDER / "npcs-dmg-sim.json"
+ITEMS_DMG_SIM_JSON = WIKI_DATA_FOLDER / "items-dmg-sim.json"
+SPECIAL_ATTACK_JSON = WIKI_DATA_FOLDER / "special_attack.json"
+GEAR_SLOT_ITEM_JSON = WIKI_DATA_FOLDER / "gear_slot_items.json"
+UNIQUE_NPCS_JSON = WIKI_DATA_FOLDER / "unique_npcs.json"
 
 
 class GenerateWikiData:
-    @staticmethod
-    def update_special_attack_json():
-        special_attack_dict = GenerateWikiData.get_special_attack_weapons()
-        with open(WIKI_DATA_FOLDER / "special_attack.json", "w") as outfile:
-            json.dump(special_attack_dict, outfile)
+    def __init__(self):
+        self.npcs = None
+        self.items = None
 
-    @staticmethod
-    def update_gear_slot_items_list():  # noqa: C901
+        self.special_attack = None
+        self.gear_slot_items = None
+
+        self.load_npcs()
+        self.load_items()
+
+    def load_npcs(self):
+        with open(NPCS_DMG_SIM_JSON, 'r') as npcs_json:
+            self.npcs = json.load(npcs_json)
+
+    def load_items(self):
+        with open(ITEMS_DMG_SIM_JSON, 'r') as items_json:
+            self.items = json.load(items_json)
+
+    def load_special_attack(self):
+        with open(SPECIAL_ATTACK_JSON, 'r') as special_attack_json:
+            self.special_attack = json.load(special_attack_json)
+
+    def load_gear_slot_items(self):
+        with open(GEAR_SLOT_ITEM_JSON, 'r') as gear_slot_items_json:
+            self.gear_slot_items = json.load(gear_slot_items_json)
+
+    def get_special_attack(self, item_name: str) -> int:
+        for key in self.special_attack:
+            if key in item_name:
+                return self.special_attack[key]
+
+        return 0
+
+    def update_unique_npcs_json(self):
+        seen_npc_name = []
+        unique_npcs = []
+
+        for npc_id, npc in self.npcs:
+            if npc.get("hitpoints", 0) == 0:
+                continue
+
+            npc_key = (
+                    npc["name"] + "_" +
+                    str(npc.get("combat", 0)) + "_" +
+                    str(npc.get("hitpoints", 0)) + "_" +
+                    str(npc.get("isTobHardMode", 0)) + "_" +
+                    str(len(npc))
+            )
+            if npc_key not in seen_npc_name:
+                npc["id"] = npc_id
+                unique_npcs.append(npc)
+                seen_npc_name.append(npc_key)
+
+        unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
+
+        npcs = unique_npcs
+        with open(UNIQUE_NPCS_JSON, 'w') as unique_npcs_json:
+            json.dump(npcs, unique_npcs_json)
+
+    def update_gear_slot_items_json(self):  # noqa: C901
         gear_slot_items = {}
         seen_item_names = []
 
-        gear_slot_items_old = WikiData.get_gear_slot_items()
+        self.load_gear_slot_items()
+        gear_slot_items_old = self.gear_slot_items
 
-        for item_id, item in WikiData.items_json.items():
+        for item_id, item in self.items:
             try:
                 slot = str(item["slot"])
 
@@ -59,7 +115,7 @@ class GenerateWikiData:
                     if attack_type:
                         item_dict["attackType"] = attack_type
 
-                    special_attack_cost = WikiData.get_special_attack(item["name"])
+                    special_attack_cost = self.get_special_attack(item["name"])
                     if special_attack_cost:
                         item_dict["specialAttackCost"] = special_attack_cost
 
@@ -74,6 +130,12 @@ class GenerateWikiData:
 
         with open(WIKI_DATA_FOLDER / "gear_slot_items.json", 'w') as json_file:
             json.dump(gear_slot_items, json_file)
+
+    @staticmethod
+    def update_special_attack_json():
+        special_attack_dict = GenerateWikiData.get_special_attack_weapons()
+        with open(SPECIAL_ATTACK_JSON, "w") as special_attack_json:
+            json.dump(special_attack_dict, special_attack_json)
 
     @staticmethod
     def get_cached_item(gear_slot_items_old, slot, item_id, item_name):
@@ -148,31 +210,7 @@ class GenerateWikiData:
 
         return False
 
-    @staticmethod
-    def update_unique_npcs_json():
-        seen_npc_name = []
-        unique_npcs = []
-        for npc_id, npc in WikiData.npcs_json.items():
-            if npc.get("hitpoints", 0) == 0:
-                continue
 
-            npc_key = (
-                    npc["name"] + "_" +
-                    str(npc.get("combat", 0)) + "_" +
-                    str(npc.get("hitpoints", 0)) + "_" +
-                    str(npc.get("isTobHardMode", 0)) + "_" +
-                    str(len(npc))
-            )
-            if npc_key not in seen_npc_name:
-                npc["id"] = npc_id
-                unique_npcs.append(npc)
-                seen_npc_name.append(npc_key)
-
-        unique_npcs = sorted(unique_npcs, key=lambda x: x["name"])
-
-        npcs = unique_npcs
-        with open(WIKI_DATA_FOLDER / "unique_npcs.json", 'w') as json_file:
-            json.dump(npcs, json_file)
 
     @staticmethod
     def get_attack_style_and_type(item):
@@ -187,7 +225,7 @@ class GenerateWikiData:
 
             if weapon_category.value[-1].attack_type == AttackType.MAGIC:
                 attack_type = "magic"
-            elif weapon_category.value[0].attack_type in Weapon.MELEE_TYPES:
+            elif weapon_category.value[0].attack_type in [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]:
                 attack_type = "melee"
             elif weapon_category.value[0].attack_type == AttackType.RANGED:
                 attack_type = "ranged"
@@ -247,8 +285,10 @@ class GenerateWikiData:
                         weapons[name] = energy
                     break
 
+        return weapons
+
 
 if __name__ == '__main__':
     GenerateWikiData.update_special_attack_json()
-    GenerateWikiData.update_gear_slot_items_list()
-    GenerateWikiData.update_unique_npcs_json()
+    # GenerateWikiData.update_gear_slot_items_list()
+    # GenerateWikiData.update_unique_npcs_json()

@@ -6,3 +6,4 @@ mwparserfromhell==0.6.4
 requests==2.28.2
 soupsieve==2.4
 urllib3==1.26.15
+aenum==3.1.11
