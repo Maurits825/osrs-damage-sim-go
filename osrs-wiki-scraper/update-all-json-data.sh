@@ -1,10 +1,6 @@
 #!/bin/sh
 export PYTHONUNBUFFERED=1
 
-echo "Activating venv ..."
-. venv/Scripts/activate
-
-echo ""
 echo "Running osrs wiki scraper ..."
 python osrs_wiki_scraper.py
 
