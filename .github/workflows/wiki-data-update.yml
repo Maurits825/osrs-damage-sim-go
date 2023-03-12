@@ -37,7 +37,7 @@ jobs:
         . ${{ env.VENV_FOLDER }}/bin/activate
         pip install -r requirements.txt
         
-    - name: Copy to target branch
+    - name: Update all json data
       run: |
         . ${{ env.VENV_FOLDER }}/bin/activate
         . update-all-json-data.sh
