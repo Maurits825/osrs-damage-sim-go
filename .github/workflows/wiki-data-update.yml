@@ -1,0 +1,61 @@
+name: wiki-data-update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update wiki data
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./osrs-wiki-scraper
+
+    steps:    
+    - name: Check out
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.9"
+
+    - name: Cache venv
+      id: cache-venv
+      uses: actions/cache@v3
+      with:
+        path: ${{ env.VENV_FOLDER }}
+        key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
+
+    - name: Create venv
+      if: steps.cache-venv.outputs.cache-hit != 'true'
+      run: |
+        python -m venv ${{ env.VENV_FOLDER }}
+        . ${{ env.VENV_FOLDER }}/bin/activate
+        pip install -r requirements.txt
+        
+    - name: Copy to target branch
+      run: |
+        . ${{ env.VENV_FOLDER }}/bin/activate
+        . update-all-json-data.sh
+      
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    - name: Create pull request
+      id: cpr
+      uses: peter-evans/create-pull-request@v4
+      with:
+        token: ${{ secrets.PAT }}
+        branch: wiki-data-update-${{ steps.date.outputs.date }}
+        title: Wiki data update ${{ steps.date.outputs.date }}
+        commit-message: Wiki data update ${{ steps.date.outputs.date }}
+        reviewers: Maurits825
+        delete-branch: true
+  
+    - name: Display pull request
+      if: ${{ steps.cpr.outputs.pull-request-number }}
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
