@@ -1,8 +1,8 @@
 from model.gear_setup import GearSetup
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.npc.npc_stats import NpcStats
-from weapon import Weapon
-from weapons.custom_weapons import CUSTOM_WEAPONS
+from weapons.weapon import Weapon
+from weapons.custom_weapon import CUSTOM_WEAPONS
 
 
 class WeaponLoader:

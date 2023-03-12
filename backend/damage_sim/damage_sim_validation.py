@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from model.stat_drain_type import StatDrainType
-from weapons.custom_weapons import CUSTOM_WEAPONS
+from weapons.custom_weapon import CUSTOM_WEAPONS
 
 MIN_ITERATIONS = 1
 MAX_ITERATIONS = 10_000

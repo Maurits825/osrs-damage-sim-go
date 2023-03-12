@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
 from model.input_setup.gear_setup_settings import GearSetupSettings
-from weapon import Weapon
+from weapons.weapon import Weapon
 
 
 @dataclass()

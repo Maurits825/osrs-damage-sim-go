@@ -5,7 +5,7 @@ from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.equipped_gear import EquippedGear
 from model.npc.npc_stats import NpcStats
-from wiki_data import WikiData
+from wiki_data.wiki_data import WikiData
 
 
 # flake8: noqa

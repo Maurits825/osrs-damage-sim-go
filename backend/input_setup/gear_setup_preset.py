@@ -1,7 +1,6 @@
 import json
 
-from wiki_data import WikiData
-
+from wiki_data.wiki_data import WikiData
 
 GEAR_SETUP_PRESET_ICON = "./gear_setup_presets/gear_setup_presets-icons.json"
 

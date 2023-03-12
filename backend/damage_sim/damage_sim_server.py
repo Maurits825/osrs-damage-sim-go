@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 from flask_compress import Compress
+from flask_cors import CORS
 
 from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
