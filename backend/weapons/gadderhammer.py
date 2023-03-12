@@ -1,7 +1,7 @@
 import math
 import random
 
-from constants import TICK_LENGTH
+from damage_sim.damage_sim import TICK_LENGTH
 from weapon import Weapon
 
 DOUBLE_DMG_CHANCE = 0.05

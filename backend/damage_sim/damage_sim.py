@@ -1,7 +1,6 @@
 import copy
 
 from condition_evaluator import ConditionEvaluator
-from constants import MAX_SPECIAL_ATTACK, SPEC_REGEN_TICKS, SPEC_REGEN_AMOUNT, TICK_LENGTH
 from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
 from model.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
@@ -11,6 +10,13 @@ from model.stat_drain_type import StatDrainType
 from weapon import Weapon
 
 MAIN_WEAPON_INDEX = 0
+
+SPEC_REGEN_PER_TICK = 0.2  # 10% per 30 sec or 0.2% per tick
+SPEC_REGEN_TICKS = 50
+SPEC_REGEN_AMOUNT = 10
+MAX_SPECIAL_ATTACK = 100
+
+TICK_LENGTH = 0.6
 
 
 class DamageSim:

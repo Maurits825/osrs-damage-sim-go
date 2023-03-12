@@ -6,13 +6,14 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-from constants import MAX_X_TICKS_LABEL
 from damage_sim.damage_sim_stats import DamageSimStats
 from model.graph import Graph, GraphType
 from model.input_setup.input_setup import InputSetup
 
 GRAPH_WIDTH = 19.20
 GRAPH_HEIGHT = 10.80
+
+MAX_X_TICKS_LABEL = 30
 
 
 class DamageSimGraph:

@@ -4,7 +4,7 @@ import math
 import random
 
 from bolt_special_attack import BoltSpecialAttack
-from constants import TICK_LENGTH
+from damage_sim.damage_sim import TICK_LENGTH
 from dps_calculator import DpsCalculator
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
                                   DAWNBRINGER, HARM_STAFF)

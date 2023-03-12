@@ -1,6 +1,6 @@
 import math
 
-from constants import TICK_LENGTH
+from damage_sim.damage_sim import TICK_LENGTH
 from model.prayer import PrayerMultiplier
 
 

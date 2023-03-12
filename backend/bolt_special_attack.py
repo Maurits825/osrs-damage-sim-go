@@ -4,7 +4,7 @@ import copy
 import math
 import random
 
-from constants import TICK_LENGTH
+from damage_sim.damage_sim import TICK_LENGTH
 from model.bolt import ALL_BOLTS, Bolt, RubyBolts, DiamondBolts
 from model.equipped_gear import EquippedGear
 

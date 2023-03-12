@@ -4,7 +4,7 @@ import math
 
 import numpy as np
 
-from constants import TICK_LENGTH
+from damage_sim.damage_sim import TICK_LENGTH
 from model.boost import BoostType
 from model.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
 from model.input_setup.gear_setup_settings import GearSetupSettings

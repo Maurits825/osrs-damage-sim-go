@@ -1,7 +1,7 @@
 import math
 
 from bolt_special_attack import BoltSpecialAttack
-from constants import TICK_LENGTH
+from damage_sim.damage_sim import TICK_LENGTH
 from model.bolt import RubyBolts, DiamondBolts
 from model.gear_setup import GearSetup
 from model.npc.combat_stats import CombatStats

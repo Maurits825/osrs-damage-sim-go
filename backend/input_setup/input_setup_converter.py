@@ -1,6 +1,5 @@
 import math
 
-from constants import TOA_TEAM_SCALING, TOA_MAX_TEAM, TOB_MAX_TEAM
 from input_setup.gear_ids import BLOWPIPE, UNARMED_EQUIVALENT
 from model.attack_style.weapon_category import WeaponCategory
 from model.boost import BoostType
@@ -21,6 +20,10 @@ from model.weapon_stats import WeaponStats
 from weapons.custom_weapons import CUSTOM_WEAPONS
 from weapons.weapon_loader import WeaponLoader
 from wiki_data import WikiData
+
+TOA_TEAM_SCALING = [1, 1.9, 2.8, 3.4, 4, 4.6, 5.2, 5.8]
+TOA_MAX_TEAM = 8
+TOB_MAX_TEAM = 5
 
 
 class InputSetupConverter:
