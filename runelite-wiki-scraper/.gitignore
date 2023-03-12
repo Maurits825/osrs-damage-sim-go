@@ -1,9 +1,3 @@
-.vscode
-*.cache.json
-.mypy_cache
-npcs-dmg-sim.json
-npcs-dmg-sim.min.json
-items-dmg-sim.json
-items-dmg-sim.min.json
+data_cache
 __pycache__
 .idea
