@@ -85,7 +85,7 @@ class GenerateWikiData:
         return None
 
     @staticmethod
-    def is_filtered_item(item, item_id):
+    def is_filtered_item(item, item_id):  # noqa: C901
         # teleport charges
         if re.match(r".*\(\d+\)", item["name"]):
             return "Shayzien" not in item["name"]
