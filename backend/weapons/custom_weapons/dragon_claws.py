@@ -1,8 +1,8 @@
 import math
 import random
 
-from damage_sim.damage_sim import TICK_LENGTH
-from weapon import Weapon
+from constant import TICK_LENGTH
+from weapons.weapon import Weapon
 
 
 class DragonClaws(Weapon):

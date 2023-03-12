@@ -1,6 +1,6 @@
 import math
 
-from weapon import Weapon
+from weapons.weapon import Weapon
 
 
 class TwistedBow(Weapon):

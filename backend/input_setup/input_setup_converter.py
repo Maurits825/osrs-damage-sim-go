@@ -17,7 +17,7 @@ from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
-from weapons.custom_weapons import CUSTOM_WEAPONS
+from weapons.custom_weapon import CUSTOM_WEAPONS
 from weapons.weapon_loader import WeaponLoader
 from wiki_data import WikiData
 

@@ -1,11 +1,11 @@
 import math
 import random
 
-from dps_calculator import DpsCalculator
+from weapons.dps_calculator import DpsCalculator
 from model.gear_setup import GearSetup
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
-from weapon import Weapon
+from weapons.weapon import Weapon
 
 
 class Fang(Weapon):

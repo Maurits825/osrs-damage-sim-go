@@ -3,9 +3,8 @@ from __future__ import annotations
 import math
 import random
 
-from bolt_special_attack import BoltSpecialAttack
-from damage_sim.damage_sim import TICK_LENGTH
-from dps_calculator import DpsCalculator
+from weapons.bolt_special_attack import BoltSpecialAttack
+from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
                                   DAWNBRINGER, HARM_STAFF)
 from input_setup.special_gear_bonus import SpecialGearBonus
@@ -18,6 +17,7 @@ from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
+from weapons.dps_calculator import DpsCalculator
 from wiki_data import WikiData
 
 

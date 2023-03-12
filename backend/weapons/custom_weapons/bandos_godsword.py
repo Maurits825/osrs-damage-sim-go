@@ -3,7 +3,7 @@ import math
 from model.npc.npc_stats import NpcStats
 from model.stat_drain_type import StatDrainType
 from model.stat_drain_weapon import StatDrainWeapon
-from weapon import Weapon
+from weapons.weapon import Weapon
 
 
 class BandosGodsword(Weapon, StatDrainWeapon):

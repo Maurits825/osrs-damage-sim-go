@@ -4,7 +4,7 @@ import math
 
 import numpy as np
 
-from damage_sim.damage_sim import TICK_LENGTH
+from constant import TICK_LENGTH
 from model.boost import BoostType
 from model.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
 from model.input_setup.gear_setup_settings import GearSetupSettings
@@ -14,10 +14,10 @@ from model.input_setup.stat_drain import StatDrain
 from model.npc.combat_stats import CombatStats
 from model.sim_stats import SimStats, TimeSimStats
 from model.stat_drain_type import StatDrainType
-from weapon import Weapon
-from weapons.arclight import Arclight
-from weapons.bandos_godsword import BandosGodsword
-from weapons.dragon_warhammer import DragonWarhammer
+from weapons.weapon import Weapon
+from weapons.custom_weapons.arclight import Arclight
+from weapons.custom_weapons.bandos_godsword import BandosGodsword
+from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 
 BOOST_NAME = {
     BoostType.SMELLING_SALTS: "Salt",

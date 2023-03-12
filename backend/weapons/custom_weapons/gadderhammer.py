@@ -1,8 +1,8 @@
 import math
 import random
 
-from damage_sim.damage_sim import TICK_LENGTH
-from weapon import Weapon
+from constant import TICK_LENGTH
+from weapons.weapon import Weapon
 
 DOUBLE_DMG_CHANCE = 0.05
 AVG_DMG_BOOST = 1.2875  # from wiki

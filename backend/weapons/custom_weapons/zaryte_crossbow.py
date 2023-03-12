@@ -1,12 +1,12 @@
 import math
 
-from bolt_special_attack import BoltSpecialAttack
-from damage_sim.damage_sim import TICK_LENGTH
+from constant import TICK_LENGTH
+from weapons.bolt_special_attack import BoltSpecialAttack
 from model.bolt import RubyBolts, DiamondBolts
 from model.gear_setup import GearSetup
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
-from weapon import Weapon
+from weapons.weapon import Weapon
 
 
 class ZaryteCrossbow(Weapon):

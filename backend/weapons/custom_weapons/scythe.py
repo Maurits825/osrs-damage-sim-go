@@ -1,8 +1,8 @@
 import math
 import random
 
-from dps_calculator import DpsCalculator
-from weapon import Weapon
+from weapons.dps_calculator import DpsCalculator
+from weapons.weapon import Weapon
 
 
 class Scythe(Weapon):
