@@ -1,20 +1,19 @@
 import base64
 import json
 import re
-from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
 
+from constants import CACHE_DATA_FOLDER
 from model.attack_type import AttackType
 from model.weapon_category import WeaponCategory
 
-WIKI_DATA_FOLDER = Path(__file__) / "data_cache"
-NPCS_DMG_SIM_JSON = WIKI_DATA_FOLDER / "npcs-dmg-sim.json"
-ITEMS_DMG_SIM_JSON = WIKI_DATA_FOLDER / "items-dmg-sim.json"
-SPECIAL_ATTACK_JSON = WIKI_DATA_FOLDER / "special_attack.json"
-GEAR_SLOT_ITEM_JSON = WIKI_DATA_FOLDER / "gear_slot_items.json"
-UNIQUE_NPCS_JSON = WIKI_DATA_FOLDER / "unique_npcs.json"
+NPCS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "npcs-dmg-sim.json"
+ITEMS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "items-dmg-sim.json"
+SPECIAL_ATTACK_JSON = CACHE_DATA_FOLDER / "special_attack.json"
+GEAR_SLOT_ITEM_JSON = CACHE_DATA_FOLDER / "gear_slot_items.json"
+UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
 
 
 class GenerateWikiData:
@@ -209,8 +208,6 @@ class GenerateWikiData:
             return True
 
         return False
-
-
 
     @staticmethod
     def get_attack_style_and_type(item):

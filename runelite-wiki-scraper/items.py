@@ -6,6 +6,8 @@ import util
 from typing import *
 import urllib.request
 
+from constants import CACHE_DATA_FOLDER
+
 "this isn't quite right, because 2h, but the format isn't smart enough for that"
 slotIDs: Dict[str, int] = {
 	"weapon": 3,
@@ -135,4 +137,4 @@ def run():
 			print("Item {} failed:".format(name))
 			traceback.print_exc()
 
-	util.write_json("items-dmg-sim.json", "items-dmg-sim.min.json", stats)
+	util.write_json(CACHE_DATA_FOLDER / "items-dmg-sim.json", CACHE_DATA_FOLDER / "items-dmg-sim.min.json", stats)

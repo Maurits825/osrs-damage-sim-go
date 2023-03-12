@@ -4,6 +4,8 @@ import urllib.request
 import urllib.parse
 from typing import *
 
+from constants import CACHE_DATA_FOLDER
+
 use_cache: bool = True
 user_agent: Dict[str, str] = {"User-Agent": "osrs dmg sim scrapper (gh/Maurits825)"}
 
@@ -29,7 +31,7 @@ def query_category(category_name: str) -> Dict[str, str]:
 	you can then use mwparserfromhell to parse the wikitext into
 	an ast
 	"""
-	cache_file_name = category_name + ".cache.json"
+	cache_file_name = CACHE_DATA_FOLDER / (category_name + ".cache.json")
 	if use_cache and os.path.isfile(cache_file_name):
 		with open(cache_file_name, "r") as fi:
 			return json.load(fi)
