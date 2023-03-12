@@ -1,12 +1,10 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_compress import Compress
 
 from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
-from input_setup.gear_setup_preset import GearSetupPreset
 from input_setup.input_setup_converter import InputSetupConverter
-from wiki_data import WikiData
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:4200", "https://maurits825.github.io"])

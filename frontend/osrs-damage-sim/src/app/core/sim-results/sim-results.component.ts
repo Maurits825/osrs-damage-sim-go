@@ -47,7 +47,7 @@ export class SimResultsComponent implements OnChanges {
   timestampPattern = /^(?:([0-9]{0,2}):)?([0-9]{1,2})\.([0-9]+)$/;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['damageSimResults']) {
+    if (changes['damageSimResults'] && this.damageSimResults) {
       this.sortTimeResults('average');
       this.isTargetTimeValid = null;
       this.targetTime = '';

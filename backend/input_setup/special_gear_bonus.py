@@ -8,6 +8,7 @@ from model.npc.npc_stats import NpcStats
 from wiki_data import WikiData
 
 
+# flake8: noqa
 class SpecialGearBonus:
     @staticmethod
     def get_gear_bonus(gear: EquippedGear, attack_style,

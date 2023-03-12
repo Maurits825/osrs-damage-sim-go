@@ -37,7 +37,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ${{ env.VENV_FOLDER }}
-        key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
+        key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements/dev.txt') }}
         restore-keys: |
           ${{ runner.os }}-venv-
 
@@ -46,12 +46,7 @@ jobs:
       run: |
         python -m venv ${{ env.VENV_FOLDER }}
         . ${{ env.VENV_FOLDER }}/bin/activate
-        pip install -r requirements.txt
-        
-    - name: Install dependencies
-      run: |
-        . ${{ env.VENV_FOLDER }}/bin/activate
-        pip install flake8 unittest2
+        pip install -r requirements/dev.txt
         
     - name: Lint with flake8
       run: |
