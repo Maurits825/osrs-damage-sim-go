@@ -1,10 +1,9 @@
 name: web-app-deploy
 
 on:
-  workflow_run:
-    workflows: [web-app-test]
-    types: [completed]
-    branches: [main]
+  push:
+      branches:
+        - main
 
 jobs:
   deploy:
