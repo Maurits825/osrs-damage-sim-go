@@ -54,5 +54,4 @@ class TobNpcs:
         elif "Verzik" in name:
             name += " (" + str(version.get("smwname", "").strip().lower().replace("hase ", "")) + ")"
 
-        print(name + " - " + version["attributes"].strip())
         return doc, name

@@ -37,5 +37,4 @@ class CoxNpcs:
 
         name = name.replace('(', '').replace(')', '').replace('Challenge Mode', '').strip()
 
-        print(name + " - " + version["attributes"].strip().replace("\n", ""))
         return doc, name
