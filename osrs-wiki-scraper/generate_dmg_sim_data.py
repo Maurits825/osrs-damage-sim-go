@@ -1,6 +1,7 @@
 import base64
 import json
 import re
+from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,6 +15,7 @@ ITEMS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "items-dmg-sim.json"
 SPECIAL_ATTACK_JSON = CACHE_DATA_FOLDER / "special_attack.json"
 GEAR_SLOT_ITEM_JSON = CACHE_DATA_FOLDER / "gear_slot_items.json"
 UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
+GEAR_SLOT_ITEM_FALLBACK_JSON = Path(__file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
 
 
 class GenerateDmgSimData:
@@ -40,8 +42,12 @@ class GenerateDmgSimData:
             self.special_attack = json.load(special_attack_json)
 
     def load_gear_slot_items(self):
-        with open(GEAR_SLOT_ITEM_JSON, 'r') as gear_slot_items_json:
-            self.gear_slot_items = json.load(gear_slot_items_json)
+        try:
+            with open(GEAR_SLOT_ITEM_JSON, 'r') as gear_slot_items_json:
+                self.gear_slot_items = json.load(gear_slot_items_json)
+        except FileNotFoundError:
+            with open(GEAR_SLOT_ITEM_FALLBACK_JSON, 'r') as gear_slot_items_json:
+                self.gear_slot_items = json.load(gear_slot_items_json)
 
     def get_special_attack(self, item_name: str) -> int:
         for key in self.special_attack:
@@ -80,10 +86,11 @@ class GenerateDmgSimData:
         gear_slot_items = {}
         seen_item_names = []
 
+        self.load_special_attack()
         self.load_gear_slot_items()
         gear_slot_items_old = self.gear_slot_items
 
-        for item_id, item in self.items:
+        for item_id, item in self.items.items():
             try:
                 slot = str(item["slot"])
 
@@ -203,6 +210,11 @@ class GenerateDmgSimData:
                    ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
                 return True
 
+        # crystal recolors
+        if any(symbol in item["name"] for symbol in
+               ["(Amlodd)", "(Crwys)", "(Cadarn)", "(Trahaearn)", "(Iorwerth)", "(Ithell)", "(Hefin)", "(Meilyr)"]):
+            return True
+
         # nightmare zone items
         if "(nz)" in item["name"]:
             return True
@@ -286,6 +298,8 @@ class GenerateDmgSimData:
 
 
 if __name__ == '__main__':
-    GenerateDmgSimData.update_special_attack_json()
-    # GenerateDmgSimData.update_gear_slot_items_list()
+    # GenerateDmgSimData.update_special_attack_json()
+
+    generate = GenerateDmgSimData()
+    generate.update_gear_slot_items_json()
     # GenerateDmgSimData.update_unique_npcs_json()
