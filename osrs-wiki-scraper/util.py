@@ -77,7 +77,7 @@ def get_doc_for_id_string(source: str, version: Dict[str, str], docs: Dict[str, 
     ids = [id for id in map(lambda id: id.strip(), str(version["id"]).split(",")) if id != "" and id.isdigit()]
 
     if len(ids) == 0:
-        print("page {} is has an empty id".format(source))
+        #print("page {} is has an empty id".format(source))
         return None
 
     doc = {}

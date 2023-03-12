@@ -15,7 +15,9 @@ ITEMS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "items-dmg-sim.json"
 SPECIAL_ATTACK_JSON = CACHE_DATA_FOLDER / "special_attack.json"
 GEAR_SLOT_ITEM_JSON = CACHE_DATA_FOLDER / "gear_slot_items.json"
 UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
-GEAR_SLOT_ITEM_FALLBACK_JSON = Path(__file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
+
+GEAR_SLOT_ITEM_FALLBACK_JSON = Path(
+    __file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
 
 
 class GenerateWebAppData:
