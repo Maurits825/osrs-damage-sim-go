@@ -2,16 +2,6 @@ import { Component, Inject, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } f
 import { cloneDeep } from 'lodash-es';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
-import { ConditionComponent } from '../condition/condition.component';
-import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
-import { allBoosts } from '../../model/osrs/boost.model';
-import { Condition } from '../../model/damage-sim/condition.model';
-import { GearSlot } from '../../model/osrs/gear-slot.enum';
-import { GearSetup } from '../../model/damage-sim/input-setup.model';
-import { AttackType, Item } from '../../model/osrs/item.model';
-import { SpecialGear } from '../../model/damage-sim/special-gear.model';
-import { DamageSimService } from '../../services/damage-sim.service';
-import { RlGearService } from '../../services/rl-gear.service';
 import {
   DRAGON_DARTS_ID,
   UNARMED_EQUIVALENT_ID,
@@ -24,6 +14,14 @@ import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { QuickGear } from 'src/app/model/damage-sim/quick-gear.model';
 import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
+import { Condition } from 'src/app/model/damage-sim/condition.model';
+import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
+import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
+import { Item, AttackType } from 'src/app/model/osrs/item.model';
+import { DamageSimService } from 'src/app/services/damage-sim.service';
+import { ConditionComponent } from '../condition/condition.component';
+import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -44,8 +42,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   allGearSlotItems: Record<GearSlot, Item[]>;
 
   gearSetupPresets: GearSetupPreset[];
-
-  allBoosts = allBoosts;
 
   attackStyles: string[];
   allSpells: string[];
@@ -70,7 +66,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   constructor(
     private damageSimservice: DamageSimService,
-    private rlGearService: RlGearService,
     private prayerService: PrayerService,
     private specialGearService: SpecialGearService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
@@ -118,23 +113,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   getGearSetup(): GearSetup {
     return this.gearSetup;
-  }
-
-  loadRlGear(): void {
-    this.rlGearService.getGear().subscribe((gearIds: number[]) => {
-      this.allGearSlots.forEach((slot: GearSlot) => {
-        this.gearSlotChange(null, slot);
-        this.gearSetup.gear[slot] = null;
-
-        gearIds.forEach((itemId: number) => {
-          const item = this.getItem(slot, itemId);
-          if (item) {
-            this.gearSlotChange(item, slot);
-            this.gearSetup.gear[slot] = item;
-          }
-        });
-      });
-    });
   }
 
   loadGearSetupPreset(gearSetupPreset: GearSetupPreset) {

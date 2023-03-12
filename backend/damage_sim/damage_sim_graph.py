@@ -62,7 +62,7 @@ class DamageSimGraph:
         graph.axes.set_ylabel("Probability %")
 
         title = "Time to Kill Count: "
-        title += DamageSimStats.get_graph_title_info(input_setup.global_settings)
+        title += DamageSimStats.get_global_settings_label(input_setup.global_settings)
 
         DamageSimGraph.format_figure(graph, title)
 
@@ -83,7 +83,7 @@ class DamageSimGraph:
         graph.axes.set_ylabel("Cumulative chance")
 
         title = "Cumulative Time to Kill: "
-        title += DamageSimStats.get_graph_title_info(input_setup.global_settings)
+        title += DamageSimStats.get_global_settings_label(input_setup.global_settings)
 
         DamageSimGraph.format_figure(graph, title)
 

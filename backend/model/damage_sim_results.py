@@ -35,17 +35,22 @@ class InputGearSetupLabels:
 
 
 @dataclass()
+class DamageSimResult:
+    labels: InputGearSetupLabels
+
+    ttk_stats: TimeSimStats
+    total_damage_stats: list[SimStats]
+    attack_count_stats: list[SimStats]
+    sim_dps_stats: list[SimStats]
+    cumulative_chances: list[float]
+
+    theoretical_dps: list[float]
+    max_hit: list[int]
+    accuracy: list[float]
+
+
+@dataclass()
 class DamageSimResults:
-    labels: list[InputGearSetupLabels]
-
-    ttk_stats: list[TimeSimStats]
-    total_damage_stats: list[list[SimStats]]
-    attack_count_stats: list[list[SimStats]]
-    sim_dps_stats: list[list[SimStats]]
-    cumulative_chances: list[list[float]]
-
-    theoretical_dps: list[list[float]]
-    max_hit: list[list[int]]
-    accuracy: list[list[float]]
-
+    results: list[DamageSimResult]
+    global_settings_label: str
     graphs: dict[GraphType, str]

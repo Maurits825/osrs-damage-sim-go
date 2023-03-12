@@ -28,7 +28,7 @@ jobs:
         id: cache-nodemodules
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: ./frontend/osrs-damage-sim/node_modules
           key: ${{ runner.os }}-nodemodules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nodemodules-
@@ -36,6 +36,6 @@ jobs:
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install --legacy-peer-deps
-
+        
       - name: Lint
         run: npm run lint

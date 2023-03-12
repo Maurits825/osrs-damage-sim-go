@@ -13,25 +13,29 @@ class DamageSimRunner:
 
     def run(self, input_setup: InputSetup) -> DamageSimResults:
 
-        damage_sim_results = DamageSimResults([], [], [], [], [], [], [], [], [], {})  # TODO better way?
+        damage_sim_results = DamageSimResults(
+            results=[],
+            global_settings_label=DamageSimStats.get_global_settings_label(input_setup.global_settings),
+            graphs={}
+        )
         ttk_tick_stats = []
         ttk_list = []
         for input_gear_setup in input_setup.input_gear_setups:
             input_gear_setup_labels = DamageSimStats.get_input_gear_setup_label(input_gear_setup)
-            damage_sim_results.labels.append(input_gear_setup_labels)
 
-            sim_data, gear_setup_dps_stats = self.run_damage_sim(input_setup.global_settings, input_gear_setup)
+            sim_data, gear_setup_dps_stats = DamageSimRunner.run_single_gear_setup(
+                input_setup.global_settings, input_gear_setup
+            )
 
-            damage_sim_results.theoretical_dps.append(gear_setup_dps_stats.theoretical_dps)
-            damage_sim_results.max_hit.append(gear_setup_dps_stats.max_hit)
-            damage_sim_results.accuracy.append(gear_setup_dps_stats.accuracy)
+            damage_sim_result, ttk_tick_stat = DamageSimStats.get_damage_sim_result(
+                sim_data, gear_setup_dps_stats, input_gear_setup_labels
+            )
+            damage_sim_results.results.append(damage_sim_result)
 
-            ttk_tick_stat = DamageSimStats.populate_damage_sim_results(damage_sim_results, sim_data)
             ttk_tick_stats.append(ttk_tick_stat)
-
             ttk_list.append(sim_data.ticks_to_kill)
 
-        graph_labels = [label.input_gear_setup_label for label in damage_sim_results.labels]
+        graph_labels = [result.labels.input_gear_setup_label for result in damage_sim_results.results]
         min_ticks, max_ticks = DamageSimStats.get_min_and_max_ticks(ttk_tick_stats)
         damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(
             min_ticks, max_ticks, graph_labels, input_setup, ttk_list
@@ -39,8 +43,9 @@ class DamageSimRunner:
 
         return damage_sim_results
 
-    def run_damage_sim(self, global_settings: GlobalSettings, input_gear_setup: InputGearSetup
-                       ) -> (TotalDamageSimData, GearSetupDpsStats):
+    @staticmethod
+    def run_single_gear_setup(global_settings: GlobalSettings, input_gear_setup: InputGearSetup
+                              ) -> (TotalDamageSimData, GearSetupDpsStats):
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
         damage_sim = DamageSim(global_settings.npc, input_gear_setup)
 

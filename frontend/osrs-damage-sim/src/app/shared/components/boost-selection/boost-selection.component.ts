@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { allBoosts, Boost } from '../../model/osrs/boost.model';
-import { BoostModalComponent } from '../boost-modal/boost-modal.component';
+import { Boost } from '../../../model/osrs/boost.model';
+import { BoostModalComponent } from '../../modals/boost-modal/boost-modal.component';
 
 @Component({
   selector: 'app-boost-selection',
@@ -15,7 +15,6 @@ export class BoostSelectionComponent implements OnInit, OnChanges {
   @Output()
   boostToggle = new EventEmitter<Boost>();
 
-  allBoosts = allBoosts;
   quickBoosts: Set<Boost> = new Set(['overload_plus', 'smelling_salts', 'super_combat', 'ranging', 'saturated_heart']);
   quickBoostSelected = true;
 

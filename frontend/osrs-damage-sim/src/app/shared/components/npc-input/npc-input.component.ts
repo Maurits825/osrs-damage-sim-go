@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Npc } from '../../model/osrs/npc.model';
-import { DamageSimService } from '../../services/damage-sim.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Npc } from 'src/app/model/osrs/npc.model';
+import { DamageSimService } from 'src/app/services/damage-sim.service';
 
 @Component({
   selector: 'app-npc-input',
