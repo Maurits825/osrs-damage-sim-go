@@ -157,4 +157,3 @@ class DamageSimValidation:
     @staticmethod
     def invalid_value_message(value, label) -> str:
         return "Invalid value (" + str(value) + ") for " + label
-

@@ -1,6 +1,5 @@
 import copy
 import json
-from pathlib import Path
 
 from model.npc.aggressive_stats import AggressiveStats
 from model.npc.combat_stats import CombatStats
@@ -101,4 +100,3 @@ class WikiData:
     @staticmethod
     def get_standard_spells():
         return WikiData.magic_spells["standard_spells"]
-

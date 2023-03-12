@@ -19,7 +19,7 @@ class GenerateWikiData:
             json.dump(special_attack_dict, outfile)
 
     @staticmethod
-    def update_gear_slot_items_list():
+    def update_gear_slot_items_list():  # noqa: C901
         gear_slot_items = {}
         seen_item_names = []
 
