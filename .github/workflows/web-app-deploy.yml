@@ -30,7 +30,7 @@ jobs:
             
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps #TODO npm ci
       
       - name: Build
         run: npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
