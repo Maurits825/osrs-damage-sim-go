@@ -1,5 +1,8 @@
 name: wiki-data-update
 
+env:
+  VENV_FOLDER: ~/.venv
+
 on:
   workflow_dispatch:
 
