@@ -21,13 +21,23 @@ export class DamageSimService {
   private damageSimServiceUrl = environment.OSRS_DAMAGE_SIM_SERVICE_URL;
 
   constructor(private http: HttpClient) {
-    this.allGearSlotItems$ = this.getGearSlotItems().pipe(shareReplay(1));
+    this.allGearSlotItems$ = this.getGearSlotItems().pipe(
+      map((gearSlotItems: Record<GearSlot, Item[]>) => {
+        Object.keys(gearSlotItems).forEach((gearSlot: string) => {
+          gearSlotItems[gearSlot as GearSlot].sort((item1: Item, item2: Item) => item1.name.localeCompare(item2.name));
+        });
+        return gearSlotItems;
+      }),
+      shareReplay(1)
+    );
+
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(
       map((presets: GearSetupPreset[]) =>
         presets.sort((a: GearSetupPreset, b: GearSetupPreset) => a.name.localeCompare(b.name))
       ),
       shareReplay(1)
     );
+
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
     this.allNpcs$ = this.getNpcs().pipe(shareReplay(1));
     this.allDarts$ = this.getDarts().pipe(shareReplay(1));
