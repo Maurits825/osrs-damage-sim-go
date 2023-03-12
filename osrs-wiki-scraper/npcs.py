@@ -1,9 +1,10 @@
 import traceback
+
 import mwparserfromhell as mw
+
 import api
 import util
 from constants import CACHE_DATA_FOLDER
-
 from cox_npcs import CoxNpcs
 from custom_names import CustomNames
 from tob_npcs import TobNpcs

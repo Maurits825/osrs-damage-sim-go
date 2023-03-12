@@ -1,7 +1,6 @@
 import api
-
-import npcs
 import items
+import npcs
 
 api.use_cache = True
 

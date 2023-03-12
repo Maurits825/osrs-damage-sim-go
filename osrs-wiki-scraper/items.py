@@ -1,11 +1,12 @@
-import traceback
 import re
+import traceback
+import urllib.request
+from typing import *
+
 import mwparserfromhell as mw
+
 import api
 import util
-from typing import *
-import urllib.request
-
 from constants import CACHE_DATA_FOLDER
 
 "this isn't quite right, because 2h, but the format isn't smart enough for that"
