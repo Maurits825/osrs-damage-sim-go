@@ -1,6 +1,6 @@
 import requests
 
-from wiki_data import WikiData
+from backend.wiki_data import WikiData
 
 all_spells = WikiData.magic_spells["all_spells"]
 image_url = "https://oldschool.runescape.wiki/images/Wind_Strike.png"

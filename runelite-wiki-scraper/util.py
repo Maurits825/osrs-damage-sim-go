@@ -1,7 +1,6 @@
 import json
 import collections
 import re
-import mwparserfromhell as mw
 from typing import *
 
 VERSION_EXTRACTOR = re.compile(r"(.*?)([0-9]+)?$")

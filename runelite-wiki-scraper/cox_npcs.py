@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 FILTER_NPCS = ["7526"]
 
 
