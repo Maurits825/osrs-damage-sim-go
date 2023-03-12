@@ -5,7 +5,7 @@ export interface InputGearSetupLabels {
 }
 
 export interface SimStats {
-  [index: string]: any;
+  [index: string]: string | number;
 
   average: string | number;
   maximum: string | number;
@@ -21,7 +21,7 @@ export interface Graphs {
 }
 
 export interface DamageSimResult {
-  [index: string]: any;
+  [index: string]: InputGearSetupLabels | SimStats | SimStats[] | number[] | number;
 
   labels: InputGearSetupLabels;
 

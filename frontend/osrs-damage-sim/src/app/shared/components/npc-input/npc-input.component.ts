@@ -16,7 +16,7 @@ export class NpcInputComponent implements OnInit {
 
   allNpcs: Npc[];
 
-  Npc: Npc; //TODO do this properly ...
+  Npc: Npc;
 
   constructor(private damageSimservice: DamageSimService) {}
 

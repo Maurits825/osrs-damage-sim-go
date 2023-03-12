@@ -22,8 +22,8 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy {
   @Input()
   placeholder: string;
 
-  @ContentChild('dropdownLabel') dropdownLabel: TemplateRef<any>;
-  @ContentChild('dropdownOptions') dropdownOptions: TemplateRef<any>;
+  @ContentChild('dropdownLabel') dropdownLabel: TemplateRef<unknown>;
+  @ContentChild('dropdownOptions') dropdownOptions: TemplateRef<unknown>;
 
   @Output()
   valueChanged = new EventEmitter<T>();
@@ -76,6 +76,6 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy {
 
   valueFilter(value: T, searchTerm: string): boolean {
     if (!searchTerm) return true;
-    return (value as any)[this.searchProperty].toLowerCase().includes(searchTerm.toLowerCase());
+    return (value[this.searchProperty as keyof T] as string).toLowerCase().includes(searchTerm.toLowerCase());
   }
 }
