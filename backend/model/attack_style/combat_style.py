@@ -1,5 +1,6 @@
-from aenum import Enum, NoAlias
 from dataclasses import dataclass
+
+from aenum import Enum, NoAlias
 
 
 @dataclass()

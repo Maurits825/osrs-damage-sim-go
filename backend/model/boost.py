@@ -1,6 +1,7 @@
 import math
 from copy import deepcopy
 from dataclasses import dataclass
+
 from aenum import Enum, NoAlias
 
 from model.npc.combat_stats import CombatStats

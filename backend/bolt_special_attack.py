@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import copy
 import math
 import random
-import copy
 
 from constants import TICK_LENGTH
 from model.bolt import ALL_BOLTS, Bolt, RubyBolts, DiamondBolts

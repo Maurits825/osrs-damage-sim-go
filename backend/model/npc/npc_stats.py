@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
+from model.locations import Location
 from model.npc.aggressive_stats import AggressiveStats
 from model.npc.combat_stats import CombatStats
 from model.npc.defensive_stats import DefensiveStats
-from model.locations import Location
 
 
 @dataclass()

@@ -6,9 +6,9 @@ import random
 from bolt_special_attack import BoltSpecialAttack
 from constants import TICK_LENGTH
 from dps_calculator import DpsCalculator
-from input_setup.special_gear_bonus import SpecialGearBonus
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
                                   DAWNBRINGER, HARM_STAFF)
+from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
 from model.bolt import Bolt
