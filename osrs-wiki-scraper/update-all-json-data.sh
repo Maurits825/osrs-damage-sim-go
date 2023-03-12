@@ -6,13 +6,11 @@ echo "Activating venv ..."
 
 echo ""
 echo "Running osrs wiki scraper ..."
-echo "mock data"
-#python osrs_wiki_scraper.py
+python osrs_wiki_scraper.py
 
 echo ""
 echo "Generating web app data ..."
-echo "mock data"
-#python generate_web_app_data.py
+python generate_web_app_data.py
 
 echo ""
 echo "Copying json data to web app assets ..."
@@ -23,3 +21,5 @@ echo ""
 echo "Copying json data to dmg-sim-service ..."
 cp data_cache/items-dmg-sim.min.json ../backend/wiki_data/items-dmg-sim.min.json
 cp data_cache/npcs-dmg-sim.min.json ../backend/wiki_data/npcs-dmg-sim.min.json
+
+echo "Done!"
