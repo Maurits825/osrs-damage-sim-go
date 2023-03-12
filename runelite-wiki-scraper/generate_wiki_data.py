@@ -5,10 +5,10 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from model.attack_style.attack_type import AttackType
-from model.attack_style.weapon_category import WeaponCategory
-from weapon import Weapon
-from wiki_data import WikiData
+from backend.model.attack_style.attack_type import AttackType
+from backend.model.attack_style.weapon_category import WeaponCategory
+from backend.weapon import Weapon
+from backend.wiki_data import WikiData
 
 
 class GenerateWikiData:
