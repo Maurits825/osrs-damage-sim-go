@@ -18,7 +18,7 @@ from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from weapons.dps_calculator import DpsCalculator
-from wiki_data import WikiData
+from wiki_data.wiki_data import WikiData
 
 
 class Weapon:

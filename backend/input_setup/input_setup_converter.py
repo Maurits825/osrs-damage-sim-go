@@ -19,7 +19,7 @@ from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapons.custom_weapon import CUSTOM_WEAPONS
 from weapons.weapon_loader import WeaponLoader
-from wiki_data import WikiData
+from wiki_data.wiki_data import WikiData
 
 TOA_TEAM_SCALING = [1, 1.9, 2.8, 3.4, 4, 4.6, 5.2, 5.8]
 TOA_MAX_TEAM = 8

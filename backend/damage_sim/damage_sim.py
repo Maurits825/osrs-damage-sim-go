@@ -1,6 +1,6 @@
 import copy
 
-from condition_evaluator import ConditionEvaluator
+from damage_sim.condition_evaluator import ConditionEvaluator
 from constant import TICK_LENGTH
 from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost

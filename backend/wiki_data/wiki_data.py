@@ -1,5 +1,6 @@
 import copy
 import json
+from pathlib import Path
 
 from model.attack_style.weapon_category import WeaponCategory
 from model.locations import Location
@@ -11,11 +12,11 @@ from model.weapon_stats import WeaponStats
 
 
 class WikiData:
-    items_json = json.load(open("./wiki_data/items-dmg-sim.min.json"))
-    npcs_json = json.load(open("./wiki_data/npcs-dmg-sim.min.json"))
-    extra_data = json.load(open("./wiki_data/extra_data.json"))
-    special_attack = json.load(open("./wiki_data/special_attack.json"))
-    magic_spells = json.load(open("./wiki_data/magic_spells.json"))
+    items_json = json.load(open(Path(__file__).parent / "items-dmg-sim.min.json"))
+    npcs_json = json.load(open(Path(__file__).parent / "npcs-dmg-sim.min.json"))
+    extra_data = json.load(open(Path(__file__).parent / "extra_data.json"))
+    special_attack = json.load(open(Path(__file__).parent / "special_attack.json"))
+    magic_spells = json.load(open(Path(__file__).parent / "magic_spells.json"))
 
     @staticmethod
     def get_weapon(item_id: int) -> WeaponStats:
