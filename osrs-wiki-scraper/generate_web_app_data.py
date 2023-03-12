@@ -18,7 +18,7 @@ UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
 GEAR_SLOT_ITEM_FALLBACK_JSON = Path(__file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
 
 
-class GenerateDmgSimData:
+class GenerateWebAppData:
     def __init__(self):
         self.npcs = None
         self.items = None
@@ -57,10 +57,11 @@ class GenerateDmgSimData:
         return 0
 
     def update_unique_npcs_json(self):
+        print("Updating unique npcs json ...")
         seen_npc_name = []
         unique_npcs = []
 
-        for npc_id, npc in self.npcs:
+        for npc_id, npc in self.npcs.items():
             if npc.get("hitpoints", 0) == 0:
                 continue
 
@@ -82,7 +83,8 @@ class GenerateDmgSimData:
         with open(UNIQUE_NPCS_JSON, 'w') as unique_npcs_json:
             json.dump(npcs, unique_npcs_json)
 
-    def update_gear_slot_items_json(self):  # noqa: C901
+    def update_gear_slot_items_json(self):
+        print("Updating gear slot items json ...")
         gear_slot_items = {}
         seen_item_names = []
 
@@ -97,11 +99,11 @@ class GenerateDmgSimData:
                 if slot not in gear_slot_items:
                     gear_slot_items[slot] = []
 
-                if GenerateDmgSimData.is_filtered_item(item, item_id):
+                if GenerateWebAppData.is_filtered_item(item, item_id):
                     print("Filtered: " + item["name"])
                     continue
 
-                cached_item = GenerateDmgSimData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
+                cached_item = GenerateWebAppData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
                 if cached_item:
                     if item["name"] not in seen_item_names:
                         gear_slot_items[slot].append(cached_item)
@@ -115,7 +117,7 @@ class GenerateDmgSimData:
                         "id": int(item_id),
                     }
 
-                    attack_styles, attack_type = GenerateDmgSimData.get_attack_style_and_type(item)
+                    attack_styles, attack_type = GenerateWebAppData.get_attack_style_and_type(item)
                     if attack_styles:
                         item_dict["attackStyles"] = attack_styles
                     if attack_type:
@@ -125,7 +127,7 @@ class GenerateDmgSimData:
                     if special_attack_cost:
                         item_dict["specialAttackCost"] = special_attack_cost
 
-                    item_dict["icon"] = GenerateDmgSimData.get_item_encoded_image(item["name"])
+                    item_dict["icon"] = GenerateWebAppData.get_item_encoded_image(item["name"])
 
                     gear_slot_items[slot].append(item_dict)
                     seen_item_names.append(item["name"])
@@ -139,7 +141,8 @@ class GenerateDmgSimData:
 
     @staticmethod
     def update_special_attack_json():
-        special_attack_dict = GenerateDmgSimData.get_special_attack_weapons()
+        print("Updating special attack json ...")
+        special_attack_dict = GenerateWebAppData.get_special_attack_weapons()
         with open(SPECIAL_ATTACK_JSON, "w") as special_attack_json:
             json.dump(special_attack_dict, special_attack_json)
 
@@ -298,8 +301,8 @@ class GenerateDmgSimData:
 
 
 if __name__ == '__main__':
-    # GenerateDmgSimData.update_special_attack_json()
+    GenerateWebAppData.update_special_attack_json()
 
-    generate = GenerateDmgSimData()
+    generate = GenerateWebAppData()
     generate.update_gear_slot_items_json()
-    # GenerateDmgSimData.update_unique_npcs_json()
+    generate.update_unique_npcs_json()
