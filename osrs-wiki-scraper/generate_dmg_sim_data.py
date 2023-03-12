@@ -16,7 +16,7 @@ GEAR_SLOT_ITEM_JSON = CACHE_DATA_FOLDER / "gear_slot_items.json"
 UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
 
 
-class GenerateWikiData:
+class GenerateDmgSimData:
     def __init__(self):
         self.npcs = None
         self.items = None
@@ -90,11 +90,11 @@ class GenerateWikiData:
                 if slot not in gear_slot_items:
                     gear_slot_items[slot] = []
 
-                if GenerateWikiData.is_filtered_item(item, item_id):
+                if GenerateDmgSimData.is_filtered_item(item, item_id):
                     print("Filtered: " + item["name"])
                     continue
 
-                cached_item = GenerateWikiData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
+                cached_item = GenerateDmgSimData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
                 if cached_item:
                     if item["name"] not in seen_item_names:
                         gear_slot_items[slot].append(cached_item)
@@ -108,7 +108,7 @@ class GenerateWikiData:
                         "id": int(item_id),
                     }
 
-                    attack_styles, attack_type = GenerateWikiData.get_attack_style_and_type(item)
+                    attack_styles, attack_type = GenerateDmgSimData.get_attack_style_and_type(item)
                     if attack_styles:
                         item_dict["attackStyles"] = attack_styles
                     if attack_type:
@@ -118,7 +118,7 @@ class GenerateWikiData:
                     if special_attack_cost:
                         item_dict["specialAttackCost"] = special_attack_cost
 
-                    item_dict["icon"] = GenerateWikiData.get_item_encoded_image(item["name"])
+                    item_dict["icon"] = GenerateDmgSimData.get_item_encoded_image(item["name"])
 
                     gear_slot_items[slot].append(item_dict)
                     seen_item_names.append(item["name"])
@@ -127,12 +127,12 @@ class GenerateWikiData:
                 print("Error with id: " + str(item_id) + ", name: " + item["name"])
                 print(e)
 
-        with open(WIKI_DATA_FOLDER / "gear_slot_items.json", 'w') as json_file:
+        with open(GEAR_SLOT_ITEM_JSON, 'w') as json_file:
             json.dump(gear_slot_items, json_file)
 
     @staticmethod
     def update_special_attack_json():
-        special_attack_dict = GenerateWikiData.get_special_attack_weapons()
+        special_attack_dict = GenerateDmgSimData.get_special_attack_weapons()
         with open(SPECIAL_ATTACK_JSON, "w") as special_attack_json:
             json.dump(special_attack_dict, special_attack_json)
 
@@ -286,6 +286,6 @@ class GenerateWikiData:
 
 
 if __name__ == '__main__':
-    GenerateWikiData.update_special_attack_json()
-    # GenerateWikiData.update_gear_slot_items_list()
-    # GenerateWikiData.update_unique_npcs_json()
+    GenerateDmgSimData.update_special_attack_json()
+    # GenerateDmgSimData.update_gear_slot_items_list()
+    # GenerateDmgSimData.update_unique_npcs_json()
