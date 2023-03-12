@@ -52,4 +52,5 @@ class DamageSimResult:
 @dataclass()
 class DamageSimResults:
     results: list[DamageSimResult]
+    global_settings_label: str
     graphs: dict[GraphType, str]

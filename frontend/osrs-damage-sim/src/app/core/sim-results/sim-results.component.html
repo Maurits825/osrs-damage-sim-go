@@ -1,4 +1,5 @@
 <div *ngIf="damageSimResults?.results && !damageSimResults?.error">
+  <h3 class="mb-3 text-center">{{ damageSimResults.global_settings_label }}</h3>
   <div class="row mb-1">
     <h2 class="mb-1 ps-0">Time Results</h2>
     <table class="table table-striped table-bordered mb-4">
@@ -38,7 +39,7 @@
     </table>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-1">
     <h2 class="mb-1 ps-0">Sim Damage & DPS Results</h2>
     <table class="table table-bordered mb-4">
       <thead>
@@ -92,7 +93,7 @@
     </table>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-1">
     <div class="col">
       <div class="row mb-1 align-items-center">
         <h2 class="col-auto ps-0">Chance to kill under target time</h2>

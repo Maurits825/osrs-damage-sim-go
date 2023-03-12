@@ -42,5 +42,6 @@ export interface DamageSimResults {
   error?: string | null;
 
   results: DamageSimResult[];
+  global_settings_label: string;
   graphs: Graphs;
 }

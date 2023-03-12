@@ -225,17 +225,17 @@ class DamageSimStats:
         return None
 
     @staticmethod
-    def get_graph_title_info(global_settings: GlobalSettings):
+    def get_global_settings_label(global_settings: GlobalSettings):
         title = (global_settings.npc.name +
                  " | HP: " +
                  str(global_settings.npc.base_combat_stats.hitpoints))
 
         if global_settings.raid_level:
-            title += " | raid level: " + str(global_settings.raid_level)
+            title += " | Raid level: " + str(global_settings.raid_level)
             if global_settings.path_level:
-                title += ", path level: " + str(global_settings.path_level)
+                title += ", Path level: " + str(global_settings.path_level)
 
-        title += " | iterations: " + f"{global_settings.iterations:,}"
+        title += " | Iterations: " + f"{global_settings.iterations:,}"
 
         return title
 

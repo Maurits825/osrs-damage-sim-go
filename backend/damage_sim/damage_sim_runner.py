@@ -13,7 +13,11 @@ class DamageSimRunner:
 
     def run(self, input_setup: InputSetup) -> DamageSimResults:
 
-        damage_sim_results = DamageSimResults([], {})
+        damage_sim_results = DamageSimResults(
+            results=[],
+            global_settings_label=DamageSimStats.get_global_settings_label(input_setup.global_settings),
+            graphs={}
+        )
         ttk_tick_stats = []
         ttk_list = []
         for input_gear_setup in input_setup.input_gear_setups:
