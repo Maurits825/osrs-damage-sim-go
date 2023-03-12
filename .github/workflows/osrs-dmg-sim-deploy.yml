@@ -1,7 +1,7 @@
 name: osrs-dmg-sim-deploy
 
 env:
-  VENV_FOLDER: ./.venv
+  VENV_FOLDER: ~/.venv
 
 on:
   workflow_run:
