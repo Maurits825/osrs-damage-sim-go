@@ -22,7 +22,7 @@ jobs:
       uses: dorny/paths-filter@v2
       id: filter
       with:
-        base: main
+        base: ${{ github.ref }}
         filters: |
           backend:
             - 'backend/**'
@@ -30,7 +30,7 @@ jobs:
   deploy:
     name: Deploy to AWS
     needs: changes
-    if: ${{ needs.changes.outputs.backend == 'true' }} && ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: false && ${{ needs.changes.outputs.backend == 'true' }} && ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     defaults:
       run:
