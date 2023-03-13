@@ -7,9 +7,27 @@ on:
     branches: [main]
 
 jobs:
+  changes:
+    name: Check changes
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+    
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+      
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          frontend:
+            - 'frontend/**'
+
   deploy:
     name: Deploy to GitHub pages
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: changes
+    if: ${{ needs.changes.outputs.frontend == 'true' && github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     defaults:
       run:
