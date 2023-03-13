@@ -10,12 +10,15 @@ on:
 
 jobs:
   changes:
+    name: Check changes
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
     outputs:
       frontend: ${{ steps.filter.outputs.frontend }}
+    
     steps:
+    - name: Check out
+      uses: actions/checkout@v3
+      
     - uses: dorny/paths-filter@v2
       id: filter
       with:
