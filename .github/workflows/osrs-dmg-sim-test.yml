@@ -14,12 +14,14 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
     steps:
-    - uses: dorny/paths-filter@v2
+    - name: Check out
+      uses: actions/checkout@v3
+
+    - name: Check changes
+      uses: dorny/paths-filter@v2
       id: filter
       with:
         filters: |
