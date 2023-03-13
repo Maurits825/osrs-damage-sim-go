@@ -10,9 +10,26 @@ on:
     branches: [main]
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+
+    - name: Check changes
+      uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          backend:
+            - 'backend/**'
+
   deploy:
     name: Deploy to AWS
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == 'true' }} && ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     defaults:
       run:
