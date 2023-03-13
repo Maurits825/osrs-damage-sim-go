@@ -7,17 +7,29 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'backend/**'
   pull_request:
     branches:
       - main
-    paths:
-      - 'backend/**'
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          backend:
+            - 'backend/**'
+
   test:
     name: Test
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == 'true' }}
     runs-on: ubuntu-latest
     defaults:
       run:
