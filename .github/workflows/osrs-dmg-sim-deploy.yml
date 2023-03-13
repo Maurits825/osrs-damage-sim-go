@@ -30,13 +30,18 @@ jobs:
   deploy:
     name: Deploy to AWS
     needs: changes
-    if: ${{ needs.changes.outputs.backend == 'true' }} && ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ needs.changes.outputs.backend == 'true' }}
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./backend
 
     steps:
+      - name: debug
+        run: | 
+          echo ${{ needs.changes.outputs.backend == 'true' }}
+          echo ${{ github.event.workflow_run.conclusion == 'success' }}
+
       - name: Check out
         uses: actions/checkout@v3
 
