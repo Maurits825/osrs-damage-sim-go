@@ -105,7 +105,7 @@ class DamageSimStats:
 
     @staticmethod
     def format_ticks_to_time(ticks):
-        total_seconds = ticks * TICK_LENGTH
+        total_seconds = round(ticks) * TICK_LENGTH
         minutes = math.floor(total_seconds / 60)
         seconds = round(total_seconds % 60, 1)
 
