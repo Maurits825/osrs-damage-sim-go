@@ -6,7 +6,6 @@ from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
 from model.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
 from model.input_setup.input_gear_setup import InputGearSetup
-from model.npc.npc_stats import NpcStats
 from model.stat_drain_type import StatDrainType
 from weapons.weapon import Weapon
 
@@ -19,13 +18,13 @@ MAX_SPECIAL_ATTACK = 100
 
 
 class DamageSim:
-    def __init__(self, npc: NpcStats, input_gear_setup: InputGearSetup):
-        self.npc = npc
-
+    def __init__(self, input_gear_setup: InputGearSetup):
         self.main_weapon: Weapon = input_gear_setup.main_weapon
         self.fill_weapons: list[Weapon] = input_gear_setup.fill_weapons
         self.all_weapons = [self.main_weapon, *self.fill_weapons]
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
+
+        self.npc = self.main_weapon.npc
 
         self.combat_stats = self.gear_setup_settings.combat_stats
         self.initial_combat_stats = copy.deepcopy(self.combat_stats)
@@ -141,7 +140,9 @@ class DamageSim:
 
     def reset_npc_combat_stats(self):
         self.npc.combat_stats.set_stats(self.npc.base_combat_stats)
+        self.drain_stats()
 
+    def drain_stats(self):
         for stat_drain in self.gear_setup_settings.stat_drains:
             if stat_drain.weapon.stat_drain_type == StatDrainType.DAMAGE:
                 stat_drain.weapon.drain_stats(self.npc, stat_drain.value)
