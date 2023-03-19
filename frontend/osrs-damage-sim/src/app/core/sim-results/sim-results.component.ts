@@ -48,6 +48,7 @@ export class SimResultsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['damageSimResults'] && this.damageSimResults) {
+      this.sortConfigs.average.sortOrder = SortOrder.Ascending;
       this.sortTimeResults('average');
       this.isTargetTimeValid = null;
       this.targetTime = '';

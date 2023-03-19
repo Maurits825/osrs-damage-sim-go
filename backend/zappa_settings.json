@@ -8,7 +8,8 @@
     "s3_bucket": "osrs-dmg-sim-service-s3-bucket",
     "keep_warm": false,
     "exclude": ["tests", ".idea", "*.prof"],
-    "exclude_glob": ["setuptools", "boto3*", "botocore*"]
+    "exclude_glob": ["setuptools", "boto3*", "botocore*"],
+    "memory_size": 512
   },
   "production": {
     "app_function": "damage_sim.damage_sim_server.app",
@@ -18,6 +19,7 @@
     "runtime": "python3.9",
     "s3_bucket": "osrs-dmg-sim-service-s3-bucket",
     "exclude": ["tests", ".idea", "*.prof"],
-    "exclude_glob": ["setuptools", "boto3*", "botocore*"]
+    "exclude_glob": ["setuptools", "boto3*", "botocore*"],
+    "memory_size": 3008
   }
 }

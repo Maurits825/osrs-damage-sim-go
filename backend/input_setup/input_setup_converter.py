@@ -1,3 +1,4 @@
+import copy
 import math
 
 from input_setup.gear_ids import BLOWPIPE, UNARMED_EQUIVALENT
@@ -29,16 +30,17 @@ TOB_MAX_TEAM = 5
 class InputSetupConverter:
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
-        npc = WikiData.get_npc(json_data["globalSettings"]["npc"]["id"])
+        global_npc = WikiData.get_npc(json_data["globalSettings"]["npc"]["id"])
 
         # TODO maybe do this scaling in weapon or else where, also refactor when its in gear setup settings
-        raid_level, path_level = InputSetupConverter.get_raid_level(npc, json_data)
+        raid_level, path_level = InputSetupConverter.get_raid_level(global_npc, json_data)
 
-        if npc.is_tob_entry_mode or npc.is_tob_normal_mode or npc.is_tob_hard_mode:
-            InputSetupConverter.scale_tob_hp(npc, json_data)
+        if global_npc.is_tob_entry_mode or global_npc.is_tob_normal_mode or global_npc.is_tob_hard_mode:
+            InputSetupConverter.scale_tob_hp(global_npc, json_data)
 
         input_gear_setups = []
         for input_gear_setup in json_data["inputGearSetups"]:
+            npc = copy.deepcopy(global_npc)
             weapons = []
             gear_setup_settings = InputSetupConverter.get_gear_setup_settings(input_gear_setup["gearSetupSettings"])
 
@@ -55,7 +57,7 @@ class InputSetupConverter:
 
             input_gear_setups.append(InputGearSetup(gear_setup_settings, main_weapon, weapons))
 
-        global_settings = GlobalSettings(npc, raid_level, path_level, json_data["globalSettings"]["teamSize"],
+        global_settings = GlobalSettings(global_npc, raid_level, path_level, json_data["globalSettings"]["teamSize"],
                                          json_data["globalSettings"]["iterations"])
         return InputSetup(
             global_settings=global_settings,
@@ -99,6 +101,7 @@ class InputSetupConverter:
             for style in weapon_item.weapon_category.value:
                 if gear_setup["attackStyle"] == style.name:
                     attack_style = style
+                    break
 
         conditions = [
             Condition(

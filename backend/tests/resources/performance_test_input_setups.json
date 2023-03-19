@@ -19,7 +19,7 @@
         "size": 5,
         "str": 250
       },
-      "iterations": 10000,
+      "iterations": 100000,
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0

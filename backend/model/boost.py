@@ -1,8 +1,7 @@
 import math
 from copy import deepcopy
 from dataclasses import dataclass
-
-from aenum import Enum, NoAlias
+from enum import Enum
 
 from model.npc.combat_stats import CombatStats
 
@@ -20,11 +19,10 @@ class BoostStat:
     defence: BoostAmount = BoostAmount(0, 0)
     ranged: BoostAmount = BoostAmount(0, 0)
     magic: BoostAmount = BoostAmount(0, 0)
+    name: str = None
 
 
 class BoostType(Enum):
-    _settings_ = NoAlias
-
     ATTACK = BoostStat(attack=BoostAmount(10, 3))
     SUPER_ATTACK = BoostStat(attack=BoostAmount(15, 5))
     DIVINE_SUPER_ATTACK = BoostStat(attack=BoostAmount(15, 5))
@@ -48,6 +46,9 @@ class BoostType(Enum):
     RANGING = BoostStat(ranged=BoostAmount(10, 4))
     DIVINE_RANGING = BoostStat(ranged=BoostAmount(10, 4))
     LIQUID_ADRENALINE = BoostStat()
+
+    def __init__(self, boost):
+        boost.name = self.name
 
 
 class Boost:
