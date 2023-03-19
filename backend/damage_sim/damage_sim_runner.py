@@ -1,5 +1,7 @@
-import multiprocessing
+# import multiprocessing
+import os
 
+import lambda_multiprocessing as multiprocessing
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
@@ -14,6 +16,8 @@ class DamageSimRunner:
         self.damage_sim_graph = DamageSimGraph()
 
     def run(self, input_setup: InputSetup) -> DamageSimResults:
+        print("Running with " + str(os.cpu_count()) + " cores.")
+
         damage_sim_results = DamageSimResults(
             results=[],
             global_settings_label=DamageSimStats.get_global_settings_label(input_setup.global_settings),
@@ -57,7 +61,7 @@ class DamageSimRunner:
 
         gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
 
-        for i in range(global_settings.iterations):  # TODO run this in multi process?
+        for i in range(global_settings.iterations):
             dmg_sim_data = damage_sim.run()
             total_damage_sim_data.ticks_to_kill.append(dmg_sim_data.ticks_to_kill)
             total_damage_sim_data.gear_total_dmg.append(dmg_sim_data.gear_total_dmg)
