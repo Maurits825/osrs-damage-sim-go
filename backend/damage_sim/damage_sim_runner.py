@@ -47,7 +47,7 @@ class DamageSimRunner:
     def run_single_gear_setup(global_settings: GlobalSettings, input_gear_setup: InputGearSetup
                               ) -> (TotalDamageSimData, GearSetupDpsStats):
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
-        damage_sim = DamageSim(global_settings.npc, input_gear_setup)
+        damage_sim = DamageSim(input_gear_setup)
 
         gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
 
