@@ -66,3 +66,38 @@ export const quickGearSetups: QuickGearSetups = {
     },
   ],
 };
+
+export const quickExtraGearSetups: QuickGearSetups = {
+  melee: [
+    {
+      label: 'Max',
+      itemIds: [19553, 22981, 13239],
+    },
+    {
+      label: 'Mid',
+      itemIds: [6585, 7462, 11840],
+    },
+  ],
+
+  ranged: [
+    {
+      label: 'Max',
+      itemIds: [19547, 26235, 13237],
+    },
+    {
+      label: 'Mid',
+      itemIds: [6585, 7462, 19933],
+    },
+  ],
+
+  magic: [
+    {
+      label: 'Max',
+      itemIds: [12002, 19544, 13235],
+    },
+    {
+      label: 'Mid',
+      itemIds: [6585, 7462],
+    },
+  ],
+};
