@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
 import { ExampleSetup } from '../model/damage-sim/example-setup.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
-import { InputSetup } from '../model/damage-sim/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';

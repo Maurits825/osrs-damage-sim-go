@@ -104,7 +104,12 @@ export class InputSetupService {
     return gear;
   }
 
-  parseInputSetup(jsonString: string): InputSetup {
+  parseInputSetupFromEncodedString(encodedString: string): InputSetup {
+    const inputSetupJson = window.atob(encodedString);
+    return this.parseInputSetupFromJson(inputSetupJson);
+  }
+
+  parseInputSetupFromJson(jsonString: string): InputSetup {
     const inputSetupJson = JSON.parse(jsonString);
     const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
 

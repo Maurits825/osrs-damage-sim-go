@@ -13,7 +13,7 @@
     <div class="col-5 col-xxl-3">
       <div class="row align-items-center" *ngIf="showRaidLevel">
         <div class="col-auto pe-0"><label>Raid Level</label></div>
-        <div class="col pe-0">
+        <div class="col">
           <input class="form-control" type="number" [(ngModel)]="globalSettings.raidLevel" min="0" />
         </div>
       </div>
@@ -22,7 +22,7 @@
     <div class="col-5 col-xxl-3">
       <div class="row align-items-center" *ngIf="showPathLevel">
         <div class="col-auto pe-0"><label>Path Level</label></div>
-        <div class="col pe-0">
+        <div class="col">
           <input class="form-control" type="number" [(ngModel)]="globalSettings.pathLevel" min="0" max="6" />
         </div>
       </div>
@@ -36,7 +36,7 @@
   <div class="col col-sm-5 col-lg-3">
     <div class="row align-items-center">
       <div class="col-auto pe-0"><label>Team size</label></div>
-      <div class="col pe-0">
+      <div class="col">
         <input class="form-control" type="number" [(ngModel)]="globalSettings.teamSize" min="1" max="100" />
       </div>
     </div>
@@ -45,7 +45,7 @@
   <div class="col col-sm-5 col-lg-3">
     <div class="row align-items-center">
       <div class="col-auto pe-0"><label>Iterations</label></div>
-      <div class="col pe-0">
+      <div class="col">
         <input class="form-control" type="number" [(ngModel)]="globalSettings.iterations" min="1" max="10000" />
       </div>
     </div>

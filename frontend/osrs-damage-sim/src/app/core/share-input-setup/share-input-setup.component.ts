@@ -48,12 +48,11 @@ export class ShareInputSetupComponent {
     });
   }
 
-  loadSetup(setup: string): boolean {
-    if (!setup) return false;
+  loadSetup(encodedString: string): boolean {
+    if (!encodedString) return false;
 
     try {
-      const inputSetupJson = window.atob(setup);
-      const inputSetup = this.inputSetupService.parseInputSetup(inputSetupJson);
+      const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(encodedString);
 
       this.gearSetupTabsComponent.loadInputSetup(inputSetup);
       this.globalSettingsComponent.setGlobalSettings(inputSetup.globalSettings);
