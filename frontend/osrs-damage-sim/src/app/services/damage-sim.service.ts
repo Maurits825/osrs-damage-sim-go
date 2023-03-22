@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
+import { ExampleSetup } from '../model/damage-sim/example-setup.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
+import { InputSetup } from '../model/damage-sim/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
@@ -14,6 +16,9 @@ import { Npc } from '../model/osrs/npc.model';
 export class DamageSimService {
   public allGearSlotItems$: Observable<Record<GearSlot, Item[]>>;
   public gearSetupPresets$: Observable<GearSetupPreset[]>;
+
+  public exampleSetups$: Observable<ExampleSetup[]>;
+
   public allSpells$: Observable<string[]>;
   public allNpcs$: Observable<Npc[]>;
   public allDarts$: Observable<Item[]>;
@@ -37,6 +42,8 @@ export class DamageSimService {
       ),
       shareReplay(1)
     );
+
+    this.exampleSetups$ = this.getExampleSetups().pipe(shareReplay(1));
 
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
     this.allNpcs$ = this.getNpcs().pipe(shareReplay(1));
@@ -77,5 +84,9 @@ export class DamageSimService {
         gearSlotItem[GearSlot.Weapon].filter((item: Item) => item.name.match('dart$'))
       )
     );
+  }
+
+  private getExampleSetups(): Observable<ExampleSetup[]> {
+    return this.http.get<ExampleSetup[]>('assets/json_data/example_setups.json');
   }
 }

@@ -8,10 +8,18 @@
 
   <hr class="row mb-5" />
 
-  <app-share-input-setup
-    [globalSettingsComponent]="globalSettingsComponent"
-    [gearSetupTabsComponent]="gearSetupTabsComponent"
-  ></app-share-input-setup>
+  <div class="d-flex justify-content-between mb-4">
+    <div class="col-6">
+      <app-example-setups></app-example-setups>
+    </div>
+
+    <div class="">
+      <app-share-input-setup
+        [globalSettingsComponent]="globalSettingsComponent"
+        [gearSetupTabsComponent]="gearSetupTabsComponent"
+      ></app-share-input-setup>
+    </div>
+  </div>
 
   <app-global-settings></app-global-settings>
 
