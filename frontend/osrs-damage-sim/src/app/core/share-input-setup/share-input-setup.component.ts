@@ -51,15 +51,14 @@ export class ShareInputSetupComponent {
   loadSetup(encodedString: string): boolean {
     if (!encodedString) return false;
 
+    let inputSetup;
     try {
-      const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(encodedString);
-
-      this.gearSetupTabsComponent.loadInputSetup(inputSetup);
-      this.globalSettingsComponent.setGlobalSettings(inputSetup.globalSettings);
+      inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(encodedString);
     } catch (error) {
       return false;
     }
 
+    this.inputSetupService.loadInputSetup$.next(inputSetup);
     return true;
   }
 

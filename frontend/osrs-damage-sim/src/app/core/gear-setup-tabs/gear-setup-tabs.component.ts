@@ -1,4 +1,14 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Injector, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
@@ -9,17 +19,30 @@ import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/
   templateUrl: './gear-setup-tabs.component.html',
   styleUrls: ['./gear-setup-tabs.component.css'],
 })
-export class GearSetupTabsComponent implements AfterViewInit {
+export class GearSetupTabsComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
 
   maxSetupTabs = 5;
 
+  private destroyed$ = new Subject();
+
   constructor(private changeDetector: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
+
+  ngOnInit(): void {
+    this.inputSetupService.loadInputSetup$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((inputSetup: InputSetup) => this.loadInputSetup(inputSetup.inputGearSetups));
+  }
 
   ngAfterViewInit(): void {
     this.openNewSetupTab();
     this.changeDetector.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   openNewSetupTab(inputGearSetupToCopy?: InputGearSetup): void {
@@ -72,14 +95,14 @@ export class GearSetupTabsComponent implements AfterViewInit {
     this.openNewSetupTab(this.inputSetupService.getGearInputSetup(tabToCopy));
   }
 
-  loadInputSetup(inputSetup: InputSetup): void {
+  loadInputSetup(inputGearSetups: InputGearSetup[]): void {
     for (let index = 0; index < this.gearSetupTabs.length; index++) {
       this.gearSetupTabContainer.remove();
     }
 
     this.gearSetupTabs.length = 0;
 
-    inputSetup.inputGearSetups.forEach((inputGearSetup: InputGearSetup) => {
+    inputGearSetups.forEach((inputGearSetup: InputGearSetup) => {
       this.openNewSetupTab(inputGearSetup);
     });
   }

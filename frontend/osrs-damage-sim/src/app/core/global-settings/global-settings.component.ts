@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Boost } from '../../model/osrs/boost.model';
-import { GlobalSettings } from '../../model/damage-sim/input-setup.model';
+import { GlobalSettings, InputSetup } from '../../model/damage-sim/input-setup.model';
 import { Npc } from '../../model/osrs/npc.model';
 import { BoostService } from '../../services/boost.service';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
@@ -11,13 +11,15 @@ import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { StatDrainService } from 'src/app/services/stat-drain.service';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
+import { InputSetupService } from 'src/app/services/input-setup.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-global-settings',
   templateUrl: './global-settings.component.html',
   styleUrls: ['./global-settings.component.css'],
 })
-export class GlobalSettingsComponent implements OnInit {
+export class GlobalSettingsComponent implements OnInit, OnDestroy {
   globalSettings: GlobalSettings = {
     npc: null,
     iterations: 10000,
@@ -57,15 +59,26 @@ export class GlobalSettingsComponent implements OnInit {
 
   loading = false;
 
+  private destroyed$ = new Subject();
+
   constructor(
     private boostService: BoostService,
     private prayerService: PrayerService,
     private combatStatService: CombatStatService,
-    private statDrainService: StatDrainService
+    private statDrainService: StatDrainService,
+    private inputSetupService: InputSetupService
   ) {}
 
   ngOnInit(): void {
     this.prayerService.globalPrayers$.next(this.selectedPrayers);
+    this.inputSetupService.loadInputSetup$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((inputSetup: InputSetup) => this.setGlobalSettings(inputSetup.globalSettings));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   setGlobalSettings(globalSettings: GlobalSettings): void {

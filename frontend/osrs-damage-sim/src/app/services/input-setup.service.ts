@@ -1,5 +1,5 @@
 import { ComponentRef, Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subject } from 'rxjs';
 import { GearSetupTabsComponent } from '../core/gear-setup-tabs/gear-setup-tabs.component';
 import {
   GearSetup,
@@ -22,6 +22,8 @@ import { FILTER_PATHS } from './filter-fields.const';
 export class InputSetupService {
   allGearSlotItems: Record<GearSlot, Item[]>;
   allNpcs: Npc[];
+
+  loadInputSetup$: Subject<InputSetup> = new Subject();
 
   constructor(private damageSimservice: DamageSimService) {
     forkJoin({
@@ -63,6 +65,12 @@ export class InputSetupService {
     return inputSetup;
   }
 
+  getInputSetupAsJson(globalSettings: GlobalSettings, gearSetupTabsComponent: GearSetupTabsComponent): string {
+    const inputSetup: InputSetup = this.getInputSetup(globalSettings, gearSetupTabsComponent);
+
+    return this.convertInputSetupToJson(inputSetup);
+  }
+
   getGearInputSetup(gearSetupTab: GearSetupTabComponent): InputGearSetup {
     const inputGearSetup: InputGearSetup = {
       gearSetupSettings: gearSetupTab.getGearSetupSettings(),
@@ -79,29 +87,6 @@ export class InputSetupService {
     });
 
     return inputGearSetup;
-  }
-
-  getInputSetupAsJson(globalSettings: GlobalSettings, gearSetupTabsComponent: GearSetupTabsComponent): string {
-    const inputSetup: InputSetup = this.getInputSetup(globalSettings, gearSetupTabsComponent);
-
-    return this.convertInputSetupToJson(inputSetup);
-  }
-
-  getGearFromJson(gearJson: Record<string, Item>): Record<GearSlot, Item> {
-    const gear: Record<GearSlot, Item> = {} as Record<GearSlot, Item>;
-    const gearSlots = Object.values(GearSlot);
-
-    gearSlots.forEach((slot) => {
-      const itemId = gearJson[slot]?.id;
-
-      if (itemId) {
-        gear[slot] = this.getItem(itemId, slot);
-      } else {
-        gear[slot] = null;
-      }
-    });
-
-    return gear;
   }
 
   parseInputSetupFromEncodedString(encodedString: string): InputSetup {
@@ -165,6 +150,23 @@ export class InputSetupService {
       miningLvl: gearSetup.miningLvl,
       isKandarinDiary: gearSetup.isKandarinDiary,
     };
+  }
+
+  private getGearFromJson(gearJson: Record<string, Item>): Record<GearSlot, Item> {
+    const gear: Record<GearSlot, Item> = {} as Record<GearSlot, Item>;
+    const gearSlots = Object.values(GearSlot);
+
+    gearSlots.forEach((slot) => {
+      const itemId = gearJson[slot]?.id;
+
+      if (itemId) {
+        gear[slot] = this.getItem(itemId, slot);
+      } else {
+        gear[slot] = null;
+      }
+    });
+
+    return gear;
   }
 
   private replacerWithPath(replacer: (this: unknown, key: string, value: unknown, path: string) => unknown) {
