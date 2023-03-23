@@ -23,6 +23,7 @@ export class ExampleSetupsComponent implements OnInit {
   }
 
   selectedSetupChange(exampleSetup: ExampleSetup): void {
+    if (!exampleSetup) return;
     const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.setupString);
     this.inputSetupService.loadInputSetup$.next(inputSetup);
   }

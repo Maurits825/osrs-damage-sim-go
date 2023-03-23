@@ -29,6 +29,9 @@
       </button>
     </div>
     <div class="row text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
+    <div class="row text-success" *ngIf="damageSimResults && !damageSimResults?.error">
+      Damage simulation done, results above!
+    </div>
   </div>
 
   <app-gear-setup-tabs></app-gear-setup-tabs>
