@@ -41,7 +41,12 @@
     </div>
 
     <div class="ms-2">
-      <button type="button" class="btn btn-primary" (click)="duplicateGearSetup()">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [disabled]="gearSetupTabRef.gearSetups.length >= gearSetupTabRef.maxGearSetups"
+        (click)="duplicateGearSetup()"
+      >
         Duplicate <i class="bi bi-clipboard-plus"></i>
       </button>
     </div>
