@@ -1,10 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardService } from 'ngx-clipboard';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input-setup-modal/share-input-setup-modal.component';
-import { GearSetupTabsComponent } from '../gear-setup-tabs/gear-setup-tabs.component';
-import { GlobalSettingsComponent } from '../global-settings/global-settings.component';
 
 @Component({
   selector: 'app-share-input-setup',
@@ -12,9 +10,6 @@ import { GlobalSettingsComponent } from '../global-settings/global-settings.comp
   styleUrls: ['./share-input-setup.component.css'],
 })
 export class ShareInputSetupComponent {
-  @Input() globalSettingsComponent: GlobalSettingsComponent;
-  @Input() gearSetupTabsComponent: GearSetupTabsComponent;
-
   setupString: string;
 
   constructor(
@@ -24,10 +19,7 @@ export class ShareInputSetupComponent {
   ) {}
 
   getSetupString(): string {
-    const inputSetupJson = this.inputSetupService.getInputSetupAsJson(
-      this.globalSettingsComponent.globalSettings,
-      this.gearSetupTabsComponent
-    );
+    const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
 
     return window.btoa(inputSetupJson);
   }

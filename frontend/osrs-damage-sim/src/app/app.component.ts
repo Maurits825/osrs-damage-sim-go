@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { GearSetupTabsComponent } from './core/gear-setup-tabs/gear-setup-tabs.component';
-import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { DamageSimResults } from './model/damage-sim/damage-sim-results.model';
 import { DamageSimService } from './services/damage-sim.service';
 import { InputSetupService } from './services/input-setup.service';
@@ -12,9 +10,6 @@ import { InputSetupService } from './services/input-setup.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild(GearSetupTabsComponent) gearSetupTabsComponent: GearSetupTabsComponent;
-  @ViewChild(GlobalSettingsComponent) globalSettingsComponent: GlobalSettingsComponent;
-
   loading = false;
 
   damageSimResults: DamageSimResults;
@@ -38,10 +33,7 @@ export class AppComponent implements OnInit {
   runDamageSim(): void {
     this.loading = true;
 
-    const inputSetupJson = this.inputSetupService.getInputSetupAsJson(
-      this.globalSettingsComponent.globalSettings,
-      this.gearSetupTabsComponent
-    );
+    const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
 
     this.damageSimservice.runDamageSim(inputSetupJson).subscribe({
       next: (results: DamageSimResults) => {

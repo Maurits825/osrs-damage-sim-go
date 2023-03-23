@@ -33,6 +33,8 @@ export class GearSetupTabsComponent implements OnInit, OnDestroy, AfterViewInit 
     this.inputSetupService.loadInputSetup$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((inputSetup: InputSetup) => this.loadInputSetup(inputSetup.inputGearSetups));
+
+    this.inputSetupService.gearSetupTabs$.next(this.gearSetupTabs);
   }
 
   ngAfterViewInit(): void {
