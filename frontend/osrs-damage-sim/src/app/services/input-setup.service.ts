@@ -1,5 +1,5 @@
 import { ComponentRef, Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, skipWhile, Subject } from 'rxjs';
+import { BehaviorSubject, forkJoin, Subject } from 'rxjs';
 import { GlobalSettingsComponent } from '../core/global-settings/global-settings.component';
 import {
   GearSetup,
