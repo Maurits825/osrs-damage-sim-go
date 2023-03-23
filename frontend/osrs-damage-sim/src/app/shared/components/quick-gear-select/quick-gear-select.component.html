@@ -1,5 +1,5 @@
 <div>
-  <div class="btn-group" role="group" style="height: '45px'">
+  <div class="btn-group me-2" role="group" style="height: '45px'">
     <button
       type="button"
       class="btn btn-outline-dark"
@@ -8,7 +8,20 @@
       *ngFor="let setup of quickGearSetups[attackType]"
       (click)="onSelectSetup(setup)"
     >
-      <img class="" src="assets/img/quick_gear/{{ setup.label | lowercase }}.png" />
+      <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" />
+    </button>
+  </div>
+
+  <div class="btn-group" role="group" style="height: '45px'">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      style="width: '55px'"
+      [title]="setup.label"
+      *ngFor="let setup of quickExtraGearSetups[attackType]"
+      (click)="onSelectSetup(setup)"
+    >
+      <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" />
     </button>
   </div>
 </div>

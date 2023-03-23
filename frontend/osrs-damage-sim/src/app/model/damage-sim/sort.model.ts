@@ -34,7 +34,7 @@ export const sortLabels: SortLabels = {
   most_frequent: 'Frequent',
   maximum: 'Maximum',
   minimum: 'Minimum',
-  chance_to_kill: '50% Chance to kill',
+  chance_to_kill: '50% Kill Chance',
 
   theoretical_dps: 'DPS',
   max_hit: 'Max hit',

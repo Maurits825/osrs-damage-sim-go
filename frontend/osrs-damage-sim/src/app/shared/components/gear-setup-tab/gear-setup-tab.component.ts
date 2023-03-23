@@ -31,6 +31,8 @@ export class GearSetupTabComponent implements AfterViewInit {
   id = 0;
   gearSetups: ComponentRef<GearSetupComponent>[] = [];
 
+  maxGearSetups = 5;
+
   constructor(
     private changeDetector: ChangeDetectorRef,
     @SkipSelf() @Optional() @Inject(INPUT_GEAR_SETUP_TOKEN) public inputGearSetupToCopy: InputGearSetup

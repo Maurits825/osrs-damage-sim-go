@@ -1,0 +1,24 @@
+<div class="d-flex align-items-center">
+  <div class="me-3">Load example setup</div>
+  <div class="flex-grow-1">
+    <ng-container *ngIf="exampleSetups; else showSpinner">
+      <app-ng-select-lazy-load
+        [valueType]="ExampleSetup"
+        [allValues]="exampleSetups"
+        [selectedValue]="selectedSetup"
+        searchProperty="setupName"
+        placeholder="Load example setup"
+        (valueChanged)="selectedSetupChange($event)"
+      >
+        <ng-template #dropdownLabel #dropdownOptions let-item="item">
+          {{ item.setupName }}
+        </ng-template>
+      </app-ng-select-lazy-load>
+    </ng-container>
+    <ng-template #showSpinner>
+      <div class="spinner-border ms-1" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </ng-template>
+  </div>
+</div>

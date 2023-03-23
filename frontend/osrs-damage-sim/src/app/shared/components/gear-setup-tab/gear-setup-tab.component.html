@@ -6,7 +6,12 @@
   <div class="d-flex flex-wrap">
     <ng-template #gearSetupsContainer></ng-template>
     <div>
-      <button type="button" class="btn btn-primary mb-2" (click)="addNewGearSetup()">
+      <button
+        type="button"
+        class="btn btn-primary mb-2"
+        [disabled]="gearSetups.length >= maxGearSetups"
+        (click)="addNewGearSetup()"
+      >
         <i class="bi bi-plus"></i> Add fill gear setup
       </button>
     </div>

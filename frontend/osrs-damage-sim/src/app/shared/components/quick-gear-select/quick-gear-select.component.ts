@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { QuickGear } from 'src/app/model/damage-sim/quick-gear.model';
 import { AttackType } from 'src/app/model/osrs/item.model';
-import { quickGearSetups } from './quick-gear.const';
+import { quickExtraGearSetups, quickGearSetups } from './quick-gear.const';
 
 @Component({
   selector: 'app-quick-gear-select',
@@ -17,6 +17,7 @@ export class QuickGearSelectComponent {
 
   AttackType: AttackType;
   quickGearSetups = quickGearSetups;
+  quickExtraGearSetups = quickExtraGearSetups;
 
   onSelectSetup(setup: QuickGear): void {
     this.selectSetup.emit(setup);

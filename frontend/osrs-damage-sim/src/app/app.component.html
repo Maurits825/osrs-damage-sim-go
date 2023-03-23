@@ -8,10 +8,15 @@
 
   <hr class="row mb-5" />
 
-  <app-share-input-setup
-    [globalSettingsComponent]="globalSettingsComponent"
-    [gearSetupTabsComponent]="gearSetupTabsComponent"
-  ></app-share-input-setup>
+  <div class="d-flex justify-content-between mb-4">
+    <div class="col-6">
+      <app-example-setups></app-example-setups>
+    </div>
+
+    <div>
+      <app-share-input-setup></app-share-input-setup>
+    </div>
+  </div>
 
   <app-global-settings></app-global-settings>
 
@@ -24,6 +29,9 @@
       </button>
     </div>
     <div class="row text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
+    <div class="row text-success" *ngIf="damageSimResults && !damageSimResults?.error">
+      Damage simulation done, results above!
+    </div>
   </div>
 
   <app-gear-setup-tabs></app-gear-setup-tabs>

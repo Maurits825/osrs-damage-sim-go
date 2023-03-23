@@ -1,6 +1,6 @@
 import { ComponentRef, Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
-import { GearSetupTabsComponent } from '../core/gear-setup-tabs/gear-setup-tabs.component';
+import { BehaviorSubject, forkJoin, Subject } from 'rxjs';
+import { GlobalSettingsComponent } from '../core/global-settings/global-settings.component';
 import {
   GearSetup,
   GearSetupSettings,
@@ -23,6 +23,11 @@ export class InputSetupService {
   allGearSlotItems: Record<GearSlot, Item[]>;
   allNpcs: Npc[];
 
+  loadInputSetup$: Subject<InputSetup> = new Subject();
+
+  globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
+  gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
+
   constructor(private damageSimservice: DamageSimService) {
     forkJoin({
       allGearSlotItems: this.damageSimservice.allGearSlotItems$,
@@ -33,28 +38,21 @@ export class InputSetupService {
     });
   }
 
-  convertInputSetupToJson(inputSetup: InputSetup): string {
-    return JSON.stringify(
-      inputSetup,
-      this.replacerWithPath((key: string, value: unknown, path: string) => {
-        if (value instanceof Set) {
-          return [...value];
-        } else if (FILTER_PATHS.some((filter_path) => filter_path.test(path))) {
-          return undefined;
-        }
-
-        return value;
-      })
+  getInputSetupAsJson(): string {
+    const inputSetup: InputSetup = this.getInputSetup(
+      this.globalSettingsComponent$.getValue().globalSettings,
+      this.gearSetupTabs$.getValue()
     );
+    return this.convertInputSetupToJson(inputSetup);
   }
 
-  getInputSetup(globalSettings: GlobalSettings, gearSetupTabsComponent: GearSetupTabsComponent): InputSetup {
+  getInputSetup(globalSettings: GlobalSettings, gearSetupTabs: GearSetupTabComponent[]): InputSetup {
     const inputSetup: InputSetup = {
       globalSettings: globalSettings,
       inputGearSetups: [],
     };
 
-    gearSetupTabsComponent.gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
+    gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
       const inputGearSetup: InputGearSetup = this.getGearInputSetup(gearSetupTab);
 
       inputSetup.inputGearSetups.push(inputGearSetup);
@@ -81,30 +79,12 @@ export class InputSetupService {
     return inputGearSetup;
   }
 
-  getInputSetupAsJson(globalSettings: GlobalSettings, gearSetupTabsComponent: GearSetupTabsComponent): string {
-    const inputSetup: InputSetup = this.getInputSetup(globalSettings, gearSetupTabsComponent);
-
-    return this.convertInputSetupToJson(inputSetup);
+  parseInputSetupFromEncodedString(encodedString: string): InputSetup {
+    const inputSetupJson = window.atob(encodedString);
+    return this.parseInputSetupFromJson(inputSetupJson);
   }
 
-  getGearFromJson(gearJson: Record<string, Item>): Record<GearSlot, Item> {
-    const gear: Record<GearSlot, Item> = {} as Record<GearSlot, Item>;
-    const gearSlots = Object.values(GearSlot);
-
-    gearSlots.forEach((slot) => {
-      const itemId = gearJson[slot]?.id;
-
-      if (itemId) {
-        gear[slot] = this.getItem(itemId, slot);
-      } else {
-        gear[slot] = null;
-      }
-    });
-
-    return gear;
-  }
-
-  parseInputSetup(jsonString: string): InputSetup {
+  parseInputSetupFromJson(jsonString: string): InputSetup {
     const inputSetupJson = JSON.parse(jsonString);
     const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
 
@@ -141,6 +121,21 @@ export class InputSetupService {
     };
   }
 
+  private convertInputSetupToJson(inputSetup: InputSetup): string {
+    return JSON.stringify(
+      inputSetup,
+      this.replacerWithPath((key: string, value: unknown, path: string) => {
+        if (value instanceof Set) {
+          return [...value];
+        } else if (FILTER_PATHS.some((filter_path) => filter_path.test(path))) {
+          return undefined;
+        }
+
+        return value;
+      })
+    );
+  }
+
   private parseGearSetup(gearSetup: GearSetup): GearSetup {
     return {
       setupName: gearSetup.setupName,
@@ -160,6 +155,23 @@ export class InputSetupService {
       miningLvl: gearSetup.miningLvl,
       isKandarinDiary: gearSetup.isKandarinDiary,
     };
+  }
+
+  private getGearFromJson(gearJson: Record<string, Item>): Record<GearSlot, Item> {
+    const gear: Record<GearSlot, Item> = {} as Record<GearSlot, Item>;
+    const gearSlots = Object.values(GearSlot);
+
+    gearSlots.forEach((slot) => {
+      const itemId = gearJson[slot]?.id;
+
+      if (itemId) {
+        gear[slot] = this.getItem(itemId, slot);
+      } else {
+        gear[slot] = null;
+      }
+    });
+
+    return gear;
   }
 
   private replacerWithPath(replacer: (this: unknown, key: string, value: unknown, path: string) => unknown) {

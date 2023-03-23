@@ -133,8 +133,10 @@ class DamageSimStats:
         gear_setup_settings_label = DamageSimStats.get_gear_setup_settings_label(input_gear_setup.gear_setup_settings)
         all_weapon_labels = DamageSimStats.get_all_weapons_label(input_gear_setup.all_weapons)
 
-        # TODO if gear_setup_settings_label:
-        input_gear_setup_label = gear_setup_settings_label + " -> "
+        input_gear_setup_label = ""
+        if gear_setup_settings_label:
+            input_gear_setup_label += gear_setup_settings_label + " -> "
+
         for weapon_label in all_weapon_labels:
             input_gear_setup_label += weapon_label + ", "
 
@@ -149,17 +151,19 @@ class DamageSimStats:
 
     @staticmethod
     def get_weapon_label(weapon: Weapon) -> str:
-        label = ""
         gear = weapon.gear_setup
-        prayer_and_boost_text = ""
+        gear_setup_label = ""
         for prayer in gear.prayers:
-            prayer_and_boost_text += prayer.name.lower().capitalize() + ", "
+            gear_setup_label += prayer.name.lower().capitalize().replace('_', ' ') + ", "
 
-        if prayer_and_boost_text:
-            prayer_and_boost_text = " (" + prayer_and_boost_text[:-2] + ")"
+        if gear.is_special_attack:
+            gear_setup_label += "Special, "
 
-        label = label + (gear.name or "unnamed") + prayer_and_boost_text
-        return label
+        if gear_setup_label:
+            gear_setup_label = " (" + gear_setup_label[:-2] + ")"
+
+        weapon_label = (gear.name or "unnamed") + gear_setup_label
+        return weapon_label
 
     @staticmethod
     def get_gear_setup_settings_label(gear_setup_settings: GearSetupSettings) -> str:
@@ -178,13 +182,17 @@ class DamageSimStats:
     def get_stat_drain_label(stat_drains: list[StatDrain]) -> str | None:
         stat_drain_text = ""
         for stat_drain in stat_drains:
+            stat_drain_type_text = STAT_DRAIN_TYPE[stat_drain.weapon.stat_drain_type]
+            if stat_drain.weapon.stat_drain_type == StatDrainType.HITS and stat_drain.value == 1:
+                stat_drain_type_text = stat_drain_type_text[:-1]
+
             stat_drain_text += (STAT_DRAIN_NAME[stat_drain.weapon] + ": " + str(stat_drain.value) + " " +
-                                STAT_DRAIN_TYPE[stat_drain.weapon.stat_drain_type] + ", ")
+                                stat_drain_type_text + ", ")
 
         if stat_drain_text:
             return "Stat drain - " + stat_drain_text[:-2]
-
-        return None
+        else:
+            return "Stat drain - None"
 
     @staticmethod
     def get_boost_label(boosts: list[BoostType]) -> str | None:
@@ -194,35 +202,35 @@ class DamageSimStats:
 
         if boost_text:
             return "Boosts - " + boost_text[:-2]
-
-        return None
+        else:
+            return "Boosts - None"
 
     @staticmethod
     def get_combat_stats_label(combat_stats: CombatStats) -> str | None:
         stats_text = ""
 
         if combat_stats.hitpoints != MAX_COMBAT_STATS:
-            stats_text += "hp: " + str(combat_stats.hitpoints) + ", "
+            stats_text += "Hp: " + str(combat_stats.hitpoints) + ", "
 
         if combat_stats.attack != MAX_COMBAT_STATS:
-            stats_text += "att: " + str(combat_stats.attack) + ", "
+            stats_text += "Att: " + str(combat_stats.attack) + ", "
 
         if combat_stats.strength != MAX_COMBAT_STATS:
-            stats_text += "str: " + str(combat_stats.strength) + ", "
+            stats_text += "Str: " + str(combat_stats.strength) + ", "
 
         if combat_stats.defence != MAX_COMBAT_STATS:
-            stats_text += "def: " + str(combat_stats.defence) + ", "
+            stats_text += "Def: " + str(combat_stats.defence) + ", "
 
         if combat_stats.magic != MAX_COMBAT_STATS:
-            stats_text += "magic: " + str(combat_stats.magic) + ", "
+            stats_text += "Magic: " + str(combat_stats.magic) + ", "
 
         if combat_stats.ranged != MAX_COMBAT_STATS:
-            stats_text += "ranged: " + str(combat_stats.ranged) + ", "
+            stats_text += "Ranged: " + str(combat_stats.ranged) + ", "
 
         if stats_text:
             return "Combat stats - " + stats_text[:-2]
-
-        return None
+        else:
+            return "Combat stats - Max"
 
     @staticmethod
     def get_global_settings_label(global_settings: GlobalSettings):
