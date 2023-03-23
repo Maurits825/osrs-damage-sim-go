@@ -1,5 +1,6 @@
 import { ComponentRef, Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, skipWhile, Subject } from 'rxjs';
+import { GlobalSettingsComponent } from '../core/global-settings/global-settings.component';
 import {
   GearSetup,
   GearSetupSettings,
@@ -24,7 +25,7 @@ export class InputSetupService {
 
   loadInputSetup$: Subject<InputSetup> = new Subject();
 
-  globalSettings$: BehaviorSubject<GlobalSettings> = new BehaviorSubject(null);
+  globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
   gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
 
   constructor(private damageSimservice: DamageSimService) {
@@ -38,7 +39,10 @@ export class InputSetupService {
   }
 
   getInputSetupAsJson(): string {
-    const inputSetup: InputSetup = this.getInputSetup(this.globalSettings$.getValue(), this.gearSetupTabs$.getValue());
+    const inputSetup: InputSetup = this.getInputSetup(
+      this.globalSettingsComponent$.getValue().globalSettings,
+      this.gearSetupTabs$.getValue()
+    );
     return this.convertInputSetupToJson(inputSetup);
   }
 
