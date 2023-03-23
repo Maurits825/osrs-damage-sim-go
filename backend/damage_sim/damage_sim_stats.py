@@ -182,8 +182,12 @@ class DamageSimStats:
     def get_stat_drain_label(stat_drains: list[StatDrain]) -> str | None:
         stat_drain_text = ""
         for stat_drain in stat_drains:
+            stat_drain_type_text = STAT_DRAIN_TYPE[stat_drain.weapon.stat_drain_type]
+            if stat_drain.weapon.stat_drain_type == StatDrainType.HITS and stat_drain.value == 1:
+                stat_drain_type_text = stat_drain_type_text[:-1]
+
             stat_drain_text += (STAT_DRAIN_NAME[stat_drain.weapon] + ": " + str(stat_drain.value) + " " +
-                                STAT_DRAIN_TYPE[stat_drain.weapon.stat_drain_type] + ", ")
+                                stat_drain_type_text + ", ")
 
         if stat_drain_text:
             return "Stat drain - " + stat_drain_text[:-2]
