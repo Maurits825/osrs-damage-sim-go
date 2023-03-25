@@ -28,10 +28,12 @@
         <span *ngIf="loading" class="sr-only"> Loading...</span>
       </button>
     </div>
-    <div class="row text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
-    <div class="row text-success" *ngIf="damageSimResults && !damageSimResults?.error">
-      Damage simulation done, results above!
-    </div>
+    <ng-container *ngIf="!loading">
+      <div class="row text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
+      <div class="row text-success" *ngIf="damageSimResults && !damageSimResults?.error">
+        Damage simulation done, results above!
+      </div>
+    </ng-container>
   </div>
 
   <app-gear-setup-tabs></app-gear-setup-tabs>
