@@ -3,7 +3,6 @@ from __future__ import annotations
 import math
 import random
 
-from weapons.bolt_special_attack import BoltSpecialAttack
 from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
                                   DAWNBRINGER, HARM_STAFF)
@@ -17,6 +16,7 @@ from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
+from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
 from wiki_data.wiki_data import WikiData
 
@@ -24,7 +24,7 @@ from wiki_data.wiki_data import WikiData
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats,  npc: NpcStats, raid_level):
+    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
         self.gear_setup = gear_setup
         self.combat_stats = combat_stats
         self.npc = npc

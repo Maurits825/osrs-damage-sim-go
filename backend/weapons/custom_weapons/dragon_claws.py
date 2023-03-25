@@ -18,14 +18,14 @@ class DragonClaws(Weapon):
         else:
             if self.roll_hit():
                 hit1 = 0
-                hit2 = random.randint(math.floor(self.max_hit * (3/8)), math.floor(self.max_hit * (7/8)))
+                hit2 = random.randint(math.floor(self.max_hit * (3 / 8)), math.floor(self.max_hit * (7 / 8)))
                 hit3 = math.floor(hit2 / 2)
                 hit4 = hit3 + round(random.random())
             else:
                 if self.roll_hit():
                     hit1 = 0
                     hit2 = 0
-                    hit3 = random.randint(math.floor(self.max_hit * (1/4)), math.floor(self.max_hit * (3/4)))
+                    hit3 = random.randint(math.floor(self.max_hit * (1 / 4)), math.floor(self.max_hit * (3 / 4)))
                     hit4 = hit3 + round(random.random())
                 else:
                     if self.roll_hit():
@@ -55,11 +55,11 @@ class DragonClaws(Weapon):
             accuracy = self.get_accuracy()
             max_hit = self.get_max_hit() - 1
             attack_speed = self.gear_setup.gear_stats.attack_speed * TICK_LENGTH
-            dps = (((1 - accuracy)**0 * accuracy * 1.5 * max_hit / attack_speed) +
-                   ((1 - accuracy)**1 * accuracy * 1.25 * max_hit / attack_speed) +
-                   ((1 - accuracy)**2 * accuracy * 1 * max_hit / attack_speed) +
-                   ((1 - accuracy)**3 * accuracy * 0.75 * max_hit / attack_speed) +
-                   ((1 - accuracy)**4 * 1 / attack_speed))
+            dps = (((1 - accuracy) ** 0 * accuracy * 1.5 * max_hit / attack_speed) +
+                   ((1 - accuracy) ** 1 * accuracy * 1.25 * max_hit / attack_speed) +
+                   ((1 - accuracy) ** 2 * accuracy * 1 * max_hit / attack_speed) +
+                   ((1 - accuracy) ** 3 * accuracy * 0.75 * max_hit / attack_speed) +
+                   ((1 - accuracy) ** 4 * 1 / attack_speed))
 
             return dps
         else:
