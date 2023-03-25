@@ -6,7 +6,7 @@ import numpy as np
 
 from constant import TICK_LENGTH
 from model.boost import BoostType
-from model.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
+from model.damage_sim_results.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup

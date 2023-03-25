@@ -1,7 +1,7 @@
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
-from model.damage_sim_results import DamageSimResults, TotalDamageSimData, GearSetupDpsStats
+from model.damage_sim_results.damage_sim_results import DamageSimResults, TotalDamageSimData, GearSetupDpsStats
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.input_setup import InputSetup

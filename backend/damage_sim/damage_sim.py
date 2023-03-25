@@ -4,7 +4,7 @@ from damage_sim.condition_evaluator import ConditionEvaluator
 from constant import TICK_LENGTH
 from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
-from model.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
+from model.damage_sim_results.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.stat_drain_type import StatDrainType
 from weapons.weapon import Weapon
