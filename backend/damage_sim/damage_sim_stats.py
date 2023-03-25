@@ -7,6 +7,8 @@ import numpy as np
 from constant import TICK_LENGTH
 from model.boost import BoostType
 from model.damage_sim_results.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
+from model.damage_sim_results.detailed_run import DetailedRun
+from model.damage_sim_results.tick_data import TickData
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
@@ -280,3 +282,22 @@ class DamageSimStats:
             max_ticks = max(max_ticks, ttk_stat.maximum)
 
         return min_ticks, max_ticks
+
+    @staticmethod
+    def get_detailed_runs(ticks_to_kill: list[int], total_tick_data: list[list[TickData]]) -> list[DetailedRun]:
+        np_ticks_to_kill = np.array(ticks_to_kill)
+
+        index_max = np.argmax(np_ticks_to_kill)
+        index_min = np.argmin(np_ticks_to_kill)
+        index_frequent = np.where(np_ticks_to_kill == np.argmax(np.bincount(np_ticks_to_kill)))[0][0]
+
+        detailed_runs = []
+        for index in [index_max, index_min, index_frequent]:
+            detailed_runs.append(
+                DetailedRun(
+                    time_to_kill=DamageSimStats.format_ticks_to_time(ticks_to_kill[index]),
+                    tick_data=total_tick_data[index]
+                )
+            )
+
+        return detailed_runs

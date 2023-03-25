@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from model.damage_sim_results.detailed_run import DetailedRun
 from model.graph import GraphType
 from model.sim_stats import TimeSimStats, SimStats
 
@@ -52,5 +53,6 @@ class DamageSimResult:
 @dataclass()
 class DamageSimResults:
     results: list[DamageSimResult]
+    detailed_runs: list[list[DetailedRun]]
     global_settings_label: str
     graphs: dict[GraphType, str]

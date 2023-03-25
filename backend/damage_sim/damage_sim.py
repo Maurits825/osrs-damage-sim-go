@@ -1,10 +1,11 @@
 import copy
 
-from damage_sim.condition_evaluator import ConditionEvaluator
 from constant import TICK_LENGTH
+from damage_sim.condition_evaluator import ConditionEvaluator
 from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
 from model.damage_sim_results.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
+from model.damage_sim_results.tick_data import TickData
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.stat_drain_type import StatDrainType
 from weapons.weapon import Weapon
@@ -18,11 +19,13 @@ MAX_SPECIAL_ATTACK = 100
 
 
 class DamageSim:
-    def __init__(self, input_gear_setup: InputGearSetup):
+    def __init__(self, input_gear_setup: InputGearSetup, is_detailed_run=False):
         self.main_weapon: Weapon = input_gear_setup.main_weapon
         self.fill_weapons: list[Weapon] = input_gear_setup.fill_weapons
         self.all_weapons = [self.main_weapon, *self.fill_weapons]
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
+
+        self.is_detailed_run = is_detailed_run
 
         self.npc = self.main_weapon.npc
 
@@ -57,14 +60,21 @@ class DamageSim:
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
 
-    def run(self) -> SingleDamageSimData:
+    def run(self) -> (SingleDamageSimData, list[TickData]):
         self.reset()
 
+        tick_data = []
+        current_tick = 0
         while self.npc.combat_stats.hitpoints > 0:
             self.regenerate_special_attack()
             self.current_weapon_index, self.current_weapon = self.get_next_weapon()
 
-            damage = self.current_weapon.roll_damage()
+            hitsplats = self.current_weapon.roll_damage()
+            if type(hitsplats) == list:
+                damage = sum(hitsplats)
+            else:
+                damage = hitsplats
+
             self.npc.combat_stats.hitpoints -= damage
 
             if self.current_weapon.gear_setup.is_special_attack:
@@ -73,6 +83,22 @@ class DamageSim:
             self.sim_data.ticks_to_kill += self.current_weapon.gear_setup.gear_stats.attack_speed
             self.sim_data.gear_total_dmg[self.current_weapon_index] += damage
             self.sim_data.gear_attack_count[self.current_weapon_index] += 1
+
+            if self.is_detailed_run:
+                tick_data.append(
+                    TickData(
+                        tick=current_tick,
+                        weapon_name=self.current_weapon.gear_setup.name,
+                        max_hit=self.current_weapon.max_hit,
+                        accuracy=self.current_weapon.accuracy,
+                        hitsplats=hitsplats,
+                        npc_hitpoints=self.npc.combat_stats.hitpoints,
+                        npc_defence=self.npc.combat_stats.defence,
+                        special_attack_amount=self.special_attack
+                    )
+                )
+
+            current_tick += self.current_weapon.gear_setup.gear_stats.attack_speed
 
         # remove overkill damage
         self.sim_data.gear_total_dmg[self.current_weapon_index] += self.npc.combat_stats.hitpoints
@@ -86,15 +112,15 @@ class DamageSim:
                 weapon.gear_setup.gear_stats.attack_speed
             )
 
-        return self.sim_data
+        return self.sim_data, tick_data
 
     def get_next_weapon(self) -> tuple[int, Weapon]:
         for index, weapon in enumerate(self.fill_weapons):
             fill_weapon_index = index + 1
             use_fill_weapon = ConditionEvaluator.evaluate_condition(
-                    weapon.gear_setup.conditions, self.npc.combat_stats.hitpoints,
-                    self.sim_data.gear_total_dmg[fill_weapon_index],
-                    self.sim_data.gear_attack_count[fill_weapon_index]
+                weapon.gear_setup.conditions, self.npc.combat_stats.hitpoints,
+                self.sim_data.gear_total_dmg[fill_weapon_index],
+                self.sim_data.gear_attack_count[fill_weapon_index]
             )
             if use_fill_weapon:
                 if (not weapon.gear_setup.is_special_attack or

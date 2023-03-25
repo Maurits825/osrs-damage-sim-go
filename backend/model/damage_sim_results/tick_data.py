@@ -1,16 +1,15 @@
 from dataclasses import dataclass
 
-from model.npc.npc_stats import NpcStats
-from weapons.weapon import Weapon
-
 
 @dataclass()
 class TickData:
-    weapon: Weapon
-    accuracy: float  # this is in weapon no??
-    max_hit: int  # this is in weapon no??
-    damage_dealt: int
+    tick: int
+    weapon_name: str
+    max_hit: int
+    accuracy: float
+    hitsplats: list[int]
 
-    npc: NpcStats
+    npc_hitpoints: int
+    npc_defence: int
 
     special_attack_amount: float

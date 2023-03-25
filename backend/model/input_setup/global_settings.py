@@ -12,3 +12,5 @@ class GlobalSettings:
 
     team_size: int
     iterations: int
+
+    is_detailed_run: bool = False

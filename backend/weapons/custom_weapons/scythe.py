@@ -6,15 +6,15 @@ from weapons.weapon import Weapon
 
 
 class Scythe(Weapon):
-    def roll_damage(self) -> int:
-        damage = self.roll_single_hit(1)
+    def roll_damage(self) -> list[int]:
+        hitsplats = [self.roll_single_hit(1)]
 
         if self.npc.size > 1:
-            damage += self.roll_single_hit(0.5)
+            hitsplats.append(self.roll_single_hit(0.5))
         if self.npc.size > 2:
-            damage += self.roll_single_hit(0.25)
+            hitsplats.append(self.roll_single_hit(0.25))
 
-        return damage
+        return hitsplats
 
     def roll_single_hit(self, reduction) -> int:
         damage = 0

@@ -6,7 +6,7 @@ from weapons.weapon import Weapon
 
 
 class DragonClaws(Weapon):
-    def roll_damage(self) -> int:
+    def roll_damage(self) -> list[int]:
         if not self.gear_setup.is_special_attack:
             return super().roll_damage()
 
@@ -39,7 +39,7 @@ class DragonClaws(Weapon):
                         hit3 = random.randint(0, 1)
                         hit4 = hit3
 
-        return hit1 + hit2 + hit3 + hit4
+        return [hit1, hit2, hit3, hit4]
 
     def get_npc_defence_style(self):
         if not self.gear_setup.is_special_attack:

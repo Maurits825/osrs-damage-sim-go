@@ -53,22 +53,24 @@ class Weapon:
         self.set_attack_speed()
 
         self.max_hit = 0
+        self.accuracy = 0
         self.attack_roll = 0
         self.target_defence = None
         self.target_defence_style = None
-        self.update_max_hit_and_attack_roll()
+        self.update_dps_stats()
 
     def set_npc(self, npc):
         self.npc = npc
 
     def set_combat_stats(self, combat_stats):
         self.combat_stats = combat_stats
-        self.update_max_hit_and_attack_roll()
+        self.update_dps_stats()
 
-    def update_max_hit_and_attack_roll(self):
-        self.max_hit = self.get_max_hit()
+    def update_dps_stats(self):
         self.attack_roll = self.get_attack_roll()
         self.target_defence, self.target_defence_style = self.get_npc_defence_style()
+        self.max_hit = self.get_max_hit()
+        self.accuracy = self.get_accuracy()
 
     def get_is_brimstone(self):
         return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
@@ -91,7 +93,7 @@ class Weapon:
 
         return attack_roll > defence_roll
 
-    def roll_damage(self) -> int:
+    def roll_damage(self) -> int | list[int]:
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_damage(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
