@@ -26,6 +26,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     teamSize: 1,
     raidLevel: 0,
     pathLevel: 0,
+    isDetailedRun: false,
   };
 
   showPathLevel = false;

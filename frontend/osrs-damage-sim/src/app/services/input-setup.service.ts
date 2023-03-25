@@ -94,6 +94,7 @@ export class InputSetupService {
       raidLevel: inputSetupJson.globalSettings.raidLevel,
       pathLevel: inputSetupJson.globalSettings.pathLevel,
       teamSize: inputSetupJson.globalSettings.teamSize,
+      isDetailedRun: inputSetupJson.globalSettings.isDetailedRun,
     };
 
     const inputGearSetups: InputGearSetup[] = inputSetupJson.inputGearSetups.map((inputGearSetup: InputGearSetup) => {
