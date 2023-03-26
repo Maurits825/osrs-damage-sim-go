@@ -12,4 +12,6 @@ class TickDataDetails:
 @dataclass()
 class DetailedRun:
     input_gear_setup_label: str
+    npc_hp: int
+    npc_defence: int
     tick_data_details: list[TickDataDetails]

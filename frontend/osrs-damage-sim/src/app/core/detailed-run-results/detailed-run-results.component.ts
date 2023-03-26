@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DetailedRun, TickDataDetails } from 'src/app/model/damage-sim/damage-sim-results.model';
 import { detailedRunsMock } from './run-mock.const';
 
@@ -7,7 +7,7 @@ import { detailedRunsMock } from './run-mock.const';
   templateUrl: './detailed-run-results.component.html',
   styleUrls: ['./detailed-run-results.component.css'],
 })
-export class DetailedRunResultsComponent {
+export class DetailedRunResultsComponent implements OnChanges {
   @Input()
   detailedRuns: DetailedRun[] = detailedRunsMock;
 
@@ -17,10 +17,18 @@ export class DetailedRunResultsComponent {
   DetailedRun: DetailedRun;
   TickDataDetails: TickDataDetails;
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['detailedRuns']) {
+      this.selectedDetailedRun = null;
+      this.selectedTickDetails = null;
+    }
+  }
+
   selectedDetailedRunChange(detailedRun: DetailedRun): void {
     this.selectedDetailedRun = detailedRun;
     this.selectedTickDetails = null;
   }
+
   selectedTickDetailsChange(tickDetails: TickDataDetails): void {
     this.selectedTickDetails = tickDetails;
   }

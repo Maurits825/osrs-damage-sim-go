@@ -15,6 +15,7 @@ from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.stat_drain import StatDrain
 from model.npc.combat_stats import CombatStats
+from model.npc.npc_stats import NpcStats
 from model.sim_stats import SimStats, TimeSimStats
 from model.stat_drain_type import StatDrainType
 from weapons.custom_weapons.arclight import Arclight
@@ -285,7 +286,8 @@ class DamageSimStats:
         return min_ticks, max_ticks
 
     @staticmethod
-    def get_detailed_run(ticks_to_kill: list[int], total_tick_data: list[list[TickData]], label) -> DetailedRun:
+    def get_detailed_run(ticks_to_kill: list[int], total_tick_data: list[list[TickData]], npc: NpcStats, label
+                         ) -> DetailedRun:
         np_ticks_to_kill = np.array(ticks_to_kill)
 
         index_max = np.argmax(np_ticks_to_kill)
@@ -301,4 +303,9 @@ class DamageSimStats:
                 )
             )
 
-        return DetailedRun(label, tick_data_details)
+        return DetailedRun(
+            input_gear_setup_label=label,
+            npc_hp=npc.base_combat_stats.hitpoints,
+            npc_defence=npc.base_combat_stats.defence,
+            tick_data_details=tick_data_details
+        )

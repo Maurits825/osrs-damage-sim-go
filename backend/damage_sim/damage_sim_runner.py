@@ -36,7 +36,8 @@ class DamageSimRunner:
 
             if input_setup.global_settings.is_detailed_run:
                 detailed_run = DamageSimStats.get_detailed_run(
-                    sim_data.ticks_to_kill, total_tick_data, input_gear_setup_labels.input_gear_setup_label
+                    sim_data.ticks_to_kill, total_tick_data,
+                    input_setup.global_settings.npc, input_gear_setup_labels.input_gear_setup_label
                 )
                 damage_sim_results.detailed_runs.append(detailed_run)
 

@@ -55,6 +55,8 @@ export interface TickDataDetails {
 
 export interface DetailedRun {
   input_gear_setup_label: string;
+  npc_hp: number;
+  npc_defence: number;
   tick_data_details: TickDataDetails[];
 }
 
