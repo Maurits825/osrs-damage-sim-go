@@ -15,7 +15,7 @@ class Bolt:
 
 class RubyBolts(Bolt):
     def roll_damage(self, max_hit, hp):
-        return min(500 * self.effect_value, math.floor(hp * (1 + self.effect_value)))
+        return int(min(500 * self.effect_value, math.floor(hp * (1 + self.effect_value))))
 
 
 class DiamondBolts(Bolt):

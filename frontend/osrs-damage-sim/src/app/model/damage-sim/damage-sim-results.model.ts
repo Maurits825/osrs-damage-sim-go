@@ -38,10 +38,35 @@ export interface DamageSimResult {
   targetTimeChance?: number;
 }
 
+export interface TickData {
+  tick: number;
+  weapon_name: string;
+  max_hit: number;
+  accuracy: number;
+  hitsplats: number[] | number;
+
+  npc_hitpoints: number;
+  npc_defence: number;
+
+  special_attack_amount: number;
+}
+
+export interface TickDataDetails {
+  time_to_kill: string;
+  tick_data: TickData[];
+}
+
+export interface DetailedRun {
+  input_gear_setup_label: string;
+  tick_data_details: TickDataDetails[];
+}
+
 export interface DamageSimResults {
   error?: string | null;
 
+  detailed_runs: DetailedRun[];
   results: DamageSimResult[];
   global_settings_label: string;
+
   graphs: Graphs;
 }

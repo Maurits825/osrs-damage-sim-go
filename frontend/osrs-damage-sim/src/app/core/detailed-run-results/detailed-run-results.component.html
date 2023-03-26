@@ -1,0 +1,85 @@
+<div>
+  <h2 class="mb-1 ps-0">Detailed Runs</h2>
+
+  <div class="row mb-2">
+    <div class="col-9 d-flex align-items-center">
+      <div class="flex-grow-1" style="min-width: 0">
+        <ng-container *ngIf="detailedRuns">
+          <app-ng-select-lazy-load
+            [valueType]="DetailedRun"
+            [allValues]="detailedRuns"
+            [selectedValue]="selectedDetailedRun"
+            searchProperty="input_gear_setup_label"
+            placeholder="Select gear setup"
+            (valueChanged)="selectedDetailedRunChange($event)"
+          >
+            <ng-template #dropdownLabel let-item="item" let-index="index">
+              Setup - {{ getSelectedDetailedRunIndex() }}:
+              <small>{{ item.input_gear_setup_label.split("->")[1] }}</small>
+            </ng-template>
+            <ng-template #dropdownOptions let-item="item" let-index="index">
+              Setup - {{ index }} <br />
+              <small>
+                <div *ngFor="let line of item.input_gear_setup_label.split('->')">{{ line }}<br /></div>
+              </small>
+            </ng-template>
+          </app-ng-select-lazy-load>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="col-3 d-flex align-items-center">
+      <div class="me-2">Time</div>
+      <div class="flex-grow-1">
+        <ng-container *ngIf="selectedDetailedRun; else notSelectedDetailedRun">
+          <app-ng-select-lazy-load
+            [valueType]="TickDataDetails"
+            [allValues]="selectedDetailedRun.tick_data_details"
+            [selectedValue]="selectedTickDetails"
+            searchProperty="time_to_kill"
+            placeholder="Select time"
+            (valueChanged)="selectedTickDetailsChange($event)"
+          >
+            <ng-template #dropdownLabel #dropdownOptions let-item="item">
+              {{ item.time_to_kill }}
+            </ng-template>
+          </app-ng-select-lazy-load>
+        </ng-container>
+        <ng-template #notSelectedDetailedRun>
+          <div class="fst-italic text-center">select setup</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="tableFixHead">
+    <table class="table table-striped table-bordered border-dark mb-4" *ngIf="selectedTickDetails">
+      <thead>
+        <tr class="text-end">
+          <th scope="col" class="text-start">Tick</th>
+          <th scope="col" class="text-start">Weapon</th>
+          <th scope="col" class="text-start">Hitsplats</th>
+          <th scope="col" class="text-start">Npc hp</th>
+          <th scope="col" class="text-start">Max hit</th>
+          <th scope="col" class="text-start">Accuracy</th>
+          <th scope="col" class="text-start">Spec</th>
+          <th scope="col" class="text-start">Npc defence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let tickData of selectedTickDetails.tick_data">
+          <tr class="text-end">
+            <td class="text-start">{{ tickData.tick }}</td>
+            <td class="text-start">{{ tickData.weapon_name }}</td>
+            <td>{{ tickData.hitsplats }}</td>
+            <td>{{ tickData.npc_hitpoints }}</td>
+            <td>{{ tickData.max_hit }}</td>
+            <td>{{ tickData.accuracy * 100 | number : "1.2-2" }}%</td>
+            <td>{{ tickData.special_attack_amount }}</td>
+            <td>{{ tickData.npc_defence }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

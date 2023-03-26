@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 
@@ -7,7 +9,7 @@ class TickData:
     weapon_name: str
     max_hit: int
     accuracy: float
-    hitsplats: list[int]
+    hitsplats: int | list[int]
 
     npc_hitpoints: int
     npc_defence: int

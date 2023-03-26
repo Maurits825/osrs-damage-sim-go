@@ -1,0 +1,14 @@
+/* Fix table head */
+.tableFixHead {
+  overflow: auto;
+  height: 550px;
+}
+
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+}
+
+th {
+  background: rgb(192, 168, 134);
+}

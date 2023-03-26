@@ -28,6 +28,7 @@ import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from './model/damage-sim/inj
 import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
 import { ExampleSetupsComponent } from './core/example-setups/example-setups.component';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetailedRunResultsComponent } from './core/detailed-run-results/detailed-run-results.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     ShareInputSetupModalComponent,
     QuickGearSelectComponent,
     ExampleSetupsComponent,
+    DetailedRunResultsComponent,
   ],
   imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
   providers: [

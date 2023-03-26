@@ -53,6 +53,6 @@ class DamageSimResult:
 @dataclass()
 class DamageSimResults:
     results: list[DamageSimResult]
-    detailed_runs: list[list[DetailedRun]]
+    detailed_runs: list[DetailedRun]
     global_settings_label: str
     graphs: dict[GraphType, str]
