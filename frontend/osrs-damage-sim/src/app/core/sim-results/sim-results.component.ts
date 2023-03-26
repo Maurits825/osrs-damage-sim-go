@@ -70,6 +70,9 @@ export class SimResultsComponent implements OnChanges {
       damageSimResult.targetTimeChance = damageSimResult.cumulative_chances[chanceIndex];
     });
 
+    this.sortConfigs.targetTimeChance.sortOrder = SortOrder.Descending;
+    this.sortTargetTimeChange();
+
     this.isTargetTimeValid = true;
   }
 
@@ -112,11 +115,11 @@ export class SimResultsComponent implements OnChanges {
   }
 
   sortTargetTimeChange(): void {
-    const sortOrder = this.sortConfigs['targetTimeChance'].sortOrder;
+    const sortOrder = this.sortConfigs.targetTimeChance.sortOrder;
 
     this.damageSimResults.results.sort(
       (result1: DamageSimResult, result2: DamageSimResult) =>
-        sortOrder * result1.targetTimeChance - result2.targetTimeChance
+        sortOrder * (result1.targetTimeChance - result2.targetTimeChance)
     );
 
     this.updateSortConfigs('targetTimeChance');
@@ -125,6 +128,8 @@ export class SimResultsComponent implements OnChanges {
   updateSortConfigs(sortField: TimeSortField | DpsSortField | 'targetTimeChance'): void {
     this.timeSortFields.forEach((field: TimeSortField) => (this.sortConfigs[field].isSorted = false));
     this.dpsSortFields.forEach((field: DpsSortField) => (this.sortConfigs[field].isSorted = false));
+
+    this.sortConfigs['targetTimeChance'].isSorted = false;
 
     this.sortConfigs[sortField].isSorted = true;
     this.sortConfigs[sortField].sortOrder *= -1;

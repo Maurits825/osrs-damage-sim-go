@@ -5,8 +5,6 @@ export interface InputGearSetupLabels {
 }
 
 export interface SimStats {
-  [index: string]: string | number;
-
   average: string | number;
   maximum: string | number;
   minimum: string | number;
@@ -21,8 +19,6 @@ export interface Graphs {
 }
 
 export interface DamageSimResult {
-  [index: string]: InputGearSetupLabels | SimStats | SimStats[] | number[] | number;
-
   labels: InputGearSetupLabels;
 
   ttk_stats: SimStats;
@@ -32,7 +28,7 @@ export interface DamageSimResult {
 
   theoretical_dps: number[];
   cumulative_chances: number[];
-  max_hit: number[];
+  max_hit: number[] | number[][];
   accuracy: number[];
 
   targetTimeChance?: number;
@@ -42,9 +38,9 @@ export interface TickData {
   tick: number;
   weapon_name: string;
   is_special_attack: boolean;
-  max_hit: number;
+  max_hit: number | number[];
   accuracy: number;
-  hitsplats: number[] | number;
+  hitsplats: number | number[];
 
   npc_hitpoints: number;
   npc_defence: number;
