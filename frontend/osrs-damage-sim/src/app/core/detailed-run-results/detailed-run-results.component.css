@@ -1,14 +1,25 @@
 /* Fix table head */
-.tableFixHead {
+.table-sticky-header {
   overflow: auto;
   height: 550px;
 }
 
-.tableFixHead th {
+.table-sticky-header th {
   position: sticky;
   top: 0;
 }
 
 th {
   background: rgb(192, 168, 134);
+}
+
+.damage-hitsplat {
+  background: url("/assets/img/hitsplats/damage.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

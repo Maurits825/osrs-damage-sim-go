@@ -11,8 +11,8 @@ export class DetailedRunResultsComponent implements OnChanges {
   @Input()
   detailedRuns: DetailedRun[] = detailedRunsMock;
 
-  selectedDetailedRun: DetailedRun;
-  selectedTickDetails: TickDataDetails;
+  selectedDetailedRun: DetailedRun = this.detailedRuns[0];
+  selectedTickDetails: TickDataDetails = this.selectedDetailedRun.tick_data_details[0];
 
   DetailedRun: DetailedRun;
   TickDataDetails: TickDataDetails;
@@ -35,5 +35,9 @@ export class DetailedRunResultsComponent implements OnChanges {
 
   getSelectedDetailedRunIndex(): number {
     return this.detailedRuns.findIndex((detailedRun: DetailedRun) => detailedRun === this.selectedDetailedRun);
+  }
+
+  sumArray(values: number[]): number {
+    return values.reduce((a: number, b: number) => a + b);
   }
 }
