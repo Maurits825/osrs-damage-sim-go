@@ -57,26 +57,37 @@
       <thead>
         <tr class="text-end">
           <th scope="col" class="text-start">Tick</th>
+          <th scope="col" class="text-start">Time</th>
           <th scope="col" class="text-start">Weapon</th>
           <th scope="col" class="text-start">Hitsplats</th>
-          <th scope="col" class="text-start">Npc hp</th>
+          <th scope="col" class="text-start">Npc</th>
           <th scope="col" class="text-start">Max hit</th>
           <th scope="col" class="text-start">Accuracy</th>
           <th scope="col" class="text-start">Spec</th>
-          <th scope="col" class="text-start">Npc defence</th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngFor="let tickData of selectedTickDetails.tick_data">
           <tr class="text-end">
             <td class="text-start">{{ tickData.tick }}</td>
-            <td class="text-start">{{ tickData.weapon_name }}</td>
+            <td class="text-start">{{ tickData.tick | tickToTime }}</td>
+            <td class="text-start">
+              {{ tickData.weapon_name }}
+              <img
+                *ngIf="tickData.is_special_attack"
+                style="height: 20px; width: auto"
+                src="assets/img/other/special_attack_orb.png"
+                title="Special attack"
+              />
+            </td>
             <td>{{ tickData.hitsplats }}</td>
-            <td>{{ tickData.npc_hitpoints }}</td>
+            <td>
+              <img src="assets/img/skills/hitpoints.png" title="Hitpoints" /> {{ tickData.npc_hitpoints }}&nbsp;
+              <img src="assets/img/skills/defence.png" title="Defence" /> {{ tickData.npc_defence }}
+            </td>
             <td>{{ tickData.max_hit }}</td>
             <td>{{ tickData.accuracy * 100 | number : "1.2-2" }}%</td>
             <td>{{ tickData.special_attack_amount }}</td>
-            <td>{{ tickData.npc_defence }}</td>
           </tr>
         </ng-container>
       </tbody>

@@ -41,6 +41,7 @@ export interface DamageSimResult {
 export interface TickData {
   tick: number;
   weapon_name: string;
+  is_special_attack: boolean;
   max_hit: number;
   accuracy: number;
   hitsplats: number[] | number;

@@ -10,16 +10,16 @@
         placeholder="Select npc"
         (valueChanged)="selectedNpcChange($event)"
       >
-        <ng-template #dropdownLabel #dropdownOptions let-item="item"
-          >{{ item.name }}
+        <ng-template #dropdownLabel #dropdownOptions let-item="item">
+          {{ item.name }}
           <span *ngIf="item.isChallengeMode">(Challenge Mode) </span>
           <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
           <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
           <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
           -&nbsp;
           <img src="assets/img/skills/combat.png" /> {{ item.combat ? item.combat : "N/A" }}&nbsp;
-          <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}</ng-template
-        >
+          <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}
+        </ng-template>
       </app-ng-select-lazy-load>
     </ng-container>
 

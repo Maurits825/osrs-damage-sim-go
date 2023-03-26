@@ -89,6 +89,7 @@ class DamageSim:
                     TickData(
                         tick=current_tick,
                         weapon_name=self.current_weapon.gear_setup.name,
+                        is_special_attack=self.current_weapon.gear_setup.is_special_attack,
                         max_hit=self.current_weapon.max_hit,
                         accuracy=self.current_weapon.accuracy,
                         hitsplats=hitsplats,

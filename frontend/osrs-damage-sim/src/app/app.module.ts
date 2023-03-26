@@ -29,6 +29,7 @@ import { QuickGearSelectComponent } from './shared/components/quick-gear-select/
 import { ExampleSetupsComponent } from './core/example-setups/example-setups.component';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailedRunResultsComponent } from './core/detailed-run-results/detailed-run-results.component';
+import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import { DetailedRunResultsComponent } from './core/detailed-run-results/detaile
     QuickGearSelectComponent,
     ExampleSetupsComponent,
     DetailedRunResultsComponent,
+    TickToTimePipe,
   ],
   imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
   providers: [
