@@ -293,7 +293,7 @@ class DamageSimStats:
         index_frequent = np.where(np_ticks_to_kill == np.argmax(np.bincount(np_ticks_to_kill)))[0][0]
 
         tick_data_details = []
-        for index in [index_max, index_min, index_frequent]:
+        for index in [index_min, index_frequent, index_max]:
             tick_data_details.append(
                 TickDataDetails(
                     time_to_kill=DamageSimStats.format_ticks_to_time(ticks_to_kill[index]),
