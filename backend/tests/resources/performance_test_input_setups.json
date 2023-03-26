@@ -20,6 +20,7 @@
         "str": 250
       },
       "iterations": 100000,
+      "isDetailedRun": false,
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0

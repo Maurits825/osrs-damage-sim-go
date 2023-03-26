@@ -19,7 +19,7 @@ class TestDamageSim(unittest.TestCase):
                 input_setup = InputSetupConverter.get_input_setup(self.input_setups[setup_name])
 
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
-                dmg_sim_data = damage_sim.run()
+                dmg_sim_data, tick_data = damage_sim.run()
 
                 self.assertIsNotNone(dmg_sim_data.ticks_to_kill)
                 self.assertIsNotNone(dmg_sim_data.gear_total_dmg)
