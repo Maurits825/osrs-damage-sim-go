@@ -19,6 +19,7 @@ export class DetailedRunResultsComponent {
 
   selectedDetailedRunChange(detailedRun: DetailedRun): void {
     this.selectedDetailedRun = detailedRun;
+    this.selectedTickDetails = null;
   }
   selectedTickDetailsChange(tickDetails: TickDataDetails): void {
     this.selectedTickDetails = tickDetails;
