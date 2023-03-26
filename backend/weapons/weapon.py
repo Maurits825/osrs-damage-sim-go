@@ -113,7 +113,7 @@ class Weapon:
 
         return DpsCalculator.get_hit_chance(attack_roll, defence_roll)
 
-    def get_max_hit(self):
+    def get_max_hit(self) -> int | list[int]:
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
                 prayer=self.prayer_multiplier,
