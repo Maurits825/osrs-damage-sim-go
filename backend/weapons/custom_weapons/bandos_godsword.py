@@ -1,5 +1,6 @@
 import math
 
+from model.hitsplat import Hitsplat
 from model.npc.npc_stats import NpcStats
 from model.stat_drain_type import StatDrainType
 from model.stat_drain_weapon import StatDrainWeapon
@@ -30,12 +31,12 @@ class BandosGodsword(Weapon, StatDrainWeapon):
         target_defence_style = self.npc.defensive_stats.slash
         return target_defence, target_defence_style
 
-    def roll_damage(self) -> int:
-        damage = super().roll_damage()
+    def roll_damage(self) -> Hitsplat:
+        hitsplat = super().roll_damage()
         if self.gear_setup.is_special_attack:
-            BandosGodsword.drain_stats(self.npc, damage)
+            BandosGodsword.drain_stats(self.npc, hitsplat.damage)
 
-        return damage
+        return hitsplat
 
     @staticmethod
     def drain_stats(npc: NpcStats, damage):

@@ -2,7 +2,9 @@ import math
 
 from constant import TICK_LENGTH
 from model.bolt import RubyBolts, DiamondBolts
+from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
+from model.hitsplat import Hitsplat
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from weapons.bolt_special_attack import BoltSpecialAttack
@@ -18,19 +20,19 @@ class ZaryteCrossbow(Weapon):
             elif isinstance(self.special_bolt, DiamondBolts):
                 self.special_bolt.effect_value = 0.25
 
-    def roll_damage(self) -> int:
+    def roll_damage(self) -> Hitsplat:
         if not self.gear_setup.is_special_attack or not self.special_bolt:
             return super().roll_damage()
 
         if self.roll_hit():
-            return self.special_bolt.roll_damage(self.max_hit, self.npc.combat_stats.hitpoints)
+            return BoltSpecialAttack.special(self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints)
         else:
-            bolt_damage = BoltSpecialAttack.roll_damage(self.special_bolt, self.max_hit,
-                                                        self.npc.combat_stats.hitpoints)
+            bolt_damage = BoltSpecialAttack.roll_special(self.special_bolt, self.max_hit,
+                                                         self.npc.combat_stats.hitpoints)
             if bolt_damage:
                 return bolt_damage
             else:
-                return 0
+                return Hitsplat(damage=0, hitsplats=0, roll_hits=False, special_proc=SpecialProc.NONE)
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:

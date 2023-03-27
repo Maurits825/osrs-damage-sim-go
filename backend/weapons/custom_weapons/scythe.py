@@ -1,31 +1,43 @@
 import math
 import random
 
+from model.gear_setup import GearSetup
+from model.npc.combat_stats import CombatStats
+from model.npc.npc_stats import NpcStats
 from weapons.dps_calculator import DpsCalculator
 from weapons.weapon import Weapon
 
-
-HITSPLAT_2_REDUCTION = 0.5
-HITSPLAT_3_REDUCTION = 0.25
+HIT_COUNT_REDUCTION = [1, 0.5, 0.25]
 
 
 class Scythe(Weapon):
+    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
+        super().__init__(gear_setup, combat_stats, npc, raid_level)
+
+        self.hitsplat.hitsplats = [0 for _ in range(self.npc.size)]
+        self.hitsplat.roll_hits = [0 for _ in range(self.npc.size)]
+
     def roll_damage(self) -> list[int]:
-        hitsplats = [self.roll_single_hit(1)]
+        self.roll_single_hit(0)
 
         if self.npc.size > 1:
-            hitsplats.append(self.roll_single_hit(HITSPLAT_2_REDUCTION))
+            self.roll_single_hit(1)
         if self.npc.size > 2:
-            hitsplats.append(self.roll_single_hit(HITSPLAT_3_REDUCTION))
+            self.roll_single_hit(2)
 
-        return hitsplats
+        self.hitsplat.damage = sum(self.hitsplat.hitsplats)
+        return self.hitsplat
 
-    def roll_single_hit(self, reduction) -> int:
+    def roll_single_hit(self, hit_count) -> (int, bool):
         damage = 0
-        if self.roll_hit():
+        roll_hit = self.roll_hit()
+        if roll_hit:
             damage = int(random.random() * (self.max_hit[0] + 1))
 
-        return math.floor(damage * reduction)
+        damage = math.floor(damage * HIT_COUNT_REDUCTION[hit_count])
+
+        self.hitsplat.hitsplats[hit_count] = damage
+        self.hitsplat.roll_hits[hit_count] = roll_hit
 
     def get_dps(self):
         accuracy = self.get_accuracy()
@@ -43,7 +55,5 @@ class Scythe(Weapon):
         base_max_hit = super().get_max_hit()
 
         return [
-            base_max_hit,
-            math.floor(base_max_hit * HITSPLAT_2_REDUCTION),
-            math.floor(base_max_hit * HITSPLAT_3_REDUCTION),
+            math.floor(base_max_hit * hit_reduction) for hit_reduction in HIT_COUNT_REDUCTION
         ]

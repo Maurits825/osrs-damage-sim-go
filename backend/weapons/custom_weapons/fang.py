@@ -1,7 +1,9 @@
 import math
 import random
 
+from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
+from model.hitsplat import Hitsplat
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from weapons.dps_calculator import DpsCalculator
@@ -30,14 +32,17 @@ class Fang(Weapon):
             attack_roll = int(random.random() * (self.attack_roll + 1))
             return attack_roll > defence_roll
 
-    def roll_damage(self) -> int:
+    def roll_damage(self) -> Hitsplat:
         damage = 0
         max_hit = self.max_hit
 
-        if self.roll_hit():
+        roll_hit = self.roll_hit()
+        if roll_hit:
             damage = int((random.random() * (max_hit - self.true_min_hit + 1)) + self.true_min_hit)
 
-        return damage
+        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
+                                   special_proc=SpecialProc.NONE)
+        return self.hitsplat
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:

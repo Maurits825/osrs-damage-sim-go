@@ -6,7 +6,9 @@ import random
 
 from constant import TICK_LENGTH
 from model.bolt import ALL_BOLTS, Bolt, RubyBolts, DiamondBolts
+from model.damage_sim_results.special_proc import SpecialProc
 from model.equipped_gear import EquippedGear
+from model.hitsplat import Hitsplat
 
 
 class BoltSpecialAttack:
@@ -24,12 +26,18 @@ class BoltSpecialAttack:
         return None
 
     @staticmethod
-    def roll_damage(bolt: Bolt, max_hit, current_hp) -> int | None:
+    def roll_special(bolt: Bolt, max_hit, current_hp) -> Hitsplat | None:
         hit = random.random()
         if hit <= bolt.proc_chance:
-            return bolt.roll_damage(max_hit, current_hp)
+            BoltSpecialAttack.special(bolt, max_hit, current_hp)
 
         return None
+
+    @staticmethod
+    def special(bolt: Bolt, max_hit, current_hp) -> Hitsplat:
+        damage = bolt.roll_damage(max_hit, current_hp)
+        return Hitsplat(damage=damage, hitsplats=damage, roll_hits=True,
+                        special_proc=SpecialProc(bolt.__class__.__name__))
 
     @staticmethod
     def get_dps(bolt: Bolt, accuracy, max_hit, attack_speed) -> float:

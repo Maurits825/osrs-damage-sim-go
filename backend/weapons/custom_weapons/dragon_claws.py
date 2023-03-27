@@ -4,7 +4,9 @@ import math
 import random
 
 from constant import TICK_LENGTH
+from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
+from model.hitsplat import Hitsplat
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from weapons.weapon import Weapon
@@ -16,7 +18,7 @@ class DragonClaws(Weapon):
 
         self.spec_min_hit = []
 
-    def roll_damage(self) -> list[int]:
+    def roll_damage(self) -> Hitsplat:
         if not self.gear_setup.is_special_attack:
             return super().roll_damage()
 
@@ -49,7 +51,9 @@ class DragonClaws(Weapon):
                         hit3 = random.randint(0, 1)
                         hit4 = hit3
 
-        return [hit1, hit2, hit3, hit4]
+        self.hitsplat.set_hitsplat(damage=sum([hit1, hit2, hit3, hit4]), hitsplats=[hit1, hit2, hit3, hit4],
+                                   roll_hit=True, special_bolt_type=SpecialProc.NONE)
+        return self.hitsplat
 
     def get_npc_defence_style(self):
         if not self.gear_setup.is_special_attack:
@@ -102,4 +106,3 @@ class DragonClaws(Weapon):
                     (1 - base_accuracy) ** 3 * base_accuracy)
         else:
             return base_accuracy
-

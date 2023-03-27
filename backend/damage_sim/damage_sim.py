@@ -69,19 +69,15 @@ class DamageSim:
             self.regenerate_special_attack()
             self.current_weapon_index, self.current_weapon = self.get_next_weapon()
 
-            hitsplats = self.current_weapon.roll_damage()
-            if type(hitsplats) == list:
-                damage = sum(hitsplats)
-            else:
-                damage = hitsplats
+            hitsplat = self.current_weapon.roll_damage()
 
-            self.npc.combat_stats.hitpoints -= damage
+            self.npc.combat_stats.hitpoints -= hitsplat.damage
 
             if self.current_weapon.gear_setup.is_special_attack:
                 self.special_attack -= self.special_attack_cost[self.current_weapon_index]
 
             self.sim_data.ticks_to_kill += self.current_weapon.gear_setup.gear_stats.attack_speed
-            self.sim_data.gear_total_dmg[self.current_weapon_index] += damage
+            self.sim_data.gear_total_dmg[self.current_weapon_index] += hitsplat.damage
             self.sim_data.gear_attack_count[self.current_weapon_index] += 1
 
             if self.is_detailed_run:
@@ -92,7 +88,7 @@ class DamageSim:
                         is_special_attack=self.current_weapon.gear_setup.is_special_attack,
                         max_hit=self.current_weapon.max_hit,
                         accuracy=self.current_weapon.accuracy,
-                        hitsplats=hitsplats,
+                        hitsplats=hitsplat.hitsplats,
                         npc_hitpoints=self.npc.combat_stats.hitpoints,
                         npc_defence=self.npc.combat_stats.defence,
                         special_attack_amount=self.special_attack

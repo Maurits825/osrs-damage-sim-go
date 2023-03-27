@@ -11,7 +11,9 @@ from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
 from model.bolt import Bolt
 from model.combat_boost import CombatBoost
+from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
+from model.hitsplat import Hitsplat
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
@@ -59,6 +61,8 @@ class Weapon:
         self.target_defence_style = None
         self.update_dps_stats()
 
+        self.hitsplat = Hitsplat(0, 0, False, SpecialProc.NONE)
+
     def set_npc(self, npc):
         self.npc = npc
 
@@ -93,19 +97,22 @@ class Weapon:
 
         return attack_roll > defence_roll
 
-    def roll_damage(self) -> int | list[int]:
+    def roll_damage(self) -> Hitsplat:
         if self.special_bolt:
-            bolt_damage = BoltSpecialAttack.roll_damage(
+            bolt_damage = BoltSpecialAttack.roll_special(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
             )
             if bolt_damage:
                 return bolt_damage
 
         damage = 0
-        if self.roll_hit():
+        roll_hit = self.roll_hit()
+        if roll_hit:
             damage = int(random.random() * (self.max_hit + 1))
 
-        return math.floor(damage * self.damage_multiplier)
+        damage = math.floor(damage * self.damage_multiplier)
+        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit, special_proc=SpecialProc.NONE)
+        return self.hitsplat
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()
