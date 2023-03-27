@@ -29,7 +29,7 @@ class BoltSpecialAttack:
     def roll_special(bolt: Bolt, max_hit, current_hp) -> Hitsplat | None:
         hit = random.random()
         if hit <= bolt.proc_chance:
-            BoltSpecialAttack.special(bolt, max_hit, current_hp)
+            return BoltSpecialAttack.special(bolt, max_hit, current_hp)
 
         return None
 
