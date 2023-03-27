@@ -9,14 +9,34 @@ TEST_RESOURCE_FOLDER = Path(__file__).parent.parent / "tests/resources"
 
 
 class TestDamageSim(unittest.TestCase):
-    def setUp(self):
+    input_setups: dict
+    spec_input_setups: dict
+
+    @classmethod
+    def setUpClass(cls):
         with open(TEST_RESOURCE_FOLDER / "input_setups.json") as f:
-            self.input_setups = json.load(f)
+            TestDamageSim.input_setups = json.load(f)
+
+        with open(TEST_RESOURCE_FOLDER / "spec_input_setups.json") as f:
+            TestDamageSim.spec_input_setups = json.load(f)
 
     def test_damage_sim_single_run(self):
-        for setup_name in self.input_setups:
+        for setup_name in TestDamageSim.input_setups:
             with self.subTest():
-                input_setup = InputSetupConverter.get_input_setup(self.input_setups[setup_name])
+                input_setup = InputSetupConverter.get_input_setup(TestDamageSim.input_setups[setup_name])
+
+                damage_sim = DamageSim(input_setup.input_gear_setups[0])
+                dmg_sim_data, tick_data = damage_sim.run()
+
+                self.assertIsNotNone(dmg_sim_data.ticks_to_kill)
+                self.assertIsNotNone(dmg_sim_data.gear_total_dmg)
+                self.assertIsNotNone(dmg_sim_data.gear_attack_count)
+                self.assertIsNotNone(dmg_sim_data.gear_dps)
+
+    def test_spec_damage_sim_single_run(self):
+        for setup_name in TestDamageSim.spec_input_setups:
+            with self.subTest():
+                input_setup = InputSetupConverter.get_input_setup(TestDamageSim.spec_input_setups[setup_name])
 
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
                 dmg_sim_data, tick_data = damage_sim.run()

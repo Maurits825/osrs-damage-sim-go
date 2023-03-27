@@ -296,6 +296,12 @@ class DamageSimStats:
 
         tick_data_details = []
         for index in [index_min, index_frequent, index_max]:
+            tick_data_list = total_tick_data[index]
+            for tick_data in tick_data_list:
+                tick_data.max_hit = DamageSimStats.to_list(tick_data.max_hit)
+                tick_data.hitsplats = DamageSimStats.to_list(tick_data.hitsplats)
+                tick_data.roll_hits = DamageSimStats.to_list(tick_data.roll_hits)
+
             tick_data_details.append(
                 TickDataDetails(
                     time_to_kill=DamageSimStats.format_ticks_to_time(ticks_to_kill[index]),
@@ -309,3 +315,7 @@ class DamageSimStats:
             npc_defence=npc.base_combat_stats.defence,
             tick_data_details=tick_data_details
         )
+
+    @staticmethod
+    def to_list(variable):
+        return [variable] if not isinstance(variable, list) else variable

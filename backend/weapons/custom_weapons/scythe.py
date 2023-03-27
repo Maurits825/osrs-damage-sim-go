@@ -14,8 +14,8 @@ class Scythe(Weapon):
     def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
         super().__init__(gear_setup, combat_stats, npc, raid_level)
 
-        self.hitsplat.hitsplats = [0 for _ in range(self.npc.size)]
-        self.hitsplat.roll_hits = [0 for _ in range(self.npc.size)]
+        self.hitsplat.hitsplats = [0 for _ in range(min(3, self.npc.size))]
+        self.hitsplat.roll_hits = [False for _ in range(min(3, self.npc.size))]
 
     def roll_damage(self) -> list[int]:
         self.roll_single_hit(0)

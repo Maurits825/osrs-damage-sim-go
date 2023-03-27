@@ -87,8 +87,13 @@ class DamageSim:
                         weapon_name=self.current_weapon.gear_setup.name,
                         is_special_attack=self.current_weapon.gear_setup.is_special_attack,
                         max_hit=self.current_weapon.max_hit,
+                        damage=hitsplat.damage,
                         accuracy=self.current_weapon.accuracy,
-                        hitsplats=hitsplat.hitsplats,
+                        hitsplats=hitsplat.hitsplats.copy() if isinstance(hitsplat.hitsplats, list) else
+                        hitsplat.hitsplats,
+                        roll_hits=hitsplat.roll_hits.copy() if isinstance(hitsplat.roll_hits, list) else
+                        hitsplat.roll_hits,
+                        special_proc=hitsplat.special_proc,
                         npc_hitpoints=self.npc.combat_stats.hitpoints,
                         npc_defence=self.npc.combat_stats.defence,
                         special_attack_amount=self.special_attack

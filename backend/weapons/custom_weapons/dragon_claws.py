@@ -52,7 +52,7 @@ class DragonClaws(Weapon):
                         hit4 = hit3
 
         self.hitsplat.set_hitsplat(damage=sum([hit1, hit2, hit3, hit4]), hitsplats=[hit1, hit2, hit3, hit4],
-                                   roll_hit=True, special_bolt_type=SpecialProc.NONE)
+                                   roll_hits=[True, True, True, True], special_proc=SpecialProc.NONE)
         return self.hitsplat
 
     def get_npc_defence_style(self):
