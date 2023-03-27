@@ -13,8 +13,7 @@ th {
   background: rgb(192, 168, 134);
 }
 
-.damage-hitsplat {
-  background: url("/assets/img/hitsplats/damage.png");
+.hitsplat {
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto 30px;
@@ -22,4 +21,16 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.damage-hitsplat {
+  background-image: url("/assets/img/hitsplats/hit.png");
+}
+
+.maxhit-hitsplat {
+  background-image: url("/assets/img/hitsplats/maxhit.png");
+}
+
+.miss-hitsplat {
+  background-image: url("/assets/img/hitsplats/miss.png");
 }

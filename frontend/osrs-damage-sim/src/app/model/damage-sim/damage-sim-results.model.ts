@@ -34,13 +34,21 @@ export interface DamageSimResult {
   targetTimeChance?: number;
 }
 
+export const allSpecialProcs = ['None', 'RubyBolts', 'DiamondBolts', 'Gadderhammer'] as const;
+export type SpecialProc = typeof allSpecialProcs[number];
+
 export interface TickData {
   tick: number;
   weapon_name: string;
   is_special_attack: boolean;
-  max_hit: number | number[];
+
+  max_hit: number[];
   accuracy: number;
-  hitsplats: number | number[];
+
+  damage: number;
+  hitsplats: number[];
+  roll_hits: boolean[];
+  special_proc: SpecialProc;
 
   npc_hitpoints: number;
   npc_defence: number;

@@ -30,7 +30,6 @@ import { ExampleSetupsComponent } from './core/example-setups/example-setups.com
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailedRunResultsComponent } from './core/detailed-run-results/detailed-run-results.component';
 import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
-import { ToArrayPipe } from './shared/pipes/to-array.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +56,6 @@ import { ToArrayPipe } from './shared/pipes/to-array.pipe';
     ExampleSetupsComponent,
     DetailedRunResultsComponent,
     TickToTimePipe,
-    ToArrayPipe,
   ],
   imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
   providers: [
