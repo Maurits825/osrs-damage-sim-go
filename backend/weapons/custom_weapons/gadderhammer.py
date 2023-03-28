@@ -12,19 +12,19 @@ AVG_DMG_BOOST = 1.2875  # from wiki
 class Gadderhammer(Weapon):
     def roll_damage(self) -> int:
         damage = 0
+        special_proc = SpecialProc.NONE
         roll_hit = self.roll_hit()
         if roll_hit:
             damage = int(random.random() * (self.max_hit + 1))
 
-        double_hit = random.random()
-        if double_hit <= DOUBLE_DMG_CHANCE:
-            special_proc = SpecialProc.GADDERHAMMER
-            damage = math.floor(damage * 2 * self.damage_multiplier)  # TODO is base dmg x2 or after its floored?
-        else:
-            special_proc = SpecialProc.NONE
-            damage = math.floor(damage * self.damage_multiplier)
+            double_hit = random.random()
+            if double_hit <= DOUBLE_DMG_CHANCE:
+                special_proc = SpecialProc.GADDERHAMMER
+                damage = math.floor(damage * 2 * self.damage_multiplier)  # TODO is base dmg x2 or after its floored?
+            else:
+                damage = math.floor(damage * self.damage_multiplier)
 
-        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hit=roll_hit, special_proc=special_proc)
+        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit, special_proc=special_proc)
         return self.hitsplat
 
     def get_dps(self):

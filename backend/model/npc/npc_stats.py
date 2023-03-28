@@ -19,6 +19,7 @@ class NpcStats:
     location: Location
     size: int
 
+    is_hit = False
     min_defence: int = 0
 
     is_kalphite: bool = False

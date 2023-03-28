@@ -94,16 +94,16 @@
               />
             </td>
             <td>{{ sumArray(tickData.hitsplats) }}</td>
-            <td class="py-0 px-3">
-              <div class="row">
+            <td class="align-middle py-0 px-1">
+              <div class="d-flex justify-content-center">
                 <ng-container *ngFor="let hitsplat of tickData.hitsplats; let i = index">
-                  <div class="col p-0">
+                  <div class="col">
                     <div
                       [ngClass]="{
                         'maxhit-hitsplat': hitsplat === tickData.max_hit[i],
                         'miss-hitsplat': !tickData.roll_hits[i]
                       }"
-                      class="hitsplat damage-hitsplat text-white fw-light mt-1"
+                      class="hitsplat damage-hitsplat text-white fw-light"
                     >
                       {{ hitsplat }}
                     </div>

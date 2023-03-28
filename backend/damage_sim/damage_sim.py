@@ -102,6 +102,7 @@ class DamageSim:
                 )
 
             current_tick += self.current_weapon.gear_setup.gear_stats.attack_speed
+            self.npc.is_hit = True
 
         # remove overkill damage
         self.sim_data.gear_total_dmg[self.current_weapon_index] += self.npc.combat_stats.hitpoints
@@ -170,6 +171,7 @@ class DamageSim:
     def reset_npc_combat_stats(self):
         self.npc.combat_stats.set_stats(self.npc.base_combat_stats)
         self.drain_stats()
+        self.npc.is_hit = False
 
     def drain_stats(self):
         for stat_drain in self.gear_setup_settings.stat_drains:
