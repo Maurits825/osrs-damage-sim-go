@@ -1,3 +1,5 @@
+import { Item } from '../osrs/item.model';
+
 export interface InputGearSetupLabels {
   input_gear_setup_label: string;
   gear_setup_settings_label: string;
@@ -40,6 +42,8 @@ export type SpecialProc = typeof allSpecialProcs[number];
 export interface TickData {
   tick: number;
   weapon_name: string;
+  weapon_id: number;
+  weapon?: Item;
   is_special_attack: boolean;
 
   max_hit: number[];

@@ -30,6 +30,7 @@ import { ExampleSetupsComponent } from './core/example-setups/example-setups.com
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailedRunResultsComponent } from './core/detailed-run-results/detailed-run-results.component';
 import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
+import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
     ExampleSetupsComponent,
     DetailedRunResultsComponent,
     TickToTimePipe,
+    SpecialProcTextPipe,
   ],
   imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
   providers: [

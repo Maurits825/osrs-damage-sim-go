@@ -73,19 +73,25 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let tickData of selectedTickDetails.tick_data">
-          <!-- TODO: weapon icons, max hitsplats icons - backend get value?, conditions? -->
+          <!-- TODO: conditions?, show %chance of run? -->
           <tr class="text-end">
             <td class="text-start">{{ tickData.tick }}</td>
             <td class="text-start">{{ tickData.tick | tickToTime }}</td>
             <td class="text-start">
-              {{ tickData.weapon_name }}
+              <img class="me-1" src="data:image/png;base64,{{ tickData.weapon.icon }}" [title]="tickData.weapon.name" />
+              <span class="me-1">{{ tickData.weapon_name }}</span>
               <img
                 *ngIf="tickData.is_special_attack"
+                class="me-1"
                 style="height: 20px; width: auto"
                 src="assets/img/other/special_attack_orb.png"
                 title="Special attack"
               />
-              {{ tickData.special_proc }}
+              <img
+                *ngIf="tickData.special_proc !== 'None'"
+                src="assets/img/special_procs/{{ tickData.special_proc }}.png"
+                [title]="tickData.special_proc | specialProcText"
+              />
             </td>
             <td>{{ sumArray(tickData.hitsplats) }}</td>
             <td class="py-0 px-3">

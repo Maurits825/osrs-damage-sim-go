@@ -9,6 +9,7 @@ from model.damage_sim_results.special_proc import SpecialProc
 class TickData:
     tick: int
     weapon_name: str
+    weapon_id: int
     is_special_attack: bool
 
     max_hit: int | list[int]

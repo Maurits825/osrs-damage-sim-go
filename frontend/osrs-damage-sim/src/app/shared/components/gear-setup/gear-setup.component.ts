@@ -22,6 +22,8 @@ import { Item, AttackType } from 'src/app/model/osrs/item.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
+import { InputSetupService } from 'src/app/services/input-setup.service';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -66,6 +68,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   constructor(
     private damageSimservice: DamageSimService,
+    private itemService: ItemService,
     private prayerService: PrayerService,
     private specialGearService: SpecialGearService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
@@ -96,7 +99,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
 
         this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()['melee']);
-        this.attackStyles = this.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
+        this.attackStyles = this.itemService.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
       this.prayerService.globalPrayers$
@@ -105,10 +108,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
           (prayers: Record<AttackType, Set<Prayer>>) => (this.gearSetup.prayers = new Set(prayers[this.attackType]))
         );
     });
-  }
-
-  getItem(slot: GearSlot, id: number): Item {
-    return this.allGearSlotItems[slot].find((item: Item) => item.id === id);
   }
 
   getGearSetup(): GearSetup {
@@ -124,7 +123,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   setCurrentGearByGearSlotAndId(gearIds: Record<GearSlot, number>): void {
     this.allGearSlots.forEach((slot: GearSlot) => {
       if (gearIds[slot]) {
-        const item = this.getItem(slot, gearIds[slot]);
+        const item = this.itemService.getItem(slot, gearIds[slot]);
         this.gearSlotChange(item, slot);
         this.gearSetup.gear[slot] = item;
       } else {
@@ -142,7 +141,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       }
 
       gearIds.forEach((itemId: number) => {
-        const item = this.getItem(slot, itemId);
+        const item = this.itemService.getItem(slot, itemId);
         if (item) {
           this.gearSlotChange(item, slot);
           this.gearSetup.gear[slot] = item;
@@ -174,7 +173,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   updateAttackStyle(itemId: number): void {
-    this.attackStyles = this.getItem(GearSlot.Weapon, itemId).attackStyles;
+    this.attackStyles = this.itemService.getItem(GearSlot.Weapon, itemId).attackStyles;
     if (this.attackStyles.includes(AUTOCAST_STYLE)) {
       this.gearSetup.attackStyle = AUTOCAST_STYLE;
     } else {
@@ -195,7 +194,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
     const itemId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
 
-    const weapon = this.getItem(GearSlot.Weapon, itemId);
+    const weapon = this.itemService.getItem(GearSlot.Weapon, itemId);
     this.attackStyles = weapon.attackStyles;
     this.attackType = weapon.attackType;
     this.updateSpecialGear();

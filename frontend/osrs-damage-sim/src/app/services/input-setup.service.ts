@@ -15,12 +15,12 @@ import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-
 import { GearSetupComponent } from '../shared/components/gear-setup/gear-setup.component';
 import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
+import { ItemService } from './item.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InputSetupService {
-  allGearSlotItems: Record<GearSlot, Item[]>;
   allNpcs: Npc[];
 
   loadInputSetup$: Subject<InputSetup> = new Subject();
@@ -28,12 +28,8 @@ export class InputSetupService {
   globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
   gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
 
-  constructor(private damageSimservice: DamageSimService) {
-    forkJoin({
-      allGearSlotItems: this.damageSimservice.allGearSlotItems$,
-      allNpcs: this.damageSimservice.allNpcs$,
-    }).subscribe(({ allGearSlotItems, allNpcs }) => {
-      this.allGearSlotItems = allGearSlotItems;
+  constructor(private damageSimservice: DamageSimService, private itemService: ItemService) {
+    this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
     });
   }
@@ -143,7 +139,7 @@ export class InputSetupService {
       presetName: gearSetup.presetName,
 
       gear: this.getGearFromJson(gearSetup.gear),
-      blowpipeDarts: this.getItem(gearSetup.blowpipeDarts.id, GearSlot.Weapon),
+      blowpipeDarts: this.itemService.getItem(GearSlot.Weapon, gearSetup.blowpipeDarts.id),
       attackStyle: gearSetup.attackStyle,
       spell: gearSetup.spell,
       isSpecial: gearSetup.isSpecial,
@@ -166,7 +162,7 @@ export class InputSetupService {
       const itemId = gearJson[slot]?.id;
 
       if (itemId) {
-        gear[slot] = this.getItem(itemId, slot);
+        gear[slot] = this.itemService.getItem(slot, itemId);
       } else {
         gear[slot] = null;
       }
@@ -183,9 +179,5 @@ export class InputSetupService {
       if (value === Object(value)) m.set(value, path);
       return replacer.call(this, field, value, path.replace(/undefined\.\.?/, ''));
     };
-  }
-
-  private getItem(itemId: number, slot: GearSlot): Item {
-    return this.allGearSlotItems[slot].find((item: Item) => item.id === itemId);
   }
 }
