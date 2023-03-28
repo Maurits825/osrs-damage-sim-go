@@ -21,8 +21,10 @@ class BoneDagger(Weapon, StatDrainWeapon):
             return super().get_accuracy()
 
     def roll_hit(self) -> bool:
-        if self.gear_setup.is_special_attack and not self.npc.is_hit:
-            return True
+        if self.gear_setup.is_special_attack:
+            self.accuracy = self.get_accuracy()
+            if not self.npc.is_hit:
+                return True
 
         return super().roll_hit()
 
