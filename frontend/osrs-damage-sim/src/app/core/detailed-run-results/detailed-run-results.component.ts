@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DetailedRun, TickDataDetails } from 'src/app/model/damage-sim/damage-sim-results.model';
-import { detailedRunsMock } from './run-mock.const';
+import { DetailedRun, TickData, TickDataDetails } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-detailed-run-results',
@@ -9,18 +10,28 @@ import { detailedRunsMock } from './run-mock.const';
 })
 export class DetailedRunResultsComponent implements OnChanges {
   @Input()
-  detailedRuns: DetailedRun[] = detailedRunsMock;
+  detailedRuns: DetailedRun[];
 
-  selectedDetailedRun: DetailedRun = this.detailedRuns[0];
-  selectedTickDetails: TickDataDetails = this.selectedDetailedRun.tick_data_details[0];
+  selectedDetailedRun: DetailedRun;
+  selectedTickDetails: TickDataDetails;
 
   DetailedRun: DetailedRun;
   TickDataDetails: TickDataDetails;
+
+  constructor(private itemService: ItemService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['detailedRuns']) {
       this.selectedDetailedRun = null;
       this.selectedTickDetails = null;
+
+      this.detailedRuns.forEach((detailedRun: DetailedRun) => {
+        detailedRun.tick_data_details.forEach((tickDataDetails: TickDataDetails) => {
+          tickDataDetails.tick_data.forEach((tickData: TickData) => {
+            tickData.weapon = this.itemService.getItem(GearSlot.Weapon, tickData.weapon_id);
+          });
+        });
+      });
     }
   }
 
