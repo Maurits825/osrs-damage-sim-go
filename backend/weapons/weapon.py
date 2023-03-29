@@ -61,7 +61,7 @@ class Weapon:
         self.target_defence_style = None
         self.update_dps_stats()
 
-        self.hitsplat = Hitsplat(0, 0, False, SpecialProc.NONE)
+        self.hitsplat = Hitsplat(0, 0, False, 0, 0, SpecialProc.NONE)
 
     def set_npc(self, npc):
         self.npc = npc
@@ -111,7 +111,8 @@ class Weapon:
             damage = int(random.random() * (self.max_hit + 1))
 
         damage = math.floor(damage * self.damage_multiplier)
-        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit, special_proc=SpecialProc.NONE)
+        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
+                                   accuracy=self.accuracy, max_hits=self.max_hit, special_proc=SpecialProc.NONE)
         return self.hitsplat
 
     def get_accuracy(self):

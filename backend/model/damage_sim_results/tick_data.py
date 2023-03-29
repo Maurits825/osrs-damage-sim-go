@@ -12,7 +12,7 @@ class TickData:
     weapon_id: int
     is_special_attack: bool
 
-    max_hit: int | list[int]
+    max_hits: int | list[int]
     accuracy: float
 
     damage: int

@@ -26,6 +26,8 @@ class Scythe(Weapon):
             self.roll_single_hit(2)
 
         self.hitsplat.damage = sum(self.hitsplat.hitsplats)
+        self.hitsplat.accuracy = self.accuracy
+        self.hitsplat.max_hits = self.max_hit
         return self.hitsplat
 
     def roll_single_hit(self, hit_count) -> (int, bool):

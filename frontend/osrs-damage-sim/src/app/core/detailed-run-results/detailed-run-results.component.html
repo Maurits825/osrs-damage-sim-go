@@ -100,7 +100,7 @@
                   <div class="col">
                     <div
                       [ngClass]="{
-                        'maxhit-hitsplat': hitsplat === tickData.max_hit[i],
+                        'maxhit-hitsplat': hitsplat === tickData.max_hits[i],
                         'miss-hitsplat': !tickData.roll_hits[i]
                       }"
                       class="hitsplat damage-hitsplat text-white fw-light"
@@ -115,7 +115,7 @@
               <img src="assets/img/skills/hitpoints.png" title="Hitpoints" /> {{ tickData.npc_hitpoints }}&nbsp;
               <img src="assets/img/skills/defence.png" title="Defence" /> {{ tickData.npc_defence }}
             </td>
-            <td>{{ tickData.max_hit }}</td>
+            <td>{{ tickData.max_hits }}</td>
             <td>{{ tickData.accuracy * 100 | number : "1.2-2" }}%</td>
             <td>{{ tickData.special_attack_amount }}</td>
           </tr>

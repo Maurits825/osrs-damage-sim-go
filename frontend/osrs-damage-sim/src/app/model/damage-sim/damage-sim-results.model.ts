@@ -46,7 +46,7 @@ export interface TickData {
   weapon?: Item;
   is_special_attack: boolean;
 
-  max_hit: number[];
+  max_hits: number[];
   accuracy: number;
 
   damage: number;

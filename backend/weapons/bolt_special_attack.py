@@ -35,8 +35,9 @@ class BoltSpecialAttack:
 
     @staticmethod
     def special(bolt: Bolt, max_hit, current_hp) -> Hitsplat:
-        damage = bolt.roll_damage(max_hit, current_hp)
+        damage, max_hit = bolt.roll_damage(max_hit, current_hp)
         return Hitsplat(damage=damage, hitsplats=damage, roll_hits=True,
+                        accuracy=bolt.proc_chance, max_hits=max_hit,
                         special_proc=SpecialProc(bolt.__class__.__name__))
 
     @staticmethod

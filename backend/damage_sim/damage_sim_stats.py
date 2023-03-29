@@ -300,7 +300,7 @@ class DamageSimStats:
         for index in [index_min, index_frequent, index_max]:
             tick_data_list = total_tick_data[index]
             for tick_data in tick_data_list:
-                tick_data.max_hit = DamageSimStats.to_list(tick_data.max_hit)
+                tick_data.max_hits = DamageSimStats.to_list(tick_data.max_hits)
                 tick_data.hitsplats = DamageSimStats.to_list(tick_data.hitsplats)
                 tick_data.roll_hits = DamageSimStats.to_list(tick_data.roll_hits)
 
