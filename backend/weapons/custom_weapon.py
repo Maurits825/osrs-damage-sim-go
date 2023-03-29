@@ -21,6 +21,7 @@ CUSTOM_WEAPONS = {
     "Gadderhammer": Gadderhammer,
     "Arclight": Arclight,
 }
+
 # TODO generic KERIS weapon for the 1/51 triple dmg?
 # TODO verac flail i guess for the 25% guranteed hit
 # TODO darkbow

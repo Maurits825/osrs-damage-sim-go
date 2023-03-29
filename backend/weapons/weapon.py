@@ -9,7 +9,6 @@ from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS
 from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
-from model.bolt import Bolt
 from model.combat_boost import CombatBoost
 from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
@@ -18,6 +17,7 @@ from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
+from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
 from wiki_data.wiki_data import WikiData
@@ -40,7 +40,7 @@ class Weapon:
             self.combat_stats.hitpoints, self.gear_setup.mining_lvl
         )
 
-        self.special_bolt: Bolt | None = BoltSpecialAttack.get_equipped_special_bolt(
+        self.special_bolt: BoltSpecialAttack | None = BoltLoader.get_equipped_special_bolt(
             self.gear_setup.equipped_gear,
             self.gear_setup.is_kandarin_diary,
         )
@@ -241,8 +241,8 @@ class Weapon:
         max_hit = self.get_max_hit()
 
         if self.special_bolt:
-            return BoltSpecialAttack.get_dps(
-                self.special_bolt, accuracy, max_hit, self.gear_setup.gear_stats.attack_speed
+            return self.special_bolt.get_dps(
+                accuracy, max_hit, self.gear_setup.gear_stats.attack_speed, self.npc.combat_stats.hitpoints
             )
 
         dmg_sum = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(max_hit + 1)])
