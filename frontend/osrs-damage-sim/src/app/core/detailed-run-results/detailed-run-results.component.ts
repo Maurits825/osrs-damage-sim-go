@@ -21,9 +21,9 @@ export class DetailedRunResultsComponent implements OnChanges {
   constructor(private itemService: ItemService) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['detailedRuns']) {
-      this.selectedDetailedRun = null;
-      this.selectedTickDetails = null;
+    if (changes['detailedRuns'] && this.detailedRuns) {
+      this.selectedDetailedRun = this.detailedRuns[0];
+      this.selectedTickDetails = this.selectedDetailedRun.tick_data_details[0];
 
       this.detailedRuns.forEach((detailedRun: DetailedRun) => {
         detailedRun.tick_data_details.forEach((tickDataDetails: TickDataDetails) => {
@@ -37,7 +37,7 @@ export class DetailedRunResultsComponent implements OnChanges {
 
   selectedDetailedRunChange(detailedRun: DetailedRun): void {
     this.selectedDetailedRun = detailedRun;
-    this.selectedTickDetails = null;
+    this.selectedTickDetails = this.selectedDetailedRun.tick_data_details[0];
   }
 
   selectedTickDetailsChange(tickDetails: TickDataDetails): void {

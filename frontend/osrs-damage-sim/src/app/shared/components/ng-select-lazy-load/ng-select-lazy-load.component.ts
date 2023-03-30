@@ -33,6 +33,9 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
   @Input()
   placeholder: string;
 
+  @Input()
+  clearable = true;
+
   @ContentChild('dropdownLabel') dropdownLabel: TemplateRef<unknown>;
   @ContentChild('dropdownOptions') dropdownOptions: TemplateRef<unknown>;
 

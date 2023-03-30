@@ -11,6 +11,7 @@
             [selectedValue]="selectedDetailedRun"
             searchProperty="input_gear_setup_label"
             placeholder="Select gear setup"
+            [clearable]="false"
             (valueChanged)="selectedDetailedRunChange($event)"
           >
             <ng-template #dropdownLabel let-item="item" let-index="index">
@@ -38,6 +39,7 @@
             [selectedValue]="selectedTickDetails"
             searchProperty="time_to_kill"
             placeholder="Select time"
+            [clearable]="false"
             (valueChanged)="selectedTickDetailsChange($event)"
           >
             <ng-template #dropdownLabel #dropdownOptions let-item="item">

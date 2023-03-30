@@ -22,7 +22,6 @@ import { Item, AttackType } from 'src/app/model/osrs/item.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
-import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
