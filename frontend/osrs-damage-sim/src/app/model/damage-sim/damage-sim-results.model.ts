@@ -36,7 +36,7 @@ export interface DamageSimResult {
   targetTimeChance?: number;
 }
 
-export const allSpecialProcs = ['None', 'RubyBolts', 'DiamondBolts', 'Gadderhammer'] as const;
+export const allSpecialProcs = ['None', 'RubyBolts', 'DiamondBolts', 'Gadderhammer', 'Brimstone'] as const;
 export type SpecialProc = typeof allSpecialProcs[number];
 
 export interface TickData {
