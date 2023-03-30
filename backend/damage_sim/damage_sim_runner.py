@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
@@ -15,7 +17,7 @@ class DamageSimRunner:
     def run(self, input_setup: InputSetup) -> DamageSimResults:
         damage_sim_results = DamageSimResults(
             results=[],
-            detailed_runs=[],
+            detailed_runs=[] if input_setup.global_settings.is_detailed_run else None,
             global_settings_label=DamageSimStats.get_global_settings_label(input_setup.global_settings),
             graphs={}
         )
@@ -54,9 +56,9 @@ class DamageSimRunner:
 
     @staticmethod
     def run_single_gear_setup(global_settings: GlobalSettings, input_gear_setup: InputGearSetup
-                              ) -> (TotalDamageSimData, GearSetupDpsStats, list[list[TickData]]):
+                              ) -> (TotalDamageSimData, GearSetupDpsStats, list[list[TickData]] | None):
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
-        total_tick_data = []
+        total_tick_data = [] if global_settings.is_detailed_run else None
         damage_sim = DamageSim(input_gear_setup, global_settings.is_detailed_run)
 
         gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
@@ -68,5 +70,6 @@ class DamageSimRunner:
             total_damage_sim_data.gear_attack_count.append(dmg_sim_data.gear_attack_count)
             total_damage_sim_data.gear_dps.append(dmg_sim_data.gear_dps)
 
-            total_tick_data.append(tick_data)
+            if global_settings.is_detailed_run:
+                total_tick_data.append(tick_data)
         return total_damage_sim_data, gear_setup_dps_stats, total_tick_data

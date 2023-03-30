@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 
 from constant import TICK_LENGTH
@@ -44,6 +46,8 @@ class DamageSim:
         self.ticks_to_spec_regen = []
         self.special_attack_cost = []
 
+        self.has_fill_weapons = len(self.fill_weapons) != 0
+
         self.setup_damage_sim()
 
     def reset(self):
@@ -62,17 +66,22 @@ class DamageSim:
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
 
-            weapon.update_dps_stats()
+            if self.is_detailed_run:
+                weapon.update_accuracy()
 
-    def run(self) -> (SingleDamageSimData, list[TickData]): # TODO return none if not detailed??
+    def run(self) -> (SingleDamageSimData, list[TickData] | None):
         self.reset()
 
-        all_tick_data = []
+        all_tick_data = [] if self.is_detailed_run else None
         tick_data = None
         current_tick = 0
+
+        self.current_weapon_index, self.current_weapon = self.get_next_weapon()
         while self.npc.combat_stats.hitpoints > 0:
             self.regenerate_special_attack()
-            self.current_weapon_index, self.current_weapon = self.get_next_weapon()
+
+            if self.has_fill_weapons:
+                self.current_weapon_index, self.current_weapon = self.get_next_weapon()
 
             if self.is_detailed_run:
                 tick_data = self.get_initial_tick_data(current_tick, self.npc.combat_stats.hitpoints,
@@ -89,14 +98,16 @@ class DamageSim:
             self.sim_data.gear_total_dmg[self.current_weapon_index] += hitsplat.damage
             self.sim_data.gear_attack_count[self.current_weapon_index] += 1
 
+            if (isinstance(self.current_weapon, StatDrainWeapon and Weapon) and
+                    self.current_weapon.gear_setup.is_special_attack):
+                for weapon in self.all_weapons:
+                    weapon.update_target_defence_and_roll()
+                    if self.is_detailed_run:
+                        weapon.update_accuracy()
+
             if self.is_detailed_run and tick_data:
                 DamageSim.set_tick_data_hitsplat(tick_data, hitsplat)
                 all_tick_data.append(tick_data)
-
-                if (isinstance(self.current_weapon, StatDrainWeapon and Weapon) and
-                        self.current_weapon.gear_setup.is_special_attack):
-                    for weapon in self.all_weapons:
-                        weapon.accuracy = weapon.get_accuracy()
 
             current_tick += self.current_weapon.gear_setup.gear_stats.attack_speed
             self.npc.is_hit = True

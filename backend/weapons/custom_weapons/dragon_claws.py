@@ -56,11 +56,11 @@ class DragonClaws(Weapon):
                                    roll_hits=[True, True, True, True], special_proc=SpecialProc.NONE)
         return self.hitsplat
 
-    def get_npc_defence_style(self):
+    def get_npc_defence_and_style(self):
         if not self.gear_setup.is_special_attack:
-            return super().get_npc_defence_style()
+            return super().get_npc_defence_and_style()
 
-        target_defence = [self.npc.combat_stats.defence]
+        target_defence = self.npc.combat_stats.defence
         # always roll against slash
         target_defence_style = self.npc.defensive_stats.slash
         return target_defence, target_defence_style

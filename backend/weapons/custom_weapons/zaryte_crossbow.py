@@ -1,5 +1,3 @@
-import math
-
 from constant import TICK_LENGTH
 from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
@@ -51,14 +49,13 @@ class ZaryteCrossbow(Weapon):
         if not self.gear_setup.is_special_attack or not self.special_bolt:
             return super().get_dps()
 
+        spec_max_hit = self.special_bolt.special_max_hit(max_hit, self.npc.base_combat_stats.hitpoints)
         if isinstance(self.special_bolt, RubyBolts):
-            spec_max_hit = math.floor(500 * self.special_bolt.effect_value)
             avg_dmg = accuracy * spec_max_hit + ((1 - accuracy) *
                                                  self.special_bolt.proc_chance * spec_max_hit)
             return avg_dmg / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
         elif isinstance(self.special_bolt, DiamondBolts):
-            spec_max_hit = math.floor(max_hit * (1 + self.special_bolt.effect_value))
             avg_dmg = (accuracy * spec_max_hit * 0.5) + ((1 - accuracy) *
                                                          self.special_bolt.proc_chance * spec_max_hit * 0.5)
             return avg_dmg / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)

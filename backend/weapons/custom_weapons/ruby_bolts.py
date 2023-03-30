@@ -19,4 +19,4 @@ class RubyBolts(BoltSpecialAttack):
     def get_dps(self, accuracy, max_hit, attack_speed, hp) -> float:
         spec_max_hit = self.special_max_hit(max_hit, hp)
         return ((spec_max_hit * self.proc_chance) +
-                ((1 - self.proc_chance) * accuracy * max_hit * 0.5)) / (attack_speed * TICK_LENGTH)\
+                ((1 - self.proc_chance) * accuracy * max_hit * 0.5)) / (attack_speed * TICK_LENGTH)

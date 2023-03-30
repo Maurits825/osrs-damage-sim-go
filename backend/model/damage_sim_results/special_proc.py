@@ -6,3 +6,4 @@ class SpecialProc(str, Enum):
     RUBY_BOLTS = "RubyBolts"
     DIAMOND_BOLTS = "DiamondBolts"
     GADDERHAMMER = "Gadderhammer"
+    BRIMSTONE = "Brimstone"
