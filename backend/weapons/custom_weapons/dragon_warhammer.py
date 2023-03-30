@@ -1,5 +1,6 @@
 import math
 
+from model.hitsplat import Hitsplat
 from model.npc.npc_stats import NpcStats
 from model.stat_drain_type import StatDrainType
 from model.stat_drain_weapon import StatDrainWeapon
@@ -15,17 +16,17 @@ class DragonWarhammer(Weapon, StatDrainWeapon):
         else:
             return super().get_max_hit()
 
-    def roll_damage(self) -> int:
-        damage = super().roll_damage()
+    def roll_damage(self) -> Hitsplat:
+        hitsplat = super().roll_damage()
         if self.gear_setup.is_special_attack:
-            DragonWarhammer.drain_stats(self.npc, damage)
-        return damage
+            DragonWarhammer.drain_stats(self.npc, hitsplat.damage)
+        return hitsplat
 
     @staticmethod
     def drain_stats(npc: NpcStats, damage):
         if damage != 0:
             DragonWarhammer.drain_defence_percent(npc, 30)
-        elif "Tekton" in npc.name:  # TODO test
+        elif "Tekton" in npc.name:
             DragonWarhammer.drain_defence_percent(npc, 5)
 
     @staticmethod

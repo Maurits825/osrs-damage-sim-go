@@ -1,3 +1,5 @@
+import { Item } from '../osrs/item.model';
+
 export interface InputGearSetupLabels {
   input_gear_setup_label: string;
   gear_setup_settings_label: string;
@@ -5,8 +7,6 @@ export interface InputGearSetupLabels {
 }
 
 export interface SimStats {
-  [index: string]: string | number;
-
   average: string | number;
   maximum: string | number;
   minimum: string | number;
@@ -21,8 +21,6 @@ export interface Graphs {
 }
 
 export interface DamageSimResult {
-  [index: string]: InputGearSetupLabels | SimStats | SimStats[] | number[] | number;
-
   labels: InputGearSetupLabels;
 
   ttk_stats: SimStats;
@@ -32,16 +30,54 @@ export interface DamageSimResult {
 
   theoretical_dps: number[];
   cumulative_chances: number[];
-  max_hit: number[];
+  max_hit: number[] | number[][];
   accuracy: number[];
 
   targetTimeChance?: number;
 }
 
+export const allSpecialProcs = ['None', 'RubyBolts', 'DiamondBolts', 'Gadderhammer', 'Brimstone'] as const;
+export type SpecialProc = typeof allSpecialProcs[number];
+
+export interface TickData {
+  tick: number;
+  weapon_name: string;
+  weapon_id: number;
+  weapon?: Item;
+  is_special_attack: boolean;
+
+  max_hits: number[];
+  accuracy: number;
+
+  damage: number;
+  hitsplats: number[];
+  roll_hits: boolean[];
+  special_proc: SpecialProc;
+
+  npc_hitpoints: number;
+  npc_defence: number;
+
+  special_attack_amount: number;
+}
+
+export interface TickDataDetails {
+  time_to_kill: string;
+  tick_data: TickData[];
+}
+
+export interface DetailedRun {
+  input_gear_setup_label: string;
+  npc_hp: number;
+  npc_defence: number;
+  tick_data_details: TickDataDetails[];
+}
+
 export interface DamageSimResults {
   error?: string | null;
 
+  detailed_runs: DetailedRun[];
   results: DamageSimResult[];
   global_settings_label: string;
+
   graphs: Graphs;
 }

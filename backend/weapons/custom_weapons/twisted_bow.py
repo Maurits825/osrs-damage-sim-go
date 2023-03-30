@@ -8,7 +8,7 @@ class TwistedBow(Weapon):
         magic = self.get_magic()
         accuracy_multiplier = min(
             140,
-            140 + int(((10 * int(3 * magic / 10)) - 10) / 100) - int(((((3 * magic) / 10) - 100)**2) / 100)
+            140 + int(((10 * int(3 * magic / 10)) - 10) / 100) - int(((((3 * magic) / 10) - 100) ** 2) / 100)
         )
 
         return math.floor(super().get_attack_roll() * (round(accuracy_multiplier) / 100))

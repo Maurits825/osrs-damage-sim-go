@@ -20,6 +20,7 @@ export interface GlobalSettings {
   pathLevel: number;
 
   teamSize: number;
+  isDetailedRun: boolean;
 }
 
 export interface InputGearSetup {

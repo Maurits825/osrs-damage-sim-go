@@ -6,13 +6,20 @@
   [placeholder]="placeholder"
   [typeahead]="input$"
   (scrollToEnd)="onScrollToEnd(select.searchTerm)"
+  [clearable]="clearable"
   #select
 >
-  <ng-template ng-label-tmp let-item="item">
-    <ng-container [ngTemplateOutlet]="dropdownLabel" [ngTemplateOutletContext]="{ item: item }"></ng-container>
+  <ng-template ng-label-tmp let-item="item" let-index="index">
+    <ng-container
+      [ngTemplateOutlet]="dropdownLabel"
+      [ngTemplateOutletContext]="{ item: item, index: index }"
+    ></ng-container>
   </ng-template>
 
-  <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
-    <ng-container [ngTemplateOutlet]="dropdownOptions" [ngTemplateOutletContext]="{ item: item }"></ng-container>
+  <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+    <ng-container
+      [ngTemplateOutlet]="dropdownOptions"
+      [ngTemplateOutletContext]="{ item: item, index: index }"
+    ></ng-container>
   </ng-template>
 </ng-select>

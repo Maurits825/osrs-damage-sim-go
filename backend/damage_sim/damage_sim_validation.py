@@ -5,6 +5,7 @@ from weapons.custom_weapon import CUSTOM_WEAPONS
 
 MIN_ITERATIONS = 1
 MAX_ITERATIONS = 10_000
+DETAILED_RUN_MAX_ITERATIONS = 5_000
 
 MIN_TEAM_SIZE = 1
 MAX_TEAM_SIZE = 100
@@ -45,7 +46,13 @@ class DamageSimValidation:
         if not DamageSimValidation.is_valid_int(iterations):
             return DamageSimValidation.invalid_value_message(iterations, "iterations")
 
-        range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
+        if global_settings["isDetailedRun"]:
+            range_error = DamageSimValidation.validate_range(
+                iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
+            )
+        else:
+            range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
+
         if range_error:
             return range_error
 

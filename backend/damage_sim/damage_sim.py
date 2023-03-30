@@ -1,12 +1,17 @@
+from __future__ import annotations
+
 import copy
 
-from damage_sim.condition_evaluator import ConditionEvaluator
 from constant import TICK_LENGTH
+from damage_sim.condition_evaluator import ConditionEvaluator
 from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
-from model.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
+from model.damage_sim_results.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
+from model.damage_sim_results.special_proc import SpecialProc
+from model.damage_sim_results.tick_data import TickData
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.stat_drain_type import StatDrainType
+from model.stat_drain_weapon import StatDrainWeapon
 from weapons.weapon import Weapon
 
 MAIN_WEAPON_INDEX = 0
@@ -18,11 +23,13 @@ MAX_SPECIAL_ATTACK = 100
 
 
 class DamageSim:
-    def __init__(self, input_gear_setup: InputGearSetup):
+    def __init__(self, input_gear_setup: InputGearSetup, is_detailed_run=False):
         self.main_weapon: Weapon = input_gear_setup.main_weapon
         self.fill_weapons: list[Weapon] = input_gear_setup.fill_weapons
-        self.all_weapons = [self.main_weapon, *self.fill_weapons]
+        self.all_weapons: list[Weapon] = [self.main_weapon, *self.fill_weapons]
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
+
+        self.is_detailed_run = is_detailed_run
 
         self.npc = self.main_weapon.npc
 
@@ -39,6 +46,8 @@ class DamageSim:
         self.ticks_to_spec_regen = []
         self.special_attack_cost = []
 
+        self.has_fill_weapons = len(self.fill_weapons) != 0
+
         self.setup_damage_sim()
 
     def reset(self):
@@ -52,27 +61,56 @@ class DamageSim:
         self.combat_stats.set_stats(self.initial_combat_stats)
 
         self.sim_data = SingleDamageSimData(0, [], [], [])
-        for index, _ in enumerate(self.all_weapons):
+        for _, weapon in enumerate(self.all_weapons):
             self.sim_data.gear_total_dmg.append(0)
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
 
-    def run(self) -> SingleDamageSimData:
+            if self.is_detailed_run:
+                weapon.update_accuracy()
+
+    def run(self) -> (SingleDamageSimData, list[TickData] | None):
         self.reset()
 
+        all_tick_data = [] if self.is_detailed_run else None
+        tick_data = None
+        current_tick = 0
+
+        self.current_weapon_index, self.current_weapon = self.get_next_weapon()
         while self.npc.combat_stats.hitpoints > 0:
             self.regenerate_special_attack()
-            self.current_weapon_index, self.current_weapon = self.get_next_weapon()
 
-            damage = self.current_weapon.roll_damage()
-            self.npc.combat_stats.hitpoints -= damage
+            if self.has_fill_weapons:
+                self.current_weapon_index, self.current_weapon = self.get_next_weapon()
+
+            if self.is_detailed_run:
+                tick_data = self.get_initial_tick_data(current_tick, self.npc.combat_stats.hitpoints,
+                                                       self.npc.combat_stats.defence)
+
+            hitsplat = self.current_weapon.roll_damage()
+
+            self.npc.combat_stats.hitpoints -= hitsplat.damage
 
             if self.current_weapon.gear_setup.is_special_attack:
                 self.special_attack -= self.special_attack_cost[self.current_weapon_index]
 
             self.sim_data.ticks_to_kill += self.current_weapon.gear_setup.gear_stats.attack_speed
-            self.sim_data.gear_total_dmg[self.current_weapon_index] += damage
+            self.sim_data.gear_total_dmg[self.current_weapon_index] += hitsplat.damage
             self.sim_data.gear_attack_count[self.current_weapon_index] += 1
+
+            if (isinstance(self.current_weapon, StatDrainWeapon and Weapon) and
+                    self.current_weapon.gear_setup.is_special_attack):
+                for weapon in self.all_weapons:
+                    weapon.update_target_defence_and_roll()
+                    if self.is_detailed_run:
+                        weapon.update_accuracy()
+
+            if self.is_detailed_run and tick_data:
+                DamageSim.set_tick_data_hitsplat(tick_data, hitsplat)
+                all_tick_data.append(tick_data)
+
+            current_tick += self.current_weapon.gear_setup.gear_stats.attack_speed
+            self.npc.is_hit = True
 
         # remove overkill damage
         self.sim_data.gear_total_dmg[self.current_weapon_index] += self.npc.combat_stats.hitpoints
@@ -86,15 +124,15 @@ class DamageSim:
                 weapon.gear_setup.gear_stats.attack_speed
             )
 
-        return self.sim_data
+        return self.sim_data, all_tick_data
 
     def get_next_weapon(self) -> tuple[int, Weapon]:
         for index, weapon in enumerate(self.fill_weapons):
             fill_weapon_index = index + 1
             use_fill_weapon = ConditionEvaluator.evaluate_condition(
-                    weapon.gear_setup.conditions, self.npc.combat_stats.hitpoints,
-                    self.sim_data.gear_total_dmg[fill_weapon_index],
-                    self.sim_data.gear_attack_count[fill_weapon_index]
+                weapon.gear_setup.conditions, self.npc.combat_stats.hitpoints,
+                self.sim_data.gear_total_dmg[fill_weapon_index],
+                self.sim_data.gear_attack_count[fill_weapon_index]
             )
             if use_fill_weapon:
                 if (not weapon.gear_setup.is_special_attack or
@@ -141,6 +179,7 @@ class DamageSim:
     def reset_npc_combat_stats(self):
         self.npc.combat_stats.set_stats(self.npc.base_combat_stats)
         self.drain_stats()
+        self.npc.is_hit = False
 
     def drain_stats(self):
         for stat_drain in self.gear_setup_settings.stat_drains:
@@ -160,6 +199,34 @@ class DamageSim:
             accuracy.append(weapon.get_accuracy() * 100)
 
         return GearSetupDpsStats(theoretical_dps, max_hit, accuracy)
+
+    def get_initial_tick_data(self, current_tick, npc_hp, npc_defence):
+        return (
+            TickData(
+                tick=current_tick,
+                weapon_name=self.current_weapon.gear_setup.name,
+                weapon_id=self.current_weapon.gear_setup.gear_stats.id,
+                is_special_attack=self.current_weapon.gear_setup.is_special_attack,
+                max_hits=0,
+                damage=0,
+                accuracy=0,
+                hitsplats=0,
+                roll_hits=False,
+                special_proc=SpecialProc.NONE,
+                npc_hitpoints=npc_hp,
+                npc_defence=npc_defence,
+                special_attack_amount=self.special_attack
+            )
+        )
+
+    @staticmethod
+    def set_tick_data_hitsplat(tick_data, hitsplat):
+        tick_data.max_hits = hitsplat.max_hits.copy() if isinstance(hitsplat.max_hits, list) else hitsplat.max_hits
+        tick_data.damage = hitsplat.damage
+        tick_data.accuracy = hitsplat.accuracy
+        tick_data.hitsplats = hitsplat.hitsplats.copy() if isinstance(hitsplat.hitsplats, list) else hitsplat.hitsplats
+        tick_data.roll_hits = hitsplat.roll_hits.copy() if isinstance(hitsplat.roll_hits, list) else hitsplat.roll_hits
+        tick_data.special_proc = hitsplat.special_proc
 
     @staticmethod
     def get_sim_dps(total_damage, attack_count, attack_speed):

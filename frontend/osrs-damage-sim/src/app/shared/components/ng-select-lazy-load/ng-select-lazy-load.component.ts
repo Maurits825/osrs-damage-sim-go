@@ -1,4 +1,15 @@
-import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+} from '@angular/core';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 
 @Component({
@@ -6,7 +17,7 @@ import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
   templateUrl: './ng-select-lazy-load.component.html',
   styleUrls: ['./ng-select-lazy-load.component.css'],
 })
-export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy {
+export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChanges {
   @Input()
   valueType: T;
 
@@ -21,6 +32,9 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy {
 
   @Input()
   placeholder: string;
+
+  @Input()
+  clearable = true;
 
   @ContentChild('dropdownLabel') dropdownLabel: TemplateRef<unknown>;
   @ContentChild('dropdownOptions') dropdownOptions: TemplateRef<unknown>;
@@ -44,6 +58,12 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroyed$.next(true);
     this.destroyed$.complete();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['allValues']) {
+      this.valuesBuffer = this.allValues.slice(0, this.bufferSize);
+    }
   }
 
   selectedValueChange(value: T): void {

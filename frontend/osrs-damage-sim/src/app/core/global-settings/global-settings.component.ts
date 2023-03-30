@@ -26,6 +26,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     teamSize: 1,
     raidLevel: 0,
     pathLevel: 0,
+    isDetailedRun: false,
   };
 
   showPathLevel = false;
@@ -125,5 +126,11 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   statDrainChanged(statDrains: StatDrain[]): void {
     this.statDrainService.globalStatDrain$.next(statDrains);
+  }
+
+  onDetailedRunChanged(isDetailedRun: boolean): void {
+    if (isDetailedRun) {
+      this.globalSettings.iterations = Math.min(5000, this.globalSettings.iterations);
+    }
   }
 }

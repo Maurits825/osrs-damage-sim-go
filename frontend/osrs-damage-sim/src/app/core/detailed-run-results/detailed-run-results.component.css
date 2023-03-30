@@ -1,0 +1,36 @@
+/* Fix table head */
+.table-sticky-header {
+  overflow: auto;
+  height: 550px;
+}
+
+.table-sticky-header th {
+  position: sticky;
+  top: 0;
+}
+
+th {
+  background: rgb(192, 168, 134);
+}
+
+.hitsplat {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.damage-hitsplat {
+  background-image: url("/assets/img/hitsplats/hit.png");
+}
+
+.maxhit-hitsplat {
+  background-image: url("/assets/img/hitsplats/maxhit.png");
+}
+
+.miss-hitsplat {
+  background-image: url("/assets/img/hitsplats/miss.png");
+}

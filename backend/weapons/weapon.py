@@ -3,20 +3,22 @@ from __future__ import annotations
 import math
 import random
 
-from weapons.bolt_special_attack import BoltSpecialAttack
 from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
                                   DAWNBRINGER, HARM_STAFF)
 from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
-from model.bolt import Bolt
 from model.combat_boost import CombatBoost
+from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
+from model.hitsplat import Hitsplat
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
+from weapons.bolt_loader import BoltLoader
+from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
 from wiki_data.wiki_data import WikiData
 
@@ -24,7 +26,7 @@ from wiki_data.wiki_data import WikiData
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats,  npc: NpcStats, raid_level):
+    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
         self.gear_setup = gear_setup
         self.combat_stats = combat_stats
         self.npc = npc
@@ -38,7 +40,7 @@ class Weapon:
             self.combat_stats.hitpoints, self.gear_setup.mining_lvl
         )
 
-        self.special_bolt: Bolt | None = BoltSpecialAttack.get_equipped_special_bolt(
+        self.special_bolt: BoltSpecialAttack | None = BoltLoader.get_equipped_special_bolt(
             self.gear_setup.equipped_gear,
             self.gear_setup.is_kandarin_diary,
         )
@@ -53,22 +55,34 @@ class Weapon:
         self.set_attack_speed()
 
         self.max_hit = 0
+        self.accuracy = 0
         self.attack_roll = 0
+        self.defence_roll = 0
         self.target_defence = None
         self.target_defence_style = None
-        self.update_max_hit_and_attack_roll()
+        self.update_dps_stats()
+
+        self.hitsplat = Hitsplat(0, 0, False, 0, 0, SpecialProc.NONE)
 
     def set_npc(self, npc):
         self.npc = npc
 
     def set_combat_stats(self, combat_stats):
         self.combat_stats = combat_stats
-        self.update_max_hit_and_attack_roll()
+        self.update_dps_stats()
 
-    def update_max_hit_and_attack_roll(self):
-        self.max_hit = self.get_max_hit()
+    def update_dps_stats(self):
         self.attack_roll = self.get_attack_roll()
-        self.target_defence, self.target_defence_style = self.get_npc_defence_style()
+        self.update_target_defence_and_roll()
+        self.max_hit = self.get_max_hit()
+        self.update_accuracy()
+
+    def update_accuracy(self):
+        self.accuracy = self.get_accuracy()
+
+    def update_target_defence_and_roll(self):
+        self.target_defence, self.target_defence_style = self.get_npc_defence_and_style()
+        self.defence_roll = DpsCalculator.get_defence_roll(self.target_defence, self.target_defence_style)
 
     def get_is_brimstone(self):
         return (self.gear_setup.attack_style.attack_type == AttackType.MAGIC and
@@ -91,19 +105,26 @@ class Weapon:
 
         return attack_roll > defence_roll
 
-    def roll_damage(self) -> int:
+    def roll_damage(self) -> Hitsplat:
+        self.hitsplat.special_proc = SpecialProc.NONE
+
         if self.special_bolt:
-            bolt_damage = BoltSpecialAttack.roll_damage(
+            bolt_damage = BoltSpecialAttack.roll_special(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
             )
             if bolt_damage:
                 return bolt_damage
 
         damage = 0
-        if self.roll_hit():
+        roll_hit = self.roll_hit()
+        if roll_hit:
             damage = int(random.random() * (self.max_hit + 1))
 
-        return math.floor(damage * self.damage_multiplier)
+        damage = math.floor(damage * self.damage_multiplier)
+        self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
+                                   accuracy=self.accuracy, max_hits=self.max_hit,
+                                   special_proc=self.hitsplat.special_proc)
+        return self.hitsplat
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()
@@ -111,7 +132,7 @@ class Weapon:
 
         return DpsCalculator.get_hit_chance(attack_roll, defence_roll)
 
-    def get_max_hit(self):
+    def get_max_hit(self) -> int | list[int]:
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
                 prayer=self.prayer_multiplier,
@@ -136,20 +157,21 @@ class Weapon:
             return self.get_magic_max_hit()
 
     def get_defence_roll(self):
-        defence_roll = DpsCalculator.get_defence_roll(self.target_defence[0], self.target_defence_style)
+        actual_defence_roll = self.defence_roll
 
         if self.is_brimstone:
             if random.random() <= 0.25:
-                defence_roll -= max(0, math.floor(defence_roll * 0.1))
+                actual_defence_roll -= max(0, math.floor(self.defence_roll * 0.1))
+                self.hitsplat.special_proc = SpecialProc.BRIMSTONE
 
         if self.raid_level:
-            defence_roll = math.floor(defence_roll * (1 + (self.raid_level * 0.004)))
+            actual_defence_roll = math.floor(self.defence_roll * (1 + (self.raid_level * 0.004)))
 
-        return defence_roll
+        return actual_defence_roll
 
     def get_average_defence_roll(self):
-        target_defence, target_defence_style = self.get_npc_defence_style()
-        defence_roll = DpsCalculator.get_defence_roll(target_defence[0], target_defence_style)
+        target_defence, target_defence_style = self.get_npc_defence_and_style()
+        defence_roll = DpsCalculator.get_defence_roll(target_defence, target_defence_style)
 
         if self.is_brimstone:
             defence_roll -= math.floor(defence_roll * 0.1) / 4
@@ -159,12 +181,12 @@ class Weapon:
 
         return math.floor(defence_roll)
 
-    def get_npc_defence_style(self) -> ([int], int):
-        target_defence = []
+    def get_npc_defence_and_style(self) -> (int, int):
+        target_defence = 0
         target_defence_style = 0
 
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
-            target_defence = [self.npc.combat_stats.defence]
+            target_defence = self.npc.combat_stats.defence
             if self.gear_setup.attack_style.attack_type == AttackType.STAB:
                 target_defence_style = self.npc.defensive_stats.stab
             elif self.gear_setup.attack_style.attack_type == AttackType.SLASH:
@@ -172,10 +194,10 @@ class Weapon:
             elif self.gear_setup.attack_style.attack_type == AttackType.CRUSH:
                 target_defence_style = self.npc.defensive_stats.crush
         elif self.gear_setup.attack_style.attack_type == AttackType.RANGED:
-            target_defence = [self.npc.combat_stats.defence]
+            target_defence = self.npc.combat_stats.defence
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            target_defence = [self.npc.combat_stats.magic]
+            target_defence = self.npc.combat_stats.magic
             target_defence_style = self.npc.defensive_stats.magic
 
         return target_defence, target_defence_style
@@ -231,8 +253,8 @@ class Weapon:
         max_hit = self.get_max_hit()
 
         if self.special_bolt:
-            return BoltSpecialAttack.get_dps(
-                self.special_bolt, accuracy, max_hit, self.gear_setup.gear_stats.attack_speed
+            return self.special_bolt.get_dps(
+                accuracy, max_hit, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
             )
 
         dmg_sum = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(max_hit + 1)])

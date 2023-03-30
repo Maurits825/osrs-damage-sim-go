@@ -6,18 +6,23 @@ import numpy as np
 
 from constant import TICK_LENGTH
 from model.boost import BoostType
-from model.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, GearSetupDpsStats
+from model.damage_sim_results.damage_sim_results import TotalDamageSimData, DamageSimResult, InputGearSetupLabels, \
+    GearSetupDpsStats
+from model.damage_sim_results.detailed_run import DetailedRun, TickDataDetails
+from model.damage_sim_results.tick_data import TickData
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.stat_drain import StatDrain
 from model.npc.combat_stats import CombatStats
+from model.npc.npc_stats import NpcStats
 from model.sim_stats import SimStats, TimeSimStats
 from model.stat_drain_type import StatDrainType
-from weapons.weapon import Weapon
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
+from weapons.custom_weapons.bone_dagger import BoneDagger
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
+from weapons.weapon import Weapon
 
 BOOST_NAME = {
     BoostType.SMELLING_SALTS: "Salt",
@@ -33,6 +38,7 @@ STAT_DRAIN_NAME = {
     DragonWarhammer: "DWH",
     BandosGodsword: "BGS",
     Arclight: "Arclight",
+    BoneDagger: "Bone dagger"
 }
 
 STAT_DRAIN_TYPE = {
@@ -234,7 +240,7 @@ class DamageSimStats:
 
     @staticmethod
     def get_global_settings_label(global_settings: GlobalSettings):
-        title = (global_settings.npc.name +
+        title = (DamageSimStats.get_npc_title(global_settings.npc) +
                  " | HP: " +
                  str(global_settings.npc.base_combat_stats.hitpoints))
 
@@ -246,6 +252,19 @@ class DamageSimStats:
         title += " | Iterations: " + f"{global_settings.iterations:,}"
 
         return title
+
+    @staticmethod
+    def get_npc_title(npc: NpcStats) -> str:
+        npc_title = npc.name
+
+        if npc.is_challenge_mode:
+            npc_title += " (CM)"
+        elif npc.is_tob_hard_mode:
+            npc_title += " Hard Mode"
+        elif npc.is_tob_entry_mode:
+            npc_title += " Entry Mode"
+
+        return npc_title
 
     @staticmethod
     def get_damage_sim_result(sim_data: TotalDamageSimData, gear_setup_dps_stats: GearSetupDpsStats,
@@ -280,3 +299,38 @@ class DamageSimStats:
             max_ticks = max(max_ticks, ttk_stat.maximum)
 
         return min_ticks, max_ticks
+
+    @staticmethod
+    def get_detailed_run(ticks_to_kill: list[int], total_tick_data: list[list[TickData]], npc: NpcStats, label
+                         ) -> DetailedRun:
+        np_ticks_to_kill = np.array(ticks_to_kill)
+
+        index_max = np.argmax(np_ticks_to_kill)
+        index_min = np.argmin(np_ticks_to_kill)
+        index_frequent = np.where(np_ticks_to_kill == np.argmax(np.bincount(np_ticks_to_kill)))[0][0]
+
+        tick_data_details = []
+        for index in [index_min, index_frequent, index_max]:
+            tick_data_list = total_tick_data[index]
+            for tick_data in tick_data_list:
+                tick_data.max_hits = DamageSimStats.to_list(tick_data.max_hits)
+                tick_data.hitsplats = DamageSimStats.to_list(tick_data.hitsplats)
+                tick_data.roll_hits = DamageSimStats.to_list(tick_data.roll_hits)
+
+            tick_data_details.append(
+                TickDataDetails(
+                    time_to_kill=DamageSimStats.format_ticks_to_time(ticks_to_kill[index]),
+                    tick_data=total_tick_data[index]
+                )
+            )
+
+        return DetailedRun(
+            input_gear_setup_label=label,
+            npc_hp=npc.base_combat_stats.hitpoints,
+            npc_defence=npc.base_combat_stats.defence,
+            tick_data_details=tick_data_details
+        )
+
+    @staticmethod
+    def to_list(variable):
+        return [variable] if not isinstance(variable, list) else variable
