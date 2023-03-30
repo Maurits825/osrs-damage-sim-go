@@ -3,8 +3,8 @@ from __future__ import annotations
 from model.gear_setup import GearSetup
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.npc.npc_stats import NpcStats
-from weapons.weapon import Weapon
 from weapons.custom_weapon import CUSTOM_WEAPONS
+from weapons.weapon import Weapon
 
 
 class WeaponLoader:
