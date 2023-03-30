@@ -127,4 +127,10 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   statDrainChanged(statDrains: StatDrain[]): void {
     this.statDrainService.globalStatDrain$.next(statDrains);
   }
+
+  onDetailedRunChanged(isDetailedRun: boolean): void {
+    if (isDetailedRun) {
+      this.globalSettings.iterations = Math.min(5000, this.globalSettings.iterations);
+    }
+  }
 }
