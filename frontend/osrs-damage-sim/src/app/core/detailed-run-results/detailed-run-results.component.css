@@ -24,13 +24,13 @@ th {
 }
 
 .damage-hitsplat {
-  background-image: url("/assets/img/hitsplats/hit.png");
+  background-image: url("/osrs-damage-sim/assets/img/hitsplats/hit.png");
 }
 
 .maxhit-hitsplat {
-  background-image: url("/assets/img/hitsplats/maxhit.png");
+  background-image: url("/osrs-damage-sim/assets/img/hitsplats/maxhit.png");
 }
 
 .miss-hitsplat {
-  background-image: url("/assets/img/hitsplats/miss.png");
+  background-image: url("/osrs-damage-sim/assets/img/hitsplats/miss.png");
 }
