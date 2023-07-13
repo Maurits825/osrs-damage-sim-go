@@ -15,8 +15,8 @@ cp data_cache/unique_npcs.json ../frontend/osrs-damage-sim/src/assets/json_data/
 
 echo ""
 echo "Copying json data to dmg-sim-service ..."
-cp data_cache/items-dmg-sim.min.json ../backend/wiki_data/items-dmg-sim.min.json
-cp data_cache/npcs-dmg-sim.min.json ../backend/wiki_data/npcs-dmg-sim.min.json
+cp data_cache/items-dmg-sim.json ../backend/wiki_data/items-dmg-sim.json
+cp data_cache/npcs-dmg-sim.json ../backend/wiki_data/npcs-dmg-sim.json
 cp data_cache/special_attack.json ../backend/wiki_data/special_attack.json
 
 echo "Done!"
