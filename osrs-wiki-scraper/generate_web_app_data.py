@@ -19,6 +19,8 @@ UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
 GEAR_SLOT_ITEM_FALLBACK_JSON = Path(
     __file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
 
+JSON_INDENT = 1
+
 
 class GenerateWebAppData:
     def __init__(self):
@@ -83,7 +85,7 @@ class GenerateWebAppData:
 
         npcs = unique_npcs
         with open(UNIQUE_NPCS_JSON, 'w') as unique_npcs_json:
-            json.dump(npcs, unique_npcs_json)
+            json.dump(npcs, unique_npcs_json, indent=JSON_INDENT)
 
     def update_gear_slot_items_json(self):
         print("Updating gear slot items json ...")
@@ -139,14 +141,14 @@ class GenerateWebAppData:
                 print(e)
 
         with open(GEAR_SLOT_ITEM_JSON, 'w') as json_file:
-            json.dump(gear_slot_items, json_file)
+            json.dump(gear_slot_items, json_file, indent=JSON_INDENT)
 
     @staticmethod
     def update_special_attack_json():
         print("Updating special attack json ...")
         special_attack_dict = GenerateWebAppData.get_special_attack_weapons()
         with open(SPECIAL_ATTACK_JSON, "w") as special_attack_json:
-            json.dump(special_attack_dict, special_attack_json)
+            json.dump(special_attack_dict, special_attack_json, indent=JSON_INDENT)
 
     @staticmethod
     def get_cached_item(gear_slot_items_old, slot, item_id, item_name):
@@ -276,26 +278,26 @@ class GenerateWebAppData:
         all_tables = soup.findAll('table', {'class': 'wikitable'})
 
         weapons = {}
-        weapon_names = []
         for table in all_tables:
+            current_weapon_names = []
             for row in table.find_all('tr'):
                 header = row.find_all('th')
-                if len(header) == 1:
+                if len(header) == 1 and not current_weapon_names:
                     a_links = header[0].find_all('a')
-                    weapon_names = set([link.attrs['title'] for link in a_links])
-                else:
+                    current_weapon_names = set([link.attrs['title'] for link in a_links])
+                elif current_weapon_names and "Energy" in header[0].text:
                     cells = row.find_all('td')
                     try:
-                        energy = cells[2].text.strip()
+                        energy = cells[0].text.strip()
                         energy = energy.replace('%', '')
                         try:
                             energy = int(energy)
                         except ValueError:
                             break
                     except IndexError:
-                        return weapons
+                        continue
 
-                    for name in weapon_names:
+                    for name in current_weapon_names:
                         weapons[name] = energy
                     break
 

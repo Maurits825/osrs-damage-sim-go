@@ -1,6 +1,5 @@
 import re
 import traceback
-import urllib.request
 from typing import *
 
 import mwparserfromhell as mw
@@ -26,23 +25,7 @@ slotIDs: Dict[str, int] = {
 }
 
 
-def getLimits():
-    req = urllib.request.Request(
-        'https://oldschool.runescape.wiki/w/Module:GELimits/data?action=raw', headers=api.user_agent)
-    with urllib.request.urlopen(req) as response:
-        data = response.read()
-    limits = {}
-    for line in data.splitlines():
-        match = re.search(r"\[\"(.*)\"\] = (\d+),?", str(line))
-        if match:
-            name = match.group(1).replace('\\', '')
-            limit = match.group(2)
-            limits[name] = int(limit)
-    return limits
-
-
 def run():
-    limits = getLimits()
     stats = {}
 
     item_pages = api.query_category("Items")
@@ -123,14 +106,6 @@ def run():
                         doc[k] = equips[equipVid][k]
                 else:
                     continue
-
-                itemName = name
-                if "gemwname" in version:
-                    itemName = str(version["gemwname"]).strip()
-                elif "name" in version:
-                    itemName = str(version["name"]).strip()
-                if itemName in limits:
-                    doc['ge_limit'] = limits[itemName]
 
                 for (vid, version) in util.each_version("CombatStyles", code):
                     doc['weaponCategory'] = version[''].upper().replace(' ', '_').replace('2H_SWORD',

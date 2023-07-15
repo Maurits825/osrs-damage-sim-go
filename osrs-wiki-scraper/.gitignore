@@ -1,4 +1,4 @@
 data_cache/*.json
 
 __pycache__
-.idea
+.idea/

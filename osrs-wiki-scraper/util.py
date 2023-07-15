@@ -59,7 +59,7 @@ def write_json(name: str, minName: str, docs: Dict[Any, Dict[str, Any]]):
 
     item_dict = collections.OrderedDict([(k, v) for (k, v) in items])
     with open(name, "w+") as fi:
-        json.dump(item_dict, fi, indent=2)
+        json.dump(item_dict, fi, indent=1)
 
     with open(minName, "w+") as fi:
         json.dump(item_dict, fi, separators=(",", ":"))
