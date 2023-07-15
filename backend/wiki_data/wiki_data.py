@@ -12,8 +12,8 @@ from model.weapon_stats import WeaponStats
 
 
 class WikiData:
-    items_json = json.load(open(Path(__file__).parent / "items-dmg-sim.min.json"))
-    npcs_json = json.load(open(Path(__file__).parent / "npcs-dmg-sim.min.json"))
+    items_json = json.load(open(Path(__file__).parent / "items-dmg-sim.json"))
+    npcs_json = json.load(open(Path(__file__).parent / "npcs-dmg-sim.json"))
     extra_data = json.load(open(Path(__file__).parent / "extra_data.json"))
     special_attack = json.load(open(Path(__file__).parent / "special_attack.json"))
     magic_spells = json.load(open(Path(__file__).parent / "magic_spells.json"))

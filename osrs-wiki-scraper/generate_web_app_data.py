@@ -278,26 +278,26 @@ class GenerateWebAppData:
         all_tables = soup.findAll('table', {'class': 'wikitable'})
 
         weapons = {}
-        weapon_names = []
         for table in all_tables:
+            current_weapon_names = []
             for row in table.find_all('tr'):
                 header = row.find_all('th')
-                if len(header) == 1:
+                if len(header) == 1 and not current_weapon_names:
                     a_links = header[0].find_all('a')
-                    weapon_names = set([link.attrs['title'] for link in a_links])
-                else:
+                    current_weapon_names = set([link.attrs['title'] for link in a_links])
+                elif current_weapon_names and "Energy" in header[0].text:
                     cells = row.find_all('td')
                     try:
-                        energy = cells[2].text.strip()
+                        energy = cells[0].text.strip()
                         energy = energy.replace('%', '')
                         try:
                             energy = int(energy)
                         except ValueError:
                             break
                     except IndexError:
-                        return weapons
+                        continue
 
-                    for name in weapon_names:
+                    for name in current_weapon_names:
                         weapons[name] = energy
                     break
 
