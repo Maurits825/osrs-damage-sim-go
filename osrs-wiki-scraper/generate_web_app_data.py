@@ -282,9 +282,11 @@ class GenerateWebAppData:
             current_weapon_names = []
             for row in table.find_all('tr'):
                 header = row.find_all('th')
-                if len(header) == 1 and not current_weapon_names:
-                    a_links = header[0].find_all('a')
-                    current_weapon_names = set([link.attrs['title'] for link in a_links])
+                if not current_weapon_names:
+                    for h in header:
+                        a_link = h.find('a')
+                        if a_link:
+                            current_weapon_names.append(a_link.attrs['title'])
                 elif current_weapon_names and "Energy" in header[0].text:
                     cells = row.find_all('td')
                     try:

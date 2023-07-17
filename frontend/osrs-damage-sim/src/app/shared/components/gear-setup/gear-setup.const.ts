@@ -6,6 +6,7 @@ export const DRAGON_DARTS_ID = 11230;
 export const BLOWPIPE_ID = 12926;
 export const UNARMED_EQUIVALENT_ID = 3689;
 export const AUTOCAST_STLYE = 'Spell (Magic/Autocast)';
+export const WILDY_WEAPONS = [22547, 27652, 22552, 27785, 27662, 27676, 22542, 27657];
 
 export const DEFAULT_GEAR_SETUP: GearSetup = {
   setupName: null,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GearSetup } from '../model/damage-sim/input-setup.model';
 import { SpecialGear } from '../model/damage-sim/special-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { SPECIAL_BOLTS, BLOWPIPE_ID } from '../shared/components/gear-setup/gear-setup.const';
+import { SPECIAL_BOLTS, BLOWPIPE_ID, WILDY_WEAPONS } from '../shared/components/gear-setup/gear-setup.const';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,7 @@ export class SpecialGearService {
   }
 
   private getIsWildernessWeapon(gearInputSetup: GearSetup): boolean {
-    const itemName = gearInputSetup.gear[GearSlot.Weapon]?.name;
-    if (!itemName) {
-      return false;
-    }
-    return itemName === "Craw's bow" || itemName === "Thammaron's sceptre" || itemName === "Viggora's chainmace";
+    return WILDY_WEAPONS.some((weaponId: number) => gearInputSetup.gear[GearSlot.Weapon]?.id === weaponId);
   }
 
   private getIsDharokSet(gearInputSetup: GearSetup): boolean {
