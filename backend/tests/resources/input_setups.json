@@ -79,7 +79,6 @@
           "boosts": [
             "ranging"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -171,7 +170,6 @@
           "boosts": [
             "super_combat"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -263,7 +261,6 @@
           "boosts": [
             "overload_plus"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -353,7 +350,6 @@
             "hitpoints": 99
           },
           "boosts": [],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -448,7 +444,6 @@
           "boosts": [
             "overload_plus"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -542,7 +537,6 @@
           "boosts": [
             "smelling_salts"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -632,7 +626,6 @@
             "hitpoints": 99
           },
           "boosts": [],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -723,7 +716,6 @@
           "boosts": [
             "overload_plus"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -814,7 +806,6 @@
           "boosts": [
             "ranging"
           ],
-          "isFill": false,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -897,7 +888,6 @@
           "prayers": [
             "rigour"
           ],
-          "isFill": false,
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -990,7 +980,6 @@
           "prayers": [
             "piety"
           ],
-          "isFill": false,
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1082,7 +1071,6 @@
           "prayers": [
             "piety"
           ],
-          "isFill": false,
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1174,7 +1162,6 @@
           "prayers": [
             "piety"
           ],
-          "isFill": false,
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,

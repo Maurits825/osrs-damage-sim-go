@@ -75,7 +75,6 @@
           "boosts": [
             "super_combat"
           ],
-          "isFill": true,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -136,7 +135,6 @@
             "boosts": [
               "super_combat"
             ],
-            "isFill": true,
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -227,7 +225,6 @@
           "boosts": [
             "smelling_salts"
           ],
-          "isFill": true,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -288,7 +285,6 @@
             "boosts": [
               "smelling_salts"
             ],
-            "isFill": true,
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -381,7 +377,6 @@
             "smelling_salts",
             "liquid_adrenaline"
           ],
-          "isFill": true,
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -443,7 +438,6 @@
               "smelling_salts",
               "liquid_adrenaline"
             ],
-            "isFill": true,
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -531,7 +525,6 @@
           "prayers": [
             "piety"
           ],
-          "isFill": true,
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -587,7 +580,6 @@
             "prayers": [
               "piety"
             ],
-            "isFill": true,
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
