@@ -13,14 +13,14 @@ class TwistedBow(Weapon):
 
         return math.floor(super().get_attack_roll() * (round(accuracy_multiplier) / 100))
 
-    def get_max_hit(self):
+    def get_base_max_hit(self):
         magic = self.get_magic()
         damage_multiplier = min(
             250.0,
             250 + int(((10 * int(3 * magic / 10)) - 14) / 100) - int(((((3 * magic) / 10) - 140) ** 2) / 100)
         )
 
-        return math.floor(super().get_max_hit() * (round(damage_multiplier) / 100))
+        return math.floor(super().get_base_max_hit() * (round(damage_multiplier) / 100))
 
     def get_magic(self):
         if self.npc.is_xerician:

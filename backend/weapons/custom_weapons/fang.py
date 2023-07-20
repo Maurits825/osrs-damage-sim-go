@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import math
 import random
 
@@ -14,7 +16,7 @@ class Fang(Weapon):
     def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
         super().__init__(gear_setup, combat_stats, npc, raid_level)
 
-        self.true_min_hit = 0
+        self.min_hit = 0
 
     def roll_hit(self) -> bool:
         max_defence_roll = self.get_defence_roll()
@@ -34,11 +36,10 @@ class Fang(Weapon):
 
     def roll_damage(self) -> Hitsplat:
         damage = 0
-        max_hit = self.max_hit
 
         roll_hit = self.roll_hit()
         if roll_hit:
-            damage = int((random.random() * (max_hit - self.true_min_hit + 1)) + self.true_min_hit)
+            damage = int((random.random() * (self.max_hit - self.min_hit + 1)) + self.min_hit)
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
                                    accuracy=self.accuracy, max_hits=self.max_hit, special_proc=SpecialProc.NONE)
@@ -52,17 +53,14 @@ class Fang(Weapon):
 
     def get_dps(self):
         accuracy = self.get_accuracy()
-        max_hit = super().get_max_hit()
-
-        if self.gear_setup.is_special_attack:
-            max_hit += self.get_true_min_hit()
+        max_hit = self.get_max_hit() + self.min_hit
 
         return DpsCalculator.get_dps(max_hit, accuracy, self.gear_setup.gear_stats.attack_speed)
 
-    def get_max_hit(self):
+    def get_max_hit(self) -> int | list[int]:
         max_hit = super().get_max_hit()
-        self.true_min_hit = self.get_true_min_hit()
 
+        self.min_hit = math.floor(max_hit * 0.15)
         if self.gear_setup.is_special_attack:
             return max_hit
         else:
@@ -84,6 +82,3 @@ class Fang(Weapon):
                                       (6 * (attack_roll + 1) * (defence_roll + 1)))
 
         return effective_accuracy
-
-    def get_true_min_hit(self):
-        return math.floor(super().get_max_hit() * 0.15)

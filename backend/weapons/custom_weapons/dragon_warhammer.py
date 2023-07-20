@@ -10,11 +10,11 @@ from weapons.weapon import Weapon
 class DragonWarhammer(Weapon, StatDrainWeapon):
     stat_drain_type = StatDrainType.HITS
 
-    def get_max_hit(self):
+    def get_base_max_hit(self):
         if self.gear_setup.is_special_attack:
-            return math.floor(super().get_max_hit() * 1.5)
+            return math.floor(super().get_base_max_hit() * 1.5)
         else:
-            return super().get_max_hit()
+            return super().get_base_max_hit()
 
     def roll_damage(self) -> Hitsplat:
         hitsplat = super().roll_damage()

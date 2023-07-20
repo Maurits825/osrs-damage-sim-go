@@ -132,7 +132,7 @@ class Weapon:
 
         return DpsCalculator.get_hit_chance(attack_roll, defence_roll)
 
-    def get_max_hit(self) -> int | list[int]:
+    def get_base_max_hit(self) -> int | list [int]:
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
                 prayer=self.prayer_multiplier,
@@ -155,6 +155,23 @@ class Weapon:
                                                     self.special_gear_bonus.ranged.strength_boost)
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
             return self.get_magic_max_hit()
+
+    def get_max_hit(self) -> int | list[int]:
+        base_max_hit = self.get_base_max_hit()
+
+        multiplier = 1
+        if "Ice demon" in self.npc.name:
+            if self.gear_setup.spell and ("Fire" in self.gear_setup.spell or
+                                          "Flames of Zamorak" in self.gear_setup.spell):
+                multiplier = 1.5
+            else:
+                multiplier = 0.35
+
+        if isinstance(base_max_hit, list):
+            max_hit = [int(multiplier * hit) for hit in base_max_hit]
+        else:
+            max_hit = int(multiplier * base_max_hit)
+        return max_hit
 
     def get_defence_roll(self):
         actual_defence_roll = self.defence_roll
@@ -197,7 +214,11 @@ class Weapon:
             target_defence = self.npc.combat_stats.defence
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            target_defence = self.npc.combat_stats.magic
+            if "Ice demon" in self.npc.name:
+                target_defence = self.npc.combat_stats.defence
+            else:
+                target_defence = self.npc.combat_stats.magic
+
             target_defence_style = self.npc.defensive_stats.magic
 
         return target_defence, target_defence_style
@@ -240,7 +261,7 @@ class Weapon:
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.magic,
                 void_boost=self.void_bonus.magic.attack_boost[-1]
             )
-            if self.gear_setup.gear_stats.id in SHADOW_STAFF:
+            if self.gear_setup.gear_stats.id in SHADOW_STAFF and not self.gear_setup.spell:
                 shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
                 gear_skill_bonus = self.gear_setup.gear_stats.magic * shadow_mult
             else:
@@ -269,7 +290,7 @@ class Weapon:
 
         magic_dmg_multiplier = self.gear_setup.gear_stats.magic_strength / 100
 
-        if self.gear_setup.gear_stats.id in SHADOW_STAFF:
+        if self.gear_setup.gear_stats.id in SHADOW_STAFF and not self.gear_setup.spell:
             shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
             magic_dmg_multiplier *= shadow_mult
 

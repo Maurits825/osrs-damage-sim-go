@@ -80,8 +80,8 @@ class DragonClaws(Weapon):
         else:
             return super().get_dps()
 
-    def get_max_hit(self) -> int | list[int]:
-        base_max_hit = super().get_max_hit()
+    def get_base_max_hit(self) -> int | list[int]:
+        base_max_hit = super().get_base_max_hit()
         if self.gear_setup.is_special_attack:
             self.spec_min_hit = [
                 math.floor(base_max_hit / 2),

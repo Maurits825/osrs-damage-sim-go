@@ -53,8 +53,8 @@ class Scythe(Weapon):
 
         return DpsCalculator.get_dps(effective_max_hit, accuracy, self.gear_setup.gear_stats.attack_speed)
 
-    def get_max_hit(self) -> list[int]:
-        base_max_hit = super().get_max_hit()
+    def get_base_max_hit(self) -> list[int]:
+        base_max_hit = super().get_base_max_hit()
 
         return [
             math.floor(base_max_hit * hit_reduction) for hit_reduction in HIT_COUNT_REDUCTION

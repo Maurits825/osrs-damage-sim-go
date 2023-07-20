@@ -10,11 +10,11 @@ from weapons.weapon import Weapon
 class BandosGodsword(Weapon, StatDrainWeapon):
     stat_drain_type = StatDrainType.DAMAGE
 
-    def get_max_hit(self):
+    def get_base_max_hit(self):
         if self.gear_setup.is_special_attack:
-            return math.floor(math.floor(super().get_max_hit() * 1.1) * 1.1)
+            return math.floor(math.floor(super().get_base_max_hit() * 1.1) * 1.1)
         else:
-            return super().get_max_hit()
+            return super().get_base_max_hit()
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:
@@ -37,6 +37,12 @@ class BandosGodsword(Weapon, StatDrainWeapon):
             BandosGodsword.drain_stats(self.npc, hitsplat.damage)
 
         return hitsplat
+
+    def roll_hit(self) -> bool:
+        roll_hit = super().roll_hit()
+        if not roll_hit and "Tekton" in self.npc.name:
+            BandosGodsword.drain_stats(self.npc, 10)
+        return roll_hit
 
     @staticmethod
     def drain_stats(npc: NpcStats, damage):
