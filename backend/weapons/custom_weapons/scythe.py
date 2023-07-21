@@ -17,7 +17,7 @@ class Scythe(Weapon):
         self.hitsplat.hitsplats = [0 for _ in range(min(3, self.npc.size))]
         self.hitsplat.roll_hits = [False for _ in range(min(3, self.npc.size))]
 
-    def roll_damage(self) -> list[int]:
+    def roll_damage(self):
         self.roll_single_hit(0)
 
         if self.npc.size > 1:
@@ -28,7 +28,6 @@ class Scythe(Weapon):
         self.hitsplat.damage = sum(self.hitsplat.hitsplats)
         self.hitsplat.accuracy = self.accuracy
         self.hitsplat.max_hits = self.max_hit
-        return self.hitsplat
 
     def roll_single_hit(self, hit_count) -> (int, bool):
         damage = 0

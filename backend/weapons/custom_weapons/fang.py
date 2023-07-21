@@ -34,7 +34,7 @@ class Fang(Weapon):
             attack_roll = int(random.random() * (self.attack_roll + 1))
             return attack_roll > defence_roll
 
-    def roll_damage(self) -> Hitsplat:
+    def roll_damage(self):
         damage = 0
 
         roll_hit = self.roll_hit()
@@ -43,7 +43,6 @@ class Fang(Weapon):
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
                                    accuracy=self.accuracy, max_hits=self.max_hit, special_proc=SpecialProc.NONE)
-        return self.hitsplat
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:

@@ -87,7 +87,7 @@ class DamageSim:
                 tick_data = self.get_initial_tick_data(current_tick, self.npc.combat_stats.hitpoints,
                                                        self.npc.combat_stats.defence)
 
-            hitsplat = self.current_weapon.roll_damage()
+            hitsplat = self.current_weapon.attack()
 
             self.npc.combat_stats.hitpoints -= hitsplat.damage
 

@@ -31,8 +31,8 @@ class BandosGodsword(Weapon, StatDrainWeapon):
         target_defence_style = self.npc.defensive_stats.slash
         return target_defence, target_defence_style
 
-    def roll_damage(self) -> Hitsplat:
-        hitsplat = super().roll_damage()
+    def attack(self) -> Hitsplat:
+        hitsplat = super().attack()
         if self.gear_setup.is_special_attack:
             BandosGodsword.drain_stats(self.npc, hitsplat.damage)
 

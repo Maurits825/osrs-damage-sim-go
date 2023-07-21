@@ -8,8 +8,8 @@ from weapons.weapon import Weapon
 class BoneDagger(Weapon, StatDrainWeapon):
     stat_drain_type = StatDrainType.DAMAGE
 
-    def roll_damage(self) -> Hitsplat:
-        hitsplat = super().roll_damage()
+    def attack(self) -> Hitsplat:
+        hitsplat = super().attack()
         if self.gear_setup.is_special_attack:
             BoneDagger.drain_stats(self.npc, hitsplat.damage)
         return hitsplat

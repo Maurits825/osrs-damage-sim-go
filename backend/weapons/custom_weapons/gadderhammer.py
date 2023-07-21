@@ -10,7 +10,7 @@ AVG_DMG_BOOST = 1.2875  # from wiki
 
 
 class Gadderhammer(Weapon):
-    def roll_damage(self) -> int:
+    def roll_damage(self):
         damage = 0
         special_proc = SpecialProc.NONE
         max_hit = self.max_hit
@@ -28,7 +28,6 @@ class Gadderhammer(Weapon):
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
                                    accuracy=self.accuracy, max_hits=max_hit, special_proc=special_proc)
-        return self.hitsplat
 
     def get_dps(self):
         accuracy = self.get_accuracy()

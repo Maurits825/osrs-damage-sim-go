@@ -18,7 +18,7 @@ class DragonClaws(Weapon):
 
         self.spec_min_hit = []
 
-    def roll_damage(self) -> Hitsplat:
+    def roll_damage(self):
         if not self.gear_setup.is_special_attack:
             return super().roll_damage()
 
@@ -54,7 +54,6 @@ class DragonClaws(Weapon):
         self.hitsplat.set_hitsplat(damage=sum([hit1, hit2, hit3, hit4]), hitsplats=[hit1, hit2, hit3, hit4],
                                    accuracy=self.accuracy, max_hits=self.max_hit,
                                    roll_hits=[True, True, True, True], special_proc=SpecialProc.NONE)
-        return self.hitsplat
 
     def get_npc_defence_and_style(self):
         if not self.gear_setup.is_special_attack:

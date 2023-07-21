@@ -20,7 +20,11 @@ from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
+from model.npc.npc_ids import VERZIK_P1, ZULRAH
 from wiki_data.wiki_data import WikiData
+
+ZULRAH_MAX_DMG = 50
+ZULRAH_MIN_DMG = 45
 
 
 class Weapon:
@@ -105,7 +109,40 @@ class Weapon:
 
         return attack_roll > defence_roll
 
-    def roll_damage(self) -> Hitsplat:
+    def attack(self) -> Hitsplat:
+        self.roll_damage()
+        # TODO refactor special proc as a list?
+
+        if self.npc.id in VERZIK_P1:
+            verzik_dmg_cap = 3
+            if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
+                verzik_dmg_cap = 10
+
+            if isinstance(self.hitsplat.hitsplats, list):
+                hitsplats = [min(hitsplat, verzik_dmg_cap) for hitsplat in self.hitsplat.hitsplats]
+                self.hitsplat.damage = sum(hitsplats)
+            else:
+                hitsplats = min(self.hitsplat.hitsplats, verzik_dmg_cap)
+                self.hitsplat.damage = hitsplats
+
+            self.hitsplat.hitsplats = hitsplats
+        elif self.npc.id in ZULRAH:
+            if isinstance(self.hitsplat.hitsplats, list):
+                hitsplats = [int((random.random() * (ZULRAH_MAX_DMG - ZULRAH_MIN_DMG + 1)) + ZULRAH_MIN_DMG)
+                             if hitsplat > ZULRAH_MAX_DMG else hitsplat
+                             for hitsplat in self.hitsplat.hitsplats]
+                self.hitsplat.hitsplats = hitsplats
+                self.hitsplat.damage = sum(hitsplats)
+            else:
+                if self.hitsplat.hitsplats > ZULRAH_MAX_DMG:
+                    self.hitsplat.hitsplats = int((random.random() * (ZULRAH_MAX_DMG - ZULRAH_MIN_DMG + 1)) +
+                                                  ZULRAH_MIN_DMG)
+                    self.hitsplat.damage = self.hitsplat.hitsplats
+
+        # TODO we have to apply dmg cap (corp also?)
+        return self.hitsplat
+
+    def roll_damage(self):
         self.hitsplat.special_proc = SpecialProc.NONE
 
         if self.special_bolt:
@@ -113,7 +150,8 @@ class Weapon:
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
             )
             if bolt_damage:
-                return bolt_damage
+                self.hitsplat = bolt_damage
+                return
 
         damage = 0
         roll_hit = self.roll_hit()
@@ -121,10 +159,10 @@ class Weapon:
             damage = int(random.random() * (self.max_hit + 1))
 
         damage = math.floor(damage * self.damage_multiplier)
+
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
                                    accuracy=self.accuracy, max_hits=self.max_hit,
                                    special_proc=self.hitsplat.special_proc)
-        return self.hitsplat
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()
@@ -132,7 +170,7 @@ class Weapon:
 
         return DpsCalculator.get_hit_chance(attack_roll, defence_roll)
 
-    def get_base_max_hit(self) -> int | list [int]:
+    def get_base_max_hit(self) -> int | list[int]:
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
                 prayer=self.prayer_multiplier,

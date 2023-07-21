@@ -16,8 +16,8 @@ class DragonWarhammer(Weapon, StatDrainWeapon):
         else:
             return super().get_base_max_hit()
 
-    def roll_damage(self) -> Hitsplat:
-        hitsplat = super().roll_damage()
+    def attack(self) -> Hitsplat:
+        hitsplat = super().attack()
         if self.gear_setup.is_special_attack:
             DragonWarhammer.drain_stats(self.npc, hitsplat.damage)
         return hitsplat

@@ -19,22 +19,22 @@ class ZaryteCrossbow(Weapon):
             elif isinstance(self.special_bolt, DiamondBolts):
                 self.special_bolt.effect_value = 0.25
 
-    def roll_damage(self) -> Hitsplat:
+    def roll_damage(self):
         if not self.gear_setup.is_special_attack or not self.special_bolt:
             return super().roll_damage()
 
         if self.roll_hit():
             hitsplat = BoltSpecialAttack.special(self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints)
             hitsplat.accuracy = self.accuracy
-            return hitsplat
+            self.hitsplat = hitsplat
         else:
             bolt_damage = BoltSpecialAttack.roll_special(self.special_bolt, self.max_hit,
                                                          self.npc.combat_stats.hitpoints)
             if bolt_damage:
-                return bolt_damage
+                self.hitsplat = bolt_damage
             else:
-                return Hitsplat(damage=0, hitsplats=0, roll_hits=False, accuracy=self.accuracy, max_hits=self.max_hit,
-                                special_proc=SpecialProc.NONE)
+                self.hitsplat.set_hitsplat(damage=0, hitsplats=0, roll_hits=False, accuracy=self.accuracy,
+                                           max_hits=self.max_hit, special_proc=SpecialProc.NONE)
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:
