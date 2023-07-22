@@ -113,6 +113,7 @@ class Weapon:
         self.roll_damage()
         # TODO refactor special proc as a list?
 
+        # TODO hitsplat as int | list[int] makes it kinda scuffed
         if self.npc.id in VERZIK_P1:
             verzik_dmg_cap = 3
             if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
@@ -311,14 +312,23 @@ class Weapon:
         accuracy = self.get_accuracy()
         max_hit = self.get_max_hit()
 
+        #TODO zulrah for bolts and zcb spec ...
         if self.special_bolt:
             return self.special_bolt.get_dps(
                 accuracy, max_hit, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
             )
 
-        dmg_sum = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(max_hit + 1)])
-        avg_dmg = dmg_sum / (max_hit + 1)
-        return (avg_dmg * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        damage_sum = 0
+        for hit in range(max_hit + 1):
+            damage = math.floor(hit * self.damage_multiplier)
+            if self.npc.id in ZULRAH:
+                if damage > ZULRAH_MAX_DMG:
+                    damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2
+
+            damage_sum += damage
+
+        average_damage = damage_sum / (max_hit + 1)
+        return (average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
