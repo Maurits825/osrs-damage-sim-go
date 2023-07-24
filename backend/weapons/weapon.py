@@ -119,7 +119,7 @@ class Weapon:
         self.roll_damage()
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
-        if self.npc.id in VERZIK_P1:
+        if self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
             if isinstance(self.hitsplat.hitsplats, list):
                 hitsplats = []
                 for hitsplat in self.hitsplat.hitsplats:
@@ -338,7 +338,7 @@ class Weapon:
                 if self.npc.id in ZULRAH:
                     if damage > ZULRAH_MAX_DMG:
                         damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2
-                elif self.npc.id in VERZIK_P1:
+                elif self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
                     damages = [min(hit, capped_hit) for capped_hit in range(self.verzik_dmg_cap + 1)]
                     damage = sum(damages) / len(damages)
 
@@ -364,6 +364,10 @@ class Weapon:
         magic_dmg_multiplier += self.void_bonus.magic.strength_boost[-1]
         base_hit = math.floor(base_max_hit * magic_dmg_multiplier)
         max_hit = DpsCalculator.apply_gear_bonus(base_hit, self.special_gear_bonus.magic.strength_boost)
+
+        if self.gear_setup.gear_stats.id == DAWNBRINGER:
+            max_hit = math.floor(math.floor(self.combat_stats.magic * magic_dmg_multiplier) / 6) - 1
+
         return max_hit
 
     def get_magic_base_hit(self):
@@ -378,5 +382,6 @@ class Weapon:
             return math.floor(self.combat_stats.magic / 3) - 1
         elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
             return math.floor(self.combat_stats.magic / 3) + 1
-        elif self.gear_setup.gear_stats.id in DAWNBRINGER:
-            return math.floor(self.combat_stats.magic / 6) - 1
+        else:
+            return 0
+

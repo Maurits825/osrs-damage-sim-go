@@ -1,6 +1,7 @@
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.bone_dagger import BoneDagger
+from weapons.custom_weapons.dawnbringer import Dawnbringer
 from weapons.custom_weapons.dragon_claws import DragonClaws
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.custom_weapons.fang import Fang
@@ -20,6 +21,7 @@ CUSTOM_WEAPONS = {
     "Scythe of vitur": Scythe,
     "Gadderhammer": Gadderhammer,
     "Arclight": Arclight,
+    "Dawnbringer": Dawnbringer,
 }
 
 # TODO generic KERIS weapon for the 1/51 triple dmg?
