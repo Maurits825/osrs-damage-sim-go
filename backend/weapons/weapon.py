@@ -5,7 +5,7 @@ import random
 
 from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
-                                  DAWNBRINGER, HARM_STAFF)
+                                  DAWNBRINGER, HARM_STAFF, OSMUMTEN_FANG)
 from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
@@ -20,13 +20,14 @@ from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
-from model.npc.npc_ids import VERZIK_P1, ZULRAH
+from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP
 from wiki_data.wiki_data import WikiData
 
 ZULRAH_MAX_DMG = 50
 ZULRAH_MIN_DMG = 45
 VERZIK_P1_MELEE_DMG_CAP = 10
 VERZIK_P1_RANGE_MAGE_DMG_CAP = 3
+CORP_MAX_DMG = 50
 
 
 class Weapon:
@@ -150,8 +151,16 @@ class Weapon:
                                                   ZULRAH_MIN_DMG)
                     self.hitsplat.damage = self.hitsplat.hitsplats
                     self.hitsplat.special_procs.append(SpecialProc.ZULRAH_DMG_CAP)
+        elif self.npc.id in CORP:
+            if isinstance(self.hitsplat.hitsplats, list):
+                hitsplats = [min(hitsplat, CORP_MAX_DMG) for hitsplat in self.hitsplat.hitsplats]
+                self.hitsplat.hitsplats = hitsplats
+                self.hitsplat.damage = sum(hitsplats)
+            else:
+                hitsplats = min(self.hitsplat.hitsplats, CORP_MAX_DMG)
+                self.hitsplat.hitsplats = hitsplats
+                self.hitsplat.damage = self.hitsplat.hitsplats
 
-        # TODO corp dmg cap
         return self.hitsplat
 
     def roll_damage(self):
@@ -210,12 +219,14 @@ class Weapon:
         base_max_hit = self.get_base_max_hit()
 
         multiplier = 1
-        if "Ice demon" in self.npc.name:
+        if self.npc.id in ICE_DEMON:
             if self.gear_setup.spell and ("Fire" in self.gear_setup.spell or
                                           "Flames of Zamorak" in self.gear_setup.spell):
                 multiplier = 1.5
             else:
                 multiplier = 0.35
+        elif self.npc.id in CORP:
+            multiplier = self.get_corp_multiplier()
 
         if isinstance(base_max_hit, list):
             max_hit = [int(multiplier * hit) for hit in base_max_hit]
@@ -264,7 +275,7 @@ class Weapon:
             target_defence = self.npc.combat_stats.defence
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            if "Ice demon" in self.npc.name:
+            if self.npc.id in ICE_DEMON:
                 target_defence = self.npc.combat_stats.defence
             else:
                 target_defence = self.npc.combat_stats.magic
@@ -319,9 +330,12 @@ class Weapon:
 
         return DpsCalculator.get_attack_roll(effective_skill_attack_lvl, gear_skill_bonus, gear_attack_bonus)
 
+    def get_dps_max_hit(self):
+        return self.get_max_hit()
+
     def get_dps(self):
         accuracy = self.get_accuracy()
-        max_hits = self.get_max_hit()
+        max_hits = self.get_dps_max_hit()
 
         # TODO zulrah for bolts and zcb spec ...
         if self.special_bolt:
@@ -341,7 +355,8 @@ class Weapon:
                 elif self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
                     damages = [min(hit, capped_hit) for capped_hit in range(self.verzik_dmg_cap + 1)]
                     damage = sum(damages) / len(damages)
-
+                elif self.npc.id in CORP:
+                    damage = min(damage, CORP_MAX_DMG)
                 damage_sum += damage
 
             average_damage = damage_sum / (max_hit + 1)
@@ -384,4 +399,16 @@ class Weapon:
             return math.floor(self.combat_stats.magic / 3) + 1
         else:
             return 0
+
+    def get_corp_multiplier(self) -> float:
+        if self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
+            return 1
+
+        if (self.gear_setup.attack_style.attack_type == AttackType.STAB and
+                ("spear" in self.gear_setup.gear_stats.name or
+                 "halberd" in self.gear_setup.gear_stats.name or
+                 self.gear_setup.gear_stats.id in OSMUMTEN_FANG)):
+            return 1
+
+        return 0.5
 

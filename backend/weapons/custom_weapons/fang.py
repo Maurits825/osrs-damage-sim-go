@@ -48,12 +48,8 @@ class Fang(Weapon):
         else:
             return super().get_attack_roll()
 
-    def get_dps(self):
-        accuracy = self.get_accuracy()
-        max_hit = self.get_max_hit() + self.min_hit
-
-        # TODO call super().get_dps here? like in scythe -- how do we get the + min_hit though...
-        return DpsCalculator.get_dps(max_hit, accuracy, self.gear_setup.gear_stats.attack_speed)
+    def get_dps_max_hit(self):
+        return self.get_max_hit() + self.min_hit
 
     def get_max_hit(self) -> int | list[int]:
         max_hit = super().get_max_hit()
