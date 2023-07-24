@@ -7,7 +7,6 @@ from damage_sim.condition_evaluator import ConditionEvaluator
 from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
 from model.damage_sim_results.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
-from model.damage_sim_results.special_proc import SpecialProc
 from model.damage_sim_results.tick_data import TickData
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.stat_drain_type import StatDrainType
@@ -212,7 +211,7 @@ class DamageSim:
                 accuracy=0,
                 hitsplats=0,
                 roll_hits=False,
-                special_proc=SpecialProc.NONE,
+                special_procs=[],
                 npc_hitpoints=npc_hp,
                 npc_defence=npc_defence,
                 special_attack_amount=self.special_attack
@@ -226,7 +225,7 @@ class DamageSim:
         tick_data.accuracy = hitsplat.accuracy
         tick_data.hitsplats = hitsplat.hitsplats.copy() if isinstance(hitsplat.hitsplats, list) else hitsplat.hitsplats
         tick_data.roll_hits = hitsplat.roll_hits.copy() if isinstance(hitsplat.roll_hits, list) else hitsplat.roll_hits
-        tick_data.special_proc = hitsplat.special_proc
+        tick_data.special_procs = hitsplat.special_procs.copy()
 
     @staticmethod
     def get_sim_dps(total_damage, attack_count, attack_speed):

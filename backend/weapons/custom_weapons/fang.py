@@ -3,9 +3,7 @@ from __future__ import annotations
 import math
 import random
 
-from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
-from model.hitsplat import Hitsplat
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from weapons.dps_calculator import DpsCalculator
@@ -42,7 +40,7 @@ class Fang(Weapon):
             damage = int((random.random() * (self.max_hit - self.min_hit + 1)) + self.min_hit)
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
-                                   accuracy=self.accuracy, max_hits=self.max_hit, special_proc=SpecialProc.NONE)
+                                   accuracy=self.accuracy, max_hits=self.max_hit, special_proc=None)
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:
@@ -54,6 +52,7 @@ class Fang(Weapon):
         accuracy = self.get_accuracy()
         max_hit = self.get_max_hit() + self.min_hit
 
+        # TODO call super().get_dps here? like in scythe -- how do we get the + min_hit though...
         return DpsCalculator.get_dps(max_hit, accuracy, self.gear_setup.gear_stats.attack_speed)
 
     def get_max_hit(self) -> int | list[int]:

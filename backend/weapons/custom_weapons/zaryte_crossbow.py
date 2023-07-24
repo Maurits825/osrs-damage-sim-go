@@ -1,7 +1,5 @@
 from constant import TICK_LENGTH
-from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
-from model.hitsplat import Hitsplat
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from weapons.bolt_special_attack import BoltSpecialAttack
@@ -34,7 +32,7 @@ class ZaryteCrossbow(Weapon):
                 self.hitsplat = bolt_damage
             else:
                 self.hitsplat.set_hitsplat(damage=0, hitsplats=0, roll_hits=False, accuracy=self.accuracy,
-                                           max_hits=self.max_hit, special_proc=SpecialProc.NONE)
+                                           max_hits=self.max_hit, special_proc=None)
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:

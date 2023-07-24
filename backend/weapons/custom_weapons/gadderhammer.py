@@ -12,7 +12,7 @@ AVG_DMG_BOOST = 1.2875  # from wiki
 class Gadderhammer(Weapon):
     def roll_damage(self):
         damage = 0
-        special_proc = SpecialProc.NONE
+        special_proc = None
         max_hit = self.max_hit
         roll_hit = self.roll_hit()
         if roll_hit:

@@ -4,9 +4,7 @@ import math
 import random
 
 from constant import TICK_LENGTH
-from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
-from model.hitsplat import Hitsplat
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from weapons.weapon import Weapon
@@ -53,7 +51,7 @@ class DragonClaws(Weapon):
 
         self.hitsplat.set_hitsplat(damage=sum([hit1, hit2, hit3, hit4]), hitsplats=[hit1, hit2, hit3, hit4],
                                    accuracy=self.accuracy, max_hits=self.max_hit,
-                                   roll_hits=[True, True, True, True], special_proc=SpecialProc.NONE)
+                                   roll_hits=[True, True, True, True], special_proc=None)
 
     def get_npc_defence_and_style(self):
         if not self.gear_setup.is_special_attack:

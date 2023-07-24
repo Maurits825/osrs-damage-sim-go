@@ -1,9 +1,7 @@
 import json
 import unittest
 from pathlib import Path
-from unittest.mock import Mock
 
-from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from wiki_data.wiki_data import WikiData
 

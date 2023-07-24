@@ -12,7 +12,7 @@ class Hitsplat:
     roll_hits: bool | list[bool]
     accuracy: float
     max_hits: int | list[int]
-    special_proc: SpecialProc
+    special_procs: list[SpecialProc]
 
     def set_hitsplat(self, damage, hitsplats, roll_hits, accuracy, max_hits, special_proc):
         self.damage = damage
@@ -20,4 +20,5 @@ class Hitsplat:
         self.roll_hits = roll_hits
         self.accuracy = accuracy
         self.max_hits = max_hits
-        self.special_proc = special_proc
+        if special_proc:
+            self.special_procs.append(special_proc)

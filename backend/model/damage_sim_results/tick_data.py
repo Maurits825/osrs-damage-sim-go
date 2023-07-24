@@ -18,7 +18,7 @@ class TickData:
     damage: int
     hitsplats: int | list[int]
     roll_hits: bool | list[bool]
-    special_proc: SpecialProc
+    special_procs: list[SpecialProc]
 
     npc_hitpoints: int
     npc_defence: int

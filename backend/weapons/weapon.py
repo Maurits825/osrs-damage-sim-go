@@ -25,6 +25,8 @@ from wiki_data.wiki_data import WikiData
 
 ZULRAH_MAX_DMG = 50
 ZULRAH_MIN_DMG = 45
+VERZIK_P1_MELEE_DMG_CAP = 10
+VERZIK_P1_RANGE_MAGE_DMG_CAP = 3
 
 
 class Weapon:
@@ -58,6 +60,10 @@ class Weapon:
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
 
+        self.verzik_dmg_cap = (
+                        VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
+                        else VERZIK_P1_RANGE_MAGE_DMG_CAP)
+
         self.max_hit = 0
         self.accuracy = 0
         self.attack_roll = 0
@@ -66,7 +72,7 @@ class Weapon:
         self.target_defence_style = None
         self.update_dps_stats()
 
-        self.hitsplat = Hitsplat(0, 0, False, 0, 0, SpecialProc.NONE)
+        self.hitsplat = Hitsplat(0, 0, False, 0, 0, [])
 
     def set_npc(self, npc):
         self.npc = npc
@@ -111,19 +117,23 @@ class Weapon:
 
     def attack(self) -> Hitsplat:
         self.roll_damage()
-        # TODO refactor special proc as a list?
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
         if self.npc.id in VERZIK_P1:
-            verzik_dmg_cap = 3
-            if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
-                verzik_dmg_cap = 10
-
             if isinstance(self.hitsplat.hitsplats, list):
-                hitsplats = [min(hitsplat, verzik_dmg_cap) for hitsplat in self.hitsplat.hitsplats]
+                hitsplats = []
+                for hitsplat in self.hitsplat.hitsplats:
+                    capped_dmg_roll = int(random.random() * (self.verzik_dmg_cap + 1))
+                    if capped_dmg_roll < hitsplat:
+                        hitsplats.append(capped_dmg_roll)
+                    else:
+                        hitsplats.append(hitsplat)
                 self.hitsplat.damage = sum(hitsplats)
             else:
-                hitsplats = min(self.hitsplat.hitsplats, verzik_dmg_cap)
+                capped_dmg_roll = int(random.random() * (self.verzik_dmg_cap + 1))
+                hitsplats = self.hitsplat.hitsplats
+                if capped_dmg_roll < self.hitsplat.hitsplats:
+                    hitsplats = capped_dmg_roll
                 self.hitsplat.damage = hitsplats
 
             self.hitsplat.hitsplats = hitsplats
@@ -139,12 +149,13 @@ class Weapon:
                     self.hitsplat.hitsplats = int((random.random() * (ZULRAH_MAX_DMG - ZULRAH_MIN_DMG + 1)) +
                                                   ZULRAH_MIN_DMG)
                     self.hitsplat.damage = self.hitsplat.hitsplats
+                    self.hitsplat.special_procs.append(SpecialProc.ZULRAH_DMG_CAP)
 
-        # TODO we have to apply dmg cap (corp also?)
+        # TODO corp dmg cap
         return self.hitsplat
 
     def roll_damage(self):
-        self.hitsplat.special_proc = SpecialProc.NONE
+        self.hitsplat.special_procs = []
 
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_special(
@@ -163,7 +174,7 @@ class Weapon:
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
                                    accuracy=self.accuracy, max_hits=self.max_hit,
-                                   special_proc=self.hitsplat.special_proc)
+                                   special_proc=self.hitsplat.special_procs)
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()
@@ -218,7 +229,7 @@ class Weapon:
         if self.is_brimstone:
             if random.random() <= 0.25:
                 actual_defence_roll -= max(0, math.floor(self.defence_roll * 0.1))
-                self.hitsplat.special_proc = SpecialProc.BRIMSTONE
+                self.hitsplat.special_procs.append(SpecialProc.BRIMSTONE)
 
         if self.raid_level:
             actual_defence_roll = math.floor(self.defence_roll * (1 + (self.raid_level * 0.004)))
@@ -310,25 +321,33 @@ class Weapon:
 
     def get_dps(self):
         accuracy = self.get_accuracy()
-        max_hit = self.get_max_hit()
+        max_hits = self.get_max_hit()
 
-        #TODO zulrah for bolts and zcb spec ...
+        # TODO zulrah for bolts and zcb spec ...
         if self.special_bolt:
             return self.special_bolt.get_dps(
-                accuracy, max_hit, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
+                accuracy, max_hits, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
             )
 
-        damage_sum = 0
-        for hit in range(max_hit + 1):
-            damage = math.floor(hit * self.damage_multiplier)
-            if self.npc.id in ZULRAH:
-                if damage > ZULRAH_MAX_DMG:
-                    damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2
+        total_average_damage = 0
+        max_hits = [max_hits] if not isinstance(max_hits, list) else max_hits
+        for max_hit in max_hits:
+            damage_sum = 0
+            for hit in range(max_hit + 1):
+                damage = math.floor(hit * self.damage_multiplier)
+                if self.npc.id in ZULRAH:
+                    if damage > ZULRAH_MAX_DMG:
+                        damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2
+                elif self.npc.id in VERZIK_P1:
+                    damages = [min(hit, capped_hit) for capped_hit in range(self.verzik_dmg_cap + 1)]
+                    damage = sum(damages) / len(damages)
 
-            damage_sum += damage
+                damage_sum += damage
 
-        average_damage = damage_sum / (max_hit + 1)
-        return (average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+            average_damage = damage_sum / (max_hit + 1)
+            total_average_damage += average_damage
+
+        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
