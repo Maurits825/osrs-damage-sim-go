@@ -120,6 +120,7 @@ class Weapon:
         self.roll_damage()
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
+        # TODO also could make a better way to handle the hitsplat?
         if self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
             if isinstance(self.hitsplat.hitsplats, list):
                 hitsplats = []
@@ -338,6 +339,7 @@ class Weapon:
         max_hits = self.get_dps_max_hit()
 
         # TODO zulrah for bolts and zcb spec ...
+        # TODO could add on the spec bolt dps, and then also have an accuracy modifier or something
         if self.special_bolt:
             return self.special_bolt.get_dps(
                 accuracy, max_hits, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
