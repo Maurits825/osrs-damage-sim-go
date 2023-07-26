@@ -6,7 +6,6 @@ import random
 from model.gear_setup import GearSetup
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
-from weapons.dps_calculator import DpsCalculator
 from weapons.weapon import Weapon
 
 

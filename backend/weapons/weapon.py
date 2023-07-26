@@ -116,6 +116,7 @@ class Weapon:
 
         return attack_roll > defence_roll
 
+    # flake8: noqa TODO look at refactoring this, maybe also cache is_verzik_p1, is_zulrah, is_corp, enum?
     def attack(self) -> Hitsplat:
         self.roll_damage()
 
@@ -413,4 +414,3 @@ class Weapon:
             return 1
 
         return 0.5
-
