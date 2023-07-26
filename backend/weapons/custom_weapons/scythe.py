@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import math
 import random
 
 from model.gear_setup import GearSetup
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
-from weapons.dps_calculator import DpsCalculator
 from weapons.weapon import Weapon
 
 HIT_COUNT_REDUCTION = [1, 0.5, 0.25]
@@ -17,7 +18,7 @@ class Scythe(Weapon):
         self.hitsplat.hitsplats = [0 for _ in range(min(3, self.npc.size))]
         self.hitsplat.roll_hits = [False for _ in range(min(3, self.npc.size))]
 
-    def roll_damage(self) -> list[int]:
+    def roll_damage(self):
         self.roll_single_hit(0)
 
         if self.npc.size > 1:
@@ -28,7 +29,6 @@ class Scythe(Weapon):
         self.hitsplat.damage = sum(self.hitsplat.hitsplats)
         self.hitsplat.accuracy = self.accuracy
         self.hitsplat.max_hits = self.max_hit
-        return self.hitsplat
 
     def roll_single_hit(self, hit_count) -> (int, bool):
         damage = 0
@@ -41,21 +41,9 @@ class Scythe(Weapon):
         self.hitsplat.hitsplats[hit_count] = damage
         self.hitsplat.roll_hits[hit_count] = roll_hit
 
-    def get_dps(self):
-        accuracy = self.get_accuracy()
-        max_hit = self.get_max_hit()
+    def get_base_max_hit(self) -> list[int]:
+        base_max_hit = super().get_base_max_hit()
 
-        effective_max_hit = max_hit[0]
-        if self.npc.size > 1:
-            effective_max_hit += max_hit[1]
-        if self.npc.size > 2:
-            effective_max_hit += max_hit[2]
+        max_hits = [math.floor(base_max_hit * hit_reduction) for hit_reduction in HIT_COUNT_REDUCTION]
 
-        return DpsCalculator.get_dps(effective_max_hit, accuracy, self.gear_setup.gear_stats.attack_speed)
-
-    def get_max_hit(self) -> list[int]:
-        base_max_hit = super().get_max_hit()
-
-        return [
-            math.floor(base_max_hit * hit_reduction) for hit_reduction in HIT_COUNT_REDUCTION
-        ]
+        return max_hits[:self.npc.size]

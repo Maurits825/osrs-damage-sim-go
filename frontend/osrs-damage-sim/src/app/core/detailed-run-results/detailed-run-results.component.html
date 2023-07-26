@@ -79,21 +79,29 @@
           <tr class="text-end">
             <td class="text-start">{{ tickData.tick }}</td>
             <td class="text-start">{{ tickData.tick | tickToTime }}</td>
-            <td class="text-start">
-              <img class="me-1" src="data:image/png;base64,{{ tickData.weapon.icon }}" [title]="tickData.weapon.name" />
-              <span class="me-1">{{ tickData.weapon_name }}</span>
-              <img
-                *ngIf="tickData.is_special_attack"
-                class="me-1"
-                style="height: 20px; width: auto"
-                src="assets/img/other/special_attack_orb.png"
-                title="Special attack"
-              />
-              <img
-                *ngIf="tickData.special_proc !== 'None'"
-                src="assets/img/special_procs/{{ tickData.special_proc }}.png"
-                [title]="tickData.special_proc | specialProcText"
-              />
+            <td>
+              <div class="d-flex align-items-center">
+                <img
+                  class="me-1"
+                  src="data:image/png;base64,{{ tickData.weapon.icon }}"
+                  [title]="tickData.weapon.name"
+                />
+                <span class="me-2">{{ tickData.weapon_name }}</span>
+                <img
+                  *ngIf="tickData.is_special_attack"
+                  class="me-2"
+                  style="height: 20px; width: auto"
+                  src="assets/img/other/special_attack_orb.png"
+                  title="Special attack"
+                />
+                <ng-container *ngFor="let specialProc of tickData.special_procs">
+                  <img
+                    class="me-2"
+                    src="assets/img/special_procs/{{ specialProc }}.png"
+                    [title]="specialProc | specialProcText"
+                  />
+                </ng-container>
+              </div>
             </td>
             <td>{{ sumArray(tickData.hitsplats) }}</td>
             <td class="align-middle py-0 px-1">

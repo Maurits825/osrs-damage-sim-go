@@ -11,13 +11,16 @@ class WeaponLoader:
     @staticmethod
     def load_weapon(weapon_name, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings,
                     npc: NpcStats, raid_level) -> Weapon:
+        weapon = None
+
         for custom_weapon_name in CUSTOM_WEAPONS:
             if custom_weapon_name.lower() in weapon_name.lower():
                 weapon = CUSTOM_WEAPONS[custom_weapon_name](
                     gear_setup, gear_setup_settings.combat_stats, npc, raid_level
                 )
                 break
-        else:
+
+        if gear_setup.spell or not weapon:
             weapon = Weapon(gear_setup, gear_setup_settings.combat_stats, npc, raid_level)
 
         return weapon

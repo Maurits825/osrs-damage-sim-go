@@ -21,7 +21,7 @@ class BoltSpecialAttack:
         damage, max_hit = self.roll_damage(max_hit, current_hp)
         return Hitsplat(damage=damage, hitsplats=damage, roll_hits=True,
                         accuracy=self.proc_chance, max_hits=max_hit,
-                        special_proc=SpecialProc(self.__class__.__name__))
+                        special_procs=[SpecialProc(self.__class__.__name__)])
 
     def roll_damage(self, max_hit, hp) -> (int, int):
         return 0, 0

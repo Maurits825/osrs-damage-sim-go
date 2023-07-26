@@ -5,7 +5,7 @@ import random
 
 from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
-                                  DAWNBRINGER, HARM_STAFF)
+                                  DAWNBRINGER, HARM_STAFF, OSMUMTEN_FANG)
 from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
@@ -20,7 +20,14 @@ from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
+from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP
 from wiki_data.wiki_data import WikiData
+
+ZULRAH_MAX_DMG = 50
+ZULRAH_MIN_DMG = 45
+VERZIK_P1_MELEE_DMG_CAP = 10
+VERZIK_P1_RANGE_MAGE_DMG_CAP = 3
+CORP_MAX_DMG = 50
 
 
 class Weapon:
@@ -54,6 +61,10 @@ class Weapon:
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
 
+        self.verzik_dmg_cap = (
+                        VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
+                        else VERZIK_P1_RANGE_MAGE_DMG_CAP)
+
         self.max_hit = 0
         self.accuracy = 0
         self.attack_roll = 0
@@ -62,7 +73,7 @@ class Weapon:
         self.target_defence_style = None
         self.update_dps_stats()
 
-        self.hitsplat = Hitsplat(0, 0, False, 0, 0, SpecialProc.NONE)
+        self.hitsplat = Hitsplat(0, 0, False, 0, 0, [])
 
     def set_npc(self, npc):
         self.npc = npc
@@ -105,15 +116,65 @@ class Weapon:
 
         return attack_roll > defence_roll
 
-    def roll_damage(self) -> Hitsplat:
-        self.hitsplat.special_proc = SpecialProc.NONE
+    # flake8: noqa TODO look at refactoring this, maybe also cache is_verzik_p1, is_zulrah, is_corp, enum?
+    def attack(self) -> Hitsplat:
+        self.roll_damage()
+
+        # TODO hitsplat as int | list[int] makes it kinda scuffed
+        # TODO also could make a better way to handle the hitsplat?
+        if self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
+            if isinstance(self.hitsplat.hitsplats, list):
+                hitsplats = []
+                for hitsplat in self.hitsplat.hitsplats:
+                    capped_dmg_roll = int(random.random() * (self.verzik_dmg_cap + 1))
+                    if capped_dmg_roll < hitsplat:
+                        hitsplats.append(capped_dmg_roll)
+                    else:
+                        hitsplats.append(hitsplat)
+                self.hitsplat.damage = sum(hitsplats)
+            else:
+                capped_dmg_roll = int(random.random() * (self.verzik_dmg_cap + 1))
+                hitsplats = self.hitsplat.hitsplats
+                if capped_dmg_roll < self.hitsplat.hitsplats:
+                    hitsplats = capped_dmg_roll
+                self.hitsplat.damage = hitsplats
+
+            self.hitsplat.hitsplats = hitsplats
+        elif self.npc.id in ZULRAH:
+            if isinstance(self.hitsplat.hitsplats, list):
+                hitsplats = [int((random.random() * (ZULRAH_MAX_DMG - ZULRAH_MIN_DMG + 1)) + ZULRAH_MIN_DMG)
+                             if hitsplat > ZULRAH_MAX_DMG else hitsplat
+                             for hitsplat in self.hitsplat.hitsplats]
+                self.hitsplat.hitsplats = hitsplats
+                self.hitsplat.damage = sum(hitsplats)
+            else:
+                if self.hitsplat.hitsplats > ZULRAH_MAX_DMG:
+                    self.hitsplat.hitsplats = int((random.random() * (ZULRAH_MAX_DMG - ZULRAH_MIN_DMG + 1)) +
+                                                  ZULRAH_MIN_DMG)
+                    self.hitsplat.damage = self.hitsplat.hitsplats
+                    self.hitsplat.special_procs.append(SpecialProc.ZULRAH_DMG_CAP)
+        elif self.npc.id in CORP:
+            if isinstance(self.hitsplat.hitsplats, list):
+                hitsplats = [min(hitsplat, CORP_MAX_DMG) for hitsplat in self.hitsplat.hitsplats]
+                self.hitsplat.hitsplats = hitsplats
+                self.hitsplat.damage = sum(hitsplats)
+            else:
+                hitsplats = min(self.hitsplat.hitsplats, CORP_MAX_DMG)
+                self.hitsplat.hitsplats = hitsplats
+                self.hitsplat.damage = self.hitsplat.hitsplats
+
+        return self.hitsplat
+
+    def roll_damage(self):
+        self.hitsplat.special_procs = []
 
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_special(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
             )
             if bolt_damage:
-                return bolt_damage
+                self.hitsplat = bolt_damage
+                return
 
         damage = 0
         roll_hit = self.roll_hit()
@@ -121,10 +182,10 @@ class Weapon:
             damage = int(random.random() * (self.max_hit + 1))
 
         damage = math.floor(damage * self.damage_multiplier)
+
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
                                    accuracy=self.accuracy, max_hits=self.max_hit,
-                                   special_proc=self.hitsplat.special_proc)
-        return self.hitsplat
+                                   special_proc=self.hitsplat.special_procs)
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()
@@ -132,7 +193,7 @@ class Weapon:
 
         return DpsCalculator.get_hit_chance(attack_roll, defence_roll)
 
-    def get_max_hit(self) -> int | list[int]:
+    def get_base_max_hit(self) -> int | list[int]:
         if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES:
             effective_melee_str = DpsCalculator.get_effective_melee_str(
                 prayer=self.prayer_multiplier,
@@ -156,13 +217,32 @@ class Weapon:
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
             return self.get_magic_max_hit()
 
+    def get_max_hit(self) -> int | list[int]:
+        base_max_hit = self.get_base_max_hit()
+
+        multiplier = 1
+        if self.npc.id in ICE_DEMON:
+            if self.gear_setup.spell and ("Fire" in self.gear_setup.spell or
+                                          "Flames of Zamorak" in self.gear_setup.spell):
+                multiplier = 1.5
+            else:
+                multiplier = 0.35
+        elif self.npc.id in CORP:
+            multiplier = self.get_corp_multiplier()
+
+        if isinstance(base_max_hit, list):
+            max_hit = [int(multiplier * hit) for hit in base_max_hit]
+        else:
+            max_hit = int(multiplier * base_max_hit)
+        return max_hit
+
     def get_defence_roll(self):
         actual_defence_roll = self.defence_roll
 
         if self.is_brimstone:
             if random.random() <= 0.25:
                 actual_defence_roll -= max(0, math.floor(self.defence_roll * 0.1))
-                self.hitsplat.special_proc = SpecialProc.BRIMSTONE
+                self.hitsplat.special_procs.append(SpecialProc.BRIMSTONE)
 
         if self.raid_level:
             actual_defence_roll = math.floor(self.defence_roll * (1 + (self.raid_level * 0.004)))
@@ -197,7 +277,11 @@ class Weapon:
             target_defence = self.npc.combat_stats.defence
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            target_defence = self.npc.combat_stats.magic
+            if self.npc.id in ICE_DEMON:
+                target_defence = self.npc.combat_stats.defence
+            else:
+                target_defence = self.npc.combat_stats.magic
+
             target_defence_style = self.npc.defensive_stats.magic
 
         return target_defence, target_defence_style
@@ -240,7 +324,7 @@ class Weapon:
                 attack_style_boost=self.gear_setup.attack_style.combat_style.value.magic,
                 void_boost=self.void_bonus.magic.attack_boost[-1]
             )
-            if self.gear_setup.gear_stats.id in SHADOW_STAFF:
+            if self.gear_setup.gear_stats.id in SHADOW_STAFF and not self.gear_setup.spell:
                 shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
                 gear_skill_bonus = self.gear_setup.gear_stats.magic * shadow_mult
             else:
@@ -248,18 +332,40 @@ class Weapon:
 
         return DpsCalculator.get_attack_roll(effective_skill_attack_lvl, gear_skill_bonus, gear_attack_bonus)
 
+    def get_dps_max_hit(self):
+        return self.get_max_hit()
+
     def get_dps(self):
         accuracy = self.get_accuracy()
-        max_hit = self.get_max_hit()
+        max_hits = self.get_dps_max_hit()
 
+        # TODO zulrah for bolts and zcb spec ...
+        # TODO could add on the spec bolt dps, and then also have an accuracy modifier or something
         if self.special_bolt:
             return self.special_bolt.get_dps(
-                accuracy, max_hit, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
+                accuracy, max_hits, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
             )
 
-        dmg_sum = sum([math.floor(dmg * self.damage_multiplier) for dmg in range(max_hit + 1)])
-        avg_dmg = dmg_sum / (max_hit + 1)
-        return (avg_dmg * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        total_average_damage = 0
+        max_hits = [max_hits] if not isinstance(max_hits, list) else max_hits
+        for max_hit in max_hits:
+            damage_sum = 0
+            for hit in range(max_hit + 1):
+                damage = math.floor(hit * self.damage_multiplier)
+                if self.npc.id in ZULRAH:
+                    if damage > ZULRAH_MAX_DMG:
+                        damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2
+                elif self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
+                    damages = [min(hit, capped_hit) for capped_hit in range(self.verzik_dmg_cap + 1)]
+                    damage = sum(damages) / len(damages)
+                elif self.npc.id in CORP:
+                    damage = min(damage, CORP_MAX_DMG)
+                damage_sum += damage
+
+            average_damage = damage_sum / (max_hit + 1)
+            total_average_damage += average_damage
+
+        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
@@ -269,13 +375,17 @@ class Weapon:
 
         magic_dmg_multiplier = self.gear_setup.gear_stats.magic_strength / 100
 
-        if self.gear_setup.gear_stats.id in SHADOW_STAFF:
+        if self.gear_setup.gear_stats.id in SHADOW_STAFF and not self.gear_setup.spell:
             shadow_mult = 4 if self.npc.location == Location.TOMBS_OF_AMASCUT else 3
             magic_dmg_multiplier *= shadow_mult
 
         magic_dmg_multiplier += self.void_bonus.magic.strength_boost[-1]
         base_hit = math.floor(base_max_hit * magic_dmg_multiplier)
         max_hit = DpsCalculator.apply_gear_bonus(base_hit, self.special_gear_bonus.magic.strength_boost)
+
+        if self.gear_setup.gear_stats.id == DAWNBRINGER:
+            max_hit = math.floor(math.floor(self.combat_stats.magic * magic_dmg_multiplier) / 6) - 1
+
         return max_hit
 
     def get_magic_base_hit(self):
@@ -290,5 +400,17 @@ class Weapon:
             return math.floor(self.combat_stats.magic / 3) - 1
         elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
             return math.floor(self.combat_stats.magic / 3) + 1
-        elif self.gear_setup.gear_stats.id in DAWNBRINGER:
-            return math.floor(self.combat_stats.magic / 6) - 1
+        else:
+            return 0
+
+    def get_corp_multiplier(self) -> float:
+        if self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
+            return 1
+
+        if (self.gear_setup.attack_style.attack_type == AttackType.STAB and
+                ("spear" in self.gear_setup.gear_stats.name or
+                 "halberd" in self.gear_setup.gear_stats.name or
+                 self.gear_setup.gear_stats.id in OSMUMTEN_FANG)):
+            return 1
+
+        return 0.5

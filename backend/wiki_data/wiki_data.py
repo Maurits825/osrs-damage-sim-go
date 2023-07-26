@@ -53,6 +53,7 @@ class WikiData:
 
         return NpcStats(
             name=npc_name,
+            id=int(npc_id),
             combat_stats=combat_stats,
             base_combat_stats=copy.deepcopy(combat_stats),
             aggressive_stats=AggressiveStats(

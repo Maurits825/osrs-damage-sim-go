@@ -32,7 +32,6 @@ class InputSetupConverter:
     def get_input_setup(json_data) -> InputSetup:
         global_npc = WikiData.get_npc(json_data["globalSettings"]["npc"]["id"])
 
-        # TODO maybe do this scaling in weapon or else where, also refactor when its in gear setup settings
         raid_level, path_level = InputSetupConverter.get_raid_level(global_npc, json_data)
 
         if global_npc.is_tob_entry_mode or global_npc.is_tob_normal_mode or global_npc.is_tob_hard_mode:

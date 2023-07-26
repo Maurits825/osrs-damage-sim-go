@@ -9,6 +9,7 @@ from model.npc.defensive_stats import DefensiveStats
 @dataclass()
 class NpcStats:
     name: str
+    id: int
 
     combat_stats: CombatStats
     base_combat_stats: CombatStats

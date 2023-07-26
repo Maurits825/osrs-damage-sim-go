@@ -67,7 +67,7 @@ class DamageSimStats:
         except TypeError:
             frequent = 0
 
-        return SimStats(float(average), int(maximum), int(minimum), int(frequent), int(chance_to_kill))
+        return SimStats(float(average), float(maximum), float(minimum), int(frequent), int(chance_to_kill))
 
     @staticmethod
     def get_ticks_stats(sim_stats: SimStats) -> TimeSimStats:

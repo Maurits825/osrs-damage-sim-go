@@ -14,8 +14,8 @@ class TimeSimStats:
 @dataclass()
 class SimStats:
     average: float
-    maximum: int
-    minimum: int
+    maximum: float
+    minimum: float
     most_frequent: int
 
     chance_to_kill: int
