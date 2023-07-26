@@ -1,0 +1,82 @@
+{
+  "tekton": {
+    "id": 7540,
+    "expectedStats": [
+      {
+        "hitpoints": 300,
+        "melee": 390,
+        "magic": 205,
+        "ranged": 1,
+        "defence": 205
+      },
+      {
+        "hitpoints": 600,
+        "melee": 421,
+        "magic": 221,
+        "ranged": 1,
+        "defence": 207
+      },
+      {
+        "hitpoints": 600,
+        "melee": 425,
+        "magic": 223,
+        "ranged": 1,
+        "defence": 209
+      },
+      {
+        "hitpoints": 900,
+        "melee": 429,
+        "magic": 225,
+        "ranged": 1,
+        "defence": 211
+      },
+      {
+        "hitpoints": 900,
+        "melee": 460,
+        "magic": 241,
+        "ranged": 1,
+        "defence": 213
+      }
+    ]
+  },
+  "Vasa crystal cm": {
+    "id": "7568_2",
+    "expectedStats": [
+      {
+        "hitpoints": 120,
+        "melee": 1,
+        "magic": 150,
+        "ranged": 1,
+        "defence": 100
+      },
+      {
+        "hitpoints": 240,
+        "melee": 1,
+        "magic": 162,
+        "ranged": 1,
+        "defence": 101
+      },
+      {
+        "hitpoints": 240,
+        "melee": 1,
+        "magic": 163,
+        "ranged": 1,
+        "defence": 102
+      },
+      {
+        "hitpoints": 360,
+        "melee": 1,
+        "magic": 165,
+        "ranged": 1,
+        "defence": 103
+      },
+      {
+        "hitpoints": 360,
+        "melee": 1,
+        "magic": 177,
+        "ranged": 1,
+        "defence": 104
+      }
+    ]
+  }
+}
