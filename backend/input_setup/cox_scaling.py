@@ -25,13 +25,11 @@ class CMScaleFactors:
 class CoxScaling:
     @staticmethod
     def scale_npc(cox_scaling_input: CoxScalingInput, npc: NpcStats):
-        if npc.is_challenge_mode and cox_scaling_input.party_size == 1:
-            return
-        elif npc.is_challenge_mode:
-            cox_scaling_input.party_size -= 1
+        # TODO remove this and we have to prob make a is_cm bool in input setup, similar to raid level
+        # TODO we then only show the normal cox npcs and have a checkbox for cm in FE
 
         scale_factors = CoxScaling.get_scale_factors(cox_scaling_input, npc)
-        cm_scale_factors = CoxScaling.get_cm_scale_factors(npc)
+        cm_scale_factors = CoxScaling.get_cm_scale_factors(cox_scaling_input, npc)
 
         npc.base_combat_stats.hitpoints = CoxScaling.apply_scaling(
             npc.base_combat_stats.hitpoints,
@@ -74,8 +72,8 @@ class CoxScaling:
         return ScaleFactors(player_hp, player_off_def, party_hp, party_defence, party_offence)
 
     @staticmethod
-    def get_cm_scale_factors(npc: NpcStats) -> CMScaleFactors:
-        if not npc.is_challenge_mode:
+    def get_cm_scale_factors(cox_scaling_input: CoxScalingInput, npc: NpcStats) -> CMScaleFactors:
+        if not cox_scaling_input.is_challenge_mode:
             return CMScaleFactors(1, 1, 1, 1)
 
         hp = (3 if "Great Olm" not in npc.name and "Glowing crystal" not in npc.name else 2) / 2

@@ -22,10 +22,11 @@ class CoxNpcs:
             return None, None
 
         npc_version = str(version.get("version", "").strip())
+        if "Challenge Mode" in npc_version:
+            return None, None
 
         doc = {"__source__": source}
-        if "Challenge Mode" in npc_version and "ChallengeMode" not in version["attributes"]:
-            version["attributes"].append(",ChallengeMode")
+
         if npc_id in docs:
             npc_id += "_" + str(vid)
         docs[npc_id] = doc
@@ -35,6 +36,6 @@ class CoxNpcs:
         if not any(filter_str in npc_version for filter_str in ["Normal", "claw", "Enraged"]):
             name += " " + str(version["version"]).strip()
 
-        name = name.replace('(', '').replace(')', '').replace('Challenge Mode', '').strip()
+        name = name.replace('(', '').replace(')', '').strip()
 
         return doc, name

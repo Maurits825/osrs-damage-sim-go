@@ -59,6 +59,7 @@ class InputSetupConverter:
         global_settings = GlobalSettings(global_npc, raid_level, path_level,
                                          json_data["globalSettings"]["teamSize"],
                                          json_data["globalSettings"]["iterations"],
+                                         json_data["globalSettings"]["isCoxChallengeMode"],
                                          json_data["globalSettings"]["isDetailedRun"])
         return InputSetup(
             global_settings=global_settings,

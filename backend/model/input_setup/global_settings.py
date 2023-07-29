@@ -7,10 +7,12 @@ from model.npc.npc_stats import NpcStats
 class GlobalSettings:
     npc: NpcStats
 
+    team_size: int
+    iterations: int
+
     raid_level: int
     path_level: int
 
-    team_size: int
-    iterations: int
+    is_cox_challenge_mode: bool
 
     is_detailed_run: bool = False
