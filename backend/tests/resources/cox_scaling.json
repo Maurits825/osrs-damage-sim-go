@@ -156,5 +156,84 @@
         }
       ]
     }
+  },
+  "Olm head": {
+    "id": "7551",
+    "expectedStats": {
+      "normal": [
+        {
+          "hitpoints": 800,
+          "melee": 250,
+          "magic": 250,
+          "ranged": 250,
+          "defence": 150
+        },
+        {
+          "hitpoints": 1200,
+          "melee": 270,
+          "magic": 270,
+          "ranged": 270,
+          "defence": 151
+        },
+        {
+          "hitpoints": 1600,
+          "melee": 272,
+          "magic": 272,
+          "ranged": 272,
+          "defence": 153
+        },
+        {
+          "hitpoints": 2000,
+          "melee": 275,
+          "magic": 275,
+          "ranged": 275,
+          "defence": 154
+        },
+        {
+          "hitpoints": 2400,
+          "melee": 295,
+          "magic": 295,
+          "ranged": 295,
+          "defence": 156
+        }
+      ],
+      "challengeMode": [
+        {
+          "hitpoints": 800,
+          "melee": 375,
+          "magic": 375,
+          "ranged": 375,
+          "defence": 225
+        },
+        {
+          "hitpoints": 1200,
+          "melee": 405,
+          "magic": 405,
+          "ranged": 405,
+          "defence": 226
+        },
+        {
+          "hitpoints": 1600,
+          "melee": 408,
+          "magic": 408,
+          "ranged": 408,
+          "defence": 229
+        },
+        {
+          "hitpoints": 2000,
+          "melee": 412,
+          "magic": 412,
+          "ranged": 412,
+          "defence": 231
+        },
+        {
+          "hitpoints": 2400,
+          "melee": 442,
+          "magic": 442,
+          "ranged": 442,
+          "defence": 234
+        }
+      ]
+    }
   }
 }
