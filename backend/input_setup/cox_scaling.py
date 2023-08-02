@@ -84,4 +84,3 @@ class CoxScaling:
         for scale in scaling_factors:
             value = math.floor(value * scale)
         return value
-
