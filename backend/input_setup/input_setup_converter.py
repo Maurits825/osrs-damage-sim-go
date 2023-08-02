@@ -1,6 +1,7 @@
 import copy
 import math
 
+from input_setup.cox_scaling import CoxScaling
 from input_setup.gear_ids import BLOWPIPE, UNARMED_EQUIVALENT
 from model.attack_style.weapon_category import WeaponCategory
 from model.boost import BoostType
@@ -8,6 +9,7 @@ from model.condition import Condition, ConditionVariables, ConditionComparison
 from model.equipped_gear import EquippedGear
 from model.gear_setup import GearSetup
 from model.gear_slot import GearSlot
+from model.input_setup.cox_scaling_input import CoxScalingInput
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
@@ -22,6 +24,7 @@ from weapons.custom_weapon import CUSTOM_WEAPONS
 from weapons.weapon_loader import WeaponLoader
 from wiki_data.wiki_data import WikiData
 
+# TODO maybe instead of cox_scaling, have a raid_scaling for cox/tob/toa?
 TOA_TEAM_SCALING = [1, 1.9, 2.8, 3.4, 4, 4.6, 5.2, 5.8]
 TOA_MAX_TEAM = 8
 TOB_MAX_TEAM = 5
@@ -31,11 +34,28 @@ class InputSetupConverter:
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
         global_npc = WikiData.get_npc(json_data["globalSettings"]["npc"]["id"])
-
         raid_level, path_level = InputSetupConverter.get_raid_level(global_npc, json_data)
 
+        global_settings = GlobalSettings(global_npc,
+                                         json_data["globalSettings"]["teamSize"],
+                                         json_data["globalSettings"]["iterations"],
+                                         raid_level, path_level,
+                                         json_data["globalSettings"]["isCoxChallengeMode"],
+                                         json_data["globalSettings"]["isDetailedRun"])
+        if global_npc.is_xerician:
+            cox_scaling_input = CoxScalingInput(global_settings.team_size, global_settings.is_cox_challenge_mode)
+            CoxScaling.scale_npc(cox_scaling_input, global_npc)
+
         if global_npc.is_tob_entry_mode or global_npc.is_tob_normal_mode or global_npc.is_tob_hard_mode:
-            InputSetupConverter.scale_tob_hp(global_npc, json_data)
+            InputSetupConverter.scale_tob(global_npc, global_settings.team_size)
+
+        if global_npc.location == Location.TOMBS_OF_AMASCUT:
+            InputSetupConverter.scale_toa(
+                global_npc,
+                global_settings.raid_level,
+                global_settings.path_level,
+                global_settings.team_size
+            )
 
         input_gear_setups = []
         for input_gear_setup in json_data["inputGearSetups"]:
@@ -56,11 +76,6 @@ class InputSetupConverter:
 
             input_gear_setups.append(InputGearSetup(gear_setup_settings, main_weapon, weapons))
 
-        global_settings = GlobalSettings(global_npc, raid_level, path_level,
-                                         json_data["globalSettings"]["teamSize"],
-                                         json_data["globalSettings"]["iterations"],
-                                         json_data["globalSettings"]["isCoxChallengeMode"],
-                                         json_data["globalSettings"]["isDetailedRun"])
         return InputSetup(
             global_settings=global_settings,
             input_gear_setups=input_gear_setups,
@@ -155,18 +170,20 @@ class InputSetupConverter:
             raid_level = json_data["globalSettings"].get("raidLevel")
             path_level = json_data["globalSettings"].get("pathLevel")
 
-            path_level_mult = 0.08 if path_level > 0 else 0.05
-            npc.base_combat_stats.hitpoints = int(
-                round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) *
-                      (1 + (path_level - 1) * 0.05 + path_level_mult) *
-                      TOA_TEAM_SCALING[min(json_data["globalSettings"]["teamSize"], TOA_MAX_TEAM) - 1], 0) * 10
-            )
-
         return raid_level, path_level
 
     @staticmethod
-    def scale_tob_hp(npc: NpcStats, json_data):
-        team_size = min(json_data["globalSettings"]["teamSize"], TOB_MAX_TEAM)
+    def scale_toa(npc, raid_level, path_level, team_size):
+        path_level_mult = 0.08 if path_level > 0 else 0.05
+        npc.base_combat_stats.hitpoints = int(
+            round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) *
+                  (1 + (path_level - 1) * 0.05 + path_level_mult) *
+                  TOA_TEAM_SCALING[min(team_size, TOA_MAX_TEAM) - 1], 0) * 10
+        )
+
+    @staticmethod
+    def scale_tob(npc: NpcStats, team_size):
+        team_size = min(team_size, TOB_MAX_TEAM)
 
         if team_size == 4:
             npc.base_combat_stats.hitpoints = math.floor(0.875 * npc.combat_stats.hitpoints)

@@ -25,9 +25,6 @@ class CMScaleFactors:
 class CoxScaling:
     @staticmethod
     def scale_npc(cox_scaling_input: CoxScalingInput, npc: NpcStats):
-        # TODO remove this and we have to prob make a is_cm bool in input setup, similar to raid level
-        # TODO we then only show the normal cox npcs and have a checkbox for cm in FE
-
         scale_factors = CoxScaling.get_scale_factors(cox_scaling_input, npc)
         cm_scale_factors = CoxScaling.get_cm_scale_factors(cox_scaling_input, npc)
 
@@ -79,7 +76,7 @@ class CoxScaling:
         hp = (3 if "Great Olm" not in npc.name and "Glowing crystal" not in npc.name else 2) / 2
         offence = 1.5
         magic = (12 if "Tekton" in npc.name else 15) / 10
-        defence = (12 if "Tekton" in npc.name and "Glowing crystal" not in npc.name else 15) / 10
+        defence = (10 if "Glowing crystal" in npc.name else 12 if "Tekton" in npc.name else 15) / 10
         return CMScaleFactors(hp, offence, magic, defence)
 
     @staticmethod

@@ -10,12 +10,15 @@ TEST_RESOURCE_FOLDER = Path(__file__).parent.parent / "tests/resources"
 
 
 MAX_PARTY_SIZE_TO_TEST = 5
-TEKTON_ID = 7540
-TEKTON_CM_ID = 7545
 
 
 class TestCoxScaling(unittest.TestCase):
     cox_scaling_stats: dict
+
+    @staticmethod
+    def format_message(npc_name, is_challenge_mode, party_size, stat_name):
+        name = npc_name + " (CM)" if is_challenge_mode else npc_name
+        return name + ", party size: " + str(party_size) + ", stat name: " + str(stat_name)
 
     @classmethod
     def setUpClass(cls):
@@ -27,34 +30,36 @@ class TestCoxScaling(unittest.TestCase):
             expected_stats = TestCoxScaling.cox_scaling_stats[npc_name]["expectedStats"]
             npc_id = TestCoxScaling.cox_scaling_stats[npc_name]["id"]
             for party_size in range(1, MAX_PARTY_SIZE_TO_TEST):
-                with self.subTest():
-                    npc = WikiData.get_npc(npc_id)
-                    cox_scaling_input = CoxScalingInput(party_size)
-                    CoxScaling.scale_npc(cox_scaling_input, npc)
+                for is_challenge_mode in [False, True]:
+                    with self.subTest():
+                        npc = WikiData.get_npc(npc_id)
+                        cox_scaling_input = CoxScalingInput(party_size, is_challenge_mode)
+                        CoxScaling.scale_npc(cox_scaling_input, npc)
 
-                    self.assertEqual(expected_stats[party_size - 1]["hitpoints"],
-                                     npc.base_combat_stats.hitpoints,
-                                     npc_name + str(party_size))
+                        cox_type = "challengeMode" if is_challenge_mode else "normal"
+                        self.assertEqual(expected_stats[cox_type][party_size - 1]["hitpoints"],
+                                         npc.base_combat_stats.hitpoints,
+                                         TestCoxScaling.format_message(npc_name, is_challenge_mode, party_size, "hitpoints"))
 
-                    self.assertEqual(expected_stats[party_size - 1]["melee"],
-                                     npc.base_combat_stats.attack,
-                                     npc_name + str(party_size))
+                        self.assertEqual(expected_stats[cox_type][party_size - 1]["melee"],
+                                         npc.base_combat_stats.attack,
+                                         TestCoxScaling.format_message(npc_name, is_challenge_mode, party_size, "melee attack"))
 
-                    self.assertEqual(expected_stats[party_size - 1]["melee"],
-                                     npc.base_combat_stats.strength,
-                                     npc_name + str(party_size))
+                        self.assertEqual(expected_stats[cox_type][party_size - 1]["melee"],
+                                         npc.base_combat_stats.strength,
+                                         TestCoxScaling.format_message(npc_name, is_challenge_mode, party_size, "melee strength"))
 
-                    self.assertEqual(expected_stats[party_size - 1]["magic"],
-                                     npc.base_combat_stats.magic,
-                                     npc_name + str(party_size))
+                        self.assertEqual(expected_stats[cox_type][party_size - 1]["magic"],
+                                         npc.base_combat_stats.magic,
+                                         TestCoxScaling.format_message(npc_name, is_challenge_mode, party_size, "magic"))
 
-                    self.assertEqual(expected_stats[party_size - 1]["ranged"],
-                                     npc.base_combat_stats.ranged,
-                                     npc_name + str(party_size))
+                        self.assertEqual(expected_stats[cox_type][party_size - 1]["ranged"],
+                                         npc.base_combat_stats.ranged,
+                                         TestCoxScaling.format_message(npc_name, is_challenge_mode, party_size, "ranged"))
 
-                    self.assertEqual(expected_stats[party_size - 1]["defence"],
-                                     npc.base_combat_stats.defence,
-                                     npc_name + str(party_size))
+                        self.assertEqual(expected_stats[cox_type][party_size - 1]["defence"],
+                                         npc.base_combat_stats.defence,
+                                         TestCoxScaling.format_message(npc_name, is_challenge_mode, party_size, "defence"))
 
 
 if __name__ == '__main__':

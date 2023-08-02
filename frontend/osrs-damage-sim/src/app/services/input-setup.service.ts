@@ -89,6 +89,7 @@ export class InputSetupService {
       npc: npc,
       raidLevel: inputSetupJson.globalSettings.raidLevel,
       pathLevel: inputSetupJson.globalSettings.pathLevel,
+      isCoxChallengeMode: inputSetupJson.globalSettings.isCoxChallengeMode,
       teamSize: inputSetupJson.globalSettings.teamSize,
       isDetailedRun: inputSetupJson.globalSettings.isDetailedRun,
     };

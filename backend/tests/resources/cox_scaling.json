@@ -1,82 +1,160 @@
 {
-  "tekton": {
+  "Tekton": {
     "id": 7540,
-    "expectedStats": [
-      {
-        "hitpoints": 300,
-        "melee": 390,
-        "magic": 205,
-        "ranged": 1,
-        "defence": 205
-      },
-      {
-        "hitpoints": 600,
-        "melee": 421,
-        "magic": 221,
-        "ranged": 1,
-        "defence": 207
-      },
-      {
-        "hitpoints": 600,
-        "melee": 425,
-        "magic": 223,
-        "ranged": 1,
-        "defence": 209
-      },
-      {
-        "hitpoints": 900,
-        "melee": 429,
-        "magic": 225,
-        "ranged": 1,
-        "defence": 211
-      },
-      {
-        "hitpoints": 900,
-        "melee": 460,
-        "magic": 241,
-        "ranged": 1,
-        "defence": 213
-      }
-    ]
+    "expectedStats": {
+      "normal": [
+        {
+          "hitpoints": 300,
+          "melee": 390,
+          "magic": 205,
+          "ranged": 1,
+          "defence": 205
+        },
+        {
+          "hitpoints": 600,
+          "melee": 421,
+          "magic": 221,
+          "ranged": 1,
+          "defence": 207
+        },
+        {
+          "hitpoints": 600,
+          "melee": 425,
+          "magic": 223,
+          "ranged": 1,
+          "defence": 209
+        },
+        {
+          "hitpoints": 900,
+          "melee": 429,
+          "magic": 225,
+          "ranged": 1,
+          "defence": 211
+        },
+        {
+          "hitpoints": 900,
+          "melee": 460,
+          "magic": 241,
+          "ranged": 1,
+          "defence": 213
+        }
+      ],
+      "challengeMode": [
+        {
+          "hitpoints": 450,
+          "melee": 585,
+          "magic": 246,
+          "ranged": 1,
+          "defence": 246
+        },
+        {
+          "hitpoints": 900,
+          "melee": 631,
+          "magic": 265,
+          "ranged": 1,
+          "defence": 248
+        },
+        {
+          "hitpoints": 900,
+          "melee": 637,
+          "magic": 267,
+          "ranged": 1,
+          "defence": 250
+        },
+        {
+          "hitpoints": 1350,
+          "melee": 643,
+          "magic": 270,
+          "ranged": 1,
+          "defence": 253
+        },
+        {
+          "hitpoints": 1350,
+          "melee": 690,
+          "magic": 289,
+          "ranged": 1,
+          "defence": 255
+        }
+      ]
+    }
   },
-  "Vasa crystal cm": {
-    "id": "7568_2",
-    "expectedStats": [
-      {
-        "hitpoints": 120,
-        "melee": 1,
-        "magic": 150,
-        "ranged": 1,
-        "defence": 100
-      },
-      {
-        "hitpoints": 240,
-        "melee": 1,
-        "magic": 162,
-        "ranged": 1,
-        "defence": 101
-      },
-      {
-        "hitpoints": 240,
-        "melee": 1,
-        "magic": 163,
-        "ranged": 1,
-        "defence": 102
-      },
-      {
-        "hitpoints": 360,
-        "melee": 1,
-        "magic": 165,
-        "ranged": 1,
-        "defence": 103
-      },
-      {
-        "hitpoints": 360,
-        "melee": 1,
-        "magic": 177,
-        "ranged": 1,
-        "defence": 104
-      }
-    ]
+  "Vasa crystal": {
+    "id": "7568",
+    "expectedStats": {
+      "normal": [
+        {
+          "hitpoints": 120,
+          "melee": 1,
+          "magic": 100,
+          "ranged": 1,
+          "defence": 100
+        },
+        {
+          "hitpoints": 240,
+          "melee": 1,
+          "magic": 108,
+          "ranged": 1,
+          "defence": 101
+        },
+        {
+          "hitpoints": 240,
+          "melee": 1,
+          "magic": 109,
+          "ranged": 1,
+          "defence": 102
+        },
+        {
+          "hitpoints": 360,
+          "melee": 1,
+          "magic": 110,
+          "ranged": 1,
+          "defence": 103
+        },
+        {
+          "hitpoints": 360,
+          "melee": 1,
+          "magic": 118,
+          "ranged": 1,
+          "defence": 104
+        }
+      ],
+      "challengeMode": [
+        {
+          "hitpoints": 120,
+          "melee": 1,
+          "magic": 150,
+          "ranged": 1,
+          "defence": 100
+        },
+        {
+          "hitpoints": 240,
+          "melee": 1,
+          "magic": 162,
+          "ranged": 1,
+          "defence": 101
+        },
+        {
+          "hitpoints": 240,
+          "melee": 1,
+          "magic": 163,
+          "ranged": 1,
+          "defence": 102
+        },
+        {
+          "hitpoints": 360,
+          "melee": 1,
+          "magic": 165,
+          "ranged": 1,
+          "defence": 103
+        },
+        {
+          "hitpoints": 360,
+          "melee": 1,
+          "magic": 177,
+          "ranged": 1,
+          "defence": 104
+        }
+      ]
+    }
   }
 }
