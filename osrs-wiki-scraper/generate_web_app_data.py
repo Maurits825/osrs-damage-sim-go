@@ -50,6 +50,8 @@ class GenerateWebAppData:
     def load_gear_slot_items(self):
         if not self.use_gear_slot_item_json:
             self.gear_slot_items = dict()
+            return
+
         try:
             with open(GEAR_SLOT_ITEM_JSON, 'r') as gear_slot_items_json:
                 self.gear_slot_items = json.load(gear_slot_items_json)
@@ -313,6 +315,6 @@ class GenerateWebAppData:
 if __name__ == '__main__':
     GenerateWebAppData.update_special_attack_json()
 
-    generate = GenerateWebAppData(False)
+    generate = GenerateWebAppData(True)  # TODO add click params
     generate.update_gear_slot_items_json()
     generate.update_unique_npcs_json()

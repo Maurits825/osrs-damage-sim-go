@@ -1,12 +1,27 @@
 CUSTOM_NAME_MAP = {
     "8060": "Vorkath (quest)",
     "8058": "Vorkath (quest)",
+
     "2042": "Zulrah (Serpentine/Ranged)",
     "2043": "Zulrah (Magma/Melee)",
     "2044": "Zulrah (Tanzanite/Mage)",
+
     "12077": "Phantom Muspah (Ranged)",
     "12078": "Phantom Muspah (Melee)",
     "12079": "Phantom Muspah (Shielded)",
+
+    "12215": "The Leviathan (quest)",
+    "12219": "The Leviathan (quest)",
+
+    "12193": "Duke Sucellus (quest)",
+    "12194": "Duke Sucellus (quest)",
+    "12195": "Duke Sucellus (quest)",
+
+    "12206": "The Whisperer (quest)",
+    "12207": "The Whisperer (quest)",
+
+    "12224": "Vardorvis (quest)",
+    "12228": "Vardorvis (quest)",
 }
 
 
