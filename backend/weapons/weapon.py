@@ -20,7 +20,7 @@ from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
-from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP
+from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS
 from wiki_data.wiki_data import WikiData
 
 ZULRAH_MAX_DMG = 50
@@ -64,6 +64,8 @@ class Weapon:
         self.verzik_dmg_cap = (
                         VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
                         else VERZIK_P1_RANGE_MAGE_DMG_CAP)
+
+        self.is_post_attack = npc.id in VARDORVIS
 
         self.max_hit = 0
         self.accuracy = 0
@@ -163,7 +165,19 @@ class Weapon:
                 self.hitsplat.hitsplats = hitsplats
                 self.hitsplat.damage = self.hitsplat.hitsplats
 
+        if self.is_post_attack:
+            self.post_attack()
+
         return self.hitsplat
+
+    def post_attack(self):
+        if self.npc.id in VARDORVIS:
+            self.npc.combat_stats.defence = self.npc.base_combat_stats.defence - math.floor(
+                (0.1 * (self.npc.base_combat_stats.hitpoints - (self.npc.combat_stats.hitpoints - self.hitsplat.damage)))
+            )
+
+            self.update_target_defence_and_roll()
+            self.update_accuracy()
 
     def roll_damage(self):
         self.hitsplat.special_procs = []

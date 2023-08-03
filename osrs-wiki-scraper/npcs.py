@@ -60,6 +60,9 @@ def run():
                         util.copy(key, doc, version, lambda x: int(x))
                     except ValueError:
                         pass
+
+                if "Vardorvis" in doc["name"] and "def" not in doc:
+                    doc["def"] = int(version["def"].strip()[0:3])
                 # print("NPC {} has an non integer {}".format(name, key))
 
         except (KeyboardInterrupt, SystemExit):
