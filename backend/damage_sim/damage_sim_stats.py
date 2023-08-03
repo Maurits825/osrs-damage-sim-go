@@ -240,7 +240,7 @@ class DamageSimStats:
 
     @staticmethod
     def get_global_settings_label(global_settings: GlobalSettings):
-        title = (DamageSimStats.get_npc_title(global_settings.npc) +
+        title = (DamageSimStats.get_npc_title(global_settings) +
                  " | HP: " +
                  str(global_settings.npc.base_combat_stats.hitpoints))
 
@@ -254,10 +254,11 @@ class DamageSimStats:
         return title
 
     @staticmethod
-    def get_npc_title(npc: NpcStats) -> str:
+    def get_npc_title(global_settings: GlobalSettings) -> str:
+        npc = global_settings.npc
         npc_title = npc.name
 
-        if npc.is_challenge_mode:
+        if global_settings.is_cox_challenge_mode:
             npc_title += " (CM)"
         elif npc.is_tob_hard_mode:
             npc_title += " Hard Mode"

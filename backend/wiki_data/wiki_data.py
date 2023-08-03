@@ -80,7 +80,6 @@ class WikiData:
             is_undead=npc.get("isUndead", False),
             is_leafy=npc.get("isLeafy", False),
             is_xerician=npc.get("isXerician", False),
-            is_challenge_mode=npc.get("isChallengeMode", False),
             is_shade=npc.get("isShade", False),
             is_tob_entry_mode=npc.get("isTobEntryMode", False),
             is_tob_normal_mode=npc.get("isTobNormalMode", False),

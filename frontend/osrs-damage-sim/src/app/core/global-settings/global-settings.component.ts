@@ -26,11 +26,13 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     teamSize: 1,
     raidLevel: 0,
     pathLevel: 0,
+    isCoxChallengeMode: false,
     isDetailedRun: false,
   };
 
   showPathLevel = false;
   showRaidLevel = false;
+  showIsChallengeMode = false;
 
   selectedBoosts: Set<Boost> = new Set();
 
@@ -94,9 +96,11 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
     if (!npc) return;
 
+    //TODO is_xerican here to show cm checkbox
     const npcName = npc.name;
     this.showPathLevel = false;
     this.showRaidLevel = false;
+    this.showIsChallengeMode = npc.isXerician;
 
     if (TOA_PATH_LVL_NPCS.includes(npcName)) {
       this.showPathLevel = true;

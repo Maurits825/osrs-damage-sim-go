@@ -19,6 +19,8 @@ export interface GlobalSettings {
   raidLevel: number;
   pathLevel: number;
 
+  isCoxChallengeMode: boolean;
+
   teamSize: number;
   isDetailedRun: boolean;
 }

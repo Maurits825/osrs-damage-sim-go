@@ -9,7 +9,8 @@
       "teamSize": 1,
       "npc": {
         "id": "8360"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -159,7 +160,8 @@
       "teamSize": 1,
       "npc": {
         "id": "11730"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -309,7 +311,8 @@
       "teamSize": 1,
       "npc": {
         "id": "11778"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -462,7 +465,8 @@
       "pathLevel": 4,
       "npc": {
         "id": "11730"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -599,7 +603,6 @@
         "name": "Ice demon",
         "isDemon": true,
         "isXerician": true,
-        "isChallengeMode": true,
         "hitpoints": 210,
         "att": 1,
         "str": 1,
@@ -612,13 +615,14 @@
         "dmagic": 60,
         "drange": 140,
         "size": 2,
-        "id": "7585"
+        "id": "7584"
       },
       "iterations": 1000,
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": true
     },
     "inputGearSetups": [
       {

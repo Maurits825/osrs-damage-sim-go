@@ -23,13 +23,16 @@
       "isDetailedRun": false,
       "teamSize": 1,
       "raidLevel": 0,
-      "pathLevel": 0
+      "pathLevel": 0,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -80,7 +83,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -94,7 +99,9 @@
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -145,7 +152,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -159,7 +168,9 @@
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -208,7 +219,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -222,7 +235,9 @@
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -270,7 +285,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,

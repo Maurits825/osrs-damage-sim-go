@@ -32,7 +32,6 @@ class NpcStats:
     is_vampyre3: bool = False
     is_leafy: bool = False
     is_xerician: bool = False
-    is_challenge_mode: bool = False
     is_shade: bool = False
     is_tob_entry_mode: bool = False
     is_tob_normal_mode: bool = False

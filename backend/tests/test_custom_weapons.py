@@ -2,6 +2,8 @@ import json
 import unittest
 from pathlib import Path
 
+from input_setup.cox_scaling import CoxScaling
+from model.input_setup.cox_scaling_input import CoxScalingInput
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from wiki_data.wiki_data import WikiData
 
@@ -21,8 +23,12 @@ class TestCustomWeapons(unittest.TestCase):
             TestCustomWeapons.spec_input_setups = json.load(f)
 
     def test_dragon_warhammer_tekton(self):
-        tekton_cm_id = 7545
-        npc = WikiData.get_npc(tekton_cm_id)
+        tekton_id = 7540
+        npc = WikiData.get_npc(tekton_id)
+
+        cox_scaling_input = CoxScalingInput(1, True)
+        CoxScaling.scale_npc(cox_scaling_input, npc)
+        npc.combat_stats.set_stats(npc.base_combat_stats)
 
         DragonWarhammer.drain_stats(npc, 0)
         self.assertEqual(234, npc.combat_stats.defence)

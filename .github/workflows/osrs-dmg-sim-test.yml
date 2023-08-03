@@ -67,7 +67,7 @@ jobs:
     - name: Lint with flake8
       run: |
         . ${{ env.VENV_FOLDER }}/bin/activate
-        flake8 . --exclude ${{ env.VENV_FOLDER }} --count --max-complexity=10 --max-line-length=127 --statistics
+        flake8 . --exclude ${{ env.VENV_FOLDER }},./tests --count --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Test with unittest
       run: |

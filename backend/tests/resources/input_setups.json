@@ -9,7 +9,8 @@
       "teamSize": 1,
       "npc": {
         "id": "8059"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -103,7 +104,8 @@
       "teamSize": 1,
       "npc": {
         "id": "5862"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -194,7 +196,8 @@
       "teamSize": 1,
       "npc": {
         "id": "7551"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -285,7 +288,8 @@
       "teamSize": 1,
       "npc": {
         "id": "7540"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -374,7 +378,8 @@
       "teamSize": 1,
       "npc": {
         "id": "8059"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -467,7 +472,8 @@
       "teamSize": 1,
       "npc": {
         "id": "8"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -560,7 +566,8 @@
       "teamSize": 1,
       "npc": {
         "id": "499"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -649,7 +656,8 @@
       "teamSize": 1,
       "npc": {
         "id": "7604"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -739,7 +747,8 @@
       "teamSize": 1,
       "npc": {
         "id": "11730"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -828,8 +837,9 @@
       "raidLevel": 0,
       "pathLevel": 0,
       "npc": {
-        "id": "7554"
-      }
+        "id": "7551"
+      },
+      "isCoxChallengeMode": true
     },
     "inputGearSetups": [
       {
@@ -910,7 +920,8 @@
       "pathLevel": 0,
       "npc": {
         "id": "7552"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1002,7 +1013,8 @@
       "pathLevel": 0,
       "npc": {
         "id": "8387"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1093,7 +1105,8 @@
       "pathLevel": 0,
       "npc": {
         "id": "7286"
-      }
+      },
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1181,7 +1194,6 @@
       "npc": {
         "name": "Tekton",
         "isXerician": true,
-        "isChallengeMode": true,
         "hitpoints": 450,
         "att": 585,
         "str": 585,
@@ -1194,12 +1206,13 @@
         "dslash": 165,
         "dcrush": 105,
         "size": 4,
-        "id": "7545"
+        "id": "7540"
       },
       "raidLevel": 0,
       "pathLevel": 0,
       "teamSize": 1,
-      "isDetailedRun": true
+      "isDetailedRun": true,
+      "isCoxChallengeMode": true
     },
     "inputGearSetups": [
       {
@@ -1212,7 +1225,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["super_combat"]
+          "boosts": [
+            "super_combat"
+          ]
         },
         "mainGearSetup": {
           "setupName": "Inquisitor's mace",
@@ -1258,7 +1273,9 @@
           "attackStyle": "Pummel (Crush/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1296,7 +1313,8 @@
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1400,7 +1418,8 @@
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1499,7 +1518,8 @@
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1600,7 +1620,8 @@
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1703,7 +1724,8 @@
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
@@ -1802,7 +1824,8 @@
       "teamSize": 1,
       "raidLevel": 0,
       "pathLevel": 0,
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "isCoxChallengeMode": false
     },
     "inputGearSetups": [
       {
