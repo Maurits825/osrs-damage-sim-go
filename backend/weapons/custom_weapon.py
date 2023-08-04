@@ -7,6 +7,7 @@ from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.custom_weapons.fang import Fang
 from weapons.custom_weapons.gadderhammer import Gadderhammer
 from weapons.custom_weapons.scythe import Scythe
+from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
 from weapons.custom_weapons.twisted_bow import TwistedBow
 from weapons.custom_weapons.zaryte_crossbow import ZaryteCrossbow
 
@@ -22,6 +23,7 @@ CUSTOM_WEAPONS = {
     "Gadderhammer": Gadderhammer,
     "Arclight": Arclight,
     "Dawnbringer": Dawnbringer,
+    "Soulreaper axe": SoulreaperAxe,
 }
 
 # TODO generic KERIS weapon for the 1/51 triple dmg?
