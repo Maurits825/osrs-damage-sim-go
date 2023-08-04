@@ -34,6 +34,8 @@ class SoulreaperAxe(Weapon):
 
         return hitsplat
 
+    # TODO special attack... uses stacks not spec energy
+
     def get_dps_max_hit(self):
         self.prayer_multiplier.strength += MAX_MIGHTY_STACK * MIGHTY_STACK_MULTIPLIER
 
