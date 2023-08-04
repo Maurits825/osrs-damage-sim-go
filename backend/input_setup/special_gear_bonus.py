@@ -101,15 +101,15 @@ class SpecialGearBonus:
                 special_gear_bonus.melee.strength_boost.append(1.2)
 
         if is_in_wilderness:
-            if CRAWS_BOW in gear.ids:
+            if any(bow in gear.ids for bow in CRAWS_BOW):
                 special_gear_bonus.ranged.attack_boost.append(1.5)
                 special_gear_bonus.ranged.strength_boost.append(1.5)
-            elif VIGGORA_MACE in gear.ids:
+            elif any(mace in gear.ids for mace in VIGGORA_MACE):
                 special_gear_bonus.melee.attack_boost.append(1.5)
                 special_gear_bonus.melee.strength_boost.append(1.5)
-            elif THAMMARON_SCEPTRE in gear.ids:
-                special_gear_bonus.magic.attack_boost.append(2)
-                special_gear_bonus.magic.strength_boost.append(1.25)
+            elif any(scepter in gear.ids for scepter in THAMMARON_SCEPTRE):
+                special_gear_bonus.magic.attack_boost.append(1.5)
+                special_gear_bonus.magic.strength_boost.append(1.5)
 
         if TOME_OF_WATER in gear.ids:
             if "Water" in spell:
