@@ -1,4 +1,5 @@
 from weapons.custom_weapons.accursed_sceptre import AccursedSceptre
+from weapons.custom_weapons.ahrim_staff import AhrimStaff
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.bone_dagger import BoneDagger
@@ -29,7 +30,8 @@ CUSTOM_WEAPONS = {
     "Soulreaper axe": SoulreaperAxe,
     "Webweaver bow": WebweaverBow,
     "Accursed sceptre": AccursedSceptre,
-    "Ursine Chainmace": UrsineChainmace,
+    "Ursine chainmace": UrsineChainmace,
+    "Ahrim's staff": AhrimStaff,
 }
 
 # TODO generic KERIS weapon for the 1/51 triple dmg?

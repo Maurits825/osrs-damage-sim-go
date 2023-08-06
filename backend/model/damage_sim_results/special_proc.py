@@ -8,3 +8,4 @@ class SpecialProc(str, Enum):
     BRIMSTONE = "Brimstone"
     ZULRAH_DMG_CAP = "ZulrahDmgCap"
     MIGHTY_STACK_GAIN = "MightyStackGain"
+    AHRIM_INCREASED_DMG = "AhrimIncreasedDmg"
