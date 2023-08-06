@@ -107,7 +107,7 @@ class SpecialGearBonus:
             elif any(mace in gear.ids for mace in VIGGORA_MACE):
                 special_gear_bonus.melee.attack_boost.append(1.5)
                 special_gear_bonus.melee.strength_boost.append(1.5)
-            elif any(scepter in gear.ids for scepter in THAMMARON_SCEPTRE):
+            elif any(scepter in gear.ids for scepter in WIDLY_SCEPTRE):
                 special_gear_bonus.magic.attack_boost.append(1.5)
                 special_gear_bonus.magic.strength_boost.append(1.5)
 

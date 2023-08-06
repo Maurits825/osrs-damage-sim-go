@@ -5,7 +5,7 @@ import random
 
 from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
-                                  DAWNBRINGER, HARM_STAFF, OSMUMTEN_FANG)
+                                  DAWNBRINGER, HARM_STAFF, OSMUMTEN_FANG, THAMMARON_SCEPTRE, ACCURSED_SCEPTRE)
 from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
@@ -414,6 +414,10 @@ class Weapon:
             return math.floor(self.combat_stats.magic / 3) - 1
         elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
             return math.floor(self.combat_stats.magic / 3) + 1
+        elif self.gear_setup.gear_stats.id in THAMMARON_SCEPTRE:
+            return math.floor(self.combat_stats.magic / 3) - 8
+        elif self.gear_setup.gear_stats.id in ACCURSED_SCEPTRE:
+            return math.floor(self.combat_stats.magic / 3) - 6
         else:
             return 0
 
