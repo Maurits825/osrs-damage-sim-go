@@ -10,6 +10,7 @@ from weapons.custom_weapons.gadderhammer import Gadderhammer
 from weapons.custom_weapons.scythe import Scythe
 from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
 from weapons.custom_weapons.twisted_bow import TwistedBow
+from weapons.custom_weapons.ursine_chainmace import UrsineChainmace
 from weapons.custom_weapons.webweaver_bow import WebweaverBow
 from weapons.custom_weapons.zaryte_crossbow import ZaryteCrossbow
 
@@ -28,6 +29,7 @@ CUSTOM_WEAPONS = {
     "Soulreaper axe": SoulreaperAxe,
     "Webweaver bow": WebweaverBow,
     "Accursed sceptre": AccursedSceptre,
+    "Ursine Chainmace": UrsineChainmace,
 }
 
 # TODO generic KERIS weapon for the 1/51 triple dmg?
