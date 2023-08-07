@@ -9,3 +9,4 @@ class SpecialProc(str, Enum):
     ZULRAH_DMG_CAP = "ZulrahDmgCap"
     MIGHTY_STACK_GAIN = "MightyStackGain"
     AHRIM_INCREASED_DMG = "AhrimIncreasedDmg"
+    VERAC_DEFILER = "VeracDefiler"

@@ -12,6 +12,7 @@ from weapons.custom_weapons.scythe import Scythe
 from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
 from weapons.custom_weapons.twisted_bow import TwistedBow
 from weapons.custom_weapons.ursine_chainmace import UrsineChainmace
+from weapons.custom_weapons.verac_flail import VeracFlail
 from weapons.custom_weapons.webweaver_bow import WebweaverBow
 from weapons.custom_weapons.zaryte_crossbow import ZaryteCrossbow
 
@@ -32,9 +33,9 @@ CUSTOM_WEAPONS = {
     "Accursed sceptre": AccursedSceptre,
     "Ursine chainmace": UrsineChainmace,
     "Ahrim's staff": AhrimStaff,
+    "Verac's flail": VeracFlail,
 }
 
 # TODO generic KERIS weapon for the 1/51 triple dmg?
-# TODO verac flail i guess for the 25% guranteed hit
 # TODO darkbow
 # TODO msb spec

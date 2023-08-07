@@ -360,6 +360,11 @@ class Weapon:
                 accuracy, max_hits, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
             )
 
+        total_average_damage = self.get_average_damage(max_hits)
+
+        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+
+    def get_average_damage(self, max_hits: int | list[int]) -> float:
         total_average_damage = 0
         max_hits = [max_hits] if not isinstance(max_hits, list) else max_hits
         for max_hit in max_hits:
@@ -379,7 +384,7 @@ class Weapon:
             average_damage = damage_sum / (max_hit + 1)
             total_average_damage += average_damage
 
-        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        return total_average_damage
 
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
