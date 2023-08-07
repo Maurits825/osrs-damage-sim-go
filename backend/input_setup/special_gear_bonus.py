@@ -82,7 +82,7 @@ class SpecialGearBonus:
                 special_gear_bonus.magic.strength_boost.append(1.1)
 
         if npc.is_kalphite and "keris" in all_gear_names:
-            if any(keris in gear.ids for keris in [KERIS, KERIS_PARTISAN, KERIS_SUN, KERIS_CORRUPTION]):
+            if any(keris in gear.ids for keris in KERIS):
                 special_gear_bonus.melee.strength_boost.append(1.33)
             elif KERIS_BREACHING in gear.ids:
                 special_gear_bonus.melee.attack_boost.append(1.33)

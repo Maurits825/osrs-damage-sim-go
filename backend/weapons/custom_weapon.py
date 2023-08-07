@@ -9,6 +9,7 @@ from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.custom_weapons.fang import Fang
 from weapons.custom_weapons.gadderhammer import Gadderhammer
 from weapons.custom_weapons.karil_crossbow import KarilCrossbow
+from weapons.custom_weapons.keris import Keris
 from weapons.custom_weapons.scythe import Scythe
 from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
 from weapons.custom_weapons.twisted_bow import TwistedBow
@@ -36,8 +37,8 @@ CUSTOM_WEAPONS = {
     "Ahrim's staff": AhrimStaff,
     "Verac's flail": VeracFlail,
     "Karil's crossbow": KarilCrossbow,
+    "Keris": Keris,
 }
 
-# TODO generic KERIS weapon for the 1/51 triple dmg?
 # TODO darkbow
 # TODO msb spec

@@ -179,7 +179,7 @@ class Weapon:
             self.update_target_defence_and_roll()
             self.update_accuracy()
 
-    def roll_damage(self):
+    def roll_damage(self): # TODO consider refactoring so that this returns damage, roll hit? so attack() sets hitsplat
         self.hitsplat.special_procs = []
 
         if self.special_bolt:

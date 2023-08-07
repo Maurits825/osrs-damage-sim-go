@@ -96,7 +96,6 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
     if (!npc) return;
 
-    //TODO is_xerican here to show cm checkbox
     const npcName = npc.name;
     this.showPathLevel = false;
     this.showRaidLevel = false;

@@ -8040,6 +8040,7 @@
  },
  {
   "name": "Giant Scarab",
+  "isKalphite": true,
   "hitpoints": 130,
   "att": 169,
   "str": 190,
@@ -8057,6 +8058,7 @@
  },
  {
   "name": "Giant Scarab (hard)",
+  "isKalphite": true,
   "hitpoints": 255,
   "att": 305,
   "str": 342,
@@ -12608,6 +12610,7 @@
  },
  {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 100,
   "str": 90,
@@ -12624,6 +12627,7 @@
  },
  {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 105,
   "str": 90,
@@ -12643,6 +12647,7 @@
  },
  {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 100,
   "str": 90,
@@ -12658,6 +12663,7 @@
  },
  {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 105,
   "str": 90,

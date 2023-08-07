@@ -52,6 +52,9 @@ def run():
                     for attr in attrs:
                         doc[f"is{attr[0].upper()}{attr[1:]}"] = True
 
+                if "cat" in version and version["cat"].strip() == "Scabarites":
+                    doc["isKalphite"] = True
+
                 if is_cox or is_tob or custom_name:
                     doc["name"] = custom_name
 
