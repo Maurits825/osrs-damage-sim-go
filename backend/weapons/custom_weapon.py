@@ -3,6 +3,7 @@ from weapons.custom_weapons.ahrim_staff import AhrimStaff
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.bone_dagger import BoneDagger
+from weapons.custom_weapons.crystal_halberd import CrystalHalberd
 from weapons.custom_weapons.dawnbringer import Dawnbringer
 from weapons.custom_weapons.dragon_claws import DragonClaws
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
@@ -38,6 +39,7 @@ CUSTOM_WEAPONS = {
     "Verac's flail": VeracFlail,
     "Karil's crossbow": KarilCrossbow,
     "Keris": Keris,
+    "Crystal halberd": CrystalHalberd,
 }
 
 # TODO darkbow

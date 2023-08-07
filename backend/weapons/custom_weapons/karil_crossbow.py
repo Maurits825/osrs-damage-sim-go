@@ -26,6 +26,7 @@ class KarilCrossbow(Weapon):
             if random.random() <= SPEC_CHANCE:
                 self.hitsplat.hitsplats = [self.hitsplat.damage, math.floor(self.hitsplat.damage / 2)]
                 self.hitsplat.damage = sum(self.hitsplat.hitsplats)
+                self.hitsplat.roll_hits = [self.hitsplat.roll_hits, self.hitsplat.roll_hits]
                 self.hitsplat.special_procs.append(SpecialProc.KARIL_DOUBLE_HIT)
 
     def get_dps(self):
