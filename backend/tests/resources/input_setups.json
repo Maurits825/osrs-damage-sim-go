@@ -2315,5 +2315,110 @@
         "fillGearSetups": []
       }
     ]
+  },
+  "Arcane scarab 300/2 size 4 max breaching keris scp": {
+    "expectedDps": 9.96394802,
+    "globalSettings": {
+      "npc": {
+        "name": "Arcane Scarab",
+        "hitpoints": 40,
+        "att": 75,
+        "str": 80,
+        "def": 80,
+        "mage": 100,
+        "range": 95,
+        "strbns": 55,
+        "amagic": 250,
+        "mbns": 65,
+        "arange": 350,
+        "dstab": 15,
+        "dslash": 250,
+        "dcrush": 30,
+        "dmagic": 75,
+        "drange": 50,
+        "combat": 89,
+        "size": 3,
+        "id": "11726"
+      },
+      "iterations": 5000,
+      "teamSize": 4,
+      "raidLevel": 300,
+      "pathLevel": 2,
+      "isCoxChallengeMode": false,
+      "isDetailedRun": false
+    },
+    "inputGearSetups": [
+      {
+        "gearSetupSettings": {
+          "statDrains": [],
+          "boosts": [
+            "super_combat"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          }
+        },
+        "mainGearSetup": {
+          "setupName": "Keris partisan of breaching",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "id": 26382
+            },
+            "1": {
+              "id": 21285
+            },
+            "2": {
+              "id": 19553
+            },
+            "3": {
+              "id": 25981
+            },
+            "4": {
+              "id": 26384
+            },
+            "5": {
+              "id": 22322
+            },
+            "7": {
+              "id": 26386
+            },
+            "9": {
+              "id": 22981
+            },
+            "10": {
+              "id": 13239
+            },
+            "12": {
+              "id": 11773
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": {
+            "id": 11230
+          },
+          "attackStyle": "Lunge (Stab/Aggressive)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": [
+            "piety"
+          ],
+          "conditions": [],
+          "statDrain": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        "fillGearSetups": []
+      }
+    ]
   }
 }

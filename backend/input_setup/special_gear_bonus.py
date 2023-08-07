@@ -84,9 +84,8 @@ class SpecialGearBonus:
         if npc.is_kalphite and "keris" in all_gear_names:
             if any(keris in gear.ids for keris in KERIS):
                 special_gear_bonus.melee.strength_boost.append(1.33)
-            elif KERIS_BREACHING in gear.ids:
+            if KERIS_BREACHING in gear.ids:
                 special_gear_bonus.melee.attack_boost.append(1.33)
-                special_gear_bonus.melee.strength_boost.append(1.33)
 
         if npc.is_demon and ARCLIGHT in gear.ids:
             special_gear_bonus.melee.attack_boost.append(1.7)

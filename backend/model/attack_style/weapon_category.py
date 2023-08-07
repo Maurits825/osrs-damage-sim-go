@@ -66,8 +66,8 @@ class WeaponCategory(Enum):
     ]
     PARTISAN = [
         AttackStyle("Stab (Stab/Accurate)", AttackType.STAB, CombatStyle.ACCURATE),
-        AttackStyle("Lunge (Stab/Aggressive)", AttackType.STAB, CombatStyle.ACCURATE),
-        AttackStyle("Pound (Crush/Aggressive)", AttackType.CRUSH, CombatStyle.ACCURATE),
+        AttackStyle("Lunge (Stab/Aggressive)", AttackType.STAB, CombatStyle.AGGRESSIVE),
+        AttackStyle("Pound (Crush/Aggressive)", AttackType.CRUSH, CombatStyle.AGGRESSIVE),
         AttackStyle("Block (Stab/Defensive)", AttackType.STAB, CombatStyle.ACCURATE)
     ]
     PICKAXE = [
