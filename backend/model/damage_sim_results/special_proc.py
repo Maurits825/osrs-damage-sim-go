@@ -10,3 +10,4 @@ class SpecialProc(str, Enum):
     MIGHTY_STACK_GAIN = "MightyStackGain"
     AHRIM_INCREASED_DMG = "AhrimIncreasedDmg"
     VERAC_DEFILER = "VeracDefiler"
+    KARIL_DOUBLE_HIT = "KarilDoubleHit"
