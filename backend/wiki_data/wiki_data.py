@@ -89,6 +89,10 @@ class WikiData:
         )
 
     @staticmethod
+    def get_item(item_id: int) -> dict:
+        return WikiData.items_json[str(item_id)]
+
+    @staticmethod
     def get_special_attack(item_name: str) -> int:
         for key in WikiData.special_attack:
             if key in item_name:

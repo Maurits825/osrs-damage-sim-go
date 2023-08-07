@@ -5,6 +5,7 @@ from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.bone_dagger import BoneDagger
 from weapons.custom_weapons.crystal_halberd import CrystalHalberd
 from weapons.custom_weapons.dawnbringer import Dawnbringer
+from weapons.custom_weapons.dinhs_bulwark import DinhsBulwark
 from weapons.custom_weapons.dragon_claws import DragonClaws
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.custom_weapons.fang import Fang
@@ -40,6 +41,7 @@ CUSTOM_WEAPONS = {
     "Karil's crossbow": KarilCrossbow,
     "Keris": Keris,
     "Crystal halberd": CrystalHalberd,
+    "Dinh's bulwark": DinhsBulwark,
 }
 
 # TODO darkbow
