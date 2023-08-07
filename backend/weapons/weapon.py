@@ -198,8 +198,7 @@ class Weapon:
         damage = math.floor(damage * self.damage_multiplier)
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
-                                   accuracy=self.accuracy, max_hits=self.max_hit,
-                                   special_proc=self.hitsplat.special_procs)
+                                   accuracy=self.accuracy, max_hits=self.max_hit)
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()

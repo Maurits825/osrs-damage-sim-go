@@ -28,7 +28,7 @@ class Dawnbringer(Weapon):
         damage = int((random.random() * (SPEC_MAX_HIT - SPEC_MIN_HIT + 1)) + SPEC_MIN_HIT)
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=True,
-                                   accuracy=self.accuracy, max_hits=self.max_hit, special_proc=None)
+                                   accuracy=self.accuracy, max_hits=self.max_hit)
 
     def get_dps(self):
         if not self.gear_setup.is_special_attack:

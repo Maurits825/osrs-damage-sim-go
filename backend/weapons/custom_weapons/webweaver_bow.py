@@ -21,8 +21,7 @@ class WebweaverBow(Weapon):
             damages.append(damage)
 
         self.hitsplat.set_hitsplat(damage=sum(damages), hitsplats=damages, roll_hits=roll_hits,
-                                   accuracy=self.accuracy, max_hits=self.max_hit,
-                                   special_proc=self.hitsplat.special_procs)
+                                   accuracy=self.accuracy, max_hits=self.max_hit)
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:

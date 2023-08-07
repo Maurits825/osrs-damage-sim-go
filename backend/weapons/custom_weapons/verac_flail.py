@@ -35,7 +35,7 @@ class VeracFlail(Weapon):
     def get_dps(self):
         if not self.is_set:
             return super().get_dps()
-        
+
         accuracy = self.get_accuracy()
         max_hits = self.get_dps_max_hit()
 
