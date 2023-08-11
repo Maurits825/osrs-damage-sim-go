@@ -36,6 +36,7 @@ class TestDamageSimRunner(unittest.TestCase):
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.input_setups[setup_name])
 
                 input_setup.global_settings.iterations = TEST_ITERATIONS
+                input_setup.global_settings.is_detailed_run = False
                 input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
 
                 total_damage_sim_data, _, _ = DamageSimRunner.run_single_gear_setup(input_setup.global_settings,
@@ -61,6 +62,7 @@ class TestDamageSimRunner(unittest.TestCase):
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.spec_input_setups[setup_name])
 
                 input_setup.global_settings.iterations = TEST_ITERATIONS
+                input_setup.global_settings.is_detailed_run = False
                 input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
 
                 total_damage_sim_data, _, _ = DamageSimRunner.run_single_gear_setup(input_setup.global_settings,

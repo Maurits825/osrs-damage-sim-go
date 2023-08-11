@@ -8,6 +8,7 @@ from weapons.custom_weapons.dark_bow import DarkBow
 from weapons.custom_weapons.dawnbringer import Dawnbringer
 from weapons.custom_weapons.dinhs_bulwark import DinhsBulwark
 from weapons.custom_weapons.dragon_claws import DragonClaws
+from weapons.custom_weapons.dragon_dagger import DragonDagger
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.custom_weapons.fang import Fang
 from weapons.custom_weapons.gadderhammer import Gadderhammer
@@ -46,4 +47,5 @@ CUSTOM_WEAPONS = {
     "Dinh's bulwark": DinhsBulwark,
     "Dark bow": DarkBow,
     "Voidwaker": Voidwaker,
+    "Dragon dagger": DragonDagger,
 }
