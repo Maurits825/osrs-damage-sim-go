@@ -15,7 +15,7 @@ from model.gear_setup import GearSetup
 from model.hitsplat import Hitsplat
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
-from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS
+from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS, VERZIK_P2, VERZIK_P3
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
@@ -292,7 +292,7 @@ class Weapon:
             target_defence = self.npc.combat_stats.defence
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            if self.npc.id in ICE_DEMON:
+            if self.npc.id in ICE_DEMON or self.npc.id in VERZIK_P2 or self.npc.id in VERZIK_P3:
                 target_defence = self.npc.combat_stats.defence
             else:
                 target_defence = self.npc.combat_stats.magic
