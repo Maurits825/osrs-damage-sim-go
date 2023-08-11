@@ -18,6 +18,7 @@ from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
 from weapons.custom_weapons.twisted_bow import TwistedBow
 from weapons.custom_weapons.ursine_chainmace import UrsineChainmace
 from weapons.custom_weapons.verac_flail import VeracFlail
+from weapons.custom_weapons.voidwaker import Voidwaker
 from weapons.custom_weapons.webweaver_bow import WebweaverBow
 from weapons.custom_weapons.zaryte_crossbow import ZaryteCrossbow
 
@@ -44,6 +45,5 @@ CUSTOM_WEAPONS = {
     "Crystal halberd": CrystalHalberd,
     "Dinh's bulwark": DinhsBulwark,
     "Dark bow": DarkBow,
+    "Voidwaker": Voidwaker,
 }
-
-# TODO msb spec
