@@ -1678,5 +1678,157 @@
         ]
       }
     ]
+  },
+  "Rex max volatile magus ring spec": {
+    "expectedDps": 15.07005448,
+    "globalSettings": {
+      "npc": {
+        "name": "Dagannoth Rex",
+        "hitpoints": 255,
+        "att": 255,
+        "str": 255,
+        "def": 255,
+        "range": 255,
+        "dstab": 255,
+        "dslash": 255,
+        "dcrush": 255,
+        "dmagic": 10,
+        "drange": 255,
+        "combat": 303,
+        "size": 3,
+        "id": "2267"
+      },
+      "iterations": 1000,
+      "teamSize": 1,
+      "raidLevel": 0,
+      "pathLevel": 0,
+      "isCoxChallengeMode": false,
+      "isDetailedRun": false
+    },
+    "inputGearSetups": [
+      {
+        "gearSetupSettings": {
+          "statDrains": [],
+          "boosts": [
+            "saturated_heart"
+          ],
+          "combatStats": {
+            "attack": 99,
+            "strength": 99,
+            "ranged": 99,
+            "magic": 99,
+            "hitpoints": 99
+          }
+        },
+        "mainGearSetup": {
+          "setupName": "Volatile nightmare staff",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "id": 25912
+            },
+            "1": {
+              "id": 21780
+            },
+            "2": {
+              "id": 12002
+            },
+            "3": {
+              "id": 24424
+            },
+            "4": {
+              "id": 24666
+            },
+            "5": null,
+            "7": {
+              "id": 24668
+            },
+            "9": {
+              "id": 19544
+            },
+            "10": {
+              "id": 13235
+            },
+            "12": {
+              "id": 28313
+            },
+            "13": {
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": {
+            "id": 11230
+          },
+          "attackStyle": "Spell (Magic/Autocast)",
+          "spell": "Fire Surge",
+          "isSpecial": false,
+          "prayers": [
+            "augury"
+          ],
+          "conditions": [],
+          "statDrain": [],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        "fillGearSetups": [
+          {
+            "setupName": "Volatile nightmare staff",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "id": 25912
+              },
+              "1": {
+                "id": 21780
+              },
+              "2": {
+                "id": 12002
+              },
+              "3": {
+                "id": 24424
+              },
+              "4": {
+                "id": 24666
+              },
+              "5": null,
+              "7": {
+                "id": 24668
+              },
+              "9": {
+                "id": 19544
+              },
+              "10": {
+                "id": 13235
+              },
+              "12": {
+                "id": 28313
+              },
+              "13": {
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "id": 11230
+            },
+            "attackStyle": "Spell (Magic/Autocast)",
+            "spell": "Fire Surge",
+            "isSpecial": true,
+            "prayers": [
+              "augury"
+            ],
+            "conditions": [],
+            "statDrain": [],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true
+          }
+        ]
+      }
+    ]
   }
 }

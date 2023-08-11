@@ -20,6 +20,7 @@ from weapons.custom_weapons.twisted_bow import TwistedBow
 from weapons.custom_weapons.ursine_chainmace import UrsineChainmace
 from weapons.custom_weapons.verac_flail import VeracFlail
 from weapons.custom_weapons.voidwaker import Voidwaker
+from weapons.custom_weapons.volatile_staff import VolatileStaff
 from weapons.custom_weapons.webweaver_bow import WebweaverBow
 from weapons.custom_weapons.zaryte_crossbow import ZaryteCrossbow
 
@@ -48,4 +49,5 @@ CUSTOM_WEAPONS = {
     "Dark bow": DarkBow,
     "Voidwaker": Voidwaker,
     "Dragon dagger": DragonDagger,
+    "Volatile nightmare staff": VolatileStaff,
 }

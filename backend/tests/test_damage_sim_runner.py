@@ -64,6 +64,7 @@ class TestDamageSimRunner(unittest.TestCase):
                 input_setup.global_settings.iterations = TEST_ITERATIONS
                 input_setup.global_settings.is_detailed_run = False
                 input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
+                input_setup.input_gear_setups[0].main_weapon.gear_setup.is_special_attack = True
 
                 total_damage_sim_data, _, _ = DamageSimRunner.run_single_gear_setup(input_setup.global_settings,
                                                                                     input_setup.input_gear_setups[0])
