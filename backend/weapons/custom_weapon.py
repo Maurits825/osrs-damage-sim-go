@@ -4,6 +4,7 @@ from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.bone_dagger import BoneDagger
 from weapons.custom_weapons.crystal_halberd import CrystalHalberd
+from weapons.custom_weapons.dark_bow import DarkBow
 from weapons.custom_weapons.dawnbringer import Dawnbringer
 from weapons.custom_weapons.dinhs_bulwark import DinhsBulwark
 from weapons.custom_weapons.dragon_claws import DragonClaws
@@ -42,7 +43,7 @@ CUSTOM_WEAPONS = {
     "Keris": Keris,
     "Crystal halberd": CrystalHalberd,
     "Dinh's bulwark": DinhsBulwark,
+    "Dark bow": DarkBow,
 }
 
-# TODO darkbow
 # TODO msb spec

@@ -21,7 +21,7 @@ class TestWeaponDps(unittest.TestCase):
             TestWeaponDps.spec_input_setups = json.load(f)
 
     def test_input_setups_dps(self):
-        print("Testing setup dps:")
+        print("\nTesting setup dps:")
         for setup_name in TestWeaponDps.input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.input_setups[setup_name])
@@ -33,7 +33,7 @@ class TestWeaponDps(unittest.TestCase):
                 self.assertEqual(TestWeaponDps.input_setups[setup_name]["expectedDps"], dps, setup_name)
 
     def test_special_attack_input_setups_dps(self):
-        print("Testing spec setup dps:")
+        print("\nTesting spec setup dps:")
         for setup_name in TestWeaponDps.spec_input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.spec_input_setups[setup_name])

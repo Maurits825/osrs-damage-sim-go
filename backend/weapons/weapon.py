@@ -120,6 +120,8 @@ class Weapon:
 
     # flake8: noqa TODO look at refactoring this, maybe also cache is_verzik_p1, is_zulrah, is_corp, enum?
     def attack(self) -> Hitsplat:
+        self.hitsplat.special_procs = []
+
         self.roll_damage()
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
@@ -180,8 +182,6 @@ class Weapon:
             self.update_accuracy()
 
     def roll_damage(self): # TODO consider refactoring so that this returns damage, roll hit? so attack() sets hitsplat
-        self.hitsplat.special_procs = []
-
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_special(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
@@ -363,13 +363,16 @@ class Weapon:
 
         return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
+    def get_average_damage_hit(self, hit):
+        return math.floor(hit * self.damage_multiplier)
+
     def get_average_damage(self, max_hits: int | list[int]) -> float:
         total_average_damage = 0
         max_hits = [max_hits] if not isinstance(max_hits, list) else max_hits
         for max_hit in max_hits:
             damage_sum = 0
             for hit in range(max_hit + 1):
-                damage = math.floor(hit * self.damage_multiplier)
+                damage = self.get_average_damage_hit(hit)
                 if self.npc.id in ZULRAH:
                     if damage > ZULRAH_MAX_DMG:
                         damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2

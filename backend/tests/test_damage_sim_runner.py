@@ -22,7 +22,15 @@ class TestDamageSimRunner(unittest.TestCase):
         with open(TEST_RESOURCE_FOLDER / "spec_input_setups.json") as f:
             TestDamageSimRunner.spec_input_setups = json.load(f)
 
+    @staticmethod
+    def print_sim_dps_diff_message(expected_dps, sim_dps, setup_name):
+        dps_diff = abs(expected_dps - sim_dps)
+        dps_diff_percent = (dps_diff / expected_dps) * 100
+
+        print("dps diff: " + "{:.2f}".format(dps_diff_percent) + "%: " + setup_name)
+
     def test_input_setup_run_single_gear_setup(self):
+        print("\nTesting setup sim dps:")
         for setup_name in TestDamageSimRunner.input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.input_setups[setup_name])
@@ -40,7 +48,14 @@ class TestDamageSimRunner(unittest.TestCase):
                 self.assertAlmostEqual(TestDamageSimRunner.input_setups[setup_name]["expectedDps"],
                                        sim_dps_average, delta=1, msg=setup_name)
 
+                TestDamageSimRunner.print_sim_dps_diff_message(
+                    TestDamageSimRunner.input_setups[setup_name]["expectedDps"],
+                    sim_dps_average,
+                    setup_name
+                )
+
     def test_spec_input_setup_run_single_gear_setup(self):
+        print("\nTesting spec setup sim dps:")
         for setup_name in TestDamageSimRunner.spec_input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.spec_input_setups[setup_name])
@@ -57,6 +72,12 @@ class TestDamageSimRunner(unittest.TestCase):
                 sim_dps_average = dps_sum / TEST_ITERATIONS
                 self.assertAlmostEqual(TestDamageSimRunner.spec_input_setups[setup_name]["expectedDps"],
                                        sim_dps_average, delta=1, msg=setup_name)
+
+                TestDamageSimRunner.print_sim_dps_diff_message(
+                    TestDamageSimRunner.spec_input_setups[setup_name]["expectedDps"],
+                    sim_dps_average,
+                    setup_name
+                )
 
 
 if __name__ == '__main__':
