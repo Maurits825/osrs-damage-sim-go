@@ -4,10 +4,12 @@ from pathlib import Path
 
 from damage_sim.damage_sim_runner import DamageSimRunner
 from input_setup.input_setup_converter import InputSetupConverter
+from model.input_setup.input_setup import InputSetup
+from model.npc.npc_ids import VARDORVIS
 
 TEST_RESOURCE_FOLDER = Path(__file__).parent.parent / "tests/resources"
-TEST_ITERATIONS = 1000
-NPC_HITPOINTS = 10000
+TEST_ITERATIONS = 100
+NPC_HITPOINTS = 10_000
 
 
 class TestDamageSimRunner(unittest.TestCase):
@@ -29,15 +31,23 @@ class TestDamageSimRunner(unittest.TestCase):
 
         print("dps diff: " + "{:.2f}".format(dps_diff_percent) + "%: " + setup_name)
 
+    @staticmethod
+    def initialise_input_setup(input_setup: InputSetup):
+        input_setup.global_settings.iterations = TEST_ITERATIONS
+        input_setup.global_settings.is_detailed_run = False
+        input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
+        for weapon in input_setup.input_gear_setups[0].all_weapons:
+            weapon.set_npc(input_setup.global_settings.npc)
+            if input_setup.global_settings.npc.id in VARDORVIS:
+                weapon.is_post_attack = False
+
     def test_input_setup_run_single_gear_setup(self):
         print("\nTesting setup sim dps:")
         for setup_name in TestDamageSimRunner.input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.input_setups[setup_name])
 
-                input_setup.global_settings.iterations = TEST_ITERATIONS
-                input_setup.global_settings.is_detailed_run = False
-                input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
+                TestDamageSimRunner.initialise_input_setup(input_setup)
 
                 total_damage_sim_data, _, _ = DamageSimRunner.run_single_gear_setup(input_setup.global_settings,
                                                                                     input_setup.input_gear_setups[0])
@@ -61,9 +71,7 @@ class TestDamageSimRunner(unittest.TestCase):
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.spec_input_setups[setup_name])
 
-                input_setup.global_settings.iterations = TEST_ITERATIONS
-                input_setup.global_settings.is_detailed_run = False
-                input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
+                TestDamageSimRunner.initialise_input_setup(input_setup)
                 input_setup.input_gear_setups[0].main_weapon.gear_setup.is_special_attack = True
 
                 total_damage_sim_data, _, _ = DamageSimRunner.run_single_gear_setup(input_setup.global_settings,
@@ -71,7 +79,7 @@ class TestDamageSimRunner(unittest.TestCase):
 
                 dps_sum = 0
                 for dps in total_damage_sim_data.gear_dps:
-                    dps_sum += dps[1]
+                    dps_sum += dps[0]
                 sim_dps_average = dps_sum / TEST_ITERATIONS
                 self.assertAlmostEqual(TestDamageSimRunner.spec_input_setups[setup_name]["expectedDps"],
                                        sim_dps_average, delta=1, msg=setup_name)

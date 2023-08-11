@@ -39,7 +39,7 @@ class TestWeaponDps(unittest.TestCase):
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.spec_input_setups[setup_name])
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
                 gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
-                dps = round(gear_setup_dps_stats.theoretical_dps[1], 8)
+                dps = round(gear_setup_dps_stats.theoretical_dps[0], 8)
 
                 print(setup_name + " - " + str(dps))
                 self.assertEqual(TestWeaponDps.spec_input_setups[setup_name]["expectedDps"], dps, setup_name)

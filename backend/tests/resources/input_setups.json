@@ -462,7 +462,7 @@
       }
     ]
   },
-  "Nech max kodai ice barrage": {
+  "Nech max kodai ice barrage salt": {
     "expectedDps": 7.94313678,
     "globalSettings": {
       "iterations": 10000,
