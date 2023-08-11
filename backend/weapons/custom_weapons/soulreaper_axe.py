@@ -6,7 +6,6 @@ from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from weapons.weapon import Weapon
 
-
 MAX_MIGHTY_STACK = 5
 MIGHTY_STACK_MULTIPLIER = 0.06
 

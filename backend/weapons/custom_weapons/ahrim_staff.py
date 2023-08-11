@@ -25,5 +25,3 @@ class AhrimStaff(Weapon):
                 self.hitsplat.hitsplats = math.floor(self.hitsplat.damage * 1.3)
                 self.hitsplat.damage = self.hitsplat.hitsplats
                 self.hitsplat.special_procs.append(SpecialProc.AHRIM_INCREASED_DMG)
-
-

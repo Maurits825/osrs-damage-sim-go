@@ -7,7 +7,7 @@ from weapons.weapon import Weapon
 from wiki_data.wiki_data import WikiData
 
 
-class DinhsBulwark(Weapon): # TODO double hit on main target on spec, not in dps calc spreadsheet rn
+class DinhsBulwark(Weapon):  # TODO double hit on main target on spec, not in dps calc spreadsheet rn
     def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
         super().__init__(gear_setup, combat_stats, npc, raid_level)
 

@@ -34,4 +34,5 @@ class Dawnbringer(Weapon):
         if not self.gear_setup.is_special_attack:
             return super().get_dps()
 
-        return DpsCalculator.get_dps(SPEC_MIN_HIT + SPEC_MAX_HIT, self.accuracy, self.gear_setup.gear_stats.attack_speed)
+        return DpsCalculator.get_dps(SPEC_MIN_HIT + SPEC_MAX_HIT, self.accuracy,
+                                     self.gear_setup.gear_stats.attack_speed)

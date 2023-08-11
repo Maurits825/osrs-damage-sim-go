@@ -56,9 +56,10 @@ class CoxScaling:
     @staticmethod
     def get_scale_factors(cox_scaling_input: CoxScalingInput, npc: NpcStats) -> ScaleFactors:
         player_hp = 1 if "Great Olm" in npc.name else cox_scaling_input.max_combat / 126
-        player_off_def = 1 if "Great Olm" in npc.name else (math.floor(cox_scaling_input.max_hitpoints * 4/9) + 55) / 99
+        player_off_def = (1 if "Great Olm" in npc.name else
+                          (math.floor(cox_scaling_input.max_hitpoints * 4 / 9) + 55) / 99)
         party_hp = (1 if "Scavenger" in npc.name else
-                    (cox_scaling_input.party_size - (3 * math.floor(cox_scaling_input.party_size / 8)) + 1)/2
+                    (cox_scaling_input.party_size - (3 * math.floor(cox_scaling_input.party_size / 8)) + 1) / 2
                     if "Great Olm" in npc.name else
                     1 + math.floor(cox_scaling_input.party_size / 2))
         party_defence = (math.floor(math.sqrt(cox_scaling_input.party_size - 1)) +

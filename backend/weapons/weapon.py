@@ -15,12 +15,12 @@ from model.gear_setup import GearSetup
 from model.hitsplat import Hitsplat
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
+from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
-from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS
 from wiki_data.wiki_data import WikiData
 
 ZULRAH_MAX_DMG = 50
@@ -62,8 +62,8 @@ class Weapon:
         self.set_attack_speed()
 
         self.verzik_dmg_cap = (
-                        VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
-                        else VERZIK_P1_RANGE_MAGE_DMG_CAP)
+            VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
+            else VERZIK_P1_RANGE_MAGE_DMG_CAP)
 
         self.is_post_attack = npc.id in VARDORVIS
 
@@ -174,14 +174,16 @@ class Weapon:
 
     def post_attack(self):
         if self.npc.id in VARDORVIS:
-            self.npc.combat_stats.defence = self.npc.base_combat_stats.defence - math.floor(
-                (0.1 * (self.npc.base_combat_stats.hitpoints - (self.npc.combat_stats.hitpoints - self.hitsplat.damage)))
-            )
+            self.npc.combat_stats.defence = (
+                    self.npc.base_combat_stats.defence -
+                    math.floor(
+                        (0.1 * (self.npc.base_combat_stats.hitpoints -
+                                (self.npc.combat_stats.hitpoints - self.hitsplat.damage)))))
 
             self.update_target_defence_and_roll()
             self.update_accuracy()
 
-    def roll_damage(self): # TODO consider refactoring so that this returns damage, roll hit? so attack() sets hitsplat
+    def roll_damage(self):  # TODO consider refactoring so that this returns damage, roll hit? so attack() sets hitsplat
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_special(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
