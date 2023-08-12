@@ -16,6 +16,7 @@ from weapons.custom_weapons.fang import Fang
 from weapons.custom_weapons.gadderhammer import Gadderhammer
 from weapons.custom_weapons.karil_crossbow import KarilCrossbow
 from weapons.custom_weapons.keris import Keris
+from weapons.custom_weapons.saradomin_godsword import SaradominGodsword
 from weapons.custom_weapons.scythe import Scythe
 from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
 from weapons.custom_weapons.twisted_bow import TwistedBow
@@ -56,4 +57,5 @@ CUSTOM_WEAPONS = {
     "Ancient godsword": AncientGodsword,
     "Armadyl godsword": ArmadylGodsword,
     "Zamorak godsword": ZamorakGodsword,
+    "Saradomin godsword": SaradominGodsword,
 }
