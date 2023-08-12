@@ -1,5 +1,6 @@
 from weapons.custom_weapons.accursed_sceptre import AccursedSceptre
 from weapons.custom_weapons.ahrim_staff import AhrimStaff
+from weapons.custom_weapons.ancient_godsword import AncientGodsword
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.bone_dagger import BoneDagger
@@ -50,4 +51,5 @@ CUSTOM_WEAPONS = {
     "Voidwaker": Voidwaker,
     "Dragon dagger": DragonDagger,
     "Volatile nightmare staff": VolatileStaff,
+    "Ancient godsword": AncientGodsword,
 }

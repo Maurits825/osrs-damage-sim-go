@@ -19,7 +19,7 @@ class BandosGodsword(Weapon, StatDrainWeapon):
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:
-            return 2 * super().get_attack_roll()
+            return super().get_attack_roll() * 2
         else:
             return super().get_attack_roll()
 
