@@ -24,6 +24,7 @@ from weapons.custom_weapons.verac_flail import VeracFlail
 from weapons.custom_weapons.voidwaker import Voidwaker
 from weapons.custom_weapons.volatile_staff import VolatileStaff
 from weapons.custom_weapons.webweaver_bow import WebweaverBow
+from weapons.custom_weapons.zamorak_godsword import ZamorakGodsword
 from weapons.custom_weapons.zaryte_crossbow import ZaryteCrossbow
 
 CUSTOM_WEAPONS = {
@@ -53,5 +54,6 @@ CUSTOM_WEAPONS = {
     "Dragon dagger": DragonDagger,
     "Volatile nightmare staff": VolatileStaff,
     "Ancient godsword": AncientGodsword,
-    "Armadyl godsword": ArmadylGodsword
+    "Armadyl godsword": ArmadylGodsword,
+    "Zamorak godsword": ZamorakGodsword,
 }
