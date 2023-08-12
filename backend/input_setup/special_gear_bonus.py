@@ -4,6 +4,7 @@ from input_setup.gear_ids import *
 from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.equipped_gear import EquippedGear
+from model.gear_setup import GearSetup
 from model.npc.npc_stats import NpcStats
 from wiki_data.wiki_data import WikiData
 
@@ -199,3 +200,10 @@ class SpecialGearBonus:
                     return (50 + min(100, mining_lvl) + min(61, pickaxe[0])) / 150
 
         return 1
+
+    @staticmethod
+    def add_other_set_bonus(gear_setup: GearSetup):
+        if (all(virtus in gear_setup.equipped_gear.ids for virtus in VIRTUS_SET) and
+                any(ancient in gear_setup.spell.lower() for ancient in ["barrage", "blitz", "burst", "rush"])):
+            gear_setup.gear_stats.magic_strength += 9
+

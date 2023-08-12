@@ -57,6 +57,7 @@ class Weapon:
             self.gear_setup.equipped_gear, self.gear_setup.attack_style, self.gear_setup.is_on_slayer_task,
             self.gear_setup.is_in_wilderness, self.npc, self.gear_setup.spell
         )
+        SpecialGearBonus.add_other_set_bonus(self.gear_setup)
 
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
