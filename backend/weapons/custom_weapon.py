@@ -19,6 +19,7 @@ from weapons.custom_weapons.keris import Keris
 from weapons.custom_weapons.saradomin_godsword import SaradominGodsword
 from weapons.custom_weapons.scythe import Scythe
 from weapons.custom_weapons.soulreaper_axe import SoulreaperAxe
+from weapons.custom_weapons.toxic_blowpipe import ToxicBlowpipe
 from weapons.custom_weapons.twisted_bow import TwistedBow
 from weapons.custom_weapons.ursine_chainmace import UrsineChainmace
 from weapons.custom_weapons.verac_flail import VeracFlail
@@ -58,4 +59,5 @@ CUSTOM_WEAPONS = {
     "Armadyl godsword": ArmadylGodsword,
     "Zamorak godsword": ZamorakGodsword,
     "Saradomin godsword": SaradominGodsword,
+    "Toxic blowpipe": ToxicBlowpipe,
 }
