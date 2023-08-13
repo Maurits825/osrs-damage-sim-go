@@ -203,7 +203,9 @@ class SpecialGearBonus:
 
     @staticmethod
     def add_other_set_bonus(gear_setup: GearSetup):
-        if (all(virtus in gear_setup.equipped_gear.ids for virtus in VIRTUS_SET) and
+        if (gear_setup.spell and
                 any(ancient in gear_setup.spell.lower() for ancient in ["barrage", "blitz", "burst", "rush"])):
-            gear_setup.gear_stats.magic_strength += 9
+            for virtus in VIRTUS_SET:
+                if virtus in gear_setup.equipped_gear.ids:
+                    gear_setup.gear_stats.magic_strength += 3
 

@@ -32,10 +32,12 @@ class TestDamageSimRunner(unittest.TestCase):
         print("dps diff: " + "{:.2f}".format(dps_diff_percent) + "%: " + setup_name)
 
     @staticmethod
-    def initialise_input_setup(input_setup: InputSetup):
+    def initialise_input_setup(input_setup: InputSetup, limit_defence=False):
         input_setup.global_settings.iterations = TEST_ITERATIONS
         input_setup.global_settings.is_detailed_run = False
         input_setup.global_settings.npc.base_combat_stats.hitpoints = NPC_HITPOINTS
+        if limit_defence:
+            input_setup.global_settings.npc.min_defence = input_setup.global_settings.npc.base_combat_stats.defence
         for weapon in input_setup.input_gear_setups[0].all_weapons:
             weapon.set_npc(input_setup.global_settings.npc)
             if input_setup.global_settings.npc.id in VARDORVIS:
@@ -71,7 +73,7 @@ class TestDamageSimRunner(unittest.TestCase):
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.spec_input_setups[setup_name])
 
-                TestDamageSimRunner.initialise_input_setup(input_setup)
+                TestDamageSimRunner.initialise_input_setup(input_setup, limit_defence=True)
                 input_setup.input_gear_setups[0].main_weapon.gear_setup.is_special_attack = True
 
                 total_damage_sim_data, _, _ = DamageSimRunner.run_single_gear_setup(input_setup.global_settings,
