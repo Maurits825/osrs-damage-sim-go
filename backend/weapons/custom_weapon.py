@@ -4,6 +4,7 @@ from weapons.custom_weapons.ancient_godsword import AncientGodsword
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.armadyl_godsword import ArmadylGodsword
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
+from weapons.custom_weapons.barrelchest_anchor import BarrelchestAnchor
 from weapons.custom_weapons.bone_dagger import BoneDagger
 from weapons.custom_weapons.crystal_halberd import CrystalHalberd
 from weapons.custom_weapons.dark_bow import DarkBow
@@ -60,4 +61,5 @@ CUSTOM_WEAPONS = {
     "Zamorak godsword": ZamorakGodsword,
     "Saradomin godsword": SaradominGodsword,
     "Toxic blowpipe": ToxicBlowpipe,
+    "Barrelchest anchor": BarrelchestAnchor,
 }

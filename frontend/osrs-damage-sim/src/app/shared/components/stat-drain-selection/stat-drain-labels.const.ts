@@ -9,5 +9,6 @@ export const statDrainLabels: StatDrainLabel = {
   'Bandos godsword': 'Damage',
   'Arclight': 'Hits',
   'Bone dagger': 'Damage',
-  'Accursed sceptre': 'Hits'
+  'Accursed sceptre': 'Hits',
+  'Barrelchest anchor': 'Damage'
 };
