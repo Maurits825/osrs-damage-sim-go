@@ -31,6 +31,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailedRunResultsComponent } from './core/detailed-run-results/detailed-run-results.component';
 import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
 import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
+import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
     DetailedRunResultsComponent,
     TickToTimePipe,
     SpecialProcTextPipe,
+    QuickGearSelectComponent,
   ],
   imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
   providers: [
