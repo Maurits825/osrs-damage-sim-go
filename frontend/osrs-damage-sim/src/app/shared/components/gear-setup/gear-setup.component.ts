@@ -114,7 +114,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   loadGearSetupPreset(gearSetupPreset: GearSetupPreset) {
-    this.setCurrentGearByIds(gearSetupPreset.gearIds);
+    this.setCurrentGearByIds(gearSetupPreset.gearIds, true);
     this.gearSetup.setupName = gearSetupPreset.name;
     this.gearSetup.presetName = gearSetupPreset.name;
   }
@@ -219,7 +219,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectQuickGearSetup(quickGear: GearSet): void {
-    this.setCurrentGearByIds(quickGear.itemIds);
+  selectGearSetSetup(gearSet: GearSet): void {
+    this.setCurrentGearByIds(gearSet.itemIds);
   }
 }
