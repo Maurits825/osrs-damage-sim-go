@@ -7,7 +7,8 @@ from weapons.bolt_special_attack import BoltSpecialAttack
 
 class DiamondBolts(BoltSpecialAttack):
     def __init__(self):
-        self.proc_chance = 0.1
+        self.base_proc_chance = 0.1
+        self.proc_chance = self.base_proc_chance
         self.effect_value = 0.15
 
     def roll_damage(self, max_hit, hp):

@@ -19,7 +19,7 @@ class BoltLoader:
                 if bolt_id in gear.ids:
                     bolt = special_bolt()
                     if is_kandarin_diary:
-                        bolt.proc_chance = bolt.proc_chance * 1.1
+                        bolt.proc_chance = bolt.base_proc_chance * 1.1
                     return bolt
 
         return None

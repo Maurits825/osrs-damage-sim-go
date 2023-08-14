@@ -4,6 +4,7 @@ from weapons.custom_weapons.accursed_sceptre import AccursedSceptre
 from weapons.custom_weapons.ahrim_staff import AhrimStaff
 from weapons.custom_weapons.ancient_godsword import AncientGodsword
 from weapons.custom_weapons.arclight import Arclight
+from weapons.custom_weapons.armadyl_crossbow import ArmadylCrossbow
 from weapons.custom_weapons.armadyl_godsword import ArmadylGodsword
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
 from weapons.custom_weapons.barrelchest_anchor import BarrelchestAnchor
@@ -69,4 +70,5 @@ CUSTOM_WEAPONS = {
     "Dragon knife": DragonKnife,
     "Abyssal whip": AbyssalWhip,
     "Abyssal tentacle": AbyssalWhip,
+    "Armadyl crossbow": ArmadylCrossbow,
 }
