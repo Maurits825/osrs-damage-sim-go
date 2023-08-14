@@ -35,12 +35,7 @@ export class DamageSimService {
       shareReplay(1)
     );
 
-    this.gearSetupPresets$ = this.getGearSetupPresets().pipe(
-      map((presets: GearSetupPreset[]) =>
-        presets.sort((a: GearSetupPreset, b: GearSetupPreset) => a.name.localeCompare(b.name))
-      ),
-      shareReplay(1)
-    );
+    this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
 
     this.exampleSetups$ = this.getExampleSetups().pipe(shareReplay(1));
 
