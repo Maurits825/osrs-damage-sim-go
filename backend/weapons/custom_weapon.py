@@ -1,4 +1,5 @@
 from weapons.custom_weapons.abyssal_dagger import AbyssalDagger
+from weapons.custom_weapons.abyssal_whip import AbyssalWhip
 from weapons.custom_weapons.accursed_sceptre import AccursedSceptre
 from weapons.custom_weapons.ahrim_staff import AhrimStaff
 from weapons.custom_weapons.ancient_godsword import AncientGodsword
@@ -66,4 +67,6 @@ CUSTOM_WEAPONS = {
     "Barrelchest anchor": BarrelchestAnchor,
     "Abyssal dagger": AbyssalDagger,
     "Dragon knife": DragonKnife,
+    "Abyssal whip": AbyssalWhip,
+    "Abyssal tentacle": AbyssalWhip,
 }
