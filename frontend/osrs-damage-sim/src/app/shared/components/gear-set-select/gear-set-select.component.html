@@ -1,0 +1,14 @@
+<div>
+  <div class="btn-group me-2" role="group" style="height: '45px'">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      style="width: '55px'"
+      [title]="setup.label"
+      *ngFor="let setup of gearSetSetups[attackType]"
+      (click)="onSelectSetup(setup)"
+    >
+      <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" />
+    </button>
+  </div>
+</div>

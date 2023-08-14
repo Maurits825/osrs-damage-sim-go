@@ -12,7 +12,7 @@ import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { QuickGear } from 'src/app/model/damage-sim/quick-gear.model';
+import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
 import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
 import { Condition } from 'src/app/model/damage-sim/condition.model';
 import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
@@ -219,7 +219,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectQuickGearSetup(quickGear: QuickGear): void {
+  selectQuickGearSetup(quickGear: GearSet): void {
     this.setCurrentGearByIds(quickGear.itemIds);
   }
 }
