@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import math
 
 from model.npc.npc_stats import NpcStats
