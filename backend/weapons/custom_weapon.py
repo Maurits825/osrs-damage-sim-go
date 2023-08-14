@@ -13,6 +13,7 @@ from weapons.custom_weapons.dawnbringer import Dawnbringer
 from weapons.custom_weapons.dinhs_bulwark import DinhsBulwark
 from weapons.custom_weapons.dragon_claws import DragonClaws
 from weapons.custom_weapons.dragon_dagger import DragonDagger
+from weapons.custom_weapons.dragon_knife import DragonKnife
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.custom_weapons.fang import Fang
 from weapons.custom_weapons.gadderhammer import Gadderhammer
@@ -64,4 +65,5 @@ CUSTOM_WEAPONS = {
     "Toxic blowpipe": ToxicBlowpipe,
     "Barrelchest anchor": BarrelchestAnchor,
     "Abyssal dagger": AbyssalDagger,
+    "Dragon knife": DragonKnife,
 }
