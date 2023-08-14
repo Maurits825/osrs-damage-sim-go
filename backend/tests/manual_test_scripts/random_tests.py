@@ -25,6 +25,6 @@ random_x, random_counts = np.unique(np.array(random_values), return_counts=True)
 
 x = [i for i in range(max_value)]
 plt.bar(randint_x, randint_counts, width=0.3, label="randint")
-plt.bar(random_x+0.3, random_counts, width=0.3, label="random")
+plt.bar(random_x + 0.3, random_counts, width=0.3, label="random")
 plt.legend()
 plt.show()

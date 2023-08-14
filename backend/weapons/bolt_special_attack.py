@@ -7,6 +7,7 @@ from model.hitsplat import Hitsplat
 
 
 class BoltSpecialAttack:
+    base_proc_chance: float
     proc_chance: float
     effect_value: float
 

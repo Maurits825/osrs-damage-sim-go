@@ -4,6 +4,7 @@ from input_setup.gear_ids import *
 from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.equipped_gear import EquippedGear
+from model.gear_setup import GearSetup
 from model.npc.npc_stats import NpcStats
 from wiki_data.wiki_data import WikiData
 
@@ -82,11 +83,10 @@ class SpecialGearBonus:
                 special_gear_bonus.magic.strength_boost.append(1.1)
 
         if npc.is_kalphite and "keris" in all_gear_names:
-            if any(keris in gear.ids for keris in [KERIS, KERIS_PARTISAN, KERIS_SUN, KERIS_CORRUPTION]):
+            if any(keris in gear.ids for keris in KERIS):
                 special_gear_bonus.melee.strength_boost.append(1.33)
-            elif KERIS_BREACHING in gear.ids:
+            if KERIS_BREACHING in gear.ids:
                 special_gear_bonus.melee.attack_boost.append(1.33)
-                special_gear_bonus.melee.strength_boost.append(1.33)
 
         if npc.is_demon and ARCLIGHT in gear.ids:
             special_gear_bonus.melee.attack_boost.append(1.7)
@@ -101,15 +101,15 @@ class SpecialGearBonus:
                 special_gear_bonus.melee.strength_boost.append(1.2)
 
         if is_in_wilderness:
-            if CRAWS_BOW in gear.ids:
+            if any(bow in gear.ids for bow in CRAWS_BOW):
                 special_gear_bonus.ranged.attack_boost.append(1.5)
                 special_gear_bonus.ranged.strength_boost.append(1.5)
-            elif VIGGORA_MACE in gear.ids:
+            elif any(mace in gear.ids for mace in VIGGORA_MACE):
                 special_gear_bonus.melee.attack_boost.append(1.5)
                 special_gear_bonus.melee.strength_boost.append(1.5)
-            elif THAMMARON_SCEPTRE in gear.ids:
-                special_gear_bonus.magic.attack_boost.append(2)
-                special_gear_bonus.magic.strength_boost.append(1.25)
+            elif any(scepter in gear.ids for scepter in WIDLY_SCEPTRE):
+                special_gear_bonus.magic.attack_boost.append(1.5)
+                special_gear_bonus.magic.strength_boost.append(1.5)
 
         if TOME_OF_WATER in gear.ids:
             if "Water" in spell:
@@ -200,3 +200,12 @@ class SpecialGearBonus:
                     return (50 + min(100, mining_lvl) + min(61, pickaxe[0])) / 150
 
         return 1
+
+    @staticmethod
+    def add_other_set_bonus(gear_setup: GearSetup):
+        if (gear_setup.spell and
+                any(ancient in gear_setup.spell.lower() for ancient in ["barrage", "blitz", "burst", "rush"])):
+            for virtus in VIRTUS_SET:
+                if virtus in gear_setup.equipped_gear.ids:
+                    gear_setup.gear_stats.magic_strength += 3
+

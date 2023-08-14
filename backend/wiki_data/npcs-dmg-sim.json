@@ -6068,6 +6068,7 @@
  },
  "795": {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 100,
   "str": 90,
@@ -6083,6 +6084,7 @@
  },
  "796": {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 105,
   "str": 90,
@@ -6101,6 +6103,7 @@
  },
  "797": {
   "name": "Giant Scarab",
+  "isKalphite": true,
   "hitpoints": 130,
   "att": 169,
   "str": 190,
@@ -6117,6 +6120,7 @@
  },
  "798": {
   "name": "Giant Scarab",
+  "isKalphite": true,
   "hitpoints": 130,
   "att": 169,
   "str": 190,
@@ -6150,6 +6154,7 @@
  },
  "800": {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 100,
   "str": 90,
@@ -6164,6 +6169,7 @@
  },
  "801": {
   "name": "Locust rider",
+  "isKalphite": true,
   "hitpoints": 90,
   "att": 105,
   "str": 90,
@@ -7769,6 +7775,7 @@
  },
  "1127": {
   "name": "Giant Scarab (hard)",
+  "isKalphite": true,
   "hitpoints": 255,
   "att": 305,
   "str": 342,
@@ -15697,6 +15704,46 @@
   "range": 1,
   "combat": 141,
   "size": 2
+ },
+ "2950": {
+  "name": "Void Knight",
+  "def": 50,
+  "mage": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 100,
+  "dmagic": 100,
+  "drange": 100
+ },
+ "2951": {
+  "name": "Void Knight",
+  "def": 50,
+  "mage": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 100,
+  "dmagic": 100,
+  "drange": 100
+ },
+ "2952": {
+  "name": "Void Knight",
+  "def": 50,
+  "mage": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 100,
+  "dmagic": 100,
+  "drange": 100
+ },
+ "2953": {
+  "name": "Void Knight",
+  "def": 50,
+  "mage": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 100,
+  "dmagic": 100,
+  "drange": 100
  },
  "2954": {
   "name": "Zamorak wizard",
@@ -29674,6 +29721,7 @@
  },
  "6343": {
   "name": "Giant Scarab",
+  "isKalphite": true,
   "hitpoints": 130,
   "att": 169,
   "str": 190,
@@ -47349,6 +47397,11 @@
   "strbns": 38,
   "amagic": 150,
   "mbns": 32,
+  "dstab": 255,
+  "dslash": 65,
+  "dcrush": 190,
+  "dmagic": 440,
+  "drange": 320,
   "combat": 758,
   "size": 7
  },
@@ -47363,6 +47416,11 @@
   "strbns": 38,
   "amagic": 150,
   "mbns": 32,
+  "dstab": 255,
+  "dslash": 65,
+  "dcrush": 190,
+  "dmagic": 440,
+  "drange": 320,
   "combat": 758,
   "size": 7
  },
@@ -47377,6 +47435,11 @@
   "strbns": 38,
   "amagic": 150,
   "mbns": 32,
+  "dstab": 255,
+  "dslash": 65,
+  "dcrush": 190,
+  "dmagic": 440,
+  "drange": 320,
   "combat": 758,
   "size": 7
  },
@@ -47391,6 +47454,11 @@
   "strbns": 38,
   "amagic": 150,
   "mbns": 32,
+  "dstab": 255,
+  "dslash": 65,
+  "dcrush": 190,
+  "dmagic": 440,
+  "drange": 320,
   "combat": 758,
   "size": 7
  },
@@ -47447,6 +47515,11 @@
   "strbns": 38,
   "amagic": 150,
   "mbns": 32,
+  "dstab": 255,
+  "dslash": 65,
+  "dcrush": 190,
+  "dmagic": 440,
+  "drange": 320,
   "combat": 758,
   "size": 7
  },
@@ -47464,6 +47537,11 @@
   "mbns": 58,
   "arange": 160,
   "rngbns": 70,
+  "dstab": 180,
+  "dslash": 300,
+  "dcrush": 220,
+  "dmagic": 10,
+  "drange": 300,
   "combat": 791,
   "size": 3
  },
@@ -47481,6 +47559,11 @@
   "mbns": 58,
   "arange": 160,
   "rngbns": 70,
+  "dstab": 180,
+  "dslash": 300,
+  "dcrush": 220,
+  "dmagic": 10,
+  "drange": 300,
   "combat": 791,
   "size": 3
  },
@@ -47498,6 +47581,11 @@
   "mbns": 54,
   "arange": 140,
   "rngbns": 66,
+  "dstab": 180,
+  "dslash": 300,
+  "dcrush": 220,
+  "dmagic": 10,
+  "drange": 300,
   "combat": 568,
   "size": 3
  },
@@ -47515,6 +47603,11 @@
   "mbns": 54,
   "arange": 140,
   "rngbns": 66,
+  "dstab": 180,
+  "dslash": 300,
+  "dcrush": 220,
+  "dmagic": 10,
+  "drange": 300,
   "combat": 568,
   "size": 3
  },
@@ -47532,6 +47625,11 @@
   "mbns": 58,
   "arange": 300,
   "rngbns": 26,
+  "dstab": 260,
+  "dslash": 190,
+  "dcrush": 230,
+  "dmagic": 280,
+  "drange": 50,
   "combat": 798,
   "size": 7
  },
@@ -47549,6 +47647,11 @@
   "mbns": 58,
   "arange": 300,
   "rngbns": 26,
+  "dstab": 260,
+  "dslash": 190,
+  "dcrush": 230,
+  "dmagic": 280,
+  "drange": 50,
   "combat": 577,
   "size": 7
  },
@@ -47566,6 +47669,11 @@
   "mbns": 58,
   "arange": 300,
   "rngbns": 26,
+  "dstab": 260,
+  "dslash": 190,
+  "dcrush": 230,
+  "dmagic": 280,
+  "drange": 50,
   "combat": 577,
   "size": 7
  },
@@ -47576,8 +47684,14 @@
   "mage": 215,
   "attbns": 190,
   "strbns": 10,
+  "dstab": 215,
+  "dslash": 65,
+  "dcrush": 85,
+  "dmagic": 580,
+  "drange": 580,
   "combat": 784,
-  "size": 2
+  "size": 2,
+  "def": 215
  },
  "12224": {
   "name": "Vardorvis (quest)",
@@ -47587,6 +47701,11 @@
   "def": 180,
   "mage": 180,
   "attbns": 185,
+  "dstab": 215,
+  "dslash": 65,
+  "dcrush": 85,
+  "dmagic": 580,
+  "drange": 580,
   "combat": 553,
   "size": 2
  },
@@ -47598,6 +47717,11 @@
   "def": 180,
   "mage": 180,
   "attbns": 185,
+  "dstab": 215,
+  "dslash": 65,
+  "dcrush": 85,
+  "dmagic": 580,
+  "drange": 580,
   "combat": 553,
   "size": 2
  },
@@ -47894,38 +48018,6 @@
   "combat": 96,
   "size": 1
  },
- "12336": {
-  "name": "Ancient Guardian",
-  "isGolem": true,
-  "hitpoints": 100,
-  "att": 180,
-  "str": 110,
-  "def": 100,
-  "mage": 100,
-  "dstab": 50,
-  "dslash": 40,
-  "dcrush": 20,
-  "dmagic": 10,
-  "drange": 50,
-  "combat": 153,
-  "size": 3
- },
- "12337": {
-  "name": "Ancient Guardian",
-  "isGolem": true,
-  "hitpoints": 100,
-  "att": 180,
-  "str": 110,
-  "def": 100,
-  "mage": 100,
-  "dstab": 50,
-  "dslash": 40,
-  "dcrush": 20,
-  "dmagic": 10,
-  "drange": 50,
-  "combat": 153,
-  "size": 3
- },
  "12353": {
   "name": "Jhallan",
   "hitpoints": 1500,
@@ -48051,6 +48143,18 @@
   "mage": 1,
   "range": 1,
   "combat": 101,
+  "size": 2
+ },
+ "12376": {
+  "name": "Lesser demon",
+  "isDemon": true,
+  "hitpoints": 40,
+  "att": 1,
+  "str": 1,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "combat": 39,
   "size": 2
  },
  "12377": {
@@ -48201,6 +48305,11 @@
   "def": 180,
   "mage": 180,
   "attbns": 185,
+  "dstab": 215,
+  "dslash": 65,
+  "dcrush": 85,
+  "dmagic": 580,
+  "drange": 580,
   "combat": 553,
   "size": 2
  },
@@ -48211,7 +48320,13 @@
   "mage": 215,
   "attbns": 190,
   "strbns": 10,
+  "dstab": 215,
+  "dslash": 65,
+  "dcrush": 85,
+  "dmagic": 580,
+  "drange": 580,
   "combat": 784,
-  "size": 2
+  "size": 2,
+  "def": 215
  }
 }

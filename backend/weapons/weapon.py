@@ -5,7 +5,7 @@ import random
 
 from constant import TICK_LENGTH
 from input_setup.gear_ids import (TRIDENT_SWAMP, SHADOW_STAFF, SANG_STAFF, CHAOS_GAUNTLETS, BRIMSTONE, TRIDENT_SEAS,
-                                  DAWNBRINGER, HARM_STAFF, OSMUMTEN_FANG)
+                                  DAWNBRINGER, HARM_STAFF, OSMUMTEN_FANG, THAMMARON_SCEPTRE, ACCURSED_SCEPTRE)
 from input_setup.special_gear_bonus import SpecialGearBonus
 from model.attack_style.attack_type import AttackType
 from model.attack_style.combat_style import CombatStyle
@@ -15,12 +15,12 @@ from model.gear_setup import GearSetup
 from model.hitsplat import Hitsplat
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
+from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS, VERZIK_P2, VERZIK_P3
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
 from weapons.bolt_loader import BoltLoader
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.dps_calculator import DpsCalculator
-from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP
 from wiki_data.wiki_data import WikiData
 
 ZULRAH_MAX_DMG = 50
@@ -57,13 +57,16 @@ class Weapon:
             self.gear_setup.equipped_gear, self.gear_setup.attack_style, self.gear_setup.is_on_slayer_task,
             self.gear_setup.is_in_wilderness, self.npc, self.gear_setup.spell
         )
+        SpecialGearBonus.add_other_set_bonus(self.gear_setup)
 
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
 
         self.verzik_dmg_cap = (
-                        VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
-                        else VERZIK_P1_RANGE_MAGE_DMG_CAP)
+            VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
+            else VERZIK_P1_RANGE_MAGE_DMG_CAP)
+
+        self.is_post_attack = npc.id in VARDORVIS
 
         self.max_hit = 0
         self.accuracy = 0
@@ -118,6 +121,8 @@ class Weapon:
 
     # flake8: noqa TODO look at refactoring this, maybe also cache is_verzik_p1, is_zulrah, is_corp, enum?
     def attack(self) -> Hitsplat:
+        self.hitsplat.special_procs = []
+
         self.roll_damage()
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
@@ -163,11 +168,23 @@ class Weapon:
                 self.hitsplat.hitsplats = hitsplats
                 self.hitsplat.damage = self.hitsplat.hitsplats
 
+        if self.is_post_attack:
+            self.post_attack()
+
         return self.hitsplat
 
-    def roll_damage(self):
-        self.hitsplat.special_procs = []
+    def post_attack(self):
+        if self.npc.id in VARDORVIS:
+            self.npc.combat_stats.defence = (
+                    self.npc.base_combat_stats.defence -
+                    math.floor(
+                        (0.1 * (self.npc.base_combat_stats.hitpoints -
+                                (self.npc.combat_stats.hitpoints - self.hitsplat.damage)))))
 
+            self.update_target_defence_and_roll()
+            self.update_accuracy()
+
+    def roll_damage(self):  # TODO consider refactoring so that this returns damage, roll hit? so attack() sets hitsplat
         if self.special_bolt:
             bolt_damage = BoltSpecialAttack.roll_special(
                 self.special_bolt, self.max_hit, self.npc.combat_stats.hitpoints
@@ -184,8 +201,7 @@ class Weapon:
         damage = math.floor(damage * self.damage_multiplier)
 
         self.hitsplat.set_hitsplat(damage=damage, hitsplats=damage, roll_hits=roll_hit,
-                                   accuracy=self.accuracy, max_hits=self.max_hit,
-                                   special_proc=self.hitsplat.special_procs)
+                                   accuracy=self.accuracy, max_hits=self.max_hit)
 
     def get_accuracy(self):
         attack_roll = self.get_attack_roll()
@@ -277,7 +293,7 @@ class Weapon:
             target_defence = self.npc.combat_stats.defence
             target_defence_style = self.npc.defensive_stats.ranged
         elif self.gear_setup.attack_style.attack_type == AttackType.MAGIC:
-            if self.npc.id in ICE_DEMON:
+            if self.npc.id in ICE_DEMON or self.npc.id in VERZIK_P2 or self.npc.id in VERZIK_P3:
                 target_defence = self.npc.combat_stats.defence
             else:
                 target_defence = self.npc.combat_stats.magic
@@ -346,12 +362,20 @@ class Weapon:
                 accuracy, max_hits, self.gear_setup.gear_stats.attack_speed, self.npc.base_combat_stats.hitpoints
             )
 
+        total_average_damage = self.get_average_damage(max_hits)
+
+        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+
+    def get_average_damage_hit(self, hit):
+        return math.floor(hit * self.damage_multiplier)
+
+    def get_average_damage(self, max_hits: int | list[int]) -> float:
         total_average_damage = 0
         max_hits = [max_hits] if not isinstance(max_hits, list) else max_hits
         for max_hit in max_hits:
             damage_sum = 0
             for hit in range(max_hit + 1):
-                damage = math.floor(hit * self.damage_multiplier)
+                damage = self.get_average_damage_hit(hit)
                 if self.npc.id in ZULRAH:
                     if damage > ZULRAH_MAX_DMG:
                         damage = (ZULRAH_MAX_DMG + ZULRAH_MIN_DMG) / 2
@@ -365,7 +389,7 @@ class Weapon:
             average_damage = damage_sum / (max_hit + 1)
             total_average_damage += average_damage
 
-        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        return total_average_damage
 
     def get_magic_max_hit(self):
         base_max_hit = self.get_magic_base_hit()
@@ -400,6 +424,10 @@ class Weapon:
             return math.floor(self.combat_stats.magic / 3) - 1
         elif self.gear_setup.gear_stats.id in SHADOW_STAFF:
             return math.floor(self.combat_stats.magic / 3) + 1
+        elif self.gear_setup.gear_stats.id in THAMMARON_SCEPTRE:
+            return math.floor(self.combat_stats.magic / 3) - 8
+        elif self.gear_setup.gear_stats.id in ACCURSED_SCEPTRE:
+            return math.floor(self.combat_stats.magic / 3) - 6
         else:
             return 0
 

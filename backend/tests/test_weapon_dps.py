@@ -21,7 +21,7 @@ class TestWeaponDps(unittest.TestCase):
             TestWeaponDps.spec_input_setups = json.load(f)
 
     def test_input_setups_dps(self):
-        print("Testing setup dps:")
+        print("\nTesting setup dps:")
         for setup_name in TestWeaponDps.input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.input_setups[setup_name])
@@ -33,13 +33,15 @@ class TestWeaponDps(unittest.TestCase):
                 self.assertEqual(TestWeaponDps.input_setups[setup_name]["expectedDps"], dps, setup_name)
 
     def test_special_attack_input_setups_dps(self):
-        print("Testing spec setup dps:")
+        print("\nTesting spec setup dps:")
         for setup_name in TestWeaponDps.spec_input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.spec_input_setups[setup_name])
+                input_setup.input_gear_setups[0].main_weapon.gear_setup.is_special_attack = True
+
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
                 gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
-                dps = round(gear_setup_dps_stats.theoretical_dps[1], 8)
+                dps = round(gear_setup_dps_stats.theoretical_dps[0], 8)
 
                 print(setup_name + " - " + str(dps))
                 self.assertEqual(TestWeaponDps.spec_input_setups[setup_name]["expectedDps"], dps, setup_name)

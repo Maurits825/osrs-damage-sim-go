@@ -17,6 +17,14 @@
     "Obelisk": "TOMBS_OF_AMASCUT",
     "Tumeken's Warden": "TOMBS_OF_AMASCUT",
     "Elidinis' Warden": "TOMBS_OF_AMASCUT",
-    "Akkha's Shadow": "TOMBS_OF_AMASCUT"
-  }
+    "Akkha's Shadow": "TOMBS_OF_AMASCUT",
+    "Soldier Scarab": "TOMBS_OF_AMASCUT",
+    "Spitting Scarab": "TOMBS_OF_AMASCUT",
+    "Arcane Scarab": "TOMBS_OF_AMASCUT"
+  },
+  "isKalphite": [
+    "Soldier Scarab",
+    "Spitting Scarab",
+    "Arcane Scarab"
+  ]
 }

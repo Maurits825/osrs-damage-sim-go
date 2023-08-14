@@ -4,6 +4,8 @@ from model.gear_setup import GearSetup
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.npc.npc_stats import NpcStats
 from weapons.custom_weapon import CUSTOM_WEAPONS
+from weapons.custom_weapons.ahrim_staff import AhrimStaff
+from weapons.custom_weapons.volatile_staff import VolatileStaff
 from weapons.weapon import Weapon
 
 
@@ -20,7 +22,9 @@ class WeaponLoader:
                 )
                 break
 
-        if gear_setup.spell or not weapon:
+        if ((gear_setup.spell
+             and not (isinstance(weapon, AhrimStaff) or isinstance(weapon, VolatileStaff)))
+                or not weapon):
             weapon = Weapon(gear_setup, gear_setup_settings.combat_stats, npc, raid_level)
 
         return weapon

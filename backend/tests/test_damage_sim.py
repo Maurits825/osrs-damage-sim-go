@@ -24,6 +24,7 @@ class TestDamageSim(unittest.TestCase):
         for setup_name in TestDamageSim.input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSim.input_setups[setup_name])
+                input_setup.global_settings.is_detailed_run = True
 
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
                 dmg_sim_data, tick_data = damage_sim.run()
@@ -37,6 +38,7 @@ class TestDamageSim(unittest.TestCase):
         for setup_name in TestDamageSim.spec_input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestDamageSim.spec_input_setups[setup_name])
+                input_setup.global_settings.is_detailed_run = True
 
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
                 dmg_sim_data, tick_data = damage_sim.run()

@@ -51,7 +51,7 @@ class DragonClaws(Weapon):
 
         self.hitsplat.set_hitsplat(damage=sum([hit1, hit2, hit3, hit4]), hitsplats=[hit1, hit2, hit3, hit4],
                                    accuracy=self.accuracy, max_hits=self.max_hit,
-                                   roll_hits=[True, True, True, True], special_proc=None)
+                                   roll_hits=[True, True, True, True])
 
     def get_npc_defence_and_style(self):
         if not self.gear_setup.is_special_attack:

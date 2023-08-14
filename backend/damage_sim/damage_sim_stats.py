@@ -18,8 +18,10 @@ from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
 from model.sim_stats import SimStats, TimeSimStats
 from model.stat_drain_type import StatDrainType
+from weapons.custom_weapons.accursed_sceptre import AccursedSceptre
 from weapons.custom_weapons.arclight import Arclight
 from weapons.custom_weapons.bandos_godsword import BandosGodsword
+from weapons.custom_weapons.barrelchest_anchor import BarrelchestAnchor
 from weapons.custom_weapons.bone_dagger import BoneDagger
 from weapons.custom_weapons.dragon_warhammer import DragonWarhammer
 from weapons.weapon import Weapon
@@ -38,7 +40,9 @@ STAT_DRAIN_NAME = {
     DragonWarhammer: "DWH",
     BandosGodsword: "BGS",
     Arclight: "Arclight",
-    BoneDagger: "Bone dagger"
+    BoneDagger: "Bone dagger",
+    AccursedSceptre: "Accursed sceptre",
+    BarrelchestAnchor: "Barrelchest anchor",
 }
 
 STAT_DRAIN_TYPE = {

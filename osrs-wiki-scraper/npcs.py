@@ -52,6 +52,9 @@ def run():
                     for attr in attrs:
                         doc[f"is{attr[0].upper()}{attr[1:]}"] = True
 
+                if "cat" in version and version["cat"].strip() == "Scabarites":
+                    doc["isKalphite"] = True
+
                 if is_cox or is_tob or custom_name:
                     doc["name"] = custom_name
 
@@ -60,6 +63,9 @@ def run():
                         util.copy(key, doc, version, lambda x: int(x))
                     except ValueError:
                         pass
+
+                if "Vardorvis" in doc["name"] and "def" not in doc:
+                    doc["def"] = int(version["def"].strip()[0:3])
                 # print("NPC {} has an non integer {}".format(name, key))
 
         except (KeyboardInterrupt, SystemExit):

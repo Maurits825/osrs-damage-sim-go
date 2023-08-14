@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import math
 
 from model.hitsplat import Hitsplat
@@ -10,15 +12,16 @@ from weapons.weapon import Weapon
 class BandosGodsword(Weapon, StatDrainWeapon):
     stat_drain_type = StatDrainType.DAMAGE
 
-    def get_base_max_hit(self):
+    def get_max_hit(self) -> int | list[int]:
+        max_hit = super().get_max_hit()
         if self.gear_setup.is_special_attack:
-            return math.floor(math.floor(super().get_base_max_hit() * 1.1) * 1.1)
+            return math.floor(math.floor(max_hit * 1.1) * 1.1)
         else:
-            return super().get_base_max_hit()
+            return max_hit
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:
-            return 2 * super().get_attack_roll()
+            return super().get_attack_roll() * 2
         else:
             return super().get_attack_roll()
 

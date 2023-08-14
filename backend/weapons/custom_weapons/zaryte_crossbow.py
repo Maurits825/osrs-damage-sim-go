@@ -32,7 +32,7 @@ class ZaryteCrossbow(Weapon):
                 self.hitsplat = bolt_damage
             else:
                 self.hitsplat.set_hitsplat(damage=0, hitsplats=0, roll_hits=False, accuracy=self.accuracy,
-                                           max_hits=self.max_hit, special_proc=None)
+                                           max_hits=self.max_hit)
 
     def get_attack_roll(self):
         if self.gear_setup.is_special_attack:

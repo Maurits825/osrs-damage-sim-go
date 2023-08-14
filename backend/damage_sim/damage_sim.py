@@ -65,6 +65,7 @@ class DamageSim:
             self.sim_data.gear_attack_count.append(0)
             self.sim_data.gear_dps.append(0)
 
+            weapon.update_target_defence_and_roll()
             if self.is_detailed_run:
                 weapon.update_accuracy()
 

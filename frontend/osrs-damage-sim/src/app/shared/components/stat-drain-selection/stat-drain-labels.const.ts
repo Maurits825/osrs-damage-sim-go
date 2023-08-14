@@ -7,6 +7,8 @@ export type StatDrainLabel = {
 export const statDrainLabels: StatDrainLabel = {
   'Dragon warhammer': 'Hits',
   'Bandos godsword': 'Damage',
-  Arclight: 'Hits',
+  'Arclight': 'Hits',
   'Bone dagger': 'Damage',
+  'Accursed sceptre': 'Hits',
+  'Barrelchest anchor': 'Damage'
 };
