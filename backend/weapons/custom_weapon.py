@@ -1,3 +1,4 @@
+from weapons.custom_weapons.abyssal_dagger import AbyssalDagger
 from weapons.custom_weapons.accursed_sceptre import AccursedSceptre
 from weapons.custom_weapons.ahrim_staff import AhrimStaff
 from weapons.custom_weapons.ancient_godsword import AncientGodsword
@@ -62,4 +63,5 @@ CUSTOM_WEAPONS = {
     "Saradomin godsword": SaradominGodsword,
     "Toxic blowpipe": ToxicBlowpipe,
     "Barrelchest anchor": BarrelchestAnchor,
+    "Abyssal dagger": AbyssalDagger,
 }
