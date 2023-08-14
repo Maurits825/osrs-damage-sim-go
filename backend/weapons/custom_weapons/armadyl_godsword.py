@@ -24,4 +24,3 @@ class ArmadylGodsword(Weapon):
         target_defence = self.npc.combat_stats.defence
         target_defence_style = self.npc.defensive_stats.slash
         return target_defence, target_defence_style
-
