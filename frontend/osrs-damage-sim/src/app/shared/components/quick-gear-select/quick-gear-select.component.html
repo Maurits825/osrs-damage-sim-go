@@ -1,1 +1,12 @@
-<p>quick-gear-select works!</p>
+<div class="d-flex btn-group" role="group">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    style="width: '55px'"
+    *ngFor="let itemId of quickGearSlots[gearSlot][attackType]"
+  >
+    {{ itemId }}
+    <!-- <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" /> -->
+    <!-- figure out syling style="height: '45px'" -->
+  </button>
+</div>

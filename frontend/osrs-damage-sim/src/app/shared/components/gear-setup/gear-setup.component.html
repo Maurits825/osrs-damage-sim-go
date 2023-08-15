@@ -53,11 +53,31 @@
   </div>
 
   <div class="mb-3 d-flex">
-    <div class="me-auto">
-      <app-gear-set-select [attackType]="attackType" (selectSetup)="selectGearSetSetup($event)"></app-gear-set-select>
+    <div class="btn-group me-2" role="group" style="height: '45px'">
+      <ng-container *ngFor="let attackType of allAttackTypes">
+        <input
+          type="radio"
+          class="btn-check"
+          style="width: '50px'"
+          [title]="attackType"
+          id="{{ attackType }}"
+          (click)="setAttackType(attackType)"
+          [checked]="attackType === currentAttackType"
+        />
+        <label class="btn btn-outline-secondary" for="{{ attackType }}">
+          <img src="assets/img/skills/{{ attackType }}.png" />
+        </label>
+      </ng-container>
     </div>
 
-    <div *ngIf="!isMainGearSetup" class="div">
+    <div class="me-auto">
+      <app-gear-set-select
+        [attackType]="currentAttackType"
+        (selectSetup)="selectGearSetSetup($event)"
+      ></app-gear-set-select>
+    </div>
+
+    <div *ngIf="!isMainGearSetup">
       <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove</button>
     </div>
   </div>
@@ -98,6 +118,8 @@
       [slot]="slot"
       [allDarts]="allDarts"
     ></app-special-gear>
+
+    <app-quick-gear-select class="d-flex" [gearSlot]="slot" [attackType]="currentAttackType"></app-quick-gear-select>
   </div>
 
   <div class="mb-3">
