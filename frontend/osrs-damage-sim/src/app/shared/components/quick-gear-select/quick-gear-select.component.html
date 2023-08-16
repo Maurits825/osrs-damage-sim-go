@@ -1,19 +1,15 @@
-<div
-  class="d-flex btn-group ms-1"
-  role="group"
-  style="height: '40px'"
-  *ngIf="quickGearSlots && quickGearSlots[gearSlot] && quickGearSlots[gearSlot][attackType]"
->
-  <!-- //todo scuffed rn -->
-  <button
-    type="button"
-    class="btn btn-outline-dark"
-    style="width: '45px'"
-    *ngFor="let item of quickGearSlots[gearSlot][attackType]"
-    (click)="onGearSelect(item)"
-  >
-    <img class="align-middle" src="data:image/png;base64,{{ item.icon }}" />
-    <!-- <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" /> -->
-    <!-- figure out syling style="height: '45px'" -->
-  </button>
-</div>
+<ng-container *ngIf="quickGearSlots && quickGearSlots[gearSlot] && quickGearSlots[gearSlot][attackType].length > 0">
+  <div class="d-flex ms-2 btn-group" role="group" style="height: '40px'">
+    <!-- //TODO improve styling -->
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      style="width: '45px'"
+      *ngFor="let item of quickGearSlots[gearSlot][attackType]"
+      [title]="item.name"
+      (click)="onGearSelect(item)"
+    >
+      <img class="img-fluid" src="data:image/png;base64,{{ item?.icon }}" />
+    </button>
+  </div>
+</ng-container>

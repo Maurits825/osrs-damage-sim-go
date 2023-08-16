@@ -57,6 +57,10 @@ export const gearSetSetups: GearSetSetups = {
       itemIds: [21018, 21021, 21024],
     },
     {
+      label: 'Virtus',
+      itemIds: [26241, 26243, 26245],
+    },
+    {
       label: 'Ahrim',
       itemIds: [4712, 4714],
     },
