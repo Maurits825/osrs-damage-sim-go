@@ -1,15 +1,14 @@
 <ng-container *ngIf="quickGearSlots && quickGearSlots[gearSlot] && quickGearSlots[gearSlot][attackType].length > 0">
-  <div class="d-flex ms-2 btn-group" role="group" style="height: '40px'">
-    <!-- //TODO improve styling -->
+  <div class="d-flex ms-2 btn-group" role="group" style="height: '36px'">
     <button
       type="button"
-      class="btn btn-outline-dark"
-      style="width: '45px'"
+      class="btn btn-outline-dark px-2 py-1 d-flex justify-content-center"
+      style="width: '44px'"
       *ngFor="let item of quickGearSlots[gearSlot][attackType]"
       [title]="item.name"
       (click)="onGearSelect(item)"
     >
-      <img class="img-fluid" src="data:image/png;base64,{{ item?.icon }}" />
+      <img class="img-fluid align-self-center" src="data:image/png;base64,{{ item?.icon }}" />
     </button>
   </div>
 </ng-container>

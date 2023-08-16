@@ -60,11 +60,11 @@
           class="btn-check"
           style="width: '50px'"
           [title]="attackType"
-          id="{{ attackType }}"
+          id="{{ attackType + setupCount }}"
           (click)="setAttackType(attackType)"
           [checked]="attackType === currentAttackType"
         />
-        <label class="btn btn-outline-secondary" for="{{ attackType }}">
+        <label class="btn btn-outline-secondary" for="{{ attackType + setupCount }}">
           <img src="assets/img/skills/{{ attackType }}.png" />
         </label>
       </ng-container>
