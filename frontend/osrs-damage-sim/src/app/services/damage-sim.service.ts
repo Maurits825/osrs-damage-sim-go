@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, shareReplay } from 'rxjs';
+import { forkJoin, map, Observable, shareReplay, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
 import { ExampleSetup } from '../model/damage-sim/example-setup.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { Item } from '../model/osrs/item.model';
+import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
+import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ import { Npc } from '../model/osrs/npc.model';
 export class DamageSimService {
   public allGearSlotItems$: Observable<Record<GearSlot, Item[]>>;
   public gearSetupPresets$: Observable<GearSetupPreset[]>;
+  public quickGearSlots$: Observable<QuickGearSlots>;
 
   public exampleSetups$: Observable<ExampleSetup[]>;
 
@@ -36,6 +38,28 @@ export class DamageSimService {
     );
 
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
+
+    //TODO enums are scuffed
+    this.quickGearSlots$ = forkJoin([this.getQuickGearJson(), this.allGearSlotItems$]).pipe(
+      map(([quickGearJson, allGearSlotItems]) => {
+        const quickGearSlots: QuickGearSlots = {} as QuickGearSlots;
+        for (const gearSlot in GearSlot) {
+          const gearSlotValue = (GearSlot as any)[gearSlot] as keyof QuickGearSlots;
+          quickGearSlots[gearSlotValue] = {} as QuickGear;
+          allAttackTypes.forEach((attackType: AttackType) => {
+            quickGearSlots[gearSlotValue][attackType] = [];
+            quickGearJson[gearSlot as keyof QuickGearJson][attackType].forEach((itemId) => {
+              const item: Item = allGearSlotItems[(GearSlot as any)[gearSlot] as GearSlot].find(
+                (item: Item) => item.id === itemId
+              );
+              quickGearSlots[gearSlotValue][attackType].push(item);
+            });
+          });
+        }
+        return quickGearSlots;
+      }),
+      shareReplay(1)
+    );
 
     this.exampleSetups$ = this.getExampleSetups().pipe(shareReplay(1));
 
@@ -70,6 +94,10 @@ export class DamageSimService {
 
   private getGearSetupPresets(): Observable<GearSetupPreset[]> {
     return this.http.get<GearSetupPreset[]>('assets/json_data/gear_setup_presets.json');
+  }
+
+  private getQuickGearJson(): Observable<QuickGearJson> {
+    return this.http.get<QuickGearJson>('assets/json_data/quick_gear.json');
   }
 
   private getDarts(): Observable<Item[]> {

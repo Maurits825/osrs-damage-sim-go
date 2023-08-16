@@ -1,0 +1,57 @@
+{
+  "Head": {
+    "melee": [24271, 12929],
+    "ranged": [6],
+    "magic": []
+  },
+  "Cape": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Neck": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Weapon": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Body": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Shield": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Legs": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Hands": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Feet": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Ring": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  },
+  "Ammo": {
+    "melee": [],
+    "ranged": [],
+    "magic": []
+  }
+}

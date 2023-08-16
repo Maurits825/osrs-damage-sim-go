@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
-import { AttackType } from 'src/app/model/osrs/item.model';
-import { quickGearSlots } from './quick-gear.const';
+import { AttackType, Item } from 'src/app/model/osrs/item.model';
+import { DamageSimService } from 'src/app/services/damage-sim.service';
+import { QuickGearSlots } from 'src/app/model/damage-sim/quick-gear.model';
 
 @Component({
   selector: 'app-quick-gear-select',
@@ -15,10 +16,20 @@ export class QuickGearSelectComponent {
   @Input()
   attackType: AttackType;
 
+  @Output()
+  equipGear = new EventEmitter<Item>();
+
   GearSlot = GearSlot;
 
-  quickGearSlots = quickGearSlots;
+  quickGearSlots: QuickGearSlots;
 
-  //TODO add fucntion when click to load the gear?
-  //have an icon based on id -> item service?
+  constructor(private damageSimservice: DamageSimService) {
+    this.damageSimservice.quickGearSlots$.subscribe((quickGearSlots: QuickGearSlots) => {
+      this.quickGearSlots = quickGearSlots;
+    });
+  }
+
+  onGearSelect(item: Item): void {
+    this.equipGear.emit(item);
+  }
 }

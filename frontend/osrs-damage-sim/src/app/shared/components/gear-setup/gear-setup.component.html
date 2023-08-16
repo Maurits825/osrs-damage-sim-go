@@ -119,7 +119,12 @@
       [allDarts]="allDarts"
     ></app-special-gear>
 
-    <app-quick-gear-select class="d-flex" [gearSlot]="slot" [attackType]="currentAttackType"></app-quick-gear-select>
+    <app-quick-gear-select
+      class="d-flex"
+      [gearSlot]="slot"
+      [attackType]="currentAttackType"
+      (equipGear)="gearSlotChange($event, slot)"
+    ></app-quick-gear-select>
   </div>
 
   <div class="mb-3">
