@@ -38603,7 +38603,7 @@
   "size": 1
  },
  "8369": {
-  "name": "Verzik Vitur (normal mode, p1)",
+  "name": "Verzik Vitur (p1)",
   "isTobNormalMode": true,
   "hitpoints": 2000,
   "att": 400,
@@ -38624,7 +38624,7 @@
   "size": 5
  },
  "8372": {
-  "name": "Verzik Vitur (normal mode, p2)",
+  "name": "Verzik Vitur (p2)",
   "isTobNormalMode": true,
   "hitpoints": 3250,
   "att": 400,
@@ -38645,7 +38645,7 @@
   "size": 3
  },
  "8374": {
-  "name": "Verzik Vitur (normal mode, p3)",
+  "name": "Verzik Vitur (p3)",
   "isTobNormalMode": true,
   "hitpoints": 3250,
   "att": 400,
@@ -42949,8 +42949,8 @@
   "size": 2
  },
  "10830": {
-  "name": "Verzik Vitur (entry mode, p1)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p1)",
+  "isTobEntryMode": true,
   "hitpoints": 1200,
   "att": 180,
   "str": 150,
@@ -42970,8 +42970,8 @@
   "size": 5
  },
  "10833": {
-  "name": "Verzik Vitur (entry mode, p2)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p2)",
+  "isTobEntryMode": true,
   "hitpoints": 1600,
   "att": 200,
   "str": 150,
@@ -42991,8 +42991,8 @@
   "size": 3
  },
  "10835": {
-  "name": "Verzik Vitur (entry mode, p3)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p3)",
+  "isTobEntryMode": true,
   "hitpoints": 2400,
   "att": 180,
   "str": 200,
@@ -43025,8 +43025,8 @@
   "size": 2
  },
  "10847": {
-  "name": "Verzik Vitur (hard mode, p1)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p1)",
+  "isTobHardMode": true,
   "hitpoints": 2000,
   "att": 400,
   "str": 400,
@@ -43046,8 +43046,8 @@
   "size": 5
  },
  "10850": {
-  "name": "Verzik Vitur (hard mode, p2)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p2)",
+  "isTobHardMode": true,
   "hitpoints": 3250,
   "att": 400,
   "str": 400,
@@ -43067,8 +43067,8 @@
   "size": 3
  },
  "10852": {
-  "name": "Verzik Vitur (hard mode, p3)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p3)",
+  "isTobHardMode": true,
   "hitpoints": 3250,
   "att": 400,
   "str": 400,

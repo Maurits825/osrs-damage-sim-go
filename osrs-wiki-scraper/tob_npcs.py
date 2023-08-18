@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 FILTER_NPCS = ["8384"]
 
 
@@ -30,11 +32,12 @@ class TobNpcs:
             return None, None
 
         doc = {"__source__": source}
-        if "Entry" in npc_version:
+        tob_mode = version.get("smwname") if "Verzik" in str(version["name"]).strip() else npc_version
+        if "Entry" in tob_mode:
             version["attributes"] = "TobEntryMode"
-        elif "Normal" in npc_version:
+        elif "Normal" in tob_mode:
             version["attributes"] = "TobNormalMode"
-        elif "Hard" in npc_version:
+        elif "Hard" in tob_mode:
             version["attributes"] = "TobHardMode"
         else:
             version["attributes"] = "TobNormalMode"
@@ -52,6 +55,6 @@ class TobNpcs:
         elif "260" in npc_version:
             name += " " + "(big)"
         elif "Verzik" in name:
-            name += " (" + str(version.get("smwname", "").strip().lower().replace("hase ", "")) + ")"
+            name += " (" + re.sub("^.*phase ", "p", str(version.get("smwname", "").strip().lower())) + ")"
 
         return doc, name
