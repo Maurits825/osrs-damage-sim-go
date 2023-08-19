@@ -68,13 +68,18 @@ def write_json(name: str, minName: str, docs: Dict[Any, Dict[str, Any]]):
 known_invalid_ids: dict[str, str] = {}
 
 
+def get_ids(version):
+    return [id_value for id_value in map(
+        lambda id_value: id_value.strip(), str(version["id"]).split(",")) if id_value != "" and id_value.isdigit()]
+
+
 def get_doc_for_id_string(source: str, version: Dict[str, str], docs: Dict[str, Dict],
                           allow_duplicates: bool = False) -> Optional[Dict]:
     if not "id" in version:
         print("page {} is missing an id".format(source))
         return None
 
-    ids = [id for id in map(lambda id: id.strip(), str(version["id"]).split(",")) if id != "" and id.isdigit()]
+    ids = get_ids(version)
 
     if len(ids) == 0:
         #print("page {} is has an empty id".format(source))

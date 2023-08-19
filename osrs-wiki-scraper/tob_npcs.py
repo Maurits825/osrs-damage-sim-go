@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import re
 
+from util import get_ids
+
 FILTER_NPCS = ["8384"]
 
 
@@ -16,8 +18,7 @@ class TobNpcs:
         if "Health" in npc_version:
             return None, None
 
-        ids = [npc_id for npc_id in
-               map(lambda npc_id: npc_id.strip(), str(version["id"]).split(",")) if npc_id != "" and npc_id.isdigit()]
+        ids = get_ids(version)
 
         npc_id = str(ids[0])
         if npc_id in FILTER_NPCS:
