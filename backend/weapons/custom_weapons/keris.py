@@ -16,6 +16,7 @@ class Keris(Weapon):
             self.hitsplat.hitsplats *= SPEC_DMG_MULTIPLIER
             self.hitsplat.damage = self.hitsplat.hitsplats
             self.hitsplat.special_procs.append(SpecialProc.KERIS_TRIPLE_DMG)
+            self.hitsplat.max_hits *= SPEC_DMG_MULTIPLIER
 
     def get_dps(self):
         accuracy = self.get_accuracy()
