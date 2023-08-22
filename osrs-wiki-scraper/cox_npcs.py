@@ -1,13 +1,14 @@
 from __future__ import annotations
 
+from util import get_ids
+
 FILTER_NPCS = ["7526"]
 
 
 class CoxNpcs:
     @staticmethod
     def run(source: str, vid, version: dict[str, str], docs: dict[str, str | bool]) -> (dict | None, str):
-        ids = [npc_id for npc_id in
-               map(lambda npc_id: npc_id.strip(), str(version["id"]).split(",")) if npc_id != "" and npc_id.isdigit()]
+        ids = get_ids(version)
 
         npc_id = str(ids[0])
         if npc_id in FILTER_NPCS:

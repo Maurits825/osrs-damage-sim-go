@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { QuickGear } from 'src/app/model/damage-sim/quick-gear.model';
-import { AttackType } from 'src/app/model/osrs/item.model';
-import { quickExtraGearSetups, quickGearSetups } from './quick-gear.const';
+import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
+import { AttackType, Item } from 'src/app/model/osrs/item.model';
+import { DamageSimService } from 'src/app/services/damage-sim.service';
+import { QuickGearSlots } from 'src/app/model/damage-sim/quick-gear.model';
 
 @Component({
   selector: 'app-quick-gear-select',
@@ -10,16 +11,25 @@ import { quickExtraGearSetups, quickGearSetups } from './quick-gear.const';
 })
 export class QuickGearSelectComponent {
   @Input()
+  gearSlot: GearSlot;
+
+  @Input()
   attackType: AttackType;
 
   @Output()
-  selectSetup = new EventEmitter<QuickGear>();
+  equipGear = new EventEmitter<Item>();
 
-  AttackType: AttackType;
-  quickGearSetups = quickGearSetups;
-  quickExtraGearSetups = quickExtraGearSetups;
+  GearSlot = GearSlot;
 
-  onSelectSetup(setup: QuickGear): void {
-    this.selectSetup.emit(setup);
+  quickGearSlots: QuickGearSlots;
+
+  constructor(private damageSimservice: DamageSimService) {
+    this.damageSimservice.quickGearSlots$.subscribe((quickGearSlots: QuickGearSlots) => {
+      this.quickGearSlots = quickGearSlots;
+    });
+  }
+
+  onGearSelect(item: Item): void {
+    this.equipGear.emit(item);
   }
 }

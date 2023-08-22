@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isBlowpipe">
+<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Weapon && specialGear.isBlowpipe">
   <ng-select class="" [items]="allDarts" [(ngModel)]="gearSetup.blowpipeDarts" [clearable]="false">
     <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
     <ng-template ng-option-tmp let-item="item">
@@ -13,7 +13,7 @@
 </div>
 
 <div
-  class="d-flex align-items-center ms-4"
+  class="d-flex align-items-center ms-2"
   *ngIf="!isMainGearSetup && slot === GearSlot.Weapon && specialGear.isSpecialWeapon"
 >
   <label>Special attack</label>
@@ -22,29 +22,29 @@
   </div>
 </div>
 
-<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Head && specialGear.isSlayerHelm">
+<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Head && specialGear.isSlayerHelm">
   <label>Slayer task</label>
   <input class="ms-2 form-check-input" type="checkbox" [(ngModel)]="gearSetup.isOnSlayerTask" />
 </div>
 
-<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isWildernessWeapon">
+<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Weapon && specialGear.isWildernessWeapon">
   <label>Wilderness</label>
   <input class="ms-2 form-check-input" type="checkbox" [(ngModel)]="gearSetup.isInWilderness" />
 </div>
 
-<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isDharokSet">
+<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Weapon && specialGear.isDharokSet">
   <img src="assets/img/skills/hitpoints.png" />
   <input class="ms-2 form-control input-level" type="number" [(ngModel)]="gearSetup.currentHp" max="99" min="1" />
 </div>
 
-<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Weapon && specialGear.isPickaxe">
+<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Weapon && specialGear.isPickaxe">
   <img src="assets/img/skills/mining.png" />
   <div class="flex-shrink-1 ms-2">
     <input class="form-control input-level" type="number" [(ngModel)]="gearSetup.miningLvl" max="99" min="1" />
   </div>
 </div>
 
-<div class="d-flex align-items-center ms-4" *ngIf="slot === GearSlot.Ammo && specialGear.isSpecialBolt">
+<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Ammo && specialGear.isSpecialBolt">
   <label>Kandarin diary</label>
   <input class="form-check-input ms-2" type="checkbox" [(ngModel)]="gearSetup.isKandarinDiary" />
 </div>

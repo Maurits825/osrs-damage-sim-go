@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import re
+
+from util import get_ids
+
 FILTER_NPCS = ["8384"]
 
 
@@ -14,8 +18,7 @@ class TobNpcs:
         if "Health" in npc_version:
             return None, None
 
-        ids = [npc_id for npc_id in
-               map(lambda npc_id: npc_id.strip(), str(version["id"]).split(",")) if npc_id != "" and npc_id.isdigit()]
+        ids = get_ids(version)
 
         npc_id = str(ids[0])
         if npc_id in FILTER_NPCS:
@@ -30,11 +33,12 @@ class TobNpcs:
             return None, None
 
         doc = {"__source__": source}
-        if "Entry" in npc_version:
+        tob_mode = version.get("smwname") if "Verzik" in str(version["name"]).strip() else npc_version
+        if "Entry" in tob_mode:
             version["attributes"] = "TobEntryMode"
-        elif "Normal" in npc_version:
+        elif "Normal" in tob_mode:
             version["attributes"] = "TobNormalMode"
-        elif "Hard" in npc_version:
+        elif "Hard" in tob_mode:
             version["attributes"] = "TobHardMode"
         else:
             version["attributes"] = "TobNormalMode"
@@ -52,6 +56,6 @@ class TobNpcs:
         elif "260" in npc_version:
             name += " " + "(big)"
         elif "Verzik" in name:
-            name += " (" + str(version.get("smwname", "").strip().lower().replace("hase ", "")) + ")"
+            name += " (" + re.sub("^.*phase ", "p", str(version.get("smwname", "").strip().lower())) + ")"
 
         return doc, name

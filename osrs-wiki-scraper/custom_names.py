@@ -22,6 +22,9 @@ CUSTOM_NAME_MAP = {
 
     "12224": "Vardorvis (quest)",
     "12228": "Vardorvis (quest)",
+
+    "963": "Kalphite Queen (Crawling)",
+    "965": "Kalphite Queen (Airborne)"
 }
 
 

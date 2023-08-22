@@ -1,6 +1,6 @@
-import { QuickGearSetups } from 'src/app/model/damage-sim/quick-gear.model';
+import { GearSetSetups } from 'src/app/model/damage-sim/gear-set.model';
 
-export const quickGearSetups: QuickGearSetups = {
+export const gearSetSetups: GearSetSetups = {
   melee: [
     {
       label: 'Void melee',
@@ -57,47 +57,16 @@ export const quickGearSetups: QuickGearSetups = {
       itemIds: [21018, 21021, 21024],
     },
     {
+      label: 'Virtus',
+      itemIds: [26241, 26243, 26245],
+    },
+    {
       label: 'Ahrim',
       itemIds: [4712, 4714],
     },
     {
       label: 'Mystic',
       itemIds: [4101, 4103],
-    },
-  ],
-};
-
-export const quickExtraGearSetups: QuickGearSetups = {
-  melee: [
-    {
-      label: 'Max',
-      itemIds: [19553, 22981, 13239],
-    },
-    {
-      label: 'Mid',
-      itemIds: [6585, 7462, 11840],
-    },
-  ],
-
-  ranged: [
-    {
-      label: 'Max',
-      itemIds: [19547, 26235, 13237],
-    },
-    {
-      label: 'Mid',
-      itemIds: [6585, 7462, 19933],
-    },
-  ],
-
-  magic: [
-    {
-      label: 'Max',
-      itemIds: [12002, 19544, 13235],
-    },
-    {
-      label: 'Mid',
-      itemIds: [6585, 7462],
     },
   ],
 };

@@ -6960,7 +6960,7 @@
   "size": 4
  },
  "963": {
-  "name": "Kalphite Queen",
+  "name": "Kalphite Queen (Crawling)",
   "isKalphite": true,
   "hitpoints": 255,
   "att": 300,
@@ -6977,7 +6977,7 @@
   "size": 5
  },
  "965": {
-  "name": "Kalphite Queen",
+  "name": "Kalphite Queen (Airborne)",
   "isKalphite": true,
   "hitpoints": 255,
   "att": 300,
@@ -13617,34 +13617,45 @@
  "2501": {
   "name": "Zombie",
   "isUndead": true,
-  "hitpoints": 40,
-  "att": 35,
-  "str": 40,
-  "def": 40,
+  "hitpoints": 30,
+  "att": 25,
+  "str": 29,
+  "def": 20,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "dcrush": 22,
-  "combat": 44,
+  "combat": 30,
   "size": 1
  },
  "2502": {
   "name": "Zombie",
   "isUndead": true,
-  "hitpoints": 40,
-  "att": 35,
-  "str": 40,
-  "def": 40,
+  "hitpoints": 30,
+  "att": 25,
+  "str": 29,
+  "def": 20,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "dcrush": 22,
-  "combat": 44,
+  "combat": 30,
   "size": 1
  },
  "2503": {
   "name": "Zombie",
   "isUndead": true,
+  "hitpoints": 30,
+  "att": 25,
+  "str": 29,
+  "def": 20,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "combat": 30,
+  "size": 1
+ },
+ "2504": {
+  "name": "Zombie",
+  "isUndead": true,
   "hitpoints": 40,
   "att": 35,
   "str": 40,
@@ -13656,109 +13667,86 @@
   "combat": 44,
   "size": 1
  },
- "2504": {
-  "name": "Zombie",
-  "isUndead": true,
-  "hitpoints": 50,
-  "att": 55,
-  "str": 40,
-  "def": 48,
-  "mage": 1,
-  "range": 1,
-  "attbns": 5,
-  "strbns": 7,
-  "dstab": 19,
-  "dslash": 18,
-  "dmagic": 20,
-  "drange": 21,
-  "combat": 53,
-  "size": 1
- },
  "2505": {
   "name": "Zombie",
   "isUndead": true,
-  "hitpoints": 50,
-  "att": 55,
+  "hitpoints": 40,
+  "att": 35,
   "str": 40,
-  "def": 48,
+  "def": 40,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "strbns": 7,
-  "dstab": 19,
-  "dslash": 18,
-  "dmagic": 20,
-  "drange": 21,
-  "combat": 53,
+  "dcrush": 22,
+  "combat": 44,
   "size": 1
  },
  "2506": {
   "name": "Zombie",
   "isUndead": true,
-  "hitpoints": 50,
-  "att": 55,
+  "hitpoints": 40,
+  "att": 35,
   "str": 40,
-  "def": 48,
+  "def": 40,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "strbns": 7,
-  "dstab": 19,
-  "dslash": 18,
-  "dmagic": 20,
-  "drange": 21,
-  "combat": 53,
+  "dcrush": 22,
+  "combat": 44,
   "size": 1
  },
  "2507": {
   "name": "Zombie",
   "isUndead": true,
   "hitpoints": 50,
-  "att": 50,
-  "str": 50,
-  "def": 47,
+  "att": 55,
+  "str": 40,
+  "def": 48,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "strbns": 10,
-  "dstab": 20,
-  "dslash": 20,
-  "drange": 10,
-  "combat": 56,
+  "strbns": 7,
+  "dstab": 19,
+  "dslash": 18,
+  "dmagic": 20,
+  "drange": 21,
+  "combat": 53,
   "size": 1
  },
  "2508": {
   "name": "Zombie",
   "isUndead": true,
   "hitpoints": 50,
-  "att": 50,
-  "str": 50,
-  "def": 47,
+  "att": 55,
+  "str": 40,
+  "def": 48,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "strbns": 10,
-  "dstab": 20,
-  "dslash": 20,
-  "drange": 10,
-  "combat": 56,
+  "strbns": 7,
+  "dstab": 19,
+  "dslash": 18,
+  "dmagic": 20,
+  "drange": 21,
+  "combat": 53,
   "size": 1
  },
  "2509": {
   "name": "Zombie",
   "isUndead": true,
   "hitpoints": 50,
-  "att": 50,
-  "str": 50,
-  "def": 47,
+  "att": 55,
+  "str": 40,
+  "def": 48,
   "mage": 1,
   "range": 1,
   "attbns": 5,
-  "strbns": 10,
-  "dstab": 20,
-  "dslash": 20,
-  "drange": 10,
-  "combat": 56,
+  "strbns": 7,
+  "dstab": 19,
+  "dslash": 18,
+  "dmagic": 20,
+  "drange": 21,
+  "combat": 53,
   "size": 1
  },
  "2510": {
@@ -21983,7 +21971,7 @@
   "size": 1
  },
  "4303": {
-  "name": "Kalphite Queen",
+  "name": "Kalphite Queen (Crawling)",
   "isKalphite": true,
   "hitpoints": 255,
   "att": 300,
@@ -22000,7 +21988,7 @@
   "size": 5
  },
  "4304": {
-  "name": "Kalphite Queen",
+  "name": "Kalphite Queen (Airborne)",
   "isKalphite": true,
   "hitpoints": 255,
   "att": 300,
@@ -31445,40 +31433,6 @@
   "combat": 230,
   "size": 3
  },
- "6500": {
-  "name": "Kalphite Queen",
-  "isKalphite": true,
-  "hitpoints": 255,
-  "att": 300,
-  "str": 300,
-  "def": 300,
-  "mage": 150,
-  "range": 1,
-  "dstab": 50,
-  "dslash": 50,
-  "dcrush": 10,
-  "dmagic": 100,
-  "drange": 100,
-  "combat": 333,
-  "size": 5
- },
- "6501": {
-  "name": "Kalphite Queen",
-  "isKalphite": true,
-  "hitpoints": 255,
-  "att": 300,
-  "str": 300,
-  "def": 300,
-  "mage": 150,
-  "range": 1,
-  "dstab": 100,
-  "dslash": 100,
-  "dcrush": 100,
-  "dmagic": 10,
-  "drange": 10,
-  "combat": 333,
-  "size": 5
- },
  "6502": {
   "name": "King Black Dragon",
   "isDragon": true,
@@ -34918,23 +34872,6 @@
  "7485": {
   "name": "Zombie",
   "isUndead": true,
-  "hitpoints": 68,
-  "att": 61,
-  "str": 63,
-  "def": 62,
-  "mage": 1,
-  "range": 1,
-  "attbns": 5,
-  "strbns": 10,
-  "dstab": 20,
-  "dslash": 20,
-  "drange": 10,
-  "combat": 72,
-  "size": 1
- },
- "7486": {
-  "name": "Zombie",
-  "isUndead": true,
   "hitpoints": 65,
   "att": 61,
   "str": 60,
@@ -34949,15 +34886,24 @@
   "combat": 70,
   "size": 1
  },
- "7487": {
+ "7486": {
   "name": "Zombie",
   "isUndead": true,
+  "hitpoints": 50,
+  "att": 50,
+  "str": 50,
+  "def": 47,
   "mage": 1,
   "range": 1,
   "attbns": 5,
+  "strbns": 10,
+  "dstab": 20,
+  "dslash": 20,
+  "drange": 10,
+  "combat": 56,
   "size": 1
  },
- "7488": {
+ "7487": {
   "name": "Zombie",
   "isUndead": true,
   "hitpoints": 71,
@@ -34972,6 +34918,23 @@
   "dslash": 20,
   "drange": 10,
   "combat": 76,
+  "size": 1
+ },
+ "7488": {
+  "name": "Zombie",
+  "isUndead": true,
+  "hitpoints": 68,
+  "att": 61,
+  "str": 63,
+  "def": 62,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 10,
+  "dstab": 20,
+  "dslash": 20,
+  "drange": 10,
+  "combat": 72,
   "size": 1
  },
  "7513": {
@@ -38130,18 +38093,6 @@
   "combat": 233,
   "size": 1
  },
- "8251": {
-  "name": "Vyrewatch",
-  "isVampyre3": true,
-  "hitpoints": 75,
-  "att": 80,
-  "str": 75,
-  "def": 75,
-  "mage": 75,
-  "range": 1,
-  "combat": 87,
-  "size": 1
- },
  "8252": {
   "name": "Vyrewatch",
   "isVampyre3": true,
@@ -38603,7 +38554,7 @@
   "size": 1
  },
  "8369": {
-  "name": "Verzik Vitur (normal mode, p1)",
+  "name": "Verzik Vitur (p1)",
   "isTobNormalMode": true,
   "hitpoints": 2000,
   "att": 400,
@@ -38624,7 +38575,7 @@
   "size": 5
  },
  "8372": {
-  "name": "Verzik Vitur (normal mode, p2)",
+  "name": "Verzik Vitur (p2)",
   "isTobNormalMode": true,
   "hitpoints": 3250,
   "att": 400,
@@ -38645,7 +38596,7 @@
   "size": 3
  },
  "8374": {
-  "name": "Verzik Vitur (normal mode, p3)",
+  "name": "Verzik Vitur (p3)",
   "isTobNormalMode": true,
   "hitpoints": 3250,
   "att": 400,
@@ -41579,7 +41530,119 @@
   "combat": 108,
   "size": 1
  },
+ "9560": {
+  "name": "Kroy",
+  "isVampyre1": true,
+  "hitpoints": 209,
+  "att": 80,
+  "str": 80,
+  "def": 80,
+  "mage": 80,
+  "attbns": 36,
+  "strbns": 42,
+  "amagic": 36,
+  "mbns": 42,
+  "dstab": 50,
+  "dslash": 50,
+  "dcrush": 50,
+  "dmagic": 50,
+  "drange": 50,
+  "combat": 133,
+  "size": 1
+ },
+ "9561": {
+  "name": "Damien Leucurte",
+  "isVampyre3": true,
+  "hitpoints": 217,
+  "def": 160,
+  "mage": 160,
+  "range": 160,
+  "amagic": 18,
+  "mbns": 12,
+  "arange": 18,
+  "rngbns": 12,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 30,
+  "dmagic": 30,
+  "drange": 30,
+  "combat": 204,
+  "size": 1
+ },
+ "9562": {
+  "name": "Damien Leucurte",
+  "isVampyre3": true,
+  "hitpoints": 217,
+  "def": 160,
+  "mage": 160,
+  "range": 160,
+  "amagic": 18,
+  "mbns": 12,
+  "arange": 18,
+  "rngbns": 12,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 30,
+  "dmagic": 30,
+  "drange": 30,
+  "combat": 204,
+  "size": 1
+ },
+ "9563": {
+  "name": "Damien Leucurte",
+  "isVampyre3": true,
+  "hitpoints": 217,
+  "def": 160,
+  "mage": 160,
+  "range": 160,
+  "amagic": 18,
+  "mbns": 12,
+  "arange": 18,
+  "rngbns": 12,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 30,
+  "dmagic": 30,
+  "drange": 30,
+  "combat": 204,
+  "size": 1
+ },
+ "9564": {
+  "name": "Damien Leucurte",
+  "isVampyre3": true,
+  "hitpoints": 217,
+  "def": 160,
+  "mage": 160,
+  "range": 160,
+  "amagic": 18,
+  "mbns": 12,
+  "arange": 18,
+  "rngbns": 12,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 30,
+  "dmagic": 30,
+  "drange": 30,
+  "combat": 204,
+  "size": 1
+ },
  "9567": {
+  "name": "Vanstrom Klause",
+  "isVampyre3": true,
+  "hitpoints": 750,
+  "def": 180,
+  "mage": 180,
+  "amagic": 16,
+  "mbns": 18,
+  "dstab": 34,
+  "dslash": 34,
+  "dcrush": 34,
+  "dmagic": 34,
+  "drange": 34,
+  "combat": 459,
+  "size": 1
+ },
+ "9568": {
   "name": "Vanstrom Klause",
   "isVampyre3": true,
   "hitpoints": 750,
@@ -41612,6 +41675,22 @@
   "size": 1
  },
  "9570": {
+  "name": "Vanstrom Klause",
+  "isVampyre3": true,
+  "hitpoints": 750,
+  "def": 180,
+  "mage": 180,
+  "amagic": 16,
+  "mbns": 18,
+  "dstab": 34,
+  "dslash": 34,
+  "dcrush": 34,
+  "dmagic": 34,
+  "drange": 34,
+  "combat": 459,
+  "size": 1
+ },
+ "9571": {
   "name": "Vanstrom Klause",
   "isVampyre3": true,
   "hitpoints": 750,
@@ -41682,6 +41761,22 @@
   "range": 1,
   "combat": 141,
   "size": 2
+ },
+ "9632": {
+  "name": "Vanstrom Klause",
+  "isVampyre3": true,
+  "hitpoints": 750,
+  "def": 180,
+  "mage": 180,
+  "amagic": 16,
+  "mbns": 18,
+  "dstab": 34,
+  "dslash": 34,
+  "dcrush": 34,
+  "dmagic": 34,
+  "drange": 34,
+  "combat": 459,
+  "size": 1
  },
  "9727": {
   "name": "Vampyre Juvinate",
@@ -41921,45 +42016,6 @@
   "mage": 120,
   "range": 120,
   "combat": 151,
-  "size": 1
- },
- "9773": {
-  "name": "Kroy",
-  "isVampyre1": true,
-  "hitpoints": 209,
-  "att": 80,
-  "str": 80,
-  "def": 80,
-  "mage": 80,
-  "attbns": 36,
-  "strbns": 42,
-  "amagic": 36,
-  "mbns": 42,
-  "dstab": 50,
-  "dslash": 50,
-  "dcrush": 50,
-  "dmagic": 50,
-  "drange": 50,
-  "combat": 133,
-  "size": 1
- },
- "9774": {
-  "name": "Damien Leucurte",
-  "isVampyre3": true,
-  "hitpoints": 217,
-  "def": 160,
-  "mage": 160,
-  "range": 160,
-  "amagic": 18,
-  "mbns": 12,
-  "arange": 18,
-  "rngbns": 12,
-  "dstab": 30,
-  "dslash": 30,
-  "dcrush": 30,
-  "dmagic": 30,
-  "drange": 30,
-  "combat": 204,
   "size": 1
  },
  "10374": {
@@ -42949,8 +43005,8 @@
   "size": 2
  },
  "10830": {
-  "name": "Verzik Vitur (entry mode, p1)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p1)",
+  "isTobEntryMode": true,
   "hitpoints": 1200,
   "att": 180,
   "str": 150,
@@ -42970,8 +43026,8 @@
   "size": 5
  },
  "10833": {
-  "name": "Verzik Vitur (entry mode, p2)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p2)",
+  "isTobEntryMode": true,
   "hitpoints": 1600,
   "att": 200,
   "str": 150,
@@ -42991,8 +43047,8 @@
   "size": 3
  },
  "10835": {
-  "name": "Verzik Vitur (entry mode, p3)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p3)",
+  "isTobEntryMode": true,
   "hitpoints": 2400,
   "att": 180,
   "str": 200,
@@ -43025,8 +43081,8 @@
   "size": 2
  },
  "10847": {
-  "name": "Verzik Vitur (hard mode, p1)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p1)",
+  "isTobHardMode": true,
   "hitpoints": 2000,
   "att": 400,
   "str": 400,
@@ -43046,8 +43102,8 @@
   "size": 5
  },
  "10850": {
-  "name": "Verzik Vitur (hard mode, p2)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p2)",
+  "isTobHardMode": true,
   "hitpoints": 3250,
   "att": 400,
   "str": 400,
@@ -43067,8 +43123,8 @@
   "size": 3
  },
  "10852": {
-  "name": "Verzik Vitur (hard mode, p3)",
-  "isTobNormalMode": true,
+  "name": "Verzik Vitur (p3)",
+  "isTobHardMode": true,
   "hitpoints": 3250,
   "att": 400,
   "str": 400,
@@ -46949,6 +47005,28 @@
   "combat": 12,
   "size": 1
  },
+ "12026": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
+ "12027": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
  "12046": {
   "name": "Evelot",
   "hitpoints": 160,
@@ -46993,6 +47071,86 @@
   "dslash": 6,
   "dcrush": 8,
   "combat": 13,
+  "size": 1
+ },
+ "12049": {
+  "name": "Clivet",
+  "hitpoints": 25,
+  "att": 10,
+  "str": 10,
+  "def": 4,
+  "mage": 1,
+  "range": 1,
+  "dstab": 5,
+  "dslash": 6,
+  "dcrush": 8,
+  "combat": 13,
+  "size": 1
+ },
+ "12054": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
+ "12055": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
+ "12056": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
+ "12057": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
+ "12058": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
+  "size": 1
+ },
+ "12059": {
+  "name": "General Khazard",
+  "hitpoints": 170,
+  "att": 75,
+  "str": 78,
+  "def": 80,
+  "mage": 1,
+  "range": 1,
+  "combat": 142,
   "size": 1
  },
  "12061": {
@@ -47314,6 +47472,20 @@
   "combat": 13,
   "size": 1
  },
+ "12095": {
+  "name": "Clivet",
+  "hitpoints": 25,
+  "att": 10,
+  "str": 10,
+  "def": 4,
+  "mage": 1,
+  "range": 1,
+  "dstab": 5,
+  "dslash": 6,
+  "dcrush": 8,
+  "combat": 13,
+  "size": 1
+ },
  "12096": {
   "name": "Hazeel Cultist",
   "hitpoints": 25,
@@ -47388,6 +47560,7 @@
  },
  "12166": {
   "name": "Duke Sucellus",
+  "isDemon": true,
   "hitpoints": 440,
   "att": 300,
   "str": 345,
@@ -47407,6 +47580,7 @@
  },
  "12167": {
   "name": "Duke Sucellus",
+  "isDemon": true,
   "hitpoints": 440,
   "att": 300,
   "str": 345,
@@ -47426,6 +47600,7 @@
  },
  "12191": {
   "name": "Duke Sucellus",
+  "isDemon": true,
   "hitpoints": 440,
   "att": 300,
   "str": 345,
@@ -47445,6 +47620,7 @@
  },
  "12192": {
   "name": "Duke Sucellus",
+  "isDemon": true,
   "hitpoints": 440,
   "att": 300,
   "str": 345,
@@ -47464,48 +47640,67 @@
  },
  "12193": {
   "name": "Duke Sucellus (quest)",
-  "hitpoints": 360,
+  "isDemon": true,
+  "hitpoints": 200,
   "att": 250,
   "str": 280,
   "def": 215,
   "mage": 230,
   "attbns": 200,
-  "strbns": 38,
+  "strbns": 16,
   "amagic": 150,
-  "mbns": 32,
-  "combat": 519,
+  "mbns": 10,
+  "dstab": 210,
+  "dslash": 30,
+  "dcrush": 160,
+  "dmagic": 400,
+  "drange": 300,
+  "combat": 538,
   "size": 7
  },
  "12194": {
   "name": "Duke Sucellus (quest)",
-  "hitpoints": 360,
+  "isDemon": true,
+  "hitpoints": 200,
   "att": 250,
   "str": 280,
   "def": 215,
   "mage": 230,
   "attbns": 200,
-  "strbns": 38,
+  "strbns": 16,
   "amagic": 150,
-  "mbns": 32,
-  "combat": 519,
+  "mbns": 10,
+  "dstab": 210,
+  "dslash": 30,
+  "dcrush": 160,
+  "dmagic": 400,
+  "drange": 300,
+  "combat": 538,
   "size": 7
  },
  "12195": {
   "name": "Duke Sucellus (quest)",
-  "hitpoints": 360,
+  "isDemon": true,
+  "hitpoints": 200,
   "att": 250,
   "str": 280,
   "def": 215,
   "mage": 230,
   "attbns": 200,
-  "strbns": 38,
+  "strbns": 16,
   "amagic": 150,
-  "mbns": 32,
-  "combat": 519,
+  "mbns": 10,
+  "dstab": 210,
+  "dslash": 30,
+  "dcrush": 160,
+  "dmagic": 400,
+  "drange": 300,
+  "combat": 538,
   "size": 7
  },
  "12196": {
   "name": "Duke Sucellus",
+  "isDemon": true,
   "hitpoints": 440,
   "att": 300,
   "str": 345,
@@ -47586,7 +47781,7 @@
   "dcrush": 220,
   "dmagic": 10,
   "drange": 300,
-  "combat": 568,
+  "combat": 587,
   "size": 3
  },
  "12207": {
@@ -47608,7 +47803,7 @@
   "dcrush": 220,
   "dmagic": 10,
   "drange": 300,
-  "combat": 568,
+  "combat": 587,
   "size": 3
  },
  "12214": {
@@ -47638,21 +47833,21 @@
   "hitpoints": 720,
   "att": 250,
   "str": 270,
-  "def": 150,
+  "def": 200,
   "mage": 130,
   "range": 130,
-  "attbns": 200,
-  "strbns": 22,
-  "amagic": 160,
-  "mbns": 58,
-  "arange": 300,
-  "rngbns": 26,
-  "dstab": 260,
-  "dslash": 190,
-  "dcrush": 230,
-  "dmagic": 280,
-  "drange": 50,
-  "combat": 577,
+  "attbns": 170,
+  "strbns": 14,
+  "amagic": 130,
+  "mbns": 36,
+  "arange": 230,
+  "rngbns": 10,
+  "dstab": 200,
+  "dslash": 150,
+  "dcrush": 180,
+  "dmagic": 220,
+  "drange": 30,
+  "combat": 593,
   "size": 7
  },
  "12219": {
@@ -47660,21 +47855,21 @@
   "hitpoints": 720,
   "att": 250,
   "str": 270,
-  "def": 150,
+  "def": 200,
   "mage": 130,
   "range": 130,
-  "attbns": 200,
-  "strbns": 22,
-  "amagic": 160,
-  "mbns": 58,
-  "arange": 300,
-  "rngbns": 26,
-  "dstab": 260,
-  "dslash": 190,
-  "dcrush": 230,
-  "dmagic": 280,
-  "drange": 50,
-  "combat": 577,
+  "attbns": 170,
+  "strbns": 14,
+  "amagic": 130,
+  "mbns": 36,
+  "arange": 230,
+  "rngbns": 10,
+  "dstab": 200,
+  "dslash": 150,
+  "dcrush": 180,
+  "dmagic": 220,
+  "drange": 30,
+  "combat": 593,
   "size": 7
  },
  "12223": {
@@ -47697,65 +47892,31 @@
   "name": "Vardorvis (quest)",
   "hitpoints": 500,
   "att": 260,
-  "str": 210,
-  "def": 180,
   "mage": 180,
   "attbns": 185,
-  "dstab": 215,
-  "dslash": 65,
-  "dcrush": 85,
-  "dmagic": 580,
-  "drange": 580,
-  "combat": 553,
-  "size": 2
+  "dstab": 150,
+  "dslash": 25,
+  "dcrush": 50,
+  "dmagic": 560,
+  "drange": 560,
+  "combat": 572,
+  "size": 2,
+  "def": 180
  },
  "12228": {
   "name": "Vardorvis (quest)",
   "hitpoints": 500,
   "att": 260,
-  "str": 210,
-  "def": 180,
   "mage": 180,
   "attbns": 185,
-  "dstab": 215,
-  "dslash": 65,
-  "dcrush": 85,
-  "dmagic": 580,
-  "drange": 580,
-  "combat": 553,
-  "size": 2
- },
- "12236": {
-  "name": "Ancient Guardian",
-  "isGolem": true,
-  "hitpoints": 100,
-  "att": 180,
-  "str": 110,
-  "def": 100,
-  "mage": 100,
-  "dstab": 50,
-  "dslash": 40,
-  "dcrush": 20,
-  "dmagic": 10,
-  "drange": 50,
-  "combat": 153,
-  "size": 3
- },
- "12237": {
-  "name": "Ancient Guardian",
-  "isGolem": true,
-  "hitpoints": 100,
-  "att": 180,
-  "str": 110,
-  "def": 100,
-  "mage": 100,
-  "dstab": 50,
-  "dslash": 40,
-  "dcrush": 20,
-  "dmagic": 10,
-  "drange": 50,
-  "combat": 153,
-  "size": 3
+  "dstab": 150,
+  "dslash": 25,
+  "dcrush": 50,
+  "dmagic": 560,
+  "drange": 560,
+  "combat": 572,
+  "size": 2,
+  "def": 180
  },
  "12248": {
   "name": "Shadow Keeper",
@@ -47815,6 +47976,106 @@
   "combat": 231,
   "size": 1
  },
+ "12268": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12269": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12270": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12271": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12272": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12273": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12274": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12275": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12276": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12277": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12278": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12279": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12280": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12281": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12282": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12283": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12284": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12285": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12286": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12287": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
  "12288": {
   "name": "Strangled Bear",
   "combat": 197,
@@ -47872,26 +48133,6 @@
   "dmagic": 30,
   "drange": 20,
   "combat": 271,
-  "size": 1
- },
- "12325": {
-  "name": "Karil the Tainted",
-  "isSpectral": true,
-  "hitpoints": 100,
-  "att": 1,
-  "str": 1,
-  "def": 100,
-  "mage": 1,
-  "range": 100,
-  "amagic": -26,
-  "arange": 134,
-  "rngbns": 55,
-  "dstab": 79,
-  "dslash": 71,
-  "dcrush": 90,
-  "dmagic": 106,
-  "drange": 100,
-  "combat": 98,
   "size": 1
  },
  "12328": {
@@ -48018,6 +48259,38 @@
   "combat": 96,
   "size": 1
  },
+ "12336": {
+  "name": "Ancient Guardian",
+  "isGolem": true,
+  "hitpoints": 100,
+  "att": 180,
+  "str": 110,
+  "def": 100,
+  "mage": 100,
+  "dstab": 50,
+  "dslash": 40,
+  "dcrush": 20,
+  "dmagic": 10,
+  "drange": 50,
+  "combat": 153,
+  "size": 3
+ },
+ "12337": {
+  "name": "Ancient Guardian",
+  "isGolem": true,
+  "hitpoints": 100,
+  "att": 180,
+  "str": 110,
+  "def": 100,
+  "mage": 100,
+  "dstab": 50,
+  "dslash": 40,
+  "dcrush": 20,
+  "dmagic": 10,
+  "drange": 50,
+  "combat": 153,
+  "size": 3
+ },
  "12353": {
   "name": "Jhallan",
   "hitpoints": 1500,
@@ -48097,6 +48370,21 @@
   "combat": 121,
   "size": 2
  },
+ "12365": {
+  "name": "Lesser demon",
+  "isDemon": true,
+  "hitpoints": 80,
+  "att": 110,
+  "str": 110,
+  "def": 110,
+  "mage": 110,
+  "range": 110,
+  "attbns": 100,
+  "amagic": 100,
+  "arange": 100,
+  "combat": 94,
+  "size": 2
+ },
  "12366": {
   "name": "Abyssal leech",
   "hitpoints": 30,
@@ -48108,7 +48396,17 @@
   "combat": 46,
   "size": 1
  },
- "12368": {},
+ "12369": {
+  "name": "Crimson sanguisphera",
+  "hitpoints": 20,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "combat": 34,
+  "size": 1
+ },
  "12370": {
   "name": "Radiant sanguisphera",
   "hitpoints": 20,
@@ -48118,6 +48416,17 @@
   "mage": 1,
   "range": 1,
   "combat": 34,
+  "size": 1
+ },
+ "12372": {
+  "name": "Abyssal antibody",
+  "hitpoints": 50,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "combat": 30,
   "size": 1
  },
  "12373": {
@@ -48154,6 +48463,7 @@
   "def": 30,
   "mage": 1,
   "range": 1,
+  "arange": 2,
   "combat": 39,
   "size": 2
  },
@@ -48220,6 +48530,19 @@
   "dmagic": -10,
   "combat": 95,
   "size": 3
+ },
+ "12389": {
+  "name": "Lesser demon",
+  "isDemon": true,
+  "hitpoints": 79,
+  "att": 68,
+  "str": 70,
+  "def": 71,
+  "mage": 1,
+  "range": 1,
+  "arange": 100,
+  "combat": 82,
+  "size": 2
  },
  "12390": {
   "name": "Scarred lesser demon",
@@ -48301,17 +48624,16 @@
   "name": "Vardorvis (quest)",
   "hitpoints": 500,
   "att": 260,
-  "str": 210,
-  "def": 180,
   "mage": 180,
   "attbns": 185,
-  "dstab": 215,
-  "dslash": 65,
-  "dcrush": 85,
-  "dmagic": 580,
-  "drange": 580,
-  "combat": 553,
-  "size": 2
+  "dstab": 150,
+  "dslash": 25,
+  "dcrush": 50,
+  "dmagic": 560,
+  "drange": 560,
+  "combat": 572,
+  "size": 2,
+  "def": 180
  },
  "12426": {
   "name": "Vardorvis",
@@ -48328,5 +48650,40 @@
   "combat": 784,
   "size": 2,
   "def": 215
+ },
+ "12429": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12430": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12431": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12432": {
+  "name": "Strangled",
+  "combat": 138,
+  "size": 1
+ },
+ "12433": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12434": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
+ },
+ "12435": {
+  "name": "Strangled",
+  "combat": 149,
+  "size": 1
  }
 }

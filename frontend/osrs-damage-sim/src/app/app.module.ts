@@ -25,12 +25,13 @@ import { ShareInputSetupComponent } from './core/share-input-setup/share-input-s
 import { ShareInputSetupModalComponent } from './shared/modals/share-input-setup-modal/share-input-setup-modal.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from './model/damage-sim/injection-token.const';
-import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
+import { GearSetSelectComponent } from './shared/components/gear-set-select/gear-set-select.component';
 import { ExampleSetupsComponent } from './core/example-setups/example-setups.component';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailedRunResultsComponent } from './core/detailed-run-results/detailed-run-results.component';
 import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
 import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
+import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,11 +54,12 @@ import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
     NgSelectLazyLoadComponent,
     ShareInputSetupComponent,
     ShareInputSetupModalComponent,
-    QuickGearSelectComponent,
+    GearSetSelectComponent,
     ExampleSetupsComponent,
     DetailedRunResultsComponent,
     TickToTimePipe,
     SpecialProcTextPipe,
+    QuickGearSelectComponent,
   ],
   imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
   providers: [

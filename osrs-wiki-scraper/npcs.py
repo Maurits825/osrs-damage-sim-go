@@ -13,6 +13,8 @@ from tob_npcs import TobNpcs
 npc_trait_keys = ["hitpoints", "att", "str", "def", "mage", "range", "attbns", "strbns", "defbns", "amagic", "mbns",
                   "arange", "rngbns", "dstab", "dslash", "dcrush", "dmagic", "drange", "combat", "size"]
 
+FILTER_NPCS = ["4303", "4304", "6500", "6501"]
+
 
 def run():
     npcs = {}
@@ -28,6 +30,14 @@ def run():
             for (vid, version) in util.each_version("Infobox Monster", code):
                 if "removal" in version and not str(version["removal"]).strip().lower() in ["", "no"]:
                     continue
+
+                try:
+                    npc_id = str(util.get_ids(version)[0])
+                except:
+                    pass
+                else:
+                    if npc_id in FILTER_NPCS:
+                        continue
 
                 is_cox = util.has_template("Chambers of Xeric", code)
                 is_tob = util.has_template("Theatre of Blood", code)

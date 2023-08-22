@@ -1,27 +1,14 @@
-<div>
-  <div class="btn-group me-2" role="group" style="height: '45px'">
+<ng-container *ngIf="quickGearSlots && quickGearSlots[gearSlot] && quickGearSlots[gearSlot][attackType].length > 0">
+  <div class="d-flex ms-2 btn-group" role="group" style="height: '36px'">
     <button
       type="button"
-      class="btn btn-outline-dark"
-      style="width: '55px'"
-      [title]="setup.label"
-      *ngFor="let setup of quickGearSetups[attackType]"
-      (click)="onSelectSetup(setup)"
+      class="btn btn-outline-dark px-2 py-1 d-flex justify-content-center"
+      style="width: '44px'"
+      *ngFor="let item of quickGearSlots[gearSlot][attackType]"
+      [title]="item.name"
+      (click)="onGearSelect(item)"
     >
-      <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" />
+      <img class="img-fluid align-self-center" src="data:image/png;base64,{{ item?.icon }}" />
     </button>
   </div>
-
-  <div class="btn-group" role="group" style="height: '45px'">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      style="width: '55px'"
-      [title]="setup.label"
-      *ngFor="let setup of quickExtraGearSetups[attackType]"
-      (click)="onSelectSetup(setup)"
-    >
-      <img src="assets/img/quick_gear/{{ attackType }}/{{ setup.label | lowercase }}.png" />
-    </button>
-  </div>
-</div>
+</ng-container>

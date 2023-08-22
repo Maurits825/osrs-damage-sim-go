@@ -12,13 +12,13 @@ import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { PrayerService } from 'src/app/services/prayer.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { QuickGear } from 'src/app/model/damage-sim/quick-gear.model';
+import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
 import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
 import { Condition } from 'src/app/model/damage-sim/condition.model';
 import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
-import { Item, AttackType } from 'src/app/model/osrs/item.model';
+import { Item, AttackType, allAttackTypes } from 'src/app/model/osrs/item.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
@@ -47,7 +47,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   attackStyles: string[];
   allSpells: string[];
 
-  attackType: AttackType = 'melee';
+  allAttackTypes = allAttackTypes;
+  currentAttackType: AttackType = 'melee';
 
   allDarts: Item[];
 
@@ -104,7 +105,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.prayerService.globalPrayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
         .subscribe(
-          (prayers: Record<AttackType, Set<Prayer>>) => (this.gearSetup.prayers = new Set(prayers[this.attackType]))
+          (prayers: Record<AttackType, Set<Prayer>>) =>
+            (this.gearSetup.prayers = new Set(prayers[this.currentAttackType]))
         );
     });
   }
@@ -114,7 +116,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   loadGearSetupPreset(gearSetupPreset: GearSetupPreset) {
-    this.setCurrentGearByIds(gearSetupPreset.gearIds);
+    this.setCurrentGearByIds(gearSetupPreset.gearIds, true);
     this.gearSetup.setupName = gearSetupPreset.name;
     this.gearSetup.presetName = gearSetupPreset.name;
   }
@@ -156,14 +158,14 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     if (slot === GearSlot.Weapon) {
       const itemId = item?.id || UNARMED_EQUIVALENT_ID;
       this.gearSetup.setupName = 'Unarmed';
-      this.attackType = 'melee';
+      this.currentAttackType = 'melee';
 
       if (item) {
         this.gearSetup.setupName = item.name;
-        this.attackType = item.attackType;
+        this.currentAttackType = item.attackType;
       }
 
-      this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[this.attackType]);
+      this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[this.currentAttackType]);
 
       this.updateAttackStyle(itemId);
     }
@@ -195,7 +197,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
     const weapon = this.itemService.getItem(GearSlot.Weapon, itemId);
     this.attackStyles = weapon.attackStyles;
-    this.attackType = weapon.attackType;
+    this.currentAttackType = weapon.attackType;
     this.updateSpecialGear();
   }
 
@@ -219,7 +221,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectQuickGearSetup(quickGear: QuickGear): void {
-    this.setCurrentGearByIds(quickGear.itemIds);
+  selectGearSetSetup(gearSet: GearSet): void {
+    this.setCurrentGearByIds(gearSet.itemIds);
+  }
+
+  setAttackType(attackType: AttackType): void {
+    this.currentAttackType = attackType;
   }
 }

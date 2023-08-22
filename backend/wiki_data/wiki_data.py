@@ -47,7 +47,7 @@ class WikiData:
         else:
             location = Location.NONE
 
-        npc["isKalphite"] = npc_name in WikiData.extra_data["isKalphite"]
+        npc["isKalphite"] = npc_name in WikiData.extra_data["isKalphite"] or npc.get("isKalphite", False)
 
         combat_stats = CombatStats(hitpoints=npc.get("hitpoints", 0), attack=npc.get("att", 0),
                                    strength=npc.get("str", 0), defence=npc.get("def", 0),

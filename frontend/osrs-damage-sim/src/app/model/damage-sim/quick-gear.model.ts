@@ -1,10 +1,18 @@
-import { AttackType } from '../../model/osrs/item.model';
+import { GearSlot } from '../osrs/gear-slot.enum';
+import { AttackType, Item } from '../osrs/item.model';
 
-export interface QuickGear {
-  label: string;
-  itemIds: number[];
-}
+export type QuickGear = {
+  [attackType in AttackType]: Item[];
+};
 
-export type QuickGearSetups = {
-  [attackType in AttackType]: QuickGear[];
+export type QuickGearSlots = {
+  [gearSlot in GearSlot]: QuickGear;
+};
+
+export type QuickGearId = {
+  [attackType in AttackType]: number[];
+};
+
+export type QuickGearJson = {
+  [gearSlot in GearSlot]: QuickGearId;
 };
