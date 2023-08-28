@@ -41,7 +41,7 @@ class TestDamageSimRunner(unittest.TestCase):
         for weapon in input_setup.input_gear_setups[0].all_weapons:
             weapon.set_npc(input_setup.global_settings.npc)
             if input_setup.global_settings.npc.id in VARDORVIS:
-                weapon.is_post_attack = False
+                weapon.is_pre_attack = False
 
     def test_input_setup_run_single_gear_setup(self):
         print("\nTesting setup sim dps:")
