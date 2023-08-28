@@ -75,3 +75,11 @@ class Fang(Weapon):
                                       (6 * (attack_roll + 1) * (defence_roll + 1)))
 
         return effective_accuracy
+
+    def get_npc_defence_and_style(self):
+        if not self.gear_setup.is_special_attack:
+            return super().get_npc_defence_and_style()
+
+        target_defence = self.npc.combat_stats.defence
+        target_defence_style = self.npc.defensive_stats.stab
+        return target_defence, target_defence_style

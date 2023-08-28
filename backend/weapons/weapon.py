@@ -66,7 +66,7 @@ class Weapon:
             VERZIK_P1_MELEE_DMG_CAP if self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES
             else VERZIK_P1_RANGE_MAGE_DMG_CAP)
 
-        self.is_post_attack = npc.id in VARDORVIS
+        self.is_pre_attack = npc.id in VARDORVIS
 
         self.max_hit = 0
         self.accuracy = 0
@@ -123,6 +123,9 @@ class Weapon:
     def attack(self) -> Hitsplat:
         self.hitsplat.special_procs = []
 
+        if self.is_pre_attack:
+            self.pre_attack()
+
         self.roll_damage()
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
@@ -168,18 +171,14 @@ class Weapon:
                 self.hitsplat.hitsplats = hitsplats
                 self.hitsplat.damage = self.hitsplat.hitsplats
 
-        if self.is_post_attack:
-            self.post_attack()
-
         return self.hitsplat
 
-    def post_attack(self):
+    def pre_attack(self):
         if self.npc.id in VARDORVIS:
             self.npc.combat_stats.defence = (
                     self.npc.base_combat_stats.defence -
                     math.floor(
-                        (0.1 * (self.npc.base_combat_stats.hitpoints -
-                                (self.npc.combat_stats.hitpoints - self.hitsplat.damage)))))
+                        (0.1 * (self.npc.base_combat_stats.hitpoints - self.npc.combat_stats.hitpoints))))
 
             self.update_target_defence_and_roll()
             self.update_accuracy()
