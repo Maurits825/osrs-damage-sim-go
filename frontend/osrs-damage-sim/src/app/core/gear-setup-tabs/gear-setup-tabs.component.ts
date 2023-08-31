@@ -12,7 +12,7 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
-import { Mode } from 'src/app/model/damage-sim/mode.enum';
+import { Mode } from 'src/app/model/mode.enum';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/gear-setup-tab.component';
 

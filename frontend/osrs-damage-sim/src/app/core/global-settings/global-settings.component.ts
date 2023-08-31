@@ -13,7 +13,7 @@ import { StatDrainService } from 'src/app/services/stat-drain.service';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { Subject, takeUntil } from 'rxjs';
-import { Mode } from 'src/app/model/damage-sim/mode.enum';
+import { Mode } from 'src/app/model/mode.enum';
 
 @Component({
   selector: 'app-global-settings',

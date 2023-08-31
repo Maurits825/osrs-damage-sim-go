@@ -35,6 +35,7 @@ import { QuickGearSelectComponent } from './shared/components/quick-gear-select/
 import { DamageSimComponent } from './core/damage-sim/damage-sim.component';
 import { DpsGrapherComponent } from './core/dps-grapher/dps-grapher.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-grapher-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { AppRoutingModule } from './app-routing.module';
     QuickGearSelectComponent,
     DamageSimComponent,
     DpsGrapherComponent,
+    DpsGrapherSettingsComponent,
   ],
   imports: [
     NgSelectModule,

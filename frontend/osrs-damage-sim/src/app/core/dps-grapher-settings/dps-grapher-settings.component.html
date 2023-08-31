@@ -1,0 +1,43 @@
+<div class="row align-items-center mb-4">
+  <div class="col-2">Graph x value</div>
+  <div class="col-4">
+    <app-ng-select-lazy-load
+      [valueType]="InputValue"
+      [allValues]="inputValues"
+      [selectedValue]="selectedInputValue"
+      searchProperty="type"
+      placeholder="Select input value"
+      (valueChanged)="selectedInputValueChange($event)"
+    >
+      <ng-template #dropdownLabel #dropdownOptions let-item="item">
+        {{ item.type }}
+      </ng-template>
+    </app-ng-select-lazy-load>
+  </div>
+  <div class="col">
+    <input
+      class="form-control"
+      inputmode="numeric"
+      type="number"
+      min="0"
+      [(ngModel)]="dpsGrapherSettings.min"
+      (change)="minChanged()"
+      required
+    />
+  </div>
+  <div class="col-auto">to</div>
+  <div class="col">
+    <input
+      class="form-control"
+      inputmode="numeric"
+      type="number"
+      min="1"
+      [(ngModel)]="dpsGrapherSettings.max"
+      (change)="maxChanged()"
+      required
+    />
+  </div>
+  <div class="col">
+    {{ selectedInputValue?.label }}
+  </div>
+</div>

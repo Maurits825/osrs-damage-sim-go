@@ -20,6 +20,7 @@
   </div> -->
 
   <app-global-settings [mode]="Mode.DpsGrapher"></app-global-settings>
+  <app-dps-grapher-settings (dpsGrapherSettingsChanged)="dpsGrapherSettingsChanged($event)"></app-dps-grapher-settings>
 
   <div class="mb-4 px-3">
     <div class="row mb-1">

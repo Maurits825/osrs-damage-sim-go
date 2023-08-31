@@ -23,7 +23,7 @@ import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { ItemService } from 'src/app/services/item.service';
-import { Mode } from 'src/app/model/damage-sim/mode.enum';
+import { Mode } from 'src/app/model/mode.enum';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DamageSimResults } from 'src/app/model/damage-sim/damage-sim-results.model';
-import { Mode } from 'src/app/model/damage-sim/mode.enum';
+import { DpsGrapherSettings } from 'src/app/model/dps-grapher/dps-grapher-settings.model';
+import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
@@ -16,7 +17,14 @@ export class DpsGrapherComponent {
 
   damageSimResults: DamageSimResults;
 
+  dpsGrapherSettings: DpsGrapherSettings;
+
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
+
+  dpsGrapherSettingsChanged(dpsGrapherSettings: DpsGrapherSettings): void {
+    this.dpsGrapherSettings = dpsGrapherSettings;
+    console.log(this.dpsGrapherSettings);
+  }
 
   runDpsGrapher(): void {
     this.loading = true;

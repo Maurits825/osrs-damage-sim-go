@@ -16,7 +16,7 @@ import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-s
 import { GearSetup, GearSetupSettings, InputGearSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSetupSettingsComponent } from '../gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
-import { Mode } from 'src/app/model/damage-sim/mode.enum';
+import { Mode } from 'src/app/model/mode.enum';
 
 @Component({
   selector: 'app-gear-setup-tab',
