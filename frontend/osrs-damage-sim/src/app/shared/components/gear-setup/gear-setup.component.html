@@ -1,7 +1,9 @@
 <div class="me-4" *ngIf="gearSetup && allGearSlotItems; else showSpinner">
   <div class="row mb-2 justify-content-center">
     <div class="col-auto">
-      <h3 class="text-end">{{ isMainGearSetup ? "Main" : "Fill" }} Gear Setup:</h3>
+      <h3 class="text-end">
+        <ng-container *ngIf="mode === Mode.DamageSim">{{ isMainGearSetup ? "Main" : "Fill" }}</ng-container> Gear Setup:
+      </h3>
     </div>
     <div class="col-5">
       <input class="form-control" type="text" [(ngModel)]="gearSetup.setupName" placeholder="Setup name" />
@@ -40,7 +42,7 @@
       </ng-select>
     </div>
 
-    <div class="ms-2">
+    <div class="ms-2" *ngIf="mode === Mode.DamageSim">
       <button
         type="button"
         class="btn btn-primary"

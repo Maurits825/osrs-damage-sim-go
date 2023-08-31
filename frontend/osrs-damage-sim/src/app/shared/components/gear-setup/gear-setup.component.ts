@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { Component, HostBinding, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
@@ -23,6 +23,7 @@ import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { ItemService } from 'src/app/services/item.service';
+import { Mode } from 'src/app/model/damage-sim/mode.enum';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -31,6 +32,10 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class GearSetupComponent implements OnInit, OnDestroy {
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
+
+  @Input()
+  mode: Mode = Mode.DamageSim;
+  Mode = Mode;
 
   setupCount: number;
   isMainGearSetup = false;

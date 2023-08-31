@@ -16,6 +16,7 @@ import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-s
 import { GearSetup, GearSetupSettings, InputGearSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSetupSettingsComponent } from '../gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
+import { Mode } from 'src/app/model/damage-sim/mode.enum';
 
 @Component({
   selector: 'app-gear-setup-tab',
@@ -24,6 +25,10 @@ import { GearSetupComponent } from '../gear-setup/gear-setup.component';
 })
 export class GearSetupTabComponent implements AfterViewInit {
   @Input() active = false;
+
+  @Input()
+  mode: Mode = Mode.DamageSim;
+  Mode = Mode;
 
   @ViewChild('gearSetupsContainer', { read: ViewContainerRef }) gearSetupsContainer: ViewContainerRef;
   @ViewChild(GearSetupSettingsComponent) gearSetupSettingsComponent: GearSetupSettingsComponent;
@@ -67,6 +72,7 @@ export class GearSetupTabComponent implements AfterViewInit {
 
     gearSetupRef.instance.setupCount = this.gearSetups.length + 1;
     gearSetupRef.instance.isMainGearSetup = isMainGearSetup;
+    gearSetupRef.instance.mode = this.mode;
     gearSetupRef.instance.gearSetupTabRef = this;
 
     this.gearSetups.push(gearSetupRef);

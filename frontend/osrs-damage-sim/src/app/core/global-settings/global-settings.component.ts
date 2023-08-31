@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Boost } from '../../model/osrs/boost.model';
 import { GlobalSettings, InputSetup } from '../../model/damage-sim/input-setup.model';
 import { Npc } from '../../model/osrs/npc.model';
@@ -13,6 +13,7 @@ import { StatDrainService } from 'src/app/services/stat-drain.service';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Mode } from 'src/app/model/damage-sim/mode.enum';
 
 @Component({
   selector: 'app-global-settings',
@@ -20,6 +21,11 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./global-settings.component.css'],
 })
 export class GlobalSettingsComponent implements OnInit, OnDestroy {
+  @Input()
+  mode: Mode = Mode.DamageSim;
+
+  Mode = Mode;
+
   globalSettings: GlobalSettings = {
     npc: null,
     iterations: 10000,
