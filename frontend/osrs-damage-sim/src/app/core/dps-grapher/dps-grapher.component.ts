@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DamageSimResults } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DpsGrapherResults } from 'src/app/model/dps-grapher/dps-grapher-results.model';
 import { DpsGrapherSettings } from 'src/app/model/dps-grapher/dps-grapher-settings.model';
 import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
@@ -15,7 +16,7 @@ export class DpsGrapherComponent {
 
   loading = false;
 
-  damageSimResults: DamageSimResults;
+  dpsGrapherResults: DpsGrapherResults;
 
   dpsGrapherSettings: DpsGrapherSettings;
 
@@ -29,17 +30,16 @@ export class DpsGrapherComponent {
   runDpsGrapher(): void {
     this.loading = true;
 
-    const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
+    const dpsGrapherInputJson = this.inputSetupService.getDpsGrapherInputAsJson(this.dpsGrapherSettings);
 
-    //TODO service
-    this.damageSimservice.runDamageSim(inputSetupJson).subscribe({
-      next: (results: DamageSimResults) => {
+    this.damageSimservice.runDpsGrapher(dpsGrapherInputJson).subscribe({
+      next: (results: DpsGrapherResults) => {
         this.loading = false;
-        this.damageSimResults = results;
+        this.dpsGrapherResults = results;
       },
       error: (error) => {
         this.loading = false;
-        this.damageSimResults = { ...this.damageSimResults, error: error.statusText };
+        this.dpsGrapherResults = { ...this.dpsGrapherResults, error: error.statusText };
       },
     });
   }

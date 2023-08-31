@@ -16,6 +16,8 @@ import { GearSetupComponent } from '../shared/components/gear-setup/gear-setup.c
 import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
+import { DpsGrapherInput } from '../model/dps-grapher/dps-grapher-input.model';
+import { DpsGrapherSettings } from '../model/dps-grapher/dps-grapher-settings.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +41,19 @@ export class InputSetupService {
       this.globalSettingsComponent$.getValue().globalSettings,
       this.gearSetupTabs$.getValue()
     );
-    return this.convertInputSetupToJson(inputSetup);
+    return this.convertInputObjectToJson(inputSetup);
+  }
+
+  getDpsGrapherInputAsJson(dpsGrapherSettings: DpsGrapherSettings): string {
+    const inputSetup: InputSetup = this.getInputSetup(
+      this.globalSettingsComponent$.getValue().globalSettings,
+      this.gearSetupTabs$.getValue()
+    );
+    const dpsGrapherInput: DpsGrapherInput = {
+      settings: dpsGrapherSettings,
+      inputSetup: inputSetup,
+    };
+    return this.convertInputObjectToJson(dpsGrapherInput);
   }
 
   getInputSetup(globalSettings: GlobalSettings, gearSetupTabs: GearSetupTabComponent[]): InputSetup {
@@ -119,9 +133,9 @@ export class InputSetupService {
     };
   }
 
-  private convertInputSetupToJson(inputSetup: InputSetup): string {
+  private convertInputObjectToJson(inputObject: InputSetup | DpsGrapherInput): string {
     return JSON.stringify(
-      inputSetup,
+      inputObject,
       this.replacerWithPath((key: string, value: unknown, path: string) => {
         if (value instanceof Set) {
           return [...value];

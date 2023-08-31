@@ -5,6 +5,9 @@
   </div>
 
   <!-- <app-sim-results [damageSimResults]="damageSimResults"></app-sim-results> -->
+  <div>
+    {{ dpsGrapherResults?.graph }}
+  </div>
 
   <hr class="row mb-5" />
 
@@ -31,9 +34,9 @@
       </button>
     </div>
     <ng-container *ngIf="!loading">
-      <div class="row text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
-      <div class="row text-success" *ngIf="damageSimResults && !damageSimResults?.error">
-        Damage simulation done, results above!
+      <div class="row text-danger" *ngIf="dpsGrapherResults?.error">Error: {{ dpsGrapherResults.error }}</div>
+      <div class="row text-success" *ngIf="dpsGrapherResults && !dpsGrapherResults?.error">
+        Dps grapher done, results above!
       </div>
     </ng-container>
   </div>

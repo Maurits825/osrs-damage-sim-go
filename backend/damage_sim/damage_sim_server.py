@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
+from damage_sim.dps_grapher import DpsGrapher
 from input_setup.input_setup_converter import InputSetupConverter
 
 app = Flask(__name__)
@@ -14,6 +15,7 @@ compress = Compress()
 compress.init_app(app)
 
 damage_sim_runner = DamageSimRunner()
+dps_grapher = DpsGrapher()
 
 
 @app.route("/status", methods=["GET"])
@@ -34,3 +36,18 @@ def run_damage_sim():
     damage_sim_results = damage_sim_runner.run(input_setup)
 
     return jsonify(damage_sim_results)
+
+
+@app.route("/run-dps-grapher", methods=["POST"])
+def run_dps_grapher():
+    json_request = request.get_json()
+
+    error = DamageSimValidation.validate_dps_grapher_input(json_request)
+    if error:
+        return {"error": error}
+
+    dps_grapher_input = InputSetupConverter.get_dps_grapher_input(json_request)
+    dps_grapher_results = dps_grapher.run(dps_grapher_input)
+
+    return jsonify(dps_grapher_results)
+

@@ -10,6 +10,7 @@ from model.equipped_gear import EquippedGear
 from model.gear_setup import GearSetup
 from model.gear_slot import GearSlot
 from model.input_setup.cox_scaling_input import CoxScalingInput
+from model.input_setup.dps_grapher_input import DpsGrapherInput, DpsGrapherSettings
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
@@ -79,6 +80,21 @@ class InputSetupConverter:
         return InputSetup(
             global_settings=global_settings,
             input_gear_setups=input_gear_setups,
+        )
+
+    @staticmethod
+    def get_dps_grapher_input(json_data) -> DpsGrapherInput:
+        return DpsGrapherInput(
+            settings=InputSetupConverter.get_dps_grapher_settings(json_data["settings"]),
+            input_setup=InputSetupConverter.get_input_setup(json_data["inputSetup"])
+        )
+
+    @staticmethod
+    def get_dps_grapher_settings(json_data) -> DpsGrapherSettings:
+        return DpsGrapherSettings(
+            type=json_data["type"],
+            min=json_data["min"],
+            max = json_data["max"]
         )
 
     @staticmethod

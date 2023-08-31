@@ -15,10 +15,10 @@ export class DpsGrapherSettingsComponent {
 
   inputValues = inputValues;
 
-  selectedInputValue: InputValue;
+  selectedInputValue: InputValue = inputValues[0];
 
   dpsGrapherSettings: DpsGrapherSettings = {
-    type: null,
+    type: 'Dragon warhammer',
     min: 0,
     max: 0,
   };

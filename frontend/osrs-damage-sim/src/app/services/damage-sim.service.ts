@@ -9,6 +9,7 @@ import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
+import { DpsGrapherResults } from '../model/dps-grapher/dps-grapher-results.model';
 
 @Injectable({
   providedIn: 'root',
@@ -75,6 +76,11 @@ export class DamageSimService {
   public runDamageSim(inputSetupJson: string): Observable<DamageSimResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
     return this.http.post<DamageSimResults>(this.damageSimServiceUrl + '/run-damage-sim', inputSetupJson, options);
+  }
+
+  public runDpsGrapher(dpsGrapherInput: string): Observable<DpsGrapherResults> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<DpsGrapherResults>(this.damageSimServiceUrl + '/run-dps-grapher', dpsGrapherInput, options);
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {

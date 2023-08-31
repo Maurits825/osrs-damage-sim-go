@@ -21,6 +21,9 @@ MAX_STAT_DRAINS = 5
 
 MAX_CONDITIONS = 5
 
+MIN_GRAPHER_INPUT_VALUE = 0
+MAX_GRAPHER_INPUT_VALUE = float('inf')
+
 
 class DamageSimValidation:
     @staticmethod
@@ -34,6 +37,40 @@ class DamageSimValidation:
             return error
 
         return None
+
+    @staticmethod
+    def validate_dps_grapher_input(dps_grapher_input_json) -> str | None:
+        error = DamageSimValidation.validate_setup(dps_grapher_input_json["inputSetup"])
+        if error:
+            return error
+
+        error = DamageSimValidation.validate_dps_grapher_settings(dps_grapher_input_json["settings"])
+        if error:
+            return error
+
+    @staticmethod
+    def validate_dps_grapher_settings(settings) -> str | None:
+        min_value = settings["min"]
+        max_value = settings["max"]
+        if not DamageSimValidation.is_valid_int(min_value):
+            return DamageSimValidation.invalid_value_message(min_value, "dps grapher min value")
+
+        if not DamageSimValidation.is_valid_int(max_value):
+            return DamageSimValidation.invalid_value_message(min_value, "dps grapher max value")
+
+        range_error = DamageSimValidation.validate_range(
+            min_value, MIN_GRAPHER_INPUT_VALUE, MAX_GRAPHER_INPUT_VALUE, "dps grapher min value"
+        )
+
+        if range_error:
+            return range_error
+
+        range_error = DamageSimValidation.validate_range(
+            max_value, MIN_GRAPHER_INPUT_VALUE, MAX_GRAPHER_INPUT_VALUE, "dps grapher max value"
+        )
+
+        if range_error:
+            return range_error
 
     @staticmethod
     def validate_global_settings(global_settings) -> str | None:
