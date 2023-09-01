@@ -258,6 +258,19 @@ class DamageSimStats:
         return title
 
     @staticmethod
+    def get_dps_graph_label(global_settings: GlobalSettings):
+        title = (DamageSimStats.get_npc_title(global_settings) +
+                 " | HP: " +
+                 str(global_settings.npc.base_combat_stats.hitpoints))
+
+        if global_settings.raid_level:
+            title += " | Raid level: " + str(global_settings.raid_level)
+            if global_settings.path_level:
+                title += ", Path level: " + str(global_settings.path_level)
+
+        return title
+
+    @staticmethod
     def get_npc_title(global_settings: GlobalSettings) -> str:
         npc = global_settings.npc
         npc_title = npc.name

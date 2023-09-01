@@ -3,7 +3,7 @@ from damage_sim.damage_sim_stats import DamageSimStats
 from model.boost import Boost
 from model.damage_sim_results.dps_graph_data import DpsGraphData, DpsGraphDpsData
 from model.damage_sim_results.dps_grapher_results import DpsGrapherResults
-from model.input_setup.dps_grapher_input import DpsGrapherInput, DpsGrapherSettings, InputValueType
+from model.input_setup.dps_grapher_input import DpsGrapherInput, InputValueType, INPUT_VALUE_TYPE_LABEL
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.stat_drain import StatDrain
 from weapons.custom_weapon import CUSTOM_WEAPONS
@@ -28,13 +28,13 @@ class DpsGrapher:
             )
 
         dps_graph_data = DpsGraphData(
-            title="Dps: " + DamageSimStats.get_global_settings_label(dps_grapher_input.input_setup.global_settings),
+            title="Dps: " + DamageSimStats.get_dps_graph_label(dps_grapher_input.input_setup.global_settings),
             x_values=input_value_range,
-            x_label="todo label",
+            x_label=INPUT_VALUE_TYPE_LABEL[grapher_type],
             dps_data=dps_data
         )
 
-        graph = self.damage_sim_graph.get_dps_graphs(input_value_range, dps_graph_data)
+        graph = self.damage_sim_graph.get_dps_graphs(dps_graph_data)
         return DpsGrapherResults(
             graph=graph
         )

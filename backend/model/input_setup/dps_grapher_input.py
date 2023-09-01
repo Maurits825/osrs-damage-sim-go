@@ -14,6 +14,17 @@ class InputValueType(Enum):
     NPC_HITPOINTS = "Npc hitpoints"
 
 
+INPUT_VALUE_TYPE_LABEL = {
+    InputValueType.DRAGON_WARHAMMER: "Dragon warhammer hits",
+    InputValueType.BANDOS_GODSWORD: "Bandos godsword damage",
+    InputValueType.ATTACK: "Attack levels",
+    InputValueType.STRENGTH: "Strength levels",
+    InputValueType.RANGED: "Ranged levels",
+    InputValueType.MAGIC: "Magic levels",
+    InputValueType.NPC_HITPOINTS: "Npc hitpoints",
+}
+
+
 @dataclass()
 class DpsGrapherSettings:
     type: InputValueType

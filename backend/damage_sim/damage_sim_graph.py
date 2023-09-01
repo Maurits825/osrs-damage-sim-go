@@ -42,9 +42,9 @@ class DamageSimGraph:
 
         return graphs
 
-    def get_dps_graphs(self, input_value_range, dps_graph_data: DpsGraphData) -> str:
+    def get_dps_graphs(self, dps_graph_data: DpsGraphData) -> str:
         self.reset_plots()
-        self.generate_dps_graph(input_value_range, dps_graph_data)
+        self.generate_dps_graph(dps_graph_data)
         graph = DamageSimGraph.encode_graph(self.graphs[GraphType.DPS_GRAPH])
         return graph
 
@@ -108,10 +108,10 @@ class DamageSimGraph:
 
         DamageSimGraph.format_figure(graph, title)
 
-    def generate_dps_graph(self, input_value_range, dps_graph_data: DpsGraphData):
+    def generate_dps_graph(self, dps_graph_data: DpsGraphData):
         graph = self.graphs[GraphType.DPS_GRAPH]
         for dps_data in dps_graph_data.dps_data:
-            graph.axes.plot(input_value_range, dps_data.dps, label=dps_data.label)
+            graph.axes.plot(dps_graph_data.x_values, dps_data.dps, label=dps_data.label)
 
         graph.axes.set_xlabel(dps_graph_data.x_label)
         graph.axes.set_ylabel("Dps")
