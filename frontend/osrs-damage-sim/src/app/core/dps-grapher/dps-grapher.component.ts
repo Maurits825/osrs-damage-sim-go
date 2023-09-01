@@ -18,18 +18,12 @@ export class DpsGrapherComponent {
 
   dpsGrapherResults: DpsGrapherResults;
 
-  dpsGrapherSettings: DpsGrapherSettings;
-
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
-
-  dpsGrapherSettingsChanged(dpsGrapherSettings: DpsGrapherSettings): void {
-    this.dpsGrapherSettings = dpsGrapherSettings;
-  }
 
   runDpsGrapher(): void {
     this.loading = true;
 
-    const dpsGrapherInputJson = this.inputSetupService.getDpsGrapherInputAsJson(this.dpsGrapherSettings);
+    const dpsGrapherInputJson = this.inputSetupService.getDpsGrapherInputAsJson();
 
     this.damageSimservice.runDpsGrapher(dpsGrapherInputJson).subscribe({
       next: (results: DpsGrapherResults) => {

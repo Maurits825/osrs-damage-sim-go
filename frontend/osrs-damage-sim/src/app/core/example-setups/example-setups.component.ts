@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ExampleSetup } from 'src/app/model/damage-sim/example-setup.model';
+import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
@@ -9,6 +10,11 @@ import { InputSetupService } from 'src/app/services/input-setup.service';
   styleUrls: ['./example-setups.component.css'],
 })
 export class ExampleSetupsComponent implements OnInit {
+  @Input()
+  mode: Mode = Mode.DamageSim;
+
+  Mode = Mode;
+
   exampleSetups: ExampleSetup[];
   selectedSetup: ExampleSetup;
 

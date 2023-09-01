@@ -30,6 +30,12 @@ export class InputSetupService {
   globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
   gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
 
+  dpsGrapherSettings$: BehaviorSubject<DpsGrapherSettings> = new BehaviorSubject({
+    type: null,
+    min: 0,
+    max: 0,
+  });
+
   constructor(private damageSimservice: DamageSimService, private itemService: ItemService) {
     this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
@@ -44,13 +50,13 @@ export class InputSetupService {
     return this.convertInputObjectToJson(inputSetup);
   }
 
-  getDpsGrapherInputAsJson(dpsGrapherSettings: DpsGrapherSettings): string {
+  getDpsGrapherInputAsJson(): string {
     const inputSetup: InputSetup = this.getInputSetup(
       this.globalSettingsComponent$.getValue().globalSettings,
       this.gearSetupTabs$.getValue()
     );
     const dpsGrapherInput: DpsGrapherInput = {
-      settings: dpsGrapherSettings,
+      settings: this.dpsGrapherSettings$.getValue(),
       inputSetup: inputSetup,
     };
     return this.convertInputObjectToJson(dpsGrapherInput);
@@ -90,12 +96,27 @@ export class InputSetupService {
   }
 
   parseInputSetupFromEncodedString(encodedString: string): InputSetup {
-    const inputSetupJson = window.atob(encodedString);
+    const inputSetupJson = JSON.parse(window.atob(encodedString));
     return this.parseInputSetupFromJson(inputSetupJson);
   }
 
-  parseInputSetupFromJson(jsonString: string): InputSetup {
-    const inputSetupJson = JSON.parse(jsonString);
+  parseDpsGrapherInputFromEncodedString(encodedString: string): DpsGrapherInput {
+    const dpsGrapherInputJson = JSON.parse(window.atob(encodedString));
+    return {
+      inputSetup: this.parseInputSetupFromJson(dpsGrapherInputJson['inputSetup']),
+      settings: this.parseDpsGrapherSettingsFromJson(dpsGrapherInputJson['settings']),
+    };
+  }
+
+  parseDpsGrapherSettingsFromJson(dpsGrapherSettings: DpsGrapherSettings): DpsGrapherSettings {
+    return {
+      type: dpsGrapherSettings.type,
+      min: dpsGrapherSettings.min,
+      max: dpsGrapherSettings.max,
+    };
+  }
+
+  parseInputSetupFromJson(inputSetupJson: InputSetup): InputSetup {
     const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
 
     const globalSettings: GlobalSettings = {

@@ -14,19 +14,18 @@
 
   <hr class="row mb-5" />
 
-  <!-- <div class="d-flex justify-content-between mb-4">
+  <div class="d-flex justify-content-between mb-4">
     <div class="col-6">
-        todo examples setups for dps grapher? also input setup export 
       <app-example-setups></app-example-setups>
     </div>
 
     <div>
-      <app-share-input-setup></app-share-input-setup>
+      <app-share-input-setup [mode]="Mode.DpsGrapher"></app-share-input-setup>
     </div>
-  </div> -->
+  </div>
 
   <app-global-settings [mode]="Mode.DpsGrapher"></app-global-settings>
-  <app-dps-grapher-settings (dpsGrapherSettingsChanged)="dpsGrapherSettingsChanged($event)"></app-dps-grapher-settings>
+  <app-dps-grapher-settings></app-dps-grapher-settings>
 
   <div class="mb-4 px-3">
     <div class="row mb-1">
