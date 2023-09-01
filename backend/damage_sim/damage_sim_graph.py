@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from damage_sim.damage_sim_stats import DamageSimStats
+from model.damage_sim_results.dps_graph_data import DpsGraphData
 from model.graph import Graph, GraphType
 from model.input_setup.input_setup import InputSetup
 
@@ -25,8 +26,27 @@ class DamageSimGraph:
 
         self.graphs = {
             GraphType.TTK_CUMULATIVE: Graph(self.plt, GRAPH_WIDTH, GRAPH_HEIGHT),
-            GraphType.TTK_PROBABILITY: Graph(self.plt, GRAPH_WIDTH, GRAPH_HEIGHT)
+            GraphType.TTK_PROBABILITY: Graph(self.plt, GRAPH_WIDTH, GRAPH_HEIGHT),
+            GraphType.DPS_GRAPH: Graph(self.plt, GRAPH_WIDTH, GRAPH_HEIGHT)
         }
+
+    def get_dmg_sim_graphs(self, min_ticks, max_ticks, label, input_setup: InputSetup,
+                           ttk_list: list[list[int]]) -> dict[GraphType, str]:
+        self.reset_plots()
+        self.generate_ttk_probability_figure(min_ticks, max_ticks, label, input_setup, ttk_list)
+        self.generate_cumulative_figure(min_ticks, max_ticks, label, input_setup, ttk_list)
+
+        graphs = {}
+        for graph_type in [GraphType.TTK_CUMULATIVE, GraphType.TTK_PROBABILITY]:
+            graphs[graph_type] = DamageSimGraph.encode_graph(self.graphs[graph_type])
+
+        return graphs
+
+    def get_dps_graphs(self, input_value_range, dps_graph_data: DpsGraphData) -> str:
+        self.reset_plots()
+        self.generate_dps_graph(input_value_range, dps_graph_data)
+        graph = DamageSimGraph.encode_graph(self.graphs[GraphType.DPS_GRAPH])
+        return graph
 
     def reset_plots(self):
         for graph in self.graphs.values():
@@ -34,7 +54,7 @@ class DamageSimGraph:
 
     def generate_ttk_probability_figure(self, min_ticks, max_ticks, label,
                                         input_setup: InputSetup, ttk_list: list[list[int]]):
-        bins = np.histogram_bin_edges(np.array(ttk_list).flatten(), bins="auto")
+        bins = np.histogram_bin_edges(np.array(ttk_list).flatten(), bins="auto") # TODO bins should be discrete?
         x_list = []
         y_list = []
         max_bin_count = 0
@@ -88,26 +108,24 @@ class DamageSimGraph:
 
         DamageSimGraph.format_figure(graph, title)
 
-    def get_all_graphs(self, min_ticks, max_ticks, label, input_setup: InputSetup,
-                       ttk_list: list[list[int]]) -> dict[GraphType, str]:
-        self.reset_plots()
-        self.generate_ttk_probability_figure(min_ticks, max_ticks, label, input_setup, ttk_list)
-        self.generate_cumulative_figure(min_ticks, max_ticks, label, input_setup, ttk_list)
+    def generate_dps_graph(self, input_value_range, dps_graph_data: DpsGraphData):
+        graph = self.graphs[GraphType.DPS_GRAPH]
+        for dps_data in dps_graph_data.dps_data:
+            graph.axes.plot(input_value_range, dps_data.dps, label=dps_data.label)
 
-        graphs = self.encode_graphs()
-        return graphs
+        graph.axes.set_xlabel(dps_graph_data.x_label)
+        graph.axes.set_ylabel("Dps")
 
-    def encode_graphs(self) -> dict[GraphType, str]:
-        encoded_graphs = {}
-        for graph_type in self.graphs.keys():
-            img = io.BytesIO()
-            self.graphs[graph_type].figure.savefig(img, dpi=100)
-            img.seek(0)
+        DamageSimGraph.format_figure(graph, dps_graph_data.title)
 
-            encoded_graph = base64.b64encode(img.getvalue()).decode()
-            encoded_graphs[graph_type] = encoded_graph
+    @staticmethod
+    def encode_graph(graph: Graph) -> str:
+        img = io.BytesIO()
+        graph.figure.savefig(img, dpi=100)
+        img.seek(0)
 
-        return encoded_graphs
+        encoded_graph = base64.b64encode(img.getvalue()).decode()
+        return encoded_graph
 
     @staticmethod
     def format_figure(graph: Graph, title):

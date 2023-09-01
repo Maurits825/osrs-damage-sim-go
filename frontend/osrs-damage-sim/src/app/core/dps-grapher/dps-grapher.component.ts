@@ -24,7 +24,6 @@ export class DpsGrapherComponent {
 
   dpsGrapherSettingsChanged(dpsGrapherSettings: DpsGrapherSettings): void {
     this.dpsGrapherSettings = dpsGrapherSettings;
-    console.log(this.dpsGrapherSettings);
   }
 
   runDpsGrapher(): void {

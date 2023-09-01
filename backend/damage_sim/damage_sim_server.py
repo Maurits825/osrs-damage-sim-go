@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_compress import Compress
 from flask_cors import CORS
 
+from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
 from damage_sim.dps_grapher import DpsGrapher
@@ -14,8 +15,9 @@ app.config["COMPRESS_REGISTER"] = False  # disable default compression of all el
 compress = Compress()
 compress.init_app(app)
 
-damage_sim_runner = DamageSimRunner()
-dps_grapher = DpsGrapher()
+damage_sim_graph = DamageSimGraph()
+damage_sim_runner = DamageSimRunner(damage_sim_graph)
+dps_grapher = DpsGrapher(damage_sim_graph)
 
 
 @app.route("/status", methods=["GET"])

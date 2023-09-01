@@ -11,8 +11,8 @@ from model.input_setup.input_setup import InputSetup
 
 
 class DamageSimRunner:
-    def __init__(self):
-        self.damage_sim_graph = DamageSimGraph()
+    def __init__(self, damage_sim_graph: DamageSimGraph):
+        self.damage_sim_graph = damage_sim_graph
 
     def run(self, input_setup: InputSetup) -> DamageSimResults:
         damage_sim_results = DamageSimResults(
@@ -48,7 +48,7 @@ class DamageSimRunner:
 
         graph_labels = [result.labels.input_gear_setup_label for result in damage_sim_results.results]
         min_ticks, max_ticks = DamageSimStats.get_min_and_max_ticks(ttk_tick_stats)
-        damage_sim_results.graphs = self.damage_sim_graph.get_all_graphs(
+        damage_sim_results.graphs = self.damage_sim_graph.get_dmg_sim_graphs(
             min_ticks, max_ticks, graph_labels, input_setup, ttk_list
         )
 

@@ -8,6 +8,7 @@ from matplotlib.figure import Figure
 class GraphType(str, Enum):
     TTK_PROBABILITY = "time_to_kill_probability"
     TTK_CUMULATIVE = "time_to_kill_cumulative"
+    DPS_GRAPH = "dps_graph"
 
 
 @dataclass()

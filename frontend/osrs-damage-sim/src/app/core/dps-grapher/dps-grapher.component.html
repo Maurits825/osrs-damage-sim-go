@@ -4,9 +4,12 @@
     <div class="col-auto"><h1 class="display-1">Dps Grapher</h1></div>
   </div>
 
-  <!-- <app-sim-results [damageSimResults]="damageSimResults"></app-sim-results> -->
-  <div>
-    {{ dpsGrapherResults?.graph }}
+  <div class="row px-0" *ngIf="dpsGrapherResults?.graph && !dpsGrapherResults?.error">
+    <div class="col-6 ps-0" *ngIf="dpsGrapherResults?.graph | base64Image as dps_graph_url">
+      <a [href]="dps_graph_url" target="_blank">
+        <img class="img-fluid" [src]="dps_graph_url" />
+      </a>
+    </div>
   </div>
 
   <hr class="row mb-5" />
