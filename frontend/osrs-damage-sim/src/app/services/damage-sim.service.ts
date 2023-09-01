@@ -19,7 +19,8 @@ export class DamageSimService {
   public gearSetupPresets$: Observable<GearSetupPreset[]>;
   public quickGearSlots$: Observable<QuickGearSlots>;
 
-  public exampleSetups$: Observable<ExampleSetup[]>;
+  public dmgSimExampleSetups$: Observable<ExampleSetup[]>;
+  public dpsGrapherExampleSetups$: Observable<ExampleSetup[]>;
 
   public allSpells$: Observable<string[]>;
   public allNpcs$: Observable<Npc[]>;
@@ -62,7 +63,8 @@ export class DamageSimService {
       shareReplay(1)
     );
 
-    this.exampleSetups$ = this.getExampleSetups().pipe(shareReplay(1));
+    this.dmgSimExampleSetups$ = this.getDmgSimExampleSetups().pipe(shareReplay(1));
+    this.dpsGrapherExampleSetups$ = this.getDpsGrapherExampleSetups().pipe(shareReplay(1));
 
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
     this.allNpcs$ = this.getNpcs().pipe(shareReplay(1));
@@ -114,7 +116,11 @@ export class DamageSimService {
     );
   }
 
-  private getExampleSetups(): Observable<ExampleSetup[]> {
-    return this.http.get<ExampleSetup[]>('assets/json_data/example_setups.json');
+  private getDmgSimExampleSetups(): Observable<ExampleSetup[]> {
+    return this.http.get<ExampleSetup[]>('assets/json_data/dmg_sim_example_setups.json');
+  }
+
+  private getDpsGrapherExampleSetups(): Observable<ExampleSetup[]> {
+    return this.http.get<ExampleSetup[]>('assets/json_data/dps_grapher_example_setups.json');
   }
 }

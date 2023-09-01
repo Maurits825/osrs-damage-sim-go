@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { forkJoin, map, take } from 'rxjs';
 import { ExampleSetup } from 'src/app/model/damage-sim/example-setup.model';
 import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
@@ -16,6 +17,9 @@ export class ExampleSetupsComponent implements OnInit {
   Mode = Mode;
 
   exampleSetups: ExampleSetup[];
+
+  dmgSimExampleSetups: ExampleSetup[];
+  dpsGrapherExampleSetups: ExampleSetup[];
   selectedSetup: ExampleSetup;
 
   ExampleSetup: ExampleSetup;
@@ -23,9 +27,14 @@ export class ExampleSetupsComponent implements OnInit {
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
 
   ngOnInit(): void {
-    this.damageSimservice.exampleSetups$.subscribe((exampleSetups: ExampleSetup[]) => {
-      this.exampleSetups = exampleSetups;
-    });
+    forkJoin([this.damageSimservice.dmgSimExampleSetups$, this.damageSimservice.dpsGrapherExampleSetups$])
+      .pipe(take(1))
+      .subscribe(([dmgSimExampleSetups, dpsGrapherExampleSetups]) => {
+        this.dmgSimExampleSetups = dmgSimExampleSetups;
+        this.dpsGrapherExampleSetups = dpsGrapherExampleSetups;
+
+        this.exampleSetups = this.mode === Mode.DamageSim ? this.dmgSimExampleSetups : this.dpsGrapherExampleSetups;
+      });
   }
 
   selectedSetupChange(exampleSetup: ExampleSetup): void {
