@@ -39,7 +39,14 @@ export class ExampleSetupsComponent implements OnInit {
 
   selectedSetupChange(exampleSetup: ExampleSetup): void {
     if (!exampleSetup) return;
-    const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.setupString);
-    this.inputSetupService.loadInputSetup$.next(inputSetup);
+
+    if (this.mode == Mode.DamageSim) {
+      const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.setupString);
+      this.inputSetupService.loadInputSetup$.next(inputSetup);
+    } else {
+      const dpsGrapherInput = this.inputSetupService.parseDpsGrapherInputFromEncodedString(exampleSetup.setupString);
+      this.inputSetupService.loadInputSetup$.next(dpsGrapherInput.inputSetup);
+      this.inputSetupService.dpsGrapherSettings$.next(dpsGrapherInput.settings);
+    }
   }
 }

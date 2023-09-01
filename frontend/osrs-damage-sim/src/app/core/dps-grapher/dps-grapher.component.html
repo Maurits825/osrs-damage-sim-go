@@ -4,11 +4,14 @@
     <div class="col-auto"><h1 class="display-1">Dps Grapher</h1></div>
   </div>
 
-  <div class="row px-0" *ngIf="dpsGrapherResults?.graph && !dpsGrapherResults?.error">
-    <div class="col-6 ps-0" *ngIf="dpsGrapherResults?.graph | base64Image as dps_graph_url">
-      <a [href]="dps_graph_url" target="_blank">
-        <img class="img-fluid" [src]="dps_graph_url" />
-      </a>
+  <div class="mb-4" *ngIf="dpsGrapherResults?.graph && !dpsGrapherResults?.error">
+    <h3 class="text-center mb-1">Dps Graph</h3>
+    <div class="row px-0">
+      <div class="col" *ngIf="dpsGrapherResults?.graph | base64Image as dps_graph_url">
+        <a [href]="dps_graph_url" target="_blank">
+          <img class="img-fluid" [src]="dps_graph_url" />
+        </a>
+      </div>
     </div>
   </div>
 
