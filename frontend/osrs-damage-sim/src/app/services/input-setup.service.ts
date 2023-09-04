@@ -31,7 +31,7 @@ export class InputSetupService {
   gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
 
   dpsGrapherSettings$: BehaviorSubject<DpsGrapherSettings> = new BehaviorSubject({
-    type: null,
+    type: 'Dragon warhammer',
     min: 0,
     max: 0,
   });

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { allStatDrains, StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
-import { statDrainLabels } from './stat-drain-labels.const';
+import { allStatDrains, StatDrain, statDrainLabels } from 'src/app/model/damage-sim/stat-drain.model';
 
 @Component({
   selector: 'app-stat-drain-selection',

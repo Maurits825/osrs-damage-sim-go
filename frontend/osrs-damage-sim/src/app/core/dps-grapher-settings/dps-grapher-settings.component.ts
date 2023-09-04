@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { forIn } from 'lodash-es';
 import { Subject, takeUntil } from 'rxjs';
+import { statDrainLabels } from 'src/app/model/damage-sim/stat-drain.model';
 import { DpsGrapherSettings } from 'src/app/model/dps-grapher/dps-grapher-settings.model';
-import { InputValue, inputValues } from 'src/app/model/dps-grapher/input-values.model';
+import { InputValue, InputValueType, inputValues } from 'src/app/model/dps-grapher/input-values.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class DpsGrapherSettingsComponent implements OnInit, OnDestroy {
 
   inputValues = inputValues;
 
-  selectedInputValue: InputValue = inputValues[0];
+  selectedInputValue: InputValue;
 
   dpsGrapherSettings: DpsGrapherSettings;
 
@@ -23,9 +25,18 @@ export class DpsGrapherSettingsComponent implements OnInit, OnDestroy {
   constructor(private inputSetupService: InputSetupService) {}
 
   ngOnInit(): void {
+    forIn(statDrainLabels, (label, type) =>
+      this.inputValues.push({
+        type: type as InputValueType,
+        label,
+      })
+    );
     this.inputSetupService.dpsGrapherSettings$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((dpsGrapherSettings: DpsGrapherSettings) => (this.dpsGrapherSettings = dpsGrapherSettings));
+      .subscribe((dpsGrapherSettings: DpsGrapherSettings) => {
+        this.dpsGrapherSettings = dpsGrapherSettings;
+        this.selectedInputValue = inputValues.find((value) => value.type === this.dpsGrapherSettings.type);
+      });
   }
 
   ngOnDestroy(): void {

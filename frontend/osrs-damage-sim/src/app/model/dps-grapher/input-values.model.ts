@@ -1,6 +1,7 @@
+import { allStatDrains } from '../damage-sim/stat-drain.model';
+
 export const allInputValueTypes = [
-  'Dragon warhammer',
-  'Bandos godsword',
+  ...(allStatDrains as unknown as string[]),
   'Attack',
   'Strength',
   'Ranged',
@@ -15,14 +16,6 @@ export interface InputValue {
 }
 
 export const inputValues: InputValue[] = [
-  {
-    type: 'Dragon warhammer',
-    label: 'Hits',
-  },
-  {
-    type: 'Bandos godsword',
-    label: 'Damage',
-  },
   {
     type: 'Attack',
     label: 'Level',
