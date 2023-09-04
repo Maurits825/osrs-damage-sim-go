@@ -192,7 +192,7 @@ class InputSetupConverter:
     def scale_toa(npc, raid_level, path_level, team_size):
         path_level_mult = 0.08 if path_level > 0 else 0.05
         npc.base_combat_stats.hitpoints = int(
-            round(npc.combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) *
+            round(npc.base_combat_stats.hitpoints / 10 * (1 + raid_level * 0.004) *
                   (1 + (path_level - 1) * 0.05 + path_level_mult) *
                   TOA_TEAM_SCALING[min(team_size, TOA_MAX_TEAM) - 1], 0) * 10
         )
@@ -202,6 +202,6 @@ class InputSetupConverter:
         team_size = min(team_size, TOB_MAX_TEAM)
 
         if team_size == 4:
-            npc.base_combat_stats.hitpoints = math.floor(0.875 * npc.combat_stats.hitpoints)
+            npc.base_combat_stats.hitpoints = math.floor(0.875 * npc.base_combat_stats.hitpoints)
         elif team_size in [1, 2, 3]:
-            npc.base_combat_stats.hitpoints = math.floor(0.75 * npc.combat_stats.hitpoints)
+            npc.base_combat_stats.hitpoints = math.floor(0.75 * npc.base_combat_stats.hitpoints)

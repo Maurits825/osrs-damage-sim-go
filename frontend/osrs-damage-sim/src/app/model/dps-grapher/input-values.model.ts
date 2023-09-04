@@ -7,6 +7,7 @@ export const allInputValueTypes = [
   'Ranged',
   'Magic',
   'Npc hitpoints',
+  'TOA raid level',
 ] as const;
 export type InputValueType = (typeof allInputValueTypes)[number];
 
@@ -35,5 +36,9 @@ export const inputValues: InputValue[] = [
   {
     type: 'Npc hitpoints',
     label: 'Hitpoints',
+  },
+  {
+    type: 'TOA raid level',
+    label: 'Level',
   },
 ];
