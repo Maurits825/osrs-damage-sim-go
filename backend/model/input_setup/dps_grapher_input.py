@@ -27,6 +27,13 @@ STAT_DRAIN_INPUT_TYPE = [
     InputValueType.BARRELCHEST_ANCHOR,
 ]
 
+LEVEL_INPUT_TYPE = [
+    InputValueType.ATTACK,
+    InputValueType.STRENGTH,
+    InputValueType.RANGED,
+    InputValueType.MAGIC,
+]
+
 INPUT_VALUE_TYPE_LABEL = {
     InputValueType.DRAGON_WARHAMMER: "Dragon warhammer hits",
     InputValueType.BANDOS_GODSWORD: "Bandos godsword damage",

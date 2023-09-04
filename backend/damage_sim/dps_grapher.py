@@ -1,10 +1,12 @@
+import copy
+
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
 from model.boost import Boost
 from model.damage_sim_results.dps_graph_data import DpsGraphData, DpsGraphDpsData
 from model.damage_sim_results.dps_grapher_results import DpsGrapherResults
 from model.input_setup.dps_grapher_input import DpsGrapherInput, InputValueType, INPUT_VALUE_TYPE_LABEL, \
-    STAT_DRAIN_INPUT_TYPE
+    STAT_DRAIN_INPUT_TYPE, LEVEL_INPUT_TYPE
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.stat_drain import StatDrain
 from model.stat_drain_type import StatDrainType
@@ -21,9 +23,6 @@ class DpsGrapher:
         input_value_range = range(dps_grapher_input.settings.min, dps_grapher_input.settings.max)
         for input_gear_setup in dps_grapher_input.input_setup.input_gear_setups:
             input_gear_setup_label = DamageSimStats.get_input_gear_setup_label(input_gear_setup).input_gear_setup_label
-
-            Boost.apply_boosts(input_gear_setup.gear_setup_settings.combat_stats,
-                               input_gear_setup.gear_setup_settings.boosts)
 
             dps_list = self.get_gear_setup_dps(input_gear_setup, grapher_type, input_value_range)
             dps_data.append(
@@ -49,12 +48,17 @@ class DpsGrapher:
         weapon_dps = []
         if grapher_type in STAT_DRAIN_INPUT_TYPE:
             weapon_dps = DpsGrapher.stat_drain_dps(input_gear_setup, grapher_type, input_value_range, npc)
+        elif grapher_type in LEVEL_INPUT_TYPE:
+            weapon_dps = DpsGrapher.level_dps(input_gear_setup, grapher_type, input_value_range, npc)
 
         return weapon_dps
 
     @staticmethod
     def stat_drain_dps(input_gear_setup: InputGearSetup, grapher_type: InputValueType, input_value_range, npc):
         weapon_dps = []
+
+        Boost.apply_boosts(input_gear_setup.gear_setup_settings.combat_stats,
+                           input_gear_setup.gear_setup_settings.boosts)
 
         stat_drain = StatDrain(CUSTOM_WEAPONS[grapher_type.value], 0)
         for input_value in input_value_range:
@@ -66,6 +70,32 @@ class DpsGrapher:
             else:
                 for hit in range(stat_drain.value):
                     stat_drain.weapon.drain_stats(npc, 1)
+            input_gear_setup.main_weapon.update_dps_stats()
+            weapon_dps.append(input_gear_setup.main_weapon.get_dps())
+
+        return weapon_dps
+
+    @staticmethod
+    def level_dps(input_gear_setup: InputGearSetup, grapher_type: InputValueType, input_value_range, npc):
+        weapon_dps = []
+        initial_combat_stats = copy.deepcopy(input_gear_setup.gear_setup_settings.combat_stats)
+
+        for input_value in input_value_range:
+            npc.combat_stats.set_stats(npc.base_combat_stats)
+            input_gear_setup.gear_setup_settings.combat_stats.set_stats(initial_combat_stats)
+            
+            if grapher_type == InputValueType.ATTACK:
+                input_gear_setup.gear_setup_settings.combat_stats.attack = input_value
+            elif grapher_type == InputValueType.STRENGTH:
+                input_gear_setup.gear_setup_settings.combat_stats.strength = input_value
+            elif grapher_type == InputValueType.RANGED:
+                input_gear_setup.gear_setup_settings.combat_stats.ranged = input_value
+            elif grapher_type == InputValueType.MAGIC:
+                input_gear_setup.gear_setup_settings.combat_stats.magic = input_value
+
+            Boost.apply_boosts(input_gear_setup.gear_setup_settings.combat_stats,
+                               input_gear_setup.gear_setup_settings.boosts)
+
             input_gear_setup.main_weapon.update_dps_stats()
             weapon_dps.append(input_gear_setup.main_weapon.get_dps())
 
