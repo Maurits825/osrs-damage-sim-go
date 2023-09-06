@@ -259,7 +259,7 @@ class Weapon:
                 actual_defence_roll -= max(0, math.floor(self.defence_roll * 0.1))
                 self.hitsplat.special_procs.append(SpecialProc.BRIMSTONE)
 
-        if self.raid_level:
+        if self.raid_level is not None:
             actual_defence_roll = math.floor(self.defence_roll * (1 + (self.raid_level * 0.004)))
 
         return actual_defence_roll
@@ -271,7 +271,7 @@ class Weapon:
         if self.is_brimstone:
             defence_roll -= math.floor(defence_roll * 0.1) / 4
 
-        if self.raid_level:
+        if self.raid_level is not None:
             defence_roll = defence_roll * (1 + (self.raid_level * 0.004))
 
         return math.floor(defence_roll)
