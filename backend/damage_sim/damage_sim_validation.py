@@ -23,6 +23,8 @@ MAX_CONDITIONS = 5
 
 MIN_GRAPHER_INPUT_VALUE = 0
 MAX_GRAPHER_INPUT_VALUE = float('inf')
+MIN_GRAPHER_INPUT_VALUE_DIFF = 1
+MAX_GRAPHER_INPUT_VALUE_DIFF = 10_000
 
 
 class DamageSimValidation:
@@ -52,6 +54,7 @@ class DamageSimValidation:
     def validate_dps_grapher_settings(settings) -> str | None:
         min_value = settings["min"]
         max_value = settings["max"]
+
         if not DamageSimValidation.is_valid_int(min_value):
             return DamageSimValidation.invalid_value_message(min_value, "dps grapher min value")
 
@@ -67,6 +70,14 @@ class DamageSimValidation:
 
         range_error = DamageSimValidation.validate_range(
             max_value, MIN_GRAPHER_INPUT_VALUE, MAX_GRAPHER_INPUT_VALUE, "dps grapher max value"
+        )
+
+        if range_error:
+            return range_error
+
+        range_error = DamageSimValidation.validate_range(
+            max_value-min_value, MIN_GRAPHER_INPUT_VALUE_DIFF, MAX_GRAPHER_INPUT_VALUE_DIFF,
+            "dps grapher value difference"
         )
 
         if range_error:

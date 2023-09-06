@@ -23,7 +23,7 @@ class DpsGrapher:
         dps_data = []
         grapher_type = dps_grapher_input.settings.type
         input_setup = dps_grapher_input.input_setup
-        input_value_range = range(dps_grapher_input.settings.min, dps_grapher_input.settings.max)
+        input_value_range = range(dps_grapher_input.settings.min, dps_grapher_input.settings.max + 1)
         for input_gear_setup in input_setup.input_gear_setups:
             input_gear_setup_label = DamageSimStats.get_input_gear_setup_label(input_gear_setup).input_gear_setup_label
 
@@ -51,7 +51,6 @@ class DpsGrapher:
         npc = input_gear_setup.main_weapon.npc
 
         weapon_dps = []
-        # TODO apply stat drain
         if grapher_type in STAT_DRAIN_INPUT_TYPE:
             weapon_dps = DpsGrapher.stat_drain_dps(input_gear_setup, grapher_type, input_value_range, npc)
         elif grapher_type in LEVEL_INPUT_TYPE:
