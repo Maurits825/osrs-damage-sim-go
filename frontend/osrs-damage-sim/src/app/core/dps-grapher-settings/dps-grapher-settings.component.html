@@ -12,7 +12,7 @@
     >
       <ng-template #dropdownLabel #dropdownOptions let-item="item">
         <div class="d-flex align-items-center">
-          <div class="text-center">
+          <div class="text-center" style="width: 35px">
             <img src="assets/img/dps_grapher_input/{{ item.type.replaceAll(' ', '_') | lowercase }}.png" />
           </div>
           <div class="ps-2">{{ item.type }}</div>

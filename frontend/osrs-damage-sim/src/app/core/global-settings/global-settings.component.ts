@@ -133,6 +133,11 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     this.combatStatService.globalCombatStats$.next(combatStats);
   }
 
+  loadCombatStats(combatStats: CombatStats): void {
+    this.combatStats = combatStats;
+    this.combatStatService.globalCombatStats$.next(combatStats);
+  }
+
   statDrainChanged(statDrains: StatDrain[]): void {
     this.statDrainService.globalStatDrain$.next(statDrains);
   }

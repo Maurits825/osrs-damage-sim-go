@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+import requests
+from flask import Flask, request, jsonify, abort
 from flask_compress import Compress
 from flask_cors import CORS
 
@@ -7,6 +8,9 @@ from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
 from damage_sim.dps_grapher import DpsGrapher
 from input_setup.input_setup_converter import InputSetupConverter
+
+HIGHSCORE_URL = "https://services.runescape.com/m=hiscore_oldschool/index_lite.json"
+
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:4200", "https://maurits825.github.io"])
@@ -53,3 +57,19 @@ def run_dps_grapher():
 
     return jsonify(dps_grapher_results)
 
+
+@app.route("/lookup-highscore", methods=["GET"])
+def lookup_highscore():
+    rsn = request.args.get("rsn")
+    response = requests.get(HIGHSCORE_URL + "?player=" + rsn)
+    if response.status_code == 404:
+        abort(404)
+
+    skills = response.json()["skills"]
+
+    combat_stats = {}
+    for skill in skills:
+        skill_name = skill["name"].lower()
+        combat_stats[skill_name] = skill["level"]
+
+    return jsonify(combat_stats)

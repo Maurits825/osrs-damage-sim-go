@@ -117,6 +117,9 @@
       (combatStatsChanged)="combatStatsChanged($event)"
     ></app-combat-stat-selection>
   </div>
+  <div class="col">
+    <app-highscore-lookup (loadCombatStats)="loadCombatStats($event)"></app-highscore-lookup>
+  </div>
 </div>
 
 <div class="row mb-4">

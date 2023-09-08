@@ -36,6 +36,7 @@ import { DamageSimComponent } from './core/damage-sim/damage-sim.component';
 import { DpsGrapherComponent } from './core/dps-grapher/dps-grapher.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-grapher-settings.component';
+import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-gra
     DamageSimComponent,
     DpsGrapherComponent,
     DpsGrapherSettingsComponent,
+    HighscoreLookupComponent,
   ],
   imports: [
     NgSelectModule,
