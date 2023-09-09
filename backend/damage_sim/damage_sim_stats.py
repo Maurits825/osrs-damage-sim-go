@@ -208,7 +208,7 @@ class DamageSimStats:
     def get_boost_label(boosts: list[BoostType]) -> str | None:
         boost_text = ""
         for boost in boosts:
-            boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower()) + ", "
+            boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower().capitalize()) + ", "
 
         if boost_text:
             return "Boosts - " + boost_text[:-2]

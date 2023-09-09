@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from model.input_setup.dps_grapher_input import InputValueType
+from model.locations import Location
 from model.stat_drain_type import StatDrainType
 from weapons.custom_weapon import CUSTOM_WEAPONS
+from wiki_data.wiki_data import WikiData
 
 MIN_ITERATIONS = 1
 MAX_ITERATIONS = 10_000
@@ -46,14 +49,16 @@ class DamageSimValidation:
         if error:
             return error
 
-        error = DamageSimValidation.validate_dps_grapher_settings(dps_grapher_input_json["settings"])
+        npc = WikiData.get_npc(dps_grapher_input_json["inputSetup"]["globalSettings"]["npc"]["id"])
+        error = DamageSimValidation.validate_dps_grapher_settings(dps_grapher_input_json["settings"], npc)
         if error:
             return error
 
     @staticmethod
-    def validate_dps_grapher_settings(settings) -> str | None:
+    def validate_dps_grapher_settings(settings, npc) -> str | None:
         min_value = settings["min"]
         max_value = settings["max"]
+        graph_type = settings["type"]
 
         if not DamageSimValidation.is_valid_int(min_value):
             return DamageSimValidation.invalid_value_message(min_value, "dps grapher min value")
@@ -82,6 +87,12 @@ class DamageSimValidation:
 
         if range_error:
             return range_error
+
+        if graph_type == InputValueType.TOA_RAID_LEVEL.value and npc.location != Location.TOMBS_OF_AMASCUT:
+            return "Invalid graph type (" + InputValueType.TOA_RAID_LEVEL.value + ") for npc (" + npc.name + ")"
+
+        if graph_type == InputValueType.TEAM_SIZE.value and min_value == 0:
+            return "Min team size is 0"
 
     @staticmethod
     def validate_global_settings(global_settings) -> str | None:

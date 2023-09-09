@@ -17,6 +17,7 @@ class InputValueType(Enum):
     MAGIC = "Magic"
     NPC_HITPOINTS = "Npc hitpoints"
     TOA_RAID_LEVEL = 'TOA raid level'
+    TEAM_SIZE = 'Team size'
 
 
 STAT_DRAIN_INPUT_TYPE = [
@@ -48,6 +49,7 @@ INPUT_VALUE_TYPE_LABEL = {
     InputValueType.MAGIC: "Magic levels",
     InputValueType.NPC_HITPOINTS: "Npc hitpoints",
     InputValueType.TOA_RAID_LEVEL: "Raid level",
+    InputValueType.TEAM_SIZE: "Team size",
 }
 
 
