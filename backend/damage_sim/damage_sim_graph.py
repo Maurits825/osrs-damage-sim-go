@@ -72,7 +72,7 @@ class DamageSimGraph:
         for i, input_gear_setup in enumerate(input_setup.input_gear_setups):
             graph.axes.plot(x_list[i], y_list[i], label=label[i])
 
-        x_ticks, interval = DamageSimGraph.get_x_ticks(min_ticks, max_ticks)
+        x_ticks, interval = DamageSimGraph.get_axis_ticks(min_ticks, max_ticks)
         graph.axes.set_xticks(x_ticks[:-1])
         graph.axes.set_xticklabels(
             [DamageSimStats.format_ticks_to_time(tick) for tick in x_ticks[:-1]]
@@ -94,7 +94,7 @@ class DamageSimGraph:
             cum_sum = DamageSimStats.get_cumulative_sum(ttk)
             time_stamps = [DamageSimStats.format_ticks_to_time(tick) for tick in np.arange(len(cum_sum))]
             graph.axes.plot(time_stamps, cum_sum, label=label[index])
-        x_ticks, interval = DamageSimGraph.get_x_ticks(min_ticks, max_ticks)
+        x_ticks, interval = DamageSimGraph.get_axis_ticks(min_ticks, max_ticks)
         graph.axes.set_xticks(x_ticks)
         graph.axes.set_yticks(np.arange(0, 1.1, 0.1))
 
@@ -115,6 +115,20 @@ class DamageSimGraph:
 
         graph.axes.set_xlabel(dps_graph_data.x_label)
         graph.axes.set_ylabel("Dps")
+
+        min_dps = float('inf')
+        max_dps = 0
+        for dps_data in dps_graph_data.dps_data:
+            for dps in dps_data.dps:
+                min_dps = min(min_dps, dps)
+                max_dps = max(max_dps, dps)
+
+        min_dps = math.floor(min_dps)
+        max_dps = math.ceil(max_dps)
+        x_ticks, _ = DamageSimGraph.get_axis_ticks(dps_graph_data.x_values[0], dps_graph_data.x_values[-1])
+        y_ticks, _ = DamageSimGraph.get_axis_ticks(min_dps, max_dps, 0.1)
+        graph.axes.set_xticks(x_ticks)
+        graph.axes.set_yticks(y_ticks)
 
         DamageSimGraph.format_figure(graph, dps_graph_data.title)
 
@@ -137,12 +151,11 @@ class DamageSimGraph:
         graph.axes.grid(linewidth=0.2, color="white")
 
     @staticmethod
-    def get_x_ticks(min_ticks, max_ticks):
-        interval = 1
+    def get_axis_ticks(min_ticks, max_ticks, interval=1.0):
         while True:
             label_count = (max_ticks - min_ticks) / interval
 
             if label_count <= MAX_X_TICKS_LABEL:
                 return [min_ticks + (i * interval) for i in range(math.ceil(label_count) + 1)], interval
             else:
-                interval += 1
+                interval += interval
