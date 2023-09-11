@@ -33,7 +33,7 @@ export class InputSetupService {
   dpsGrapherSettings$: BehaviorSubject<DpsGrapherSettings> = new BehaviorSubject({
     type: 'Dragon warhammer',
     min: 0,
-    max: 0,
+    max: 10,
   });
 
   constructor(private damageSimservice: DamageSimService, private itemService: ItemService) {

@@ -14,7 +14,7 @@
 
 <div
   class="d-flex align-items-center ms-2"
-  *ngIf="!isMainGearSetup && slot === GearSlot.Weapon && specialGear.isSpecialWeapon"
+  *ngIf="(!isMainGearSetup || mode === Mode.DpsGrapher) && slot === GearSlot.Weapon && specialGear.isSpecialWeapon"
 >
   <label>Special attack</label>
   <div class="ms-2">

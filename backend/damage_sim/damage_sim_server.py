@@ -8,6 +8,7 @@ from damage_sim.damage_sim_runner import DamageSimRunner
 from damage_sim.damage_sim_validation import DamageSimValidation
 from damage_sim.dps_grapher import DpsGrapher
 from input_setup.input_setup_converter import InputSetupConverter
+from model.input_setup.mode import Mode
 
 HIGHSCORE_URL = "https://services.runescape.com/m=hiscore_oldschool/index_lite.json"
 
@@ -34,7 +35,7 @@ def get_status():
 def run_damage_sim():
     json_request = request.get_json()
 
-    error = DamageSimValidation.validate_setup(json_request)
+    error = DamageSimValidation.validate_setup(json_request, Mode.DamageSim)
     if error:
         return {"error": error}
 
@@ -48,7 +49,7 @@ def run_damage_sim():
 def run_dps_calc():
     json_request = request.get_json()
 
-    error = DamageSimValidation.validate_setup(json_request)
+    error = DamageSimValidation.validate_setup(json_request, Mode.DpsCalc)
     if error:
         return {"error": error}
 
