@@ -64,5 +64,3 @@ class DpsGrapherSettings:
 class DpsGrapherInput:
     settings: DpsGrapherSettings
     input_setup: InputSetup
-
-

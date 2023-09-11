@@ -112,7 +112,9 @@ class DamageSimValidation:
                     iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
                 )
             else:
-                range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
+                range_error = DamageSimValidation.validate_range(
+                    iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations"
+                )
 
             if range_error:
                 return range_error
