@@ -106,15 +106,16 @@ class DamageSimValidation:
         if mode == Mode.DamageSim and not DamageSimValidation.is_valid_int(iterations):
             return DamageSimValidation.invalid_value_message(iterations, "iterations")
 
-        if global_settings["isDetailedRun"]:
-            range_error = DamageSimValidation.validate_range(
-                iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
-            )
-        else:
-            range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
+        if mode == Mode.DamageSim:
+            if global_settings["isDetailedRun"]:
+                range_error = DamageSimValidation.validate_range(
+                    iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
+                )
+            else:
+                range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
 
-        if range_error:
-            return range_error
+            if range_error:
+                return range_error
 
         team_size = global_settings["teamSize"]
         if not DamageSimValidation.is_valid_int(team_size):
