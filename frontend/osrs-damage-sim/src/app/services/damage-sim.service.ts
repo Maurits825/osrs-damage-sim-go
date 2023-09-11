@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, map, Observable, shareReplay, tap } from 'rxjs';
+import { forkJoin, map, Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DamageSimResults, DpsCalcResults } from '../model/damage-sim/damage-sim-results.model';
 import { ExampleSetup } from '../model/damage-sim/example-setup.model';
@@ -47,12 +47,12 @@ export class DamageSimService {
       map(([quickGearJson, allGearSlotItems]) => {
         const quickGearSlots: QuickGearSlots = {} as QuickGearSlots;
         for (const gearSlot in GearSlot) {
-          const gearSlotValue = (GearSlot as any)[gearSlot] as keyof QuickGearSlots;
+          const gearSlotValue = GearSlot[gearSlot as keyof typeof GearSlot] as keyof QuickGearSlots;
           quickGearSlots[gearSlotValue] = {} as QuickGear;
           allAttackTypes.forEach((attackType: AttackType) => {
             quickGearSlots[gearSlotValue][attackType] = [];
             quickGearJson[gearSlot as keyof QuickGearJson][attackType].forEach((itemId) => {
-              const item: Item = allGearSlotItems[(GearSlot as any)[gearSlot] as GearSlot].find(
+              const item: Item = allGearSlotItems[GearSlot[gearSlot as keyof typeof GearSlot] as GearSlot].find(
                 (item: Item) => item.id === itemId
               );
               quickGearSlots[gearSlotValue][attackType].push(item);

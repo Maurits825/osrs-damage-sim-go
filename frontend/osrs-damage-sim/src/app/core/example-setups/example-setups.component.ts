@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { forkJoin, map, take } from 'rxjs';
+import { forkJoin, take } from 'rxjs';
 import { ExampleSetup } from 'src/app/model/damage-sim/example-setup.model';
 import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';

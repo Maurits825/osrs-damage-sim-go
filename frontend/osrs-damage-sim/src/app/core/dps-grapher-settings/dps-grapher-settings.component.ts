@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { forIn } from 'lodash-es';
 import { Subject, takeUntil } from 'rxjs';
 import { statDrainLabels } from 'src/app/model/damage-sim/stat-drain.model';

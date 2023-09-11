@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardService } from 'ngx-clipboard';
-import { DpsGrapherSettings } from 'src/app/model/dps-grapher/dps-grapher-settings.model';
+import {} from 'src/app/model/dps-grapher/dps-grapher-settings.model';
 import { Mode } from 'src/app/model/mode.enum';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input-setup-modal/share-input-setup-modal.component';

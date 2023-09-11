@@ -1,4 +1,4 @@
-import { Component, HostBinding, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';

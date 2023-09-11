@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { DamageSimResults } from 'src/app/model/damage-sim/damage-sim-results.model';
 import { DpsGrapherResults } from 'src/app/model/dps-grapher/dps-grapher-results.model';
-import { DpsGrapherSettings } from 'src/app/model/dps-grapher/dps-grapher-settings.model';
 import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
