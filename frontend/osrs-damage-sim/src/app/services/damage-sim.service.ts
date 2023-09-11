@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable, shareReplay, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
+import { DamageSimResults, DpsCalcResults } from '../model/damage-sim/damage-sim-results.model';
 import { ExampleSetup } from '../model/damage-sim/example-setup.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
@@ -79,6 +79,11 @@ export class DamageSimService {
   public runDamageSim(inputSetupJson: string): Observable<DamageSimResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
     return this.http.post<DamageSimResults>(this.damageSimServiceUrl + '/run-damage-sim', inputSetupJson, options);
+  }
+
+  public runDpsCalc(inputSetupJson: string): Observable<DpsCalcResults> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<DpsCalcResults>(this.damageSimServiceUrl + '/run-dps-calc', inputSetupJson, options);
   }
 
   public runDpsGrapher(dpsGrapherInput: string): Observable<DpsGrapherResults> {

@@ -44,6 +44,21 @@ def run_damage_sim():
     return jsonify(damage_sim_results)
 
 
+@app.route("/run-dps-calc", methods=["POST"])
+def run_dps_calc():
+    json_request = request.get_json()
+
+    error = DamageSimValidation.validate_setup(json_request)
+    if error:
+        return {"error": error}
+
+    input_setup = InputSetupConverter.get_input_setup(json_request)
+
+    dps_calc_results = damage_sim_runner.run_dps_calc(input_setup)
+
+    return jsonify(dps_calc_results)
+
+
 @app.route("/run-dps-grapher", methods=["POST"])
 def run_dps_grapher():
     json_request = request.get_json()

@@ -4,7 +4,7 @@
     <div class="col-auto"><h1 class="display-1">Damage Simulator</h1></div>
   </div>
 
-  <app-sim-results [damageSimResults]="damageSimResults"></app-sim-results>
+  <app-sim-results [damageSimResults]="damageSimResults" [dpsCalcResults]="dpsCalcResults"></app-sim-results>
 
   <hr class="row mb-5" />
 
@@ -20,18 +20,36 @@
 
   <app-global-settings></app-global-settings>
 
-  <div class="mb-4 px-3">
-    <div class="row mb-1">
-      <button class="btn btn-primary w-100" type="button" (click)="runDamageSim()" [disabled]="loading">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span *ngIf="!loading" class="sr-only"> Run Damage Simulator</span>
-        <span *ngIf="loading" class="sr-only"> Loading...</span>
-      </button>
+  <div class="mb-4">
+    <div class="d-flex mb-1">
+      <div class="flex-fill btn-group btn-group-lg" role="group">
+        <ng-container *ngIf="loading">
+          <button class="btn btn-primary" type="button" [disabled]="loading">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only"> Loading...</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+          <button class="btn btn-primary" type="button" (click)="runDpsCalc()">
+            <span class="sr-only"> Run Dps Calculator</span>
+          </button>
+          <button class="btn btn-primary" type="button" (click)="runDamageSim()">
+            <span class="sr-only"> Run Damage Simulator</span>
+          </button>
+        </ng-container>
+      </div>
     </div>
+
+    <div *ngIf="loading">&nbsp;</div>
+
     <ng-container *ngIf="!loading">
-      <div class="row text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
-      <div class="row text-success" *ngIf="damageSimResults && !damageSimResults?.error">
+      <div class="text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
+      <div class="text-danger" *ngIf="dpsCalcResults?.error">Error: {{ dpsCalcResults.error }}</div>
+      <div class="text-success" *ngIf="damageSimResults && !damageSimResults?.error">
         Damage simulation done, results above!
+      </div>
+      <div class="text-success" *ngIf="dpsCalcResults && !dpsCalcResults?.error">
+        Dps calculator done, results above!
       </div>
     </ng-container>
   </div>

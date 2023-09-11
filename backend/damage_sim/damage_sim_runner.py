@@ -3,7 +3,8 @@ from __future__ import annotations
 from damage_sim.damage_sim import DamageSim
 from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_stats import DamageSimStats
-from model.damage_sim_results.damage_sim_results import DamageSimResults, TotalDamageSimData, GearSetupDpsStats
+from model.damage_sim_results.damage_sim_results import DamageSimResults, TotalDamageSimData, GearSetupDpsStats, \
+    DpsCalcResult, DpsCalcResults
 from model.damage_sim_results.tick_data import TickData
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
@@ -73,3 +74,22 @@ class DamageSimRunner:
             if global_settings.is_detailed_run:
                 total_tick_data.append(tick_data)
         return total_damage_sim_data, gear_setup_dps_stats, total_tick_data
+
+    @staticmethod
+    def run_dps_calc(input_setup: InputSetup) -> DpsCalcResults:
+        dps_calc_results = DpsCalcResults(
+            results=[],
+            global_settings_label=DamageSimStats.get_global_settings_label(input_setup.global_settings, False)
+        )
+        for input_gear_setup in input_setup.input_gear_setups:
+            input_gear_setup_labels = DamageSimStats.get_input_gear_setup_label(input_gear_setup)
+            damage_sim = DamageSim(input_gear_setup)
+            dps_stats = damage_sim.get_weapon_dps_stats()
+            dps_calc_results.results.append(
+                DpsCalcResult(labels=input_gear_setup_labels,
+                              theoretical_dps=dps_stats.theoretical_dps,
+                              max_hit=dps_stats.max_hit,
+                              accuracy=dps_stats.accuracy)
+            )
+
+        return dps_calc_results

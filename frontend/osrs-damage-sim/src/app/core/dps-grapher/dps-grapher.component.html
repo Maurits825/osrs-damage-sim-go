@@ -32,12 +32,15 @@
 
   <div class="mb-4 px-3">
     <div class="row mb-1">
-      <button class="btn btn-primary w-100" type="button" (click)="runDpsGrapher()" [disabled]="loading">
+      <button class="btn btn-lg btn-primary w-100" type="button" (click)="runDpsGrapher()" [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         <span *ngIf="!loading" class="sr-only"> Run Dps Grapher</span>
         <span *ngIf="loading" class="sr-only"> Loading...</span>
       </button>
     </div>
+
+    <div class="row" *ngIf="loading">&nbsp;</div>
+
     <ng-container *ngIf="!loading">
       <div class="row text-danger" *ngIf="dpsGrapherResults?.error">Error: {{ dpsGrapherResults.error }}</div>
       <div class="row text-success" *ngIf="dpsGrapherResults && !dpsGrapherResults?.error">

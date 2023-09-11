@@ -8,7 +8,12 @@ import {
   dpsSortFields,
   DpsSortField,
 } from 'src/app/model/damage-sim/sort.model';
-import { DamageSimResult, DamageSimResults, SimStats } from '../../model/damage-sim/damage-sim-results.model';
+import {
+  DamageSimResult,
+  DamageSimResults,
+  DpsCalcResults,
+  SimStats,
+} from '../../model/damage-sim/damage-sim-results.model';
 
 @Component({
   selector: 'app-sim-results',
@@ -18,6 +23,9 @@ import { DamageSimResult, DamageSimResults, SimStats } from '../../model/damage-
 export class SimResultsComponent implements OnChanges {
   @Input()
   damageSimResults: DamageSimResults;
+
+  @Input()
+  dpsCalcResults: DpsCalcResults;
 
   sortConfigs: SortConfigs = {
     average: { sortOrder: SortOrder.Ascending, isSorted: false },
@@ -52,6 +60,11 @@ export class SimResultsComponent implements OnChanges {
       this.sortTimeResults('average');
       this.isTargetTimeValid = null;
       this.targetTime = '';
+    }
+
+    if (changes['dpsCalcResults'] && this.dpsCalcResults && !this.dpsCalcResults.error) {
+      this.sortConfigs.theoretical_dps.sortOrder = SortOrder.Descending;
+      this.sortDpsResults('theoretical_dps');
     }
   }
 
@@ -103,8 +116,8 @@ export class SimResultsComponent implements OnChanges {
 
   sortDpsResults(dpsSortField: DpsSortField): void {
     const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
-
-    this.damageSimResults.results.sort((result1: DamageSimResult, result2: DamageSimResult) =>
+    const results = (this.damageSimResults ? this.damageSimResults : this.dpsCalcResults) as DamageSimResults;
+    results.results.sort((result1: DamageSimResult, result2: DamageSimResult) =>
       typeof result1[dpsSortField][0] === 'number'
         ? sortOrder * ((result1[dpsSortField][0] as number) - (result2[dpsSortField][0] as number))
         : sortOrder * ((result1[dpsSortField][0] as SimStats).average as number) -
