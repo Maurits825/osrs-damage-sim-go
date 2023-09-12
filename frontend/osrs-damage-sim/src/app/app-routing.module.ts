@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'dmg-sim', component: DamageSimComponent },
   { path: 'dps-grapher', component: DpsGrapherComponent },
   { path: '', redirectTo: '/dmg-sim', pathMatch: 'full' },
-]; //TODO error route?
+  { path: '**', redirectTo: '/dmg-sim', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
