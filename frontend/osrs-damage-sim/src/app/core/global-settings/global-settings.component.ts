@@ -80,6 +80,10 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.prayerService.globalPrayers$.next(this.selectedPrayers);
+    this.statDrainService.globalStatDrain$.next(this.statDrains);
+    this.combatStatService.globalCombatStats$.next(this.combatStats);
+    this.boostService.globalBoosts$.next(this.selectedBoosts);
+
     this.inputSetupService.loadInputSetup$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((inputSetup: InputSetup) => this.setGlobalSettings(inputSetup.globalSettings));
