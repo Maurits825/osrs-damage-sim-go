@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 
@@ -10,6 +12,6 @@ class DpsGraphDpsData:
 @dataclass()
 class DpsGraphData:
     title: str
-    x_values: range
+    x_values: list[int | float]
     x_label: str
     dps_data: list[DpsGraphDpsData]

@@ -26,6 +26,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.1",
     "bootstrap-icons": "^1.9.1",
+    "chart.js": "^4.4.0",
     "lodash-es": "^4.17.21",
     "ngx-bootstrap": "^9.0.0",
     "ngx-clipboard": "^15.1.0",

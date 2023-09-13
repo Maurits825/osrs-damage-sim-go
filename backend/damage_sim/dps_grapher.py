@@ -40,14 +40,15 @@ class DpsGrapher:
 
         dps_graph_data = DpsGraphData(
             title="Dps: " + DamageSimStats.get_dps_graph_label(input_setup.global_settings),
-            x_values=input_value_range,
+            x_values=[i for i in input_value_range],
             x_label=INPUT_VALUE_TYPE_LABEL[grapher_type],
             dps_data=dps_data
         )
 
         graph = self.damage_sim_graph.get_dps_graphs(dps_graph_data)
         return DpsGrapherResults(
-            graph=graph
+            graph=graph,
+            graph_data=dps_graph_data
         )
 
     def get_gear_setup_dps(self,  global_settings: GlobalSettings, input_gear_setup: InputGearSetup,
