@@ -14,7 +14,7 @@ from model.input_setup.input_setup import InputSetup
 GRAPH_WIDTH = 19.20
 GRAPH_HEIGHT = 10.80
 
-MAX_X_TICKS_LABEL = 30
+MAX_TICKS_LABEL = 30
 
 
 class DamageSimGraph:
@@ -54,7 +54,9 @@ class DamageSimGraph:
 
     def generate_ttk_probability_figure(self, min_ticks, max_ticks, label,
                                         input_setup: InputSetup, ttk_list: list[list[int]]):
-        bins = np.histogram_bin_edges(np.array(ttk_list).flatten(), bins="auto") # TODO bins should be discrete?
+        bins = np.histogram_bin_edges(np.array(ttk_list).flatten(), bins="auto")
+        # TODO bins should be discrete?
+        # TODO bins should be att speed? - what if multiple setups...
         x_list = []
         y_list = []
         max_bin_count = 0
@@ -126,7 +128,7 @@ class DamageSimGraph:
         min_dps = math.floor(min_dps)
         max_dps = math.ceil(max_dps)
         x_ticks, _ = DamageSimGraph.get_axis_ticks(dps_graph_data.x_values[0], dps_graph_data.x_values[-1])
-        y_ticks, _ = DamageSimGraph.get_axis_ticks(min_dps, max_dps, 0.1)
+        y_ticks, _ = DamageSimGraph.get_axis_ticks(min_dps, max_dps, [0.1, 0.2, 0.5, 1])
         graph.axes.set_xticks(x_ticks)
         graph.axes.set_yticks(y_ticks)
 
@@ -151,11 +153,20 @@ class DamageSimGraph:
         graph.axes.grid(linewidth=0.2, color="white")
 
     @staticmethod
-    def get_axis_ticks(min_ticks, max_ticks, interval=1.0):
+    def get_axis_ticks(min_ticks, max_ticks, intervals=None):
+        if intervals is None:
+            intervals = [1.0, 2.0, 5.0, 10.0]
+
+        interval_index = 0
+        interval = intervals[0]
         while True:
             label_count = (max_ticks - min_ticks) / interval
 
-            if label_count <= MAX_X_TICKS_LABEL:
+            if label_count <= MAX_TICKS_LABEL:
                 return [min_ticks + (i * interval) for i in range(math.ceil(label_count) + 1)], interval
             else:
-                interval += interval
+                if interval_index < len(intervals) - 1:
+                    interval_index += 1
+                    interval = intervals[interval_index]
+                else:
+                    interval += intervals[interval_index]
