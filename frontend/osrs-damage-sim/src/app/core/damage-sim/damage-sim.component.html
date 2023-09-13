@@ -26,15 +26,15 @@
         <ng-container *ngIf="loading">
           <button class="btn btn-primary" type="button" [disabled]="loading">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            <span class="sr-only"> Loading...</span>
+            <span class="sr-only">Loading...</span>
           </button>
         </ng-container>
         <ng-container *ngIf="!loading">
           <button class="btn btn-primary" type="button" (click)="runDpsCalc()">
-            <span class="sr-only"> Run Dps Calculator</span>
+            <span class="sr-only">Run Dps Calculator</span>
           </button>
           <button class="btn btn-primary" type="button" (click)="runDamageSim()">
-            <span class="sr-only"> Run Damage Simulator</span>
+            <span class="sr-only">Run Damage Simulator</span>
           </button>
         </ng-container>
       </div>
