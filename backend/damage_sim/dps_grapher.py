@@ -39,7 +39,7 @@ class DpsGrapher:
             )
 
         dps_graph_data = DpsGraphData(
-            title="Dps: " + DamageSimStats.get_dps_graph_label(input_setup.global_settings),
+            title="Dps: " + DamageSimStats.get_global_settings_label(input_setup.global_settings, False),
             x_values=[i for i in input_value_range],
             x_label=INPUT_VALUE_TYPE_LABEL[grapher_type],
             dps_data=dps_data
