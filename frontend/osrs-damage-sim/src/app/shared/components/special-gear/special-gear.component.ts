@@ -31,4 +31,9 @@ export class SpecialGearComponent {
   Mode = Mode;
 
   GearSlot = GearSlot;
+  Item: Item;
+
+  dartChanged(dart: Item): void {
+    this.gearSetup.blowpipeDarts = dart;
+  }
 }
