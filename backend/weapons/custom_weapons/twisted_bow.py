@@ -14,11 +14,8 @@ class TwistedBow(Weapon):
         return math.floor(super().get_attack_roll() * (round(accuracy_multiplier) / 100))
 
     def get_base_max_hit(self):
-        magic = self.get_magic()
-        damage_multiplier = min(
-            250.0,
-            250 + int(((10 * int(3 * magic / 10)) - 14) / 100) - int(((((3 * magic) / 10) - 140) ** 2) / 100)
-        )
+        magic = int(3 * self.get_magic() / 10)
+        damage_multiplier = min(250, int(250 + (magic * 10 - 14) / 100 - int((magic - 140) * (magic - 140) / 100)))
 
         return math.floor(super().get_base_max_hit() * (round(damage_multiplier) / 100))
 

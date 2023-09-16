@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
+import { Mode } from 'src/app/model/mode.enum';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item } from 'src/app/model/osrs/item.model';
 
@@ -25,5 +26,14 @@ export class SpecialGearComponent {
   @Input()
   allDarts: Item[];
 
+  @Input()
+  mode: Mode = Mode.DamageSim;
+  Mode = Mode;
+
   GearSlot = GearSlot;
+  Item: Item;
+
+  dartChanged(dart: Item): void {
+    this.gearSetup.blowpipeDarts = dart;
+  }
 }

@@ -208,7 +208,7 @@ class DamageSimStats:
     def get_boost_label(boosts: list[BoostType]) -> str | None:
         boost_text = ""
         for boost in boosts:
-            boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower()) + ", "
+            boost_text += BOOST_NAME.get(boost, str(boost.name).replace('_', ' ').lower().capitalize()) + ", "
 
         if boost_text:
             return "Boosts - " + boost_text[:-2]
@@ -243,7 +243,7 @@ class DamageSimStats:
             return "Combat stats - Max"
 
     @staticmethod
-    def get_global_settings_label(global_settings: GlobalSettings):
+    def get_global_settings_label(global_settings: GlobalSettings, show_iterations=True):
         title = (DamageSimStats.get_npc_title(global_settings) +
                  " | HP: " +
                  str(global_settings.npc.base_combat_stats.hitpoints))
@@ -253,7 +253,8 @@ class DamageSimStats:
             if global_settings.path_level:
                 title += ", Path level: " + str(global_settings.path_level)
 
-        title += " | Iterations: " + f"{global_settings.iterations:,}"
+        if show_iterations:
+            title += " | Iterations: " + f"{global_settings.iterations:,}"
 
         return title
 

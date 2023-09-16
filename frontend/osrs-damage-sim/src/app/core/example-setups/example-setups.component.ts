@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { forkJoin, take } from 'rxjs';
 import { ExampleSetup } from 'src/app/model/damage-sim/example-setup.model';
+import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
@@ -9,7 +11,15 @@ import { InputSetupService } from 'src/app/services/input-setup.service';
   styleUrls: ['./example-setups.component.css'],
 })
 export class ExampleSetupsComponent implements OnInit {
+  @Input()
+  mode: Mode = Mode.DamageSim;
+
+  Mode = Mode;
+
   exampleSetups: ExampleSetup[];
+
+  dmgSimExampleSetups: ExampleSetup[];
+  dpsGrapherExampleSetups: ExampleSetup[];
   selectedSetup: ExampleSetup;
 
   ExampleSetup: ExampleSetup;
@@ -17,14 +27,26 @@ export class ExampleSetupsComponent implements OnInit {
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
 
   ngOnInit(): void {
-    this.damageSimservice.exampleSetups$.subscribe((exampleSetups: ExampleSetup[]) => {
-      this.exampleSetups = exampleSetups;
-    });
+    forkJoin([this.damageSimservice.dmgSimExampleSetups$, this.damageSimservice.dpsGrapherExampleSetups$])
+      .pipe(take(1))
+      .subscribe(([dmgSimExampleSetups, dpsGrapherExampleSetups]) => {
+        this.dmgSimExampleSetups = dmgSimExampleSetups;
+        this.dpsGrapherExampleSetups = dpsGrapherExampleSetups;
+
+        this.exampleSetups = this.mode === Mode.DamageSim ? this.dmgSimExampleSetups : this.dpsGrapherExampleSetups;
+      });
   }
 
   selectedSetupChange(exampleSetup: ExampleSetup): void {
     if (!exampleSetup) return;
-    const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.setupString);
-    this.inputSetupService.loadInputSetup$.next(inputSetup);
+
+    if (this.mode == Mode.DamageSim) {
+      const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.setupString);
+      this.inputSetupService.loadInputSetup$.next(inputSetup);
+    } else {
+      const dpsGrapherInput = this.inputSetupService.parseDpsGrapherInputFromEncodedString(exampleSetup.setupString);
+      this.inputSetupService.loadInputSetup$.next(dpsGrapherInput.inputSetup);
+      this.inputSetupService.dpsGrapherSettings$.next(dpsGrapherInput.settings);
+    }
   }
 }

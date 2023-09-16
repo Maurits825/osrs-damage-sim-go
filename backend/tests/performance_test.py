@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_runner import DamageSimRunner
 from input_setup.input_setup_converter import InputSetupConverter
 
@@ -13,7 +14,8 @@ class PerformanceTest:
             self.input_setups = json.load(f)
 
     def run(self):
-        damage_sim_runner = DamageSimRunner()
+        damage_sim_graph = DamageSimGraph()
+        damage_sim_runner = DamageSimRunner(damage_sim_graph)
         input_setup = InputSetupConverter.get_input_setup(self.input_setups["Performance test setup 1"])
         _ = damage_sim_runner.run(input_setup)
 

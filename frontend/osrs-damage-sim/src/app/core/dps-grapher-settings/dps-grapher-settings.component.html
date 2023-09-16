@@ -1,0 +1,49 @@
+<div class="row align-items-center mb-4">
+  <div class="col-2">Graph type</div>
+  <div class="col-4">
+    <app-ng-select-lazy-load
+      [valueType]="InputValue"
+      [allValues]="inputValues"
+      [selectedValue]="selectedInputValue"
+      [clearable]="false"
+      searchProperty="type"
+      placeholder="Select input value"
+      (valueChanged)="selectedInputValueChange($event)"
+    >
+      <ng-template #dropdownLabel #dropdownOptions let-item="item">
+        <div class="d-flex align-items-center">
+          <div class="text-center" style="width: 35px">
+            <img src="assets/img/dps_grapher_input/{{ item.type.replaceAll(' ', '_') | lowercase }}.png" />
+          </div>
+          <div class="ps-2">{{ item.type }}</div>
+        </div>
+      </ng-template>
+    </app-ng-select-lazy-load>
+  </div>
+  <div class="col">
+    <input
+      class="form-control"
+      inputmode="numeric"
+      type="number"
+      min="0"
+      [(ngModel)]="dpsGrapherSettings.min"
+      (change)="minChanged()"
+      required
+    />
+  </div>
+  <div class="col-auto px-0">to</div>
+  <div class="col">
+    <input
+      class="form-control"
+      inputmode="numeric"
+      type="number"
+      min="1"
+      [(ngModel)]="dpsGrapherSettings.max"
+      (change)="maxChanged()"
+      required
+    />
+  </div>
+  <div class="col px-0">
+    {{ selectedInputValue?.label }}
+  </div>
+</div>

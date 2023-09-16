@@ -1,20 +1,27 @@
-<div class="d-flex align-items-center ms-2" *ngIf="slot === GearSlot.Weapon && specialGear.isBlowpipe">
-  <ng-select class="" [items]="allDarts" [(ngModel)]="gearSetup.blowpipeDarts" [clearable]="false">
-    <ng-template ng-label-tmp let-item="item">{{ item.name }}</ng-template>
-    <ng-template ng-option-tmp let-item="item">
+<div class="align-items-center ms-2" *ngIf="slot === GearSlot.Weapon && specialGear.isBlowpipe">
+  <app-ng-select-lazy-load
+    [valueType]="Item"
+    [allValues]="allDarts"
+    [selectedValue]="gearSetup.blowpipeDarts"
+    searchProperty="name"
+    placeholder="Select dart"
+    [clearable]="false"
+    (valueChanged)="dartChanged($event)"
+  >
+    <ng-template #dropdownLabel #dropdownOptions let-item="item">
       <div class="d-flex align-items-center">
         <div class="text-center" style="flex: 0 0 35px">
           <img src="data:image/png;base64,{{ item.icon }}" />
         </div>
-        <div class="ps-2">{{ item.name }}</div>
+        <div class="pe-3">{{ item.name }}</div>
       </div>
     </ng-template>
-  </ng-select>
+  </app-ng-select-lazy-load>
 </div>
 
 <div
   class="d-flex align-items-center ms-2"
-  *ngIf="!isMainGearSetup && slot === GearSlot.Weapon && specialGear.isSpecialWeapon"
+  *ngIf="(!isMainGearSetup || mode === Mode.DpsGrapher) && slot === GearSlot.Weapon && specialGear.isSpecialWeapon"
 >
   <label>Special attack</label>
   <div class="ms-2">

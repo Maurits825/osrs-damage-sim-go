@@ -81,3 +81,19 @@ export interface DamageSimResults {
 
   graphs: Graphs;
 }
+
+export interface DpsCalcResult {
+  error?: string | null;
+
+  labels: InputGearSetupLabels;
+  theoretical_dps: number[];
+  max_hit: number[];
+  accuracy: number[];
+}
+
+export interface DpsCalcResults {
+  error?: string | null;
+
+  results: DpsCalcResult[];
+  global_settings_label: string;
+}

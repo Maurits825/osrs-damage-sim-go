@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   Injector,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -11,6 +12,7 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { Mode } from 'src/app/model/mode.enum';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/gear-setup-tab.component';
 
@@ -22,6 +24,11 @@ import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/
 export class GearSetupTabsComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;
   gearSetupTabs: GearSetupTabComponent[] = [];
+
+  @Input()
+  mode: Mode = Mode.DamageSim;
+
+  Mode = Mode;
 
   maxSetupTabs = 5;
 
@@ -61,6 +68,7 @@ export class GearSetupTabsComponent implements OnInit, OnDestroy, AfterViewInit 
 
     const tabInstance: GearSetupTabComponent = gearSetupTabRef.instance as GearSetupTabComponent;
     tabInstance.id = this.gearSetupTabs.length + 1;
+    tabInstance.mode = this.mode;
 
     this.gearSetupTabs.push(tabInstance);
 

@@ -56,3 +56,17 @@ class DamageSimResults:
     detailed_runs: list[DetailedRun]
     global_settings_label: str
     graphs: dict[GraphType, str]
+
+
+@dataclass()
+class DpsCalcResult:
+    labels: InputGearSetupLabels
+    theoretical_dps: list[float]
+    max_hit: list[int]
+    accuracy: list[float]
+
+
+@dataclass()
+class DpsCalcResults:
+    results: list[DpsCalcResult]
+    global_settings_label: str

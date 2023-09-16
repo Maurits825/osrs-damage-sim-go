@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+from model.input_setup.dps_grapher_input import InputValueType
+from model.input_setup.mode import Mode
+from model.locations import Location
 from model.stat_drain_type import StatDrainType
 from weapons.custom_weapon import CUSTOM_WEAPONS
+from wiki_data.wiki_data import WikiData
 
 MIN_ITERATIONS = 1
 MAX_ITERATIONS = 10_000
@@ -21,40 +25,99 @@ MAX_STAT_DRAINS = 5
 
 MAX_CONDITIONS = 5
 
+MIN_GRAPHER_INPUT_VALUE = 0
+MAX_GRAPHER_INPUT_VALUE = float('inf')
+MIN_GRAPHER_INPUT_VALUE_DIFF = 1
+MAX_GRAPHER_INPUT_VALUE_DIFF = 10_000
+
 
 class DamageSimValidation:
     @staticmethod
-    def validate_setup(input_setup_json) -> str | None:
-        error = DamageSimValidation.validate_global_settings(input_setup_json["globalSettings"])
+    def validate_setup(input_setup_json, mode: Mode) -> str | None:
+        error = DamageSimValidation.validate_global_settings(input_setup_json["globalSettings"], mode)
         if error:
             return error
 
-        error = DamageSimValidation.validate_input_gear_setups(input_setup_json["inputGearSetups"])
+        error = DamageSimValidation.validate_input_gear_setups(input_setup_json["inputGearSetups"], mode)
         if error:
             return error
 
         return None
 
     @staticmethod
-    def validate_global_settings(global_settings) -> str | None:
+    def validate_dps_grapher_input(dps_grapher_input_json) -> str | None:
+        error = DamageSimValidation.validate_setup(dps_grapher_input_json["inputSetup"], Mode.DpsGrapher)
+        if error:
+            return error
+
+        npc = WikiData.get_npc(dps_grapher_input_json["inputSetup"]["globalSettings"]["npc"]["id"])
+        error = DamageSimValidation.validate_dps_grapher_settings(dps_grapher_input_json["settings"], npc)
+        if error:
+            return error
+
+    @staticmethod
+    def validate_dps_grapher_settings(settings, npc) -> str | None:
+        min_value = settings["min"]
+        max_value = settings["max"]
+        graph_type = settings["type"]
+
+        if not DamageSimValidation.is_valid_int(min_value):
+            return DamageSimValidation.invalid_value_message(min_value, "dps grapher min value")
+
+        if not DamageSimValidation.is_valid_int(max_value):
+            return DamageSimValidation.invalid_value_message(min_value, "dps grapher max value")
+
+        range_error = DamageSimValidation.validate_range(
+            min_value, MIN_GRAPHER_INPUT_VALUE, MAX_GRAPHER_INPUT_VALUE, "dps grapher min value"
+        )
+
+        if range_error:
+            return range_error
+
+        range_error = DamageSimValidation.validate_range(
+            max_value, MIN_GRAPHER_INPUT_VALUE, MAX_GRAPHER_INPUT_VALUE, "dps grapher max value"
+        )
+
+        if range_error:
+            return range_error
+
+        range_error = DamageSimValidation.validate_range(
+            max_value-min_value, MIN_GRAPHER_INPUT_VALUE_DIFF, MAX_GRAPHER_INPUT_VALUE_DIFF,
+            "dps grapher value difference"
+        )
+
+        if range_error:
+            return range_error
+
+        if graph_type == InputValueType.TOA_RAID_LEVEL.value and npc.location != Location.TOMBS_OF_AMASCUT:
+            return "Invalid graph type (" + InputValueType.TOA_RAID_LEVEL.value + ") for npc (" + npc.name + ")"
+
+        if graph_type == InputValueType.TEAM_SIZE.value and min_value == 0:
+            return "Min team size is 0"
+
+    @staticmethod
+    def validate_global_settings(global_settings, mode: Mode) -> str | None:
         try:
             _ = global_settings["npc"]["id"]
         except (KeyError, TypeError):
             return "Invalid npc"
 
         iterations = global_settings["iterations"]
-        if not DamageSimValidation.is_valid_int(iterations):
+        if mode == Mode.DamageSim and not DamageSimValidation.is_valid_int(iterations):
             return DamageSimValidation.invalid_value_message(iterations, "iterations")
 
-        if global_settings["isDetailedRun"]:
-            range_error = DamageSimValidation.validate_range(
-                iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
-            )
-        else:
-            range_error = DamageSimValidation.validate_range(iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations")
+        if mode == Mode.DamageSim:
+            if global_settings["isDetailedRun"]:
+                range_error = DamageSimValidation.validate_range(
+                    iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
+                )
+            else:
+                range_error = DamageSimValidation.validate_range(
+                    iterations, MIN_ITERATIONS, MAX_ITERATIONS, "iterations"
+                )
 
-        if range_error:
-            return range_error
+            if range_error:
+                return range_error
 
         team_size = global_settings["teamSize"]
         if not DamageSimValidation.is_valid_int(team_size):
@@ -67,13 +130,13 @@ class DamageSimValidation:
         return None
 
     @staticmethod
-    def validate_input_gear_setups(input_gear_setups) -> str | None:
+    def validate_input_gear_setups(input_gear_setups, mode: Mode) -> str | None:
         range_error = DamageSimValidation.validate_range(len(input_gear_setups), MIN_SETUPS, MAX_SETUPS, "setups")
         if range_error:
             return range_error
 
         for input_gear_setup in input_gear_setups:
-            if input_gear_setup["mainGearSetup"]["isSpecial"]:
+            if mode != Mode.DpsGrapher and input_gear_setup["mainGearSetup"]["isSpecial"]:
                 return "Main gear setup cannot use special attack"
 
             error = DamageSimValidation.validate_combat_stats(input_gear_setup["gearSetupSettings"]["combatStats"])

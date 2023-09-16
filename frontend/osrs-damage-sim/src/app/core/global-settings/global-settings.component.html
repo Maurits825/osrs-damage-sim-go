@@ -12,27 +12,34 @@
     <div class="col-2">Other Settings</div>
     <div class="col-5 col-xxl-3" *ngIf="showRaidLevel">
       <div class="row align-items-center">
-        <div class="col-auto pe-0"><label>Raid Level</label></div>
+        <div class="col-auto pe-0"><label for="raidLevel">Raid Level</label></div>
         <div class="col">
-          <input class="form-control" type="number" [(ngModel)]="globalSettings.raidLevel" min="0" />
+          <input id="raidLevel" class="form-control" type="number" [(ngModel)]="globalSettings.raidLevel" min="0" />
         </div>
       </div>
     </div>
 
     <div class="col-5 col-xxl-3" *ngIf="showPathLevel">
       <div class="row align-items-center">
-        <div class="col-auto pe-0"><label>Path Level</label></div>
+        <div class="col-auto pe-0"><label for="pathLevel">Path Level</label></div>
         <div class="col">
-          <input class="form-control" type="number" [(ngModel)]="globalSettings.pathLevel" min="0" max="6" />
+          <input
+            id="pathLevel"
+            class="form-control"
+            type="number"
+            [(ngModel)]="globalSettings.pathLevel"
+            min="0"
+            max="6"
+          />
         </div>
       </div>
     </div>
 
     <div class="col-5 col-xxl-3" *ngIf="showIsChallengeMode">
       <div class="row align-items-center">
-        <div class="col-auto pe-0"><label>Challenge Mode</label></div>
+        <div class="col-auto pe-0"><label for="isCm">Challenge Mode</label></div>
         <div class="col">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="globalSettings.isCoxChallengeMode" />
+          <input id="isCm" class="form-check-input" type="checkbox" [(ngModel)]="globalSettings.isCoxChallengeMode" />
         </div>
       </div>
     </div>
@@ -44,18 +51,26 @@
 
   <div class="col col-sm-5 col-lg-3">
     <div class="row align-items-center">
-      <div class="col-auto pe-0"><label>Team size</label></div>
+      <div class="col-auto pe-0"><label for="teamSize">Team size</label></div>
       <div class="col">
-        <input class="form-control" type="number" [(ngModel)]="globalSettings.teamSize" min="1" max="100" />
+        <input
+          id="teamSize"
+          class="form-control"
+          type="number"
+          [(ngModel)]="globalSettings.teamSize"
+          min="1"
+          max="100"
+        />
       </div>
     </div>
   </div>
 
-  <div class="col col-sm-5 col-lg-3">
+  <div class="col col-sm-5 col-lg-3" *ngIf="mode === Mode.DamageSim">
     <div class="row align-items-center">
-      <div class="col-auto pe-0"><label>Iterations</label></div>
+      <div class="col-auto pe-0"><label for="iterations">Iterations</label></div>
       <div class="col">
         <input
+          id="iterations"
           class="form-control"
           type="number"
           [(ngModel)]="globalSettings.iterations"
@@ -66,12 +81,13 @@
     </div>
   </div>
 
-  <div class="col col-sm-5 col-lg-3">
+  <div class="col col-sm-5 col-lg-3" *ngIf="mode === Mode.DamageSim">
     <div class="row align-items-center">
-      <div class="col-auto pe-0"><label>Detailed run</label></div>
+      <div class="col-auto pe-0"><label for="isDetailedRun">Detailed run</label></div>
       <div class="col">
         <input
           #isDetailedRun
+          id="isDetailedRun"
           class="form-check-input"
           type="checkbox"
           [(ngModel)]="globalSettings.isDetailedRun"
@@ -116,6 +132,9 @@
       [combatStats]="combatStats"
       (combatStatsChanged)="combatStatsChanged($event)"
     ></app-combat-stat-selection>
+  </div>
+  <div class="col ms-3">
+    <app-highscore-lookup (loadCombatStats)="loadCombatStats($event)"></app-highscore-lookup>
   </div>
 </div>
 

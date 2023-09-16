@@ -32,6 +32,11 @@ import { DetailedRunResultsComponent } from './core/detailed-run-results/detaile
 import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
 import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
 import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
+import { DamageSimComponent } from './core/damage-sim/damage-sim.component';
+import { DpsGrapherComponent } from './core/dps-grapher/dps-grapher.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-grapher-settings.component';
+import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,8 +65,20 @@ import { QuickGearSelectComponent } from './shared/components/quick-gear-select/
     TickToTimePipe,
     SpecialProcTextPipe,
     QuickGearSelectComponent,
+    DamageSimComponent,
+    DpsGrapherComponent,
+    DpsGrapherSettingsComponent,
+    HighscoreLookupComponent,
   ],
-  imports: [NgSelectModule, FormsModule, BrowserModule, HttpClientModule, ClipboardModule, NgbPopoverModule],
+  imports: [
+    NgSelectModule,
+    FormsModule,
+    BrowserModule,
+    HttpClientModule,
+    ClipboardModule,
+    NgbPopoverModule,
+    AppRoutingModule,
+  ],
   providers: [
     { provide: INPUT_GEAR_SETUP_TOKEN, useValue: null },
     { provide: GEAR_SETUP_TOKEN, useValue: null },

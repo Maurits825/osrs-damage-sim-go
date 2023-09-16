@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, map, Observable, shareReplay, tap } from 'rxjs';
+import { forkJoin, map, Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DamageSimResults } from '../model/damage-sim/damage-sim-results.model';
+import { DamageSimResults, DpsCalcResults } from '../model/damage-sim/damage-sim-results.model';
 import { ExampleSetup } from '../model/damage-sim/example-setup.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
+import { DpsGrapherResults } from '../model/dps-grapher/dps-grapher-results.model';
+import { CombatStats } from '../model/osrs/skill.type';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,8 @@ export class DamageSimService {
   public gearSetupPresets$: Observable<GearSetupPreset[]>;
   public quickGearSlots$: Observable<QuickGearSlots>;
 
-  public exampleSetups$: Observable<ExampleSetup[]>;
+  public dmgSimExampleSetups$: Observable<ExampleSetup[]>;
+  public dpsGrapherExampleSetups$: Observable<ExampleSetup[]>;
 
   public allSpells$: Observable<string[]>;
   public allNpcs$: Observable<Npc[]>;
@@ -44,12 +47,12 @@ export class DamageSimService {
       map(([quickGearJson, allGearSlotItems]) => {
         const quickGearSlots: QuickGearSlots = {} as QuickGearSlots;
         for (const gearSlot in GearSlot) {
-          const gearSlotValue = (GearSlot as any)[gearSlot] as keyof QuickGearSlots;
+          const gearSlotValue = GearSlot[gearSlot as keyof typeof GearSlot] as keyof QuickGearSlots;
           quickGearSlots[gearSlotValue] = {} as QuickGear;
           allAttackTypes.forEach((attackType: AttackType) => {
             quickGearSlots[gearSlotValue][attackType] = [];
             quickGearJson[gearSlot as keyof QuickGearJson][attackType].forEach((itemId) => {
-              const item: Item = allGearSlotItems[(GearSlot as any)[gearSlot] as GearSlot].find(
+              const item: Item = allGearSlotItems[GearSlot[gearSlot as keyof typeof GearSlot] as GearSlot].find(
                 (item: Item) => item.id === itemId
               );
               quickGearSlots[gearSlotValue][attackType].push(item);
@@ -61,7 +64,8 @@ export class DamageSimService {
       shareReplay(1)
     );
 
-    this.exampleSetups$ = this.getExampleSetups().pipe(shareReplay(1));
+    this.dmgSimExampleSetups$ = this.getDmgSimExampleSetups().pipe(shareReplay(1));
+    this.dpsGrapherExampleSetups$ = this.getDpsGrapherExampleSetups().pipe(shareReplay(1));
 
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
     this.allNpcs$ = this.getNpcs().pipe(shareReplay(1));
@@ -75,6 +79,20 @@ export class DamageSimService {
   public runDamageSim(inputSetupJson: string): Observable<DamageSimResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
     return this.http.post<DamageSimResults>(this.damageSimServiceUrl + '/run-damage-sim', inputSetupJson, options);
+  }
+
+  public runDpsCalc(inputSetupJson: string): Observable<DpsCalcResults> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<DpsCalcResults>(this.damageSimServiceUrl + '/run-dps-calc', inputSetupJson, options);
+  }
+
+  public runDpsGrapher(dpsGrapherInput: string): Observable<DpsGrapherResults> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<DpsGrapherResults>(this.damageSimServiceUrl + '/run-dps-grapher', dpsGrapherInput, options);
+  }
+
+  public lookupHighscore(rsn: string): Observable<CombatStats> {
+    return this.http.get<CombatStats>(this.damageSimServiceUrl + '/lookup-highscore' + '?rsn=' + rsn);
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {
@@ -108,7 +126,11 @@ export class DamageSimService {
     );
   }
 
-  private getExampleSetups(): Observable<ExampleSetup[]> {
-    return this.http.get<ExampleSetup[]>('assets/json_data/example_setups.json');
+  private getDmgSimExampleSetups(): Observable<ExampleSetup[]> {
+    return this.http.get<ExampleSetup[]>('assets/json_data/dmg_sim_example_setups.json');
+  }
+
+  private getDpsGrapherExampleSetups(): Observable<ExampleSetup[]> {
+    return this.http.get<ExampleSetup[]>('assets/json_data/dps_grapher_example_setups.json');
   }
 }

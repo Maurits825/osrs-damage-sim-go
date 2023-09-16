@@ -1,0 +1,22 @@
+<div class="row align-items-center">
+  <div class="col-auto pe-0"><label for="rsn">RSN</label></div>
+  <div class="col pe-0">
+    <input
+      #rsn
+      id="rsn"
+      [ngClass]="{
+        'is-invalid': rsnFound !== undefined && !rsnFound,
+        'is-valid': rsnFound !== undefined && rsnFound
+      }"
+      class="form-control"
+      type="text"
+      (input)="rsnFound = undefined"
+    />
+  </div>
+  <div class="col">
+    <button class="btn btn-primary" type="button" (click)="lookupHighscore(rsn.value)" [disabled]="loading">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="!loading" class="sr-only">Lookup</span>
+    </button>
+  </div>
+</div>
