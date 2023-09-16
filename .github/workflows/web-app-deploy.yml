@@ -33,7 +33,7 @@ jobs:
         run: npm install --legacy-peer-deps #TODO npm ci
       
       - name: Build
-        run: npm run build -- --configuration production --base-href=https://maurits825.github.io/osrs-damage-sim/
+        run: npm run build -- --configuration production --base-href=/osrs-damage-sim/
           
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
