@@ -41,7 +41,7 @@ INPUT_VALUE_TYPE_LABEL = {
     InputValueType.BANDOS_GODSWORD: "Bandos godsword damage",
     InputValueType.ARCLIGHT: "Arclight hits",
     InputValueType.BONE_DAGGER: "Bone dagger damage",
-    InputValueType.ACCURSED_SCEPTRE: "Accursed Sceptre hits",
+    InputValueType.ACCURSED_SCEPTRE: "Accursed sceptre hits",
     InputValueType.BARRELCHEST_ANCHOR: "Anchor damage",
     InputValueType.ATTACK: "Attack levels",
     InputValueType.STRENGTH: "Strength levels",
