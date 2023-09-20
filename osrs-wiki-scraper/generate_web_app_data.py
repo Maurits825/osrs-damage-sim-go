@@ -23,8 +23,9 @@ JSON_INDENT = 1
 
 
 class GenerateWebAppData:
-    def __init__(self, use_gear_slot_item_json=True):
+    def __init__(self, use_gear_slot_item_json=True, verbose=0):
         self.use_gear_slot_item_json = use_gear_slot_item_json
+        self.verbose = verbose
 
         self.npcs = None
         self.items = None
@@ -110,7 +111,8 @@ class GenerateWebAppData:
                     gear_slot_items[slot] = []
 
                 if GenerateWebAppData.is_filtered_item(item, item_id):
-                    print("Filtered: " + item["name"])
+                    if self.verbose >= 3:
+                        print("Filtered: " + item["name"])
                     continue
 
                 cached_item = GenerateWebAppData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
@@ -118,7 +120,8 @@ class GenerateWebAppData:
                     if item["name"] not in seen_item_names:
                         gear_slot_items[slot].append(cached_item)
                         seen_item_names.append(item["name"])
-                        print("Cached: " + item["name"])
+                        if self.verbose >= 3:
+                            print("Cached: " + item["name"])
                     continue
 
                 if item["name"] not in seen_item_names:
@@ -141,7 +144,8 @@ class GenerateWebAppData:
 
                     gear_slot_items[slot].append(item_dict)
                     seen_item_names.append(item["name"])
-                    print("Updated: " + item["name"])
+                    if self.verbose >= 2:
+                        print("Updated: " + item["name"])
             except Exception as e:
                 print("Error with id: " + str(item_id) + ", name: " + item["name"])
                 print(e)
@@ -315,6 +319,6 @@ class GenerateWebAppData:
 if __name__ == '__main__':
     GenerateWebAppData.update_special_attack_json()
 
-    generate = GenerateWebAppData(True)  # TODO add click params
+    generate = GenerateWebAppData(True, 2)  # TODO add click params
     generate.update_gear_slot_items_json()
     generate.update_unique_npcs_json()
