@@ -11,7 +11,7 @@ from tob_npcs import TobNpcs
 
 # Modification here to include many more attributes
 npc_trait_keys = ["hitpoints", "att", "str", "def", "mage", "range", "attbns", "strbns", "defbns", "amagic", "mbns",
-                  "arange", "rngbns", "dstab", "dslash", "dcrush", "dmagic", "drange", "combat", "size"]
+                  "arange", "rngbns", "dstab", "dslash", "dcrush", "dmagic", "drange", "combat", "size", "respawn"]
 
 FILTER_NPCS = ["4303", "4304", "6500", "6501"]
 

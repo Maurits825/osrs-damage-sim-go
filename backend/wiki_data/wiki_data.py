@@ -86,6 +86,7 @@ class WikiData:
             is_tob_entry_mode=npc.get("isTobEntryMode", False),
             is_tob_normal_mode=npc.get("isTobNormalMode", False),
             is_tob_hard_mode=npc.get("isTobHardMode", False),
+            respawn=npc.get("respawn", 0),
         )
 
     @staticmethod

@@ -127,6 +127,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
       this.globalSettings.raidLevel = 0;
       this.globalSettings.pathLevel = 0;
     }
+
+    this.globalSettings.continuousSimSettings.respawnTicks = npc.respawn ?? 0;
   }
 
   toggleBoost(boost: Boost): void {

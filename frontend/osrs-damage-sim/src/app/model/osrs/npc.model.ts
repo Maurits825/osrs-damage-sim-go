@@ -13,4 +13,5 @@ export interface Npc {
   isTobEntryMode: boolean;
   isTobNormalMode: boolean;
   isTobHardMode: boolean;
+  respawn?: number;
 }
