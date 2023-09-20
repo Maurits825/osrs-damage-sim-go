@@ -6,7 +6,6 @@ from damage_sim.damage_sim_stats import DamageSimStats
 from model.damage_sim_results.damage_sim_results import DamageSimResults, TotalDamageSimData, GearSetupDpsStats, \
     DpsCalcResult, DpsCalcResults
 from model.damage_sim_results.tick_data import TickData
-from model.input_setup.continuous_sim_settings import ContinuousSimSettings
 from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.input_setup import InputSetup
