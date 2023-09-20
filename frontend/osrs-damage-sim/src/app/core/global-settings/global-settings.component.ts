@@ -33,6 +33,12 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     raidLevel: 0,
     pathLevel: 0,
     isCoxChallengeMode: false,
+    continuousSimSettings: {
+      enabled: false,
+      killCount: 100,
+      deathCharge: false,
+      respawnTicks: 0,
+    },
     isDetailedRun: false,
   };
 

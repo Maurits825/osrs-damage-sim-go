@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DpsGraphData, DpsGraphDpsData, DpsGrapherResults } from 'src/app/model/dps-grapher/dps-grapher-results.model';
+import { DpsGrapherResults } from 'src/app/model/dps-grapher/dps-grapher-results.model';
 import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
@@ -15,8 +15,6 @@ export class DpsGrapherComponent {
   loading = false;
 
   dpsGrapherResults: DpsGrapherResults;
-
-  private graphColors = ['blue', 'orange', 'green', 'red', 'purple'];
 
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
 

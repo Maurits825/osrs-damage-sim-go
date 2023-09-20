@@ -117,6 +117,7 @@ export class InputSetupService {
   }
 
   parseInputSetupFromJson(inputSetupJson: InputSetup): InputSetup {
+    // TODO is there a better way?
     const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
 
     const globalSettings: GlobalSettings = {
@@ -126,6 +127,12 @@ export class InputSetupService {
       pathLevel: inputSetupJson.globalSettings.pathLevel,
       isCoxChallengeMode: inputSetupJson.globalSettings.isCoxChallengeMode || false,
       teamSize: inputSetupJson.globalSettings.teamSize,
+      continuousSimSettings: {
+        enabled: inputSetupJson.globalSettings.continuousSimSettings?.enabled ?? false,
+        killCount: inputSetupJson.globalSettings.continuousSimSettings?.killCount ?? 1,
+        deathCharge: inputSetupJson.globalSettings.continuousSimSettings?.deathCharge ?? false,
+        respawnTicks: inputSetupJson.globalSettings.continuousSimSettings?.respawnTicks ?? 0,
+      },
       isDetailedRun: inputSetupJson.globalSettings.isDetailedRun,
     };
 
