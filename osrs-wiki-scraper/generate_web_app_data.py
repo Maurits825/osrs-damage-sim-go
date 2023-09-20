@@ -236,6 +236,10 @@ class GenerateWebAppData:
         if "(nz)" in item["name"]:
             return True
 
+        # weapon with no attack styles, eg 2h axes
+        if item["slot"] == 3 and "weaponCategory" not in item:
+            return True
+
         return False
 
     @staticmethod

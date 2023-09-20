@@ -61,7 +61,7 @@ class DamageSim:
         self.reset_npc_combat_stats()
         self.combat_stats.set_stats(self.initial_combat_stats)
 
-        self.sim_data = SingleDamageSimData(0, [], [], [], None)
+        self.sim_data = SingleDamageSimData(0, [], [], [], [] if self.is_detailed_run else None)
         for _, weapon in enumerate(self.all_weapons):
             self.sim_data.gear_total_dmg.append(0)
             self.sim_data.gear_attack_count.append(0)
@@ -109,7 +109,6 @@ class DamageSim:
         return self.sim_data
 
     def sim_one_kill(self):
-        self.sim_data.tick_data = [] if self.is_detailed_run else None # TODO dont reset tick data here, do in reset
         tick_data = None
         current_tick = 0
 
