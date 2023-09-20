@@ -16,7 +16,7 @@ class ConditionEvaluator:
             return value1 <= value2
 
     @staticmethod
-    def evaluate_condition(conditions: list[Condition], npc_hitpoints, dmg_dealt, attack_count):
+    def evaluate_condition(conditions: list[Condition], npc_hitpoints, dmg_dealt, attack_count) -> bool:
         if len(conditions) == 0:
             return True
 
