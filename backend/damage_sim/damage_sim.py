@@ -8,6 +8,7 @@ from input_setup.gear_ids import LIGHTBEARER
 from model.boost import BoostType, Boost
 from model.damage_sim_results.damage_sim_results import SingleDamageSimData, GearSetupDpsStats
 from model.damage_sim_results.tick_data import TickData
+from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.stat_drain_type import StatDrainType
 from model.stat_drain_weapon import StatDrainWeapon
@@ -22,20 +23,21 @@ MAX_SPECIAL_ATTACK = 100
 
 
 class DamageSim:
-    def __init__(self, input_gear_setup: InputGearSetup, is_detailed_run=False):
+    def __init__(self, input_gear_setup: InputGearSetup, global_settings: GlobalSettings):
         self.main_weapon: Weapon = input_gear_setup.main_weapon
         self.fill_weapons: list[Weapon] = input_gear_setup.fill_weapons
         self.all_weapons: list[Weapon] = [self.main_weapon, *self.fill_weapons]
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
 
-        self.is_detailed_run = is_detailed_run
+        self.is_detailed_run = global_settings.is_detailed_run
+        self.continuous_sim_settings = global_settings.continuous_sim_settings
 
         self.npc = self.main_weapon.npc
 
         self.combat_stats = self.gear_setup_settings.combat_stats
         self.initial_combat_stats = copy.deepcopy(self.combat_stats)
 
-        self.sim_data: SingleDamageSimData = SingleDamageSimData(0, [], [], [])
+        self.sim_data: SingleDamageSimData = SingleDamageSimData(0, [], [], [], None)
 
         self.current_weapon: Weapon = self.main_weapon
         self.current_weapon_index = 0
@@ -49,7 +51,7 @@ class DamageSim:
 
         self.setup_damage_sim()
 
-    def reset(self):
+    def reset_damage_sim(self):
         self.current_weapon = self.main_weapon
         self.current_weapon_index = 0
 
@@ -59,7 +61,7 @@ class DamageSim:
         self.reset_npc_combat_stats()
         self.combat_stats.set_stats(self.initial_combat_stats)
 
-        self.sim_data = SingleDamageSimData(0, [], [], [])
+        self.sim_data = SingleDamageSimData(0, [], [], [], None)
         for _, weapon in enumerate(self.all_weapons):
             self.sim_data.gear_total_dmg.append(0)
             self.sim_data.gear_attack_count.append(0)
@@ -69,16 +71,51 @@ class DamageSim:
             if self.is_detailed_run:
                 weapon.update_accuracy()
 
-    def run(self) -> (SingleDamageSimData, list[TickData] | None):
-        self.reset()
+    def reset_continuous_damage_sim(self):
+        self.current_weapon = self.main_weapon
+        self.current_weapon_index = 0
 
-        all_tick_data = [] if self.is_detailed_run else None
+        self.reset_npc_combat_stats()
+        self.combat_stats.set_stats(self.initial_combat_stats)
+
+        for _, weapon in enumerate(self.all_weapons):
+            weapon.update_target_defence_and_roll()
+            if self.is_detailed_run:
+                weapon.update_accuracy()
+
+    def run_damage_sim(self) -> SingleDamageSimData:
+        self.reset_damage_sim()
+        self.sim_one_kill()
+        return self.sim_data
+
+    def run_continuous_sim(self) -> SingleDamageSimData:
+        self.reset_damage_sim()
+
+        for kill in range(self.continuous_sim_settings.kill_count):
+            self.sim_one_kill()
+
+            if self.current_weapon.gear_setup.gear_stats.attack_speed > self.continuous_sim_settings.respawn_ticks:
+                wait_ticks = self.current_weapon.gear_setup.gear_stats.attack_speed
+            else:
+                wait_ticks = self.continuous_sim_settings.respawn_ticks
+
+            # add respawn time or weapon cd on this kill
+            self.sim_data.ticks_to_kill += wait_ticks
+            self.regenerate_special_attack(wait_ticks)
+            #TODO death charge
+
+            self.reset_continuous_damage_sim()
+
+        return self.sim_data
+
+    def sim_one_kill(self):
+        self.sim_data.tick_data = [] if self.is_detailed_run else None # TODO dont reset tick data here, do in reset
         tick_data = None
         current_tick = 0
 
         self.current_weapon_index, self.current_weapon = self.get_next_weapon()
         while self.npc.combat_stats.hitpoints > 0:
-            self.regenerate_special_attack()
+            self.regenerate_special_attack(self.current_weapon.gear_setup.gear_stats.attack_speed)
 
             if self.has_fill_weapons:
                 self.current_weapon_index, self.current_weapon = self.get_next_weapon()
@@ -107,7 +144,7 @@ class DamageSim:
 
             if self.is_detailed_run and tick_data:
                 DamageSim.set_tick_data_hitsplat(tick_data, hitsplat)
-                all_tick_data.append(tick_data)
+                self.sim_data.tick_data.append(tick_data)
 
             current_tick += self.current_weapon.gear_setup.gear_stats.attack_speed
             self.npc.is_hit = True
@@ -123,8 +160,6 @@ class DamageSim:
                 self.sim_data.gear_attack_count[index],
                 weapon.gear_setup.gear_stats.attack_speed
             )
-
-        return self.sim_data, all_tick_data
 
     def get_next_weapon(self) -> tuple[int, Weapon]:
         for index, weapon in enumerate(self.fill_weapons):
@@ -144,15 +179,15 @@ class DamageSim:
 
         return MAIN_WEAPON_INDEX, self.main_weapon
 
-    def regenerate_special_attack(self):
+    def regenerate_special_attack(self, ticks_passed):
         if self.special_attack == MAX_SPECIAL_ATTACK:
             self.spec_regen_tick_timer = 0
             return
 
-        self.spec_regen_tick_timer += self.current_weapon.gear_setup.gear_stats.attack_speed
+        self.spec_regen_tick_timer += ticks_passed
 
         ticks_to_regen = self.ticks_to_spec_regen[self.current_weapon_index]
-        if self.spec_regen_tick_timer >= ticks_to_regen:
+        while self.spec_regen_tick_timer >= ticks_to_regen:
             self.spec_regen_tick_timer -= ticks_to_regen
             self.special_attack = min(self.special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
 

@@ -27,7 +27,7 @@ class TestDamageSim(unittest.TestCase):
                 input_setup.global_settings.is_detailed_run = True
 
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
-                dmg_sim_data, tick_data = damage_sim.run()
+                dmg_sim_data = damage_sim.run_damage_sim()
 
                 self.assertIsNotNone(dmg_sim_data.ticks_to_kill)
                 self.assertIsNotNone(dmg_sim_data.gear_total_dmg)
@@ -41,7 +41,7 @@ class TestDamageSim(unittest.TestCase):
                 input_setup.global_settings.is_detailed_run = True
 
                 damage_sim = DamageSim(input_setup.input_gear_setups[0])
-                dmg_sim_data, tick_data = damage_sim.run()
+                dmg_sim_data = damage_sim.run_damage_sim()
 
                 self.assertIsNotNone(dmg_sim_data.ticks_to_kill)
                 self.assertIsNotNone(dmg_sim_data.gear_total_dmg)

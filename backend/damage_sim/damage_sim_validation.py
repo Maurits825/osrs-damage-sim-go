@@ -30,6 +30,9 @@ MAX_GRAPHER_INPUT_VALUE = float('inf')
 MIN_GRAPHER_INPUT_VALUE_DIFF = 1
 MAX_GRAPHER_INPUT_VALUE_DIFF = 10_000
 
+MIN_RESPAWN_TICKS = 0
+MAX_RESPAWN_TICKS = float('inf')
+
 
 class DamageSimValidation:
     @staticmethod
@@ -127,7 +130,27 @@ class DamageSimValidation:
         if range_error:
             return range_error
 
+        if global_settings["continuousSimSettings"]["enabled"]:
+            continuous_settings_error = DamageSimValidation.validate_continuous_settings(global_settings)
+            if continuous_settings_error:
+                return continuous_settings_error
+
         return None
+
+    @staticmethod
+    def validate_continuous_settings(global_settings) -> str | None:
+        total_iterations = global_settings["continuousSimSettings"]["killCount"] * global_settings["iterations"]
+        range_error = DamageSimValidation.validate_range(total_iterations, MIN_ITERATIONS, MAX_ITERATIONS,
+                                                         "(iterations * kill count)")
+
+        if range_error:
+            return range_error
+
+        range_error = DamageSimValidation.validate_range(global_settings["continuousSimSettings"]["respawnTicks"],
+                                                         MIN_RESPAWN_TICKS, MAX_RESPAWN_TICKS, "respawn ticks")
+
+        if range_error:
+            return range_error
 
     @staticmethod
     def validate_input_gear_setups(input_gear_setups, mode: Mode) -> str | None:

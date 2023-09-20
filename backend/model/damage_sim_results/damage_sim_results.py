@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 from model.damage_sim_results.detailed_run import DetailedRun
+from model.damage_sim_results.tick_data import TickData
 from model.graph import GraphType
 from model.sim_stats import TimeSimStats, SimStats
 
@@ -18,6 +21,7 @@ class SingleDamageSimData:
     gear_total_dmg: list[int]
     gear_attack_count: list[int]
     gear_dps: list[float]
+    tick_data: list[TickData] | None
 
 
 @dataclass()
