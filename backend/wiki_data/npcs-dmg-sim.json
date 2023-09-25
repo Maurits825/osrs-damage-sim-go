@@ -8653,6 +8653,12 @@
  "1241": {
   "name": "Evil Creature",
   "hitpoints": 1,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "combat": 1,
   "size": 1
  },
  "1244": {
@@ -45203,7 +45209,8 @@
   "dslash": 20,
   "dcrush": 15,
   "drange": 10,
-  "combat": 91
+  "combat": 91,
+  "size": 1
  },
  "11058": {
   "name": "Man",
@@ -46810,7 +46817,8 @@
   "dcrush": 160,
   "dmagic": 340,
   "drange": 5,
-  "combat": 379
+  "combat": 379,
+  "size": 1
  },
  "11483": {
   "name": "Champion of Scabaras",
@@ -46828,7 +46836,8 @@
   "dcrush": 160,
   "dmagic": 340,
   "drange": 5,
-  "combat": 379
+  "combat": 379,
+  "size": 1
  },
  "11484": {
   "name": "Scarab Swarm",
