@@ -12,6 +12,7 @@ echo ""
 echo "Copying json data to web app assets ..."
 cp data_cache/gear_slot_items.json ../frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json
 cp data_cache/unique_npcs.json ../frontend/osrs-damage-sim/src/assets/json_data/unique_npcs.json
+cp data_cache/abbreviations.json ../frontend/osrs-damage-sim/src/assets/json_data/abbreviations.json
 
 echo ""
 echo "Copying json data to dmg-sim-service ..."
