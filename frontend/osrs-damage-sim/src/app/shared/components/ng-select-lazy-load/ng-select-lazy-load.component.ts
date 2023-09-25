@@ -11,6 +11,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { DamageSimService } from 'src/app/services/damage-sim.service';
 
 @Component({
   selector: 'app-ng-select-lazy-load',
@@ -48,10 +49,15 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
 
   input$ = new Subject<string>();
 
+  private abbreviations: Record<string, string[]>;
+
   private destroyed$ = new Subject();
+
+  constructor(private damageSimService: DamageSimService) {}
 
   ngOnInit(): void {
     this.valuesBuffer = this.allValues.slice(0, this.bufferSize);
+    this.damageSimService.abbreviations$.subscribe((abbreviations) => (this.abbreviations = abbreviations));
     this.onSearch();
   }
 
@@ -96,6 +102,13 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
 
   valueFilter(value: T, searchTerm: string): boolean {
     if (!searchTerm) return true;
-    return (value[this.searchProperty as keyof T] as string).toLowerCase().includes(searchTerm.toLowerCase());
+
+    const name = value[this.searchProperty as keyof T] as string;
+    const abbreviations = this.abbreviations[name];
+
+    return (
+      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      abbreviations?.some((abb: string) => abb.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
   }
 }
