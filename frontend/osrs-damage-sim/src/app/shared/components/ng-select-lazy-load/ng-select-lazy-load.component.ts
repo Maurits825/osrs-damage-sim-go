@@ -108,6 +108,10 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
 
     return (
       name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      name
+        .replace(/[^0-9a-z]/gi, '')
+        .toLowerCase()
+        .includes(searchTerm.replace(/[^0-9a-z]/gi, '').toLowerCase()) ||
       abbreviations?.some((abb: string) => abb.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   }
