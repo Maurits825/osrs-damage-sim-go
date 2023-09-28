@@ -102,7 +102,7 @@ class DamageSim:
             # add respawn time or weapon cd on this kill
             self.sim_data.ticks_to_kill += wait_ticks
             self.regenerate_special_attack(wait_ticks)
-            #TODO death charge
+            # TODO death charge
 
             self.reset_continuous_damage_sim()
 
