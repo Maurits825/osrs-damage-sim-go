@@ -25,7 +25,7 @@ class TestWeaponDps(unittest.TestCase):
         for setup_name in TestWeaponDps.input_setups:
             with self.subTest():
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.input_setups[setup_name])
-                damage_sim = DamageSim(input_setup.input_gear_setups[0])
+                damage_sim = DamageSim(input_setup.input_gear_setups[0], input_setup.global_settings)
                 gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
                 dps = round(gear_setup_dps_stats.theoretical_dps[0], 8)
 
@@ -39,7 +39,7 @@ class TestWeaponDps(unittest.TestCase):
                 input_setup = InputSetupConverter.get_input_setup(TestWeaponDps.spec_input_setups[setup_name])
                 input_setup.input_gear_setups[0].main_weapon.gear_setup.is_special_attack = True
 
-                damage_sim = DamageSim(input_setup.input_gear_setups[0])
+                damage_sim = DamageSim(input_setup.input_gear_setups[0], input_setup.global_settings)
                 gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
                 dps = round(gear_setup_dps_stats.theoretical_dps[0], 8)
 

@@ -72,4 +72,9 @@ jobs:
     - name: Test with unittest
       run: |
         . ${{ env.VENV_FOLDER }}/bin/activate
-        python -m unittest discover -v
+        coverage run --omit=*/tests/* -m unittest discover -v
+    
+    - name: Coverage report
+      run: |
+        . ${{ env.VENV_FOLDER }}/bin/activate
+        coverage report --sort=miss --skip-covered

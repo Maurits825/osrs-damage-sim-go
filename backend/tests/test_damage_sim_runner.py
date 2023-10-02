@@ -1,7 +1,9 @@
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import Mock
 
+from damage_sim.damage_sim_graph import DamageSimGraph
 from damage_sim.damage_sim_runner import DamageSimRunner
 from input_setup.input_setup_converter import InputSetupConverter
 from model.input_setup.input_setup import InputSetup
@@ -67,6 +69,19 @@ class TestDamageSimRunner(unittest.TestCase):
                     setup_name
                 )
 
+    def test_input_setup_run_dps_calc(self):
+        for setup_name in TestDamageSimRunner.input_setups:
+            with self.subTest():
+                input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.input_setups[setup_name])
+
+                TestDamageSimRunner.initialise_input_setup(input_setup)
+
+                dps_calc_results = DamageSimRunner.run_dps_calc(input_setup)
+
+                actual_dps = round(dps_calc_results.results[0].theoretical_dps[0], 8)
+                self.assertEqual(TestDamageSimRunner.input_setups[setup_name]["expectedDps"],
+                                 actual_dps, msg=setup_name)
+
     def test_spec_input_setup_run_single_gear_setup(self):
         print("\nTesting spec setup sim dps:")
         for setup_name in TestDamageSimRunner.spec_input_setups:
@@ -91,6 +106,14 @@ class TestDamageSimRunner(unittest.TestCase):
                     sim_dps_average,
                     setup_name
                 )
+
+    def test_run(self):
+        damage_sim_runner = DamageSimRunner(Mock())
+        input_setup = InputSetupConverter.get_input_setup(TestDamageSimRunner.input_setups["Vorkath max dhcb"])
+        damage_sim_results = damage_sim_runner.run(input_setup)
+
+        self.assertIsNotNone(damage_sim_results.results)
+        self.assertIsNotNone(damage_sim_results.global_settings_label)
 
 
 if __name__ == '__main__':

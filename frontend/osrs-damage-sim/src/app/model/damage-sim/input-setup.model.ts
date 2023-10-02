@@ -22,7 +22,17 @@ export interface GlobalSettings {
   isCoxChallengeMode: boolean;
 
   teamSize: number;
+
+  continuousSimSettings: ContinuousSimSettings;
+
   isDetailedRun: boolean;
+}
+
+export interface ContinuousSimSettings {
+  enabled: boolean;
+  killCount: number;
+  deathCharge: boolean;
+  respawnTicks: number;
 }
 
 export interface InputGearSetup {

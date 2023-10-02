@@ -21,10 +21,14 @@ GEAR_SLOT_ITEM_FALLBACK_JSON = Path(
 
 JSON_INDENT = 1
 
+DMM_BREACH_NPCS = ["12439", "12440", "12441", "12442", "12443", "12444", "12445", "12446", "12447", "12448", "12449",
+                   "12450", "12451", "12452", "12453", "12454", "12455", "12456", "12457", "12458", "12459"]
+
 
 class GenerateWebAppData:
-    def __init__(self, use_gear_slot_item_json=True):
+    def __init__(self, use_gear_slot_item_json=True, verbose=0):
         self.use_gear_slot_item_json = use_gear_slot_item_json
+        self.verbose = verbose
 
         self.npcs = None
         self.items = None
@@ -73,6 +77,13 @@ class GenerateWebAppData:
 
         for npc_id, npc in self.npcs.items():
             if npc.get("hitpoints", 0) == 0:
+                if self.verbose >= 3:
+                    print("Filtered: " + npc["name"])
+                continue
+
+            if GenerateWebAppData.is_filtered_npc(npc, npc_id):
+                if self.verbose >= 3:
+                    print("Filtered: " + npc["name"])
                 continue
 
             npc_key = (
@@ -110,7 +121,8 @@ class GenerateWebAppData:
                     gear_slot_items[slot] = []
 
                 if GenerateWebAppData.is_filtered_item(item, item_id):
-                    print("Filtered: " + item["name"])
+                    if self.verbose >= 3:
+                        print("Filtered: " + item["name"])
                     continue
 
                 cached_item = GenerateWebAppData.get_cached_item(gear_slot_items_old, slot, item_id, item["name"])
@@ -118,7 +130,8 @@ class GenerateWebAppData:
                     if item["name"] not in seen_item_names:
                         gear_slot_items[slot].append(cached_item)
                         seen_item_names.append(item["name"])
-                        print("Cached: " + item["name"])
+                        if self.verbose >= 3:
+                            print("Cached: " + item["name"])
                     continue
 
                 if item["name"] not in seen_item_names:
@@ -141,7 +154,8 @@ class GenerateWebAppData:
 
                     gear_slot_items[slot].append(item_dict)
                     seen_item_names.append(item["name"])
-                    print("Updated: " + item["name"])
+                    if self.verbose >= 2:
+                        print("Updated: " + item["name"])
             except Exception as e:
                 print("Error with id: " + str(item_id) + ", name: " + item["name"])
                 print(e)
@@ -232,6 +246,17 @@ class GenerateWebAppData:
         if "(nz)" in item["name"]:
             return True
 
+        # weapon with no attack styles, eg 2h axes
+        if item["slot"] == 3 and "weaponCategory" not in item:
+            return True
+
+        return False
+
+    @staticmethod
+    def is_filtered_npc(npc, npc_id):
+        if npc_id in DMM_BREACH_NPCS:
+            return True
+
         return False
 
     @staticmethod
@@ -315,6 +340,6 @@ class GenerateWebAppData:
 if __name__ == '__main__':
     GenerateWebAppData.update_special_attack_json()
 
-    generate = GenerateWebAppData(True)  # TODO add click params
+    generate = GenerateWebAppData(True, 2)  # TODO add click params
     generate.update_gear_slot_items_json()
     generate.update_unique_npcs_json()

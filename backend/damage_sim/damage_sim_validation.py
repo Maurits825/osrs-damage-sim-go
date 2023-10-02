@@ -30,6 +30,9 @@ MAX_GRAPHER_INPUT_VALUE = float('inf')
 MIN_GRAPHER_INPUT_VALUE_DIFF = 1
 MAX_GRAPHER_INPUT_VALUE_DIFF = 10_000
 
+MIN_RESPAWN_TICKS = 0
+MAX_RESPAWN_TICKS = float('inf')
+
 
 class DamageSimValidation:
     @staticmethod
@@ -103,11 +106,32 @@ class DamageSimValidation:
             return "Invalid npc"
 
         iterations = global_settings["iterations"]
+        iteration_error = DamageSimValidation.validate_iterations(iterations, mode, global_settings["isDetailedRun"])
+        if iteration_error:
+            return iteration_error
+
+        team_size = global_settings["teamSize"]
+        if not DamageSimValidation.is_valid_int(team_size):
+            return DamageSimValidation.invalid_value_message(team_size, "team size")
+
+        range_error = DamageSimValidation.validate_range(team_size, MIN_TEAM_SIZE, MAX_TEAM_SIZE, "team size")
+        if range_error:
+            return range_error
+
+        if global_settings["continuousSimSettings"]["enabled"]:
+            continuous_settings_error = DamageSimValidation.validate_continuous_settings(global_settings)
+            if continuous_settings_error:
+                return continuous_settings_error
+
+        return None
+
+    @staticmethod
+    def validate_iterations(iterations: int, mode: Mode, is_detailed_run: bool) -> str | None:
         if mode == Mode.DamageSim and not DamageSimValidation.is_valid_int(iterations):
             return DamageSimValidation.invalid_value_message(iterations, "iterations")
 
         if mode == Mode.DamageSim:
-            if global_settings["isDetailedRun"]:
+            if is_detailed_run:
                 range_error = DamageSimValidation.validate_range(
                     iterations, MIN_ITERATIONS, DETAILED_RUN_MAX_ITERATIONS, "detailed run iterations"
                 )
@@ -119,15 +143,22 @@ class DamageSimValidation:
             if range_error:
                 return range_error
 
-        team_size = global_settings["teamSize"]
-        if not DamageSimValidation.is_valid_int(team_size):
-            return DamageSimValidation.invalid_value_message(team_size, "team size")
+        return None
 
-        range_error = DamageSimValidation.validate_range(team_size, MIN_TEAM_SIZE, MAX_TEAM_SIZE, "team size")
+    @staticmethod
+    def validate_continuous_settings(global_settings) -> str | None:
+        total_iterations = global_settings["continuousSimSettings"]["killCount"] * global_settings["iterations"]
+        range_error = DamageSimValidation.validate_range(total_iterations, MIN_ITERATIONS, MAX_ITERATIONS,
+                                                         "(iterations * kill count)")
+
         if range_error:
             return range_error
 
-        return None
+        range_error = DamageSimValidation.validate_range(global_settings["continuousSimSettings"]["respawnTicks"],
+                                                         MIN_RESPAWN_TICKS, MAX_RESPAWN_TICKS, "respawn ticks")
+
+        if range_error:
+            return range_error
 
     @staticmethod
     def validate_input_gear_setups(input_gear_setups, mode: Mode) -> str | None:

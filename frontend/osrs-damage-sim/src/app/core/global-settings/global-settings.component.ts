@@ -33,6 +33,12 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     raidLevel: 0,
     pathLevel: 0,
     isCoxChallengeMode: false,
+    continuousSimSettings: {
+      enabled: false,
+      killCount: 100,
+      deathCharge: false,
+      respawnTicks: 0,
+    },
     isDetailedRun: false,
   };
 
@@ -121,6 +127,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
       this.globalSettings.raidLevel = 0;
       this.globalSettings.pathLevel = 0;
     }
+
+    this.globalSettings.continuousSimSettings.respawnTicks = npc.respawn ?? 0;
   }
 
   toggleBoost(boost: Boost): void {

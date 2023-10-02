@@ -36,3 +36,5 @@ class NpcStats:
     is_tob_entry_mode: bool = False
     is_tob_normal_mode: bool = False
     is_tob_hard_mode: bool = False
+
+    respawn: int = 0

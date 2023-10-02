@@ -253,6 +253,9 @@ class DamageSimStats:
             if global_settings.path_level:
                 title += ", Path level: " + str(global_settings.path_level)
 
+        if global_settings.continuous_sim_settings.enabled:
+            title += " | Kill count: " + f"{global_settings.continuous_sim_settings.kill_count:,}"
+
         if show_iterations:
             title += " | Iterations: " + f"{global_settings.iterations:,}"
 

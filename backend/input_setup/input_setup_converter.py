@@ -9,6 +9,7 @@ from model.condition import Condition, ConditionVariables, ConditionComparison
 from model.equipped_gear import EquippedGear
 from model.gear_setup import GearSetup
 from model.gear_slot import GearSlot
+from model.input_setup.continuous_sim_settings import ContinuousSimSettings
 from model.input_setup.cox_scaling_input import CoxScalingInput
 from model.input_setup.dps_grapher_input import DpsGrapherInput, DpsGrapherSettings, InputValueType
 from model.input_setup.gear_setup_settings import GearSetupSettings
@@ -35,14 +36,8 @@ class InputSetupConverter:
     @staticmethod
     def get_input_setup(json_data) -> InputSetup:
         global_npc = WikiData.get_npc(json_data["globalSettings"]["npc"]["id"])
-        raid_level, path_level = InputSetupConverter.get_raid_level(global_npc, json_data)
+        global_settings = InputSetupConverter.get_global_settings(json_data, global_npc)
 
-        global_settings = GlobalSettings(global_npc,
-                                         json_data["globalSettings"]["teamSize"],
-                                         json_data["globalSettings"]["iterations"],
-                                         raid_level, path_level,
-                                         json_data["globalSettings"]["isCoxChallengeMode"],
-                                         json_data["globalSettings"]["isDetailedRun"])
         if global_npc.is_xerician:
             cox_scaling_input = CoxScalingInput(global_settings.team_size, global_settings.is_cox_challenge_mode)
             CoxScaling.scale_npc(cox_scaling_input, global_npc)
@@ -66,12 +61,14 @@ class InputSetupConverter:
 
             main_gear_setup, weapon_item = InputSetupConverter.get_gear_setup(input_gear_setup["mainGearSetup"])
             main_weapon = WeaponLoader.load_weapon(
-                weapon_item.name, main_gear_setup, gear_setup_settings, npc, raid_level
+                weapon_item.name, main_gear_setup, gear_setup_settings, npc, global_settings.raid_level
             )
 
             for gear_setup_dict in input_gear_setup["fillGearSetups"]:
                 gear_setup, weapon_item = InputSetupConverter.get_gear_setup(gear_setup_dict)
-                weapon = WeaponLoader.load_weapon(weapon_item.name, gear_setup, gear_setup_settings, npc, raid_level)
+                weapon = WeaponLoader.load_weapon(
+                    weapon_item.name, gear_setup, gear_setup_settings, npc, global_settings.raid_level
+                )
 
                 weapons.append(weapon)
 
@@ -81,6 +78,31 @@ class InputSetupConverter:
             global_settings=global_settings,
             input_gear_setups=input_gear_setups,
         )
+
+    @staticmethod
+    def get_global_settings(json_data, global_npc) -> GlobalSettings:
+        raid_level, path_level = InputSetupConverter.get_raid_level(global_npc, json_data)
+
+        json_global_settings = json_data["globalSettings"]
+        if json_global_settings["continuousSimSettings"]["enabled"]:
+            continuous_sim_settings = ContinuousSimSettings(
+                json_global_settings["continuousSimSettings"]["enabled"],
+                json_global_settings["continuousSimSettings"]["killCount"],
+                json_global_settings["continuousSimSettings"]["deathCharge"],
+                json_global_settings["continuousSimSettings"]["respawnTicks"]
+            )
+        else:
+            continuous_sim_settings = ContinuousSimSettings(
+                json_global_settings["continuousSimSettings"]["enabled"]
+            )
+
+        return GlobalSettings(global_npc,
+                              json_global_settings["teamSize"],
+                              json_global_settings["iterations"],
+                              raid_level, path_level,
+                              json_global_settings["isCoxChallengeMode"],
+                              continuous_sim_settings,
+                              json_global_settings["isDetailedRun"])
 
     @staticmethod
     def get_dps_grapher_input(json_data) -> DpsGrapherInput:

@@ -60,19 +60,21 @@ class DamageSimRunner:
                               ) -> (TotalDamageSimData, GearSetupDpsStats, list[list[TickData]] | None):
         total_damage_sim_data = TotalDamageSimData([], [], [], [])
         total_tick_data = [] if global_settings.is_detailed_run else None
-        damage_sim = DamageSim(input_gear_setup, global_settings.is_detailed_run)
+        damage_sim = DamageSim(input_gear_setup, global_settings)
 
         gear_setup_dps_stats = damage_sim.get_weapon_dps_stats()
 
+        damage_sim_run = (damage_sim.run_continuous_sim if global_settings.continuous_sim_settings.enabled else
+                          damage_sim.run_damage_sim)
         for i in range(global_settings.iterations):
-            dmg_sim_data, tick_data = damage_sim.run()
+            dmg_sim_data = damage_sim_run()
             total_damage_sim_data.ticks_to_kill.append(dmg_sim_data.ticks_to_kill)
             total_damage_sim_data.gear_total_dmg.append(dmg_sim_data.gear_total_dmg)
             total_damage_sim_data.gear_attack_count.append(dmg_sim_data.gear_attack_count)
             total_damage_sim_data.gear_dps.append(dmg_sim_data.gear_dps)
 
             if global_settings.is_detailed_run:
-                total_tick_data.append(tick_data)
+                total_tick_data.append(dmg_sim_data.tick_data)
         return total_damage_sim_data, gear_setup_dps_stats, total_tick_data
 
     @staticmethod
@@ -83,7 +85,7 @@ class DamageSimRunner:
         )
         for input_gear_setup in input_setup.input_gear_setups:
             input_gear_setup_labels = DamageSimStats.get_input_gear_setup_label(input_gear_setup)
-            damage_sim = DamageSim(input_gear_setup)
+            damage_sim = DamageSim(input_gear_setup, input_setup.global_settings)
             dps_stats = damage_sim.get_weapon_dps_stats()
             dps_calc_results.results.append(
                 DpsCalcResult(labels=input_gear_setup_labels,
