@@ -14,6 +14,9 @@ import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Mode } from 'src/app/model/mode.enum';
+import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
+import { set } from 'lodash-es';
+import { TrailblazerRelicService } from 'src/app/services/trailblazer-relic.service';
 
 @Component({
   selector: 'app-global-settings',
@@ -72,6 +75,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   statDrains: StatDrain[] = [];
 
+  trailblazerRelics: Set<TrailblazerRelic> = new Set();
+
   loading = false;
 
   private destroyed$ = new Subject();
@@ -81,7 +86,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     private prayerService: PrayerService,
     private combatStatService: CombatStatService,
     private statDrainService: StatDrainService,
-    private inputSetupService: InputSetupService
+    private inputSetupService: InputSetupService,
+    private trailblazerRelicService: TrailblazerRelicService
   ) {}
 
   ngOnInit(): void {
@@ -89,6 +95,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     this.statDrainService.globalStatDrain$.next(this.statDrains);
     this.combatStatService.globalCombatStats$.next(this.combatStats);
     this.boostService.globalBoosts$.next(this.selectedBoosts);
+    this.trailblazerRelicService.globalTrailblazerRelics$.next(this.trailblazerRelics);
 
     this.inputSetupService.loadInputSetup$
       .pipe(takeUntil(this.destroyed$))
@@ -158,5 +165,9 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     if (isDetailedRun) {
       this.globalSettings.iterations = Math.min(5000, this.globalSettings.iterations);
     }
+  }
+
+  trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
+    this.trailblazerRelicService.globalTrailblazerRelics$.next(relics);
   }
 }

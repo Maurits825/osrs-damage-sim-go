@@ -3,10 +3,12 @@ import { takeUntil, Subject } from 'rxjs';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
+import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { BoostService } from 'src/app/services/boost.service';
 import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { StatDrainService } from 'src/app/services/stat-drain.service';
+import { TrailblazerRelicService } from 'src/app/services/trailblazer-relic.service';
 
 @Component({
   selector: 'app-gear-setup-settings',
@@ -18,6 +20,8 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     statDrains: null,
     boosts: null,
     combatStats: null,
+
+    trailblazerRelics: new Set(),
   };
 
   private destroyed$ = new Subject();
@@ -25,7 +29,8 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   constructor(
     private boostService: BoostService,
     private statDrainService: StatDrainService,
-    private combatStatService: CombatStatService
+    private combatStatService: CombatStatService,
+    private trailblazerRelicService: TrailblazerRelicService
   ) {}
 
   ngOnDestroy(): void {
@@ -45,6 +50,10 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     this.combatStatService.globalCombatStats$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats }));
+
+    this.trailblazerRelicService.globalTrailblazerRelics$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((relics: Set<TrailblazerRelic>) => (this.gearSetupSettings.trailblazerRelics = new Set(relics)));
   }
 
   toggleBoost(boost: Boost): void {
@@ -57,5 +66,9 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   combatStatsChanged(combatStats: CombatStats): void {
     this.gearSetupSettings.combatStats = { ...combatStats };
+  }
+
+  trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
+    this.gearSetupSettings.trailblazerRelics = relics;
   }
 }

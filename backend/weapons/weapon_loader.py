@@ -18,13 +18,13 @@ class WeaponLoader:
         for custom_weapon_name in CUSTOM_WEAPONS:
             if custom_weapon_name.lower() in weapon_name.lower():
                 weapon = CUSTOM_WEAPONS[custom_weapon_name](
-                    gear_setup, gear_setup_settings.combat_stats, npc, raid_level
+                    gear_setup, gear_setup_settings, npc, raid_level
                 )
                 break
 
         if ((gear_setup.spell
              and not (isinstance(weapon, AhrimStaff) or isinstance(weapon, VolatileStaff)))
                 or not weapon):
-            weapon = Weapon(gear_setup, gear_setup_settings.combat_stats, npc, raid_level)
+            weapon = Weapon(gear_setup, gear_setup_settings, npc, raid_level)
 
         return weapon

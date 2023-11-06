@@ -1,15 +1,15 @@
 import math
 
 from model.gear_setup import GearSetup
-from model.npc.combat_stats import CombatStats
+from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.npc.npc_stats import NpcStats
 from weapons.weapon import Weapon
 from wiki_data.wiki_data import WikiData
 
 
 class DinhsBulwark(Weapon):  # TODO double hit on main target on spec, not in dps calc spreadsheet rn
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, combat_stats, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
 
         self.gear_setup.gear_stats.melee_strength += self.get_strength_buff()
 

@@ -17,6 +17,7 @@ from model.input_setup.global_settings import GlobalSettings
 from model.input_setup.input_gear_setup import InputGearSetup
 from model.input_setup.input_setup import InputSetup
 from model.input_setup.stat_drain import StatDrain
+from model.leagues.trailblazer_relics import TrailblazerRelic
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
@@ -197,7 +198,9 @@ class InputSetupConverter:
                                    magic=gear_setup_settings["combatStats"]["magic"],
                                    ranged=gear_setup_settings["combatStats"]["ranged"])
 
-        return GearSetupSettings(combat_stats, boosts, stat_drains)
+        trailblazer_relics = [TrailblazerRelic(relic) for relic in gear_setup_settings.get("trailblazerRelics", [])]
+
+        return GearSetupSettings(combat_stats, boosts, stat_drains, trailblazer_relics)
 
     @staticmethod
     def get_raid_level(npc: NpcStats, json_data):
