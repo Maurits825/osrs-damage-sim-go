@@ -70,7 +70,6 @@ export class InputSetupService {
 
     gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
       const inputGearSetup: InputGearSetup = this.getGearInputSetup(gearSetupTab);
-
       inputSetup.inputGearSetups.push(inputGearSetup);
     });
 
@@ -141,6 +140,9 @@ export class InputSetupService {
         statDrains: inputGearSetup.gearSetupSettings.statDrains,
         combatStats: inputGearSetup.gearSetupSettings.combatStats,
         boosts: new Set(Array.from(inputGearSetup.gearSetupSettings.boosts)),
+        trailblazerRelics: inputGearSetup.gearSetupSettings.trailblazerRelics
+          ? new Set(Array.from(inputGearSetup.gearSetupSettings.trailblazerRelics))
+          : new Set(),
       };
 
       const mainGearSetup: GearSetup = this.parseGearSetup(inputGearSetup.mainGearSetup);

@@ -21,7 +21,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     boosts: null,
     combatStats: null,
 
-    trailblazerRelics: new Set(),
+    trailblazerRelics: null,
   };
 
   private destroyed$ = new Subject();

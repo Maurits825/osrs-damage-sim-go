@@ -139,6 +139,18 @@ class Weapon:
 
         self.roll_damage()
 
+        if (TrailblazerRelic.BRAWLER_RESOLVE in self.relics and
+                self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES):
+            crit_roll = random.random()
+            if crit_roll <= 0.1:
+                if isinstance(self.hitsplat.hitsplats, list):
+                    self.hitsplat.hitsplats = [hit * 2 for hit in self.hitsplat.hitsplats]
+                else:
+                    self.hitsplat.hitsplats *= 2
+
+                self.hitsplat.damage *= 2
+                self.hitsplat.special_procs.append(SpecialProc.BRAWLER_CRIT)
+
         # TODO hitsplat as int | list[int] makes it kinda scuffed
         # TODO also could make a better way to handle the hitsplat?
         if self.npc.id in VERZIK_P1 and self.gear_setup.gear_stats.id != DAWNBRINGER:
