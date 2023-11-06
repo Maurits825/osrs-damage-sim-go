@@ -2,6 +2,7 @@ import math
 
 from model.gear_setup import GearSetup
 from model.input_setup.gear_setup_settings import GearSetupSettings
+from model.leagues.trailblazer_relics import TrailblazerRelic
 from model.npc.npc_stats import NpcStats
 from weapons.weapon import Weapon
 from wiki_data.wiki_data import WikiData
@@ -16,7 +17,10 @@ class DinhsBulwark(Weapon):  # TODO double hit on main target on spec, not in dp
     def get_strength_buff(self):
         defence_sum = 0
         for defence_stat in ["dstab", "dslash", "dcrush", "drange"]:
-            defence_sum += self.get_defence_stat_sum(defence_stat)
+            defence_stat_value = self.get_defence_stat_sum(defence_stat)
+            if TrailblazerRelic.BRAWLER_RESOLVE in self.relics:
+                defence_stat_value *= 1.5
+            defence_sum += defence_stat_value
 
         return (((defence_sum / 4) - 200) / 3) - 38
 
