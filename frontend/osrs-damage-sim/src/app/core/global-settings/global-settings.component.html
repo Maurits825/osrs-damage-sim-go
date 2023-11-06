@@ -202,6 +202,16 @@
   </div>
 </div>
 
+<div class="row mb-3 align-items-center">
+  <div class="col-2">Relics</div>
+  <div class="col col-lg-6 col-xl-6">
+    <app-trailblazer-relics
+      [trailblazerRelics]="trailblazerRelics"
+      (trailblazerRelicsChanged)="trailblazerRelicsChanged($event)"
+    ></app-trailblazer-relics>
+  </div>
+</div>
+
 <div class="row mb-4">
   <div class="col-2">Global Stat Drain</div>
   <div class="col col-lg-5 col-xl-6">

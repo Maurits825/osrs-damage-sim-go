@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-between flex-wrap">
+  <div class="d-flex align-items-center" *ngFor="let relic of allRelics">
+    <img src="assets/img/leagues/trailblazer/{{ relic }}.png" [title]="relic" style="width: 45px" />
+    <div class="ms-2">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [ngModel]="trailblazerRelics?.has(relic)"
+        (change)="onTrailblazerRelicsChanged(relic)"
+      />
+    </div>
+  </div>
+</div>

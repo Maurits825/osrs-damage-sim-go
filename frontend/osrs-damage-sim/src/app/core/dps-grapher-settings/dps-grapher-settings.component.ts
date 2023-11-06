@@ -48,6 +48,11 @@ export class DpsGrapherSettingsComponent implements OnInit, OnDestroy {
     this.selectedInputValue = inputValue;
     this.dpsGrapherSettings.type = inputValue.type;
 
+    if (inputValue.type === 'Npc hitpoints') {
+      this.dpsGrapherSettings.max =
+        this.inputSetupService.globalSettingsComponent$.getValue().globalSettings.npc?.hitpoints ?? 10;
+    }
+
     this.inputSetupService.dpsGrapherSettings$.next(this.dpsGrapherSettings);
   }
 

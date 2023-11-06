@@ -13,8 +13,9 @@ from model.combat_boost import CombatBoost
 from model.damage_sim_results.special_proc import SpecialProc
 from model.gear_setup import GearSetup
 from model.hitsplat import Hitsplat
+from model.input_setup.gear_setup_settings import GearSetupSettings
+from model.leagues.trailblazer_relics import TrailblazerRelic
 from model.locations import Location
-from model.npc.combat_stats import CombatStats
 from model.npc.npc_ids import VERZIK_P1, ZULRAH, ICE_DEMON, CORP, VARDORVIS, VERZIK_P2, VERZIK_P3
 from model.npc.npc_stats import NpcStats
 from model.prayer import PrayerMultiplier
@@ -33,11 +34,12 @@ CORP_MAX_DMG = 50
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
         self.gear_setup = gear_setup
-        self.combat_stats = combat_stats
+        self.combat_stats = gear_setup_settings.combat_stats
         self.npc = npc
         self.raid_level = raid_level
+        self.relics = gear_setup_settings.trailblazer_relics
 
         self.special_attack_cost = WikiData.get_special_attack(gear_setup.gear_stats.name)
         self.prayer_multiplier = PrayerMultiplier.sum_prayers(self.gear_setup.prayers)
@@ -58,6 +60,7 @@ class Weapon:
             self.gear_setup.is_in_wilderness, self.npc, self.gear_setup.spell
         )
         SpecialGearBonus.add_other_set_bonus(self.gear_setup)
+        SpecialGearBonus.add_leagues_relic_bonus(self.special_gear_bonus, self.relics)
 
         self.is_brimstone = self.get_is_brimstone()
         self.set_attack_speed()
@@ -113,6 +116,14 @@ class Weapon:
                     self.gear_setup.spell in WikiData.get_standard_spells()):
                 self.gear_setup.gear_stats.attack_speed = 4
 
+        if self.relics:
+            if TrailblazerRelic.BRAWLER_RESOLVE in self.relics:
+                attack_speed = self.gear_setup.gear_stats.attack_speed
+                if attack_speed >= 4:
+                    self.gear_setup.gear_stats.attack_speed = math.floor(attack_speed / 2)
+                else:
+                    self.gear_setup.gear_stats.attack_speed = math.ceil(attack_speed / 2)
+
     def roll_hit(self) -> bool:
         attack_roll = int(random.random() * (self.attack_roll + 1))
         defence_roll = int(random.random() * (self.get_defence_roll() + 1))
@@ -127,6 +138,18 @@ class Weapon:
             self.pre_attack()
 
         self.roll_damage()
+
+        if (TrailblazerRelic.BRAWLER_RESOLVE in self.relics and
+                self.gear_setup.attack_style.attack_type in Weapon.MELEE_TYPES):
+            crit_roll = random.random()
+            if crit_roll <= 0.1:
+                if isinstance(self.hitsplat.hitsplats, list):
+                    self.hitsplat.hitsplats = [hit * 2 for hit in self.hitsplat.hitsplats]
+                else:
+                    self.hitsplat.hitsplats *= 2
+
+                self.hitsplat.damage *= 2
+                self.hitsplat.special_procs.append(SpecialProc.BRAWLER_CRIT)
 
         # TODO hitsplat as int | list[int] makes it kinda scuffed
         # TODO also could make a better way to handle the hitsplat?
@@ -363,7 +386,12 @@ class Weapon:
 
         total_average_damage = self.get_average_damage(max_hits)
 
-        return (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+        dps = (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
+
+        if TrailblazerRelic.BRAWLER_RESOLVE in self.relics:
+            dps *= 1.1
+
+        return dps
 
     def get_average_damage_hit(self, hit):
         return math.floor(hit * self.damage_multiplier)

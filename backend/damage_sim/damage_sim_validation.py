@@ -204,8 +204,8 @@ class DamageSimValidation:
     @staticmethod
     def validate_gear_setups(gear_setups) -> str | None:
         for gear_setup in gear_setups:
-            if not gear_setup["attackStyle"] and not gear_setup["spell"]:
-                return DamageSimValidation.invalid_value_message(gear_setup["attackStyle"], "attack style")
+            if not gear_setup.get("attackStyle", None) and not gear_setup["spell"]:
+                return DamageSimValidation.invalid_value_message(gear_setup.get("attackStyle", None), "attack style")
 
         return None
 

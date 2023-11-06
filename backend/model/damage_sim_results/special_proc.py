@@ -12,3 +12,4 @@ class SpecialProc(str, Enum):
     VERAC_DEFILER = "VeracDefiler"
     KARIL_DOUBLE_HIT = "KarilDoubleHit"
     KERIS_TRIPLE_DMG = "KerisTripleDmg"
+    BRAWLER_CRIT = "BrawlerDoubleDmgCrit"

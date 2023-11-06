@@ -5,6 +5,7 @@ from model.attack_style.attack_type import AttackType
 from model.combat_boost import CombatBoost
 from model.equipped_gear import EquippedGear
 from model.gear_setup import GearSetup
+from model.leagues.trailblazer_relics import TrailblazerRelic
 from model.npc.npc_stats import NpcStats
 from wiki_data.wiki_data import WikiData
 
@@ -208,4 +209,9 @@ class SpecialGearBonus:
             for virtus in VIRTUS_SET:
                 if virtus in gear_setup.equipped_gear.ids:
                     gear_setup.gear_stats.magic_strength += 3
+
+    @staticmethod
+    def add_leagues_relic_bonus(combat_boost: CombatBoost, relics):
+        if TrailblazerRelic.BRAWLER_RESOLVE in relics:
+            combat_boost.melee.attack_boost.append(1.5)
 

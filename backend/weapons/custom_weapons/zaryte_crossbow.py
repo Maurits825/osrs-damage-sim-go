@@ -1,6 +1,6 @@
 from constant import TICK_LENGTH
 from model.gear_setup import GearSetup
-from model.npc.combat_stats import CombatStats
+from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.npc.npc_stats import NpcStats
 from weapons.bolt_special_attack import BoltSpecialAttack
 from weapons.custom_weapons.diamond_bolts import DiamondBolts
@@ -9,8 +9,8 @@ from weapons.weapon import Weapon
 
 
 class ZaryteCrossbow(Weapon):
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, combat_stats, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
         if self.special_bolt:
             if isinstance(self.special_bolt, RubyBolts):
                 self.special_bolt.effect_value = 0.22

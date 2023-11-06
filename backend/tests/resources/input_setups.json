@@ -1886,7 +1886,7 @@
         "combat": 784,
         "size": 2,
         "def": 215,
-        "id": "12223"
+        "id": "12426"
       },
       "iterations": 10000,
       "teamSize": 1,
@@ -1989,7 +1989,7 @@
         "drange": 300,
         "combat": 791,
         "size": 3,
-        "id": "12204"
+        "id": "12205"
       },
       "iterations": 1000,
       "teamSize": 1,
