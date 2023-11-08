@@ -9,7 +9,6 @@ import {
   AUTOCAST_STLYE as AUTOCAST_STYLE,
 } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
-import { PrayerService } from 'src/app/services/prayer.service';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
@@ -24,6 +23,7 @@ import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { ItemService } from 'src/app/services/item.service';
 import { Mode } from 'src/app/model/mode.enum';
+import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -74,7 +74,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   constructor(
     private damageSimservice: DamageSimService,
     private itemService: ItemService,
-    private prayerService: PrayerService,
+    private globalSettingsService: GlobalSettingsService,
     private specialGearService: SpecialGearService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
   ) {}
@@ -103,11 +103,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
         this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
 
-        this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()['melee']);
+        this.gearSetup.prayers = new Set(this.globalSettingsService.globalPrayers$.getValue()['melee']);
         this.attackStyles = this.itemService.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.prayerService.globalPrayers$
+      this.globalSettingsService.globalPrayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
         .subscribe(
           (prayers: Record<AttackType, Set<Prayer>>) =>
@@ -170,7 +170,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.currentAttackType = item.attackType;
       }
 
-      this.gearSetup.prayers = new Set(this.prayerService.globalPrayers$.getValue()[this.currentAttackType]);
+      this.gearSetup.prayers = new Set(this.globalSettingsService.globalPrayers$.getValue()[this.currentAttackType]);
 
       this.updateAttackStyle(itemId);
     }
@@ -188,7 +188,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   togglePrayer(prayer: Prayer): void {
-    this.prayerService.togglePrayer(prayer, this.gearSetup.prayers);
+    this.globalSettingsService.togglePrayer(prayer, this.gearSetup.prayers);
   }
 
   removeGearSetup(): void {

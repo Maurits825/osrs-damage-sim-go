@@ -47,6 +47,8 @@ export interface GearSetupSettings {
   combatStats: CombatStats;
   boosts: Set<Boost>;
 
+  attackCycle: number;
+
   trailblazerRelics?: Set<TrailblazerRelic>;
 }
 
