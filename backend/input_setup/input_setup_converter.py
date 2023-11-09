@@ -199,8 +199,9 @@ class InputSetupConverter:
                                    ranged=gear_setup_settings["combatStats"]["ranged"])
 
         trailblazer_relics = [TrailblazerRelic(relic) for relic in gear_setup_settings.get("trailblazerRelics", [])]
+        attack_cycle = gear_setup_settings.get("attackCycle", 0)
 
-        return GearSetupSettings(combat_stats, boosts, stat_drains, trailblazer_relics)
+        return GearSetupSettings(combat_stats, boosts, stat_drains, attack_cycle, trailblazer_relics)
 
     @staticmethod
     def get_raid_level(npc: NpcStats, json_data):

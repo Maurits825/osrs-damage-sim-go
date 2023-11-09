@@ -14,4 +14,6 @@ class GearSetupSettings:
     boosts: list[BoostType]
     stat_drains: list[StatDrain]
 
+    attack_cycle: int = 0
+
     trailblazer_relics: list[TrailblazerRelic] | None = None

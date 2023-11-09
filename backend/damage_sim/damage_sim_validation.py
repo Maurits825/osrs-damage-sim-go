@@ -187,6 +187,15 @@ class DamageSimValidation:
             if error:
                 return error
 
+            error = DamageSimValidation.validate_range(input_gear_setup["gearSetupSettings"]["attackCycle"],
+                                                       0, 1000, "attack cycle")
+            if error:
+                return error
+
+            if not DamageSimValidation.is_valid_int(input_gear_setup["gearSetupSettings"]["attackCycle"]):
+                return DamageSimValidation.invalid_value_message(input_gear_setup["gearSetupSettings"]["attackCycle"],
+                                                                 "attack cycle")
+
         return None
 
     @staticmethod
