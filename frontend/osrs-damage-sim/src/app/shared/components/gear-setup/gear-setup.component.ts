@@ -24,6 +24,7 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
 import { ItemService } from 'src/app/services/item.service';
 import { Mode } from 'src/app/model/mode.enum';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -76,6 +77,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private itemService: ItemService,
     private globalSettingsService: GlobalSettingsService,
     private specialGearService: SpecialGearService,
+    private localStorageService: LocalStorageService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
   ) {}
 
@@ -95,6 +97,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.gearSetupPresets = gearSetupPresets;
       this.allSpells = allSpells;
       this.allDarts = allDarts;
+
+      this.localStorageService.gearSetupWatch$.subscribe(
+        (userGearSetups: GearSetupPreset[]) => (this.gearSetupPresets = [...this.gearSetupPresets, ...userGearSetups])
+      );
 
       if (this.gearSetup) {
         this.setGearSetup(this.gearSetup);
@@ -232,5 +238,9 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   setAttackType(attackType: AttackType): void {
     this.currentAttackType = attackType;
+  }
+
+  saveGearSetup(): void {
+    this.localStorageService.saveGearSetup(this.gearSetup);
   }
 }
