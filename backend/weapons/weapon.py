@@ -83,6 +83,9 @@ class Weapon:
 
         self.hitsplat = Hitsplat(0, 0, False, 0, 0, [])
 
+    def reset(self):
+        pass
+
     def set_npc(self, npc):
         self.npc = npc
 

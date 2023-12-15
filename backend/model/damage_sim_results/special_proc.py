@@ -13,3 +13,4 @@ class SpecialProc(str, Enum):
     KARIL_DOUBLE_HIT = "KarilDoubleHit"
     KERIS_TRIPLE_DMG = "KerisTripleDmg"
     BRAWLER_CRIT = "BrawlerDoubleDmgCrit"
+    DWH_TEKTON_FIRST_SPEC = "DwhTektonFirstSpec"
