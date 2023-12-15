@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h5 class="modal-title">Settings</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+  <div class="mb-2" *ngIf="userSettings$ | async as userSettings">
+    <div class="d-flex align-items-center mb-2">
+      <div><label for="showAdvancedOptions">Show advanded options</label></div>
+      <div class="ms-2">
+        <input
+          id="showAdvancedOptions"
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="userSettings.showAdvancedOptions"
+          (change)="updateUserSettings(userSettings)"
+        />
+      </div>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <div><label for="showTrailBlazerReloadedRelics">Show TrailBlazer Reloaded relics</label></div>
+      <div class="ms-2">
+        <input
+          id="showTrailBlazerReloadedRelics"
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="userSettings.showTrailBlazerReloadedRelics"
+          (change)="updateUserSettings(userSettings)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

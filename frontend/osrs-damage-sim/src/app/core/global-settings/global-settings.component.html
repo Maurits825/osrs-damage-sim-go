@@ -98,70 +98,6 @@
   </div>
 </div>
 
-<div class="row mb-4 align-items-center" style="height: 38px">
-  <div class="col-2">Continuous Sim Settings</div>
-
-  <div class="col-auto">
-    <div class="row align-items-center">
-      <div class="col-auto pe-0"><label for="enableContinuous">Enable</label></div>
-      <div class="col-auto">
-        <input
-          id="enableContinuous"
-          class="form-check-input"
-          type="checkbox"
-          [(ngModel)]="globalSettings.continuousSimSettings.enabled"
-        />
-      </div>
-    </div>
-  </div>
-
-  <ng-container *ngIf="globalSettings.continuousSimSettings.enabled">
-    <!-- <div class="col-auto">
-      <div class="row align-items-center">
-        <div class="col-auto pe-0"><label for="deathCharge">Death charge</label></div>
-        <div class="col">
-          <input
-            id="deathCharge"
-            class="form-check-input"
-            type="checkbox"
-            [(ngModel)]="globalSettings.continuousSimSettings.deathCharge"
-          />
-        </div>
-      </div>
-    </div> -->
-
-    <div class="col">
-      <div class="row align-items-center">
-        <div class="col-auto pe-0"><label for="killCount">Kill count</label></div>
-        <div class="col">
-          <input
-            id="killCount"
-            class="form-control"
-            type="number"
-            [(ngModel)]="globalSettings.continuousSimSettings.killCount"
-            min="1"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="row align-items-center">
-        <div class="col-auto pe-0"><label for="respawnTicks">Respawn ticks</label></div>
-        <div class="col">
-          <input
-            id="respawnTicks"
-            class="form-control"
-            type="number"
-            [(ngModel)]="globalSettings.continuousSimSettings.respawnTicks"
-            min="0"
-          />
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</div>
-
 <div class="row mb-4 align-items-center">
   <div class="col-2">Global Prayers</div>
   <div class="col">
@@ -202,22 +138,95 @@
   </div>
 </div>
 
-<div class="row mb-3 align-items-center">
-  <div class="col-2">Attack cycle</div>
-  <div class="col col-lg-6 col-xl-6">
-    <app-attack-cycle [attackCycle]="attackCycle" (attackCycleChanged)="attackCycleChanged($event)"></app-attack-cycle>
-  </div>
-</div>
+<ng-container *ngIf="userSettingsWatch$ | async as userSettingsWatch">
+  <ng-container *ngIf="userSettingsWatch.showAdvancedOptions">
+    <div class="row mb-4 align-items-center" style="height: 38px">
+      <div class="col-2">Continuous Sim Settings</div>
 
-<div class="row mb-3 align-items-center">
-  <div class="col-2">Relics</div>
-  <div class="col col-lg-6 col-xl-6">
-    <app-trailblazer-relics
-      [trailblazerRelics]="trailblazerRelics"
-      (trailblazerRelicsChanged)="trailblazerRelicsChanged($event)"
-    ></app-trailblazer-relics>
-  </div>
-</div>
+      <div class="col-auto">
+        <div class="row align-items-center">
+          <div class="col-auto pe-0"><label for="enableContinuous">Enable</label></div>
+          <div class="col-auto">
+            <input
+              id="enableContinuous"
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="globalSettings.continuousSimSettings.enabled"
+            />
+          </div>
+        </div>
+      </div>
+
+      <ng-container *ngIf="globalSettings.continuousSimSettings.enabled">
+        <!-- <div class="col-auto">
+        <div class="row align-items-center">
+          <div class="col-auto pe-0"><label for="deathCharge">Death charge</label></div>
+          <div class="col">
+            <input
+              id="deathCharge"
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="globalSettings.continuousSimSettings.deathCharge"
+            />
+          </div>
+        </div>
+      </div> -->
+
+        <div class="col">
+          <div class="row align-items-center">
+            <div class="col-auto pe-0"><label for="killCount">Kill count</label></div>
+            <div class="col">
+              <input
+                id="killCount"
+                class="form-control"
+                type="number"
+                [(ngModel)]="globalSettings.continuousSimSettings.killCount"
+                min="1"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="row align-items-center">
+            <div class="col-auto pe-0"><label for="respawnTicks">Respawn ticks</label></div>
+            <div class="col">
+              <input
+                id="respawnTicks"
+                class="form-control"
+                type="number"
+                [(ngModel)]="globalSettings.continuousSimSettings.respawnTicks"
+                min="0"
+              />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="row mb-3 align-items-center">
+      <div class="col-2">Attack cycle</div>
+      <div class="col col-lg-6 col-xl-6">
+        <app-attack-cycle
+          [attackCycle]="attackCycle"
+          (attackCycleChanged)="attackCycleChanged($event)"
+        ></app-attack-cycle>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="userSettingsWatch.showTrailBlazerReloadedRelics">
+    <div class="row mb-3 align-items-center">
+      <div class="col-2">Relics</div>
+      <div class="col col-lg-6 col-xl-6">
+        <app-trailblazer-relics
+          [trailblazerRelics]="trailblazerRelics"
+          (trailblazerRelicsChanged)="trailblazerRelicsChanged($event)"
+        ></app-trailblazer-relics>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
 
 <div class="row mb-4">
   <div class="col-2">Global Stat Drain</div>

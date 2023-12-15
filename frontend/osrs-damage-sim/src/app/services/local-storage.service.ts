@@ -4,19 +4,27 @@ import { Observable, filter, iif, map, mergeMap, of, shareReplay, switchMap } fr
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSetup } from '../model/damage-sim/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
+import { DEFAULT_USER_SETTINGS, UserSettings } from '../model/damage-sim/user-settings.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
   public gearSetupWatch$: Observable<GearSetupPreset[]>;
+  public userSettingsWatch$: Observable<UserSettings>;
 
   private gearSetupKey = 'gearSetup';
+  private userSettingsKey = 'userSettings';
 
   constructor(private storage: StorageMap) {
     this.gearSetupWatch$ = this.storage.watch(this.gearSetupKey).pipe(
       filter((gearSetup) => gearSetup !== undefined),
       map((gearSetup) => gearSetup as GearSetupPreset[]),
+      shareReplay(1)
+    );
+
+    this.userSettingsWatch$ = this.storage.watch(this.userSettingsKey).pipe(
+      map((userSettings) => (userSettings === undefined ? DEFAULT_USER_SETTINGS : (userSettings as UserSettings))),
       shareReplay(1)
     );
   }
@@ -46,6 +54,10 @@ export class LocalStorageService {
         switchMap((gearSetups: GearSetupPreset[]) => this.storage.set(this.gearSetupKey, gearSetups))
       )
       .subscribe();
+  }
+
+  public saveUserSettings(userSettings: UserSettings): void {
+    this.storage.set(this.userSettingsKey, userSettings).subscribe();
   }
 
   private getSavedGearSetups(): Observable<GearSetupPreset[]> {
