@@ -19,27 +19,20 @@
       <a target="_blank" href="https://requestly.io/">Requestly</a> can be used for this.<br />
       Create a new <em>Modify Headers</em> rule with the following settings:
     </p>
-    <ul>
+    <ul class="mb-2">
       <li>URL contains <em>http://localhost:8080/equip</em></li>
       <li>
         Response Headers
         <ul>
-          Production Environment
-          <span *ngIf="isProduction" class="text-success">(currently in prod env)</span>
-          <div class="ps-4 mb-2">
-            <li>Header: <em>Access-Control-Allow-Origin</em></li>
-            <li>Value: <em>https://maurits825.github.io/osrs-damage-sim</em></li>
-          </div>
-          Local Environment (Optional)
-          <span *ngIf="!isProduction" class="text-success">(currently in local env)</span>
-          <div class="ps-4">
-            <li>Header: <em>Access-Control-Allow-Origin</em></li>
-            <li>Value: <em>http://localhost:4200</em></li>
-          </div>
+          <li>Header: <em>Access-Control-Allow-Origin</em></li>
+          <li>Value: <em>https://maurits825.github.io/osrs-damage-sim</em></li>
         </ul>
       </li>
     </ul>
     <img class="rounded img-fluid" src="assets/img/other/requestly_cors.png" title="Requestly CORS settings" />
+    <p class="mt-1">
+      (Optional) If running locally, duplicate the above rule and set the value to <em>http://localhost:4200</em>.
+    </p>
     <p class="mt-1">
       <a target="_blank" href="https://requestly.io/blog/what-is-cors-and-how-to-bypass-it/">More info</a> on these CORS
       settings.
