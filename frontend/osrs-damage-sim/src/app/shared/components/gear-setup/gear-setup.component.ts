@@ -49,6 +49,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   allGearSlotItems: Record<GearSlot, Item[]>;
 
   gearSetupPresets: GearSetupPreset[];
+  allGearSetupPresets: GearSetupPreset[];
 
   attackStyles: string[];
   allSpells: string[];
@@ -99,7 +100,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.allDarts = allDarts;
 
       this.localStorageService.gearSetupWatch$.subscribe(
-        (userGearSetups: GearSetupPreset[]) => (this.gearSetupPresets = [...this.gearSetupPresets, ...userGearSetups])
+        (userGearSetups: GearSetupPreset[]) =>
+          (this.allGearSetupPresets = [...this.gearSetupPresets, ...userGearSetups])
       );
 
       if (this.gearSetup) {
@@ -241,6 +243,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   saveGearSetup(): void {
-    this.localStorageService.saveGearSetup(this.gearSetup);
+    this.localStorageService.saveGearSetup(this.gearSetup).subscribe((error: string | null) => console.log(error));
+  }
+
+  deleteUserGearSetup(event: Event, setupName: string): void {
+    event.stopPropagation();
+    this.localStorageService.deleteGearSetup(setupName);
   }
 }

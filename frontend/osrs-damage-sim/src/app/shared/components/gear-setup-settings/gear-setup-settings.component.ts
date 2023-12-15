@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { at } from 'lodash-es';
 import { takeUntil, Subject } from 'rxjs';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';

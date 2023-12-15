@@ -19,7 +19,7 @@
       <ng-select
         [(ngModel)]="gearSetup.presetName"
         [clearable]="false"
-        [items]="gearSetupPresets"
+        [items]="allGearSetupPresets"
         bindValue="name"
         bindLabel="name"
         groupBy="attackType"
@@ -33,6 +33,15 @@
               <img src="data:image/png;base64,{{ item.icon }}" />
             </div>
             <div class="ps-2">{{ item.name }}</div>
+            <div *ngIf="!item.isDefault" class="ms-auto">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                (click)="deleteUserGearSetup($event, item.name)"
+              >
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
           </div>
         </ng-template>
 

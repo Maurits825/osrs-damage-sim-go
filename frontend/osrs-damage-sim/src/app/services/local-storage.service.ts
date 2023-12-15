@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { Observable, filter, map, shareReplay, switchMap } from 'rxjs';
+import { Observable, filter, iif, map, mergeMap, of, shareReplay, switchMap } from 'rxjs';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSetup } from '../model/damage-sim/input-setup.model';
-import { AttackType } from '../model/osrs/item.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 
 @Injectable({
@@ -26,17 +25,45 @@ export class LocalStorageService {
     );
   }
 
-  public saveGearSetup(gearSetup: GearSetup): void {
+  public saveGearSetup(gearSetup: GearSetup): Observable<string> {
+    const error = this.validatedGearSetup(gearSetup);
+    if (error) return of(error);
+
     const gearSetupPreset = this.createGearSetupPreset(gearSetup);
-    this.storage
-      .get(this.gearSetupKey)
+    return this.getSavedGearSetups().pipe(
+      mergeMap((gearSetups: GearSetupPreset[]) =>
+        iif(
+          () => gearSetups.some((preset: GearSetupPreset) => preset.name === gearSetupPreset.name),
+          of('Name already exists'),
+          this.storage.set(this.gearSetupKey, [...gearSetups, gearSetupPreset])
+        )
+      )
+    );
+  }
+
+  public deleteGearSetup(setupName: string): void {
+    this.getSavedGearSetups()
       .pipe(
-        map((gearSetups) => gearSetups ?? []),
-        map((gearSetups) => gearSetups as GearSetupPreset[]),
-        map((gearSetups: GearSetupPreset[]) => [...gearSetups, gearSetupPreset]),
+        map((gearSetups: GearSetupPreset[]) =>
+          gearSetups.filter((gearSetup: GearSetupPreset) => gearSetup.name !== setupName)
+        ),
         switchMap((gearSetups: GearSetupPreset[]) => this.storage.set(this.gearSetupKey, gearSetups))
       )
       .subscribe();
+  }
+
+  private getSavedGearSetups(): Observable<GearSetupPreset[]> {
+    return this.storage.get(this.gearSetupKey).pipe(
+      map((gearSetups) => gearSetups ?? []),
+      map((gearSetups) => gearSetups as GearSetupPreset[])
+    );
+  }
+
+  private validatedGearSetup(gearSetup: GearSetup): string | null {
+    if (!gearSetup.setupName) return 'Empty setup name';
+    if (!Object.values(gearSetup.gear).some((item) => !!item)) return 'No gear selected';
+
+    return null;
   }
 
   private createGearSetupPreset(gearSetup: GearSetup): GearSetupPreset {
@@ -48,10 +75,11 @@ export class LocalStorageService {
     }
 
     return {
+      isDefault: false,
       name: gearSetup.setupName,
       gearIds: gearIds,
-      icon: gearSetup.gear[GearSlot.Weapon].icon,
-      attackType: gearSetup.gear[GearSlot.Weapon].attackType,
+      icon: gearSetup.gear[GearSlot.Weapon]?.icon ?? Object.values(gearSetup.gear).find((item) => !!item).icon,
+      attackType: gearSetup.gear[GearSlot.Weapon]?.attackType ?? 'melee',
     };
   }
 }
