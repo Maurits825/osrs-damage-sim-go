@@ -1263,7 +1263,7 @@
     ]
   },
   "Ice demon shadow fire surge 1 dwh": {
-    "expectedDps": 5.56279206,
+    "expectedDps": 5.82144704,
     "globalSettings": {
       "npc": {
         "name": "Ice demon",
