@@ -25,11 +25,13 @@
         Response Headers
         <ul>
           Production Environment
+          <span *ngIf="isProduction" class="text-success">(currently in prod env)</span>
           <div class="ps-4 mb-2">
             <li>Header: <em>Access-Control-Allow-Origin</em></li>
             <li>Value: <em>https://maurits825.github.io/osrs-damage-sim</em></li>
           </div>
           Local Environment (Optional)
+          <span *ngIf="!isProduction" class="text-success">(currently in local env)</span>
           <div class="ps-4">
             <li>Header: <em>Access-Control-Allow-Origin</em></li>
             <li>Value: <em>http://localhost:4200</em></li>
