@@ -2,21 +2,16 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Boost } from '../../model/osrs/boost.model';
 import { GlobalSettings, InputSetup } from '../../model/damage-sim/input-setup.model';
 import { Npc } from '../../model/osrs/npc.model';
-import { BoostService } from '../../services/boost.service';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
-import { PrayerService } from 'src/app/services/prayer.service';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
-import { CombatStatService } from 'src/app/services/combat-stat.service';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
-import { StatDrainService } from 'src/app/services/stat-drain.service';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Mode } from 'src/app/model/mode.enum';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
-import { set } from 'lodash-es';
-import { TrailblazerRelicService } from 'src/app/services/trailblazer-relic.service';
+import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 
 @Component({
   selector: 'app-global-settings',
@@ -75,27 +70,22 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   statDrains: StatDrain[] = [];
 
+  attackCycle = 0;
+
   trailblazerRelics: Set<TrailblazerRelic> = new Set();
 
   loading = false;
 
   private destroyed$ = new Subject();
 
-  constructor(
-    private boostService: BoostService,
-    private prayerService: PrayerService,
-    private combatStatService: CombatStatService,
-    private statDrainService: StatDrainService,
-    private inputSetupService: InputSetupService,
-    private trailblazerRelicService: TrailblazerRelicService
-  ) {}
+  constructor(private globalSettingsService: GlobalSettingsService, private inputSetupService: InputSetupService) {}
 
   ngOnInit(): void {
-    this.prayerService.globalPrayers$.next(this.selectedPrayers);
-    this.statDrainService.globalStatDrain$.next(this.statDrains);
-    this.combatStatService.globalCombatStats$.next(this.combatStats);
-    this.boostService.globalBoosts$.next(this.selectedBoosts);
-    this.trailblazerRelicService.globalTrailblazerRelics$.next(this.trailblazerRelics);
+    this.globalSettingsService.globalPrayers$.next(this.selectedPrayers);
+    this.globalSettingsService.globalStatDrain$.next(this.statDrains);
+    this.globalSettingsService.globalCombatStats$.next(this.combatStats);
+    this.globalSettingsService.globalBoosts$.next(this.selectedBoosts);
+    this.globalSettingsService.globalTrailblazerRelics$.next(this.trailblazerRelics);
 
     this.inputSetupService.loadInputSetup$
       .pipe(takeUntil(this.destroyed$))
@@ -139,26 +129,26 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   }
 
   toggleBoost(boost: Boost): void {
-    this.boostService.toggleBoost(boost, this.selectedBoosts);
-    this.boostService.globalBoosts$.next(this.selectedBoosts);
+    this.globalSettingsService.toggleBoost(boost, this.selectedBoosts);
+    this.globalSettingsService.globalBoosts$.next(this.selectedBoosts);
   }
 
   toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
-    this.prayerService.togglePrayer(prayer, this.selectedPrayers[attackType]);
-    this.prayerService.globalPrayers$.next(this.selectedPrayers);
+    this.globalSettingsService.togglePrayer(prayer, this.selectedPrayers[attackType]);
+    this.globalSettingsService.globalPrayers$.next(this.selectedPrayers);
   }
 
   combatStatsChanged(combatStats: CombatStats): void {
-    this.combatStatService.globalCombatStats$.next(combatStats);
+    this.globalSettingsService.globalCombatStats$.next(combatStats);
   }
 
   loadCombatStats(combatStats: CombatStats): void {
     this.combatStats = combatStats;
-    this.combatStatService.globalCombatStats$.next(combatStats);
+    this.globalSettingsService.globalCombatStats$.next(combatStats);
   }
 
   statDrainChanged(statDrains: StatDrain[]): void {
-    this.statDrainService.globalStatDrain$.next(statDrains);
+    this.globalSettingsService.globalStatDrain$.next(statDrains);
   }
 
   onDetailedRunChanged(isDetailedRun: boolean): void {
@@ -168,6 +158,10 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   }
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
-    this.trailblazerRelicService.globalTrailblazerRelics$.next(relics);
+    this.globalSettingsService.globalTrailblazerRelics$.next(relics);
+  }
+
+  attackCycleChanged(attackCycle: number): void {
+    this.globalSettingsService.globalAttackCycle$.next(attackCycle);
   }
 }

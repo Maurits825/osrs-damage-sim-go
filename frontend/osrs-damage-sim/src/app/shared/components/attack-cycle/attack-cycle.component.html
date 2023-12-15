@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between flex-wrap">
+  <div class="row align-items-center">
+    <div class="col col-sm-6 pe-0">
+      <input
+        class="form-control"
+        type="number"
+        [(ngModel)]="attackCycle"
+        min="0"
+        max="1000"
+        (change)="onAttackCycleChanged()"
+      />
+    </div>
+    <div class="col-auto"><label>ticks</label></div>
+  </div>
+</div>

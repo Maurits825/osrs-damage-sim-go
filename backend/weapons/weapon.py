@@ -40,6 +40,8 @@ class Weapon:
         self.npc = npc
         self.raid_level = raid_level
         self.relics = gear_setup_settings.trailblazer_relics
+        # TODO just keep a self.gear_setup_settings??
+        self.attack_cycle = gear_setup_settings.attack_cycle
 
         self.special_attack_cost = WikiData.get_special_attack(gear_setup.gear_stats.name)
         self.prayer_multiplier = PrayerMultiplier.sum_prayers(self.gear_setup.prayers)
@@ -388,8 +390,11 @@ class Weapon:
 
         dps = (total_average_damage * accuracy) / (self.gear_setup.gear_stats.attack_speed * TICK_LENGTH)
 
+        # TODO some weapons override get_dps, so doesnt work for everything
         if TrailblazerRelic.BRAWLER_RESOLVE in self.relics:
             dps *= 1.1
+
+        dps *= DpsCalculator.get_attack_cycle_dps_multiplier(self.gear_setup.gear_stats.attack_speed, self.attack_cycle)
 
         return dps
 

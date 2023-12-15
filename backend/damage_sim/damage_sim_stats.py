@@ -182,8 +182,9 @@ class DamageSimStats:
         boost_text = DamageSimStats.get_boost_label(gear_setup_settings.boosts)
         stat_drain_text = DamageSimStats.get_stat_drain_label(gear_setup_settings.stat_drains)
         relic_text = DamageSimStats.get_relic_label(gear_setup_settings.trailblazer_relics)
+        attack_cycle = DamageSimStats.get_attack_cycle_label(gear_setup_settings.attack_cycle)
 
-        for text in [combat_stats_text, boost_text, stat_drain_text, relic_text]:
+        for text in [combat_stats_text, boost_text, stat_drain_text, relic_text, attack_cycle]:
             if text:
                 gear_setup_settings_label += text + " | "
 
@@ -215,6 +216,14 @@ class DamageSimStats:
             relic_text += relic.value
 
         return "Relics - " + relic_text
+
+    @staticmethod
+    def get_attack_cycle_label(attack_cycle):
+        if attack_cycle == 0:
+            return ""
+
+        attack_cycle_text = str(attack_cycle) + "t cycle"
+        return attack_cycle_text
 
     @staticmethod
     def get_boost_label(boosts: list[BoostType]) -> str | None:

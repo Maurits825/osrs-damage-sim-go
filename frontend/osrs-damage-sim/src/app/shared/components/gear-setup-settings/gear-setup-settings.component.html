@@ -25,6 +25,16 @@
     </div>
 
     <div class="row mb-3 align-items-center">
+      <div class="col-2">Attack cycle</div>
+      <div class="col">
+        <app-attack-cycle
+          [attackCycle]="gearSetupSettings.attackCycle"
+          (attackCycleChanged)="attackCycleChanged($event)"
+        ></app-attack-cycle>
+      </div>
+    </div>
+
+    <div class="row mb-3 align-items-center">
       <div class="col-2">Relics</div>
       <div class="col">
         <app-trailblazer-relics

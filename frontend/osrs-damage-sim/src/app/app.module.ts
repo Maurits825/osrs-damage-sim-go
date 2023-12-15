@@ -38,6 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-grapher-settings.component';
 import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
 import { TrailblazerRelicsComponent } from './shared/components/leagues/trailblazer-relics/trailblazer-relics.component';
+import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cycle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { TrailblazerRelicsComponent } from './shared/components/leagues/trailbla
     DpsGrapherSettingsComponent,
     HighscoreLookupComponent,
     TrailblazerRelicsComponent,
+    AttackCycleComponent,
   ],
   imports: [
     NgSelectModule,

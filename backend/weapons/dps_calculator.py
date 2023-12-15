@@ -66,3 +66,11 @@ class DpsCalculator:
     @staticmethod
     def get_dps(max_hit, hit_chance, attack_speed):
         return ((max_hit * hit_chance) / 2) / (attack_speed * TICK_LENGTH)
+
+    @staticmethod
+    def get_attack_cycle_dps_multiplier(attack_speed, attack_cycle) -> float:
+        if attack_cycle == 0 or attack_speed % attack_cycle == 0 or attack_cycle % attack_speed == 0:
+            return 1
+
+        d = math.lcm(attack_speed, attack_cycle) - attack_cycle
+        return (d - 1) / d

@@ -140,6 +140,7 @@ export class InputSetupService {
         statDrains: inputGearSetup.gearSetupSettings.statDrains,
         combatStats: inputGearSetup.gearSetupSettings.combatStats,
         boosts: new Set(Array.from(inputGearSetup.gearSetupSettings.boosts)),
+        attackCycle: inputGearSetup.gearSetupSettings.attackCycle ?? 0,
         trailblazerRelics: inputGearSetup.gearSetupSettings.trailblazerRelics
           ? new Set(Array.from(inputGearSetup.gearSetupSettings.trailblazerRelics))
           : new Set(),
