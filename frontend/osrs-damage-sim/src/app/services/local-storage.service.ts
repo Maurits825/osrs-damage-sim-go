@@ -14,13 +14,9 @@ export class LocalStorageService {
   private gearSetupKey = 'gearSetup';
 
   constructor(private storage: StorageMap) {
-    this.storage.get(this.gearSetupKey).subscribe((gearSetup) => {
-      console.log('stored gearSetups:', gearSetup);
-    });
-
     this.gearSetupWatch$ = this.storage.watch(this.gearSetupKey).pipe(
-      map((gearSetup) => gearSetup as GearSetupPreset[]),
       filter((gearSetup) => gearSetup !== undefined),
+      map((gearSetup) => gearSetup as GearSetupPreset[]),
       shareReplay(1)
     );
   }
@@ -80,6 +76,8 @@ export class LocalStorageService {
       gearIds: gearIds,
       icon: gearSetup.gear[GearSlot.Weapon]?.icon ?? Object.values(gearSetup.gear).find((item) => !!item).icon,
       attackType: gearSetup.gear[GearSlot.Weapon]?.attackType ?? 'melee',
+      attackStyle: gearSetup.attackStyle,
+      spell: gearSetup.spell,
     };
   }
 }

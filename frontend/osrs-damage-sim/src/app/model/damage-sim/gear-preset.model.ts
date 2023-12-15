@@ -6,4 +6,6 @@ export interface GearSetupPreset {
   gearIds: number[];
   icon: string;
   attackType: AttackType;
+  attackStyle?: string;
+  spell?: string;
 }

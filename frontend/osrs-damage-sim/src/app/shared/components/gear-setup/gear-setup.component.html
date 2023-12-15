@@ -8,8 +8,23 @@
     <div class="ms-2">
       <input class="form-control" type="text" [(ngModel)]="gearSetup.setupName" placeholder="Setup name" />
     </div>
+    <ng-template #popContent let-error="error">
+      <div *ngIf="error" class="text-danger">
+        {{ error }}
+      </div>
+      <div *ngIf="error === undefined" class="text-success">Saved!</div>
+    </ng-template>
     <div class="ms-1">
-      <button type="button" class="btn btn-primary" (click)="saveGearSetup()">Save</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        [ngbPopover]="popContent"
+        triggers="manual"
+        #saveGearPopover="ngbPopover"
+        (click)="saveGearSetup(saveGearPopover)"
+      >
+        Save
+      </button>
     </div>
   </div>
 

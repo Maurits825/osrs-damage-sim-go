@@ -25,6 +25,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { Mode } from 'src/app/model/mode.enum';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -129,9 +130,19 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   loadGearSetupPreset(gearSetupPreset: GearSetupPreset) {
+    this.gearSetup.spell = null;
+
     this.setCurrentGearByIds(gearSetupPreset.gearIds, true);
     this.gearSetup.setupName = gearSetupPreset.name;
     this.gearSetup.presetName = gearSetupPreset.name;
+
+    if (gearSetupPreset.attackStyle) {
+      this.gearSetup.attackStyle = gearSetupPreset.attackStyle;
+    }
+    if (gearSetupPreset.spell) {
+      this.gearSetup.spell = gearSetupPreset.spell;
+      this.selectedSpellChange();
+    }
   }
 
   setCurrentGearByGearSlotAndId(gearIds: Record<GearSlot, number>): void {
@@ -242,8 +253,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     this.currentAttackType = attackType;
   }
 
-  saveGearSetup(): void {
-    this.localStorageService.saveGearSetup(this.gearSetup).subscribe((error: string | null) => console.log(error));
+  saveGearSetup(popover: NgbPopover): void {
+    this.localStorageService.saveGearSetup(this.gearSetup).subscribe((error: string | null) => {
+      popover.open({ error });
+    });
   }
 
   deleteUserGearSetup(event: Event, setupName: string): void {
