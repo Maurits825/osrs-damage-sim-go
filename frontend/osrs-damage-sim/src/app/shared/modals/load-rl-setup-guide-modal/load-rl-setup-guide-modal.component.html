@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h5 class="modal-title">Load from Runelite Setup Guide</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+  <div class="mb-3">
+    <h5>1. HTTP API Plugin</h5>
+    <p>
+      Get the <a target="_blank" href="https://runelite.net/plugin-hub/show/http-server">HTTP API</a> plugin from the
+      plugin hub. Make sure the plugin is on. <br />
+      <img class="rounded img-fluid" src="assets/img/other/http_plugin_on.png" title="HTTP plugin on" />
+    </p>
+  </div>
+  <div>
+    <h5>2. Bypass CORS</h5>
+    <p class="mb-0">
+      Some program has to be used to bypass CORS and access the api of the plugin.<br />
+      <a target="_blank" href="https://requestly.io/">Requestly</a> can be used for this.<br />
+      Create a new <em>Modify Headers</em> rule with the following settings:
+    </p>
+    <ul>
+      <li>URL contains <em>http://localhost:8080/equip</em></li>
+      <li>
+        Response Headers
+        <ul>
+          Production Environment
+          <div class="ps-4 mb-2">
+            <li>Header: <em>Access-Control-Allow-Origin</em></li>
+            <li>Value: <em>https://maurits825.github.io/osrs-damage-sim</em></li>
+          </div>
+          Local Environment (Optional)
+          <div class="ps-4">
+            <li>Header: <em>Access-Control-Allow-Origin</em></li>
+            <li>Value: <em>http://localhost:4200</em></li>
+          </div>
+        </ul>
+      </li>
+    </ul>
+    <img class="rounded img-fluid" src="assets/img/other/requestly_cors.png" title="Requestly CORS settings" />
+    <p class="mt-1">
+      <a target="_blank" href="https://requestly.io/blog/what-is-cors-and-how-to-bypass-it/">More info</a> on these CORS
+      settings.
+    </p>
+  </div>
+</div>

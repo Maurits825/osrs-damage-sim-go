@@ -40,6 +40,7 @@ import { HighscoreLookupComponent } from './shared/components/highscore-lookup/h
 import { TrailblazerRelicsComponent } from './shared/components/leagues/trailblazer-relics/trailblazer-relics.component';
 import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cycle.component';
 import { SettingsModalComponent } from './shared/modals/settings-modal/settings-modal.component';
+import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +76,7 @@ import { SettingsModalComponent } from './shared/modals/settings-modal/settings-
     TrailblazerRelicsComponent,
     AttackCycleComponent,
     SettingsModalComponent,
+    LoadRlSetupGuideModalComponent,
   ],
   imports: [
     NgSelectModule,

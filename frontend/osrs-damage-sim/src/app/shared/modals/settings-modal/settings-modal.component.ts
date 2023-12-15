@@ -3,6 +3,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { LoadRlSetupGuideModalComponent } from '../load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
 
 @Component({
   selector: 'app-settings-modal',
@@ -30,5 +31,9 @@ export class SettingsModalComponent {
 
   deleteAllGearSetups(): void {
     this.localStorageService.deleteAllGearSetups();
+  }
+
+  openLoadRuneliteGuide(): void {
+    this.modalService.open(LoadRlSetupGuideModalComponent, { animation: false, size: 'lg' });
   }
 }
