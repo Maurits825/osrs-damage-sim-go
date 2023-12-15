@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { forkJoin, Subject, takeUntil } from 'rxjs';
+import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import {
   DRAGON_DARTS_ID,
@@ -26,6 +26,7 @@ import { Mode } from 'src/app/model/mode.enum';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
+import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -72,6 +73,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   Item: Item;
 
+  isLoadingFromRl = false;
+
+  userSettingsWatch$: Observable<UserSettings>;
+
   private destroyed$ = new Subject();
 
   constructor(
@@ -104,6 +109,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         (userGearSetups: GearSetupPreset[]) =>
           (this.allGearSetupPresets = [...this.gearSetupPresets, ...userGearSetups])
       );
+
+      this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
 
       if (this.gearSetup) {
         this.setGearSetup(this.gearSetup);
@@ -262,5 +269,21 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   deleteUserGearSetup(event: Event, setupName: string): void {
     event.stopPropagation();
     this.localStorageService.deleteGearSetup(setupName);
+  }
+
+  loadGearSetupFromRunelite(popover: NgbPopover): void {
+    this.isLoadingFromRl = true;
+
+    this.damageSimservice.getRuneliteGearSetup().subscribe({
+      next: (gearIds: number[]) => {
+        this.isLoadingFromRl = false;
+        this.setCurrentGearByIds(gearIds, true);
+        popover.open({ error: undefined });
+      },
+      error: () => {
+        this.isLoadingFromRl = false;
+        popover.open({ error: 'Error loading' });
+      },
+    });
   }
 }

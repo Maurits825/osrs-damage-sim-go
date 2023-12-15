@@ -8,7 +8,8 @@
     <div class="ms-2">
       <input class="form-control" type="text" [(ngModel)]="gearSetup.setupName" placeholder="Setup name" />
     </div>
-    <ng-template #popContent let-error="error">
+
+    <ng-template #saveGearSetupPop let-error="error">
       <div *ngIf="error" class="text-danger">
         {{ error }}
       </div>
@@ -18,7 +19,7 @@
       <button
         type="button"
         class="btn btn-primary"
-        [ngbPopover]="popContent"
+        [ngbPopover]="saveGearSetupPop"
         triggers="manual"
         #saveGearPopover="ngbPopover"
         (click)="saveGearSetup(saveGearPopover)"
@@ -26,6 +27,36 @@
         Save
       </button>
     </div>
+
+    <ng-container *ngIf="(userSettingsWatch$ | async)?.showLoadFromRunelite">
+      <ng-template #loadRlSetupPop let-error="error">
+        <div *ngIf="error" class="text-danger">
+          {{ error }}
+        </div>
+        <div *ngIf="error === undefined" class="text-success">Loaded!</div>
+      </ng-template>
+      <div class="ms-1">
+        <button
+          type="button"
+          class="btn btn-primary py-0 px-1"
+          style="height: 37px"
+          [ngbPopover]="loadRlSetupPop"
+          triggers="manual"
+          #loadRlPopover="ngbPopover"
+          (click)="loadGearSetupFromRunelite(loadRlPopover)"
+          [disabled]="isLoadingFromRl"
+        >
+          <div class="d-flex justify-content-center align-content-center" style="width: 30px">
+            <ng-container *ngIf="isLoadingFromRl">
+              <span class="spinner-border spinner-border-sm"></span>
+            </ng-container>
+            <ng-container *ngIf="!isLoadingFromRl">
+              <img class="rounded img-fluid" src="assets/img/other/runelite.jpg" title="Load from Runelite" />
+            </ng-container>
+          </div>
+        </button>
+      </div>
+    </ng-container>
   </div>
 
   <div class="mb-2 d-flex align-items-center">
