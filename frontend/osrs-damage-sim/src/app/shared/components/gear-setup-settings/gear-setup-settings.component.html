@@ -24,25 +24,31 @@
       </div>
     </div>
 
-    <div class="row mb-3 align-items-center">
-      <div class="col-2">Attack cycle</div>
-      <div class="col">
-        <app-attack-cycle
-          [attackCycle]="gearSetupSettings.attackCycle"
-          (attackCycleChanged)="attackCycleChanged($event)"
-        ></app-attack-cycle>
-      </div>
-    </div>
+    <ng-container *ngIf="userSettingsWatch$ | async as userSettingsWatch">
+      <ng-container *ngIf="userSettingsWatch.showAdvancedOptions">
+        <div class="row mb-3 align-items-center">
+          <div class="col-2">Attack cycle</div>
+          <div class="col">
+            <app-attack-cycle
+              [attackCycle]="gearSetupSettings.attackCycle"
+              (attackCycleChanged)="attackCycleChanged($event)"
+            ></app-attack-cycle>
+          </div>
+        </div>
+      </ng-container>
 
-    <div class="row mb-3 align-items-center">
-      <div class="col-2">Relics</div>
-      <div class="col">
-        <app-trailblazer-relics
-          [trailblazerRelics]="gearSetupSettings.trailblazerRelics"
-          (trailblazerRelicsChanged)="trailblazerRelicsChanged($event)"
-        ></app-trailblazer-relics>
-      </div>
-    </div>
+      <ng-container *ngIf="userSettingsWatch.showTrailblazerReloadedRelics">
+        <div class="row mb-3 align-items-center">
+          <div class="col-2">Relics</div>
+          <div class="col">
+            <app-trailblazer-relics
+              [trailblazerRelics]="gearSetupSettings.trailblazerRelics"
+              (trailblazerRelicsChanged)="trailblazerRelicsChanged($event)"
+            ></app-trailblazer-relics>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
 
     <div class="row mb-3">
       <div class="col-2">Stat Drain</div>

@@ -56,6 +56,10 @@ export class LocalStorageService {
       .subscribe();
   }
 
+  public deleteAllGearSetups(): void {
+    this.storage.set(this.gearSetupKey, []).subscribe();
+  }
+
   public saveUserSettings(userSettings: UserSettings): void {
     this.storage.set(this.userSettingsKey, userSettings).subscribe();
   }

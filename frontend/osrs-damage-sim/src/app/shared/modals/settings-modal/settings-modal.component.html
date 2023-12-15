@@ -18,16 +18,35 @@
       </div>
     </div>
     <div class="d-flex align-items-center mb-2">
-      <div><label for="showTrailBlazerReloadedRelics">Show TrailBlazer Reloaded relics</label></div>
+      <div><label for="showTrailBlazerReloadedRelics">Show Trailblazer Reloaded relics</label></div>
       <div class="ms-2">
         <input
-          id="showTrailBlazerReloadedRelics"
+          id="showTrailblazerReloadedRelics"
           class="form-check-input"
           type="checkbox"
-          [(ngModel)]="userSettings.showTrailBlazerReloadedRelics"
+          [(ngModel)]="userSettings.showTrailblazerReloadedRelics"
           (change)="updateUserSettings(userSettings)"
         />
       </div>
     </div>
+
+    <hr class="my-3" />
+
+    <div class="d-flex align-items-center mb-2">
+      <div>Delete all saved gear setups</div>
+      <button class="btn btn-danger ms-2" (click)="openConfirmationModal(deleteAllConfirmation)">
+        <i class="bi bi-trash-fill"></i>
+      </button>
+    </div>
   </div>
 </div>
+
+<ng-template #deleteAllConfirmation let-modal>
+  <div class="modal-body">
+    <div class="mb-2">Delete all saved gear setups</div>
+    <div class="d-flex">
+      <button class="btn btn-danger" (click)="deleteAllGearSetups(); modal.close('Close click')">Delete all</button>
+      <button class="btn btn-secondary ms-2 flex-grow-1" (click)="modal.close('Close click')">Cancel</button>
+    </div>
+  </div>
+</ng-template>
