@@ -18,8 +18,8 @@ export class LocalStorageService {
 
   constructor(private storage: StorageMap) {
     this.gearSetupWatch$ = this.storage.watch(this.gearSetupKey).pipe(
-      filter((gearSetup) => gearSetup !== undefined),
-      map((gearSetup) => gearSetup as GearSetupPreset[]),
+      map((gearSetups) => gearSetups ?? []),
+      map((gearSetups) => gearSetups as GearSetupPreset[]),
       shareReplay(1)
     );
 
