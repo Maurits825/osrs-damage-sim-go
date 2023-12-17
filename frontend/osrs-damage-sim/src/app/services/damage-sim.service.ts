@@ -99,13 +99,12 @@ export class DamageSimService {
   }
 
   public getRuneliteGearSetup(): Observable<number[]> {
-    return this.http
-      .get<RuneliteGear[]>('http://localhost:8080/equip')
-      .pipe(
-        map((equipment: RuneliteGear[]) =>
-          equipment.filter((item: RuneliteGear) => item.id !== -1).map((item: RuneliteGear) => item.id)
-        )
-      );
+    return this.http.get<RuneliteGear[]>('http://localhost:8080/equip').pipe(
+      map((equipment: RuneliteGear[]) => equipment ?? []),
+      map((equipment: RuneliteGear[]) =>
+        equipment.filter((item: RuneliteGear) => item.id !== -1).map((item: RuneliteGear) => item.id)
+      )
+    );
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {
