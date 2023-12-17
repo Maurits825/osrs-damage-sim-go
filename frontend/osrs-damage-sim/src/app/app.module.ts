@@ -39,6 +39,8 @@ import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-gra
 import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
 import { TrailblazerRelicsComponent } from './shared/components/leagues/trailblazer-relics/trailblazer-relics.component';
 import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cycle.component';
+import { SettingsModalComponent } from './shared/modals/settings-modal/settings-modal.component';
+import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +75,8 @@ import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cy
     HighscoreLookupComponent,
     TrailblazerRelicsComponent,
     AttackCycleComponent,
+    SettingsModalComponent,
+    LoadRlSetupGuideModalComponent,
   ],
   imports: [
     NgSelectModule,

@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { forkJoin, Subject, takeUntil } from 'rxjs';
+import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import {
   DRAGON_DARTS_ID,
@@ -24,6 +24,9 @@ import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.componen
 import { ItemService } from 'src/app/services/item.service';
 import { Mode } from 'src/app/model/mode.enum';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
+import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 
 @Component({
   selector: 'app-gear-setup.col-md-6',
@@ -48,6 +51,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   allGearSlotItems: Record<GearSlot, Item[]>;
 
   gearSetupPresets: GearSetupPreset[];
+  allGearSetupPresets: GearSetupPreset[];
 
   attackStyles: string[];
   allSpells: string[];
@@ -69,6 +73,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   Item: Item;
 
+  isLoadingFromRl = false;
+
+  userSettingsWatch$: Observable<UserSettings>;
+
   private destroyed$ = new Subject();
 
   constructor(
@@ -76,6 +84,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private itemService: ItemService,
     private globalSettingsService: GlobalSettingsService,
     private specialGearService: SpecialGearService,
+    private localStorageService: LocalStorageService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
   ) {}
 
@@ -95,6 +104,13 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.gearSetupPresets = gearSetupPresets;
       this.allSpells = allSpells;
       this.allDarts = allDarts;
+
+      this.localStorageService.gearSetupWatch$.subscribe(
+        (userGearSetups: GearSetupPreset[]) =>
+          (this.allGearSetupPresets = [...this.gearSetupPresets, ...userGearSetups])
+      );
+
+      this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
 
       if (this.gearSetup) {
         this.setGearSetup(this.gearSetup);
@@ -121,9 +137,19 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   loadGearSetupPreset(gearSetupPreset: GearSetupPreset) {
+    this.gearSetup.spell = null;
+
     this.setCurrentGearByIds(gearSetupPreset.gearIds, true);
     this.gearSetup.setupName = gearSetupPreset.name;
     this.gearSetup.presetName = gearSetupPreset.name;
+
+    if (gearSetupPreset.attackStyle) {
+      this.gearSetup.attackStyle = gearSetupPreset.attackStyle;
+    }
+    if (gearSetupPreset.spell) {
+      this.gearSetup.spell = gearSetupPreset.spell;
+      this.selectedSpellChange();
+    }
   }
 
   setCurrentGearByGearSlotAndId(gearIds: Record<GearSlot, number>): void {
@@ -232,5 +258,32 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   setAttackType(attackType: AttackType): void {
     this.currentAttackType = attackType;
+  }
+
+  saveGearSetup(popover: NgbPopover): void {
+    this.localStorageService.saveGearSetup(this.gearSetup).subscribe((error: string | null) => {
+      popover.open({ error });
+    });
+  }
+
+  deleteUserGearSetup(event: Event, setupName: string): void {
+    event.stopPropagation();
+    this.localStorageService.deleteGearSetup(setupName);
+  }
+
+  loadGearSetupFromRunelite(popover: NgbPopover): void {
+    this.isLoadingFromRl = true;
+
+    this.damageSimservice.getRuneliteGearSetup().subscribe({
+      next: (gearIds: number[]) => {
+        this.isLoadingFromRl = false;
+        this.setCurrentGearByIds(gearIds, true);
+        popover.open({ error: undefined });
+      },
+      error: () => {
+        this.isLoadingFromRl = false;
+        popover.open({ error: 'Error loading' });
+      },
+    });
   }
 }

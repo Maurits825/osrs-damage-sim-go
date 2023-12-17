@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { at } from 'lodash-es';
-import { takeUntil, Subject } from 'rxjs';
+import { takeUntil, Subject, Observable } from 'rxjs';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
+import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-gear-setup-settings',
@@ -24,9 +25,11 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     trailblazerRelics: null,
   };
 
+  userSettingsWatch$: Observable<UserSettings>;
+
   private destroyed$ = new Subject();
 
-  constructor(private globalSettingsService: GlobalSettingsService) {}
+  constructor(private globalSettingsService: GlobalSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -53,6 +56,8 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
     this.globalSettingsService.globalAttackCycle$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((attackCycle: number) => (this.gearSetupSettings.attackCycle = attackCycle));
+
+    this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
 
   toggleBoost(boost: Boost): void {

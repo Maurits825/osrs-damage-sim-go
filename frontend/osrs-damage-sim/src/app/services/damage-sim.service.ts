@@ -11,6 +11,7 @@ import { Npc } from '../model/osrs/npc.model';
 import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
 import { DpsGrapherResults } from '../model/dps-grapher/dps-grapher-results.model';
 import { CombatStats } from '../model/osrs/skill.type';
+import { RuneliteGear } from '../model/damage-sim/runelite-gear.model';
 
 @Injectable({
   providedIn: 'root',
@@ -95,6 +96,15 @@ export class DamageSimService {
 
   public lookupHighscore(rsn: string): Observable<CombatStats> {
     return this.http.get<CombatStats>(this.damageSimServiceUrl + '/lookup-highscore' + '?rsn=' + rsn);
+  }
+
+  public getRuneliteGearSetup(): Observable<number[]> {
+    return this.http.get<RuneliteGear[]>('http://localhost:8080/equip').pipe(
+      map((equipment: RuneliteGear[]) => equipment ?? []),
+      map((equipment: RuneliteGear[]) =>
+        equipment.filter((item: RuneliteGear) => item.id !== -1).map((item: RuneliteGear) => item.id)
+      )
+    );
   }
 
   private getGearSlotItems(): Observable<Record<GearSlot, Item[]>> {

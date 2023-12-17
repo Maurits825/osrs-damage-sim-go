@@ -1,13 +1,62 @@
 <div class="me-4" *ngIf="gearSetup && allGearSlotItems; else showSpinner">
-  <div class="row mb-2 justify-content-center">
-    <div class="col-auto">
+  <div class="d-flex mb-2 justify-content-center">
+    <div class="">
       <h3 class="text-end">
         <ng-container *ngIf="mode === Mode.DamageSim">{{ isMainGearSetup ? "Main" : "Fill" }}</ng-container> Gear Setup:
       </h3>
     </div>
-    <div class="col-5">
+    <div class="ms-2">
       <input class="form-control" type="text" [(ngModel)]="gearSetup.setupName" placeholder="Setup name" />
     </div>
+
+    <ng-template #saveGearSetupPop let-error="error">
+      <div *ngIf="error" class="text-danger">
+        {{ error }}
+      </div>
+      <div *ngIf="error === undefined" class="text-success">Saved!</div>
+    </ng-template>
+    <div class="ms-1">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [ngbPopover]="saveGearSetupPop"
+        triggers="manual"
+        #saveGearPopover="ngbPopover"
+        (click)="saveGearSetup(saveGearPopover)"
+      >
+        Save
+      </button>
+    </div>
+
+    <ng-container *ngIf="(userSettingsWatch$ | async)?.showLoadFromRunelite">
+      <ng-template #loadRlSetupPop let-error="error">
+        <div *ngIf="error" class="text-danger">
+          {{ error }}
+        </div>
+        <div *ngIf="error === undefined" class="text-success">Loaded!</div>
+      </ng-template>
+      <div class="ms-1">
+        <button
+          type="button"
+          class="btn btn-primary py-0 px-1"
+          style="height: 37px"
+          [ngbPopover]="loadRlSetupPop"
+          triggers="manual"
+          #loadRlPopover="ngbPopover"
+          (click)="loadGearSetupFromRunelite(loadRlPopover)"
+          [disabled]="isLoadingFromRl"
+        >
+          <div class="d-flex justify-content-center align-content-center" style="width: 30px">
+            <ng-container *ngIf="isLoadingFromRl">
+              <span class="spinner-border spinner-border-sm"></span>
+            </ng-container>
+            <ng-container *ngIf="!isLoadingFromRl">
+              <img class="rounded img-fluid" src="assets/img/other/runelite.jpg" title="Load from Runelite" />
+            </ng-container>
+          </div>
+        </button>
+      </div>
+    </ng-container>
   </div>
 
   <div class="mb-2 d-flex align-items-center">
@@ -16,7 +65,7 @@
       <ng-select
         [(ngModel)]="gearSetup.presetName"
         [clearable]="false"
-        [items]="gearSetupPresets"
+        [items]="allGearSetupPresets"
         bindValue="name"
         bindLabel="name"
         groupBy="attackType"
@@ -30,6 +79,15 @@
               <img src="data:image/png;base64,{{ item.icon }}" />
             </div>
             <div class="ps-2">{{ item.name }}</div>
+            <div *ngIf="!item.isDefault" class="ms-auto">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                (click)="deleteUserGearSetup($event, item.name)"
+              >
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
           </div>
         </ng-template>
 

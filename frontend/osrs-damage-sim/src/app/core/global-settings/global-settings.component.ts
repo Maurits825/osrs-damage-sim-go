@@ -8,10 +8,12 @@ import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { InputSetupService } from 'src/app/services/input-setup.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Mode } from 'src/app/model/mode.enum';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 
 @Component({
   selector: 'app-global-settings',
@@ -76,9 +78,15 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   loading = false;
 
+  userSettingsWatch$: Observable<UserSettings>;
+
   private destroyed$ = new Subject();
 
-  constructor(private globalSettingsService: GlobalSettingsService, private inputSetupService: InputSetupService) {}
+  constructor(
+    private globalSettingsService: GlobalSettingsService,
+    private inputSetupService: InputSetupService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.globalSettingsService.globalPrayers$.next(this.selectedPrayers);
@@ -92,6 +100,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
       .subscribe((inputSetup: InputSetup) => this.setGlobalSettings(inputSetup.globalSettings));
 
     this.inputSetupService.globalSettingsComponent$.next(this);
+
+    this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
 
   ngOnDestroy(): void {
