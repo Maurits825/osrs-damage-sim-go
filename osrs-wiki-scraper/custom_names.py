@@ -1,6 +1,6 @@
 CUSTOM_NAME_MAP = {
-    "8060": "Vorkath (quest)",
-    "8058": "Vorkath (quest)",
+    "8060": "Vorkath (Quest)",
+    "8058": "Vorkath (Quest)",
 
     "2042": "Zulrah (Serpentine/Ranged)",
     "2043": "Zulrah (Magma/Melee)",
@@ -10,21 +10,34 @@ CUSTOM_NAME_MAP = {
     "12078": "Phantom Muspah (Melee)",
     "12079": "Phantom Muspah (Shielded)",
 
-    "12215": "The Leviathan (quest)",
-    "12219": "The Leviathan (quest)",
+    "12215": "The Leviathan (Quest)",
+    "12219": "The Leviathan (Quest)",
 
-    "12193": "Duke Sucellus (quest)",
-    "12194": "Duke Sucellus (quest)",
-    "12195": "Duke Sucellus (quest)",
+    "12193": "Duke Sucellus (Quest)",
+    "12194": "Duke Sucellus (Quest)",
+    "12195": "Duke Sucellus (Quest)",
 
-    "12206": "The Whisperer (quest)",
-    "12207": "The Whisperer (quest)",
+    "12206": "The Whisperer (Quest)",
+    "12207": "The Whisperer (Quest)",
 
-    "12224": "Vardorvis (quest)",
-    "12228": "Vardorvis (quest)",
+    "12224": "Vardorvis (Quest)",
+    "12228": "Vardorvis (Quest)",
 
     "963": "Kalphite Queen (Crawling)",
-    "965": "Kalphite Queen (Airborne)"
+    "965": "Kalphite Queen (Airborne)",
+
+    "12223_1": "Vardorvis (Awakened)",
+    "12426_1": "Vardorvis (Awakened)",
+
+    "12204_1": "The Whisperer (Awakened)",
+    "12205_1": "The Whisperer (Awakened)",
+
+    "12214_1": "The Leviathan (Awakened)",
+
+    "12166_1": "Duke Sucellus (Awakened)",
+    "12167_1": "Duke Sucellus (Awakened)",
+    "12191_1": "Duke Sucellus (Awakened)",
+    "12192_1": "Duke Sucellus (Awakened)",
 }
 
 
@@ -34,7 +47,7 @@ class CustomNames:
         if "id" not in version:
             return None
 
-        ids = [id for id in map(lambda id: id.strip(), str(version["id"]).split(",")) if id != "" and id.isdigit()]
+        ids = [id for id in map(lambda id: id.strip(), str(version["id"]).split(",")) if id != ""]
 
         if len(ids) == 0:
             return None
