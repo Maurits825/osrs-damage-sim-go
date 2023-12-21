@@ -124,6 +124,7 @@ export class InputSetupService {
       npc: npc,
       raidLevel: inputSetupJson.globalSettings.raidLevel,
       pathLevel: inputSetupJson.globalSettings.pathLevel,
+      overlyDraining: inputSetupJson.globalSettings.overlyDraining || false,
       isCoxChallengeMode: inputSetupJson.globalSettings.isCoxChallengeMode || false,
       teamSize: inputSetupJson.globalSettings.teamSize,
       continuousSimSettings: {
