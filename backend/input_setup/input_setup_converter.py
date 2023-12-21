@@ -101,6 +101,7 @@ class InputSetupConverter:
                               json_global_settings["teamSize"],
                               json_global_settings["iterations"],
                               raid_level, path_level,
+                              json_global_settings["overlyDraining"],
                               json_global_settings["isCoxChallengeMode"],
                               continuous_sim_settings,
                               json_global_settings["isDetailedRun"])

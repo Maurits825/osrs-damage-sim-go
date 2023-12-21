@@ -31,6 +31,7 @@ class DamageSim:
 
         self.is_detailed_run = global_settings.is_detailed_run
         self.continuous_sim_settings = global_settings.continuous_sim_settings
+        self.overly_draining = global_settings.overly_draining
 
         self.npc = self.main_weapon.npc
 
@@ -204,10 +205,11 @@ class DamageSim:
             else:
                 self.ticks_to_spec_regen.append(SPEC_REGEN_TICKS)
 
+            special_attack_cost = 100 if self.overly_draining else weapon.special_attack_cost
             if any(boost == BoostType.LIQUID_ADRENALINE for boost in self.gear_setup_settings.boosts):
-                self.special_attack_cost.append(weapon.special_attack_cost / 2)
+                self.special_attack_cost.append(special_attack_cost / 2)
             else:
-                self.special_attack_cost.append(weapon.special_attack_cost)
+                self.special_attack_cost.append(special_attack_cost)
 
             weapon.set_combat_stats(self.combat_stats)
 

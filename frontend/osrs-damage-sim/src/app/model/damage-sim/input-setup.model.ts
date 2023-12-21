@@ -19,6 +19,7 @@ export interface GlobalSettings {
 
   raidLevel: number;
   pathLevel: number;
+  overlyDraining: boolean;
 
   isCoxChallengeMode: boolean;
 
