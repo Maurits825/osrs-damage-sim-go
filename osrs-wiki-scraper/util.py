@@ -88,13 +88,14 @@ def get_doc_for_id_string(source: str, version: Dict[str, str], docs: Dict[str, 
     doc = {}
     doc["__source__"] = source
     for id in ids:
-        if not allow_duplicates and (id in docs or id in known_invalid_ids):
-            if id not in known_invalid_ids:
-                known_invalid_ids[id] = source
-                del docs[id]
+        if id in docs:
+            if "Awakened" in version.get("version", "") or "Awakened" in version.get("smwname", ""):
+                id = id + '_1'
+                version["id"] = id
 
-            print("page {} is has the same id as {}".format(source, known_invalid_ids[id]))
-            return None
+            else:
+                print("skip - name: " + source + ", id: " + id)
+                return None
 
         docs[id] = doc
 

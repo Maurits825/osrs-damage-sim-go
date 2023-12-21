@@ -45728,53 +45728,25 @@
   "name": "Trailblazer reloaded mithril trophy",
   "weight": 1.5,
   "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "astab": -100,
-  "aslash": -100,
-  "acrush": -50,
-  "str": -10,
-  "aspeed": 4,
-  "weaponCategory": "BLUNT"
+  "slot": 5
  },
  "28759": {
   "name": "Trailblazer reloaded steel trophy",
   "weight": 1.5,
   "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "astab": -100,
-  "aslash": -100,
-  "acrush": -50,
-  "str": -10,
-  "aspeed": 4,
-  "weaponCategory": "BLUNT"
+  "slot": 5
  },
  "28761": {
   "name": "Trailblazer reloaded iron trophy",
   "weight": 1.5,
   "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "astab": -100,
-  "aslash": -100,
-  "acrush": -50,
-  "str": -10,
-  "aspeed": 4,
-  "weaponCategory": "BLUNT"
+  "slot": 5
  },
  "28763": {
   "name": "Trailblazer reloaded bronze trophy",
   "weight": 1.5,
   "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "astab": -100,
-  "aslash": -100,
-  "acrush": -50,
-  "str": -10,
-  "aspeed": 4,
-  "weaponCategory": "BLUNT"
+  "slot": 5
  },
  "28765": {
   "name": "Globetrotter pendant",
