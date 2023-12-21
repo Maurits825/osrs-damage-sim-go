@@ -13,6 +13,7 @@ class GlobalSettings:
 
     raid_level: int
     path_level: int
+    overly_draining: bool
 
     is_cox_challenge_mode: bool
 

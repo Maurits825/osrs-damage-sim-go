@@ -13,7 +13,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -26,7 +27,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["ranging"]
+          "boosts": [
+            "ranging"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -68,7 +71,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "attackCount": 0,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -76,7 +81,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["ranging"],
+          "boosts": [
+            "ranging"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -105,7 +112,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -118,7 +126,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["super_combat"]
+          "boosts": [
+            "super_combat"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -157,7 +167,9 @@
           "attackStyle": "Jab (Crush/Aggressive)",
           "attackCount": 0,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -165,7 +177,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -194,7 +208,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -207,7 +222,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["overload_plus"]
+          "boosts": [
+            "overload_plus"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -246,7 +263,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "attackCount": 0,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -254,7 +273,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -283,7 +304,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -337,7 +359,9 @@
           "blowpipeDarts": 11230,
           "attackStyle": "Lunge (Stab/Aggressive)",
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -374,7 +398,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -387,7 +412,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["overload_plus"]
+          "boosts": [
+            "overload_plus"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -429,7 +456,9 @@
           "attackStyle": "Accurate (Magic/Accurate)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -437,7 +466,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -465,7 +496,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -478,7 +510,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["smelling_salts"]
+          "boosts": [
+            "smelling_salts"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -520,7 +554,9 @@
           "attackStyle": "Spell (Magic/Autocast)",
           "spell": "Ice Barrage",
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -528,7 +564,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["smelling_salts"],
+          "boosts": [
+            "smelling_salts"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -556,7 +594,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -611,7 +650,9 @@
           "attackStyle": "Spell (Magic/Autocast)",
           "spell": "Fire Surge",
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -647,7 +688,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -660,7 +702,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["overload_plus"]
+          "boosts": [
+            "overload_plus"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -699,7 +743,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -707,7 +753,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -735,7 +783,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -748,7 +797,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["ranging"]
+          "boosts": [
+            "ranging"
+          ]
         },
         "mainGearSetup": {
           "gear": {
@@ -787,7 +838,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -795,7 +848,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["ranging"],
+          "boosts": [
+            "ranging"
+          ],
           "conditions": [],
           "isOnSlayerTask": true,
           "isInWilderness": true,
@@ -823,13 +878,16 @@
       "isCoxChallengeMode": true,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -877,7 +935,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -904,7 +964,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -919,7 +980,9 @@
               "value": 50
             }
           ],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -969,7 +1032,9 @@
           "attackStyle": "Jab (Crush/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -996,7 +1061,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -1007,7 +1073,10 @@
               "value": 3
             }
           ],
-          "boosts": ["super_attack", "super_strength"],
+          "boosts": [
+            "super_attack",
+            "super_strength"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1059,7 +1128,9 @@
           "attackStyle": "Lunge (Stab/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1086,7 +1157,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -1097,7 +1169,10 @@
               "value": 4
             }
           ],
-          "boosts": ["attack", "strength"],
+          "boosts": [
+            "attack",
+            "strength"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1149,7 +1224,9 @@
           "attackStyle": "Slash (Slash/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1190,7 +1267,8 @@
       "isCoxChallengeMode": true,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -1203,7 +1281,9 @@
             "magic": 99,
             "hitpoints": 99
           },
-          "boosts": ["super_combat"]
+          "boosts": [
+            "super_combat"
+          ]
         },
         "mainGearSetup": {
           "setupName": "Inquisitor's mace",
@@ -1249,7 +1329,9 @@
           "attackStyle": "Pummel (Crush/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1291,7 +1373,8 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -1302,7 +1385,9 @@
               "value": 1
             }
           ],
-          "boosts": ["saturated_heart"],
+          "boosts": [
+            "saturated_heart"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1353,7 +1438,9 @@
           "attackStyle": null,
           "spell": "Fire Surge",
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1395,13 +1482,16 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1452,7 +1542,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1494,13 +1586,17 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["ranging", "super_combat"],
+          "boosts": [
+            "ranging",
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1553,7 +1649,9 @@
           "attackStyle": "Lunge (Stab/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1594,13 +1692,16 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["ranging"],
+          "boosts": [
+            "ranging"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1651,7 +1752,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1697,13 +1800,16 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1754,7 +1860,9 @@
           "attackStyle": "Chop (Slash/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1796,13 +1904,16 @@
       "isCoxChallengeMode": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1855,7 +1966,9 @@
           "attackStyle": "Lunge (Stab/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1896,13 +2009,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -1952,7 +2068,9 @@
           "attackStyle": "Hack (Slash/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -1999,7 +2117,8 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
@@ -2010,7 +2129,9 @@
               "value": 1
             }
           ],
-          "boosts": ["saturated_heart"],
+          "boosts": [
+            "saturated_heart"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2061,7 +2182,9 @@
           "attackStyle": "Accurate (Magic/Accurate)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2108,13 +2231,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2167,7 +2293,9 @@
           "attackStyle": "Pummel (Crush/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2209,13 +2337,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["ranging"],
+          "boosts": [
+            "ranging"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2266,7 +2397,9 @@
           "attackStyle": "Rapid (Ranged/Rapid)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["rigour"],
+          "prayers": [
+            "rigour"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2311,13 +2444,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2370,7 +2506,9 @@
           "attackStyle": "Lunge (Stab/Aggressive)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2415,13 +2553,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["super_combat"],
+          "boosts": [
+            "super_combat"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2472,7 +2613,9 @@
           "attackStyle": "Pummel (Crush/Accurate)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["piety"],
+          "prayers": [
+            "piety"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2518,13 +2661,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["saturated_heart"],
+          "boosts": [
+            "saturated_heart"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2575,7 +2721,9 @@
           "attackStyle": "Accurate (Magic/Accurate)",
           "spell": null,
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2617,13 +2765,16 @@
       "isDetailedRun": false,
       "continuousSimSettings": {
         "enabled": false
-      }
+      },
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
         "gearSetupSettings": {
           "statDrains": [],
-          "boosts": ["overload_plus"],
+          "boosts": [
+            "overload_plus"
+          ],
           "combatStats": {
             "attack": 99,
             "strength": 99,
@@ -2676,7 +2827,9 @@
           "attackStyle": "Spell (Magic/Autocast)",
           "spell": "Blood Barrage",
           "isSpecial": false,
-          "prayers": ["augury"],
+          "prayers": [
+            "augury"
+          ],
           "conditions": [],
           "statDrain": [],
           "isOnSlayerTask": true,
@@ -2717,7 +2870,8 @@
         "deathCharge": false,
         "respawnTicks": 0
       },
-      "isDetailedRun": false
+      "isDetailedRun": false,
+      "overlyDraining": false
     },
     "inputGearSetups": [
       {
