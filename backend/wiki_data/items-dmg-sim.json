@@ -45776,7 +45776,7 @@
  },
  "28788": {
   "name": "Snowglobe helmet",
-  "quest": true,
+  "weight": 0.113,
   "equipable": true,
   "slot": 0
  }
