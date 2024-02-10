@@ -3,6 +3,7 @@ from __future__ import annotations
 import math
 import random
 
+from model.attack_style.attack_type import AttackType
 from model.gear_setup import GearSetup
 from model.input_setup.gear_setup_settings import GearSetupSettings
 from model.npc.npc_stats import NpcStats
@@ -19,6 +20,9 @@ class Fang(Weapon):
         max_defence_roll = self.get_defence_roll()
         attack_roll = int(random.random() * (self.attack_roll + 1))
         defence_roll = int(random.random() * (max_defence_roll + 1))
+
+        if self.gear_setup.attack_style.attack_type != AttackType.STAB:
+            return attack_roll > defence_roll
 
         if attack_roll > defence_roll:
             return True
@@ -61,6 +65,10 @@ class Fang(Weapon):
 
     def get_accuracy(self):
         accuracy = super().get_accuracy()
+
+        if self.gear_setup.attack_style.attack_type != AttackType.STAB:
+            return accuracy
+
         attack_roll = self.get_attack_roll()
 
         if self.raid_level is not None:
