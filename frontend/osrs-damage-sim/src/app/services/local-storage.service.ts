@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { Observable, filter, iif, map, mergeMap, of, shareReplay, switchMap } from 'rxjs';
+import { Observable, iif, map, mergeMap, of, shareReplay, switchMap } from 'rxjs';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSetup } from '../model/damage-sim/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
