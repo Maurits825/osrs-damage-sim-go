@@ -1768,7 +1768,7 @@
     ]
   },
   "Verzik p1 normal max scythe scp": {
-    "expectedDps": 3.92871028,
+    "expectedDps": 3.93922784,
     "globalSettings": {
       "npc": {
         "name": "Verzik Vitur (normal mode, p1)",
@@ -2843,7 +2843,7 @@
     ]
   },
   "Xarpus max scy 4 tick cycle": {
-    "expectedDps": 10.00982526,
+    "expectedDps": 10.24768931,
     "globalSettings": {
       "npc": {
         "name": "Xarpus",
