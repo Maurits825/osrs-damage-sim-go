@@ -13,8 +13,8 @@ SPEC_CHANCE = 0.25
 
 
 class KarilCrossbow(Weapon):
-    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, player, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, player, raid_level)
 
         self.is_amulet_and_set = (set(KARIL_SET).issubset(self.gear_setup.equipped_gear.ids) and
                                   AMULET_OF_DAMNED in self.gear_setup.equipped_gear.ids)

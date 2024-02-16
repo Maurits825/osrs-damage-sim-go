@@ -11,16 +11,15 @@ MIGHTY_STACK_MULTIPLIER = 0.06
 
 
 class SoulreaperAxe(Weapon):
-    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, player,
+                 raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, player, raid_level)
 
-        self.mighty_stack = 0
+        self.reset()
 
     def attack(self) -> Hitsplat:
-        if not self.npc.is_hit:
-            self.mighty_stack = 0
-            self.prayer_multiplier = PrayerMultiplier.sum_prayers(self.gear_setup.prayers)
-            self.max_hit = self.get_max_hit()
+        if self.player.is_weapon_switched:
+            self.reset()
 
         hitsplat = super().attack()
 
@@ -39,3 +38,8 @@ class SoulreaperAxe(Weapon):
         self.prayer_multiplier.strength += MAX_MIGHTY_STACK * MIGHTY_STACK_MULTIPLIER
 
         return self.get_max_hit()
+
+    def reset(self):
+        self.mighty_stack = 0
+        self.prayer_multiplier = PrayerMultiplier.sum_prayers(self.gear_setup.prayers)
+        self.max_hit = self.get_max_hit()

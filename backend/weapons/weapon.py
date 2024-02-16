@@ -34,10 +34,11 @@ CORP_MAX_DMG = 50
 class Weapon:
     MELEE_TYPES = [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]
 
-    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, player: Player, raid_level):
         self.gear_setup = gear_setup
         self.combat_stats = gear_setup_settings.combat_stats
         self.npc = npc
+        self.player = player
         self.raid_level = raid_level
         self.relics = gear_setup_settings.trailblazer_relics
         # TODO just keep a self.gear_setup_settings??

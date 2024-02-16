@@ -9,8 +9,8 @@ from wiki_data.wiki_data import WikiData
 
 
 class DinhsBulwark(Weapon):  # TODO double hit on main target on spec, not in dps calc spreadsheet rn
-    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, player, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, player, raid_level)
 
         self.gear_setup.gear_stats.melee_strength += self.get_strength_buff()
 

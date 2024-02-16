@@ -12,8 +12,8 @@ HIT_COUNT_REDUCTION = [1, 0.5, 0.25]
 
 
 class Scythe(Weapon):
-    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, player, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, player, raid_level)
 
         self.hitsplat.hitsplats = [0 for _ in range(min(3, self.npc.size))]
         self.hitsplat.roll_hits = [False for _ in range(min(3, self.npc.size))]

@@ -12,8 +12,8 @@ SPEC_CHANCE = 0.25
 
 
 class VeracFlail(Weapon):
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, combat_stats, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, player, raid_level):
+        super().__init__(gear_setup, combat_stats, npc, player, raid_level)
 
         self.is_set = set(VERAC_SET).issubset(self.gear_setup.equipped_gear.ids)
 

@@ -11,8 +11,8 @@ from weapons.weapon import Weapon
 
 
 class Fang(Weapon):
-    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, gear_setup_settings, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings: GearSetupSettings, npc: NpcStats, player, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, player, raid_level)
 
         self.min_hit = 0
 

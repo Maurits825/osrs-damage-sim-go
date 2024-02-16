@@ -21,6 +21,7 @@ from model.leagues.trailblazer_relics import TrailblazerRelic
 from model.locations import Location
 from model.npc.combat_stats import CombatStats
 from model.npc.npc_stats import NpcStats
+from model.player import Player
 from model.prayer import Prayer
 from model.weapon_stats import WeaponStats
 from weapons.custom_weapon import CUSTOM_WEAPONS
@@ -57,18 +58,19 @@ class InputSetupConverter:
         input_gear_setups = []
         for input_gear_setup in json_data["inputGearSetups"]:
             npc = copy.deepcopy(global_npc)
+            player = Player()
             weapons = []
             gear_setup_settings = InputSetupConverter.get_gear_setup_settings(input_gear_setup["gearSetupSettings"])
 
             main_gear_setup, weapon_item = InputSetupConverter.get_gear_setup(input_gear_setup["mainGearSetup"])
             main_weapon = WeaponLoader.load_weapon(
-                weapon_item.name, main_gear_setup, gear_setup_settings, npc, global_settings.raid_level
+                weapon_item.name, main_gear_setup, gear_setup_settings, npc, player, global_settings.raid_level
             )
 
             for gear_setup_dict in input_gear_setup["fillGearSetups"]:
                 gear_setup, weapon_item = InputSetupConverter.get_gear_setup(gear_setup_dict)
                 weapon = WeaponLoader.load_weapon(
-                    weapon_item.name, gear_setup, gear_setup_settings, npc, global_settings.raid_level
+                    weapon_item.name, gear_setup, gear_setup_settings, npc, player, global_settings.raid_level
                 )
 
                 weapons.append(weapon)
