@@ -28,6 +28,7 @@ class DamageSim:
         self.fill_weapons: list[Weapon] = input_gear_setup.fill_weapons
         self.all_weapons: list[Weapon] = [self.main_weapon, *self.fill_weapons]
         self.gear_setup_settings = input_gear_setup.gear_setup_settings
+        self.player = self.main_weapon.player  # kinda scuffed getting player here
 
         self.is_detailed_run = global_settings.is_detailed_run
         self.continuous_sim_settings = global_settings.continuous_sim_settings
@@ -43,7 +44,6 @@ class DamageSim:
         self.current_weapon: Weapon = self.main_weapon
         self.current_weapon_index = 0
 
-        self.special_attack = 0
         self.spec_regen_tick_timer = 0
         self.ticks_to_spec_regen = []
         self.special_attack_cost = []
@@ -56,7 +56,7 @@ class DamageSim:
         self.current_weapon = self.main_weapon
         self.current_weapon_index = 0
 
-        self.special_attack = MAX_SPECIAL_ATTACK
+        self.player.special_attack = MAX_SPECIAL_ATTACK
         self.spec_regen_tick_timer = 0
 
         self.reset_npc_combat_stats()
@@ -119,7 +119,9 @@ class DamageSim:
             self.regenerate_special_attack(self.current_weapon.gear_setup.gear_stats.attack_speed)
 
             if self.has_fill_weapons:
+                previous_weapon_index = self.current_weapon_index
                 self.current_weapon_index, self.current_weapon = self.get_next_weapon()
+                self.player.is_weapon_switched = previous_weapon_index != self.current_weapon_index
 
             if self.is_detailed_run:
                 tick_data = self.get_initial_tick_data(current_tick, self.npc.combat_stats.hitpoints,
@@ -130,7 +132,7 @@ class DamageSim:
             self.npc.combat_stats.hitpoints -= hitsplat.damage
 
             if self.current_weapon.gear_setup.is_special_attack:
-                self.special_attack -= self.special_attack_cost[self.current_weapon_index]
+                self.player.special_attack -= self.special_attack_cost[self.current_weapon_index]
 
             self.sim_data.ticks_to_kill += self.current_weapon.gear_setup.gear_stats.attack_speed
             self.sim_data.gear_total_dmg[self.current_weapon_index] += hitsplat.damage
@@ -173,7 +175,7 @@ class DamageSim:
             if use_fill_weapon:
                 if (not weapon.gear_setup.is_special_attack or
                         (weapon.gear_setup.is_special_attack and
-                         self.special_attack_cost[fill_weapon_index] <= self.special_attack)):
+                         self.special_attack_cost[fill_weapon_index] <= self.player.special_attack)):
                     return fill_weapon_index, weapon
                 else:
                     return MAIN_WEAPON_INDEX, self.main_weapon
@@ -181,7 +183,7 @@ class DamageSim:
         return MAIN_WEAPON_INDEX, self.main_weapon
 
     def regenerate_special_attack(self, ticks_passed):
-        if self.special_attack == MAX_SPECIAL_ATTACK:
+        if self.player.special_attack == MAX_SPECIAL_ATTACK:
             self.spec_regen_tick_timer = 0
             return
 
@@ -190,7 +192,7 @@ class DamageSim:
         ticks_to_regen = self.ticks_to_spec_regen[self.current_weapon_index]
         while self.spec_regen_tick_timer >= ticks_to_regen:
             self.spec_regen_tick_timer -= ticks_to_regen
-            self.special_attack = min(self.special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
+            self.player.special_attack = min(self.player.special_attack + SPEC_REGEN_AMOUNT, MAX_SPECIAL_ATTACK)
 
     def setup_damage_sim(self):
         Boost.apply_boosts(self.initial_combat_stats, self.gear_setup_settings.boosts)  # TODO maybe put this in weapon?
@@ -252,7 +254,7 @@ class DamageSim:
                 special_procs=[],
                 npc_hitpoints=npc_hp,
                 npc_defence=npc_defence,
-                special_attack_amount=self.special_attack
+                special_attack_amount=self.player.special_attack
             )
         )
 

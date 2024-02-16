@@ -19,8 +19,8 @@ SPECIAL_DAMAGE_CAP = 48
 
 
 class DarkBow(Weapon):
-    def __init__(self, gear_setup: GearSetup, combat_stats: CombatStats, npc: NpcStats, raid_level):
-        super().__init__(gear_setup, combat_stats, npc, raid_level)
+    def __init__(self, gear_setup: GearSetup, gear_setup_settings, npc: NpcStats, player, raid_level):
+        super().__init__(gear_setup, gear_setup_settings, npc, player, raid_level)
 
         self.special_min_dmg = (DRAGON_ARROW_MIN_DMG if DRAGON_ARROWS in self.gear_setup.equipped_gear.ids
                                 else NORMAL_ARROW_MIN_DMG)
