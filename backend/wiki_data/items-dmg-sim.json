@@ -45499,7 +45499,9 @@
  "28630": {
   "name": "Twitcher's gloves",
   "equipable": true,
-  "slot": 9
+  "slot": 9,
+  "dslash": 1,
+  "dcrush": 2
  },
  "28655": {
   "name": "Petal garland",
@@ -45754,5 +45756,19 @@
   "amagic": 14,
   "aspeed": 4,
   "weaponCategory": "POWERED_STAFF"
+ },
+ "28810": {
+  "name": "Zombie axe",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 3,
+  "astab": -3,
+  "aslash": 105,
+  "acrush": 90,
+  "dstab": -1,
+  "drange": -1,
+  "str": 107,
+  "aspeed": 5,
+  "weaponCategory": "AXE"
  }
 }
