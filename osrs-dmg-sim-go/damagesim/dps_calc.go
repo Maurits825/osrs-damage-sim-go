@@ -19,21 +19,26 @@ type InputGearSetupLabels struct {
 	AllWeaponLabels        []string `json:"all_weapon_labels"`
 }
 
-var allItems items = loadItemWikiData()
+var allItems equipmentItems = loadItemWikiData()
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResults := DpsCalcResults{make([]DpsCalcResult, len(inputSetup.InputGearSetups)), "Global settings label"}
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
 		//run for just main now, will be like that in the future??
-		inputGearSetupLabels := InputGearSetupLabels{"label", "settings label", []string{inputGearSetup.MainGearSetup.Name}}
+		inputGearSetupLabels := InputGearSetupLabels{
+			"label", "settings label", []string{inputGearSetup.MainGearSetup.Name},
+		}
 		//TODO calc using in inputGearSetup.MainGearSetUp....
 		dps := []float32{1.23}
 		maxHit := []int{50}
-		accurarcy := []float32{87.44}
-		dpsCalcResult := DpsCalcResult{inputGearSetupLabels, dps, maxHit, accurarcy}
-		dpsCalcResults.Results[i] = dpsCalcResult
+		accuracy := []float32{87.44}
+		dpsCalcResults.Results[i] = DpsCalcResult{inputGearSetupLabels, dps, maxHit, accuracy}
 	}
 
 	return &dpsCalcResults
+}
+
+func calculateEquipmentBonus() {
+
 }
