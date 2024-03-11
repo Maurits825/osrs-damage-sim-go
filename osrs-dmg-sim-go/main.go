@@ -38,6 +38,6 @@ func postDpsCalc(c *gin.Context) {
 		return
 	}
 
-	damagesim.RunDpsCalc(&inputSetup)
-	c.JSON(http.StatusOK, gin.H{"error": "No go :("})
+	results := damagesim.RunDpsCalc(&inputSetup)
+	c.JSON(http.StatusOK, results)
 }
