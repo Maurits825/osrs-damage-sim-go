@@ -1,5 +1,10 @@
 package damagesim
 
+import (
+	"fmt"
+	"regexp"
+)
+
 type offensiveStats struct {
 	stab   int
 	slash  int
@@ -34,6 +39,76 @@ type equipmentStats struct {
 	damageStats    damageStats
 }
 
-type player struct {
-	equipmentStats equipmentStats
+func (stats *equipmentStats) addStats(statsAdd *equipmentStats) {
+	stats.offensiveStats.stab += statsAdd.offensiveStats.stab
+	stats.offensiveStats.slash += statsAdd.offensiveStats.slash
+	stats.offensiveStats.crush += statsAdd.offensiveStats.crush
+	stats.offensiveStats.magic += statsAdd.offensiveStats.magic
+	stats.offensiveStats.ranged += statsAdd.offensiveStats.ranged
+	stats.offensiveStats.prayer += statsAdd.offensiveStats.prayer
+
+	stats.defensiveStats.stab += statsAdd.defensiveStats.stab
+	stats.defensiveStats.slash += statsAdd.defensiveStats.slash
+	stats.defensiveStats.crush += statsAdd.defensiveStats.crush
+	stats.defensiveStats.magic += statsAdd.defensiveStats.magic
+	stats.defensiveStats.ranged += statsAdd.defensiveStats.ranged
+
+	stats.damageStats.meleeStrength += statsAdd.damageStats.meleeStrength
+	stats.damageStats.rangedStrength += statsAdd.damageStats.rangedStrength
+	stats.damageStats.magicStrength += statsAdd.damageStats.magicStrength
 }
+
+type combatStyleType string
+
+const (
+	Stab   combatStyleType = "Stab"
+	Slash  combatStyleType = "Slash"
+	Crush  combatStyleType = "Crush"
+	Magic  combatStyleType = "Magic"
+	Ranged combatStyleType = "Ranged"
+)
+
+type combatStyleStance string
+
+const (
+	Accurate   combatStyleStance = "Accurate"
+	Aggressive combatStyleStance = "Aggressive"
+	Autocast   combatStyleStance = "Autocast"
+	Controlled combatStyleStance = "Controlled"
+	Defensive  combatStyleStance = "Defensive"
+	Longrange  combatStyleStance = "Longrange"
+	Rapid      combatStyleStance = "Rapid"
+)
+
+type combatStyle struct {
+	combatStyleType   combatStyleType
+	combatStyleStance combatStyleStance
+}
+
+func parseCombatStyle(style string) combatStyle {
+	re := regexp.MustCompile(`([^\s]+) \(([^/]+)/([^)]+)\)`)
+	matches := re.FindStringSubmatch(style)
+
+	if len(matches) != 4 {
+		fmt.Println("Error parsing combat style: " + style)
+		return combatStyle{}
+	}
+
+	combatType := combatStyleType(matches[2])
+	combatStance := combatStyleStance(matches[3])
+
+	return combatStyle{
+		combatStyleType:   combatType,
+		combatStyleStance: combatStance,
+	}
+}
+
+type player struct {
+	globalSettings *GlobalSettings
+	inputGearSetup *InputGearSetup
+	equipmentStats equipmentStats
+	combatStyle    combatStyle
+}
+
+//TODO could have a New() player to then compute equipstats here??
+//what even is the player struct

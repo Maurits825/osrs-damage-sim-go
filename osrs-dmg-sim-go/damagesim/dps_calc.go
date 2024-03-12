@@ -1,5 +1,7 @@
 package damagesim
 
+import "strconv"
+
 //TODO has snake_case json because response on FE is like that, could refactor in the future
 type DpsCalcResults struct {
 	Results             []DpsCalcResult `json:"results"`
@@ -29,9 +31,13 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 		inputGearSetupLabels := InputGearSetupLabels{
 			"label", "settings label", []string{inputGearSetup.MainGearSetup.Name},
 		}
-		//TODO calc using in inputGearSetup.MainGearSetUp....
+
+		player := getPlayer(&inputSetup.GlobalSettings, &inputGearSetup)
+		//TODO calc maxhit based on player?
+
 		dps := []float32{1.23}
-		maxHit := []int{50}
+		//TODO can quick test
+		maxHit := []int{player.equipmentStats.offensiveStats.crush}
 		accuracy := []float32{87.44}
 		dpsCalcResults.Results[i] = DpsCalcResult{inputGearSetupLabels, dps, maxHit, accuracy}
 	}
@@ -39,6 +45,33 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	return &dpsCalcResults
 }
 
-func calculateEquipmentBonus() {
+//TODO maybe just have somethign that cooks the inputs
+func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
+	//first get equipped gear
+	equippedGear := &equippedGear{make([]int, 0)}
+	equipmentStats := equipmentStats{}
+	for _, gearItem := range inputGearSetup.MainGearSetup.Gear {
+		//TODO we can get the id alias here so we only have to deal with normal id versions
+		itemId := gearItem.Id
 
+		itemStats := allItems[strconv.Itoa(itemId)].equipmentStats
+		equipmentStats.addStats(&itemStats)
+
+		equippedGear.ids = append(equippedGear.ids, itemId)
+	}
+
+	//TODO isEquipped(blowpipe) -> addStats(darts)
+	//TODO check toa for shadow, dhins, virtus -> these add to equipment stats
+
+	combatStyle := parseCombatStyle(inputGearSetup.MainGearSetup.AttackStyle)
+
+	//TODO prob other stuff to init or get here b4 running calcs
+
+	return &player{globalSettings, inputGearSetup, equipmentStats, combatStyle}
+}
+
+//TODO
+func calculateDps(player *player) (dps float32, maxHit []int, accuracy float32) {
+
+	return 1, []int{1}, 50.65
 }
