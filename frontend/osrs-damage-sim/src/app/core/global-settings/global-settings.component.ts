@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Boost } from '../../model/osrs/boost.model';
 import { GlobalSettings, InputSetup } from '../../model/damage-sim/input-setup.model';
 import { Npc } from '../../model/osrs/npc.model';
@@ -22,19 +22,11 @@ import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 export class GlobalSettingsComponent implements OnInit, OnDestroy {
   globalSettings: GlobalSettings = {
     npc: null,
-    iterations: 10000,
     teamSize: 1,
     raidLevel: 0,
     pathLevel: 0,
     overlyDraining: false,
     isCoxChallengeMode: false,
-    continuousSimSettings: {
-      enabled: false,
-      killCount: 100,
-      deathCharge: false,
-      respawnTicks: 0,
-    },
-    isDetailedRun: false,
   };
 
   showPathLevel = false;
@@ -129,8 +121,6 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
       this.globalSettings.raidLevel = 0;
       this.globalSettings.pathLevel = 0;
     }
-
-    this.globalSettings.continuousSimSettings.respawnTicks = npc.respawn ?? 0;
   }
 
   toggleBoost(boost: Boost): void {
@@ -154,12 +144,6 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   statDrainChanged(statDrains: StatDrain[]): void {
     this.globalSettingsService.globalStatDrain$.next(statDrains);
-  }
-
-  onDetailedRunChanged(isDetailedRun: boolean): void {
-    if (isDetailedRun) {
-      this.globalSettings.iterations = Math.min(5000, this.globalSettings.iterations);
-    }
   }
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {

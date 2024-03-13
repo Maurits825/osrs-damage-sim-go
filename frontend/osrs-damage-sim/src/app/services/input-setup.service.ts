@@ -79,17 +79,11 @@ export class InputSetupService {
   getGearInputSetup(gearSetupTab: GearSetupTabComponent): InputGearSetup {
     const inputGearSetup: InputGearSetup = {
       gearSetupSettings: gearSetupTab.getGearSetupSettings(),
-      mainGearSetup: null,
-      fillGearSetups: [],
+      gearSetup: null,
     };
 
-    gearSetupTab.gearSetups.forEach((gearSetupRef: ComponentRef<GearSetupComponent>, index) => {
-      if (index === 0) {
-        inputGearSetup.mainGearSetup = gearSetupRef.instance.getGearSetup();
-      } else {
-        inputGearSetup.fillGearSetups.push(gearSetupRef.instance.getGearSetup());
-      }
-    });
+    //TODO should do refactor and give up the list in the tabs
+    inputGearSetup.gearSetup = gearSetupTab.gearSetups[0].instance.getGearSetup();
 
     return inputGearSetup;
   }
@@ -120,20 +114,12 @@ export class InputSetupService {
     const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
 
     const globalSettings: GlobalSettings = {
-      iterations: inputSetupJson.globalSettings.iterations,
       npc: npc,
       raidLevel: inputSetupJson.globalSettings.raidLevel,
       pathLevel: inputSetupJson.globalSettings.pathLevel,
       overlyDraining: inputSetupJson.globalSettings.overlyDraining || false,
       isCoxChallengeMode: inputSetupJson.globalSettings.isCoxChallengeMode || false,
       teamSize: inputSetupJson.globalSettings.teamSize,
-      continuousSimSettings: {
-        enabled: inputSetupJson.globalSettings.continuousSimSettings?.enabled ?? false,
-        killCount: inputSetupJson.globalSettings.continuousSimSettings?.killCount ?? 1,
-        deathCharge: inputSetupJson.globalSettings.continuousSimSettings?.deathCharge ?? false,
-        respawnTicks: inputSetupJson.globalSettings.continuousSimSettings?.respawnTicks ?? 0,
-      },
-      isDetailedRun: inputSetupJson.globalSettings.isDetailedRun,
     };
 
     const inputGearSetups: InputGearSetup[] = inputSetupJson.inputGearSetups.map((inputGearSetup: InputGearSetup) => {
@@ -147,15 +133,11 @@ export class InputSetupService {
           : new Set(),
       };
 
-      const mainGearSetup: GearSetup = this.parseGearSetup(inputGearSetup.mainGearSetup);
-      const fillGearSetups: GearSetup[] = inputGearSetup.fillGearSetups.map((gearSetup: GearSetup) =>
-        this.parseGearSetup(gearSetup)
-      );
+      const gearSetup: GearSetup = this.parseGearSetup(inputGearSetup.gearSetup);
 
       return {
         gearSetupSettings,
-        mainGearSetup,
-        fillGearSetups,
+        gearSetup,
       };
     });
 
@@ -191,8 +173,6 @@ export class InputSetupService {
       spell: gearSetup.spell,
       isSpecial: gearSetup.isSpecial,
       prayers: new Set(Array.from(gearSetup.prayers)),
-      conditions: gearSetup.conditions,
-      statDrain: gearSetup.statDrain,
       isOnSlayerTask: gearSetup.isOnSlayerTask,
       isInWilderness: gearSetup.isInWilderness,
       currentHp: gearSetup.currentHp,

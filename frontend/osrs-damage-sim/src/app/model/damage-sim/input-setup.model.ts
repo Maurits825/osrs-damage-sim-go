@@ -14,7 +14,6 @@ export interface InputSetup {
 }
 
 export interface GlobalSettings {
-  iterations: number;
   npc: Npc;
 
   raidLevel: number;
@@ -24,10 +23,6 @@ export interface GlobalSettings {
   isCoxChallengeMode: boolean;
 
   teamSize: number;
-
-  continuousSimSettings: ContinuousSimSettings;
-
-  isDetailedRun: boolean;
 }
 
 export interface ContinuousSimSettings {
@@ -39,8 +34,7 @@ export interface ContinuousSimSettings {
 
 export interface InputGearSetup {
   gearSetupSettings: GearSetupSettings;
-  mainGearSetup: GearSetup;
-  fillGearSetups: GearSetup[];
+  gearSetup: GearSetup;
 }
 
 export interface GearSetupSettings {
@@ -65,10 +59,6 @@ export interface GearSetup {
 
   isSpecial: boolean;
   prayers: Set<Prayer>;
-
-  conditions: Condition[];
-
-  statDrain: StatDrain[];
 
   isOnSlayerTask: boolean;
   isInWilderness: boolean;

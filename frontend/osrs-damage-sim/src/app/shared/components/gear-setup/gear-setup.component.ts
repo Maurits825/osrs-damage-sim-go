@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
@@ -36,7 +36,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
 
   setupCount: number;
-  isMainGearSetup = false;
   gearSetupTabRef: GearSetupTabComponent;
 
   GearSlot = GearSlot;
@@ -225,10 +224,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     this.attackStyles = weapon.attackStyles;
     this.currentAttackType = weapon.attackType;
     this.updateSpecialGear();
-  }
-
-  updateConditions(conditions: Condition[]): void {
-    this.gearSetup.conditions = conditions;
   }
 
   duplicateGearSetup(): void {

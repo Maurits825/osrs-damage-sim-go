@@ -135,10 +135,6 @@
         (selectSetup)="selectGearSetSetup($event)"
       ></app-gear-set-select>
     </div>
-
-    <div *ngIf="!isMainGearSetup">
-      <button type="button" class="btn btn-danger" (click)="removeGearSetup()">Remove</button>
-    </div>
   </div>
 
   <div class="d-flex flex-wrap mb-2 align-items-center" *ngFor="let slot of allGearSlots">
@@ -171,7 +167,6 @@
 
     <app-special-gear
       class="d-flex"
-      [isMainGearSetup]="isMainGearSetup"
       [gearSetup]="gearSetup"
       [specialGear]="specialGear"
       [slot]="slot"
@@ -218,13 +213,6 @@
           (prayerToggle)="togglePrayer($event)"
         ></app-prayer-selection>
       </div>
-    </div>
-
-    <div *ngIf="!isMainGearSetup" class="row mb-3">
-      <app-condition
-        [initialConditions]="gearSetup.conditions"
-        (conditionsChanged)="updateConditions($event)"
-      ></app-condition>
     </div>
   </div>
 </div>

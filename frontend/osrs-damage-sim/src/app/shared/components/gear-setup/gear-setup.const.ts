@@ -29,8 +29,6 @@ export const DEFAULT_GEAR_SETUP: GearSetup = {
   spell: null,
   isSpecial: false,
   prayers: new Set(),
-  conditions: [],
-  statDrain: [],
   isOnSlayerTask: true,
   isInWilderness: true,
   currentHp: 1,

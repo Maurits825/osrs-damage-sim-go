@@ -42,18 +42,15 @@ export class GearSetupTabComponent implements AfterViewInit {
     if (this.inputGearSetupToCopy) {
       this.gearSetupSettingsComponent.gearSetupSettings = cloneDeep(this.inputGearSetupToCopy.gearSetupSettings);
 
-      this.addNewGearSetup(this.inputGearSetupToCopy.mainGearSetup, true);
-      this.inputGearSetupToCopy.fillGearSetups.forEach((gearSetup: GearSetup) => {
-        this.addNewGearSetup(gearSetup);
-      });
+      this.addNewGearSetup(this.inputGearSetupToCopy.gearSetup);
     } else {
-      this.addNewGearSetup(null, true);
+      this.addNewGearSetup(null);
     }
 
     this.changeDetector.detectChanges();
   }
 
-  addNewGearSetup(gearSetup?: GearSetup, isMainGearSetup = false): void {
+  addNewGearSetup(gearSetup?: GearSetup): void {
     let gearSetupRef;
 
     if (gearSetup) {
@@ -66,7 +63,6 @@ export class GearSetupTabComponent implements AfterViewInit {
     }
 
     gearSetupRef.instance.setupCount = this.gearSetups.length + 1;
-    gearSetupRef.instance.isMainGearSetup = isMainGearSetup;
     gearSetupRef.instance.gearSetupTabRef = this;
 
     this.gearSetups.push(gearSetupRef);
