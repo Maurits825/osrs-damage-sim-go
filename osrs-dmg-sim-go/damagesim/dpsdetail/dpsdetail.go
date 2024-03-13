@@ -5,7 +5,6 @@ package dpsdetail
 
 import (
 	"fmt"
-	"math"
 )
 
 type DetailKey string
@@ -84,8 +83,17 @@ const (
 
 type DetailEntries map[DetailKey]DetailEntry
 type DetailEntry struct {
+	detailKey DetailKey
 	value     int
 	operation string
+}
+
+func (entries DetailEntries) GetEntries() []DetailEntry {
+	entriesList := make([]DetailEntry, 0)
+	for _, entry := range entries {
+		entriesList = append(entriesList, entry)
+	}
+	return entriesList
 }
 
 func (entries DetailEntries) Track(detailKey DetailKey, value int, operation string) int {
@@ -94,7 +102,7 @@ func (entries DetailEntries) Track(detailKey DetailKey, value int, operation str
 		return 0
 	}
 
-	entries[detailKey] = DetailEntry{value, operation}
+	entries[detailKey] = DetailEntry{detailKey, value, operation}
 	return value
 }
 
@@ -107,9 +115,16 @@ func (entries DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) in
 }
 
 func (entries DetailEntries) TrackFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
-	result := int(math.Trunc(float64(base*numerator) / float64(denominator)))
+	result := int(float32(base*numerator) / float32(denominator))
 	operation := fmt.Sprintf("%d * %d/%d", base, numerator, denominator)
 
+	entries.Track(detailKey, result, operation)
+	return result
+}
+
+func (entries DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
+	result := int(float32(effectiveLevel*gearBonus+320) / 640.0)
+	operation := fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
 	entries.Track(detailKey, result, operation)
 	return result
 }

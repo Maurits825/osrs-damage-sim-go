@@ -103,12 +103,26 @@ func parseCombatStyle(style string) combatStyle {
 	}
 }
 
+type factor struct {
+	numerator   int
+	denominator int
+}
+
+type prayerBoost struct {
+	meleeAttack    factor
+	meleeStrenght  factor
+	rangedAttack   factor
+	rangedStrength factor
+	magicAttack    factor
+	magicStrength  factor
+}
+
 type player struct {
-	globalSettings *GlobalSettings
-	inputGearSetup *InputGearSetup
-	equipmentStats equipmentStats
-	combatStyle    combatStyle
+	globalSettings  *GlobalSettings
+	inputGearSetup  *InputGearSetup
+	combatStatBoost CombatStats
+	equipmentStats  equipmentStats
+	combatStyle     combatStyle
 }
 
 //TODO could have a New() player to then compute equipstats here??
-//what even is the player struct

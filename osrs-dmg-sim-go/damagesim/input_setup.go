@@ -1,3 +1,4 @@
+// TODO inputsetup package?
 package damagesim
 
 type GearSlot int
@@ -36,11 +37,26 @@ type GearItem struct {
 	Id int `json:"id"`
 }
 
+type Prayer string
+
+const (
+	Piety Prayer = "piety"
+)
+
+// TODO spell
 type GearSetup struct {
-	Name          string                `json:"setupName"`
-	AttackStyle   string                `json:"attackStyle"`
-	Gear          map[GearSlot]GearItem `json:"gear"`
-	BlowpipeDarts GearItem              `json:"blowpipeDarts"`
+	Name            string                `json:"setupName"`
+	AttackStyle     string                `json:"attackStyle"`
+	Gear            map[GearSlot]GearItem `json:"gear"`
+	BlowpipeDarts   GearItem              `json:"blowpipeDarts"`
+	CurrentHp       int                   `json:"currentHp"`
+	IsInWilderness  bool                  `json:"isInWilderness"`
+	IsKandarinDiary bool                  `json:"isKandarinDiary"`
+	IsOnSlayerTask  bool                  `json:"isOnSlayerTask"`
+	IsSpecialAttack bool                  `json:"isSpecial"`
+	MiningLevel     int                   `json:"miningLvl"`
+	Prayers         []Prayer              `json:"prayers"`
+	Spell           string                `json:"spell"`
 }
 
 type CombatStats struct {
@@ -51,15 +67,35 @@ type CombatStats struct {
 	Hitpoints int `json:"hitpoints"`
 }
 
-// TODO other fields
+type StatDrainWeapon string
+
+// TODO others
+const (
+	DragonWarhammer StatDrainWeapon = "Dragon warhammer"
+)
+
+type StatDrain struct {
+	Name  StatDrainWeapon `json:"name"`
+	Value int             `json:"value"`
+}
+
+type PotionBoost string
+
+// TODO other pots
+const (
+	SuperCombat PotionBoost = "super_combat"
+)
+
 type GearSetupSettings struct {
-	CombatStats CombatStats `json:"combatStats"`
+	CombatStats  CombatStats   `json:"combatStats"`
+	AttackCycle  int           `json:"attackCycle"`
+	PotionBoosts []PotionBoost `json:"boosts"`
+	StatDrain    []StatDrain   `json:"statDrains"`
 }
 
 type InputGearSetup struct {
 	GearSetupSettings GearSetupSettings `json:"gearSetupSettings"`
-	MainGearSetup     GearSetup         `json:"mainGearSetup"`
-	FillGearSetups    []GearSetup       `json:"fillGearSetups"`
+	GearSetup         GearSetup         `json:"gearSetup"`
 }
 
 type InputSetup struct {
