@@ -1,10 +1,18 @@
 package damagesim
 
-func (stats *CombatStats) boostStats(potionBoost PotionBoost) {
+func getPotionBoostStats(baseStats CombatStats, potionBoosts []PotionBoost) CombatStats {
+	combatBoost := CombatStats{}
+	for _, potionBoost := range potionBoosts {
+		combatBoost.boostStats(baseStats, potionBoost)
+	}
+	return combatBoost
+}
+
+func (stats *CombatStats) boostStats(base CombatStats, potionBoost PotionBoost) {
 	switch potionBoost {
 	case SuperCombat:
-		stats.Attack = boost(stats.Attack, 5, 0.15)
-		stats.Strength = boost(stats.Strength, 5, 0.15)
+		stats.Attack = boost(base.Attack, 5, 0.15)
+		stats.Strength = boost(base.Strength, 5, 0.15)
 	}
 }
 

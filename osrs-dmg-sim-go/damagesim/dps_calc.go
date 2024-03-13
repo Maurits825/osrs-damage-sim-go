@@ -76,10 +76,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	//TODO check toa for shadow, dhins, virtus -> these add to equipment stats
 
 	combatStyle := parseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
-	combatStatBoost := inputGearSetup.GearSetupSettings.CombatStats
-	for _, potion := range inputGearSetup.GearSetupSettings.PotionBoosts {
-		combatStatBoost.boostStats(potion)
-	}
+	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
 	//TODO prob other stuff to init or get here b4 running calcs
 	return &player{globalSettings, inputGearSetup, combatStatBoost, equipmentStats, combatStyle}
@@ -134,11 +131,38 @@ func getMeleeMaxHit(player *player) int {
 	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.meleeStrength, 64)
 	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
 
+	//TODO all other checks here
+
 	return baseMaxHit
 }
 
 func getRangedMaxHit(player *player) int {
-	return 0
+	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
+	effectiveLevel := baseLevel
+
+	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
+		prayerBoost := prayer.getPrayerBoost()
+		if prayerBoost.rangedStrength.denominator != 0 {
+			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageLevelPrayer, effectiveLevel, prayerBoost.rangedStrength.numerator, prayerBoost.rangedStrength.denominator)
+		}
+	}
+
+	stanceBonus := 8
+	switch player.combatStyle.combatStyleStance {
+	case Accurate:
+		stanceBonus += 3
+	}
+
+	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.DamageEffectiveLevel, effectiveLevel, stanceBonus)
+
+	//TODO ranged void
+
+	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.rangedStrength, 64)
+	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
+
+	//TODO all other checks here
+
+	return baseMaxHit
 }
 
 func getMagicMaxHit(player *player) int {
