@@ -75,3 +75,30 @@ func calculateDps(player *player) (dps float32, maxHit []int, accuracy float32) 
 
 	return 1, []int{1}, 50.65
 }
+
+func getMaxHit(player *player) {
+	style := player.combatStyle.combatStyleType
+	maxHit := 0
+
+	if style == Stab || style == Slash || style == Crush {
+		maxHit = getMeleeMaxHit(player)
+	} else if style == Ranged {
+		maxHit = getRangedMaxHit(player)
+	} else if style == Magic {
+		maxHit = getMagicMaxHit(player)
+	}
+}
+
+//TODO -------- max hit int or []int?????????????
+
+func getMeleeMaxHit(player *player) int {
+
+}
+
+func getRangedMaxHit(player *player) int {
+
+}
+
+func getMagicMaxHit(player *player) int {
+
+}

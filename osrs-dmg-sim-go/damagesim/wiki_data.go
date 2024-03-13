@@ -1,4 +1,6 @@
 // TODO should this be its own package in wiki data?
+// then have to think where to define equipmentItems
+// in wikidata or damagesim?
 package damagesim
 
 import (
