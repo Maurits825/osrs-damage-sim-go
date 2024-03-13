@@ -22,7 +22,6 @@ import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { ItemService } from 'src/app/services/item.service';
-import { Mode } from 'src/app/model/mode.enum';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
@@ -35,10 +34,6 @@ import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 })
 export class GearSetupComponent implements OnInit, OnDestroy {
   @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
-
-  @Input()
-  mode: Mode = Mode.DamageSim;
-  Mode = Mode;
 
   setupCount: number;
   isMainGearSetup = false;

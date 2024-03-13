@@ -9,7 +9,6 @@ import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { Mode } from 'src/app/model/mode.enum';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -21,11 +20,6 @@ import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
   styleUrls: ['./global-settings.component.css'],
 })
 export class GlobalSettingsComponent implements OnInit, OnDestroy {
-  @Input()
-  mode: Mode = Mode.DamageSim;
-
-  Mode = Mode;
-
   globalSettings: GlobalSettings = {
     npc: null,
     iterations: 10000,

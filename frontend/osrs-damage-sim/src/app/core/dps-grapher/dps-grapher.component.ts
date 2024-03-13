@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { DpsGrapherResults } from 'src/app/model/dps-grapher/dps-grapher-results.model';
-import { Mode } from 'src/app/model/mode.enum';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
@@ -10,8 +9,6 @@ import { InputSetupService } from 'src/app/services/input-setup.service';
   styleUrls: ['./dps-grapher.component.css'],
 })
 export class DpsGrapherComponent {
-  Mode = Mode;
-
   loading = false;
 
   dpsGrapherResults: DpsGrapherResults;

@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardService } from 'ngx-clipboard';
 import {} from 'src/app/model/dps-grapher/dps-grapher-settings.model';
-import { Mode } from 'src/app/model/mode.enum';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input-setup-modal/share-input-setup-modal.component';
 
@@ -12,11 +11,6 @@ import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input
   styleUrls: ['./share-input-setup.component.css'],
 })
 export class ShareInputSetupComponent {
-  @Input()
-  mode: Mode = Mode.DamageSim;
-
-  Mode = Mode;
-
   setupString: string;
 
   constructor(
@@ -40,12 +34,11 @@ export class ShareInputSetupComponent {
   openModal() {
     const shareSetupModal = this.modalService.open(ShareInputSetupModalComponent, { animation: false });
 
-    this.setupString = this.mode == Mode.DamageSim ? this.getInputSetupString() : this.getDpsGrapherInputString();
+    this.setupString = this.getInputSetupString();
     shareSetupModal.componentInstance.setupString = this.setupString;
 
     shareSetupModal.componentInstance.loadSetup.subscribe((encodedString: string) => {
-      const isValidSetup =
-        this.mode == Mode.DamageSim ? this.loadInputSetup(encodedString) : this.loadDpsGrapherInput(encodedString);
+      const isValidSetup = this.loadInputSetup(encodedString);
 
       shareSetupModal.componentInstance.isValidSetup = isValidSetup;
     });
