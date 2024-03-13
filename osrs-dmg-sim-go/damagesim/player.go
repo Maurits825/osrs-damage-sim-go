@@ -124,5 +124,3 @@ type player struct {
 	equipmentStats  equipmentStats
 	combatStyle     combatStyle
 }
-
-//TODO could have a New() player to then compute equipstats here??

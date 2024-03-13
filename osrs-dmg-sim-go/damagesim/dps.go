@@ -13,6 +13,7 @@ type DpsCalcResults struct {
 	GlobalSettingsLabel string          `json:"global_settings_label"`
 }
 
+// TODO these are [] because of old api, max hit and accuracy could stay??? if multi hitsplat, at least only mh?
 type DpsCalcResult struct {
 	Labels         InputGearSetupLabels `json:"labels"`
 	TheoreticalDps []float32            `json:"theoretical_dps"`
@@ -47,8 +48,9 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 		dps := []float32{1.23}
 		//TODO this gets max hit, also be able to get hitsplats?
 		maxHit := getMaxHit(player)
-		accuracy := []float32{87.44}
-		dpsCalcResults.Results[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy}
+		attackRoll := float32(getAttackRoll(player))
+		//TODO should be accuracy
+		dpsCalcResults.Results[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, []float32{attackRoll}}
 	}
 
 	//TODO for debug, return in results also?
@@ -103,68 +105,17 @@ func getMaxHit(player *player) int {
 	return maxHit
 }
 
-func getMeleeMaxHit(player *player) int {
-	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Strength, player.combatStatBoost.Strength)
-	effectiveLevel := baseLevel
+func getAttackRoll(player *player) int {
+	style := player.combatStyle.combatStyleType
+	attackRoll := 0
 
-	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
-		prayerBoost := prayer.getPrayerBoost()
-		if prayerBoost.meleeStrenght.denominator != 0 {
-			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageLevelPrayer, effectiveLevel, prayerBoost.meleeStrenght.numerator, prayerBoost.meleeStrenght.denominator)
-		}
+	if style == Stab || style == Slash || style == Crush {
+		attackRoll = getMeleeAttackRoll(player)
+	} else if style == Ranged {
+		attackRoll = getRangedAttackRoll(player)
+	} else if style == Magic {
+		attackRoll = getMagicAttackRoll(player)
 	}
 
-	//TODO soulreaper axe
-
-	stanceBonus := 8
-	switch player.combatStyle.combatStyleStance {
-	case Aggressive:
-		stanceBonus += 3
-	case Controlled:
-		stanceBonus += 1
-	}
-
-	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.DamageEffectiveLevel, effectiveLevel, stanceBonus)
-
-	//TODO melee void
-
-	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.meleeStrength, 64)
-	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
-
-	//TODO all other checks here
-
-	return baseMaxHit
-}
-
-func getRangedMaxHit(player *player) int {
-	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
-	effectiveLevel := baseLevel
-
-	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
-		prayerBoost := prayer.getPrayerBoost()
-		if prayerBoost.rangedStrength.denominator != 0 {
-			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageLevelPrayer, effectiveLevel, prayerBoost.rangedStrength.numerator, prayerBoost.rangedStrength.denominator)
-		}
-	}
-
-	stanceBonus := 8
-	switch player.combatStyle.combatStyleStance {
-	case Accurate:
-		stanceBonus += 3
-	}
-
-	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.DamageEffectiveLevel, effectiveLevel, stanceBonus)
-
-	//TODO ranged void
-
-	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.rangedStrength, 64)
-	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
-
-	//TODO all other checks here
-
-	return baseMaxHit
-}
-
-func getMagicMaxHit(player *player) int {
-	return 0
+	return attackRoll
 }
