@@ -1,1 +1,49 @@
-<p>dps-results works!</p>
+<div *ngIf="dpsResults?.dpsCalcResults && !dpsResults?.error">
+  <h3 class="mb-3 fw-light text-center">{{ dpsResults.global_settings_label }}</h3>
+
+  <div class="row mb-1">
+    <h2 class="mb-1 ps-0">Dps</h2>
+    <table class="table table-bordered border-dark mb-4">
+      <thead>
+        <tr class="text-end">
+          <th scope="col" style="width: 30%" class="text-start">Setup Name</th>
+          <ng-container *ngFor="let dpsSortField of dpsSortFields.slice(0, 3)">
+            <th scope="col" style="width: 10%" (click)="sortDpsResults(dpsSortField)">
+              <button type="button" class="btn w-100 fw-bold p-0 text-end">
+                {{ sortLabels[dpsSortField] }}
+                <ng-container *ngIf="sortConfigs[dpsSortField].isSorted; else notSorted">
+                  <ng-container *ngIf="sortConfigs[dpsSortField].sortOrder === SortOrder.Ascending">
+                    <i class="bi bi-sort-up text-primary"></i>
+                  </ng-container>
+                  <ng-container *ngIf="sortConfigs[dpsSortField].sortOrder === SortOrder.Descending">
+                    <i class="bi bi-sort-down-alt text-primary"></i>
+                  </ng-container>
+                </ng-container>
+                <ng-template #notSorted>
+                  <i class="bi bi-filter text-secondary"></i>
+                </ng-template>
+              </button>
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let result of dpsResults.dpsCalcResults">
+          <tr>
+            <td colspan="7" class="table-active">
+              {{ result.labels.gear_setup_settings_label }}
+            </td>
+          </tr>
+          <ng-container *ngFor="let allWeaponLabels of result.labels.all_weapon_labels; let gearIndex = index">
+            <tr class="text-end">
+              <th scope="row" class="text-start">{{ allWeaponLabels }}</th>
+              <td>{{ result.theoretical_dps | number : "1.2-2" }}</td>
+              <td>{{ result.max_hit }}</td>
+              <td>{{ result.accuracy | number : "1.2-2" }}%</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

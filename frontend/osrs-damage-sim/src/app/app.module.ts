@@ -9,7 +9,6 @@ import { GearSetupTabComponent } from './shared/components/gear-setup-tab/gear-s
 import { GearSetupTabsComponent } from './core/gear-setup-tabs/gear-setup-tabs.component';
 import { NpcInputComponent } from './shared/components/npc-input/npc-input.component';
 import { ConditionComponent } from './shared/components/condition/condition.component';
-import { SimResultsComponent } from './core/sim-results/sim-results.component';
 import { Base64ImagePipe } from './shared/pipes/base64-image.pipe';
 import { GlobalSettingsComponent } from './core/global-settings/global-settings.component';
 import { BoostSelectionComponent } from './shared/components/boost-selection/boost-selection.component';
@@ -49,7 +48,6 @@ import { DpsResultsComponent } from './core/dps-results/dps-results.component';
     GearSetupTabsComponent,
     NpcInputComponent,
     ConditionComponent,
-    SimResultsComponent,
     Base64ImagePipe,
     BoostSelectionComponent,
     GlobalSettingsComponent,
