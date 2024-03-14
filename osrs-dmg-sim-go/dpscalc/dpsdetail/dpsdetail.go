@@ -80,6 +80,7 @@ const (
 	NPCAccuracyRollBase               DetailKey = "NPC accuracy base roll"
 	NPCAccuracyRollBonus              DetailKey = "NPC accuracy bonus"
 	NPCAccuracyRollFinal              DetailKey = "NPC accuracy roll"
+	PlayerDpsFinal                    DetailKey = "Player dps"
 )
 
 type DetailEntries struct {
@@ -89,7 +90,7 @@ type DetailEntries struct {
 
 type DetailEntry struct {
 	detailKey DetailKey
-	value     int
+	value     string
 	operation string
 }
 
@@ -99,15 +100,16 @@ func (entries *DetailEntries) track(detailKey DetailKey, value int, operation st
 		return 0
 	}
 
-	entry := DetailEntry{detailKey: detailKey, value: value, operation: operation}
+	entry := DetailEntry{detailKey, fmt.Sprintf("%d", value), operation}
 	entries.EntriesMap[detailKey] = entry
 	entries.EntriesList = append(entries.EntriesList, entry)
 	return value
 }
 
-func (entries *DetailEntries) TrackValue(detailKey DetailKey, value int) int {
-	entries.track(detailKey, value, "")
-	return value
+func (entries *DetailEntries) TrackValue(detailKey DetailKey, value interface{}) {
+	entry := DetailEntry{detailKey, fmt.Sprintf("%v", value), ""}
+	entries.EntriesMap[detailKey] = entry
+	entries.EntriesList = append(entries.EntriesList, entry)
 }
 
 func (entries *DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
@@ -133,12 +135,14 @@ func (entries *DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effe
 	return result
 }
 
-var finalKeys []DetailKey = []DetailKey{PlayerAccuracyRollFinal, NPCDefenceRollFinal, PlayerAccuracyFinal, MaxHitFinal}
+var finalKeys []DetailKey = []DetailKey{
+	PlayerAccuracyRollFinal, NPCDefenceRollFinal, PlayerAccuracyFinal, MaxHitFinal, PlayerDpsFinal,
+}
 
 func (entries *DetailEntries) SprintFinal() string {
 	final := ""
 	for _, detailKey := range finalKeys {
-		final += fmt.Sprintf("%s: %d, ", detailKey, entries.EntriesMap[detailKey].value)
+		final += fmt.Sprintf("%s: %s, ", detailKey, entries.EntriesMap[detailKey].value)
 	}
 
 	final = strings.TrimSuffix(final, ", ")

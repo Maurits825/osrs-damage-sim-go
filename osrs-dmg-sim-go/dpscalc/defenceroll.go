@@ -1,10 +1,13 @@
-package damagesim
+package dpscalc
 
-import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetail"
+import (
+	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc/dpsdetail"
+)
 
 func getNpcDefenceRoll(player *player) int {
 	//TODO test if use magic def here
-	level := dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollBase, player.npc.combatStats.Defence)
+	level := player.npc.combatStats.Defence
+	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollBase, level)
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceRollEffectiveLevel, level, 9)
 
 	defence := 0
@@ -25,6 +28,6 @@ func getNpcDefenceRoll(player *player) int {
 	defenceRoll := dpsDetailEntries.TrackFactor(dpsdetail.NPCAccuracyRollBase, effectiveLevel, statBonus, 1)
 
 	//TODO toa scaling
-
-	return dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollFinal, defenceRoll)
+	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollFinal, defenceRoll)
+	return defenceRoll
 }

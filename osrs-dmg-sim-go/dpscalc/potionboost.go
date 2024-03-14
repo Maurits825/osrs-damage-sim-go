@@ -1,4 +1,4 @@
-package damagesim
+package dpscalc
 
 func getPotionBoostStats(baseStats CombatStats, potionBoosts []PotionBoost) CombatStats {
 	combatBoost := CombatStats{}

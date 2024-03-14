@@ -1,10 +1,10 @@
-package damagesim
+package dpscalc
 
 import (
 	"fmt"
 	"strconv"
 
-	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetail"
+	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc/dpsdetail"
 )
 
 const (
@@ -99,6 +99,8 @@ func calculateDps(player *player) (dps float32, maxHit int, accuracy float32) {
 	accuracy = getAccuracy(player)
 	dps = ((float32(maxHit) * accuracy) / 2) / (float32(player.equipmentStats.attackSpeed) * TickLength)
 
+	//TODO just track floats
+	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
 	return dps, maxHit, accuracy
 }
 
@@ -108,11 +110,11 @@ func getAccuracy(player *player) float32 {
 	defenceRoll := getNpcDefenceRoll(player)
 
 	accuracy := getNormalAccuracy(attackRoll, defenceRoll)
-	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyBase, int(accuracy*100))
+	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyBase, accuracy)
 
 	//TODO brimstone, fang at toa
 
-	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, int(accuracy*100))
+	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
 	return accuracy
 }
 

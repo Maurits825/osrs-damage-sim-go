@@ -1,5 +1,5 @@
 // TODO inputsetup package?
-package damagesim
+package dpscalc
 
 type GearSlot int
 

@@ -1,4 +1,4 @@
-package damagesim
+package dpscalc
 
 func (prayer Prayer) getPrayerBoost() prayerBoost {
 	switch prayer {

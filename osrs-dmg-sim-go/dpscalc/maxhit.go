@@ -1,6 +1,6 @@
-package damagesim
+package dpscalc
 
-import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetail"
+import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc/dpsdetail"
 
 func getMaxHit(player *player) int {
 	style := player.combatStyle.combatStyleType
@@ -13,8 +13,8 @@ func getMaxHit(player *player) int {
 	} else if style == Magic {
 		maxHit = getMagicMaxHit(player)
 	}
-
-	return dpsDetailEntries.TrackValue(dpsdetail.MaxHitFinal, maxHit)
+	dpsDetailEntries.TrackValue(dpsdetail.MaxHitFinal, maxHit)
+	return maxHit
 }
 
 func getMeleeMaxHit(player *player) int {

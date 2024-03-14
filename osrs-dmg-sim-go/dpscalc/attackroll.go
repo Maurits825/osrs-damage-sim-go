@@ -1,6 +1,8 @@
-package damagesim
+package dpscalc
 
-import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetail"
+import (
+	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc/dpsdetail"
+)
 
 func getAttackRoll(player *player) int {
 	style := player.combatStyle.combatStyleType
@@ -14,7 +16,8 @@ func getAttackRoll(player *player) int {
 		attackRoll = getMagicAttackRoll(player)
 	}
 
-	return dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyRollFinal, attackRoll)
+	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyRollFinal, attackRoll)
+	return attackRoll
 }
 
 func getMeleeAttackRoll(player *player) int {

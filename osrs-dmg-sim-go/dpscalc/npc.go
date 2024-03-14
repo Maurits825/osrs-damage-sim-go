@@ -1,4 +1,4 @@
-package damagesim
+package dpscalc
 
 type aggressiveStats struct {
 	attack int

@@ -1,7 +1,7 @@
 // TODO should this be its own package in wiki data?
 // then have to think where to define equipmentItems
 // in wikidata or damagesim?
-package damagesim
+package dpscalc
 
 import (
 	"encoding/json"
@@ -154,7 +154,7 @@ func (n *npc) UnmarshalJSON(data []byte) error {
 }
 
 func loadItemWikiData() equipmentItems {
-	itemJson, err := os.Open("damagesim/wiki-data/items-dmg-sim.json")
+	itemJson, err := os.Open("dpscalc/wiki-data/items-dmg-sim.json")
 
 	if err != nil {
 		fmt.Println(err)
@@ -177,7 +177,7 @@ func loadItemWikiData() equipmentItems {
 type npcs map[string]npc
 
 func loadNpcWikiData() npcs {
-	npcJson, err := os.Open("damagesim/wiki-data/npcs-dmg-sim.json")
+	npcJson, err := os.Open("dpscalc/wiki-data/npcs-dmg-sim.json")
 
 	if err != nil {
 		fmt.Println(err)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim"
+	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -31,13 +31,13 @@ func getStatus(c *gin.Context) {
 }
 
 func postDpsCalc(c *gin.Context) {
-	var inputSetup damagesim.InputSetup
+	var inputSetup dpscalc.InputSetup
 	if err := c.ShouldBindJSON(&inputSetup); err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusOK, gin.H{"error": "Error with request body"})
 		return
 	}
 
-	results := damagesim.RunDpsCalc(&inputSetup)
+	results := dpscalc.RunDpsCalc(&inputSetup)
 	c.JSON(http.StatusOK, results)
 }

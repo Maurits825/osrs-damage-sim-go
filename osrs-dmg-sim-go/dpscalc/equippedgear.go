@@ -1,4 +1,4 @@
-package damagesim
+package dpscalc
 
 type equippedGear struct {
 	ids []int

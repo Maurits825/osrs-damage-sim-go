@@ -1,4 +1,4 @@
-package damagesim
+package dpscalc
 
 import (
 	"fmt"
