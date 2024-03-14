@@ -2,6 +2,21 @@ package damagesim
 
 import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetail"
 
+func getMaxHit(player *player) int {
+	style := player.combatStyle.combatStyleType
+	maxHit := 0
+
+	if style == Stab || style == Slash || style == Crush {
+		maxHit = getMeleeMaxHit(player)
+	} else if style == Ranged {
+		maxHit = getRangedMaxHit(player)
+	} else if style == Magic {
+		maxHit = getMagicMaxHit(player)
+	}
+
+	return dpsDetailEntries.TrackValue(dpsdetail.MaxHitFinal, maxHit)
+}
+
 func getMeleeMaxHit(player *player) int {
 	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Strength, player.combatStatBoost.Strength)
 	effectiveLevel := baseLevel

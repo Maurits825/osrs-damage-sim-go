@@ -92,7 +92,7 @@ type DetailEntry struct {
 	operation string
 }
 
-func (entries *DetailEntries) Track(detailKey DetailKey, value int, operation string) int {
+func (entries *DetailEntries) track(detailKey DetailKey, value int, operation string) int {
 	if _, exists := entries.EntriesMap[detailKey]; exists {
 		fmt.Println("Key exists, should this happen?????: " + detailKey)
 		return 0
@@ -104,11 +104,16 @@ func (entries *DetailEntries) Track(detailKey DetailKey, value int, operation st
 	return value
 }
 
+func (entries *DetailEntries) TrackValue(detailKey DetailKey, value int) int {
+	entries.track(detailKey, value, "")
+	return value
+}
+
 func (entries *DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
 	result := base + add
 	operation := fmt.Sprintf("%d+%d", base, add)
 
-	entries.Track(detailKey, result, operation)
+	entries.track(detailKey, result, operation)
 	return result
 }
 
@@ -116,13 +121,13 @@ func (entries *DetailEntries) TrackFactor(detailKey DetailKey, base int, numerat
 	result := int(float32(base*numerator) / float32(denominator))
 	operation := fmt.Sprintf("%d * %d/%d", base, numerator, denominator)
 
-	entries.Track(detailKey, result, operation)
+	entries.track(detailKey, result, operation)
 	return result
 }
 
 func (entries *DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
 	result := int(float32(effectiveLevel*gearBonus+320) / 640.0)
 	operation := fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
-	entries.Track(detailKey, result, operation)
+	entries.track(detailKey, result, operation)
 	return result
 }

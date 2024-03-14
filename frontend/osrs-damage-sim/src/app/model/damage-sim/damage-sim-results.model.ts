@@ -86,9 +86,9 @@ export interface DpsCalcResult {
   error?: string | null;
 
   labels: InputGearSetupLabels;
-  theoretical_dps: number[];
+  theoretical_dps: number;
   max_hit: number[];
-  accuracy: number[];
+  accuracy: number;
 }
 
 export interface DpsCalcResults {

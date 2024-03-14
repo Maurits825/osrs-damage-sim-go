@@ -37,6 +37,7 @@ type equipmentStats struct {
 	offensiveStats offensiveStats
 	defensiveStats defensiveStats
 	damageStats    damageStats
+	attackSpeed    int
 }
 
 func (stats *equipmentStats) addStats(statsAdd *equipmentStats) {
@@ -120,6 +121,7 @@ type prayerBoost struct {
 type player struct {
 	globalSettings  *GlobalSettings
 	inputGearSetup  *InputGearSetup
+	npc             npc
 	combatStatBoost CombatStats
 	equipmentStats  equipmentStats
 	combatStyle     combatStyle

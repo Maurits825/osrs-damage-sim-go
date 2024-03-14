@@ -37,9 +37,9 @@
           <ng-container *ngFor="let allWeaponLabels of result.labels.all_weapon_labels; let gearIndex = index">
             <tr class="text-end">
               <th scope="row" class="text-start">{{ allWeaponLabels }}</th>
-              <td>{{ result.theoretical_dps[gearIndex] | number : "1.2-2" }}</td>
-              <td>{{ result.max_hit[gearIndex] }}</td>
-              <td>{{ result.accuracy[gearIndex] | number : "1.2-2" }}%</td>
+              <td>{{ result.theoretical_dps | number : "1.2-2" }}</td>
+              <td>{{ result.max_hit }}</td>
+              <td>{{ result.accuracy | number : "1.2-2" }}%</td>
             </tr>
           </ng-container>
         </ng-container>

@@ -2,6 +2,21 @@ package damagesim
 
 import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetail"
 
+func getAttackRoll(player *player) int {
+	style := player.combatStyle.combatStyleType
+	attackRoll := 0
+
+	if style == Stab || style == Slash || style == Crush {
+		attackRoll = getMeleeAttackRoll(player)
+	} else if style == Ranged {
+		attackRoll = getRangedAttackRoll(player)
+	} else if style == Magic {
+		attackRoll = getMagicAttackRoll(player)
+	}
+
+	return dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyRollFinal, attackRoll)
+}
+
 func getMeleeAttackRoll(player *player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Attack, player.combatStatBoost.Attack)
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
@@ -40,7 +55,6 @@ func getMeleeAttackRoll(player *player) int {
 	return baseRoll
 }
 
-//TODO ranged roll next then npc roll, will have to get npc wiki data!!
 func getRangedAttackRoll(player *player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {

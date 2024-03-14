@@ -65,6 +65,7 @@ type CombatStats struct {
 	Ranged    int `json:"ranged"`
 	Magic     int `json:"magic"`
 	Hitpoints int `json:"hitpoints"`
+	Defence   int `json:"defence"`
 }
 
 type StatDrainWeapon string
