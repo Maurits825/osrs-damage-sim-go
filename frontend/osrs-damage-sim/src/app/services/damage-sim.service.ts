@@ -21,7 +21,6 @@ export class DamageSimService {
   public quickGearSlots$: Observable<QuickGearSlots>;
 
   public dmgSimExampleSetups$: Observable<ExampleSetup[]>;
-  public dpsGrapherExampleSetups$: Observable<ExampleSetup[]>;
   public abbreviations$: Observable<Record<string, string[]>>;
 
   public allSpells$: Observable<string[]>;
@@ -66,7 +65,6 @@ export class DamageSimService {
     );
 
     this.dmgSimExampleSetups$ = this.getDmgSimExampleSetups().pipe(shareReplay(1));
-    this.dpsGrapherExampleSetups$ = this.getDpsGrapherExampleSetups().pipe(shareReplay(1));
     this.abbreviations$ = this.getAbbreviations().pipe(shareReplay(1));
 
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
@@ -134,10 +132,6 @@ export class DamageSimService {
 
   private getDmgSimExampleSetups(): Observable<ExampleSetup[]> {
     return this.http.get<ExampleSetup[]>('assets/json_data/dmg_sim_example_setups.json');
-  }
-
-  private getDpsGrapherExampleSetups(): Observable<ExampleSetup[]> {
-    return this.http.get<ExampleSetup[]>('assets/json_data/dps_grapher_example_setups.json');
   }
 
   private getAbbreviations(): Observable<Record<string, string[]>> {
