@@ -2,14 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DamageSimResults, DpsCalcResults } from '../model/damage-sim/damage-sim-results.model';
+import { DamageSimResults, DpsResults } from '../model/damage-sim/damage-sim-results.model';
 import { ExampleSetup } from '../model/damage-sim/example-setup.model';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
-import { DpsGrapherResults } from '../model/dps-grapher/dps-grapher-results.model';
 import { CombatStats } from '../model/osrs/skill.type';
 import { RuneliteGear } from '../model/damage-sim/runelite-gear.model';
 
@@ -84,14 +83,9 @@ export class DamageSimService {
     return this.http.post<DamageSimResults>(this.damageSimServiceUrl + '/run-damage-sim', inputSetupJson, options);
   }
 
-  public runDpsCalc(inputSetupJson: string): Observable<DpsCalcResults> {
+  public runDpsCalc(inputSetupJson: string): Observable<DpsResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<DpsCalcResults>(this.damageSimServiceUrl + '/run-dps-calc', inputSetupJson, options);
-  }
-
-  public runDpsGrapher(dpsGrapherInput: string): Observable<DpsGrapherResults> {
-    const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<DpsGrapherResults>(this.damageSimServiceUrl + '/run-dps-grapher', dpsGrapherInput, options);
+    return this.http.post<DpsResults>(this.damageSimServiceUrl + '/run-dps-calc', inputSetupJson, options);
   }
 
   public lookupHighscore(rsn: string): Observable<CombatStats> {

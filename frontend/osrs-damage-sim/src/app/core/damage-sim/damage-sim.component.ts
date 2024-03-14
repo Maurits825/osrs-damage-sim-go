@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DamageSimResults, DpsCalcResults } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DamageSimResults, DpsResults } from 'src/app/model/damage-sim/damage-sim-results.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
@@ -12,7 +12,7 @@ export class DamageSimComponent {
   loading = false;
 
   damageSimResults: DamageSimResults;
-  dpsCalcResults: DpsCalcResults;
+  dpsResults: DpsResults;
 
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
 
@@ -39,19 +39,19 @@ export class DamageSimComponent {
     const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
 
     this.damageSimservice.runDpsCalc(inputSetupJson).subscribe({
-      next: (results: DpsCalcResults) => {
+      next: (results: DpsResults) => {
         this.loading = false;
-        this.dpsCalcResults = results;
+        this.dpsResults = results;
       },
       error: (error) => {
         this.loading = false;
-        this.dpsCalcResults = { ...this.dpsCalcResults, error: error.statusText };
+        this.dpsResults = { ...this.dpsResults, error: error.statusText };
       },
     });
   }
 
   clearResults(): void {
     this.damageSimResults = null;
-    this.dpsCalcResults = null;
+    this.dpsResults = null;
   }
 }

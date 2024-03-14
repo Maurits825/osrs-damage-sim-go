@@ -33,7 +33,6 @@ import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
 import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
 import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
 import { DamageSimComponent } from './core/damage-sim/damage-sim.component';
-import { DpsGrapherComponent } from './core/dps-grapher/dps-grapher.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-grapher-settings.component';
 import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
@@ -41,6 +40,7 @@ import { TrailblazerRelicsComponent } from './shared/components/leagues/trailbla
 import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cycle.component';
 import { SettingsModalComponent } from './shared/modals/settings-modal/settings-modal.component';
 import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
+import { DpsResultsComponent } from './core/dps-results/dps-results.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,13 +70,13 @@ import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-gu
     SpecialProcTextPipe,
     QuickGearSelectComponent,
     DamageSimComponent,
-    DpsGrapherComponent,
     DpsGrapherSettingsComponent,
     HighscoreLookupComponent,
     TrailblazerRelicsComponent,
     AttackCycleComponent,
     SettingsModalComponent,
     LoadRlSetupGuideModalComponent,
+    DpsResultsComponent,
   ],
   imports: [
     NgSelectModule,

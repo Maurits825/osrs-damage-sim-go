@@ -11,7 +11,7 @@ import {
 import {
   DamageSimResult,
   DamageSimResults,
-  DpsCalcResults,
+  DpsResults,
   SimStats,
 } from '../../model/damage-sim/damage-sim-results.model';
 
@@ -25,7 +25,7 @@ export class SimResultsComponent implements OnChanges {
   damageSimResults: DamageSimResults;
 
   @Input()
-  dpsCalcResults: DpsCalcResults;
+  dpsResults: DpsResults;
 
   sortConfigs: SortConfigs = {
     average: { sortOrder: SortOrder.Ascending, isSorted: false },
@@ -62,7 +62,7 @@ export class SimResultsComponent implements OnChanges {
       this.targetTime = '';
     }
 
-    if (changes['dpsCalcResults'] && this.dpsCalcResults && !this.dpsCalcResults.error) {
+    if (changes['dpsCalcResults'] && this.dpsResults && !this.dpsResults.error) {
       this.sortConfigs.theoretical_dps.sortOrder = SortOrder.Descending;
       this.sortDpsResults('theoretical_dps');
     }
@@ -116,7 +116,7 @@ export class SimResultsComponent implements OnChanges {
 
   sortDpsResults(dpsSortField: DpsSortField): void {
     const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
-    const results = (this.damageSimResults ? this.damageSimResults : this.dpsCalcResults) as DamageSimResults;
+    const results = (this.damageSimResults ? this.damageSimResults : this.dpsResults) as DamageSimResults;
     results.results.sort((result1: DamageSimResult, result2: DamageSimResult) => {
       if (typeof result1[dpsSortField] === 'number') {
         return (

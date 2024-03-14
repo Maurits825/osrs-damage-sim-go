@@ -12,12 +12,9 @@ import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-setup-tab.component';
-import { GearSetupComponent } from '../shared/components/gear-setup/gear-setup.component';
 import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
-import { DpsGrapherInput } from '../model/dps-grapher/dps-grapher-input.model';
-import { DpsGrapherSettings } from '../model/dps-grapher/dps-grapher-settings.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,12 +26,6 @@ export class InputSetupService {
 
   globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
   gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
-
-  dpsGrapherSettings$: BehaviorSubject<DpsGrapherSettings> = new BehaviorSubject({
-    type: 'Dragon warhammer',
-    min: 0,
-    max: 10,
-  });
 
   constructor(private damageSimservice: DamageSimService, private itemService: ItemService) {
     this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
@@ -48,18 +39,6 @@ export class InputSetupService {
       this.gearSetupTabs$.getValue()
     );
     return this.convertInputObjectToJson(inputSetup);
-  }
-
-  getDpsGrapherInputAsJson(): string {
-    const inputSetup: InputSetup = this.getInputSetup(
-      this.globalSettingsComponent$.getValue().globalSettings,
-      this.gearSetupTabs$.getValue()
-    );
-    const dpsGrapherInput: DpsGrapherInput = {
-      settings: this.dpsGrapherSettings$.getValue(),
-      inputSetup: inputSetup,
-    };
-    return this.convertInputObjectToJson(dpsGrapherInput);
   }
 
   getInputSetup(globalSettings: GlobalSettings, gearSetupTabs: GearSetupTabComponent[]): InputSetup {
@@ -91,22 +70,6 @@ export class InputSetupService {
   parseInputSetupFromEncodedString(encodedString: string): InputSetup {
     const inputSetupJson = JSON.parse(window.atob(encodedString));
     return this.parseInputSetupFromJson(inputSetupJson);
-  }
-
-  parseDpsGrapherInputFromEncodedString(encodedString: string): DpsGrapherInput {
-    const dpsGrapherInputJson = JSON.parse(window.atob(encodedString));
-    return {
-      inputSetup: this.parseInputSetupFromJson(dpsGrapherInputJson['inputSetup']),
-      settings: this.parseDpsGrapherSettingsFromJson(dpsGrapherInputJson['settings']),
-    };
-  }
-
-  parseDpsGrapherSettingsFromJson(dpsGrapherSettings: DpsGrapherSettings): DpsGrapherSettings {
-    return {
-      type: dpsGrapherSettings.type,
-      min: dpsGrapherSettings.min,
-      max: dpsGrapherSettings.max,
-    };
   }
 
   parseInputSetupFromJson(inputSetupJson: InputSetup): InputSetup {
@@ -147,7 +110,7 @@ export class InputSetupService {
     };
   }
 
-  private convertInputObjectToJson(inputObject: InputSetup | DpsGrapherInput): string {
+  private convertInputObjectToJson(inputObject: InputSetup): string {
     return JSON.stringify(
       inputObject,
       this.replacerWithPath((key: string, value: unknown, path: string) => {

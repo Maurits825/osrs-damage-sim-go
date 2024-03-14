@@ -12,9 +12,10 @@ const (
 )
 
 // TODO has snake_case json because response on FE is like that, could refactor in the future
-type DpsCalcResults struct {
-	Results             []DpsCalcResult `json:"results"`
-	GlobalSettingsLabel string          `json:"global_settings_label"`
+type DpsResults struct {
+	DpsCalcResults      []DpsCalcResult    `json:"dpsCalcResults"`
+	DpsGrapherResults   []DpsGrapherResult `json:"dpsGrapherResults"`
+	GlobalSettingsLabel string             `json:"global_settings_label"`
 }
 
 type DpsCalcResult struct {
@@ -37,9 +38,8 @@ var allNpcs npcs = loadNpcWikiData()
 // is this scuffed? its global... but otherwise have to pass it around everywhere
 var dpsDetailEntries *dpsdetail.DetailEntries
 
-func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
-	dpsCalcResults := DpsCalcResults{make([]DpsCalcResult, len(inputSetup.InputGearSetups)), "Global settings label"}
-
+func RunDpsCalc(inputSetup *InputSetup) *DpsResults {
+	dpsCalcResults := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
 		//TODO should dpsdetail do this?
 		dpsDetailEntries = &dpsdetail.DetailEntries{
@@ -57,11 +57,13 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 		dps, maxHit, accuracy := calculateDps(player)
 
 		//TODO get hitsplat maxhits
-		dpsCalcResults.Results[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
+		dpsCalcResults[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
 		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 	}
 
-	return &dpsCalcResults
+	dpsGrapherResults := RunDpsGrapher(inputSetup)
+	dpsResults := DpsResults{dpsCalcResults, dpsGrapherResults, "Global settings label"}
+	return &dpsResults
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {

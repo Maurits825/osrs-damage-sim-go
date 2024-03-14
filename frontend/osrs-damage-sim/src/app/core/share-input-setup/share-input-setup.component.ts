@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardService } from 'ngx-clipboard';
-import {} from 'src/app/model/dps-grapher/dps-grapher-settings.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input-setup-modal/share-input-setup-modal.component';
 
@@ -23,12 +22,6 @@ export class ShareInputSetupComponent {
     const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
 
     return window.btoa(inputSetupJson);
-  }
-
-  getDpsGrapherInputString(): string {
-    const dpsGrapherInputJson = this.inputSetupService.getDpsGrapherInputAsJson();
-
-    return window.btoa(dpsGrapherInputJson);
   }
 
   openModal() {
@@ -63,22 +56,6 @@ export class ShareInputSetupComponent {
     }
 
     this.inputSetupService.loadInputSetup$.next(inputSetup);
-    return true;
-  }
-
-  loadDpsGrapherInput(encodedString: string): boolean {
-    if (!encodedString) return false;
-
-    let dpsGrapherInput;
-    try {
-      dpsGrapherInput = this.inputSetupService.parseDpsGrapherInputFromEncodedString(encodedString);
-    } catch (error) {
-      return false;
-    }
-
-    this.inputSetupService.loadInputSetup$.next(dpsGrapherInput.inputSetup);
-    this.inputSetupService.dpsGrapherSettings$.next(dpsGrapherInput.settings);
-
     return true;
   }
 }
