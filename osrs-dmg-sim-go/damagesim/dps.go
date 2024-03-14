@@ -34,34 +34,31 @@ var allItems equipmentItems = loadItemWikiData()
 var allNpcs npcs = loadNpcWikiData()
 
 // TODO where to put this??, we have to clear it now also...
+// is this scuffed? its global... but otherwise have to pass it around everywhere
 var dpsDetailEntries *dpsdetail.DetailEntries
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
-	//TODO should dpsdetail do this?
-	dpsDetailEntries = &dpsdetail.DetailEntries{
-		EntriesMap:  make(map[dpsdetail.DetailKey]dpsdetail.DetailEntry),
-		EntriesList: make([]dpsdetail.DetailEntry, 0),
-	}
 	dpsCalcResults := DpsCalcResults{make([]DpsCalcResult, len(inputSetup.InputGearSetups)), "Global settings label"}
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		//run for just main now, will be like that in the future??
+		//TODO should dpsdetail do this?
+		dpsDetailEntries = &dpsdetail.DetailEntries{
+			EntriesMap:  make(map[dpsdetail.DetailKey]dpsdetail.DetailEntry),
+			EntriesList: make([]dpsdetail.DetailEntry, 0),
+		}
+
+		//TODO refactor labels, in FE also
 		inputGearSetupLabels := InputGearSetupLabels{
 			"label", "settings label", []string{inputGearSetup.GearSetup.Name},
 		}
 
 		player := getPlayer(&inputSetup.GlobalSettings, &inputGearSetup)
-		//TODO calc maxhit based on player?
 
 		dps, maxHit, accuracy := calculateDps(player)
 
 		//TODO get hitsplat maxhits
 		dpsCalcResults.Results[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
-	}
-
-	//TODO for debug, return in results also?
-	for _, entry := range dpsDetailEntries.EntriesList {
-		fmt.Println(entry)
+		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 	}
 
 	return &dpsCalcResults

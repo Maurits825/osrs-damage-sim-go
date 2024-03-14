@@ -5,6 +5,7 @@ package dpsdetail
 
 import (
 	"fmt"
+	"strings"
 )
 
 type DetailKey string
@@ -130,4 +131,16 @@ func (entries *DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effe
 	operation := fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
 	entries.track(detailKey, result, operation)
 	return result
+}
+
+var finalKeys []DetailKey = []DetailKey{PlayerAccuracyRollFinal, NPCDefenceRollFinal, PlayerAccuracyFinal, MaxHitFinal}
+
+func (entries *DetailEntries) SprintFinal() string {
+	final := ""
+	for _, detailKey := range finalKeys {
+		final += fmt.Sprintf("%s: %d, ", detailKey, entries.EntriesMap[detailKey].value)
+	}
+
+	final = strings.TrimSuffix(final, ", ")
+	return final
 }
