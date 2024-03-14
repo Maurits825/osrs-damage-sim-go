@@ -5,8 +5,7 @@ import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/damagesim/dpsdetai
 func getMeleeAttackRoll(player *player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Attack, player.combatStatBoost.Attack)
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
-		prayerBoost := prayer.getPrayerBoost()
-		if factor := prayerBoost.meleeAttack; factor.denominator != 0 {
+		if factor := prayer.getPrayerBoost().meleeAttack; factor.denominator != 0 {
 			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyLevelPrayer, effectiveLevel, factor.numerator, factor.denominator)
 		}
 	}
@@ -33,7 +32,7 @@ func getMeleeAttackRoll(player *player) int {
 		accuracy = player.equipmentStats.offensiveStats.crush
 	}
 
-	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, accuracy, 64)
+	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyGearBonus, accuracy, 64)
 	baseRoll := dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRollBase, effectiveLevel, gearBonus, 1)
 
 	//TODO other checks
@@ -41,8 +40,31 @@ func getMeleeAttackRoll(player *player) int {
 	return baseRoll
 }
 
+//TODO ranged roll next then npc roll, will have to get npc wiki data!!
 func getRangedAttackRoll(player *player) int {
-	return 0
+	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
+	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
+		if factor := prayer.getPrayerBoost().rangedAttack; factor.denominator != 0 {
+			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyLevelPrayer, effectiveLevel, factor.numerator, factor.denominator)
+		}
+	}
+
+	stanceBonus := 8
+	switch player.combatStyle.combatStyleStance {
+	case Accurate:
+		stanceBonus += 3
+	}
+
+	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyEffectiveLevel, effectiveLevel, stanceBonus)
+
+	//TODO ranged void
+
+	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyGearBonus, player.equipmentStats.offensiveStats.ranged, 64)
+	baseRoll := dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRollBase, effectiveLevel, gearBonus, 1)
+
+	//TODO other checks
+
+	return baseRoll
 }
 
 func getMagicAttackRoll(player *player) int {
