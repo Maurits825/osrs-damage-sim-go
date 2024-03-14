@@ -81,32 +81,30 @@ const (
 	NPCAccuracyRollFinal              DetailKey = "NPC accuracy roll"
 )
 
-type DetailEntries map[DetailKey]DetailEntry
+type DetailEntries struct {
+	EntriesMap  map[DetailKey]DetailEntry
+	EntriesList []DetailEntry
+}
+
 type DetailEntry struct {
 	detailKey DetailKey
 	value     int
 	operation string
 }
 
-func (entries DetailEntries) GetEntries() []DetailEntry {
-	entriesList := make([]DetailEntry, 0)
-	for _, entry := range entries {
-		entriesList = append(entriesList, entry)
-	}
-	return entriesList
-}
-
-func (entries DetailEntries) Track(detailKey DetailKey, value int, operation string) int {
-	if _, exists := entries[detailKey]; exists {
-		fmt.Println("Key exists, should this happen?????")
+func (entries *DetailEntries) Track(detailKey DetailKey, value int, operation string) int {
+	if _, exists := entries.EntriesMap[detailKey]; exists {
+		fmt.Println("Key exists, should this happen?????: " + detailKey)
 		return 0
 	}
 
-	entries[detailKey] = DetailEntry{detailKey, value, operation}
+	entry := DetailEntry{detailKey: detailKey, value: value, operation: operation}
+	entries.EntriesMap[detailKey] = entry
+	entries.EntriesList = append(entries.EntriesList, entry)
 	return value
 }
 
-func (entries DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
+func (entries *DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
 	result := base + add
 	operation := fmt.Sprintf("%d+%d", base, add)
 
@@ -114,7 +112,7 @@ func (entries DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) in
 	return result
 }
 
-func (entries DetailEntries) TrackFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
+func (entries *DetailEntries) TrackFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
 	result := int(float32(base*numerator) / float32(denominator))
 	operation := fmt.Sprintf("%d * %d/%d", base, numerator, denominator)
 
@@ -122,7 +120,7 @@ func (entries DetailEntries) TrackFactor(detailKey DetailKey, base int, numerato
 	return result
 }
 
-func (entries DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
+func (entries *DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
 	result := int(float32(effectiveLevel*gearBonus+320) / 640.0)
 	operation := fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
 	entries.Track(detailKey, result, operation)

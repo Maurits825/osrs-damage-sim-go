@@ -30,10 +30,14 @@ type InputGearSetupLabels struct {
 var allItems equipmentItems = loadItemWikiData()
 
 // TODO where to put this??, we have to clear it now also...
-var dpsDetailEntries dpsdetail.DetailEntries
+var dpsDetailEntries *dpsdetail.DetailEntries
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
-	dpsDetailEntries = dpsdetail.DetailEntries{}
+	//TODO should dpsdetail do this?
+	dpsDetailEntries = &dpsdetail.DetailEntries{
+		EntriesMap:  make(map[dpsdetail.DetailKey]dpsdetail.DetailEntry),
+		EntriesList: make([]dpsdetail.DetailEntry, 0),
+	}
 	dpsCalcResults := DpsCalcResults{make([]DpsCalcResult, len(inputSetup.InputGearSetups)), "Global settings label"}
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
@@ -54,7 +58,7 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	}
 
 	//TODO for debug, return in results also?
-	for _, entry := range dpsDetailEntries.GetEntries() {
+	for _, entry := range dpsDetailEntries.EntriesList {
 		fmt.Println(entry)
 	}
 
