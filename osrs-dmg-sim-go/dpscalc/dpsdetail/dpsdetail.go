@@ -94,22 +94,19 @@ type DetailEntry struct {
 	operation string
 }
 
-func (entries *DetailEntries) track(detailKey DetailKey, value int, operation string) int {
+func (entries *DetailEntries) track(detailKey DetailKey, value interface{}, operation string) {
 	if _, exists := entries.EntriesMap[detailKey]; exists {
 		fmt.Println("Key exists, should this happen?????: " + detailKey)
-		return 0
+		return
 	}
 
-	entry := DetailEntry{detailKey, fmt.Sprintf("%d", value), operation}
+	entry := DetailEntry{detailKey, fmt.Sprintf("%v", value), operation}
 	entries.EntriesMap[detailKey] = entry
 	entries.EntriesList = append(entries.EntriesList, entry)
-	return value
 }
 
 func (entries *DetailEntries) TrackValue(detailKey DetailKey, value interface{}) {
-	entry := DetailEntry{detailKey, fmt.Sprintf("%v", value), ""}
-	entries.EntriesMap[detailKey] = entry
-	entries.EntriesList = append(entries.EntriesList, entry)
+	entries.track(detailKey, value, "")
 }
 
 func (entries *DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
