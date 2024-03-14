@@ -47,3 +47,12 @@
     </table>
   </div>
 </div>
+
+<div *ngIf="dpsResults?.dpsGrapherResults && !dpsResults?.error">
+  <ng-container *ngFor="let dpsGrapherResult of dpsResults?.dpsGrapherResults">
+    <div>
+      <h3>{{ dpsGrapherResult.graphType }}</h3>
+      <div>{{ dpsGrapherResult.graphData | json }}</div>
+    </div>
+  </ng-container>
+</div>

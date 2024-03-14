@@ -25,6 +25,7 @@ export class DpsResultsComponent implements OnChanges {
   @Input()
   dpsResults: DpsResults;
 
+  //TODO simplify
   sortConfigs: SortConfigs = {
     average: { sortOrder: SortOrder.Ascending, isSorted: false },
     maximum: { sortOrder: SortOrder.Ascending, isSorted: false },
