@@ -117,12 +117,20 @@ export class SimResultsComponent implements OnChanges {
   sortDpsResults(dpsSortField: DpsSortField): void {
     const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
     const results = (this.damageSimResults ? this.damageSimResults : this.dpsCalcResults) as DamageSimResults;
-    results.results.sort((result1: DamageSimResult, result2: DamageSimResult) =>
-      typeof result1[dpsSortField][0] === 'number'
-        ? sortOrder * ((result1[dpsSortField][0] as number) - (result2[dpsSortField][0] as number))
-        : sortOrder * ((result1[dpsSortField][0] as SimStats).average as number) -
-          ((result2[dpsSortField][0] as SimStats).average as number)
-    );
+    results.results.sort((result1: DamageSimResult, result2: DamageSimResult) => {
+      if (typeof result1[dpsSortField] === 'number') {
+        return (
+          sortOrder * ((result1[dpsSortField] as unknown as number) - (result2[dpsSortField] as unknown as number))
+        );
+      }
+      if (typeof result1[dpsSortField][0] === 'number') {
+        return sortOrder * ((result1[dpsSortField][0] as number) - (result2[dpsSortField][0] as number));
+      }
+      return (
+        sortOrder * ((result1[dpsSortField][0] as SimStats).average as number) -
+        ((result2[dpsSortField][0] as SimStats).average as number)
+      );
+    });
 
     this.updateSortConfigs(dpsSortField);
   }
