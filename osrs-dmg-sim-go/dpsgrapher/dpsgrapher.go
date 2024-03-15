@@ -50,28 +50,29 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 }
 
 func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
-	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
-	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: make([]float32, MaxLevel)}
-	}
 	xValues := make([]float32, MaxLevel)
 	for level := 1; level <= MaxLevel; level++ {
 		xValues[level-1] = float32(level)
-		for _, inputGearSetup := range inputSetup.InputGearSetups {
-			//just update the input setup for now, could be done better
-			switch graphType {
-			case AttackLevel:
-				inputGearSetup.GearSetupSettings.CombatStats.Attack = level
-			case StrengthLevel:
-				inputGearSetup.GearSetupSettings.CombatStats.Strength = level
-			}
-		}
-		dpsCalcResult := dpscalc.RunDpsCalc(inputSetup)
-		for i, dpsCalcResult := range dpsCalcResult.Results {
-			dpsGraphDatas[i].Dps[level-1] = dpsCalcResult.TheoreticalDps
-
-		}
 	}
+	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
 
+	var statChange *int
+	//loop here creates a copy of the slice
+	for i, inputGearSetup := range inputSetup.InputGearSetups {
+		switch graphType {
+		case AttackLevel:
+			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Attack
+		case StrengthLevel:
+			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Strength
+		}
+
+		dps := make([]float32, MaxLevel)
+		for level := 1; level <= MaxLevel; level++ {
+			*statChange = level
+			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup)
+			dps[level-1] = dpsCalcResult.TheoreticalDps
+		}
+		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }

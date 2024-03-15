@@ -40,28 +40,32 @@ var dpsDetailEntries *dpsdetail.DetailEntries
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		//TODO should dpsdetail do this?
-		dpsDetailEntries = &dpsdetail.DetailEntries{
-			EntriesMap:  make(map[dpsdetail.DetailKey]dpsdetail.DetailEntry),
-			EntriesList: make([]dpsdetail.DetailEntry, 0),
-		}
-
-		//TODO refactor labels, in FE also
-		inputGearSetupLabels := InputGearSetupLabels{
-			"label", "settings label", []string{inputGearSetup.GearSetup.Name},
-		}
-
-		player := getPlayer(&inputSetup.GlobalSettings, &inputGearSetup)
-
-		dps, maxHit, accuracy := calculateDps(player)
-
-		//TODO get hitsplat maxhits
-		dpsCalcResult[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
-		//TODO make that empty tracker thing interface
-		// fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
+		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup)
 	}
 
 	return &DpsCalcResults{"some title", dpsCalcResult}
+}
+
+func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) DpsCalcResult {
+	//TODO should dpsdetail do this?
+	dpsDetailEntries = &dpsdetail.DetailEntries{
+		EntriesMap:  make(map[dpsdetail.DetailKey]dpsdetail.DetailEntry),
+		EntriesList: make([]dpsdetail.DetailEntry, 0),
+	}
+
+	//TODO refactor labels, in FE also
+	inputGearSetupLabels := InputGearSetupLabels{
+		"label", "settings label", []string{inputGearSetup.GearSetup.Name},
+	}
+
+	player := getPlayer(globalSettings, inputGearSetup)
+
+	dps, maxHit, accuracy := calculateDps(player)
+
+	//TODO get hitsplat maxhits
+	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
+	//TODO make that empty tracker thing interface
+	// fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
