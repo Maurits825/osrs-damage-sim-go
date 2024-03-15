@@ -1,11 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import {
-  DamageSimResults,
-  DpsResults,
-  DamageSimResult,
-  SimStats,
-  DpsCalcResult,
-} from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DamageSimResult, DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DpsGrapherResult, GraphType, GraphTypes } from 'src/app/model/damage-sim/dps-grapher-results.model';
 import {
   SortConfigs,
   SortOrder,
@@ -45,6 +40,10 @@ export class DpsResultsComponent implements OnChanges {
   dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
 
+  DpsGrapherResult: DpsGrapherResult;
+
+  selectedGaphResult: DpsGrapherResult;
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsCalcResults'] && this.dpsResults && !this.dpsResults.error) {
       this.sortConfigs.theoretical_dps.sortOrder = SortOrder.Descending;
@@ -75,5 +74,9 @@ export class DpsResultsComponent implements OnChanges {
 
     this.sortConfigs[sortField].isSorted = true;
     this.sortConfigs[sortField].sortOrder *= -1;
+  }
+
+  selectedGaphResultChange(dpsGrapherResult: DpsGrapherResult): void {
+    this.selectedGaphResult = dpsGrapherResult;
   }
 }

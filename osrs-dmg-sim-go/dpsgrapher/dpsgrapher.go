@@ -25,10 +25,12 @@ type GraphType string
 const (
 	AttackLevel   GraphType = "Attack"
 	StrengthLevel GraphType = "Strength"
+	RangedLevel   GraphType = "Ranged"
+	MagicLevel    GraphType = "Magic"
 )
 
 // TODO kinda scuffed
-var graphTypes = []GraphType{AttackLevel, StrengthLevel}
+var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
 	MaxLevel = 10 //TODO set to 99!
@@ -40,7 +42,7 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 	for i, graphType := range graphTypes {
 		dpsGrapherResult := DpsGrapherResult{}
 		switch graphType {
-		case AttackLevel, StrengthLevel:
+		case AttackLevel, StrengthLevel, RangedLevel, MagicLevel:
 			dpsGrapherResult = getLevelDpsGrapher(inputSetup, graphType)
 		}
 		dpsGrapherResults.Results[i] = dpsGrapherResult
@@ -64,6 +66,10 @@ func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) Dps
 			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Attack
 		case StrengthLevel:
 			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Strength
+		case RangedLevel:
+			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Ranged
+		case MagicLevel:
+			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Magic
 		}
 
 		dps := make([]float32, MaxLevel)
