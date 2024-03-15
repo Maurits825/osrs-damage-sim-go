@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc"
-	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpsgrapher"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

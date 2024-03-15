@@ -1,4 +1,4 @@
-module github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go
+module github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim
 
 go 1.22.1
 

@@ -1,7 +1,7 @@
 package dpsgrapher
 
 import (
-	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
 type DpsGrapherResults struct {

@@ -1,6 +1,6 @@
 package dpscalc
 
-import "github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc/dpsdetail"
+import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 
 func getMaxHit(player *player) int {
 	style := player.combatStyle.combatStyleType
