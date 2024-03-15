@@ -12,17 +12,18 @@ export const GraphTypes = [
 ] as const;
 export type GraphType = (typeof GraphTypes)[number];
 
-export interface DpsData {
+export interface DpsGraphData {
   label: string;
   dps: number[];
 }
 
-export interface DpsGraphData {
-  xValues: string[];
-  dpsData: DpsData[];
-}
-
 export interface DpsGrapherResult {
   graphType: string;
-  graphData: DpsGraphData;
+  xValues: string[];
+  dpsData: DpsGraphData[];
+}
+
+export interface DpsGrapherResults {
+  title: string;
+  results: DpsGrapherResult[];
 }

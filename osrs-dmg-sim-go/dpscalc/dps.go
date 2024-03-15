@@ -1,7 +1,6 @@
 package dpscalc
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc/dpsdetail"
@@ -12,10 +11,10 @@ const (
 )
 
 // TODO has snake_case json because response on FE is like that, could refactor in the future
-type DpsResults struct {
-	DpsCalcResults      []DpsCalcResult    `json:"dpsCalcResults"`
-	DpsGrapherResults   []DpsGrapherResult `json:"dpsGrapherResults"`
-	GlobalSettingsLabel string             `json:"global_settings_label"`
+
+type DpsCalcResults struct {
+	Title   string          `json:"title"`
+	Results []DpsCalcResult `json:"results"`
 }
 
 type DpsCalcResult struct {
@@ -38,8 +37,8 @@ var allNpcs npcs = loadNpcWikiData()
 // is this scuffed? its global... but otherwise have to pass it around everywhere
 var dpsDetailEntries *dpsdetail.DetailEntries
 
-func RunDpsCalc(inputSetup *InputSetup) *DpsResults {
-	dpsCalcResults := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
+func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
+	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
 		//TODO should dpsdetail do this?
 		dpsDetailEntries = &dpsdetail.DetailEntries{
@@ -57,13 +56,12 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsResults {
 		dps, maxHit, accuracy := calculateDps(player)
 
 		//TODO get hitsplat maxhits
-		dpsCalcResults[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
-		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
+		dpsCalcResult[i] = DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
+		//TODO make that empty tracker thing interface
+		// fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 	}
 
-	dpsGrapherResults := RunDpsGrapher(inputSetup)
-	dpsResults := DpsResults{dpsCalcResults, dpsGrapherResults, "Global settings label"}
-	return &dpsResults
+	return &DpsCalcResults{"some title", dpsCalcResult}
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {

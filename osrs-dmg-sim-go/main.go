@@ -5,12 +5,19 @@ import (
 	"net/http"
 
 	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpscalc"
+	"github.com/Maurits825/osrs-damage-sim/osrs-dmg-sim-go/dpsgrapher"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 type status struct {
 	Status string `json:"status"`
+}
+
+// TODO maybe put elsewhere
+type DpsResults struct {
+	DpsCalcResults    dpscalc.DpsCalcResults       `json:"dpsCalcResults"`
+	DpsGrapherResults dpsgrapher.DpsGrapherResults `json:"dpsGrapherResults"`
 }
 
 func main() {
@@ -38,6 +45,7 @@ func postDpsCalc(c *gin.Context) {
 		return
 	}
 
-	results := dpscalc.RunDpsCalc(&inputSetup)
-	c.JSON(http.StatusOK, results)
+	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
+	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
+	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
 }

@@ -1,5 +1,5 @@
 import { Item } from '../osrs/item.model';
-import { DpsGrapherResult } from './dps-grapher-results.model';
+import { DpsGrapherResults } from './dps-grapher-results.model';
 
 export interface InputGearSetupLabels {
   input_gear_setup_label: string;
@@ -92,10 +92,14 @@ export interface DpsCalcResult {
   accuracy: number;
 }
 
+export interface DpsCalcResults {
+  title: string;
+  results: DpsCalcResult[];
+}
+
 export interface DpsResults {
   error?: string | null;
 
-  dpsCalcResults: DpsCalcResult[];
-  dpsGrapherResults: DpsGrapherResult[];
-  global_settings_label: string;
+  dpsCalcResults: DpsCalcResults;
+  dpsGrapherResults: DpsGrapherResults;
 }

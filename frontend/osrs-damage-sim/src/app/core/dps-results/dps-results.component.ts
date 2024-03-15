@@ -54,7 +54,7 @@ export class DpsResultsComponent implements OnChanges {
 
   sortDpsResults(dpsSortField: DpsSortField): void {
     const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
-    this.dpsResults.dpsCalcResults.sort((result1: DpsCalcResult, result2: DpsCalcResult) => {
+    this.dpsResults.dpsCalcResults.results.sort((result1: DpsCalcResult, result2: DpsCalcResult) => {
       if (typeof result1[dpsSortField] === 'number') {
         return sortOrder * ((result1[dpsSortField] as number) - (result2[dpsSortField] as number));
       }
