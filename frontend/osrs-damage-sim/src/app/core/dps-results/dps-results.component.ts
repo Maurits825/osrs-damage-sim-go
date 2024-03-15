@@ -1,15 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DamageSimResult, DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/damage-sim-results.model';
-import { DpsGrapherResult, GraphType, GraphTypes } from 'src/app/model/damage-sim/dps-grapher-results.model';
-import {
-  SortConfigs,
-  SortOrder,
-  timeSortFields,
-  dpsSortFields,
-  sortLabels,
-  TimeSortField,
-  DpsSortField,
-} from 'src/app/model/damage-sim/sort.model';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Chart } from 'chart.js/auto';
+import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DpsGraphData, DpsGrapherResult } from 'src/app/model/damage-sim/dps-grapher-results.model';
+import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
 
 @Component({
   selector: 'app-dps-results',
@@ -20,34 +13,33 @@ export class DpsResultsComponent implements OnChanges {
   @Input()
   dpsResults: DpsResults;
 
-  //TODO simplify
-  sortConfigs: SortConfigs = {
-    average: { sortOrder: SortOrder.Ascending, isSorted: false },
-    maximum: { sortOrder: SortOrder.Ascending, isSorted: false },
-    minimum: { sortOrder: SortOrder.Ascending, isSorted: false },
-    most_frequent: { sortOrder: SortOrder.Ascending, isSorted: false },
-    chance_to_kill: { sortOrder: SortOrder.Ascending, isSorted: false },
-
+  sortConfigs: Partial<SortConfigs> = {
     theoretical_dps: { sortOrder: SortOrder.Ascending, isSorted: false },
     max_hit: { sortOrder: SortOrder.Ascending, isSorted: false },
     accuracy: { sortOrder: SortOrder.Ascending, isSorted: false },
-
-    targetTimeChance: { sortOrder: SortOrder.Ascending, isSorted: false },
   };
 
   SortOrder = SortOrder;
-  timeSortFields = timeSortFields;
   dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
 
   DpsGrapherResult: DpsGrapherResult;
+  selectedGraphResult: DpsGrapherResult;
+  chart: Chart;
 
-  selectedGaphResult: DpsGrapherResult;
+  chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['dpsCalcResults'] && this.dpsResults && !this.dpsResults.error) {
+    if (changes['dpsResults'] && this.dpsResults && !this.dpsResults.error) {
       this.sortConfigs.theoretical_dps.sortOrder = SortOrder.Descending;
       this.sortDpsResults('theoretical_dps');
+
+      this.selectedGraphResult = this.dpsResults.dpsGrapherResults.results[0];
+      this.cd.detectChanges();
+      this.createChart();
+      this.updateChart();
     }
   }
 
@@ -66,17 +58,59 @@ export class DpsResultsComponent implements OnChanges {
     this.updateSortConfigs(dpsSortField);
   }
 
-  updateSortConfigs(sortField: TimeSortField | DpsSortField | 'targetTimeChance'): void {
-    this.timeSortFields.forEach((field: TimeSortField) => (this.sortConfigs[field].isSorted = false));
+  updateSortConfigs(sortField: DpsSortField): void {
     this.dpsSortFields.forEach((field: DpsSortField) => (this.sortConfigs[field].isSorted = false));
-
-    this.sortConfigs['targetTimeChance'].isSorted = false;
 
     this.sortConfigs[sortField].isSorted = true;
     this.sortConfigs[sortField].sortOrder *= -1;
   }
 
-  selectedGaphResultChange(dpsGrapherResult: DpsGrapherResult): void {
-    this.selectedGaphResult = dpsGrapherResult;
+  selectedGraphResultChange(dpsGrapherResult: DpsGrapherResult): void {
+    this.selectedGraphResult = dpsGrapherResult;
+    this.updateChart();
+  }
+
+  createChart() {
+    this.chart = new Chart('MyChart', {
+      type: 'line',
+      data: {
+        datasets: [],
+      },
+      options: {
+        aspectRatio: 2.5,
+      },
+    });
+  }
+
+  updateChart(): void {
+    const datasets = this.selectedGraphResult.dpsData.map((dpsGraphData: DpsGraphData, index: number) => ({
+      label: dpsGraphData.label,
+      data: dpsGraphData.dps,
+      backgroundColor: this.chartColors[index % this.chartColors.length],
+    }));
+
+    this.chart.data = {
+      labels: this.selectedGraphResult.xValues,
+      datasets: datasets,
+    };
+
+    this.chart.options = {
+      scales: {
+        y: {
+          title: {
+            display: true,
+            text: 'Dps',
+          },
+        },
+        x: {
+          title: {
+            display: true,
+            text: this.selectedGraphResult.graphType,
+          },
+        },
+      },
+    };
+
+    this.chart.update();
   }
 }

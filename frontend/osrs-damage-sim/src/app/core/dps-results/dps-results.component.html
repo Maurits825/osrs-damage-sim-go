@@ -54,11 +54,11 @@
     <app-ng-select-lazy-load
       [valueType]="DpsGrapherResult"
       [allValues]="dpsResults?.dpsGrapherResults.results"
-      [selectedValue]="selectedGaphResult"
+      [selectedValue]="selectedGraphResult"
       [clearable]="false"
       searchProperty="graphType"
       placeholder="Select input value"
-      (valueChanged)="selectedGaphResultChange($event)"
+      (valueChanged)="selectedGraphResultChange($event)"
     >
       <ng-template #dropdownLabel #dropdownOptions let-item="item">
         <div class="d-flex align-items-center">
@@ -70,13 +70,17 @@
       </ng-template>
     </app-ng-select-lazy-load>
   </div>
-  <ng-container *ngIf="selectedGaphResult">
-    <h3>{{ selectedGaphResult.graphType }}</h3>
+
+  <ng-container *ngIf="selectedGraphResult">
     <div>
-      {{ selectedGaphResult.xValues }}
+      <div class="chart-container">
+        <canvas id="MyChart">{{ chart }}</canvas>
+      </div>
     </div>
-    <ng-container *ngFor="let dpsData of selectedGaphResult.dpsData">
-      <div>{{ dpsData | json }}</div>
-    </ng-container>
+    <h3>{{ selectedGraphResult.graphType }}</h3>
+    <div>
+      {{ selectedGraphResult.xValues }}
+    </div>
+    <div *ngFor="let dpsData of selectedGraphResult.dpsData">{{ dpsData | json }}</div>
   </ng-container>
 </div>

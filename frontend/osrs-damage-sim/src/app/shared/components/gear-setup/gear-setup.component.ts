@@ -13,7 +13,6 @@ import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
 import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
-import { Condition } from 'src/app/model/damage-sim/condition.model';
 import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
