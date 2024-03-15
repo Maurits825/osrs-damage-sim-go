@@ -101,9 +101,11 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 func calculateDps(player *player) (dps float32, maxHit int, accuracy float32) {
 	maxHit = getMaxHit(player)
 	accuracy = getAccuracy(player)
+
+	//TODO wiki has hit distribution and stuff, do we need?
+	//maybe just have a post roll dmg mult and stuff is enough, loop through hit splats and also then cap for zulrah/corp
 	dps = ((float32(maxHit) * accuracy) / 2) / (float32(player.equipmentStats.attackSpeed) * TickLength)
 
-	//TODO just track floats
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
 	return dps, maxHit, accuracy
 }

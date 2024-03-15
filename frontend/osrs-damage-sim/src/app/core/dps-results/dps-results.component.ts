@@ -76,9 +76,6 @@ export class DpsResultsComponent implements OnChanges {
       data: {
         datasets: [],
       },
-      options: {
-        aspectRatio: 2.5,
-      },
     });
   }
 

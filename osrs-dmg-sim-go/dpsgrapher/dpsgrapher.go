@@ -22,6 +22,7 @@ type DpsGraphData struct {
 
 type GraphType string
 
+// TODO more graph types, stat drains next?? how to implement this
 const (
 	AttackLevel   GraphType = "Attack"
 	StrengthLevel GraphType = "Strength"
@@ -33,7 +34,7 @@ const (
 var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
-	MaxLevel = 10 //TODO set to 99!
+	MaxLevel = 99 //TODO set to 99!
 )
 
 func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {

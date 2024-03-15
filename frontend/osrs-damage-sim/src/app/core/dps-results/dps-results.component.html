@@ -77,10 +77,5 @@
         <canvas id="MyChart">{{ chart }}</canvas>
       </div>
     </div>
-    <h3>{{ selectedGraphResult.graphType }}</h3>
-    <div>
-      {{ selectedGraphResult.xValues }}
-    </div>
-    <div *ngFor="let dpsData of selectedGraphResult.dpsData">{{ dpsData | json }}</div>
   </ng-container>
 </div>
