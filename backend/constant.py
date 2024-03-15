@@ -1,1 +1,0 @@
-TICK_LENGTH = 0.6
