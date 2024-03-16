@@ -127,7 +127,9 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 	case Arclight:
 		maxValue = 10
 	case BandosGodsword:
-		maxValue = 200 //TODO dpscalc.AllNpcs[inputSetup.GlobalSettings.Npc.Id].combatStats.Defence
+		//TODO dpscalc.AllNpcs[inputSetup.GlobalSettings.Npc.Id].combatStats.Defence
+		//we have to get the scaled npc then also...
+		maxValue = 200
 	}
 
 	xValues := getXValues(0, maxValue)

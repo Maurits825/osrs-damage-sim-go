@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/dps-results.model';
 import { DpsGraphData, DpsGrapherResult } from 'src/app/model/damage-sim/dps-grapher-results.model';
@@ -13,8 +13,8 @@ export class DpsResultsComponent implements OnChanges {
   dpsResults: DpsResults;
 
   sortConfigs: Partial<SortConfigs> = {
-    theoretical_dps: { sortOrder: SortOrder.Ascending, isSorted: false },
-    max_hit: { sortOrder: SortOrder.Ascending, isSorted: false },
+    theoreticalDps: { sortOrder: SortOrder.Ascending, isSorted: false },
+    maxHit: { sortOrder: SortOrder.Ascending, isSorted: false },
     accuracy: { sortOrder: SortOrder.Ascending, isSorted: false },
   };
 
@@ -32,8 +32,8 @@ export class DpsResultsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsResults'] && this.dpsResults && !this.dpsResults.error) {
-      this.sortConfigs.theoretical_dps.sortOrder = SortOrder.Descending;
-      this.sortDpsResults('theoretical_dps');
+      this.sortConfigs.theoreticalDps.sortOrder = SortOrder.Descending;
+      this.sortDpsResults('theoreticalDps');
 
       this.selectedGraphResult = this.dpsResults.dpsGrapherResults.results[0];
       this.cd.detectChanges();

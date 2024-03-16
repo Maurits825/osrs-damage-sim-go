@@ -45,6 +45,7 @@ var AbyssalPortalIds = []int{
 	7533,
 }
 
+// all equations taken from https://github.com/weirdgloop/osrs-dps-calc/blob/staging/src/lib/scaling/ChambersOfXeric.ts
 // TODO using float64 for everything...
 func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 	if !npc.isXerician {

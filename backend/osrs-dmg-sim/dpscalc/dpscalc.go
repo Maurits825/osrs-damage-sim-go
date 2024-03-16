@@ -11,8 +11,6 @@ const (
 	TickLength = 0.6
 )
 
-// TODO has snake_case json because response on FE is like that, could refactor in the future
-
 type DpsCalcResults struct {
 	Title   string          `json:"title"`
 	Results []DpsCalcResult `json:"results"`
@@ -20,15 +18,14 @@ type DpsCalcResults struct {
 
 type DpsCalcResult struct {
 	Labels         InputGearSetupLabels `json:"labels"`
-	TheoreticalDps float32              `json:"theoretical_dps"`
-	MaxHit         []int                `json:"max_hit"`
+	TheoreticalDps float32              `json:"theoreticalDps"`
+	MaxHit         []int                `json:"maxHit"`
 	Accuracy       float32              `json:"accuracy"`
 }
 
 type InputGearSetupLabels struct {
-	InputGearSetupLabel    string   `json:"input_gear_setup_label"`
-	GearSetupSettingsLabel string   `json:"gear_setup_settings_label"`
-	AllWeaponLabels        []string `json:"all_weapon_labels"`
+	GearSetupSettingsLabel string `json:"gearSetupSettingsLabel"`
+	SetupName              string `json:"setupName"`
 }
 
 var allItems equipmentItems = loadItemWikiData()
@@ -55,9 +52,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	dpsDetailEntries = dpsdetail.NewDetailEntries(enableTrack)
 
 	//TODO refactor labels, in FE also
-	inputGearSetupLabels := InputGearSetupLabels{
-		"label", "settings label", []string{inputGearSetup.GearSetup.Name},
-	}
+	inputGearSetupLabels := InputGearSetupLabels{GearSetupSettingsLabel: "", SetupName: inputGearSetup.GearSetup.Name}
 
 	player := getPlayer(globalSettings, inputGearSetup)
 
