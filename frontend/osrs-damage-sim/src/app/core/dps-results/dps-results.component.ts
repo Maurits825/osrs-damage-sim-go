@@ -106,6 +106,13 @@ export class DpsResultsComponent implements OnChanges {
           },
         },
       },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            title: (items) => this.selectedGraphResult.graphType + ': ' + items[0].label,
+          },
+        },
+      },
     };
 
     this.chart.update();

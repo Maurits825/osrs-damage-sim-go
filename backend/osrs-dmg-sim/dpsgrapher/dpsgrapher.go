@@ -28,10 +28,11 @@ const (
 	StrengthLevel GraphType = "Strength"
 	RangedLevel   GraphType = "Ranged"
 	MagicLevel    GraphType = "Magic"
+	TeamSize      GraphType = "Team size"
 )
 
 // TODO kinda scuffed
-var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
+var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize}
 
 const (
 	MaxLevel = 99
@@ -45,7 +46,10 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 		switch graphType {
 		case AttackLevel, StrengthLevel, RangedLevel, MagicLevel:
 			dpsGrapherResult = getLevelDpsGrapher(inputSetup, graphType)
+		case TeamSize:
+			dpsGrapherResult = getTeamSizeDpsGrapher(inputSetup, graphType)
 		}
+
 		dpsGrapherResults.Results[i] = dpsGrapherResult
 	}
 
@@ -78,6 +82,27 @@ func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) Dps
 			*statChange = level
 			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, false)
 			dps[level-1] = dpsCalcResult.TheoreticalDps
+		}
+		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+	}
+	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
+}
+
+func getTeamSizeDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
+	maxTeamSize := 10 //TODO get this based on npc id?
+	xValues := make([]float32, maxTeamSize)
+	for t := 1; t <= maxTeamSize; t++ {
+		xValues[t-1] = float32(t)
+	}
+	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+
+	//loop here creates a copy of the slice
+	for i, inputGearSetup := range inputSetup.InputGearSetups {
+		dps := make([]float32, MaxLevel)
+		for t := 1; t <= maxTeamSize; t++ {
+			inputSetup.GlobalSettings.TeamSize = t
+			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, false)
+			dps[t-1] = dpsCalcResult.TheoreticalDps
 		}
 		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
 	}

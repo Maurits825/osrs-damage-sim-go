@@ -33,7 +33,6 @@ import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
 import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
 import { DamageSimComponent } from './core/damage-sim/damage-sim.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DpsGrapherSettingsComponent } from './core/dps-grapher-settings/dps-grapher-settings.component';
 import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
 import { TrailblazerRelicsComponent } from './shared/components/leagues/trailblazer-relics/trailblazer-relics.component';
 import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cycle.component';
@@ -68,7 +67,6 @@ import { DpsResultsComponent } from './core/dps-results/dps-results.component';
     SpecialProcTextPipe,
     QuickGearSelectComponent,
     DamageSimComponent,
-    DpsGrapherSettingsComponent,
     HighscoreLookupComponent,
     TrailblazerRelicsComponent,
     AttackCycleComponent,
