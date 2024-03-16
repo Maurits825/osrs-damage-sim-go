@@ -1,4 +1,3 @@
-// TODO inputsetup package?
 package dpscalc
 
 type GearSlot int
@@ -22,14 +21,21 @@ type Npc struct {
 	Id string `json:"id"`
 }
 
+type CoxScaling struct {
+	PartyMaxCombatLevel int  `json:"partyMaxCombatLevel"`
+	PartyAvgMiningLevel int  `json:"partyAvgMiningLevel"`
+	PartyMaxHpLevel     int  `json:"partyMaxHpLevel"`
+	IsChallengeMode     bool `json:"isChallengeMode"`
+}
+
 // TODO also could have the grapher settings here? or another root
 type GlobalSettings struct {
-	Npc                Npc  `json:"npc"`
-	TeamSize           int  `json:"teamSize"`
-	RaidLevel          int  `json:"raidLevel"`
-	PathLevel          int  `json:"pathLevel"`
-	OverlyDraining     bool `json:"overlyDraining"`
-	IsCoxChallengeMode bool `json:"isCoxChallengeMode"`
+	Npc            Npc        `json:"npc"`
+	TeamSize       int        `json:"teamSize"`
+	RaidLevel      int        `json:"raidLevel"`
+	PathLevel      int        `json:"pathLevel"`
+	OverlyDraining bool       `json:"overlyDraining"`
+	CoxScaling     CoxScaling `json:"coxScaling"`
 }
 
 // similar to npc, could have manual inputs in future

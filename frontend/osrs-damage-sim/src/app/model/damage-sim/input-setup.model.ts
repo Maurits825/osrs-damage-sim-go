@@ -19,9 +19,15 @@ export interface GlobalSettings {
   pathLevel: number;
   overlyDraining: boolean;
 
-  isCoxChallengeMode: boolean;
-
   teamSize: number;
+  coxScaling: CoxScaling;
+}
+
+export interface CoxScaling {
+  partyMaxCombatLevel: number;
+  partyAvgMiningLevel: number;
+  partyMaxHpLevel: number;
+  isChallengeMode: boolean;
 }
 
 export interface ContinuousSimSettings {

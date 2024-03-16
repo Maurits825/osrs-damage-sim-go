@@ -83,33 +83,58 @@ const (
 	PlayerDpsFinal                    DetailKey = "Player dps"
 )
 
-type DetailEntries struct {
-	EntriesMap  map[DetailKey]DetailEntry
-	EntriesList []DetailEntry
+type detailEntries struct {
+	enableTrack bool
+	entriesMap  map[DetailKey]detailEntry
+	entriesList []detailEntry
 }
 
-type DetailEntry struct {
+type detailEntry struct {
 	detailKey DetailKey
 	value     string
 	operation string
 }
 
-func (entries *DetailEntries) track(detailKey DetailKey, value interface{}, operation string) {
-	if _, exists := entries.EntriesMap[detailKey]; exists {
+var emptyTrackEntries = &detailEntries{
+	enableTrack: false,
+	entriesMap:  nil,
+	entriesList: nil,
+}
+
+func NewDetailEntries(enableTrack bool) *detailEntries {
+	if !enableTrack {
+		return emptyTrackEntries
+	}
+
+	dpsDetailEntries := &detailEntries{
+		enableTrack: enableTrack,
+		entriesMap:  make(map[DetailKey]detailEntry),
+		entriesList: make([]detailEntry, 0),
+	}
+
+	return dpsDetailEntries
+}
+
+func (entries *detailEntries) track(detailKey DetailKey, value interface{}, operation string) {
+	if !entries.enableTrack {
+		return
+	}
+
+	if _, exists := entries.entriesMap[detailKey]; exists {
 		fmt.Println("Key exists, should this happen?????: " + detailKey)
 		return
 	}
 
-	entry := DetailEntry{detailKey, fmt.Sprintf("%v", value), operation}
-	entries.EntriesMap[detailKey] = entry
-	entries.EntriesList = append(entries.EntriesList, entry)
+	entry := detailEntry{detailKey, fmt.Sprintf("%v", value), operation}
+	entries.entriesMap[detailKey] = entry
+	entries.entriesList = append(entries.entriesList, entry)
 }
 
-func (entries *DetailEntries) TrackValue(detailKey DetailKey, value interface{}) {
+func (entries *detailEntries) TrackValue(detailKey DetailKey, value interface{}) {
 	entries.track(detailKey, value, "")
 }
 
-func (entries *DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
+func (entries *detailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
 	result := base + add
 	operation := fmt.Sprintf("%d+%d", base, add)
 
@@ -117,7 +142,7 @@ func (entries *DetailEntries) TrackAdd(detailKey DetailKey, base int, add int) i
 	return result
 }
 
-func (entries *DetailEntries) TrackFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
+func (entries *detailEntries) TrackFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
 	result := int(float32(base*numerator) / float32(denominator))
 	operation := fmt.Sprintf("%d * %d/%d", base, numerator, denominator)
 
@@ -125,7 +150,7 @@ func (entries *DetailEntries) TrackFactor(detailKey DetailKey, base int, numerat
 	return result
 }
 
-func (entries *DetailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
+func (entries *detailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
 	result := int(float32(effectiveLevel*gearBonus+320) / 640.0)
 	operation := fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
 	entries.track(detailKey, result, operation)
@@ -136,12 +161,21 @@ var finalKeys []DetailKey = []DetailKey{
 	PlayerAccuracyRollFinal, NPCDefenceRollFinal, PlayerAccuracyFinal, MaxHitFinal, PlayerDpsFinal,
 }
 
-func (entries *DetailEntries) SprintFinal() string {
+func (entries *detailEntries) SprintFinal() string {
 	final := ""
 	for _, detailKey := range finalKeys {
-		final += fmt.Sprintf("%s: %s, ", detailKey, entries.EntriesMap[detailKey].value)
+		final += fmt.Sprintf("%s: %s, ", detailKey, entries.entriesMap[detailKey].value)
 	}
 
 	final = strings.TrimSuffix(final, ", ")
+	return final
+}
+
+func (entries *detailEntries) SprintAll() string {
+	final := ""
+	for detailKey, entry := range entries.entriesMap {
+		final += fmt.Sprintf("%s: %s\n", detailKey, entry.value)
+	}
+
 	return final
 }

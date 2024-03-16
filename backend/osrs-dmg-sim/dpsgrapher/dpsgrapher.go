@@ -34,7 +34,7 @@ const (
 var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
-	MaxLevel = 99 //TODO set to 99!
+	MaxLevel = 99
 )
 
 func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
@@ -76,7 +76,7 @@ func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) Dps
 		dps := make([]float32, MaxLevel)
 		for level := 1; level <= MaxLevel; level++ {
 			*statChange = level
-			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup)
+			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, false)
 			dps[level-1] = dpsCalcResult.TheoreticalDps
 		}
 		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}

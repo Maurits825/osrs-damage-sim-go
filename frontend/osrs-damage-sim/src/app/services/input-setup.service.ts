@@ -81,8 +81,8 @@ export class InputSetupService {
       raidLevel: inputSetupJson.globalSettings.raidLevel,
       pathLevel: inputSetupJson.globalSettings.pathLevel,
       overlyDraining: inputSetupJson.globalSettings.overlyDraining || false,
-      isCoxChallengeMode: inputSetupJson.globalSettings.isCoxChallengeMode || false,
       teamSize: inputSetupJson.globalSettings.teamSize,
+      coxScaling: inputSetupJson.globalSettings.coxScaling,
     };
 
     const inputGearSetups: InputGearSetup[] = inputSetupJson.inputGearSetups.map((inputGearSetup: InputGearSetup) => {

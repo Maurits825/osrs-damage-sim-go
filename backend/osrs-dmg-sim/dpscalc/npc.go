@@ -7,7 +7,6 @@ type aggressiveStats struct {
 }
 
 type npc struct {
-	id              int
 	name            string
 	baseCombatStats CombatStats
 	combatStats     CombatStats
@@ -15,8 +14,7 @@ type npc struct {
 	damageStats     damageStats
 	defensiveStats  defensiveStats
 
-	size       int
-	minDefense int
+	size int
 
 	isKalphite      bool
 	isDemon         bool
@@ -35,4 +33,9 @@ type npc struct {
 	respawn int
 }
 
-//TODO npc scaling here
+func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
+	npc.applyCoxScaling(globalSettings)
+	//TODO other scaling
+
+	npc.combatStats = npc.baseCombatStats
+}

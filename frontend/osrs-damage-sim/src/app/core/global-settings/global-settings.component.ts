@@ -26,7 +26,12 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     raidLevel: 0,
     pathLevel: 0,
     overlyDraining: false,
-    isCoxChallengeMode: false,
+    coxScaling: {
+      partyMaxCombatLevel: 126,
+      partyAvgMiningLevel: 99,
+      partyMaxHpLevel: 99,
+      isChallengeMode: false,
+    },
   };
 
   showPathLevel = false;

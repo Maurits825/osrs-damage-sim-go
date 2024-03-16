@@ -1,6 +1,7 @@
 package dpscalc
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
@@ -35,23 +36,23 @@ var allNpcs npcs = loadNpcWikiData()
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
-var dpsDetailEntries *dpsdetail.DetailEntries
+// TODO just have a bool to turn track off, and have a NewDetailEntries function
+var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
+
+type DpsCalc struct {
+}
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup)
+		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, true)
 	}
 
 	return &DpsCalcResults{"some title", dpsCalcResult}
 }
 
-func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) DpsCalcResult {
-	//TODO should dpsdetail do this?
-	dpsDetailEntries = &dpsdetail.DetailEntries{
-		EntriesMap:  make(map[dpsdetail.DetailKey]dpsdetail.DetailEntry),
-		EntriesList: make([]dpsdetail.DetailEntry, 0),
-	}
+func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, enableTrack bool) DpsCalcResult {
+	dpsDetailEntries = dpsdetail.NewDetailEntries(enableTrack)
 
 	//TODO refactor labels, in FE also
 	inputGearSetupLabels := InputGearSetupLabels{
@@ -63,9 +64,13 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	dps, maxHit, accuracy := calculateDps(player)
 
 	//TODO get hitsplat maxhits
+
+	if enableTrack {
+		// fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
+		fmt.Println(inputGearSetup.GearSetup.Name + ":")
+		fmt.Print(dpsDetailEntries.SprintAll())
+	}
 	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
-	//TODO make that empty tracker thing interface
-	// fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
@@ -94,6 +99,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	//TODO prob other stuff to init or get here b4 running calcs
 	npc := allNpcs[globalSettings.Npc.Id]
+	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, combatStyle}
 }
 
