@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SpecialProc } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { SpecialProc } from 'src/app/model/damage-sim/dmg-sim-results.model';
 
 @Pipe({
   name: 'specialProcText',

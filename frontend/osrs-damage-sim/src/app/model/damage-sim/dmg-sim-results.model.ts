@@ -1,11 +1,5 @@
 import { Item } from '../osrs/item.model';
-import { DpsGrapherResults } from './dps-grapher-results.model';
-
-export interface InputGearSetupLabels {
-  input_gear_setup_label: string;
-  gear_setup_settings_label: string;
-  all_weapon_labels: string[];
-}
+import { InputGearSetupLabels } from './dps-results.model';
 
 export interface SimStats {
   average: string | number;
@@ -71,35 +65,4 @@ export interface DetailedRun {
   npc_hp: number;
   npc_defence: number;
   tick_data_details: TickDataDetails[];
-}
-
-export interface DamageSimResults {
-  error?: string | null;
-
-  detailed_runs: DetailedRun[];
-  results: DamageSimResult[];
-  global_settings_label: string;
-
-  graphs: Graphs;
-}
-
-export interface DpsCalcResult {
-  error?: string | null;
-
-  labels: InputGearSetupLabels;
-  theoretical_dps: number;
-  max_hit: number[];
-  accuracy: number;
-}
-
-export interface DpsCalcResults {
-  title: string;
-  results: DpsCalcResult[];
-}
-
-export interface DpsResults {
-  error?: string | null;
-
-  dpsCalcResults: DpsCalcResults;
-  dpsGrapherResults: DpsGrapherResults;
 }

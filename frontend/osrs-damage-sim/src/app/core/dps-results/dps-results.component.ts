@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/dps-results.model';
 import { DpsGraphData, DpsGrapherResult } from 'src/app/model/damage-sim/dps-grapher-results.model';
 import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
 

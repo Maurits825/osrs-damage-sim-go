@@ -31,7 +31,7 @@ import { DetailedRunResultsComponent } from './core/detailed-run-results/detaile
 import { TickToTimePipe } from './shared/pipes/tick-to-time.pipe';
 import { SpecialProcTextPipe } from './shared/pipes/special-proc-text.pipe';
 import { QuickGearSelectComponent } from './shared/components/quick-gear-select/quick-gear-select.component';
-import { DamageSimComponent } from './core/damage-sim/damage-sim.component';
+import { DpsCalcComponent } from './core/dps-calc/dps-calc.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HighscoreLookupComponent } from './shared/components/highscore-lookup/highscore-lookup.component';
 import { TrailblazerRelicsComponent } from './shared/components/leagues/trailblazer-relics/trailblazer-relics.component';
@@ -66,7 +66,7 @@ import { DpsResultsComponent } from './core/dps-results/dps-results.component';
     TickToTimePipe,
     SpecialProcTextPipe,
     QuickGearSelectComponent,
-    DamageSimComponent,
+    DpsCalcComponent,
     HighscoreLookupComponent,
     TrailblazerRelicsComponent,
     AttackCycleComponent,

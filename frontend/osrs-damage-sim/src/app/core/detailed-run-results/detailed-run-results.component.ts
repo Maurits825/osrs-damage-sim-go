@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DetailedRun, TickData, TickDataDetails } from 'src/app/model/damage-sim/damage-sim-results.model';
+import { DetailedRun, TickDataDetails, TickData } from 'src/app/model/damage-sim/dmg-sim-results.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { ItemService } from 'src/app/services/item.service';
 

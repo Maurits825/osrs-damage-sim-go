@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DamageSimComponent } from './damage-sim.component';
+import { DpsCalcComponent } from './dps-calc.component';
 
 describe('DamageSimComponent', () => {
-  let component: DamageSimComponent;
-  let fixture: ComponentFixture<DamageSimComponent>;
+  let component: DpsCalcComponent;
+  let fixture: ComponentFixture<DpsCalcComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DamageSimComponent ]
-    })
-    .compileComponents();
+      declarations: [DpsCalcComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(DamageSimComponent);
+    fixture = TestBed.createComponent(DpsCalcComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,8 +4,6 @@
     <div class="col-auto"><h1 class="display-1">Damage Simulator</h1></div>
   </div>
 
-  <!-- TODO remove this -->
-  <!-- <app-sim-results [damageSimResults]="damageSimResults" [dpsResults]="dpsResults"></app-sim-results> -->
   <div class="mb-2">
     <app-dps-results [dpsResults]="dpsResults"></app-dps-results>
   </div>
@@ -37,9 +35,6 @@
           <button class="btn btn-primary" type="button" (click)="runDpsCalc()">
             <span class="sr-only">Run Dps Calculator</span>
           </button>
-          <button class="btn btn-primary" type="button" (click)="runDamageSim()">
-            <span class="sr-only">Run Damage Simulator</span>
-          </button>
         </ng-container>
       </div>
     </div>
@@ -47,11 +42,6 @@
     <div *ngIf="loading">&nbsp;</div>
 
     <ng-container *ngIf="!loading">
-      <div class="text-danger" *ngIf="damageSimResults?.error">Error: {{ damageSimResults.error }}</div>
-      <div class="text-danger" *ngIf="dpsResults?.error">Error: {{ dpsResults.error }}</div>
-      <div class="text-success" *ngIf="damageSimResults && !damageSimResults?.error">
-        Damage simulation done, results above!
-      </div>
       <div class="text-success" *ngIf="dpsResults && !dpsResults?.error">Dps calculator done, results above!</div>
     </ng-container>
   </div>
