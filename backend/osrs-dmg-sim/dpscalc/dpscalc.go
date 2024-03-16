@@ -32,7 +32,7 @@ type InputGearSetupLabels struct {
 }
 
 var allItems equipmentItems = loadItemWikiData()
-var allNpcs npcs = loadNpcWikiData()
+var AllNpcs npcs = loadNpcWikiData()
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
@@ -66,9 +66,9 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	//TODO get hitsplat maxhits
 
 	if enableTrack {
-		// fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
-		fmt.Println(inputGearSetup.GearSetup.Name + ":")
-		fmt.Print(dpsDetailEntries.SprintAll())
+		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
+		// fmt.Println(inputGearSetup.GearSetup.Name + ":")
+		// fmt.Print(dpsDetailEntries.SprintAll())
 	}
 	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
 }
@@ -98,7 +98,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
 	//TODO prob other stuff to init or get here b4 running calcs
-	npc := allNpcs[globalSettings.Npc.Id]
+	npc := AllNpcs[globalSettings.Npc.Id]
 	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, combatStyle}
 }

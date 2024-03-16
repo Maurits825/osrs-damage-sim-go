@@ -38,4 +38,5 @@ func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetu
 	//TODO other scaling
 
 	npc.combatStats = npc.baseCombatStats
+	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
 }

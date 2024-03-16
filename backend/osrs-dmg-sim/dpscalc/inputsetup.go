@@ -79,6 +79,8 @@ type StatDrainWeapon string
 // TODO others
 const (
 	DragonWarhammer StatDrainWeapon = "Dragon warhammer"
+	Arclight        StatDrainWeapon = "Arclight"
+	BandosGodsword  StatDrainWeapon = "Bandos godsword"
 )
 
 type StatDrain struct {
