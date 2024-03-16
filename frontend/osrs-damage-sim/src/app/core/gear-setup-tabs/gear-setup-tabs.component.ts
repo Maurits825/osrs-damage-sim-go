@@ -18,7 +18,6 @@ import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/
 @Component({
   selector: 'app-gear-setup-tabs',
   templateUrl: './gear-setup-tabs.component.html',
-  styleUrls: ['./gear-setup-tabs.component.css'],
 })
 export class GearSetupTabsComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('gearSetupTabContainer', { read: ViewContainerRef }) gearSetupTabContainer: ViewContainerRef;

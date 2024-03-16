@@ -17,7 +17,6 @@ import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 @Component({
   selector: 'app-global-settings',
   templateUrl: './global-settings.component.html',
-  styleUrls: ['./global-settings.component.css'],
 })
 export class GlobalSettingsComponent implements OnInit, OnDestroy {
   globalSettings: GlobalSettings = {

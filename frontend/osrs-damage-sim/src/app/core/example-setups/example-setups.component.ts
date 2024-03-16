@@ -7,7 +7,6 @@ import { InputSetupService } from 'src/app/services/input-setup.service';
 @Component({
   selector: 'app-example-setups',
   templateUrl: './example-setups.component.html',
-  styleUrls: ['./example-setups.component.css'],
 })
 export class ExampleSetupsComponent implements OnInit {
   exampleSetups: ExampleSetup[];

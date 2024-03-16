@@ -7,7 +7,6 @@ import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 
 @Component({
   selector: 'app-dps-results',
   templateUrl: './dps-results.component.html',
-  styleUrls: ['./dps-results.component.css'],
 })
 export class DpsResultsComponent implements OnChanges {
   @Input()

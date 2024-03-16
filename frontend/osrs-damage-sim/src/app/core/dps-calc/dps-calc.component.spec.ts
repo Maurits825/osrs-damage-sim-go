@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DpsCalcComponent } from './dps-calc.component';
 
-describe('DamageSimComponent', () => {
+describe('DpsCalcComponent', () => {
   let component: DpsCalcComponent;
   let fixture: ComponentFixture<DpsCalcComponent>;
 

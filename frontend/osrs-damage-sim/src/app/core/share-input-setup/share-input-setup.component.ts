@@ -7,7 +7,6 @@ import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input
 @Component({
   selector: 'app-share-input-setup',
   templateUrl: './share-input-setup.component.html',
-  styleUrls: ['./share-input-setup.component.css'],
 })
 export class ShareInputSetupComponent {
   setupString: string;
