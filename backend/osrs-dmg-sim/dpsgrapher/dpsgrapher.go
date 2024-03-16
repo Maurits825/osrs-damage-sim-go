@@ -1,6 +1,8 @@
 package dpsgrapher
 
 import (
+	"strconv"
+
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
@@ -11,7 +13,7 @@ type DpsGrapherResults struct {
 
 type DpsGrapherResult struct {
 	GraphType string         `json:"graphType"`
-	XValues   []float32      `json:"xValues"`
+	XValues   []string       `json:"xValues"`
 	DpsData   []DpsGraphData `json:"dpsData"`
 }
 
@@ -61,11 +63,26 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 	return &dpsGrapherResults
 }
 
-func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
-	xValues := make([]float32, MaxLevel)
-	for level := 1; level <= MaxLevel; level++ {
-		xValues[level-1] = float32(level)
+func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *dpscalc.GlobalSettings, inputGearSetup *dpscalc.InputGearSetup) DpsGraphData {
+	dps := make([]float32, (maxValue-startValue)+1)
+	for v := startValue; v <= maxValue; v++ {
+		*value = v
+		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, false)
+		dps[v-startValue] = dpsCalcResult.TheoreticalDps
 	}
+	return DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+}
+
+func getXValues(startValue int, maxValue int) []string {
+	xValues := make([]string, (maxValue-startValue)+1)
+	for value := startValue; value <= maxValue; value++ {
+		xValues[value-startValue] = strconv.Itoa(value)
+	}
+	return xValues
+}
+
+func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
+	xValues := getXValues(1, MaxLevel)
 	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
 
 	var statChange *int
@@ -82,36 +99,22 @@ func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) Dps
 			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Magic
 		}
 
-		dps := make([]float32, MaxLevel)
-		for level := 1; level <= MaxLevel; level++ {
-			*statChange = level
-			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, false)
-			dps[level-1] = dpsCalcResult.TheoreticalDps
-		}
-		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+		dpsGraphDatas[i] = getDpsGraphData(statChange, 1, MaxLevel, &inputSetup.GlobalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
 
 func getTeamSizeDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
 	maxTeamSize := 10 //TODO get this based on npc id?
-	xValues := make([]float32, maxTeamSize)
-	for t := 1; t <= maxTeamSize; t++ {
-		xValues[t-1] = float32(t)
-	}
+	xValues := getXValues(1, maxTeamSize)
 	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
 
+	//create a copy
 	globalSettings := inputSetup.GlobalSettings
 	teamSize := &globalSettings.TeamSize
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dps := make([]float32, maxTeamSize)
-		for t := 1; t <= maxTeamSize; t++ {
-			*teamSize = t
-			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, false)
-			dps[t-1] = dpsCalcResult.TheoreticalDps
-		}
-		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+		dpsGraphDatas[i] = getDpsGraphData(teamSize, 1, maxTeamSize, &globalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
@@ -127,16 +130,11 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 		maxValue = 200 //TODO dpscalc.AllNpcs[inputSetup.GlobalSettings.Npc.Id].combatStats.Defence
 	}
 
-	xValues := make([]float32, maxValue)
-	for v := 0; v < maxValue; v++ {
-		xValues[v] = float32(v)
-	}
+	xValues := getXValues(0, maxValue)
 	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
 
 	//loop here creates a copy of the slice
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dps := make([]float32, maxValue)
-
 		var statDrainName dpscalc.StatDrainWeapon
 		switch graphType {
 		case DragonWarhammer:
@@ -149,13 +147,7 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: statDrainName, Value: 0}}
 		currentValue := &inputGearSetup.GearSetupSettings.StatDrain[0].Value
 
-		//could make a fn, and also round dps to like 2decimals, check if it reduces json response size
-		for v := 0; v < maxValue; v++ {
-			*currentValue = v
-			dpsCalcResult := dpscalc.DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, false)
-			dps[v] = dpsCalcResult.TheoreticalDps
-		}
-		dpsGraphDatas[i] = DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+		dpsGraphDatas[i] = getDpsGraphData(currentValue, 0, maxValue, &inputSetup.GlobalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
