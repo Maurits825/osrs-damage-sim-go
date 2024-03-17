@@ -29,19 +29,15 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let result of dpsResults.dpsCalcResults.results">
-          <tr>
-            <td colspan="7" class="table-active">
-              {{ result.labels.gear_setup_settings_label }}
-            </td>
+          <tr class="text-end">
+            <th scope="row" class="text-start">
+              {{ result.labels.setupName }} -
+              <span style="font-weight: normal">{{ result.labels.gearSetupSettingsLabel }}</span>
+            </th>
+            <td>{{ result.theoreticalDps | number : "1.2-2" }}</td>
+            <td>{{ result.maxHit }}</td>
+            <td>{{ result.accuracy | number : "1.2-2" }}%</td>
           </tr>
-          <ng-container *ngFor="let allWeaponLabels of result.labels.all_weapon_labels; let gearIndex = index">
-            <tr class="text-end">
-              <th scope="row" class="text-start">{{ allWeaponLabels }}</th>
-              <td>{{ result.theoreticalDps | number : "1.2-2" }}</td>
-              <td>{{ result.maxHit }}</td>
-              <td>{{ result.accuracy | number : "1.2-2" }}%</td>
-            </tr>
-          </ng-container>
         </ng-container>
       </tbody>
     </table>

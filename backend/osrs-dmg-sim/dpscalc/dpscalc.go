@@ -52,7 +52,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	dpsDetailEntries = dpsdetail.NewDetailEntries(enableTrack)
 
 	//TODO refactor labels, in FE also
-	inputGearSetupLabels := InputGearSetupLabels{GearSetupSettingsLabel: "", SetupName: inputGearSetup.GearSetup.Name}
+	inputGearSetupLabels := InputGearSetupLabels{GearSetupSettingsLabel: getGearSetupSettingsLabel(&inputGearSetup.GearSetupSettings), SetupName: inputGearSetup.GearSetup.Name}
 
 	player := getPlayer(globalSettings, inputGearSetup)
 

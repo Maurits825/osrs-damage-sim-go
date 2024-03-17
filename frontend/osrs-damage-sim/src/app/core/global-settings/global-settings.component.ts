@@ -59,6 +59,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     ranged: 99,
     magic: 99,
     hitpoints: 99,
+    defence: 99,
   };
 
   statDrains: StatDrain[] = [];

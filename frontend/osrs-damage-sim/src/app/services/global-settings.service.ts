@@ -21,6 +21,7 @@ export class GlobalSettingsService {
     ranged: 99,
     magic: 99,
     hitpoints: 99,
+    defence: 99,
   });
 
   globalPrayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(null);
