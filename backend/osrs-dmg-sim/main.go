@@ -45,7 +45,8 @@ func postDpsCalc(c *gin.Context) {
 		return
 	}
 
-	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
+	//TODO enableTrack variable
+	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup, true)
 	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
 	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
 }

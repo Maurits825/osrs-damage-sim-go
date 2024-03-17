@@ -4,10 +4,10 @@
 package dpscalc
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
-	"io"
-	"os"
+	"path/filepath"
 )
 
 type equipmentItems map[string]equipmentItem
@@ -153,46 +153,41 @@ func (n *npc) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func loadItemWikiData() equipmentItems {
-	itemJson, err := os.Open("dpscalc/wiki-data/items-dmg-sim.json")
+var wikiDataFolder = filepath.Join("dpscalc", "wiki-data")
 
+//go:embed wiki-data/*
+var wikiDataEmbed embed.FS
+
+func loadItemWikiData() equipmentItems {
+	byteValue, err := wikiDataEmbed.ReadFile("wiki-data/items-dmg-sim.json")
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
 
-	defer itemJson.Close()
-
-	byteValue, _ := io.ReadAll(itemJson)
 	var items equipmentItems
 	if err := json.Unmarshal(byteValue, &items); err != nil {
 		fmt.Println("Error decoding item JSON:", err)
 		return nil
 	}
 
-	fmt.Println("Loaded wiki items!")
 	return items
 }
 
 type npcs map[string]npc
 
 func loadNpcWikiData() npcs {
-	npcJson, err := os.Open("dpscalc/wiki-data/npcs-dmg-sim.json")
-
+	byteValue, err := wikiDataEmbed.ReadFile("wiki-data/npcs-dmg-sim.json")
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
 
-	defer npcJson.Close()
-
-	byteValue, _ := io.ReadAll(npcJson)
 	var npcs npcs
 	if err := json.Unmarshal(byteValue, &npcs); err != nil {
 		fmt.Println("Error decoding npc JSON:", err)
 		return nil
 	}
 
-	fmt.Println("Loaded wiki npcs!")
 	return npcs
 }

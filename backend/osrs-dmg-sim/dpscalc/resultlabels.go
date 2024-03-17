@@ -20,7 +20,10 @@ func getGearSetupLabel(gearSetup *GearSetup) string {
 		label += prayerLabel[prayer] + ", "
 	}
 
-	return gearSetup.Name + " (" + label[:len(label)-2] + ")"
+	if label != "" {
+		return gearSetup.Name + " (" + label[:len(label)-2] + ")"
+	}
+	return gearSetup.Name
 }
 func getGearSetupSettingsLabel(settings *GearSetupSettings) string {
 	labels := []string{

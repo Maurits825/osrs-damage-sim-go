@@ -39,10 +39,10 @@ var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
 type DpsCalc struct {
 }
 
-func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
+func RunDpsCalc(inputSetup *InputSetup, enableTrack bool) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, true)
+		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, enableTrack)
 	}
 
 	return &DpsCalcResults{"some title", dpsCalcResult}

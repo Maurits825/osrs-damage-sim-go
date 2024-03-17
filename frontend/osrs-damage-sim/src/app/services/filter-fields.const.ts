@@ -1,7 +1,7 @@
 export const FILTER_PATHS = [
-  /(?:mainGearSetup|fillGearSetups).*\.name/,
-  /(?:mainGearSetup|fillGearSetups).*\.icon/,
-  /(?:mainGearSetup|fillGearSetups).*\.attackStyles/,
-  /(?:mainGearSetup|fillGearSetups).*\.attackType/,
-  /(?:mainGearSetup|fillGearSetups).*\.specialAttackCost/,
+  /(?:mainGearSetup|fillGearSetups|gearSetup).*\.name/,
+  /(?:mainGearSetup|fillGearSetups|gearSetup).*\.icon/,
+  /(?:mainGearSetup|fillGearSetups|gearSetup).*\.attackStyles/,
+  /(?:mainGearSetup|fillGearSetups|gearSetup).*\.attackType/,
+  /(?:mainGearSetup|fillGearSetups|gearSetup).*\.specialAttackCost/,
 ];
