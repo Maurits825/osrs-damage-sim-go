@@ -6,6 +6,22 @@ const (
 	MaxLevel = 99
 )
 
+var prayerLabel = map[Prayer]string{
+	Piety: "Piety",
+}
+
+var potionLabel = map[PotionBoost]string{
+	SuperCombat: "SCP",
+}
+
+func getGearSetupLabel(gearSetup *GearSetup) string {
+	label := ""
+	for _, prayer := range gearSetup.Prayers {
+		label += prayerLabel[prayer] + ", "
+	}
+
+	return gearSetup.Name + " (" + label[:len(label)-2] + ")"
+}
 func getGearSetupSettingsLabel(settings *GearSetupSettings) string {
 	labels := []string{
 		getCombatStatsLabel(&settings.CombatStats),
@@ -20,7 +36,10 @@ func getGearSetupSettingsLabel(settings *GearSetupSettings) string {
 		}
 	}
 
-	return finalLabel[:len(finalLabel)-2]
+	if finalLabel != "" {
+		return finalLabel[:len(finalLabel)-2]
+	}
+	return ""
 }
 
 func getCombatStatsLabel(combatStats *CombatStats) string {
@@ -48,10 +67,7 @@ func getCombatStatsLabel(combatStats *CombatStats) string {
 func getPotionBoostLabel(potionBoosts []PotionBoost) string {
 	label := ""
 	for _, potionBoost := range potionBoosts {
-		switch potionBoost {
-		case SuperCombat:
-			label += "SCP, "
-		}
+		label += potionLabel[potionBoost] + ", "
 	}
 	if label != "" {
 		return "Potions: " + label[:len(label)-2]

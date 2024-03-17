@@ -2,7 +2,7 @@ import { DpsGrapherResults } from './dps-grapher-results.model';
 
 export interface InputGearSetupLabels {
   gearSetupSettingsLabel: string;
-  setupName: string;
+  gearSetupName: string;
 }
 
 export interface DpsCalcResult {
