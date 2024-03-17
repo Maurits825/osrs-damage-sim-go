@@ -3,6 +3,8 @@ import { Chart } from 'chart.js/auto';
 import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/dps-results.model';
 import { DpsGraphData, DpsGrapherResult } from 'src/app/model/damage-sim/dps-grapher-results.model';
 import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
+import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { InputSetupService } from 'src/app/services/input-setup.service';
 
 @Component({
   selector: 'app-dps-results',
@@ -22,18 +24,22 @@ export class DpsResultsComponent implements OnChanges {
   dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
 
+  inputSetup: InputSetup;
   DpsGrapherResult: DpsGrapherResult;
   selectedGraphResult: DpsGrapherResult;
   chart: Chart;
 
+  showResultTextLabel = true;
   chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsResults'] && this.dpsResults && !this.dpsResults.error) {
       this.sortConfigs.theoreticalDps.sortOrder = SortOrder.Descending;
       this.sortDpsResults('theoreticalDps');
+
+      this.inputSetup = this.inputSetupService.getInputSetup();
 
       this.selectedGraphResult = this.dpsResults.dpsGrapherResults.results[0];
       this.cd.detectChanges();

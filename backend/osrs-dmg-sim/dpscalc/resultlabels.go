@@ -20,7 +20,7 @@ func getGearSetupSettingsLabel(settings *GearSetupSettings) string {
 		}
 	}
 
-	return finalLabel
+	return finalLabel[:len(finalLabel)-2]
 }
 
 func getCombatStatsLabel(combatStats *CombatStats) string {

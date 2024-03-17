@@ -6,7 +6,20 @@
     <table class="table table-bordered border-dark mb-4">
       <thead>
         <tr class="text-end">
-          <th scope="col" style="width: 30%" class="text-start">Setup Name</th>
+          <th scope="col" style="width: 30%" class="text-start">
+            <div class="d-flex">
+              <div class="flex-fill">Setup Name</div>
+              <div class="d-flex">
+                <label class="fw-lighter me-1" for="showResultImage">show text label</label>
+                <input
+                  id="showResultImage"
+                  class="form-check-input"
+                  type="checkbox"
+                  [(ngModel)]="showResultTextLabel"
+                />
+              </div>
+            </div>
+          </th>
           <ng-container *ngFor="let dpsSortField of dpsSortFields.slice(0, 3)">
             <th scope="col" style="width: 10%" (click)="sortDpsResults(dpsSortField)">
               <button type="button" class="btn w-100 fw-bold p-0 text-end">
@@ -28,11 +41,30 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let result of dpsResults.dpsCalcResults.results">
-          <tr class="text-end">
+        <ng-container *ngFor="let result of dpsResults.dpsCalcResults.results; index as i">
+          <tr class="align-middle text-end">
             <th scope="row" class="text-start">
-              {{ result.labels.setupName }} -
-              <span style="font-weight: normal">{{ result.labels.gearSetupSettingsLabel }}</span>
+              <div class="d-flex align-items-center">
+                <div class="">{{ result.labels.setupName }} - &nbsp;</div>
+                <ng-container *ngIf="showResultTextLabel; else imageResults">
+                  <span style="font-weight: normal">{{ result.labels.gearSetupSettingsLabel }}</span>
+                </ng-container>
+                <ng-template #imageResults>
+                  <div class="px-1" *ngFor="let boost of inputSetup.inputGearSetups[i].gearSetupSettings.boosts">
+                    <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+                  </div>
+                  <div class="px-1" *ngFor="let prayer of inputSetup.inputGearSetups[i].gearSetup.prayers">
+                    <img src="assets/img/prayer/{{ prayer }}.png" />
+                  </div>
+                  <div
+                    class="px-1"
+                    *ngFor="let statDrain of inputSetup.inputGearSetups[i].gearSetupSettings.statDrains"
+                  >
+                    <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
+                    {{ statDrain.value }}
+                  </div>
+                </ng-template>
+              </div>
             </th>
             <td>{{ result.theoreticalDps | number : "1.2-2" }}</td>
             <td>{{ result.maxHit }}</td>

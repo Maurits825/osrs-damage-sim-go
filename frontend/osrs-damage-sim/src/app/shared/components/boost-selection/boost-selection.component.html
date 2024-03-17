@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-auto px-2" *ngFor="let boost of quickBoostSelected ? quickBoosts : selectedBoosts">
         <div [class.boost-active]="selectedBoosts.has(boost)" class="img-cell text-center" (click)="toggleBoost(boost)">
-          <img class="mt-1" src="assets/img/boosts/{{ boost }}.png" />
+          <img class="mt-1" src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
         </div>
       </div>
     </div>

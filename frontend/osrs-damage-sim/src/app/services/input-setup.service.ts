@@ -34,14 +34,13 @@ export class InputSetupService {
   }
 
   getInputSetupAsJson(): string {
-    const inputSetup: InputSetup = this.getInputSetup(
-      this.globalSettingsComponent$.getValue().globalSettings,
-      this.gearSetupTabs$.getValue()
-    );
+    const inputSetup: InputSetup = this.getInputSetup();
     return this.convertInputObjectToJson(inputSetup);
   }
 
-  getInputSetup(globalSettings: GlobalSettings, gearSetupTabs: GearSetupTabComponent[]): InputSetup {
+  getInputSetup(): InputSetup {
+    const globalSettings = this.globalSettingsComponent$.getValue().globalSettings;
+    const gearSetupTabs = this.gearSetupTabs$.getValue();
     const inputSetup: InputSetup = {
       globalSettings: globalSettings,
       inputGearSetups: [],
