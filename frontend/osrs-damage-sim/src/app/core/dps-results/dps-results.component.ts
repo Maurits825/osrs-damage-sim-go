@@ -14,6 +14,7 @@ export class DpsResultsComponent implements OnChanges {
   @Input()
   dpsResults: DpsResults;
 
+  sortIndexOrder: number[];
   sortConfigs: Partial<SortConfigs> = {
     theoreticalDps: { sortOrder: SortOrder.Ascending, isSorted: false },
     maxHit: { sortOrder: SortOrder.Ascending, isSorted: false },
@@ -37,6 +38,8 @@ export class DpsResultsComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsResults'] && this.dpsResults && !this.dpsResults.error) {
       this.sortConfigs.theoreticalDps.sortOrder = SortOrder.Descending;
+      this.sortIndexOrder = [...Array(this.dpsResults.dpsCalcResults.results.length).keys()];
+
       this.sortDpsResults('theoreticalDps');
 
       this.inputSetup = this.inputSetupService.getInputSetup();
@@ -50,7 +53,9 @@ export class DpsResultsComponent implements OnChanges {
 
   sortDpsResults(dpsSortField: DpsSortField): void {
     const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
-    this.dpsResults.dpsCalcResults.results.sort((result1: DpsCalcResult, result2: DpsCalcResult) => {
+    this.sortIndexOrder.sort((index1: number, index2: number) => {
+      const result1 = this.dpsResults.dpsCalcResults.results[index1];
+      const result2 = this.dpsResults.dpsCalcResults.results[index2];
       if (typeof result1[dpsSortField] === 'number') {
         return sortOrder * ((result1[dpsSortField] as number) - (result2[dpsSortField] as number));
       }
@@ -62,7 +67,6 @@ export class DpsResultsComponent implements OnChanges {
 
     this.updateSortConfigs(dpsSortField);
   }
-
   updateSortConfigs(sortField: DpsSortField): void {
     this.dpsSortFields.forEach((field: DpsSortField) => (this.sortConfigs[field].isSorted = false));
 

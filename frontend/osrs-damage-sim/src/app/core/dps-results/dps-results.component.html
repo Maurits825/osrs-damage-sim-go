@@ -41,36 +41,38 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let result of dpsResults.dpsCalcResults.results; index as i">
-          <tr class="align-middle text-end">
-            <th scope="row" class="text-start">
-              <div class="d-flex align-items-center">
-                <ng-container *ngIf="showResultTextLabel; else imageResults">
-                  <div class="">{{ result.labels.gearSetupName }} - &nbsp;</div>
-                  <span style="font-weight: normal">{{ result.labels.gearSetupSettingsLabel }}</span>
-                </ng-container>
-                <ng-template #imageResults>
-                  <div class="">{{ inputSetup.inputGearSetups[i].gearSetup.setupName }} - &nbsp;</div>
-                  <div class="px-1" *ngFor="let boost of inputSetup.inputGearSetups[i].gearSetupSettings.boosts">
-                    <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
-                  </div>
-                  <div class="px-1" *ngFor="let prayer of inputSetup.inputGearSetups[i].gearSetup.prayers">
-                    <img src="assets/img/prayer/{{ prayer }}.png" />
-                  </div>
-                  <div
-                    class="px-1"
-                    *ngFor="let statDrain of inputSetup.inputGearSetups[i].gearSetupSettings.statDrains"
-                  >
-                    <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
-                    {{ statDrain.value }}
-                  </div>
-                </ng-template>
-              </div>
-            </th>
-            <td>{{ result.theoreticalDps | number : "1.2-2" }}</td>
-            <td>{{ result.maxHit }}</td>
-            <td>{{ result.accuracy | number : "1.2-2" }}%</td>
-          </tr>
+        <ng-container *ngFor="let i of sortIndexOrder">
+          <ng-container *ngIf="dpsResults.dpsCalcResults.results[i]; let result">
+            <tr class="align-middle text-end">
+              <th scope="row" class="text-start">
+                <div class="d-flex align-items-center">
+                  <ng-container *ngIf="showResultTextLabel; else imageResults">
+                    <div class="">{{ result.labels.gearSetupName }} - &nbsp;</div>
+                    <span style="font-weight: normal">{{ result.labels.gearSetupSettingsLabel }}</span>
+                  </ng-container>
+                  <ng-template #imageResults>
+                    <div class="">{{ inputSetup.inputGearSetups[i].gearSetup.setupName }} - &nbsp;</div>
+                    <div class="px-1" *ngFor="let boost of inputSetup.inputGearSetups[i].gearSetupSettings.boosts">
+                      <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+                    </div>
+                    <div class="px-1" *ngFor="let prayer of inputSetup.inputGearSetups[i].gearSetup.prayers">
+                      <img src="assets/img/prayer/{{ prayer }}.png" />
+                    </div>
+                    <div
+                      class="px-1"
+                      *ngFor="let statDrain of inputSetup.inputGearSetups[i].gearSetupSettings.statDrains"
+                    >
+                      <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
+                      {{ statDrain.value }}
+                    </div>
+                  </ng-template>
+                </div>
+              </th>
+              <td>{{ result.theoreticalDps | number : "1.2-2" }}</td>
+              <td>{{ result.maxHit }}</td>
+              <td>{{ result.accuracy | number : "1.2-2" }}%</td>
+            </tr>
+          </ng-container>
         </ng-container>
       </tbody>
     </table>
