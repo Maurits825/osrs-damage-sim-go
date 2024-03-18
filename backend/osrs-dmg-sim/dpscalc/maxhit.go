@@ -23,8 +23,8 @@ func getMeleeMaxHit(player *player) int {
 
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
 		prayerBoost := prayer.getPrayerBoost()
-		if prayerBoost.meleeStrenght.denominator != 0 {
-			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageLevelPrayer, effectiveLevel, prayerBoost.meleeStrenght.numerator, prayerBoost.meleeStrenght.denominator)
+		if prayerBoost.meleeStrength.denominator != 0 {
+			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageLevelPrayer, effectiveLevel, prayerBoost.meleeStrength.numerator, prayerBoost.meleeStrength.denominator)
 		}
 	}
 

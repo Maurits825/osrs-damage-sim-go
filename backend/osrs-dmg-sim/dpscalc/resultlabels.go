@@ -7,7 +7,7 @@ const (
 )
 
 var prayerLabel = map[Prayer]string{
-	Piety: "Piety",
+	PietyPrayer: "Piety",
 }
 
 var potionLabel = map[PotionBoost]string{

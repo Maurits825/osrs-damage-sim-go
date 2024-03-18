@@ -46,7 +46,35 @@ type GearItem struct {
 type Prayer string
 
 const (
-	Piety Prayer = "piety"
+	ThickSkinPrayer           Prayer = "thick_skin"
+	BurstOfStrengthPrayer     Prayer = "burst_of_strength"
+	ClarityOfThoughtPrayer    Prayer = "clarity_of_thought"
+	SharpEyePrayer            Prayer = "sharp_eye"
+	MysticWillPrayer          Prayer = "mystic_will"
+	RockSkinPrayer            Prayer = "rock_skin"
+	SuperhumanStrengthPrayer  Prayer = "superhuman_strength"
+	ImprovedReflexesPrayer    Prayer = "improved_reflexes"
+	RapidHealPrayer           Prayer = "rapid_heal"
+	RapidRestorePrayer        Prayer = "rapid_restore"
+	ProtectItemPrayer         Prayer = "protect_item"
+	HawkEyePrayer             Prayer = "hawk_eye"
+	MysticLorePrayer          Prayer = "mystic_lore"
+	SteelSkinPrayer           Prayer = "steel_skin"
+	UltimateStrengthPrayer    Prayer = "ultimate_strength"
+	IncredibleReflexesPrayer  Prayer = "incredible_reflexes"
+	ProtectFromMagicPrayer    Prayer = "protect_from_magic"
+	ProtectFromMissilesPrayer Prayer = "protect_from_missiles"
+	ProtectFromMeleePrayer    Prayer = "protect_from_melee"
+	EagleEyePrayer            Prayer = "eagle_eye"
+	MysticMightPrayer         Prayer = "mystic_might"
+	RetributionPrayer         Prayer = "retribution"
+	RedemptionPrayer          Prayer = "redemption"
+	SmitePrayer               Prayer = "smite"
+	PreservePrayer            Prayer = "preserve"
+	ChivalryPrayer            Prayer = "chivalry"
+	PietyPrayer               Prayer = "piety"
+	RigourPrayer              Prayer = "rigour"
+	AuguryPrayer              Prayer = "augury"
 )
 
 // TODO spell

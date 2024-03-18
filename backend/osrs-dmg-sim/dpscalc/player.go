@@ -109,11 +109,13 @@ type factor struct {
 
 type prayerBoost struct {
 	meleeAttack    factor
-	meleeStrenght  factor
+	meleeStrength  factor
 	rangedAttack   factor
 	rangedStrength factor
 	magicAttack    factor
 	magicStrength  factor
+	defence        factor
+	defenceMagic   factor
 }
 
 type player struct {
