@@ -7,7 +7,6 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
-	"path/filepath"
 )
 
 type equipmentItems map[string]equipmentItem
@@ -152,8 +151,6 @@ func (n *npc) UnmarshalJSON(data []byte) error {
 
 	return nil
 }
-
-var wikiDataFolder = filepath.Join("dpscalc", "wiki-data")
 
 //go:embed wiki-data/*
 var wikiDataEmbed embed.FS

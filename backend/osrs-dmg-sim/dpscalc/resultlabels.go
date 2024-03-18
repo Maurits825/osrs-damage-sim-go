@@ -30,6 +30,7 @@ func getGearSetupSettingsLabel(settings *GearSetupSettings) string {
 		getCombatStatsLabel(&settings.CombatStats),
 		getPotionBoostLabel(settings.PotionBoosts),
 		getStatDrainLabel(settings.StatDrain),
+		getAttackCycleLabel(settings.AttackCycle),
 	}
 
 	finalLabel := ""
