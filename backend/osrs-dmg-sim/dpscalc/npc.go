@@ -1,5 +1,9 @@
 package dpscalc
 
+import "slices"
+
+var dukeSucellus = []string{"12166", "12166_1", "12193"}
+
 type aggressiveStats struct {
 	attack int
 	magic  int
@@ -39,4 +43,14 @@ func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetu
 
 	npc.combatStats = npc.baseCombatStats
 	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
+}
+
+func getDemonbaneFactor(npcId string, numerator int, denominator int) (int, int) {
+	if slices.Contains(dukeSucellus, npcId) {
+		numerator *= 7
+		denominator *= 10
+	}
+
+	numerator += denominator
+	return numerator, denominator
 }
