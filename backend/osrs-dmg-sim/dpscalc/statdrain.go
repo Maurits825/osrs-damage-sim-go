@@ -57,11 +57,14 @@ func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 			scaleStat := func(base int, current int) int {
 				return current - (statDrain.Value * (int(base/divisor) + 1))
 			}
-			npc.combatStats.Attack = max(minDefence, scaleStat(npc.baseCombatStats.Attack, npc.combatStats.Attack))
-			npc.combatStats.Strength = max(minDefence, scaleStat(npc.baseCombatStats.Strength, npc.combatStats.Strength))
+			npc.combatStats.Attack = scaleStat(npc.baseCombatStats.Attack, npc.combatStats.Attack)
+			npc.combatStats.Strength = scaleStat(npc.baseCombatStats.Strength, npc.combatStats.Strength)
 			npc.combatStats.Defence = max(minDefence, scaleStat(npc.baseCombatStats.Defence, npc.combatStats.Defence))
 		case BandosGodsword:
 			npc.combatStats.Defence = max(minDefence, npc.combatStats.Defence-statDrain.Value)
+		case AccursedSceptre:
+			npc.combatStats.Defence = max(minDefence, int(npc.baseCombatStats.Defence*17/20))
+			npc.combatStats.Magic = int(npc.baseCombatStats.Magic * 17 / 20)
 		}
 	}
 }

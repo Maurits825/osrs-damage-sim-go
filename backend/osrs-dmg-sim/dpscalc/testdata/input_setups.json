@@ -199,7 +199,7 @@
     }
   },
   "Olm max tbow": {
-    "expectedDps": 11.706211,
+    "expectedDps": 11.721295,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,

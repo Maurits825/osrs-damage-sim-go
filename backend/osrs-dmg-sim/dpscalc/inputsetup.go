@@ -28,7 +28,6 @@ type CoxScaling struct {
 	IsChallengeMode     bool `json:"isChallengeMode"`
 }
 
-// TODO also could have the grapher settings here? or another root
 type GlobalSettings struct {
 	Npc            Npc        `json:"npc"`
 	TeamSize       int        `json:"teamSize"`
@@ -77,7 +76,6 @@ const (
 	AuguryPrayer              Prayer = "augury"
 )
 
-// TODO spell
 type GearSetup struct {
 	Name            string                `json:"setupName"`
 	AttackStyle     string                `json:"attackStyle"`
@@ -109,6 +107,7 @@ const (
 	DragonWarhammer StatDrainWeapon = "Dragon warhammer"
 	Arclight        StatDrainWeapon = "Arclight"
 	BandosGodsword  StatDrainWeapon = "Bandos godsword"
+	AccursedSceptre StatDrainWeapon = "Accursed sceptre"
 )
 
 type StatDrain struct {
