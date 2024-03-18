@@ -1,27 +1,34 @@
 package dpscalc
 
 const (
-	harmStaff         = 24423
-	blowpipe          = 12926
-	tumekenShadow     = 27275
-	dinhsBulwark      = 21015
-	meleeVoidHelm     = 11665
-	mageVoidHelm      = 11663
-	rangeVoidHelm     = 11664
-	salveAmulet       = 4081
-	salveAmuletE      = 10588
-	salveAmuletI      = 12017
-	salveAmuletEI     = 12018
-	blackMask         = 8901
-	blackMaskImbued   = 11774
-	slayerHelm        = 11864
-	slayerHelmImbued  = 11865
-	arclight          = 19675
-	dragonHunterLance = 22978
-	kerisBreaching    = 25981
-	soulreaperAxe     = 28338
-	leafBladedAxe     = 20727
-	colossalBlade     = 27021
+	harmStaff            = 24423
+	blowpipe             = 12926
+	tumekenShadow        = 27275
+	dinhsBulwark         = 21015
+	meleeVoidHelm        = 11665
+	mageVoidHelm         = 11663
+	rangeVoidHelm        = 11664
+	salveAmulet          = 4081
+	salveAmuletE         = 10588
+	salveAmuletI         = 12017
+	salveAmuletEI        = 12018
+	blackMask            = 8901
+	blackMaskImbued      = 11774
+	slayerHelm           = 11864
+	slayerHelmImbued     = 11865
+	arclight             = 19675
+	dragonHunterLance    = 22978
+	dragonHunterCrossbow = 21012 //TODO id alias
+	kerisBreaching       = 25981
+	soulreaperAxe        = 28338
+	leafBladedAxe        = 20727
+	colossalBlade        = 27021
+	bowfa                = 25865 //TODO id alias 25867 corrupted version
+	crystalBow           = 23983
+	crystalHelm          = 23971
+	crystalLegs          = 23979
+	crystalBody          = 23975
+	twistedBow           = 20997
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -59,6 +66,14 @@ func (gear *equippedGear) isWearingVoidRobes() bool {
 
 func (gear *equippedGear) isWearingMeleeVoid() bool {
 	return gear.isWearingVoidRobes() && gear.isEquipped(meleeVoidHelm)
+}
+
+func (gear *equippedGear) isWearingRangedVoid() bool {
+	return gear.isWearingVoidRobes() && gear.isEquipped(rangeVoidHelm)
+}
+
+func (gear *equippedGear) isWearingMageVoid() bool {
+	return gear.isWearingVoidRobes() && gear.isEquipped(mageVoidHelm)
 }
 
 func (gear *equippedGear) isWearingImbuedBlackMask() bool {

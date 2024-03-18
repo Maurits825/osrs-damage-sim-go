@@ -1,6 +1,8 @@
 package dpscalc
 
 import (
+	"math"
+
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
@@ -115,16 +117,67 @@ func getRangedAttackRoll(player *player) int {
 
 	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyEffectiveLevel, effectiveLevel, stanceBonus)
 
-	//TODO ranged void
+	if player.equippedGear.isWearingRangedVoid() {
+		effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyEffectiveLevelVoid, effectiveLevel, 11, 10)
+	}
 
 	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyGearBonus, player.equipmentStats.offensiveStats.ranged, 64)
 	baseRoll := dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRollBase, effectiveLevel, gearBonus, 1)
 
-	//TODO other checks
+	attackRoll := baseRoll
+	if player.equippedGear.isAnyEquipped([]int{bowfa, crystalBow}) {
+		crystalPieces := 0
+		if player.equippedGear.isEquipped(crystalHelm) {
+			crystalPieces += 1
+		}
+		if player.equippedGear.isEquipped(crystalLegs) {
+			crystalPieces += 2
+		}
+		if player.equippedGear.isEquipped(crystalBody) {
+			crystalPieces += 3
+		}
+		attackRoll = int(attackRoll * (20 + crystalPieces) / 20)
+	}
 
-	return baseRoll
+	//TODO avarice amulet, rev weapon
+	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.isUndead {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
+	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.isUndead {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 7, 6)
+	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
+	}
+
+	if player.equippedGear.isEquipped(twistedBow) {
+		cap := 250
+		if player.npc.isXerician {
+			cap = 350
+		}
+		tbowMagic := min(cap, max(player.npc.combatStats.Magic, player.npc.aggressiveStats.magic))
+		attackRoll = twistedbowScaling(attackRoll, tbowMagic, true)
+	}
+	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 13, 10)
+	}
+
+	return attackRoll
 }
 
 func getMagicAttackRoll(player *player) int {
 	return 0
+}
+
+func twistedbowScaling(current int, magic int, accuracyMode bool) int {
+	factor := 14
+	base := 250
+	if accuracyMode {
+		factor = 10
+		base = 140
+	}
+
+	t2 := int((3*magic - factor) / 100)
+	t3 := int(math.Pow(float64(int(3*magic/10)-(10*factor)), 2) / 100)
+
+	bonus := base + t2 - t3
+	return int(current * bonus / 100)
 }
