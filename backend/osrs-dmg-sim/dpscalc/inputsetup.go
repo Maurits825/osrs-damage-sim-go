@@ -90,9 +90,28 @@ type StatDrain struct {
 
 type PotionBoost string
 
-// TODO other pots
 const (
-	SuperCombat PotionBoost = "super_combat"
+	AttackBoost              PotionBoost = "attack"
+	SuperAttackBoost         PotionBoost = "super_attack"
+	DivineSuperAttackBoost   PotionBoost = "divine_super_attack"
+	StrengthBoost            PotionBoost = "strength"
+	SuperStrengthBoost       PotionBoost = "super_strength"
+	DivineSuperStrengthBoost PotionBoost = "divine_super_strength"
+	CombatBoost              PotionBoost = "combat"
+	SuperCombatBoost         PotionBoost = "super_combat"
+	DivineSuperCombatBoost   PotionBoost = "divine_super_combat"
+	ZamorakBrew              PotionBoost = "zamorak_brew"
+	OverloadPlus             PotionBoost = "overload_plus"
+	SmellingSalts            PotionBoost = "smelling_salts"
+	MagicBoost               PotionBoost = "magic"
+	DivineMagicBoost         PotionBoost = "divine_magic"
+	AncientBrew              PotionBoost = "ancient_brew"
+	ForgottenBrew            PotionBoost = "forgotten_brew"
+	ImbuedHeart              PotionBoost = "imbued_heart"
+	SaturatedHeart           PotionBoost = "saturated_heart"
+	RangingBoost             PotionBoost = "ranging"
+	DivineRangingBoost       PotionBoost = "divine_ranging"
+	LiquidAdrenaline         PotionBoost = "liquid_adrenaline"
 )
 
 type GearSetupSettings struct {

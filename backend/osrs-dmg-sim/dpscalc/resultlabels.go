@@ -11,7 +11,7 @@ var prayerLabel = map[Prayer]string{
 }
 
 var potionLabel = map[PotionBoost]string{
-	SuperCombat: "SCP",
+	SuperCombatBoost: "SCP",
 }
 
 func getGearSetupLabel(gearSetup *GearSetup) string {
