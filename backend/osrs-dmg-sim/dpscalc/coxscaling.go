@@ -6,44 +6,48 @@ import (
 	"strconv"
 )
 
-var OlmHeadIds = []int{
-	7551, // reg
-	7554, // cm
-}
+var (
+	ids = []int{}
 
-var OlmMeleeHandIds = []int{
-	7552, // reg
-	7555, // cm
-}
+	olmHeadIds = []int{
+		7551, // reg
+		7554, // cm
+	}
 
-var OlmMageHandIds = []int{
-	7550, // reg
-	7553, // cm
-}
+	olmMeleeHandIds = []int{
+		7552, // reg
+		7555, // cm
+	}
 
-var OlmIds []int = slices.Concat(OlmHeadIds, OlmMeleeHandIds, OlmMageHandIds)
+	olmMageHandIds = []int{
+		7550, // reg
+		7553, // cm
+	}
 
-var ScavanegerBeastIds = []int{
-	7548, 7549,
-}
+	olmIds []int = slices.Concat(olmHeadIds, olmMeleeHandIds, olmMageHandIds)
 
-var GuardianIds = []int{
-	7569, 7571, // reg
-	7570, 7572, // cm
-}
+	scavengerBeastIds = []int{
+		7548, 7549,
+	}
 
-var GlowingCrystalIds = []int{
-	7568,
-}
+	guardianIds = []int{
+		7569, 7571, // reg
+		7570, 7572, // cm
+	}
 
-var TektonIds = []int{
-	7540, 7543, // reg
-	7544, 7545, // cm
-}
+	glowingCrystalIds = []int{
+		7568,
+	}
 
-var AbyssalPortalIds = []int{
-	7533,
-}
+	tektonIds = []int{
+		7540, 7543, // reg
+		7544, 7545, // cm
+	}
+
+	abyssalPortalIds = []int{
+		7533,
+	}
+)
 
 // all equations taken from https://github.com/weirdgloop/osrs-dps-calc/blob/staging/src/lib/scaling/ChambersOfXeric.ts
 // TODO using float64 for everything...
@@ -61,10 +65,10 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 		return math.Floor(math.Sqrt(v))
 	}
 
-	if slices.Contains(OlmIds, npcId) {
+	if slices.Contains(olmIds, npcId) {
 		olmHp := func() int {
 			headMult := 300.0
-			if slices.Contains(OlmHeadIds, npcId) {
+			if slices.Contains(olmHeadIds, npcId) {
 				headMult = 400.0
 			}
 			return int(headMult * (ps - math.Floor(ps/8)*3 + 1))
@@ -90,15 +94,15 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 	}
 
 	scaleHp := func(base int) int {
-		if slices.Contains(ScavanegerBeastIds, npcId) {
+		if slices.Contains(scavengerBeastIds, npcId) {
 			return base
 		}
 		baseHp := npc.baseCombatStats.Hitpoints
-		if slices.Contains(GuardianIds, npcId) {
+		if slices.Contains(guardianIds, npcId) {
 			baseHp = 151 + coxScaling.PartyAvgMiningLevel
 		}
 		cmMult := 2.0
-		if coxScaling.IsChallengeMode && !slices.Contains(GlowingCrystalIds, npcId) {
+		if coxScaling.IsChallengeMode && !slices.Contains(glowingCrystalIds, npcId) {
 			cmMult = 3.0
 		}
 		return int(math.Floor(float64(baseHp)*cmb/126)*(math.Floor(ps/2)+1)*cmMult) / 2
@@ -107,18 +111,18 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 	hp := float64(coxScaling.PartyMaxHpLevel)
 	scaleDefence := func(base int) int {
 		f := 2.0
-		if slices.Contains(TektonIds, npcId) {
+		if slices.Contains(tektonIds, npcId) {
 			f = 5.0
 		}
 		f2 := f
-		if coxScaling.IsChallengeMode && !slices.Contains(GlowingCrystalIds, npcId) {
+		if coxScaling.IsChallengeMode && !slices.Contains(glowingCrystalIds, npcId) {
 			f2 = f + 1
 		}
 		return int(math.Floor(math.Floor(math.Floor(float64(base)*(math.Floor(hp*4/9)+55)/99)*(sqrtFloor(ps-1)+math.Floor((ps-1)*7/10)+100)/100) * (f2) / f))
 	}
 
 	scaleOffence := func(base int) int {
-		if slices.Contains(AbyssalPortalIds, npcId) {
+		if slices.Contains(abyssalPortalIds, npcId) {
 			return scaleDefence(base)
 		}
 		f := 2.0
@@ -131,11 +135,11 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 
 	scaleMagic := func(base int) int {
 		f := 2.0
-		if slices.Contains(TektonIds, npcId) {
+		if slices.Contains(tektonIds, npcId) {
 			f = 5.0
 		}
 		//TODO this is pretty much scaleOffence(base, f)
-		if slices.Contains(AbyssalPortalIds, npcId) {
+		if slices.Contains(abyssalPortalIds, npcId) {
 			return scaleDefence(base)
 		}
 		f2 := f

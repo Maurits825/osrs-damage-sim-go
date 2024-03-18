@@ -1,5 +1,14 @@
 package dpscalc
 
+const (
+	harmStaff     = 24423
+	blowpipe      = 12926
+	tumekenShadow = 27275
+	dinhsBulwark  = 21015
+)
+
+var virtusSet = []int{26241, 26243, 26245}
+
 type equippedGear struct {
 	ids []int
 }

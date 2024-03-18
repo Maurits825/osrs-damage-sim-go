@@ -1,7 +1,6 @@
 package dpscalc
 
 import (
-	"fmt"
 	"regexp"
 )
 
@@ -91,7 +90,6 @@ func parseCombatStyle(style string) combatStyle {
 	matches := re.FindStringSubmatch(style)
 
 	if len(matches) != 4 {
-		fmt.Println("Error parsing combat style: " + style)
 		return combatStyle{}
 	}
 
@@ -125,4 +123,5 @@ type player struct {
 	combatStatBoost CombatStats
 	equipmentStats  equipmentStats
 	combatStyle     combatStyle
+	equippedGear    equippedGear
 }
