@@ -11,6 +11,7 @@ type aggressiveStats struct {
 }
 
 type npc struct {
+	id              int
 	name            string
 	baseCombatStats CombatStats
 	combatStats     CombatStats

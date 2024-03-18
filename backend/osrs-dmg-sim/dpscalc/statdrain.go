@@ -1,7 +1,45 @@
 package dpscalc
 
+import "slices"
+
+func getMinDefence(npc *npc) int {
+	if npc.name == "Verzik Vitur" || npc.name == "Vardorvis" {
+		return npc.combatStats.Defence
+	}
+	if npc.name == "Sotetseg" {
+		return 100
+	}
+	if npc.name == "The Nightmare" || npc.name == "Phosani\"s Nightmare" {
+		return 120
+	}
+	if npc.name == "Akkha" {
+		return 70
+	}
+	if npc.name == "Ba-Ba" {
+		return 60
+	}
+	if npc.name == "Kephri" {
+		return 60
+	}
+	if npc.name == "Zebak" {
+		return 50
+	}
+	if slices.Contains(p3WardenIds, npc.id) {
+		return 120
+	}
+	if npc.name == "Obelisk" {
+		return 60
+	}
+	if npc.name == "Nex" {
+		return 250
+	}
+
+	// no limit
+	return 0
+}
+
 func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []StatDrain) {
-	minDefence := 0
+	minDefence := getMinDefence(npc)
 	//StatsDrains set the combatStats on the npc
 	for _, statDrain := range statsDrains {
 		switch statDrain.Name {

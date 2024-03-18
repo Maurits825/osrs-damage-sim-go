@@ -3,12 +3,9 @@ package dpscalc
 import (
 	"math"
 	"slices"
-	"strconv"
 )
 
 var (
-	ids = []int{}
-
 	olmHeadIds = []int{
 		7551, // reg
 		7554, // cm
@@ -59,7 +56,7 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 	coxScaling := globalSettings.CoxScaling
 	ps := float64(globalSettings.TeamSize)
 	cmb := float64(coxScaling.PartyMaxCombatLevel)
-	npcId, _ := strconv.Atoi(globalSettings.Npc.Id)
+	npcId := npc.id
 
 	sqrtFloor := func(v float64) float64 {
 		return math.Floor(math.Sqrt(v))

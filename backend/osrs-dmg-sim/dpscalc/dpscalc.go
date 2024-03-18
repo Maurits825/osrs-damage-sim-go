@@ -89,6 +89,11 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		}
 	}
 
+	npcId, _ := strconv.Atoi(globalSettings.Npc.Id)
+	npc := AllNpcs[globalSettings.Npc.Id]
+	npc.id = npcId
+	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
+
 	if equippedGear.isEquipped(blowpipe) {
 		darts := allItems[strconv.Itoa(inputGearSetup.GearSetup.BlowpipeDarts.Id)].equipmentStats
 		equipmentStats.addStats(&darts)
@@ -96,7 +101,6 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	if equippedGear.isEquipped(tumekenShadow) {
 		factor := 3
-		npcId, _ := strconv.Atoi(globalSettings.Npc.Id)
 		if slices.Contains(toaIds, npcId) {
 			factor = 4
 		}
@@ -126,8 +130,6 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
 	//TODO prob other stuff to init or get here b4 running calcs
-	npc := AllNpcs[globalSettings.Npc.Id]
-	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear}
 }
 

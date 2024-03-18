@@ -2,7 +2,6 @@ package dpscalc
 
 import (
 	"slices"
-	"strconv"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
@@ -16,7 +15,7 @@ var useDefLevelForMagicDefNpcs = []int{
 }
 
 func getNpcDefenceRoll(player *player) int {
-	npcId, _ := strconv.Atoi(player.globalSettings.Npc.Id)
+	npcId := player.npc.id
 
 	level := player.npc.combatStats.Defence
 	if player.combatStyle.combatStyleType == Magic && !slices.Contains(useDefLevelForMagicDefNpcs, npcId) {
