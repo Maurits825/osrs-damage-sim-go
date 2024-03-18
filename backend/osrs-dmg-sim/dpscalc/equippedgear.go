@@ -38,6 +38,9 @@ const (
 	sangStaff        = 22323
 	dawnbringer      = 22516
 	warpedSceptre    = 28583
+
+	brimstoneRing = 22975
+	osmumtenFang  = 26219 //TODO id alias
 )
 
 var virtusSet = []int{26241, 26243, 26245}

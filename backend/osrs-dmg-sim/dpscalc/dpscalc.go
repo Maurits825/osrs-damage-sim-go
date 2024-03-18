@@ -2,6 +2,7 @@ package dpscalc
 
 import (
 	"fmt"
+	"math"
 	"slices"
 	"strconv"
 
@@ -176,7 +177,22 @@ func getAccuracy(player *player) float32 {
 	accuracy := getNormalAccuracy(attackRoll, defenceRoll)
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyBase, accuracy)
 
-	//TODO brimstone, fang at toa
+	if player.combatStyle.combatStyleType == Magic && player.equippedGear.isEquipped(brimstoneRing) {
+		effectDefenceRoll := int(defenceRoll * 9 / 10)
+		effectHitChance := getNormalAccuracy(attackRoll, effectDefenceRoll)
+		accuracy = 0.75*accuracy + 0.25*effectHitChance
+		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyBrimstone, accuracy)
+	}
+
+	if player.equippedGear.isEquipped(osmumtenFang) && player.combatStyle.combatStyleType == Stab {
+		if slices.Contains(toaIds, player.npc.id) {
+			accuracy = 1 - float32(math.Pow(float64(1-accuracy), 2))
+			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFangTOA, accuracy)
+		} else {
+			accuracy = getFangAccuracy(attackRoll, defenceRoll)
+			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFang, accuracy)
+		}
+	}
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
 	return accuracy
@@ -187,4 +203,13 @@ func getNormalAccuracy(attackRoll int, defenceRoll int) float32 {
 		return 1 - (float32(defenceRoll+2) / float32(2*(attackRoll+1)))
 	}
 	return float32(attackRoll) / float32(2*(defenceRoll+1))
+}
+
+func getFangAccuracy(attackRoll int, defenceRoll int) float32 {
+	a := float32(attackRoll)
+	d := float32(defenceRoll)
+	if attackRoll > defenceRoll {
+		return 1 - (d+2)*(2*d+3)/(a+1)/(a+1)/6
+	}
+	return a * (4*a + 5) / 6 / (a + 1) / (d + 1)
 }

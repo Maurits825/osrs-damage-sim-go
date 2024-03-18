@@ -7,12 +7,13 @@ import (
 )
 
 // TODO add verzik
-var useDefLevelForMagicDefNpcs = []int{
-	7584,         // ice demon reg
-	7585,         // ice demon cm
-	11709, 11712, // baboon brawler
-	9118, // rabbit (prifddinas)
-}
+var useDefLevelForMagicDefNpcs = slices.Concat(
+	[]int{
+		7584,         // ice demon reg
+		7585,         // ice demon cm
+		11709, 11712, // baboon brawler
+		9118, // rabbit (prifddinas)
+	}, verzikIds)
 
 func getNpcDefenceRoll(player *player) int {
 	npcId := player.npc.id

@@ -199,7 +199,7 @@
     }
   },
   "Olm max tbow": {
-    "expectedDps": 11.70621133,
+    "expectedDps": 11.706211,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -397,7 +397,7 @@
     }
   },
   "Vorkath sang void ei brim": {
-    "expectedDps": 4.32377426,
+    "expectedDps": 4.427755,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
