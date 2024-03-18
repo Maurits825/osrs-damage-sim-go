@@ -63,8 +63,10 @@ func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 		case BandosGodsword:
 			npc.combatStats.Defence = max(minDefence, npc.combatStats.Defence-statDrain.Value)
 		case AccursedSceptre:
-			npc.combatStats.Defence = max(minDefence, int(npc.baseCombatStats.Defence*17/20))
-			npc.combatStats.Magic = int(npc.baseCombatStats.Magic * 17 / 20)
+			if statDrain.Value >= 1 {
+				npc.combatStats.Defence = max(minDefence, int(npc.baseCombatStats.Defence*17/20))
+				npc.combatStats.Magic = int(npc.baseCombatStats.Magic * 17 / 20)
+			}
 		}
 	}
 }

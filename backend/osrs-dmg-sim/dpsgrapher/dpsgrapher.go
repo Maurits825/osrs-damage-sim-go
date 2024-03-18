@@ -34,10 +34,11 @@ const (
 	DragonWarhammer GraphType = "Dragon warhammer"
 	Arclight        GraphType = "Arclight"
 	BandosGodsword  GraphType = "Bandos godsword"
+	AccursedSceptre GraphType = "Accursed sceptre"
 )
 
 // TODO kinda scuffed
-var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword}
+var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre}
 
 const (
 	MaxLevel = 99
@@ -53,7 +54,7 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 			dpsGrapherResult = getLevelDpsGrapher(inputSetup, graphType)
 		case TeamSize:
 			dpsGrapherResult = getTeamSizeDpsGrapher(inputSetup, graphType)
-		case DragonWarhammer, Arclight, BandosGodsword:
+		case DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre:
 			dpsGrapherResult = getStatDrainDpsGrapher(inputSetup, graphType)
 		}
 
@@ -130,6 +131,8 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 		//TODO dpscalc.AllNpcs[inputSetup.GlobalSettings.Npc.Id].combatStats.Defence
 		//we have to get the scaled npc then also...
 		maxValue = 200
+	case AccursedSceptre:
+		maxValue = 1
 	}
 
 	xValues := getXValues(0, maxValue)
@@ -145,6 +148,8 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 			statDrainName = dpscalc.Arclight
 		case BandosGodsword:
 			statDrainName = dpscalc.BandosGodsword
+		case AccursedSceptre:
+			statDrainName = dpscalc.AccursedSceptre
 		}
 		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: statDrainName, Value: 0}}
 		currentValue := &inputGearSetup.GearSetupSettings.StatDrain[0].Value
