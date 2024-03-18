@@ -72,6 +72,10 @@ func (gear *equippedGear) isWearingRangedVoid() bool {
 	return gear.isWearingVoidRobes() && gear.isEquipped(rangeVoidHelm)
 }
 
+func (gear *equippedGear) isWearingEliteRangedVoid() bool {
+	return gear.isAnyEquipped(eliteVoidRobes) && gear.isEquipped(rangeVoidHelm)
+}
+
 func (gear *equippedGear) isWearingMageVoid() bool {
 	return gear.isWearingVoidRobes() && gear.isEquipped(mageVoidHelm)
 }
