@@ -28,7 +28,11 @@ func getMeleeMaxHit(player *player) int {
 		}
 	}
 
-	//TODO soulreaper axe
+	if player.equippedGear.isEquipped(soulreaperAxe) {
+		stacks := 5 //TODO stack input
+		bonus := dpsDetailEntries.TrackFactor(dpsdetail.DamageLevelSoulreaperBonus, baseLevel, stacks*6, 100)
+		effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.DamageLevelSoulreaper, effectiveLevel, bonus)
+	}
 
 	stanceBonus := 8
 	switch player.combatStyle.combatStyleStance {
@@ -40,14 +44,62 @@ func getMeleeMaxHit(player *player) int {
 
 	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.DamageEffectiveLevel, effectiveLevel, stanceBonus)
 
-	//TODO melee void
+	if player.equippedGear.isWearingMeleeVoid() {
+		effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageEffectiveLevelVoid, effectiveLevel, 11, 10)
+	}
 
 	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.meleeStrength, 64)
 	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
 
-	//TODO all other checks here
+	//TODO avarice amulet
+	maxHit := baseMaxHit
+	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.isUndead {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 6, 5)
+	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.isUndead {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 7, 6)
+	} else if player.equippedGear.isWearingBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, maxHit, 7, 6)
+	}
 
-	return baseMaxHit
+	//TODO tzhaar weapon, rev weapon, barronite, blister wood, flail, ef aid, rat bone
+
+	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
+	}
+	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.isDragon {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, maxHit, 6, 5)
+	}
+	if player.equippedGear.isAnyEquipped(kerisWeapons) && player.npc.isKalphite {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyKeris, maxHit, 133, 100)
+	}
+	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 5)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
+	}
+	if player.equippedGear.isEquipped(leafBladedAxe) && player.npc.isLeafy {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitLeafy, maxHit, 47, 40)
+	}
+	if player.equippedGear.isEquipped(colossalBlade) {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitColossalblade, maxHit, min(0, player.npc.size), 10)
+	}
+
+	if player.combatStyle.combatStyleType == Crush {
+		inqCount := 0
+		for _, inq := range inquisitorSet {
+			if player.equippedGear.isEquipped(inq) {
+				inqCount++
+			}
+		}
+		if inqCount == 3 {
+			inqCount = 5
+		}
+		if inqCount > 0 {
+			maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitInq, maxHit, 200+inqCount, 200)
+		}
+	}
+
+	return maxHit
 }
 
 func getRangedMaxHit(player *player) int {

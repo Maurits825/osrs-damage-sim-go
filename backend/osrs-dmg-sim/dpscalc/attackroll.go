@@ -55,7 +55,6 @@ func getMeleeAttackRoll(player *player) int {
 	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyGearBonus, accuracy, 64)
 	baseRoll := dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRollBase, effectiveLevel, gearBonus, 1)
 
-	//TODO other checks
 	//TODO avarice amulet
 	attackRoll := baseRoll
 	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.isUndead {
@@ -69,17 +68,19 @@ func getMeleeAttackRoll(player *player) int {
 	//TODO tzhaar weapon
 	//TODO rev weapon
 
-	if player.equippedGear.isEquipped(arclight) {
+	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
-	if player.equippedGear.isEquipped(dragonHunterLance) {
+	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.isDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 6, 5)
 	}
-	if player.equippedGear.isEquipped(kerisBreaching) {
+	if player.equippedGear.isEquipped(kerisBreaching) && player.npc.isKalphite {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyKeris, attackRoll, 133, 100)
 	}
+
 	//TODO blisterwood
+
 	if player.combatStyle.combatStyleType == Crush {
 		inqCount := 0
 		for _, inq := range inquisitorSet {

@@ -19,12 +19,17 @@ const (
 	arclight          = 19675
 	dragonHunterLance = 22978
 	kerisBreaching    = 25981
+	soulreaperAxe     = 28338
+	leafBladedAxe     = 20727
+	colossalBlade     = 27021
 )
 
 var virtusSet = []int{26241, 26243, 26245}
 var voidRobes = []int{8839, 8840, 8842}
 var eliteVoidRobes = []int{13072, 13073, 8842}
 var inquisitorSet = []int{24419, 24420, 24421}
+var kerisWeapons = []int{10581, 10582, 10583, 10584, 25979, kerisBreaching, 27291, 27287}
+var demonBaneWeapons = []int{2402, 6746}
 
 type equippedGear struct {
 	ids []int

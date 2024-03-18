@@ -119,7 +119,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	cmbStyle := parseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
-	if inputGearSetup.GearSetup.Spell == "" {
+	if inputGearSetup.GearSetup.Spell != "" {
 		cmbStyle = combatStyle{Magic, Autocast}
 	}
 
