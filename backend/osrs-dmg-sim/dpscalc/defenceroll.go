@@ -1,12 +1,28 @@
 package dpscalc
 
 import (
+	"slices"
+	"strconv"
+
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
+// TODO add verzik
+var useDefLevelForMagicDefNpcs = []int{
+	7584,         // ice demon reg
+	7585,         // ice demon cm
+	11709, 11712, // baboon brawler
+	9118, // rabbit (prifddinas)
+}
+
 func getNpcDefenceRoll(player *player) int {
-	//TODO test if use magic def here
+	npcId, _ := strconv.Atoi(player.globalSettings.Npc.Id)
+
 	level := player.npc.combatStats.Defence
+	if player.combatStyle.combatStyleType == Magic && !slices.Contains(useDefLevelForMagicDefNpcs, npcId) {
+		level = player.npc.combatStats.Magic
+	}
+
 	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollBase, level)
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceRollEffectiveLevel, level, 9)
 

@@ -2,6 +2,7 @@ package dpscalc
 
 import (
 	"math"
+	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
@@ -164,7 +165,49 @@ func getRangedAttackRoll(player *player) int {
 }
 
 func getMagicAttackRoll(player *player) int {
-	return 0
+	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Magic, player.combatStatBoost.Magic)
+	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
+		if factor := prayer.getPrayerBoost().magicAttack; factor.denominator != 0 {
+			//TODO divide 0 here i think with augury...
+			effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyLevelPrayer, effectiveLevel, factor.numerator, factor.denominator)
+		}
+	}
+
+	stanceBonus := 9
+	switch player.combatStyle.combatStyleStance {
+	case Accurate:
+		stanceBonus += 2
+	}
+
+	effectiveLevel = dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyEffectiveLevel, effectiveLevel, stanceBonus)
+
+	if player.equippedGear.isWearingMageVoid() {
+		effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyEffectiveLevelVoid, effectiveLevel, 29, 20)
+	}
+
+	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyGearBonus, player.equipmentStats.offensiveStats.magic, 64)
+	baseRoll := dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRollBase, effectiveLevel, gearBonus, 1)
+
+	attackRoll := baseRoll
+
+	//TODO avarice, rev
+
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.isUndead {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.isUndead {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 23, 20)
+	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
+	}
+
+	//TODO demonbane spells
+
+	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
+		attackRoll = int(float32(attackRoll*11) / float32(10))
+	}
+	//TODO water tome w/ water spell
+
+	return attackRoll
 }
 
 func twistedbowScaling(current int, magic int, accuracyMode bool) int {

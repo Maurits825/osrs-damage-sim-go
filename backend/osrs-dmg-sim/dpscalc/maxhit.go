@@ -1,6 +1,10 @@
 package dpscalc
 
-import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
+import (
+	"slices"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
+)
 
 func getMaxHit(player *player) int {
 	style := player.combatStyle.combatStyleType
@@ -171,5 +175,64 @@ func getRangedMaxHit(player *player) int {
 }
 
 func getMagicMaxHit(player *player) int {
-	return 0
+	baseMaxhit := 0
+	magicLevel := player.inputGearSetup.GearSetupSettings.CombatStats.Magic + player.combatStatBoost.Magic
+	spell := player.inputGearSetup.GearSetup.Spell
+
+	dpsDetailEntries.TrackValue(dpsdetail.DamageEffectiveLevel, magicLevel)
+
+	if spell != "" {
+		baseMaxhit = spellDamage[spell]
+		//TODO magic dart
+	} else if player.equippedGear.isEquipped(tridentSeas) {
+		baseMaxhit = int(magicLevel/3 - 5)
+	} else if player.equippedGear.isEquipped(thammaronSceptre) {
+		baseMaxhit = int(magicLevel/3 - 8)
+	} else if player.equippedGear.isEquipped(accursedSceptre) {
+		baseMaxhit = int(magicLevel/3 - 6)
+	} else if player.equippedGear.isEquipped(tridentSwamp) {
+		baseMaxhit = int(magicLevel/3 - 2)
+	} else if player.equippedGear.isEquipped(sangStaff) {
+		baseMaxhit = int(magicLevel/3 - 1)
+	} else if player.equippedGear.isEquipped(dawnbringer) {
+		baseMaxhit = int(magicLevel/6 - 1)
+	} else if player.equippedGear.isEquipped(tumekenShadow) {
+		baseMaxhit = int(magicLevel/3 + 1)
+	} else if player.equippedGear.isEquipped(warpedSceptre) {
+		baseMaxhit = int((8*magicLevel + 96) / 37)
+	}
+	//TODO other mics bone staff, cg staff, salamander...
+
+	dpsDetailEntries.TrackValue(dpsdetail.MaxHitBase, baseMaxhit)
+
+	//chaos gauntlets
+
+	magicDmgBonus := player.equipmentStats.damageStats.magicStrength * 10
+
+	if player.equippedGear.isWearingEliteMageVoid() {
+
+		magicDmgBonus += 25
+	}
+	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
+		magicDmgBonus += 100
+	}
+
+	blackMaskBonus := false
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.isUndead {
+		magicDmgBonus += 200
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.isUndead {
+		magicDmgBonus += 150
+	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
+		blackMaskBonus = true
+	}
+
+	maxHit := int(baseMaxhit * (1000 + magicDmgBonus) / 1000)
+
+	if blackMaskBonus {
+		maxHit = int(maxHit * 23 / 20)
+	} //TODO else avarice
+
+	//TODO demonbane spell, rev
+
+	return maxHit
 }

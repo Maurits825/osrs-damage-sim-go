@@ -29,6 +29,15 @@ const (
 	crystalLegs          = 23979
 	crystalBody          = 23975
 	twistedBow           = 20997
+
+	//TODO id alias below
+	tridentSeas      = 11905
+	tridentSwamp     = 12899
+	thammaronSceptre = 22552
+	accursedSceptre  = 27662
+	sangStaff        = 22323
+	dawnbringer      = 22516
+	warpedSceptre    = 28583
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -37,6 +46,8 @@ var eliteVoidRobes = []int{13072, 13073, 8842}
 var inquisitorSet = []int{24419, 24420, 24421}
 var kerisWeapons = []int{10581, 10582, 10583, 10584, 25979, kerisBreaching, 27291, 27287}
 var demonBaneWeapons = []int{2402, 6746}
+
+var smokeBattleStaves = []int{11998, 12000}
 
 type equippedGear struct {
 	ids []int
@@ -78,6 +89,10 @@ func (gear *equippedGear) isWearingEliteRangedVoid() bool {
 
 func (gear *equippedGear) isWearingMageVoid() bool {
 	return gear.isWearingVoidRobes() && gear.isEquipped(mageVoidHelm)
+}
+
+func (gear *equippedGear) isWearingEliteMageVoid() bool {
+	return gear.isAnyEquipped(eliteVoidRobes) && gear.isEquipped(mageVoidHelm)
 }
 
 func (gear *equippedGear) isWearingImbuedBlackMask() bool {
