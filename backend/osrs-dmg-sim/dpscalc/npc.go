@@ -40,7 +40,8 @@ type npc struct {
 
 func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
 	npc.applyCoxScaling(globalSettings)
-	//TODO other scaling
+	npc.applyTobScaling(globalSettings)
+	npc.applyToaScaling(globalSettings)
 
 	npc.combatStats = npc.baseCombatStats
 	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
