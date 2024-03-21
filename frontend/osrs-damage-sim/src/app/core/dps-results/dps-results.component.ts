@@ -27,8 +27,8 @@ export class DpsResultsComponent implements OnChanges {
 
   inputSetup: InputSetup;
   DpsGrapherResult: DpsGrapherResult;
-  selectedGraphResult: DpsGrapherResult;
-  chart: Chart;
+  selectedDpsGrapherResult: DpsGrapherResult;
+  dpsGrapherChart: Chart;
 
   showResultTextLabel = true;
   chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
@@ -44,10 +44,10 @@ export class DpsResultsComponent implements OnChanges {
 
       this.inputSetup = this.inputSetupService.getInputSetup();
 
-      this.selectedGraphResult = this.dpsResults.dpsGrapherResults.results[0];
+      this.selectedDpsGrapherResult = this.dpsResults.dpsGrapherResults.results[0];
       this.cd.detectChanges();
-      this.createChart();
-      this.updateChart();
+      this.createCharts();
+      this.updateDpsGrapherChart();
     }
   }
 
@@ -75,12 +75,12 @@ export class DpsResultsComponent implements OnChanges {
   }
 
   selectedGraphResultChange(dpsGrapherResult: DpsGrapherResult): void {
-    this.selectedGraphResult = dpsGrapherResult;
-    this.updateChart();
+    this.selectedDpsGrapherResult = dpsGrapherResult;
+    this.updateDpsGrapherChart();
   }
 
-  createChart() {
-    this.chart = new Chart('MyChart', {
+  createCharts() {
+    this.dpsGrapherChart = new Chart('MyChart', {
       type: 'line',
       data: {
         datasets: [],
@@ -88,19 +88,19 @@ export class DpsResultsComponent implements OnChanges {
     });
   }
 
-  updateChart(): void {
-    const datasets = this.selectedGraphResult.dpsData.map((dpsGraphData: DpsGraphData, index: number) => ({
+  updateDpsGrapherChart(): void {
+    const datasets = this.selectedDpsGrapherResult.dpsData.map((dpsGraphData: DpsGraphData, index: number) => ({
       label: dpsGraphData.label,
       data: dpsGraphData.dps,
       backgroundColor: this.chartColors[index % this.chartColors.length],
     }));
 
-    this.chart.data = {
-      labels: this.selectedGraphResult.xValues,
+    this.dpsGrapherChart.data = {
+      labels: this.selectedDpsGrapherResult.xValues,
       datasets: datasets,
     };
 
-    this.chart.options = {
+    this.dpsGrapherChart.options = {
       scales: {
         y: {
           title: {
@@ -111,19 +111,19 @@ export class DpsResultsComponent implements OnChanges {
         x: {
           title: {
             display: true,
-            text: this.selectedGraphResult.graphType,
+            text: this.selectedDpsGrapherResult.graphType,
           },
         },
       },
       plugins: {
         tooltip: {
           callbacks: {
-            title: (items) => this.selectedGraphResult.graphType + ': ' + items[0].label,
+            title: (items) => this.selectedDpsGrapherResult.graphType + ': ' + items[0].label,
           },
         },
       },
     };
 
-    this.chart.update();
+    this.dpsGrapherChart.update();
   }
 }

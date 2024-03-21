@@ -85,7 +85,7 @@
     <app-ng-select-lazy-load
       [valueType]="DpsGrapherResult"
       [allValues]="dpsResults?.dpsGrapherResults.results"
-      [selectedValue]="selectedGraphResult"
+      [selectedValue]="selectedDpsGrapherResult"
       [clearable]="false"
       searchProperty="graphType"
       placeholder="Select input value"
@@ -102,10 +102,10 @@
     </app-ng-select-lazy-load>
   </div>
 
-  <ng-container *ngIf="selectedGraphResult">
+  <ng-container *ngIf="selectedDpsGrapherResult">
     <div>
       <div class="chart-container">
-        <canvas id="MyChart">{{ chart }}</canvas>
+        <canvas id="MyChart">{{ dpsGrapherChart }}</canvas>
       </div>
     </div>
   </ng-container>
