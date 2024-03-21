@@ -77,8 +77,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	equippedGear := equippedGear{make([]int, 0)}
 	equipmentStats := equipmentStats{}
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
-		//TODO we can get the id alias here so we only have to deal with normal id versions
-		itemId := gearItem.Id
+		itemId := getIdAlias(gearItem.Id)
 
 		itemStats := allItems[strconv.Itoa(itemId)].equipmentStats
 		equipmentStats.addStats(&itemStats)
@@ -138,11 +137,15 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 func calculateDps(player *player) (dps float32, maxHit int, accuracy float32) {
 	maxHit = getMaxHit(player)
 	accuracy = getAccuracy(player)
-
-	//TODO wiki has hit distribution and stuff, do we need?
-	//maybe just have a post roll dmg mult and stuff is enough, loop through hit splats and also then cap for zulrah/corp
 	attackSpeed := getAttackSpeed(player)
-	dps = ((float32(maxHit) * accuracy) / 2) / (float32(attackSpeed) * TickLength)
+
+	//TODO where to put fn to get the specific dist
+	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
+	expectedHit := attackDist.GetExpectedHit()
+
+	dps = float32(expectedHit / (float64(attackSpeed) * TickLength))
+
+	// dps = ((float32(maxHit) * accuracy) / 2) / (float32(attackSpeed) * TickLength)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
 	return dps, maxHit, accuracy
@@ -158,7 +161,6 @@ func getAttackSpeed(player *player) int {
 	spell := player.inputGearSetup.GearSetup.Spell
 	if spell != "" {
 		if player.equippedGear.isEquipped(harmStaff) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
-			//todo harm check
 			return 4
 		}
 		return 5

@@ -15,7 +15,7 @@ const (
 	blackMask            = 8901
 	blackMaskImbued      = 11774
 	slayerHelm           = 11864
-	slayerHelmImbued     = 11865
+	slayerHelmImbued     = 11865 //TOOD id alias
 	arclight             = 19675
 	dragonHunterLance    = 22978
 	dragonHunterCrossbow = 21012 //TODO id alias
@@ -41,6 +41,8 @@ const (
 
 	brimstoneRing = 22975
 	osmumtenFang  = 26219 //TODO id alias
+
+	scythe = 22325 //TODO id alias
 )
 
 var virtusSet = []int{26241, 26243, 26245}

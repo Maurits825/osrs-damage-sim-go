@@ -17,4 +17,5 @@ var (
 )
 
 func (npc *npc) applyTobScaling(globalSettings *GlobalSettings) {
+	//TODO
 }
