@@ -5,18 +5,22 @@ type HitDistribution struct {
 	hits []WeightedHit
 }
 
-func (dist *HitDistribution) GetExpectedHit() float64 {
+func (dist *HitDistribution) AddWeightedHit(probability float64, hitsplats []int) {
+	dist.hits = append(dist.hits, WeightedHit{probability: probability, hitsplats: hitsplats})
+}
+
+func (dist *HitDistribution) getExpectedHit() float64 {
 	expectedHit := 0.0
 	for _, weightedHit := range dist.hits {
-		expectedHit += weightedHit.GetExpectedHit()
+		expectedHit += weightedHit.getExpectedHit()
 	}
 	return expectedHit
 }
 
-func (dist *HitDistribution) GetMaxHit() int {
+func (dist *HitDistribution) getMaxHit() int {
 	maxHit := 0
 	for _, weightedHit := range dist.hits {
-		hit := weightedHit.GetSum()
+		hit := weightedHit.getSum()
 		if hit > maxHit {
 			maxHit = hit
 		}
@@ -27,18 +31,23 @@ func (dist *HitDistribution) GetMaxHit() int {
 //index is the hitspat sum
 //TODO return map? after writing tests
 func (dist *HitDistribution) flatten() []float64 {
-	flat := make([]float64, dist.GetMaxHit()+1)
+	flat := make([]float64, dist.getMaxHit()+1)
 	for _, weightedHit := range dist.hits {
-		flat[weightedHit.GetSum()] += weightedHit.probability
+		flat[weightedHit.getSum()] += weightedHit.probability
 	}
 	return flat
 }
 
-//TODO should this scale in place?
-func (dist *HitDistribution) ScaleDamage(factor float64, divisor float64) {
+func (dist *HitDistribution) scaleDamage(factor float64, divisor float64) {
 	for i := range dist.hits {
 		for j, hitsplat := range dist.hits[i].hitsplats {
 			dist.hits[i].hitsplats[j] = int(float64(hitsplat) * factor / divisor)
 		}
+	}
+}
+
+func (dist *HitDistribution) scaleProbability(factor float64) {
+	for i := range dist.hits {
+		dist.hits[i].scale(factor)
 	}
 }

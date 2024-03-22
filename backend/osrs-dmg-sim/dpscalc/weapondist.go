@@ -1,6 +1,8 @@
 package dpscalc
 
 import (
+	"slices"
+
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/attackdist"
 )
 
@@ -30,16 +32,49 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	//TODO gadderhammer
 
-	//TODO dharok test
 	if player.equippedGear.isAllEquipped(dharokSet) && style.isMeleeStyle() {
 		maxHp := player.inputGearSetup.GearSetupSettings.CombatStats.Hitpoints
 		currentHp := player.inputGearSetup.GearSetup.CurrentHp
 		attackDistribution.ScaleDamage(float64(10000+(maxHp-currentHp)*maxHp), 10000)
 	}
 
-	//TODO other dists
+	//TODO verac, karil, keris
+
+	//TODO cox guardians
+
+	spell := player.inputGearSetup.GearSetup.Spell
+	if player.npc.id == iceDemon && (slices.Contains(fireSpells, spell) || spell == "Flames of Zamorak") {
+		attackDistribution.ScaleDamage(3, 2)
+	}
+	if player.equippedGear.isEquipped(tomeOfFire) && slices.Contains(fireSpells, spell) {
+		attackDistribution.ScaleDamage(3, 2)
+	}
+	//TODO tome of water
+
+	//TODO ahrims
+
+	applyNonRubyBoltEffects(player, attackDistribution)
+
+	//TODO corp and corp bane weapons?
+
+	if player.equippedGear.isAnyEquipped(enchantedRubyBolts) && style == Ranged {
+		chance := 0.06
+		if player.inputGearSetup.GearSetup.IsKandarinDiary {
+			chance *= 1.1
+		}
+		effectDmg := min(100, int(player.npc.BaseCombatStats.Hitpoints/5))
+		if player.equippedGear.isEquipped(zaryteCrossbow) {
+			effectDmg = min(110, int(player.npc.BaseCombatStats.Hitpoints*22/100))
+		}
+		attackDistribution.ScaleProbability(1 - chance)
+		attackDistribution.Distributions[0].AddWeightedHit(chance, []int{effectDmg})
+	}
 
 	//TODO dists limiters (dmg cap, ice demon...)
 
 	return attackDistribution
+}
+
+func applyNonRubyBoltEffects(player *player, attackDistribution *attackdist.AttackDistribution) {
+	//TODO bolt effects
 }

@@ -3,15 +3,15 @@ package attackdist
 //attack distribution of all hit distributions, most weapons just have one dist
 //scythe would have 3 dists
 type AttackDistribution struct {
-	distributions []HitDistribution
+	Distributions []HitDistribution
 }
 
 func NewSingleAttackDistribution(distributions HitDistribution) *AttackDistribution {
-	return &AttackDistribution{distributions: []HitDistribution{distributions}}
+	return &AttackDistribution{Distributions: []HitDistribution{distributions}}
 }
 
 func NewMultiAttackDistribution(distributions []HitDistribution) *AttackDistribution {
-	return &AttackDistribution{distributions: distributions}
+	return &AttackDistribution{Distributions: distributions}
 }
 
 func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
@@ -30,8 +30,8 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDi
 
 func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 	expectedHit := 0.0
-	for _, dist := range attackDist.distributions {
-		expectedHit += dist.GetExpectedHit()
+	for _, dist := range attackDist.Distributions {
+		expectedHit += dist.getExpectedHit()
 	}
 	return expectedHit
 }
@@ -39,14 +39,14 @@ func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	//first get max hit of all distributions, to know the range of dist list
 	maxHit := 0
-	for _, dist := range attackDist.distributions {
-		maxHit += dist.GetMaxHit()
+	for _, dist := range attackDist.Distributions {
+		maxHit += dist.getMaxHit()
 	}
 	flatHitDist := make([]float64, maxHit+1)
 
 	//start with hit dist of 100% hitting 0
 	hitDistMap := map[int]float64{0: 1.0}
-	for _, dist := range attackDist.distributions {
+	for _, dist := range attackDist.Distributions {
 		var distMap map[int]float64 = make(map[int]float64)
 
 		flat := dist.flatten()
@@ -74,7 +74,13 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 }
 
 func (attackDist *AttackDistribution) ScaleDamage(factor float64, divisor float64) {
-	for _, dist := range attackDist.distributions {
-		dist.ScaleDamage(factor, divisor)
+	for _, dist := range attackDist.Distributions {
+		dist.scaleDamage(factor, divisor)
+	}
+}
+
+func (attackDist *AttackDistribution) ScaleProbability(factor float64) {
+	for _, dist := range attackDist.Distributions {
+		dist.scaleProbability(factor)
 	}
 }

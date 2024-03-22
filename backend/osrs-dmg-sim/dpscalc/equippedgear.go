@@ -42,6 +42,10 @@ const (
 	osmumtenFang  = 26219
 
 	scythe = 22325
+
+	tomeOfFire = 20714
+
+	zaryteCrossbow = 26374
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -54,6 +58,8 @@ var demonBaneWeapons = []int{2402, 6746}
 var smokeBattleStaves = []int{11998, 12000}
 
 var dharokSet = []int{4716, 4718, 4720, 4722}
+
+var enchantedRubyBolts = []int{9242, 21944}
 
 type equippedGear struct {
 	ids []int

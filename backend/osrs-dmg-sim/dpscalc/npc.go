@@ -2,6 +2,10 @@ package dpscalc
 
 import "slices"
 
+const (
+	iceDemon = 7584
+)
+
 var dukeSucellus = []string{"12166", "12166_1", "12193"}
 
 type aggressiveStats struct {

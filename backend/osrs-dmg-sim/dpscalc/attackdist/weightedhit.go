@@ -6,7 +6,7 @@ type WeightedHit struct {
 	hitsplats []int
 }
 
-func (hit *WeightedHit) GetExpectedHit() float64 {
+func (hit *WeightedHit) getExpectedHit() float64 {
 	hitSum := 0
 	for _, hit := range hit.hitsplats {
 		hitSum += hit
@@ -15,7 +15,7 @@ func (hit *WeightedHit) GetExpectedHit() float64 {
 	return hit.probability * float64(hitSum)
 }
 
-func (hit *WeightedHit) GetSum() int {
+func (hit *WeightedHit) getSum() int {
 	sumHit := 0
 	for _, hit := range hit.hitsplats {
 		sumHit += hit
@@ -23,4 +23,6 @@ func (hit *WeightedHit) GetSum() int {
 	return sumHit
 }
 
-//TODO other stuff like scale
+func (hit *WeightedHit) scale(factor float64) {
+	hit.probability *= factor
+}

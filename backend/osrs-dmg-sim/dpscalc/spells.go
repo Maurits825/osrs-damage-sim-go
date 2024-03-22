@@ -89,3 +89,5 @@ var ancientSpells = []string{
 	"Blood Barrage",
 	"Ice Barrage",
 }
+
+var fireSpells = []string{"Fire Strike", "Fire Bolt", "Fire Blast", "Fire Wave", "Fire Surge"}
