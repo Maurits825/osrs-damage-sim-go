@@ -39,12 +39,16 @@ type npc struct {
 }
 
 func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
+	npc.applyNpcScaling(globalSettings)
+	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
+}
+
+func (npc *npc) applyNpcScaling(globalSettings *GlobalSettings) {
 	npc.applyCoxScaling(globalSettings)
 	npc.applyTobScaling(globalSettings)
 	npc.applyToaScaling(globalSettings)
 
 	npc.combatStats = npc.baseCombatStats
-	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
 }
 
 func getDemonbaneFactor(npcId string, numerator int, denominator int) (int, int) {

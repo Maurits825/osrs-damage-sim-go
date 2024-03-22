@@ -48,13 +48,12 @@ func RunDpsCalc(inputSetup *InputSetup, enableTrack bool) *DpsCalcResults {
 		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, enableTrack)
 	}
 
-	return &DpsCalcResults{"some title", dpsCalcResult}
+	return &DpsCalcResults{getDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
 }
 
 func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, enableTrack bool) DpsCalcResult {
 	dpsDetailEntries = dpsdetail.NewDetailEntries(enableTrack)
 
-	//TODO refactor labels, in FE also
 	inputGearSetupLabels := InputGearSetupLabels{
 		GearSetupSettingsLabel: getGearSetupSettingsLabel(&inputGearSetup.GearSetupSettings),
 		GearSetupName:          getGearSetupLabel(&inputGearSetup.GearSetup),

@@ -1,6 +1,9 @@
 package dpscalc
 
-import "strconv"
+import (
+	"slices"
+	"strconv"
+)
 
 const (
 	MaxLevel = 99
@@ -12,6 +15,40 @@ var prayerLabel = map[Prayer]string{
 
 var potionLabel = map[PotionBoost]string{
 	SuperCombatBoost: "SCP",
+}
+
+func getDpsCalcTitle(globalSettings *GlobalSettings) string {
+	npcId, _ := strconv.Atoi(globalSettings.Npc.Id)
+	npc := AllNpcs[globalSettings.Npc.Id]
+	npc.id = npcId
+	npc.applyNpcScaling(globalSettings)
+
+	title := getNpcTitle(globalSettings, &npc) + " | HP: " + strconv.Itoa(npc.baseCombatStats.Hitpoints)
+
+	if slices.Contains(toaIds, npc.id) {
+		title += " | Raid level: " + strconv.Itoa(globalSettings.RaidLevel)
+		if slices.Contains(toaPathIds, npc.id) {
+			title += " | Path level: " + strconv.Itoa(globalSettings.PathLevel)
+		}
+	}
+
+	return title
+}
+
+func getNpcTitle(globalSettings *GlobalSettings, npc *npc) string {
+	npcTitle := npc.name
+
+	if globalSettings.CoxScaling.IsChallengeMode {
+		npcTitle += " (CM)"
+	}
+	if npc.isTobHardMode {
+		npcTitle += " (HM)"
+	}
+	if npc.isTobEntryMode {
+		npcTitle += " (EM)"
+	}
+
+	return npcTitle
 }
 
 func getGearSetupLabel(gearSetup *GearSetup) string {
