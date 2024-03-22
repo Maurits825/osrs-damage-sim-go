@@ -142,21 +142,48 @@ export class DpsResultsComponent implements OnChanges {
     this.dpsGrapherChart.update();
   }
 
-  updateHitDistChart(): void {
+  updateHitDistChart(start = 0): void {
     const labels = new Array<number>(this.selectedDpsCalcResult.hitDist.length);
     for (let i = 0; i < this.selectedDpsCalcResult.hitDist.length; i++) {
       labels[i] = i;
     }
 
     this.hitDistChart.data = {
-      labels: labels,
+      labels: labels.slice(start),
       datasets: [
         {
-          data: this.selectedDpsCalcResult.hitDist,
+          label: 'Hit Distribution',
+          data: this.selectedDpsCalcResult.hitDist.slice(start),
         },
       ],
     };
 
+    this.hitDistChart.options = {
+      scales: {
+        y: {
+          title: {
+            display: true,
+            text: 'Chance %',
+          },
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Hitsplat',
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+    };
+
     this.hitDistChart.update();
+  }
+
+  hideZeroDistChange(isHide: boolean): void {
+    this.updateHitDistChart(isHide ? 1 : 0);
   }
 }
