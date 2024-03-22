@@ -77,6 +77,15 @@
       </tbody>
     </table>
   </div>
+  <div class="row mb-1">
+    <ng-container *ngIf="selectedDpsCalcResult">
+      <div>
+        <div class="chart-container">
+          <canvas id="hitDistChart">{{ hitDistChart }}</canvas>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>
 
 <div *ngIf="dpsResults?.dpsGrapherResults && !dpsResults?.error">
@@ -105,7 +114,7 @@
   <ng-container *ngIf="selectedDpsGrapherResult">
     <div>
       <div class="chart-container">
-        <canvas id="MyChart">{{ dpsGrapherChart }}</canvas>
+        <canvas id="dpsGrapherChart">{{ dpsGrapherChart }}</canvas>
       </div>
     </div>
   </ng-container>

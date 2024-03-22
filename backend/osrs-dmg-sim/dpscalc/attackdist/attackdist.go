@@ -6,11 +6,6 @@ type AttackDistribution struct {
 	distributions []HitDistribution
 }
 
-//hit distribution of one roll, for scythe this would be one of the 3 hitsplats
-type HitDistribution struct {
-	hits []WeightedHit
-}
-
 func NewSingleAttackDistribution(distributions HitDistribution) *AttackDistribution {
 	return &AttackDistribution{distributions: []HitDistribution{distributions}}
 }
@@ -41,10 +36,39 @@ func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 	return expectedHit
 }
 
-func (dist *HitDistribution) GetExpectedHit() float64 {
-	expectedHit := 0.0
-	for _, weightedHit := range dist.hits {
-		expectedHit += weightedHit.GetExpectedHit()
+func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
+	//first get max hit of all distributions, to know the range of dist list
+	maxHit := 0
+	for _, dist := range attackDist.distributions {
+		maxHit += dist.GetMaxHit()
 	}
-	return expectedHit
+	flatHitDist := make([]float64, maxHit+1)
+
+	//start with hit dist of 100% hitting 0
+	hitDistMap := map[int]float64{0: 1.0}
+	for _, dist := range attackDist.distributions {
+		var distMap map[int]float64 = make(map[int]float64)
+
+		flat := dist.flatten()
+		//iterate over current hit dist
+		for hit1, prob1 := range hitDistMap {
+			for hit2, prob2 := range flat {
+				//skip 0 probability hits
+				if prob1 == 0 && prob2 == 0 {
+					continue
+				}
+				//add up new probability
+				distMap[hit1+hit2] += prob1 * prob2
+			}
+		}
+
+		hitDistMap = distMap
+	}
+
+	//flatten map
+	for hit, prob := range hitDistMap {
+		flatHitDist[hit] = prob * 100
+	}
+
+	return flatHitDist
 }

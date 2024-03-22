@@ -1,4 +1,3 @@
-// TODO name of this file, attack dist? then same as other package name...
 package dpscalc
 
 import (
@@ -20,6 +19,10 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
+
+	//TODO other dists
+
+	//TODO dists limiters (dmg cap, ice demon...)
 
 	return attackDistribution
 }

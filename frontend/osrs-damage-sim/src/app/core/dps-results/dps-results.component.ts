@@ -30,6 +30,10 @@ export class DpsResultsComponent implements OnChanges {
   selectedDpsGrapherResult: DpsGrapherResult;
   dpsGrapherChart: Chart;
 
+  DpsCalcResult: DpsCalcResult;
+  selectedDpsCalcResult: DpsCalcResult;
+  hitDistChart: Chart;
+
   showResultTextLabel = true;
   chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
 
@@ -45,9 +49,13 @@ export class DpsResultsComponent implements OnChanges {
       this.inputSetup = this.inputSetupService.getInputSetup();
 
       this.selectedDpsGrapherResult = this.dpsResults.dpsGrapherResults.results[0];
+      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[0];
+
       this.cd.detectChanges();
       this.createCharts();
+
       this.updateDpsGrapherChart();
+      this.updateHitDistChart();
     }
   }
 
@@ -80,8 +88,15 @@ export class DpsResultsComponent implements OnChanges {
   }
 
   createCharts() {
-    this.dpsGrapherChart = new Chart('MyChart', {
+    this.dpsGrapherChart = new Chart('dpsGrapherChart', {
       type: 'line',
+      data: {
+        datasets: [],
+      },
+    });
+
+    this.hitDistChart = new Chart('hitDistChart', {
+      type: 'bar',
       data: {
         datasets: [],
       },
@@ -125,5 +140,23 @@ export class DpsResultsComponent implements OnChanges {
     };
 
     this.dpsGrapherChart.update();
+  }
+
+  updateHitDistChart(): void {
+    const labels = new Array<number>(this.selectedDpsCalcResult.hitDist.length);
+    for (let i = 0; i < this.selectedDpsCalcResult.hitDist.length; i++) {
+      labels[i] = i;
+    }
+
+    this.hitDistChart.data = {
+      labels: labels,
+      datasets: [
+        {
+          data: this.selectedDpsCalcResult.hitDist,
+        },
+      ],
+    };
+
+    this.hitDistChart.update();
   }
 }

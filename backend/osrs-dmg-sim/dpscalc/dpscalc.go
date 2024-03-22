@@ -23,6 +23,7 @@ type DpsCalcResult struct {
 	TheoreticalDps float32              `json:"theoreticalDps"`
 	MaxHit         []int                `json:"maxHit"`
 	Accuracy       float32              `json:"accuracy"`
+	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
 }
 
 type InputGearSetupLabels struct {
@@ -61,7 +62,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	player := getPlayer(globalSettings, inputGearSetup)
 
-	dps, maxHit, accuracy := calculateDps(player)
+	dps, maxHit, accuracy, hitDist := calculateDps(player)
 
 	//TODO get hitsplat maxhits
 
@@ -70,7 +71,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		// fmt.Println(inputGearSetup.GearSetup.Name + ":")
 		// fmt.Print(dpsDetailEntries.SprintAll())
 	}
-	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100}
+	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100, hitDist}
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
@@ -134,7 +135,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 }
 
 // TODO basic implementation for now
-func calculateDps(player *player) (dps float32, maxHit int, accuracy float32) {
+func calculateDps(player *player) (dps float32, maxHit int, accuracy float32, hitDist []float64) {
 	maxHit = getMaxHit(player)
 	accuracy = getAccuracy(player)
 	attackSpeed := getAttackSpeed(player)
@@ -142,13 +143,14 @@ func calculateDps(player *player) (dps float32, maxHit int, accuracy float32) {
 	//TODO where to put fn to get the specific dist
 	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
 	expectedHit := attackDist.GetExpectedHit()
+	hitDist = attackDist.GetFlatHitDistribution()
 
 	dps = float32(expectedHit / (float64(attackSpeed) * TickLength))
 
 	// dps = ((float32(maxHit) * accuracy) / 2) / (float32(attackSpeed) * TickLength)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
-	return dps, maxHit, accuracy
+	return dps, maxHit, accuracy, attackDist.GetFlatHitDistribution()
 }
 
 func getAttackSpeed(player *player) int {

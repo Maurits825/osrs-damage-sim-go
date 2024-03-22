@@ -15,4 +15,12 @@ func (hit *WeightedHit) GetExpectedHit() float64 {
 	return hit.probability * float64(hitSum)
 }
 
+func (hit *WeightedHit) GetSum() int {
+	sumHit := 0
+	for _, hit := range hit.hitsplats {
+		sumHit += hit
+	}
+	return sumHit
+}
+
 //TODO other stuff like scale
