@@ -81,12 +81,12 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 			return int(base * (sqrtFloor(ps-1)*7 + (ps - 1) + 100) / 100 * cmMult / 2)
 		}
 
-		npc.baseCombatStats.Hitpoints = olmHp()
-		npc.baseCombatStats.Attack = olmOffence(float64(npc.baseCombatStats.Attack))
-		npc.baseCombatStats.Strength = olmOffence(float64(npc.baseCombatStats.Strength))
-		npc.baseCombatStats.Ranged = olmOffence(float64(npc.baseCombatStats.Ranged))
-		npc.baseCombatStats.Magic = olmOffence(float64(npc.baseCombatStats.Magic))
-		npc.baseCombatStats.Defence = olmDefence(float64(npc.baseCombatStats.Defence))
+		npc.BaseCombatStats.Hitpoints = olmHp()
+		npc.BaseCombatStats.Attack = olmOffence(float64(npc.BaseCombatStats.Attack))
+		npc.BaseCombatStats.Strength = olmOffence(float64(npc.BaseCombatStats.Strength))
+		npc.BaseCombatStats.Ranged = olmOffence(float64(npc.BaseCombatStats.Ranged))
+		npc.BaseCombatStats.Magic = olmOffence(float64(npc.BaseCombatStats.Magic))
+		npc.BaseCombatStats.Defence = olmDefence(float64(npc.BaseCombatStats.Defence))
 		return
 	}
 
@@ -94,7 +94,7 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 		if slices.Contains(scavengerBeastIds, npcId) {
 			return base
 		}
-		baseHp := npc.baseCombatStats.Hitpoints
+		baseHp := npc.BaseCombatStats.Hitpoints
 		if slices.Contains(guardianIds, npcId) {
 			baseHp = 151 + coxScaling.PartyAvgMiningLevel
 		}
@@ -146,10 +146,10 @@ func (npc *npc) applyCoxScaling(globalSettings *GlobalSettings) {
 		return int(math.Floor(math.Floor(math.Floor(float64(base)*(math.Floor(hp*4/9)+55)/99)*(sqrtFloor(ps-1)*7+(ps-1)+100)/100) * (f2) / f))
 	}
 
-	npc.baseCombatStats.Hitpoints = scaleHp(npc.baseCombatStats.Hitpoints)
-	npc.baseCombatStats.Attack = scaleOffence(npc.baseCombatStats.Attack)
-	npc.baseCombatStats.Strength = scaleOffence(npc.baseCombatStats.Strength)
-	npc.baseCombatStats.Ranged = scaleOffence(npc.baseCombatStats.Ranged)
-	npc.baseCombatStats.Magic = scaleMagic(npc.baseCombatStats.Magic)
-	npc.baseCombatStats.Defence = scaleDefence(npc.baseCombatStats.Defence)
+	npc.BaseCombatStats.Hitpoints = scaleHp(npc.BaseCombatStats.Hitpoints)
+	npc.BaseCombatStats.Attack = scaleOffence(npc.BaseCombatStats.Attack)
+	npc.BaseCombatStats.Strength = scaleOffence(npc.BaseCombatStats.Strength)
+	npc.BaseCombatStats.Ranged = scaleOffence(npc.BaseCombatStats.Ranged)
+	npc.BaseCombatStats.Magic = scaleMagic(npc.BaseCombatStats.Magic)
+	npc.BaseCombatStats.Defence = scaleDefence(npc.BaseCombatStats.Defence)
 }

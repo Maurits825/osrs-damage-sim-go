@@ -18,12 +18,10 @@ var potionLabel = map[PotionBoost]string{
 }
 
 func getDpsCalcTitle(globalSettings *GlobalSettings) string {
-	npcId, _ := strconv.Atoi(globalSettings.Npc.Id)
-	npc := AllNpcs[globalSettings.Npc.Id]
-	npc.id = npcId
-	npc.applyNpcScaling(globalSettings)
+	npc := GetNpc(globalSettings.Npc.Id)
+	npc.ApplyNpcScaling(globalSettings)
 
-	title := getNpcTitle(globalSettings, &npc) + " | HP: " + strconv.Itoa(npc.baseCombatStats.Hitpoints)
+	title := getNpcTitle(globalSettings, &npc) + " | HP: " + strconv.Itoa(npc.BaseCombatStats.Hitpoints)
 
 	if slices.Contains(toaIds, npc.id) {
 		title += " | Raid level: " + strconv.Itoa(globalSettings.RaidLevel)

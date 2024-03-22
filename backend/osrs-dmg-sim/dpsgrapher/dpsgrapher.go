@@ -128,9 +128,9 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 	case Arclight:
 		maxValue = 10
 	case BandosGodsword:
-		//TODO dpscalc.AllNpcs[inputSetup.GlobalSettings.Npc.Id].combatStats.Defence
-		//we have to get the scaled npc then also...
-		maxValue = 200
+		npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
+		npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
+		maxValue = npc.BaseCombatStats.Defence
 	case AccursedSceptre:
 		maxValue = 1
 	}

@@ -127,7 +127,7 @@ func (n *npc) UnmarshalJSON(data []byte) error {
 		Defence:   flat.Defence,
 	}
 
-	n.baseCombatStats = n.combatStats
+	n.BaseCombatStats = n.combatStats
 
 	n.aggressiveStats = aggressiveStats{
 		attack: flat.AAttack,

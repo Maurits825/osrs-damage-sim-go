@@ -72,6 +72,12 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	}
 	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100, hitDist}
 }
+func GetNpc(id string) npc {
+	npcId, _ := strconv.Atoi(id)
+	npc := AllNpcs[id]
+	npc.id = npcId
+	return npc
+}
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
 	equippedGear := equippedGear{make([]int, 0)}
@@ -89,9 +95,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		}
 	}
 
-	npcId, _ := strconv.Atoi(globalSettings.Npc.Id)
-	npc := AllNpcs[globalSettings.Npc.Id]
-	npc.id = npcId
+	npc := GetNpc(globalSettings.Npc.Id)
 	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 
 	if equippedGear.isEquipped(blowpipe) {
@@ -101,7 +105,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	if equippedGear.isEquipped(tumekenShadow) {
 		factor := 3
-		if slices.Contains(toaIds, npcId) {
+		if slices.Contains(toaIds, npc.id) {
 			factor = 4
 		}
 		equipmentStats.damageStats.magicStrength *= factor
@@ -133,7 +137,6 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear}
 }
 
-// TODO basic implementation for now
 func calculateDps(player *player) (dps float32, maxHit int, accuracy float32, hitDist []float64) {
 	maxHit = getMaxHit(player)
 	accuracy = getAccuracy(player)

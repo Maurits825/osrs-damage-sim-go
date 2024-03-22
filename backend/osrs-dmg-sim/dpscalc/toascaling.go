@@ -132,5 +132,5 @@ func (npc *npc) applyToaScaling(globalSettings *GlobalSettings) {
 
 	newHp := int(base*(1000+invoFactor)*(100+pathLevelFactor)*(10+partyFactor)/(1000*100*10)) * factor
 
-	npc.baseCombatStats.Hitpoints = newHp
+	npc.BaseCombatStats.Hitpoints = newHp
 }
