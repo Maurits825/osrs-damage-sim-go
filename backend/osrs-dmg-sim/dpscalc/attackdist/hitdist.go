@@ -33,3 +33,12 @@ func (dist *HitDistribution) flatten() []float64 {
 	}
 	return flat
 }
+
+//TODO should this scale in place?
+func (dist *HitDistribution) ScaleDamage(factor float64, divisor float64) {
+	for i := range dist.hits {
+		for j, hitsplat := range dist.hits[i].hitsplats {
+			dist.hits[i].hitsplats[j] = int(float64(hitsplat) * factor / divisor)
+		}
+	}
+}

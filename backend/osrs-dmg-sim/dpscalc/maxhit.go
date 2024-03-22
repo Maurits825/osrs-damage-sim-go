@@ -10,7 +10,7 @@ func getMaxHit(player *player) int {
 	style := player.combatStyle.combatStyleType
 	maxHit := 0
 
-	if style == Stab || style == Slash || style == Crush {
+	if style.isMeleeStyle() {
 		maxHit = getMeleeMaxHit(player)
 	} else if style == Ranged {
 		maxHit = getRangedMaxHit(player)

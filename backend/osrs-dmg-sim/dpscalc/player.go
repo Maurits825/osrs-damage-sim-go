@@ -68,6 +68,10 @@ const (
 	Ranged combatStyleType = "Ranged"
 )
 
+func (style combatStyleType) isMeleeStyle() bool {
+	return style == Stab || style == Slash || style == Crush
+}
+
 type combatStyleStance string
 
 const (

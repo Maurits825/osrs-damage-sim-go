@@ -72,3 +72,9 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 
 	return flatHitDist
 }
+
+func (attackDist *AttackDistribution) ScaleDamage(factor float64, divisor float64) {
+	for _, dist := range attackDist.distributions {
+		dist.ScaleDamage(factor, divisor)
+	}
+}

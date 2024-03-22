@@ -15,22 +15,21 @@ const (
 	blackMask            = 8901
 	blackMaskImbued      = 11774
 	slayerHelm           = 11864
-	slayerHelmImbued     = 11865 //TOOD id alias
+	slayerHelmImbued     = 11865
 	arclight             = 19675
 	dragonHunterLance    = 22978
-	dragonHunterCrossbow = 21012 //TODO id alias
+	dragonHunterCrossbow = 21012
 	kerisBreaching       = 25981
 	soulreaperAxe        = 28338
 	leafBladedAxe        = 20727
 	colossalBlade        = 27021
-	bowfa                = 25865 //TODO id alias 25867 corrupted version
+	bowfa                = 25865
 	crystalBow           = 23983
 	crystalHelm          = 23971
 	crystalLegs          = 23979
 	crystalBody          = 23975
 	twistedBow           = 20997
 
-	//TODO id alias below
 	tridentSeas      = 11905
 	tridentSwamp     = 12899
 	thammaronSceptre = 22552
@@ -40,9 +39,9 @@ const (
 	warpedSceptre    = 28583
 
 	brimstoneRing = 22975
-	osmumtenFang  = 26219 //TODO id alias
+	osmumtenFang  = 26219
 
-	scythe = 22325 //TODO id alias
+	scythe = 22325
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -53,6 +52,8 @@ var kerisWeapons = []int{10581, 10582, 10583, 10584, 25979, kerisBreaching, 2729
 var demonBaneWeapons = []int{2402, 6746}
 
 var smokeBattleStaves = []int{11998, 12000}
+
+var dharokSet = []int{4716, 4718, 4720, 4722}
 
 type equippedGear struct {
 	ids []int
@@ -74,6 +75,15 @@ func (gear *equippedGear) isAnyEquipped(itemIds []int) bool {
 		}
 	}
 	return false
+}
+
+func (gear *equippedGear) isAllEquipped(itemIds []int) bool {
+	for _, itemId := range itemIds {
+		if !gear.isEquipped(itemId) {
+			return false
+		}
+	}
+	return true
 }
 
 func (gear *equippedGear) isWearingVoidRobes() bool {
