@@ -1490,7 +1490,7 @@
     }
   },
   "Ice demon max tbow": {
-    "expectedDps": 3.89150239,
+    "expectedDps": 3.807845,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1570,7 +1570,7 @@
                 "id": 13237
               },
               "12": {
-                "id": 11771
+                "id": 28310
               },
               "13": {
                 "id": 11212
@@ -1596,7 +1596,7 @@
     }
   },
   "Ice demon max fang scp": {
-    "expectedDps": 2.87245492,
+    "expectedDps": 2.7288322,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1678,7 +1678,7 @@
                 "id": 13239
               },
               "12": {
-                "id": 11773
+                "id": 28307
               },
               "13": {
                 "id": 22947

@@ -98,12 +98,17 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	npc := GetNpc(globalSettings.Npc.Id)
 	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 
+	cmbStyle := parseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
+	if inputGearSetup.GearSetup.Spell != "" {
+		cmbStyle = combatStyle{Magic, Autocast}
+	}
+
 	if equippedGear.isEquipped(blowpipe) {
 		darts := allItems[strconv.Itoa(inputGearSetup.GearSetup.BlowpipeDarts.Id)].equipmentStats
 		equipmentStats.addStats(&darts)
 	}
 
-	if equippedGear.isEquipped(tumekenShadow) {
+	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.combatStyleStance != Autocast {
 		factor := 3
 		if slices.Contains(toaIds, npc.id) {
 			factor = 4
@@ -124,11 +129,6 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		defensives := equipmentStats.defensiveStats
 		defenceSum := defensives.stab + defensives.slash + defensives.crush + defensives.ranged
 		equipmentStats.damageStats.meleeStrength += max(0, int((defenceSum-800)/12)-38)
-	}
-
-	cmbStyle := parseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
-	if inputGearSetup.GearSetup.Spell != "" {
-		cmbStyle = combatStyle{Magic, Autocast}
 	}
 
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)

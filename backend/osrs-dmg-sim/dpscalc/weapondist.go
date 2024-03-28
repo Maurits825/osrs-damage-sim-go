@@ -71,10 +71,19 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	//TODO dists limiters (dmg cap, ice demon...)
+	applyLimiters(player, attackDistribution)
 
 	return attackDistribution
 }
 
 func applyNonRubyBoltEffects(player *player, attackDistribution *attackdist.AttackDistribution) {
 	//TODO bolt effects
+}
+
+func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribution) {
+	spell := player.inputGearSetup.GearSetup.Spell
+	if player.npc.id == iceDemon && !slices.Contains(fireSpells, spell) && spell != "Flames of Zamorak" {
+		//TODO div transformer --> 3. we basically have to divide each hitsplat(?) by 3
+		attackDistribution.ScaleDamage(1, 3)
+	}
 }
