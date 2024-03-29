@@ -14,20 +14,6 @@ func NewMultiAttackDistribution(distributions []HitDistribution) *AttackDistribu
 	return &AttackDistribution{Distributions: distributions}
 }
 
-func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
-	dist := &HitDistribution{make([]WeightedHit, 0)}
-	hitProbability := accuracy / (float64(maximum - minimum + 1))
-
-	for i := minimum; i <= maximum; i++ {
-		dist.hits = append(dist.hits, WeightedHit{hitProbability, []int{(i)}})
-	}
-
-	//also add miss hit
-	dist.hits = append(dist.hits, WeightedHit{1 - accuracy, []int{0}})
-
-	return dist
-}
-
 func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 	expectedHit := 0.0
 	for _, dist := range attackDist.Distributions {
@@ -81,6 +67,12 @@ func (attackDist *AttackDistribution) ScaleDamage(factor float64, divisor float6
 
 func (attackDist *AttackDistribution) ScaleProbability(factor float64) {
 	for _, dist := range attackDist.Distributions {
-		dist.scaleProbability(factor)
+		dist.ScaleProbability(factor)
+	}
+}
+
+func (attackDist *AttackDistribution) CappedReroll(limit int, rollmax int, offset int) {
+	for i := range attackDist.Distributions {
+		attackDist.Distributions[i].cappedReroll(limit, rollmax, offset)
 	}
 }

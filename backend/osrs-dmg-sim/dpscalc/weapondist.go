@@ -38,7 +38,20 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.ScaleDamage(float64(10000+(maxHp-currentHp)*maxHp), 10000)
 	}
 
-	//TODO verac, karil, keris
+	//TODO verac, keris
+	if player.equippedGear.isAllEquipped(karilDamnedSet) {
+		secondHitsplats := make([]attackdist.WeightedHit, len(hitDistribution.Hits))
+		for i, weightedHit := range hitDistribution.Hits {
+			secondHitsplats[i] = attackdist.WeightedHit{
+				Probability: weightedHit.Probability * 0.25,
+				Hitsplats:   []int{weightedHit.Hitsplats[0], int(weightedHit.Hitsplats[0] / 2)},
+			}
+		}
+
+		hitDistribution.ScaleProbability(0.75)
+		hitDistribution.Hits = append(hitDistribution.Hits, secondHitsplats...)
+		attackDistribution = attackdist.NewSingleAttackDistribution(*hitDistribution)
+	}
 
 	//TODO cox guardians
 
@@ -85,5 +98,9 @@ func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribu
 	if player.npc.id == iceDemon && !slices.Contains(fireSpells, spell) && spell != "Flames of Zamorak" {
 		//TODO div transformer --> 3. we basically have to divide each hitsplat(?) by 3
 		attackDistribution.ScaleDamage(1, 3)
+	}
+
+	if slices.Contains(zulrahs, player.npc.id) {
+		attackDistribution.CappedReroll(50, 5, 45)
 	}
 }

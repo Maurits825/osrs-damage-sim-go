@@ -2360,7 +2360,7 @@
     }
   },
   "Zulrah max karil amulet damned": {
-    "expectedDps": 4.54325545,
+    "expectedDps": 4.558083,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2440,7 +2440,7 @@
                 "id": 13237
               },
               "12": {
-                "id": 11771
+                "id": 28310
               },
               "13": {
                 "id": 4740

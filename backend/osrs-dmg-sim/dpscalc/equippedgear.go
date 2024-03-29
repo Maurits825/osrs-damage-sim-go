@@ -61,6 +61,8 @@ var dharokSet = []int{4716, 4718, 4720, 4722}
 
 var enchantedRubyBolts = []int{9242, 21944}
 
+var karilDamnedSet = []int{4734, 4732, 4736, 4738, 12851}
+
 type equippedGear struct {
 	ids []int
 }

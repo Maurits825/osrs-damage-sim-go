@@ -7,6 +7,7 @@ const (
 )
 
 var dukeSucellus = []string{"12166", "12166_1", "12193"}
+var zulrahs = []int{2043, 2042, 2044}
 
 type aggressiveStats struct {
 	attack int
