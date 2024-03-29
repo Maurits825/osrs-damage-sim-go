@@ -43,7 +43,11 @@ func getNpcDefenceRoll(player *player) int {
 	statBonus := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceStatBonus, defence, 64)
 	defenceRoll := dpsDetailEntries.TrackFactor(dpsdetail.NPCAccuracyRollBase, effectiveLevel, statBonus, 1)
 
-	//TODO toa scaling
+	if slices.Contains(toaIds, npcId) {
+		defenceRoll = int(defenceRoll * (250 + player.globalSettings.RaidLevel) / 250)
+		dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollTOA, defenceRoll)
+	}
+
 	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollFinal, defenceRoll)
 	return defenceRoll
 }
