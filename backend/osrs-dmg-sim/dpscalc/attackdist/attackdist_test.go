@@ -32,7 +32,7 @@ func TestSingleGetHitDistribution(t *testing.T) {
 	hitProbability := accuracy / (float64(maximum - minimum + 1))
 
 	hitDist := GetLinearHitDistribution(accuracy, minimum, maximum)
-	attackDist := NewSingleAttackDistribution(*hitDist)
+	attackDist := NewSingleAttackDistribution(hitDist)
 	flatDist := attackDist.GetFlatHitDistribution()
 
 	expectedZeroProb := (1 - accuracy) + hitProbability
@@ -49,7 +49,7 @@ func TestMultiGetHitDistribution(t *testing.T) {
 
 	for i, m := range maximum {
 		hitProbability[i] = accuracy / (float64(m - minimum + 1))
-		hitDists[i] = *GetLinearHitDistribution(accuracy, minimum, m)
+		hitDists[i] = GetLinearHitDistribution(accuracy, minimum, m)
 	}
 
 	attackDist := NewMultiAttackDistribution(hitDists)

@@ -13,7 +13,7 @@ func checkProbabilities(t *testing.T, flat []float64, probs map[int]float64) {
 	}
 }
 
-func TestCappedReroll(t *testing.T) {
+func TestCappedReroll1(t *testing.T) {
 	hits := []WeightedHit{
 		{Probability: 0.2, Hitsplats: []int{5}},
 		{Probability: 0.2, Hitsplats: []int{10, 9}},
@@ -45,6 +45,36 @@ func TestCappedReroll(t *testing.T) {
 	checkProbabilities(t, flat, probs)
 }
 
+func TestCappedReroll2(t *testing.T) {
+	hits := []WeightedHit{
+		{Probability: 0.4, Hitsplats: []int{5}},
+		{Probability: 0.4, Hitsplats: []int{10, 20, 15}},
+		{Probability: 0.2, Hitsplats: []int{15}},
+	}
+	hitDistribution := HitDistribution{hits}
+
+	//if >5 -> reroll (10 ... 15)
+	limit := 5
+	rollmax := 5
+	offset := 10
+	hitDistribution.cappedReroll(limit, rollmax, offset)
+
+	flat := hitDistribution.flatten()
+
+	rerollProb := 1 / float64(rollmax+1)
+	probs := map[int]float64{
+		0:  0.0,
+		5:  0.4,
+		10: 0.2 * rerollProb,
+		15: 0.2 * rerollProb,
+		//30 -> 10,10,10
+		30: 0.4 * rerollProb * rerollProb * rerollProb,
+		//35 -> 21 ways to sum to 35
+		35: 0.4 * rerollProb * rerollProb * rerollProb * 21,
+	}
+
+	checkProbabilities(t, flat, probs)
+}
 func TestCross(t *testing.T) {
 	input := [][]int{
 		{1, 2, 3},

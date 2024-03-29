@@ -60,14 +60,14 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 }
 
 func (attackDist *AttackDistribution) ScaleDamage(factor float64, divisor float64) {
-	for _, dist := range attackDist.Distributions {
-		dist.scaleDamage(factor, divisor)
+	for i := range attackDist.Distributions {
+		attackDist.Distributions[i].scaleDamage(factor, divisor)
 	}
 }
 
 func (attackDist *AttackDistribution) ScaleProbability(factor float64) {
-	for _, dist := range attackDist.Distributions {
-		dist.ScaleProbability(factor)
+	for i := range attackDist.Distributions {
+		attackDist.Distributions[i].ScaleProbability(factor)
 	}
 }
 

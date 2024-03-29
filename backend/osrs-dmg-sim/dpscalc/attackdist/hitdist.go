@@ -5,8 +5,8 @@ type HitDistribution struct {
 	Hits []WeightedHit
 }
 
-func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
-	dist := &HitDistribution{make([]WeightedHit, 0)}
+func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) HitDistribution {
+	dist := HitDistribution{make([]WeightedHit, 0)}
 	hitProbability := accuracy / (float64(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {
@@ -21,6 +21,12 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDi
 
 func (dist *HitDistribution) AddWeightedHit(probability float64, hitsplats []int) {
 	dist.Hits = append(dist.Hits, WeightedHit{Probability: probability, Hitsplats: hitsplats})
+}
+
+func (dist *HitDistribution) ScaleProbability(factor float64) {
+	for i := range dist.Hits {
+		dist.Hits[i].scale(factor)
+	}
 }
 
 func (dist *HitDistribution) getExpectedHit() float64 {
@@ -43,7 +49,6 @@ func (dist *HitDistribution) getMaxHit() int {
 }
 
 //index is the hitspat sum
-//TODO return map? after writing tests
 func (dist *HitDistribution) flatten() []float64 {
 	flat := make([]float64, dist.getMaxHit()+1)
 	for _, weightedHit := range dist.Hits {
@@ -57,12 +62,6 @@ func (dist *HitDistribution) scaleDamage(factor float64, divisor float64) {
 		for j, hitsplat := range dist.Hits[i].Hitsplats {
 			dist.Hits[i].Hitsplats[j] = int(float64(hitsplat) * factor / divisor)
 		}
-	}
-}
-
-func (dist *HitDistribution) ScaleProbability(factor float64) {
-	for i := range dist.Hits {
-		dist.Hits[i].scale(factor)
 	}
 }
 

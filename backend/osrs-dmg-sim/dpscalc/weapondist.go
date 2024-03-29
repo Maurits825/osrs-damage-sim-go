@@ -11,7 +11,7 @@ var scytheHitReduction = []float64{1, 0.5, 0.25}
 func getAttackDistribution(player *player, accuracy float64, maxHit int) *attackdist.AttackDistribution {
 	//default linear dist
 	hitDistribution := attackdist.GetLinearHitDistribution(float64(accuracy), 0, maxHit)
-	attackDistribution := attackdist.NewSingleAttackDistribution(*hitDistribution)
+	attackDistribution := attackdist.NewSingleAttackDistribution(hitDistribution)
 
 	style := player.combatStyle.combatStyleType
 
@@ -19,7 +19,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		hitDists := make([]attackdist.HitDistribution, 0)
 		totalHits := min(max(player.npc.size, 1), 3)
 		for i := 0; i < totalHits; i++ {
-			hitDists = append(hitDists, *attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit))))
+			hitDists = append(hitDists, attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit))))
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
@@ -27,7 +27,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	if player.equippedGear.isEquipped(osmumtenFang) && style.isMeleeStyle() {
 		maxHitReduction := int(maxHit * 3 / 20)
 		hitDistribution = attackdist.GetLinearHitDistribution(accuracy, maxHitReduction, maxHit-maxHitReduction)
-		attackDistribution = attackdist.NewSingleAttackDistribution(*hitDistribution)
+		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution)
 	}
 
 	//TODO gadderhammer
@@ -50,7 +50,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 		hitDistribution.ScaleProbability(0.75)
 		hitDistribution.Hits = append(hitDistribution.Hits, secondHitsplats...)
-		attackDistribution = attackdist.NewSingleAttackDistribution(*hitDistribution)
+		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution)
 	}
 
 	//TODO cox guardians
@@ -96,7 +96,6 @@ func applyNonRubyBoltEffects(player *player, attackDistribution *attackdist.Atta
 func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribution) {
 	spell := player.inputGearSetup.GearSetup.Spell
 	if player.npc.id == iceDemon && !slices.Contains(fireSpells, spell) && spell != "Flames of Zamorak" {
-		//TODO div transformer --> 3. we basically have to divide each hitsplat(?) by 3
 		attackDistribution.ScaleDamage(1, 3)
 	}
 

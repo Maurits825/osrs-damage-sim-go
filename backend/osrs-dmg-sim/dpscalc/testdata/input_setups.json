@@ -1704,7 +1704,7 @@
     }
   },
   "Zulrah max tbow ranging pot": {
-    "expectedDps": 8.96679199,
+    "expectedDps": 9.095582,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1783,7 +1783,7 @@
                 "id": 13237
               },
               "12": {
-                "id": 11771
+                "id": 28310
               },
               "13": {
                 "id": 11212
