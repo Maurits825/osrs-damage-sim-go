@@ -49,15 +49,12 @@ func isFloatEqual(a, b, t float32) bool {
 }
 
 func TestRunDpsCalc(t *testing.T) {
-	// testInputSetups := loadTestInputSetups("test_input_setups.json")
 	testInputSetups := loadTestInputSetups("input_setups.json")
 	tolerance := float32(0.000001)
 	for setupName, testInputSetup := range testInputSetups {
 		dpsCalcResults := RunDpsCalc(&testInputSetup.InputSetup, false)
 		if !isFloatEqual(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, tolerance) {
 			t.Errorf("FAIL: " + setupName + " - Expected: " + fmt.Sprintf("%f", testInputSetup.ExpectedDps) + ", Actual: " + fmt.Sprintf("%f", dpsCalcResults.Results[0].TheoreticalDps))
-		} else {
-			t.Log("PASS: " + setupName + " - " + fmt.Sprintf("%f", testInputSetup.ExpectedDps))
 		}
 	}
 }

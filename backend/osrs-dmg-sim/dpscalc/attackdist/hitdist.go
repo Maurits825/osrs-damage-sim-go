@@ -67,13 +67,15 @@ func (dist *HitDistribution) scaleDamage(factor float64, divisor float64) {
 
 func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 	newHits := make([]WeightedHit, 0)
+	rerollHitsplats := getRerollHitsplats(rollmax, offset)
+
 	for _, weightedHit := range dist.Hits {
 		expandedHitsplats := make([][]int, 0)
 		for _, hitsplat := range weightedHit.Hitsplats {
 			if hitsplat <= limit {
 				expandedHitsplats = append(expandedHitsplats, []int{hitsplat})
 			} else {
-				expandedHitsplats = append(expandedHitsplats, expandHitsplat(rollmax, offset))
+				expandedHitsplats = append(expandedHitsplats, rerollHitsplats)
 			}
 		}
 
@@ -86,45 +88,54 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 	dist.Hits = newHits
 }
 
-func expandHitsplat(rollmax, offset int) []int {
-	expandedHitsplat := make([]int, 0)
+func getRerollHitsplats(rollmax, offset int) []int {
+	expandedHitsplat := make([]int, rollmax+1)
 	for i := 0; i <= rollmax; i++ {
-		expandedHitsplat = append(expandedHitsplat, i+offset)
+		expandedHitsplat[i] = i + offset
 	}
 
 	return expandedHitsplat
 }
 
-func cross(expandedHitsplats [][]int) [][]int {
-	product := make([][]int, 0)
-	lengths := make([]int, 0)
-	for _, expandedHitsplat := range expandedHitsplats {
-		lengths = append(lengths, len(expandedHitsplat))
+func cross(values [][]int) [][]int {
+	totalValues := len(values)
+	if totalValues == 0 {
+		return [][]int{{}}
 	}
-	j := len(expandedHitsplats) - 1
-	index := make([]int, j+1)
 
-	if j < 0 {
-		return product
+	lengths := make([]int, totalValues)
+	totalProducts := 1
+	for i := range values {
+		length := len(values[i])
+		lengths[i] = length
+		totalProducts *= length
 	}
+
+	product := make([][]int, 0, totalProducts)
+	lastValueIndex := totalValues - 1
+	indices := make([]int, totalValues)
 
 	for {
-		element := make([]int, len(expandedHitsplats))
-		for i, x := range index {
-			element[i] = expandedHitsplats[i][x]
+		//add the element based on the indices
+		element := make([]int, len(values))
+		for i, v := range indices {
+			element[i] = values[i][v]
 		}
 		product = append(product, element)
-		x := j
 
-		index[x] += 1
-		for index[x] == lengths[x] {
-			if x == 0 {
+		//increment last index and handle roll over
+		i := lastValueIndex
+		indices[i] += 1
+		for indices[i] == lengths[i] {
+			//i==0 mean all indices have rolled over, cross is done
+			if i == 0 {
 				return product
 			}
 
-			index[x] = 0
-			x -= 1
-			index[x] += 1
+			//index needs to roll over
+			indices[i] = 0
+			i -= 1
+			indices[i] += 1
 		}
 	}
 }
