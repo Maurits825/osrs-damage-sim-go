@@ -4,6 +4,7 @@ import (
 	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/attackdist"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
 var scytheHitReduction = []float64{1, 0.5, 0.25}
@@ -68,7 +69,14 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution)
 	}
 
-	//TODO cox guardians
+	pickId, isPickEquipped := player.equippedGear.getWearingPickaxe()
+	if slices.Contains(guardianIds, player.npc.id) && style.isMeleeStyle() && isPickEquipped {
+		pickBonus := pickaxes[pickId]
+		factor := float64(50 + player.inputGearSetup.GearSetup.MiningLevel + pickBonus)
+		divisor := 150.0
+		dpsDetailEntries.TrackValue(dpsdetail.GuardiansDMGBonus, factor/divisor)
+		attackDistribution.ScaleDamage(factor, divisor)
+	}
 
 	spell := player.inputGearSetup.GearSetup.Spell
 	if player.npc.id == iceDemon && (slices.Contains(fireSpells, spell) || spell == "Flames of Zamorak") {
@@ -127,4 +135,6 @@ func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribu
 		}
 		attackDistribution.LinearMinTransformer(limit, 0)
 	}
+
+	//TODO kraken ranged, vasa crystal mage, olm hands,
 }

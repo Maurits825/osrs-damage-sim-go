@@ -33,7 +33,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["ranging"]
+            "boosts": [
+              "ranging"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -77,7 +79,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "attackCount": 0,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -85,7 +89,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["ranging"],
+            "boosts": [
+              "ranging"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -134,7 +140,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["super_combat"]
+            "boosts": [
+              "super_combat"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -175,7 +183,9 @@
             "attackStyle": "Jab (Crush/Aggressive)",
             "attackCount": 0,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -183,7 +193,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -232,7 +244,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["overload_plus"]
+            "boosts": [
+              "overload_plus"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -273,7 +287,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "attackCount": 0,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -281,7 +297,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -373,7 +391,9 @@
             },
             "attackStyle": "Lunge (Stab/Aggressive)",
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -430,7 +450,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["overload_plus"]
+            "boosts": [
+              "overload_plus"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -474,7 +496,9 @@
             "attackStyle": "Accurate (Magic/Accurate)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -482,7 +506,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -530,7 +556,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["smelling_salts"]
+            "boosts": [
+              "smelling_salts"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -574,7 +602,9 @@
             "attackStyle": "Spell (Magic/Autocast)",
             "spell": "Ice Barrage",
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -582,7 +612,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["smelling_salts"],
+            "boosts": [
+              "smelling_salts"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -674,7 +706,9 @@
             "attackStyle": "Spell (Magic/Autocast)",
             "spell": "Fire Surge",
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -730,7 +764,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["overload_plus"]
+            "boosts": [
+              "overload_plus"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -771,7 +807,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -779,7 +817,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -827,7 +867,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["ranging"]
+            "boosts": [
+              "ranging"
+            ]
           },
           "gearSetup": {
             "gear": {
@@ -868,7 +910,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -876,7 +920,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["ranging"],
+            "boosts": [
+              "ranging"
+            ],
             "conditions": [],
             "isOnSlayerTask": true,
             "isInWilderness": true,
@@ -917,7 +963,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -965,7 +1013,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1014,7 +1064,9 @@
                 "value": 50
               }
             ],
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1064,7 +1116,9 @@
             "attackStyle": "Jab (Crush/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1109,7 +1163,10 @@
                 "value": 3
               }
             ],
-            "boosts": ["super_attack", "super_strength"],
+            "boosts": [
+              "super_attack",
+              "super_strength"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1161,7 +1218,9 @@
             "attackStyle": "Lunge (Stab/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1206,7 +1265,10 @@
                 "value": 4
               }
             ],
-            "boosts": ["attack", "strength"],
+            "boosts": [
+              "attack",
+              "strength"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1258,7 +1320,9 @@
             "attackStyle": "Slash (Slash/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1319,7 +1383,9 @@
               "magic": 99,
               "hitpoints": 99
             },
-            "boosts": ["super_combat"]
+            "boosts": [
+              "super_combat"
+            ]
           },
           "gearSetup": {
             "setupName": "Inquisitor's mace",
@@ -1365,7 +1431,9 @@
             "attackStyle": "Pummel (Crush/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1425,7 +1493,9 @@
                 "value": 1
               }
             ],
-            "boosts": ["saturated_heart"],
+            "boosts": [
+              "saturated_heart"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1476,7 +1546,9 @@
             "attackStyle": null,
             "spell": "Fire Surge",
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1531,7 +1603,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1582,7 +1656,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1637,7 +1713,10 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["ranging", "super_combat"],
+            "boosts": [
+              "ranging",
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1690,7 +1769,9 @@
             "attackStyle": "Lunge (Stab/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1744,7 +1825,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["ranging"],
+            "boosts": [
+              "ranging"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1795,7 +1878,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1854,7 +1939,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -1905,7 +1992,9 @@
             "attackStyle": "Chop (Slash/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -1960,7 +2049,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2013,7 +2104,9 @@
             "attackStyle": "Lunge (Stab/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2067,7 +2160,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2117,7 +2212,9 @@
             "attackStyle": "Hack (Slash/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2182,7 +2279,9 @@
                 "value": 1
               }
             ],
-            "boosts": ["saturated_heart"],
+            "boosts": [
+              "saturated_heart"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2233,7 +2332,9 @@
             "attackStyle": "Accurate (Magic/Accurate)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2293,7 +2394,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2343,7 +2446,9 @@
             "attackStyle": "Pummel (Crush/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2398,7 +2503,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["ranging"],
+            "boosts": [
+              "ranging"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2449,7 +2556,9 @@
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["rigour"],
+            "prayers": [
+              "rigour"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2507,7 +2616,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2560,7 +2671,9 @@
             "attackStyle": "Lunge (Stab/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2618,7 +2731,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2669,7 +2784,9 @@
             "attackStyle": "Pummel (Crush/Accurate)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2728,7 +2845,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["saturated_heart"],
+            "boosts": [
+              "saturated_heart"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2779,7 +2898,9 @@
             "attackStyle": "Accurate (Magic/Accurate)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2834,7 +2955,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["overload_plus"],
+            "boosts": [
+              "overload_plus"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2887,7 +3010,9 @@
             "attackStyle": "Spell (Magic/Autocast)",
             "spell": "Blood Barrage",
             "isSpecial": false,
-            "prayers": ["augury"],
+            "prayers": [
+              "augury"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -2941,7 +3066,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -2994,7 +3121,9 @@
             "attackStyle": "Chop (Slash/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -3056,7 +3185,9 @@
         {
           "gearSetupSettings": {
             "statDrains": [],
-            "boosts": ["super_combat"],
+            "boosts": [
+              "super_combat"
+            ],
             "combatStats": {
               "attack": 99,
               "strength": 99,
@@ -3111,7 +3242,9 @@
             "attackStyle": "Slash (Slash/Aggressive)",
             "spell": null,
             "isSpecial": false,
-            "prayers": ["piety"],
+            "prayers": [
+              "piety"
+            ],
             "conditions": [],
             "statDrain": [],
             "isOnSlayerTask": true,
@@ -3240,7 +3373,7 @@
       ]
     }
   },
-  "Max tbow zebak 305/3" : {
+  "Max tbow zebak 305/3": {
     "expectedDps": 10.012671,
     "inputSetup": {
       "globalSettings": {
@@ -3351,6 +3484,123 @@
             "isSpecial": false,
             "prayers": [
               "rigour"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true
+          }
+        }
+      ]
+    }
+  },
+  "Max crystal pick guardians": {
+    "expectedDps": 9.122149,
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "Guardian",
+          "isXerician": true,
+          "hitpoints": 250,
+          "att": 140,
+          "str": 140,
+          "def": 100,
+          "mage": 1,
+          "range": 1,
+          "strbns": 20,
+          "dstab": 80,
+          "dslash": 180,
+          "dcrush": -10,
+          "id": "7569"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": [
+              "overload_plus"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "gearSetup": {
+            "setupName": "Crystal pickaxe",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Torva full helm",
+                "id": 26382
+              },
+              "1": {
+                "name": "Infernal max cape",
+                "id": 21285
+              },
+              "2": {
+                "name": "Amulet of torture",
+                "id": 19553
+              },
+              "3": {
+                "name": "Crystal pickaxe",
+                "id": 23680
+              },
+              "4": {
+                "name": "Torva platebody",
+                "id": 26384
+              },
+              "5": {
+                "name": "Avernic defender",
+                "id": 22322
+              },
+              "7": {
+                "name": "Torva platelegs",
+                "id": 26386
+              },
+              "9": {
+                "name": "Ferocious gloves",
+                "id": 22981
+              },
+              "10": {
+                "name": "Primordial boots",
+                "id": 13239
+              },
+              "12": {
+                "name": "Ultor ring",
+                "id": 28307
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Smash (Crush/Aggressive)",
+            "spell": null,
+            "isSpecial": false,
+            "prayers": [
+              "piety"
             ],
             "isOnSlayerTask": true,
             "isInWilderness": true,

@@ -69,6 +69,8 @@ var corpBaneWeapons = []int{
 	3190, 3192, 3194, 3196, 3198, 3200, 3202, 3204, 23987, //halberd
 }
 
+var pickaxes = map[int]int{1265: 1, 1267: 1, 1269: 6, 1271: 31, 1273: 21, 1275: 41, 11920: 61, 12297: 11, 13243: 61, 20014: 61, 23276: 41, 23680: 61}
+
 type equippedGear struct {
 	ids []int
 }
@@ -147,4 +149,13 @@ func (gear *equippedGear) isWearingCorpbaneWeapon(style combatStyleType) bool {
 	}
 
 	return false
+}
+
+func (gear *equippedGear) getWearingPickaxe() (int, bool) {
+	for pickId := range pickaxes {
+		if gear.isEquipped(pickId) {
+			return pickId, true
+		}
+	}
+	return 0, false
 }
