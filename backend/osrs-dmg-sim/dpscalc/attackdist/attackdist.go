@@ -33,7 +33,7 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	//start with hit dist of 100% hitting 0
 	hitDistMap := map[int]float64{0: 1.0}
 	for _, dist := range attackDist.Distributions {
-		var distMap map[int]float64 = make(map[int]float64)
+		distMap := make(map[int]float64)
 
 		flat := dist.flatten()
 		//iterate over current hit dist

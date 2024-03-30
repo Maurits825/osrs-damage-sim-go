@@ -38,8 +38,17 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.ScaleDamage(float64(10000+(maxHp-currentHp)*maxHp), 10000)
 	}
 
-	//TODO verac, keris
-	if player.equippedGear.isAllEquipped(karilDamnedSet) {
+	//TODO keris
+
+	if player.equippedGear.isAllEquipped(veracSet) && style.isMeleeStyle() {
+		hitDistribution.ScaleProbability(0.75)
+		effectHits := attackdist.GetLinearHitDistribution(1.0, 1, maxHit+1)
+		effectHits.ScaleProbability(0.25)
+		hitDistribution.Hits = append(hitDistribution.Hits, effectHits.Hits...)
+		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution) //TODO is there a better way instead of this everytime?
+	}
+
+	if player.equippedGear.isAllEquipped(karilDamnedSet) && style == Ranged {
 		secondHitsplats := make([]attackdist.WeightedHit, len(hitDistribution.Hits))
 		for i, weightedHit := range hitDistribution.Hits {
 			secondHitsplats[i] = attackdist.WeightedHit{
