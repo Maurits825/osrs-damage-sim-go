@@ -64,6 +64,11 @@ var enchantedRubyBolts = []int{9242, 21944}
 var karilDamnedSet = []int{4734, 4732, 4736, 4738, 12851}
 var veracSet = []int{4755, 4753, 4757, 4759}
 
+var corpBaneWeapons = []int{
+	1237, 1239, 1241, 1243, 1245, 1247, 1249, 4158, 4580, 4726, 5016, 11824, 20158, //spear
+	3190, 3192, 3194, 3196, 3198, 3200, 3202, 3204, 23987, //halberd
+}
+
 type equippedGear struct {
 	ids []int
 }
@@ -124,4 +129,22 @@ func (gear *equippedGear) isWearingImbuedBlackMask() bool {
 }
 func (gear *equippedGear) isWearingBlackMask() bool {
 	return gear.isWearingImbuedBlackMask() || gear.isEquipped(blackMask) || gear.isEquipped(slayerHelm)
+}
+
+func (gear *equippedGear) isWearingCorpbaneWeapon(style combatStyleType) bool {
+	isStab := style == Stab
+
+	if gear.isEquipped(osmumtenFang) {
+		return isStab
+	}
+
+	if gear.isAnyEquipped(corpBaneWeapons) {
+		return isStab
+	}
+
+	if style == Magic {
+		return true
+	}
+
+	return false
 }

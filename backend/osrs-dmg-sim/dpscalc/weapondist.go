@@ -77,7 +77,9 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	applyNonRubyBoltEffects(player, attackDistribution)
 
-	//TODO corp and corp bane weapons?
+	if player.npc.id == corporealBeast && !player.equippedGear.isWearingCorpbaneWeapon(player.combatStyle.combatStyleType) {
+		attackDistribution.ScaleDamage(1, 2)
+	}
 
 	if player.equippedGear.isAnyEquipped(enchantedRubyBolts) && style == Ranged {
 		chance := 0.06

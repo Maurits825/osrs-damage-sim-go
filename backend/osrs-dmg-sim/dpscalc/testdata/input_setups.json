@@ -1919,7 +1919,7 @@
     }
   },
   "Corp max fang scp": {
-    "expectedDps": 7.40684668,
+    "expectedDps": 7.696488,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2001,7 +2001,7 @@
                 "id": 13239
               },
               "12": {
-                "id": 11773
+                "id": 28307
               },
               "13": {
                 "id": 22947
