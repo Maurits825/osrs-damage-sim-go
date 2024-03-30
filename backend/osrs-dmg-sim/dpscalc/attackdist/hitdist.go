@@ -98,13 +98,40 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 	dist.Hits = newHits
 }
 
-func getRerollHitsplats(rollmax, offset int) []int {
-	expandedHitsplat := make([]int, rollmax+1)
-	for i := 0; i <= rollmax; i++ {
-		expandedHitsplat[i] = i + offset
+func (dist *HitDistribution) linearMin(maximum, offset int) {
+	newHits := make([]WeightedHit, 0)
+	for _, weightedHit := range dist.Hits {
+		expandedHitsplats := make([][]int, 0)
+		for _, hitsplat := range weightedHit.Hitsplats {
+			minHitsplats := getMinHitsplats(hitsplat, maximum, offset)
+			expandedHitsplats = append(expandedHitsplats, minHitsplats)
+		}
+
+		product := cross(expandedHitsplats)
+		probability := weightedHit.Probability / float64(len(product))
+		for _, expandedHitsplat := range product {
+			newHits = append(newHits, WeightedHit{Probability: probability, Hitsplats: expandedHitsplat})
+		}
+	}
+	dist.Hits = newHits
+}
+
+func getMinHitsplats(hit, maximum, offset int) []int {
+	hitsplats := make([]int, maximum+1)
+	for i := 0; i <= maximum; i++ {
+		hitsplats[i] = min(hit, i+offset)
 	}
 
-	return expandedHitsplat
+	return hitsplats
+}
+
+func getRerollHitsplats(rollmax, offset int) []int {
+	hitsplats := make([]int, rollmax+1)
+	for i := 0; i <= rollmax; i++ {
+		hitsplats[i] = i + offset
+	}
+
+	return hitsplats
 }
 
 func cross(values [][]int) [][]int {

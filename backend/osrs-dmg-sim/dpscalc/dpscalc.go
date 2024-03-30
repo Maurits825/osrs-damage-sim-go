@@ -176,7 +176,15 @@ func getAttackSpeed(player *player) int {
 }
 
 func getAccuracy(player *player) float32 {
-	// TODO verzik dawnbringer and scurrius check
+	if slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer) {
+		accuracy := float32(1)
+		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyDawnbringer, accuracy)
+		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
+		return accuracy
+	}
+
+	// TODO scurrius check
+
 	attackRoll := getAttackRoll(player)
 	defenceRoll := getNpcDefenceRoll(player)
 

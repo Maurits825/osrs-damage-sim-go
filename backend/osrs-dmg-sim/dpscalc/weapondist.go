@@ -119,4 +119,12 @@ func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribu
 	if slices.Contains(zulrahs, player.npc.id) {
 		attackDistribution.CappedReroll(50, 5, 45)
 	}
+
+	if slices.Contains(verzikP1Ids, player.npc.id) && !player.equippedGear.isEquipped(dawnbringer) {
+		limit := 3
+		if player.combatStyle.combatStyleType.isMeleeStyle() {
+			limit = 10
+		}
+		attackDistribution.LinearMinTransformer(limit, 0)
+	}
 }

@@ -76,3 +76,9 @@ func (attackDist *AttackDistribution) CappedReroll(limit int, rollmax int, offse
 		attackDist.Distributions[i].cappedReroll(limit, rollmax, offset)
 	}
 }
+
+func (attackDist *AttackDistribution) LinearMinTransformer(maximum, offset int) {
+	for i := range attackDist.Distributions {
+		attackDist.Distributions[i].linearMin(maximum, offset)
+	}
+}
