@@ -38,7 +38,15 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.ScaleDamage(float64(10000+(maxHp-currentHp)*maxHp), 10000)
 	}
 
-	//TODO keris
+	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.isMeleeStyle() && player.npc.isKalphite {
+		critDist := hitDistribution.Clone()
+		critDist.ScaleProbability(1.0 / 51.0)
+		critDist.ScaleDamage(3, 1)
+
+		hitDistribution.ScaleProbability(50.0 / 51.0)
+		hitDistribution.Hits = append(hitDistribution.Hits, critDist.Hits...)
+		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution) //TODO is there a better way instead of this everytime?
+	}
 
 	if player.equippedGear.isAllEquipped(veracSet) && style.isMeleeStyle() {
 		hitDistribution.ScaleProbability(0.75)
@@ -49,16 +57,14 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	if player.equippedGear.isAllEquipped(karilDamnedSet) && style == Ranged {
-		secondHitsplats := make([]attackdist.WeightedHit, len(hitDistribution.Hits))
-		for i, weightedHit := range hitDistribution.Hits {
-			secondHitsplats[i] = attackdist.WeightedHit{
-				Probability: weightedHit.Probability * 0.25,
-				Hitsplats:   []int{weightedHit.Hitsplats[0], int(weightedHit.Hitsplats[0] / 2)},
-			}
+		secondHitsplats := hitDistribution.Clone()
+		secondHitsplats.ScaleProbability(0.25)
+		for i := range secondHitsplats.Hits {
+			secondHitsplats.Hits[i].Hitsplats = []int{secondHitsplats.Hits[i].Hitsplats[0], int(secondHitsplats.Hits[i].Hitsplats[0] / 2)}
 		}
 
 		hitDistribution.ScaleProbability(0.75)
-		hitDistribution.Hits = append(hitDistribution.Hits, secondHitsplats...)
+		hitDistribution.Hits = append(hitDistribution.Hits, secondHitsplats.Hits...)
 		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution)
 	}
 

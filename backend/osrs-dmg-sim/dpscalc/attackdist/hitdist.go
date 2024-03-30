@@ -19,6 +19,16 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) HitDis
 	return dist
 }
 
+func (dist *HitDistribution) Clone() HitDistribution {
+	newDist := HitDistribution{make([]WeightedHit, len(dist.Hits))}
+	for i, hit := range dist.Hits {
+		hitsplats := make([]int, len(hit.Hitsplats))
+		copy(hitsplats, hit.Hitsplats)
+		newDist.Hits[i] = WeightedHit{hit.Probability, hitsplats}
+	}
+	return newDist
+}
+
 func (dist *HitDistribution) AddWeightedHit(probability float64, hitsplats []int) {
 	dist.Hits = append(dist.Hits, WeightedHit{Probability: probability, Hitsplats: hitsplats})
 }
@@ -26,6 +36,14 @@ func (dist *HitDistribution) AddWeightedHit(probability float64, hitsplats []int
 func (dist *HitDistribution) ScaleProbability(factor float64) {
 	for i := range dist.Hits {
 		dist.Hits[i].scale(factor)
+	}
+}
+
+func (dist *HitDistribution) ScaleDamage(factor float64, divisor float64) {
+	for i := range dist.Hits {
+		for j, hitsplat := range dist.Hits[i].Hitsplats {
+			dist.Hits[i].Hitsplats[j] = int(float64(hitsplat) * factor / divisor)
+		}
 	}
 }
 
@@ -55,14 +73,6 @@ func (dist *HitDistribution) flatten() []float64 {
 		flat[weightedHit.getSum()] += weightedHit.Probability
 	}
 	return flat
-}
-
-func (dist *HitDistribution) scaleDamage(factor float64, divisor float64) {
-	for i := range dist.Hits {
-		for j, hitsplat := range dist.Hits[i].Hitsplats {
-			dist.Hits[i].Hitsplats[j] = int(float64(hitsplat) * factor / divisor)
-		}
-	}
 }
 
 func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
