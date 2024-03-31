@@ -25,36 +25,6 @@
         Save <i class="bi bi-download"></i>
       </button>
     </div>
-
-    <ng-container *ngIf="(userSettingsWatch$ | async)?.showLoadFromRunelite">
-      <ng-template #loadRlSetupPop let-error="error">
-        <div *ngIf="error" class="text-danger">
-          {{ error }}
-        </div>
-        <div *ngIf="error === undefined" class="text-success">Loaded!</div>
-      </ng-template>
-      <div class="ms-1">
-        <button
-          type="button"
-          class="btn btn-primary py-0 px-1"
-          style="height: 37px"
-          [ngbPopover]="loadRlSetupPop"
-          triggers="manual"
-          #loadRlPopover="ngbPopover"
-          (click)="loadGearSetupFromRunelite(loadRlPopover)"
-          [disabled]="isLoadingFromRl"
-        >
-          <div class="d-flex justify-content-center align-content-center" style="width: 30px">
-            <ng-container *ngIf="isLoadingFromRl">
-              <span class="spinner-border spinner-border-sm"></span>
-            </ng-container>
-            <ng-container *ngIf="!isLoadingFromRl">
-              <img class="rounded img-fluid" src="assets/img/other/runelite.jpg" title="Load from Runelite" />
-            </ng-container>
-          </div>
-        </button>
-      </div>
-    </ng-container>
   </div>
 
   <div class="mb-2 d-flex align-items-center">
@@ -98,17 +68,35 @@
       </ng-select>
     </div>
 
-    <!-- TODO might use this in future? -->
-    <div class="ms-2" *ngIf="false">
-      <button
-        type="button"
-        class="btn btn-primary"
-        [disabled]="gearSetupTabRef.gearSetups.length >= gearSetupTabRef.maxGearSetups"
-        (click)="duplicateGearSetup()"
-      >
-        Duplicate <i class="bi bi-clipboard-plus"></i>
-      </button>
-    </div>
+    <ng-container *ngIf="(userSettingsWatch$ | async)?.showLoadFromRunelite">
+      <ng-template #loadRlSetupPop let-error="error">
+        <div *ngIf="error" class="text-danger">
+          {{ error }}
+        </div>
+        <div *ngIf="error === undefined" class="text-success">Loaded!</div>
+      </ng-template>
+      <div class="ms-1">
+        <button
+          type="button"
+          class="btn btn-primary py-0 px-1"
+          style="height: 37px"
+          [ngbPopover]="loadRlSetupPop"
+          triggers="manual"
+          #loadRlPopover="ngbPopover"
+          (click)="loadGearSetupFromRunelite(loadRlPopover)"
+          [disabled]="isLoadingFromRl"
+        >
+          <div class="d-flex justify-content-center align-content-center" style="width: 30px">
+            <ng-container *ngIf="isLoadingFromRl">
+              <span class="spinner-border spinner-border-sm"></span>
+            </ng-container>
+            <ng-container *ngIf="!isLoadingFromRl">
+              <img class="rounded img-fluid" src="assets/img/other/runelite.jpg" title="Load from Runelite" />
+            </ng-container>
+          </div>
+        </button>
+      </div>
+    </ng-container>
   </div>
 
   <div class="mb-3 d-flex flex-wrap align-items-center">
