@@ -7,6 +7,9 @@ import {
   UNARMED_EQUIVALENT_ID,
   DEFAULT_GEAR_SETUP,
   AUTOCAST_STLYE as AUTOCAST_STYLE,
+  DHAROK_SET,
+  KARIL_SET,
+  QUICK_GEAR_SETS,
 } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
@@ -69,6 +72,9 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   isLoadingFromRl = false;
 
   userSettingsWatch$: Observable<UserSettings>;
+
+  quickGearSetLabel: string = null;
+  quickGearSet: number[];
 
   private destroyed$ = new Subject();
 
@@ -195,6 +201,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     }
 
     this.updateSpecialGear();
+    this.updateQuickEquipSet();
   }
 
   updateAttackStyle(itemId: number): void {
@@ -274,5 +281,26 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         popover.open({ error: 'Error loading' });
       },
     });
+  }
+
+  updateQuickEquipSet(): void {
+    for (const gearSlot of this.allGearSlots) {
+      const gearItem = this.gearSetup.gear[gearSlot];
+      if (!gearItem) continue;
+      for (const gearSet of QUICK_GEAR_SETS) {
+        if (gearSet.itemIds.includes(gearItem.id)) {
+          this.quickGearSetLabel = gearSet.label;
+          this.quickGearSet = gearSet.itemIds;
+          return;
+        }
+      }
+    }
+
+    this.quickGearSetLabel = null;
+    this.quickGearSet = null;
+  }
+
+  equipQuickGearSet(): void {
+    this.setCurrentGearByIds(this.quickGearSet);
   }
 }

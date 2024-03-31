@@ -22,7 +22,7 @@
         #saveGearPopover="ngbPopover"
         (click)="saveGearSetup(saveGearPopover)"
       >
-        Save
+        Save <i class="bi bi-download"></i>
       </button>
     </div>
 
@@ -111,7 +111,7 @@
     </div>
   </div>
 
-  <div class="mb-3 d-flex">
+  <div class="mb-3 d-flex flex-wrap align-items-center">
     <div class="btn-group me-2" role="group" style="height: '45px'">
       <ng-container *ngFor="let attackType of allAttackTypes">
         <input
@@ -129,11 +129,17 @@
       </ng-container>
     </div>
 
-    <div class="me-auto">
+    <div>
       <app-gear-set-select
         [attackType]="currentAttackType"
         (selectSetup)="selectGearSetSetup($event)"
       ></app-gear-set-select>
+    </div>
+
+    <div class="ms-1">
+      <button *ngIf="quickGearSetLabel" type="button" class="btn btn-outline-dark" (click)="equipQuickGearSet()">
+        Equip {{ quickGearSetLabel }} set
+      </button>
     </div>
   </div>
 

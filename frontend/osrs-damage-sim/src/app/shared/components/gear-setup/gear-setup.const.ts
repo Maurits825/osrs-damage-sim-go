@@ -8,6 +8,23 @@ export const UNARMED_EQUIVALENT_ID = 3689;
 export const AUTOCAST_STLYE = 'Spell (Magic/Autocast)';
 export const WILDY_WEAPONS = [22547, 27652, 22552, 27785, 27662, 27676, 22542, 27657];
 
+export const DHAROK_SET = [4716, 4718, 4720, 4722];
+export const KARIL_SET = [4734, 4732, 4736, 4738];
+export const AHRIM_SET = [4710, 4708, 4712, 4714];
+export const VERAC_SET = [4755, 4753, 4757, 4759];
+
+export interface QuickGearSet {
+  label: string;
+  itemIds: number[];
+}
+
+export const QUICK_GEAR_SETS: QuickGearSet[] = [
+  { label: 'Dharok', itemIds: DHAROK_SET },
+  { label: 'Karil', itemIds: KARIL_SET },
+  { label: 'Ahrim', itemIds: AHRIM_SET },
+  { label: 'Verac', itemIds: VERAC_SET },
+];
+
 export const DEFAULT_GEAR_SETUP: GearSetup = {
   setupName: null,
   presetName: null,
