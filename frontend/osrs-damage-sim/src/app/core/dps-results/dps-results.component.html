@@ -87,7 +87,7 @@
           [allValues]="dpsResults.dpsCalcResults.results"
           [selectedValue]="selectedDpsCalcResult"
           [clearable]="false"
-          searchProperty="labels.gearSetupName"
+          [valueFilter]="dpsCalcFilter"
           placeholder="Select input value"
           (valueChanged)="selectedDpsResultChange($event)"
         >

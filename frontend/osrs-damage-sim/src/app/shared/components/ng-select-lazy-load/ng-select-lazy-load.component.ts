@@ -37,6 +37,9 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
   @Input()
   clearable = true;
 
+  @Input()
+  valueFilter: (value: T, searchTerm: string) => boolean = this.valueFilterDefault;
+
   @ContentChild('dropdownLabel') dropdownLabel: TemplateRef<unknown>;
   @ContentChild('dropdownOptions') dropdownOptions: TemplateRef<unknown>;
 
@@ -100,7 +103,7 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
     });
   }
 
-  valueFilter(value: T, searchTerm: string): boolean {
+  valueFilterDefault(value: T, searchTerm: string): boolean {
     if (!searchTerm) return true;
 
     const name = value[this.searchProperty as keyof T] as string;

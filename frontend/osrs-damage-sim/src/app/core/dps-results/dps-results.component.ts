@@ -198,4 +198,18 @@ export class DpsResultsComponent implements OnChanges {
     this.hideZeroDist = isHide;
     this.updateHitDistChart();
   }
+
+  dpsCalcFilter(result: DpsCalcResult, searchTerm: string): boolean {
+    if (!searchTerm) return true;
+
+    const name = result.labels.gearSetupName;
+
+    return (
+      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      name
+        .replace(/[^0-9a-z]/gi, '')
+        .toLowerCase()
+        .includes(searchTerm.replace(/[^0-9a-z]/gi, '').toLowerCase())
+    );
+  }
 }
