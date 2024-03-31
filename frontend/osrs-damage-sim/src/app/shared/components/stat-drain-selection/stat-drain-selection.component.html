@@ -1,6 +1,6 @@
 <ng-container *ngIf="statDrains">
-  <div class="row align-items-center mb-1" *ngFor="let statDrain of statDrains">
-    <div class="col">
+  <div class="d-flex mb-1" *ngFor="let statDrain of statDrains">
+    <div class="col-6 col-md-8 pe-0">
       <ng-select
         [items]="allStatDrains"
         [(ngModel)]="statDrain.name"
@@ -19,14 +19,16 @@
       </ng-select>
     </div>
 
-    <div class="col-auto pe-1">{{ statDrainLabels[statDrain.name] }}</div>
+    <div class="col-6 col-md-4 px-0 d-flex align-items-center">
+      <div class="ms-2 pe-1">{{ statDrainLabels[statDrain.name] }}</div>
 
-    <div class="col-2 px-1">
-      <input type="number" [(ngModel)]="statDrain.value" class="form-control" min="1" />
-    </div>
+      <div class="flex-shrink-1 px-1">
+        <input type="number" [(ngModel)]="statDrain.value" class="form-control" min="1" />
+      </div>
 
-    <div class="col-auto ps-1">
-      <button type="button" class="btn btn-danger btn-sm" (click)="removeStatDrain(statDrain)">X</button>
+      <div class="ps-1">
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeStatDrain(statDrain)">X</button>
+      </div>
     </div>
   </div>
 
