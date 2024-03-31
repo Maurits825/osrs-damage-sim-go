@@ -27,7 +27,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 
 @Component({
-  selector: 'app-gear-setup.col-md-6',
+  selector: 'app-gear-setup',
   templateUrl: './gear-setup.component.html',
   styleUrls: ['./gear-setup.component.css'],
 })
