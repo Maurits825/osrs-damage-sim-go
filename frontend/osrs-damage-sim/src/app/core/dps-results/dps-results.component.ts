@@ -33,6 +33,7 @@ export class DpsResultsComponent implements OnChanges {
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;
   hitDistChart: Chart;
+  hideZeroDist = false;
 
   showResultTextLabel = true;
   chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
@@ -48,8 +49,12 @@ export class DpsResultsComponent implements OnChanges {
 
       this.inputSetup = this.inputSetupService.getInputSetup();
 
-      this.selectedDpsGrapherResult = this.dpsResults.dpsGrapherResults.results[0];
-      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[0];
+      this.selectedDpsGrapherResult = this.dpsResults.dpsGrapherResults.results.find(
+        (dpsResult) => dpsResult.graphType === 'Dragon warhammer'
+      );
+
+      //TODO should we sort the results in the hit dist dropdown also?
+      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.sortIndexOrder[0]];
 
       this.cd.detectChanges();
       this.createCharts();
@@ -85,6 +90,11 @@ export class DpsResultsComponent implements OnChanges {
   selectedGraphResultChange(dpsGrapherResult: DpsGrapherResult): void {
     this.selectedDpsGrapherResult = dpsGrapherResult;
     this.updateDpsGrapherChart();
+  }
+
+  selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
+    this.selectedDpsCalcResult = dpsCalcResult;
+    this.updateHitDistChart();
   }
 
   createCharts() {
@@ -142,12 +152,13 @@ export class DpsResultsComponent implements OnChanges {
     this.dpsGrapherChart.update();
   }
 
-  updateHitDistChart(start = 0): void {
+  updateHitDistChart(): void {
     const labels = new Array<number>(this.selectedDpsCalcResult.hitDist.length);
     for (let i = 0; i < this.selectedDpsCalcResult.hitDist.length; i++) {
       labels[i] = i;
     }
 
+    const start = this.hideZeroDist ? 1 : 0;
     this.hitDistChart.data = {
       labels: labels.slice(start),
       datasets: [
@@ -184,6 +195,7 @@ export class DpsResultsComponent implements OnChanges {
   }
 
   hideZeroDistChange(isHide: boolean): void {
-    this.updateHitDistChart(isHide ? 1 : 0);
+    this.hideZeroDist = isHide;
+    this.updateHitDistChart();
   }
 }

@@ -3,7 +3,7 @@
 
   <div class="row mb-1">
     <h2 class="mb-1 ps-0">Dps</h2>
-    <table class="table table-bordered border-dark mb-4">
+    <table class="table table-bordered border-dark mb-3">
       <thead>
         <tr class="text-end">
           <th scope="col" style="width: 30%" class="text-start">
@@ -78,30 +78,52 @@
       </tbody>
     </table>
   </div>
-  <div class="row mb-1">
-    <ng-container *ngIf="selectedDpsCalcResult">
-      <div class="form-check form-switch">
-        <label class="fw-lighter me-1" for="hideZeroDist">Hide 0s</label>
-        <input
-          #hideZeroDist
-          id="hideZeroDist"
-          class="form-check-input"
-          type="checkbox"
-          role="switch"
-          (change)="hideZeroDistChange(hideZeroDist.checked)"
-        />
+  <div class="row mb-3">
+    <h3 class="mb-2 fw-light text-center">Hit Distribution</h3>
+    <div class="mb-2 d-flex align-items-center">
+      <div class="flex-grow-1">
+        <app-ng-select-lazy-load
+          [valueType]="DpsCalcResult"
+          [allValues]="dpsResults.dpsCalcResults.results"
+          [selectedValue]="selectedDpsCalcResult"
+          [clearable]="false"
+          searchProperty="labels.gearSetupName"
+          placeholder="Select input value"
+          (valueChanged)="selectedDpsResultChange($event)"
+        >
+          <ng-template #dropdownLabel #dropdownOptions let-item="item">
+            <div class="d-flex align-items-center">
+              <div>{{ item.labels.gearSetupName }} -&nbsp;</div>
+              <span style="font-weight: normal">{{ item.labels.gearSetupSettingsLabel }}</span>
+            </div>
+          </ng-template>
+        </app-ng-select-lazy-load>
       </div>
-      <div>
-        <div class="chart-container">
-          <canvas id="hitDistChart">{{ hitDistChart }}</canvas>
+      <div class="ps-3">
+        <div class="form-check form-switch">
+          <label class="fw-lighter me-1" for="hideZeroDist">Hide 0s</label>
+          <input
+            #hideZeroDist
+            id="hideZeroDist"
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            (change)="hideZeroDistChange(hideZeroDist.checked)"
+          />
         </div>
       </div>
-    </ng-container>
+    </div>
+
+    <div>
+      <div class="chart-container">
+        <canvas id="hitDistChart">{{ hitDistChart }}</canvas>
+      </div>
+    </div>
   </div>
 </div>
 
 <div *ngIf="dpsResults?.dpsGrapherResults && !dpsResults?.error">
-  <h3 class="mb-3 fw-light text-center">{{ dpsResults.dpsGrapherResults.title }}</h3>
+  <h3 class="mb-2 fw-light text-center">Dps Graphs</h3>
   <div class="mb-2">
     <app-ng-select-lazy-load
       [valueType]="DpsGrapherResult"

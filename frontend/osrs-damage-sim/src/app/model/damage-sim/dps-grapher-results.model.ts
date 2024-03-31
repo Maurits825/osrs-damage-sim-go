@@ -24,6 +24,5 @@ export interface DpsGrapherResult {
 }
 
 export interface DpsGrapherResults {
-  title: string;
   results: DpsGrapherResult[];
 }

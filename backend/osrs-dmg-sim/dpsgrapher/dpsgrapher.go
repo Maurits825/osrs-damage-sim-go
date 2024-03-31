@@ -1,13 +1,13 @@
 package dpsgrapher
 
 import (
+	"slices"
 	"strconv"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
 type DpsGrapherResults struct {
-	Title   string             `json:"title"`
 	Results []DpsGrapherResult `json:"results"`
 }
 
@@ -24,7 +24,6 @@ type DpsGraphData struct {
 
 type GraphType string
 
-// TODO more graph types, stat drains next?? how to implement this
 const (
 	AttackLevel     GraphType = "Attack"
 	StrengthLevel   GraphType = "Strength"
@@ -35,19 +34,23 @@ const (
 	Arclight        GraphType = "Arclight"
 	BandosGodsword  GraphType = "Bandos godsword"
 	AccursedSceptre GraphType = "Accursed sceptre"
+	ToaRaidLevel    GraphType = "TOA raid level"
 )
 
 // TODO kinda scuffed
-var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre}
+var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
 
 const (
-	MaxLevel = 99
+	maxLevel        = 99
+	maxToaRaidLevel = 600
 )
 
 func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
-	dpsGrapherResults := DpsGrapherResults{"some title", make([]DpsGrapherResult, len(graphTypes))}
+	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(graphTypes))}
+	npcId, _ := strconv.Atoi(inputSetup.GlobalSettings.Npc.Id)
 
-	for i, graphType := range graphTypes {
+GraphTypesLoop:
+	for _, graphType := range graphTypes {
 		dpsGrapherResult := DpsGrapherResult{}
 		switch graphType {
 		case AttackLevel, StrengthLevel, RangedLevel, MagicLevel:
@@ -56,9 +59,15 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 			dpsGrapherResult = getTeamSizeDpsGrapher(inputSetup, graphType)
 		case DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre:
 			dpsGrapherResult = getStatDrainDpsGrapher(inputSetup, graphType)
+		case ToaRaidLevel:
+			if slices.Contains(dpscalc.ToaIds, npcId) {
+				dpsGrapherResult = getToaRaidLevelDpsGrapher(inputSetup, graphType)
+			} else {
+				break GraphTypesLoop
+			}
 		}
 
-		dpsGrapherResults.Results[i] = dpsGrapherResult
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
 	}
 
 	return &dpsGrapherResults
@@ -83,7 +92,7 @@ func getXValues(startValue int, maxValue int) []string {
 }
 
 func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
-	xValues := getXValues(1, MaxLevel)
+	xValues := getXValues(1, maxLevel)
 	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
 
 	var statChange *int
@@ -100,7 +109,7 @@ func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) Dps
 			statChange = &inputGearSetup.GearSetupSettings.CombatStats.Magic
 		}
 
-		dpsGraphDatas[i] = getDpsGraphData(statChange, 1, MaxLevel, &inputSetup.GlobalSettings, &inputGearSetup)
+		dpsGraphDatas[i] = getDpsGraphData(statChange, 1, maxLevel, &inputSetup.GlobalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
@@ -155,6 +164,20 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 		currentValue := &inputGearSetup.GearSetupSettings.StatDrain[0].Value
 
 		dpsGraphDatas[i] = getDpsGraphData(currentValue, 0, maxValue, &inputSetup.GlobalSettings, &inputGearSetup)
+	}
+	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
+}
+
+func getToaRaidLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
+	xValues := getXValues(0, maxToaRaidLevel)
+	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+
+	//create a copy
+	globalSettings := inputSetup.GlobalSettings
+	raidLevel := &globalSettings.RaidLevel
+
+	for i, inputGearSetup := range inputSetup.InputGearSetups {
+		dpsGraphDatas[i] = getDpsGraphData(raidLevel, 1, maxToaRaidLevel, &globalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }

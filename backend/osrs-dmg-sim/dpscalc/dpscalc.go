@@ -110,7 +110,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.combatStyleStance != Autocast {
 		factor := 3
-		if slices.Contains(toaIds, npc.id) {
+		if slices.Contains(ToaIds, npc.id) {
 			factor = 4
 		}
 		equipmentStats.damageStats.magicStrength *= factor
@@ -199,7 +199,7 @@ func getAccuracy(player *player) float32 {
 	}
 
 	if player.equippedGear.isEquipped(osmumtenFang) && player.combatStyle.combatStyleType == Stab {
-		if slices.Contains(toaIds, player.npc.id) {
+		if slices.Contains(ToaIds, player.npc.id) {
 			accuracy = 1 - float32(math.Pow(float64(1-accuracy), 2))
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFangTOA, accuracy)
 		} else {

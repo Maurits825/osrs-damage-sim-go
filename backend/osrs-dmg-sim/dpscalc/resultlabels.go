@@ -23,7 +23,7 @@ func getDpsCalcTitle(globalSettings *GlobalSettings) string {
 
 	title := getNpcTitle(globalSettings, &npc) + " | HP: " + strconv.Itoa(npc.BaseCombatStats.Hitpoints)
 
-	if slices.Contains(toaIds, npc.id) {
+	if slices.Contains(ToaIds, npc.id) {
 		title += " | Raid level: " + strconv.Itoa(globalSettings.RaidLevel)
 		if slices.Contains(toaPathIds, npc.id) {
 			title += " | Path level: " + strconv.Itoa(globalSettings.PathLevel)

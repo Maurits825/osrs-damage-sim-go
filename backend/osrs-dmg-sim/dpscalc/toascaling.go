@@ -24,7 +24,7 @@ var (
 	toaCoreIds             = []int{11770, 11771}
 
 	toaPathIds = slices.Concat(akkhaIds, akkhaShadowIds, babaIds, apmekenBaboonIds, kephriShieldedIds, kephriUnshieldedIds, kephriOverlordIds, zebakIds)
-	toaIds     = slices.Concat(toaPathIds, toaObeliskIds, p2WardenIds, toaCoreIds, p3WardenIds)
+	ToaIds     = slices.Concat(toaPathIds, toaObeliskIds, p2WardenIds, toaCoreIds, p3WardenIds)
 )
 
 func getToaScalingValues(npcId int) (int, int) {
@@ -101,7 +101,7 @@ func getToaScalingValues(npcId int) (int, int) {
 }
 
 func (npc *npc) applyToaScaling(globalSettings *GlobalSettings) {
-	if !slices.Contains(toaIds, npc.id) {
+	if !slices.Contains(ToaIds, npc.id) {
 		return
 	}
 
