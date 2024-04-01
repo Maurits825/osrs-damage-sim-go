@@ -18,6 +18,7 @@ func getMaxHit(player *player) int {
 	} else if style == Magic {
 		maxHit = getMagicMaxHit(player)
 	}
+
 	if player.inputGearSetup.GearSetup.IsSpecialAttack {
 		maxHit = getSpecialAttackMaxHit(maxHit, player)
 		dpsDetailEntries.TrackValue(dpsdetail.SpecialMaxHitFinal, maxHit)
@@ -246,6 +247,12 @@ func getMagicMaxHit(player *player) int {
 func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
 	if player.equippedGear.isEquipped(bandosGodsword) {
 		return int(math.Floor(float64(baseMaxHit)*1.1) * 1.1)
+	}
+	if player.equippedGear.isAnyEquipped([]int{ancientGodsword, saradominGodsword, zamorakGodsword}) {
+		return int(float64(baseMaxHit) * 1.1)
+	}
+	if player.equippedGear.isEquipped(armadylGodsword) {
+		return int(math.Floor(float64(baseMaxHit)*1.1) * 1.25)
 	}
 
 	return baseMaxHit

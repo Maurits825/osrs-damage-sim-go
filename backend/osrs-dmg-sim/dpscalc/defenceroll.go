@@ -15,6 +15,9 @@ var useDefLevelForMagicDefNpcs = slices.Concat(
 		9118, // rabbit (prifddinas)
 	}, verzikIds)
 
+// TODO wiki doesnt mention ancient gs rolling against slash
+var slashOverrideSpecWeapons = []int{armadylGodsword, bandosGodsword, saradominGodsword, zamorakGodsword}
+
 func getNpcDefenceRoll(player *player) int {
 	npcId := player.npc.id
 
@@ -40,7 +43,7 @@ func getNpcDefenceRoll(player *player) int {
 		defence = player.npc.defensiveStats.ranged
 	}
 
-	if player.equippedGear.isAnyEquipped(godswords) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+	if player.equippedGear.isAnyEquipped(slashOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
 		defence = player.npc.defensiveStats.slash
 	}
 
