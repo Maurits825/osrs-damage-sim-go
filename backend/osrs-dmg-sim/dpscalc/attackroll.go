@@ -74,8 +74,9 @@ func getMeleeAttackRoll(player *player) int {
 	}
 
 	//TODO tzhaar weapon
-	//TODO rev weapon
-
+	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
+	}
 	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
@@ -145,7 +146,7 @@ func getRangedAttackRoll(player *player) int {
 		attackRoll = int(attackRoll * (20 + crystalPieces) / 20)
 	}
 
-	//TODO avarice amulet, rev weapon
+	//TODO avarice amulet
 	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.isUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
 	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.isUndead {
@@ -161,6 +162,9 @@ func getRangedAttackRoll(player *player) int {
 		}
 		tbowMagic := min(cap, max(player.npc.combatStats.Magic, player.npc.aggressiveStats.magic))
 		attackRoll = twistedbowScaling(attackRoll, tbowMagic, true)
+	}
+	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
 	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 13, 10)
@@ -195,7 +199,7 @@ func getMagicAttackRoll(player *player) int {
 
 	attackRoll := baseRoll
 
-	//TODO avarice, rev
+	//TODO avarice
 
 	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.isUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
@@ -206,7 +210,9 @@ func getMagicAttackRoll(player *player) int {
 	}
 
 	//TODO demonbane spells
-
+	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
+	}
 	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
 		attackRoll = int(float32(attackRoll*11) / float32(10))
 	}
@@ -229,11 +235,17 @@ func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 	if player.equippedGear.isEquipped(dragonDagger) {
 		return int(baseRoll * 1.15)
 	}
+	if player.equippedGear.isEquipped(ursineMace) {
+		return int(baseRoll * 2)
+	}
 
 	if player.equippedGear.isEquipped(blowpipe) {
 		return baseAttackRoll * 2
 	}
 	if player.equippedGear.isEquipped(zaryteCrossbow) {
+		return baseAttackRoll * 2
+	}
+	if player.equippedGear.isEquipped(webweaver) {
 		return baseAttackRoll * 2
 	}
 

@@ -19,10 +19,10 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
 	if player.equippedGear.isEquipped(scythe) && style.isMeleeStyle() {
-		hitDists := make([]attackdist.HitDistribution, 0)
 		totalHits := min(max(player.npc.size, 1), 3)
+		hitDists := make([]attackdist.HitDistribution, totalHits)
 		for i := 0; i < totalHits; i++ {
-			hitDists = append(hitDists, *attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit))))
+			hitDists[i] = *attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit)))
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
@@ -95,11 +95,14 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	if player.equippedGear.isEquipped(crystalHalberd) && style.isMeleeStyle() && isSpecial {
-		reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
-		defenceRoll := getNpcDefenceRoll(player)
-		reducedAccuracy := float64(getNormalAccuracy(reducedRoll, defenceRoll))
-		reducedDist := attackdist.GetLinearHitDistribution(reducedAccuracy, 0, maxHit)
-		dists := []attackdist.HitDistribution{*baseHitDist, *reducedDist}
+		dists := []attackdist.HitDistribution{*baseHitDist}
+		if player.npc.size > 1 {
+			reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
+			defenceRoll := getNpcDefenceRoll(player)
+			reducedAccuracy := float64(getNormalAccuracy(reducedRoll, defenceRoll))
+			reducedDist := attackdist.GetLinearHitDistribution(reducedAccuracy, 0, maxHit)
+			dists = append(dists, *reducedDist)
+		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
@@ -107,6 +110,15 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		//TODO min hit based on dps spreadsheet is rounded up
 		dist := attackdist.GetLinearHitDistribution(accuracy, int(math.Ceil(float64(maxHit)*0.5)), int(float32(maxHit)*1.5))
 		attackDistribution.SetSingleAttackDistribution(dist)
+	}
+
+	if player.equippedGear.isEquipped(webweaver) && style == Ranged && isSpecial {
+		totalHits := 4
+		hitDists := make([]attackdist.HitDistribution, totalHits)
+		for i := 0; i < totalHits; i++ {
+			hitDists[i] = *baseHitDist
+		}
+		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
 
 	spell := player.inputGearSetup.GearSetup.Spell

@@ -72,8 +72,7 @@ func getMeleeMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitBlackMask, maxHit, 7, 6)
 	}
 
-	//TODO tzhaar weapon, rev weapon, barronite, blister wood, flail, ef aid, rat bone
-
+	//TODO tzhaar weapon, barronite, blister wood, flail, ef aid, rat bone
 	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
@@ -83,6 +82,9 @@ func getMeleeMaxHit(player *player) int {
 	}
 	if player.equippedGear.isAnyEquipped(kerisWeapons) && player.npc.isKalphite {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitKeris, maxHit, 133, 100)
+	}
+	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
 	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 5)
@@ -141,7 +143,7 @@ func getRangedMaxHit(player *player) int {
 	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.rangedStrength, 64)
 	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
 
-	//TODO avarice, rev, ratbone
+	//TODO avarice, ratbone
 
 	maxHit := baseMaxHit
 	if player.equippedGear.isAnyEquipped([]int{bowfa, crystalBow}) {
@@ -173,6 +175,9 @@ func getRangedMaxHit(player *player) int {
 		}
 		tbowMagic := min(cap, max(player.npc.combatStats.Magic, player.npc.aggressiveStats.magic))
 		maxHit = twistedbowScaling(maxHit, tbowMagic, false)
+	}
+	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
 	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 5, 4)
@@ -254,7 +259,10 @@ func getMagicMaxHit(player *player) int {
 
 	//TODO else avarice --> next to black mask bonus...
 
-	//TODO demonbane spell, rev
+	//TODO demonbane spell
+	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
+	}
 
 	return maxHit
 }
@@ -282,6 +290,9 @@ func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
 
 	if player.equippedGear.isEquipped(blowpipe) {
 		return int(baseMax * 1.5)
+	}
+	if player.equippedGear.isEquipped(webweaver) {
+		return int(baseMax * 0.4)
 	}
 
 	return baseMaxHit

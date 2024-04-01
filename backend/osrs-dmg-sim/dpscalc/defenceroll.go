@@ -19,6 +19,7 @@ var useDefLevelForMagicDefNpcs = slices.Concat(
 var slashOverrideSpecWeapons = []int{
 	armadylGodsword, bandosGodsword, saradominGodsword, zamorakGodsword,
 	abbysalDagger, dragonDagger, crystalHalberd,
+	ursineMace,
 }
 
 func getNpcDefenceRoll(player *player) int {

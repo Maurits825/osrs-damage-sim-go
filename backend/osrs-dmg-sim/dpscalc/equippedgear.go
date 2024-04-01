@@ -33,7 +33,6 @@ const (
 	tridentSeas      = 11905
 	tridentSwamp     = 12899
 	thammaronSceptre = 22552
-	accursedSceptre  = 27662
 	sangStaff        = 22323
 	dawnbringer      = 22516
 	warpedSceptre    = 28583
@@ -59,6 +58,10 @@ const (
 	voidwaker      = 27690
 
 	volatileStaff = 24424
+
+	webweaver       = 27652
+	accursedSceptre = 27662
+	ursineMace      = 27657
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -84,6 +87,12 @@ var corpBaneWeapons = []int{
 }
 
 var pickaxes = map[int]int{1265: 1, 1267: 1, 1269: 6, 1271: 31, 1273: 21, 1275: 41, 11920: 61, 12297: 11, 13243: 61, 20014: 61, 23276: 41, 23680: 61}
+
+var wildyWeapons = []int{
+	22547, webweaver,
+	22552, 27785, accursedSceptre,
+	22542, ursineMace,
+}
 
 type equippedGear struct {
 	ids []int
