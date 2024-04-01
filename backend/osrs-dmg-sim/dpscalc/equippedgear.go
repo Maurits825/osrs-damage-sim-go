@@ -52,6 +52,8 @@ const (
 	saradominGodsword = 11806
 	zamorakGodsword   = 11808
 	ancientGodsword   = 26233
+
+	abbysalDagger = 13265
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -77,8 +79,6 @@ var corpBaneWeapons = []int{
 }
 
 var pickaxes = map[int]int{1265: 1, 1267: 1, 1269: 6, 1271: 31, 1273: 21, 1275: 41, 11920: 61, 12297: 11, 13243: 61, 20014: 61, 23276: 41, 23680: 61}
-
-var godswords = []int{bandosGodsword, armadylGodsword, saradominGodsword, zamorakGodsword, ancientGodsword}
 
 type equippedGear struct {
 	ids []int

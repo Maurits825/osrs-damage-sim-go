@@ -15,6 +15,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
 
 	style := player.combatStyle.combatStyleType
+	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
 	if player.equippedGear.isEquipped(scythe) && style.isMeleeStyle() {
 		hitDists := make([]attackdist.HitDistribution, 0)
@@ -28,7 +29,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	if player.equippedGear.isEquipped(osmumtenFang) && style.isMeleeStyle() {
 		maxHitReduction := int(maxHit * 3 / 20)
 		fangMaxHit := maxHit - maxHitReduction
-		if player.inputGearSetup.GearSetup.IsSpecialAttack {
+		if isSpecial {
 			fangMaxHit = maxHit
 		}
 		baseHitDist = attackdist.GetLinearHitDistribution(accuracy, maxHitReduction, fangMaxHit)
@@ -82,6 +83,12 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.ScaleDamage(factor, divisor)
 	}
 
+	if player.equippedGear.isEquipped(abbysalDagger) && style.isMeleeStyle() && isSpecial {
+		//todo aby dagger double hitsplats, one roll so one dist!
+		dist := attackdist.GetMultiHitOneRollHitDistribution(accuracy, 0, maxHit, 2)
+		attackDistribution.SetSingleAttackDistribution(dist)
+	}
+
 	spell := player.inputGearSetup.GearSetup.Spell
 	if player.npc.id == iceDemon && (slices.Contains(fireSpells, spell) || spell == "Flames of Zamorak") {
 		attackDistribution.ScaleDamage(3, 2)
@@ -111,7 +118,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.ScaleProbability(1 - effectChance)
 		attackDistribution.Distributions[0].AddWeightedHit(effectChance, []int{effectDmg})
 
-		if player.equippedGear.isEquipped(zaryteCrossbow) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+		if player.equippedGear.isEquipped(zaryteCrossbow) && isSpecial {
 			zcbSpecEffectChance := getZcbSpecEffectChance(accuracy, effectChance)
 			zcbHitDist := &attackdist.HitDistribution{Hits: []attackdist.WeightedHit{
 				{
@@ -136,6 +143,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribution, attackDistribution *attackdist.AttackDistribution, accuracy float64, maxHit int) {
 	//TODO bolt effects
 	style := player.combatStyle.combatStyleType
+	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 	kandarinFactor := 1.0
 	if player.inputGearSetup.GearSetup.IsKandarinDiary {
 		kandarinFactor = 1.1
@@ -154,7 +162,7 @@ func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribu
 		effectHits.ScaleProbability(effectChance)
 		baseHitDist.Hits = append(baseHitDist.Hits, effectHits.Hits...)
 
-		if player.equippedGear.isEquipped(zaryteCrossbow) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+		if player.equippedGear.isEquipped(zaryteCrossbow) && isSpecial {
 			zcbHitDist := attackdist.GetLinearHitDistribution(1, 0, effectMaxHit)
 			zcbSpecEffectChance := getZcbSpecEffectChance(accuracy, effectChance)
 			zcbHitDist.ScaleProbability(zcbSpecEffectChance)

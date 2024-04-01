@@ -255,6 +255,9 @@ func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
 	if player.equippedGear.isEquipped(armadylGodsword) {
 		return int(math.Floor(baseMax*1.1) * 1.25)
 	}
+	if player.equippedGear.isEquipped(abbysalDagger) {
+		return int(math.Floor(baseMax * 0.85))
+	}
 
 	if player.equippedGear.isEquipped(blowpipe) {
 		return int(baseMax * 1.5)

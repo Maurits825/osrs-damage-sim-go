@@ -219,9 +219,11 @@ func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 	if player.equippedGear.isEquipped(bandosGodsword) {
 		return baseAttackRoll * 2
 	}
-
 	if player.equippedGear.isEquipped(osmumtenFang) {
 		return int(float32(baseAttackRoll) * 1.5)
+	}
+	if player.equippedGear.isEquipped(abbysalDagger) {
+		return int(float32(baseAttackRoll) * 1.25)
 	}
 
 	if player.equippedGear.isEquipped(blowpipe) {

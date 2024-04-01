@@ -16,7 +16,10 @@ var useDefLevelForMagicDefNpcs = slices.Concat(
 	}, verzikIds)
 
 // TODO wiki doesnt mention ancient gs rolling against slash
-var slashOverrideSpecWeapons = []int{armadylGodsword, bandosGodsword, saradominGodsword, zamorakGodsword}
+var slashOverrideSpecWeapons = []int{
+	armadylGodsword, bandosGodsword, saradominGodsword, zamorakGodsword,
+	abbysalDagger,
+}
 
 func getNpcDefenceRoll(player *player) int {
 	npcId := player.npc.id

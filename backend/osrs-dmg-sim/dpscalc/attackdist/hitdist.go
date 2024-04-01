@@ -19,6 +19,31 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDi
 	return dist
 }
 
+func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum int, hitsplatCount int) *HitDistribution {
+	hits := make([]int, maximum-minimum+1)
+	for i := minimum; i <= maximum; i++ {
+		hits[i] = i
+	}
+
+	hitsplats := make([][]int, hitsplatCount)
+	for i := range hitsplatCount {
+		hitsplats[i] = hits
+
+	}
+	product := cross(hitsplats)
+
+	dist := &HitDistribution{make([]WeightedHit, len(product))}
+	probability := accuracy / float64(len(product))
+	for i, expandedHitsplat := range product {
+		dist.Hits[i] = WeightedHit{Probability: probability, Hitsplats: expandedHitsplat}
+	}
+
+	//also add miss hit
+	dist.Hits = append(dist.Hits, WeightedHit{1 - accuracy, []int{0}})
+
+	return dist
+}
+
 func (dist *HitDistribution) Clone() HitDistribution {
 	newDist := HitDistribution{make([]WeightedHit, len(dist.Hits))}
 	for i, hit := range dist.Hits {
