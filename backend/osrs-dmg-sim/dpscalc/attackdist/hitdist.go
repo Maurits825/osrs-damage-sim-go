@@ -5,8 +5,8 @@ type HitDistribution struct {
 	Hits []WeightedHit
 }
 
-func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) HitDistribution {
-	dist := HitDistribution{make([]WeightedHit, 0)}
+func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
+	dist := &HitDistribution{make([]WeightedHit, 0)}
 	hitProbability := accuracy / (float64(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {

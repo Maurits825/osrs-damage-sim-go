@@ -66,6 +66,7 @@ var smokeBattleStaves = []int{11998, 12000}
 var dharokSet = []int{4716, 4718, 4720, 4722}
 
 var enchantedRubyBolts = []int{9242, 21944}
+var enchantedDiamondBolts = []int{9243, 21946}
 
 var karilDamnedSet = []int{4734, 4732, 4736, 4738, 12851}
 var veracSet = []int{4755, 4753, 4757, 4759}

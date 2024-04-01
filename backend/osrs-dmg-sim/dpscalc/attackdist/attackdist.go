@@ -6,12 +6,16 @@ type AttackDistribution struct {
 	Distributions []HitDistribution
 }
 
-func NewSingleAttackDistribution(distributions HitDistribution) *AttackDistribution {
-	return &AttackDistribution{Distributions: []HitDistribution{distributions}}
+func NewSingleAttackDistribution(distributions *HitDistribution) *AttackDistribution {
+	return &AttackDistribution{Distributions: []HitDistribution{*distributions}}
 }
 
 func NewMultiAttackDistribution(distributions []HitDistribution) *AttackDistribution {
 	return &AttackDistribution{Distributions: distributions}
+}
+
+func (attackDist *AttackDistribution) SetSingleAttackDistribution(dist *HitDistribution) {
+	attackDist.Distributions = []HitDistribution{*dist}
 }
 
 func (attackDist *AttackDistribution) GetExpectedHit() float64 {

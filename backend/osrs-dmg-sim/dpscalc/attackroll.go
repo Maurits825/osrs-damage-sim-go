@@ -227,6 +227,9 @@ func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 	if player.equippedGear.isEquipped(blowpipe) {
 		return baseAttackRoll * 2
 	}
+	if player.equippedGear.isEquipped(zaryteCrossbow) {
+		return baseAttackRoll * 2
+	}
 
 	return baseAttackRoll
 }
