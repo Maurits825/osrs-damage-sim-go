@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { Observable, iif, map, mergeMap, of, shareReplay, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, iif, map, mergeMap, of, shareReplay, switchMap, tap } from 'rxjs';
 import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
 import { GearSetup } from '../model/damage-sim/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
@@ -12,6 +12,7 @@ import { DEFAULT_USER_SETTINGS, UserSettings } from '../model/damage-sim/user-se
 export class LocalStorageService {
   public gearSetupWatch$: Observable<GearSetupPreset[]>;
   public userSettingsWatch$: Observable<UserSettings>;
+  public userSettings$: BehaviorSubject<UserSettings> = new BehaviorSubject<UserSettings>(DEFAULT_USER_SETTINGS);
 
   private gearSetupKey = 'gearSetup';
   private userSettingsKey = 'userSettings';
@@ -25,6 +26,7 @@ export class LocalStorageService {
 
     this.userSettingsWatch$ = this.storage.watch(this.userSettingsKey).pipe(
       map((userSettings) => (userSettings === undefined ? DEFAULT_USER_SETTINGS : (userSettings as UserSettings))),
+      tap((userSettings) => this.userSettings$.next(userSettings)),
       shareReplay(1)
     );
   }

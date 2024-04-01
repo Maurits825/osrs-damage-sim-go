@@ -61,6 +61,7 @@ const (
 	MaxHitInq                         DetailKey = "Max hit inquisitor's"
 	MaxHitRatbane                     DetailKey = "Max hit ratbane"
 	MaxHitFinal                       DetailKey = "Max hit"
+	SpecialMaxHitFinal                DetailKey = "Spec Max hit"
 	PlayerAccuracyDawnbringer         DetailKey = "Player accuracy override dawnbringer"
 	PlayerAccuracyScurriusRat         DetailKey = "Player accuracy override giant rat"
 	PlayerAccuracyBase                DetailKey = "Player accuracy base"
@@ -68,6 +69,7 @@ const (
 	PlayerAccuracyFangTOA             DetailKey = "Player accuracy fang toa"
 	PlayerAccuracyFang                DetailKey = "Player accuracy fang"
 	PlayerAccuracyFinal               DetailKey = "Player accuracy"
+	PlayerSpecialAccuracyFinal        DetailKey = "Player special accuracy"
 	GuardiansDMGBonus                 DetailKey = "Guardians hit multiplier"
 	PlayerDefenceRollLevel            DetailKey = "Player defence level"
 	PlayerDefenceRollLevelPrayer      DetailKey = "Player defence level prayer"
@@ -171,11 +173,10 @@ func (entries *detailEntries) SprintFinal() string {
 	return final
 }
 
-func (entries *detailEntries) SprintAll() string {
-	final := ""
-	for detailKey, entry := range entries.entriesMap {
-		final += fmt.Sprintf("%s: %s\n", detailKey, entry.value)
+func (entries *detailEntries) GetAllEntries() []string {
+	final := make([]string, len(entries.entriesList))
+	for i, entry := range entries.entriesList {
+		final[i] = fmt.Sprintf("%s: %s", entry.detailKey, entry.value)
 	}
-
 	return final
 }

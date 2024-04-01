@@ -19,6 +19,11 @@ func getAttackRoll(player *player) int {
 		attackRoll = getMagicAttackRoll(player)
 	}
 
+	if player.inputGearSetup.GearSetup.IsSpecialAttack {
+		attackRoll = getSpecialAttackRoll(attackRoll, player)
+		dpsDetailEntries.TrackValue(dpsdetail.PlayerSpecialAccuracyFinal, attackRoll)
+	}
+
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyRollFinal, attackRoll)
 	return attackRoll
 }
@@ -208,6 +213,14 @@ func getMagicAttackRoll(player *player) int {
 	//TODO water tome w/ water spell
 
 	return attackRoll
+}
+
+func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
+	if player.equippedGear.isEquipped(bandosGodsword) {
+		return baseAttackRoll * 2
+	}
+
+	return baseAttackRoll
 }
 
 func twistedbowScaling(current int, magic int, accuracyMode bool) int {

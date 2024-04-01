@@ -26,6 +26,7 @@
         />
       </div>
     </div>
+
     <div class="d-flex align-items-center mb-2">
       <div><label for="showTrailblazerReloadedRelics">Show Trailblazer Reloaded relics</label></div>
       <div class="ms-auto">
@@ -38,6 +39,7 @@
         />
       </div>
     </div>
+
     <div class="d-flex align-items-center mb-2">
       <div class="me-4">
         <label for="showLoadFromRunelite">Show load from Runelite button</label>
@@ -51,6 +53,28 @@
           class="form-check-input"
           type="checkbox"
           [(ngModel)]="userSettings.showLoadFromRunelite"
+          (change)="updateUserSettings(userSettings)"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center mb-2">
+      <div>
+        <label for="enableDebugTrack">
+          Enable debug tracking
+          <i
+            ngbPopover="Enable to get dps calc details useful for debugging."
+            triggers="mouseenter:mouseleave"
+            class="bi bi-question-circle"
+          ></i>
+        </label>
+      </div>
+      <div class="ms-auto">
+        <input
+          id="enableDebugTrack"
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="userSettings.enableDebugTracking"
           (change)="updateUserSettings(userSettings)"
         />
       </div>

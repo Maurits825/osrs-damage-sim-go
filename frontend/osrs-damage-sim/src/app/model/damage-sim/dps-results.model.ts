@@ -13,6 +13,7 @@ export interface DpsCalcResult {
   maxHit: number[];
   accuracy: number;
   hitDist: number[];
+  calcDetails?: string[];
 }
 
 export interface DpsCalcResults {

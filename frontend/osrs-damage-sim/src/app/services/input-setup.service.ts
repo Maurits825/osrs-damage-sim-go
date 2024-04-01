@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { GlobalSettingsComponent } from '../core/global-settings/global-settings.component';
 import {
   GearSetup,
@@ -15,6 +15,8 @@ import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-
 import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
+import { LocalStorageService } from './local-storage.service';
+import { UserSettings } from '../model/damage-sim/user-settings.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +29,13 @@ export class InputSetupService {
   globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
   gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
 
-  constructor(private damageSimservice: DamageSimService, private itemService: ItemService) {
+  userSettingsWatch$: Observable<UserSettings>;
+
+  constructor(
+    private damageSimservice: DamageSimService,
+    private itemService: ItemService,
+    private localStorageService: LocalStorageService
+  ) {
     this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
     });
@@ -44,6 +52,7 @@ export class InputSetupService {
     const inputSetup: InputSetup = {
       globalSettings: globalSettings,
       inputGearSetups: [],
+      enableDebugTrack: this.localStorageService.userSettings$.getValue().enableDebugTracking,
     };
 
     gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
@@ -106,6 +115,7 @@ export class InputSetupService {
     return {
       globalSettings,
       inputGearSetups,
+      enableDebugTrack: false,
     };
   }
 

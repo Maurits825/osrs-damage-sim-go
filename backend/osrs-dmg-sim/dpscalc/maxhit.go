@@ -1,6 +1,7 @@
 package dpscalc
 
 import (
+	"math"
 	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
@@ -17,6 +18,11 @@ func getMaxHit(player *player) int {
 	} else if style == Magic {
 		maxHit = getMagicMaxHit(player)
 	}
+	if player.inputGearSetup.GearSetup.IsSpecialAttack {
+		maxHit = getSpecialAttackMaxHit(maxHit, player)
+		dpsDetailEntries.TrackValue(dpsdetail.SpecialMaxHitFinal, maxHit)
+	}
+
 	dpsDetailEntries.TrackValue(dpsdetail.MaxHitFinal, maxHit)
 	return maxHit
 }
@@ -235,4 +241,12 @@ func getMagicMaxHit(player *player) int {
 	//TODO demonbane spell, rev
 
 	return maxHit
+}
+
+func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
+	if player.equippedGear.isEquipped(bandosGodsword) {
+		return int(math.Floor(float64(baseMaxHit)*1.1) * 1.1)
+	}
+
+	return baseMaxHit
 }

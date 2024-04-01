@@ -154,6 +154,7 @@ type InputGearSetup struct {
 }
 
 type InputSetup struct {
-	GlobalSettings  GlobalSettings   `json:"globalSettings"`
-	InputGearSetups []InputGearSetup `json:"inputGearSetups"`
+	GlobalSettings   GlobalSettings   `json:"globalSettings"`
+	InputGearSetups  []InputGearSetup `json:"inputGearSetups"`
+	EnableDebugTrack bool             `json:"enableDebugTrack"`
 }

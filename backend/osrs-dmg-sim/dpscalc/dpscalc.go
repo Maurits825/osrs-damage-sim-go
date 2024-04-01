@@ -24,6 +24,7 @@ type DpsCalcResult struct {
 	MaxHit         []int                `json:"maxHit"`
 	Accuracy       float32              `json:"accuracy"`
 	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
+	CalcDetails    []string             `json:"calcDetails"`
 }
 
 type InputGearSetupLabels struct {
@@ -42,10 +43,10 @@ var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
 type DpsCalc struct {
 }
 
-func RunDpsCalc(inputSetup *InputSetup, enableTrack bool) *DpsCalcResults {
+func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, enableTrack)
+		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, inputSetup.EnableDebugTrack)
 	}
 
 	return &DpsCalcResults{getDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
@@ -65,12 +66,13 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	//TODO get hitsplat maxhits
 
+	var calcDetails []string
 	if enableTrack {
 		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
-		// fmt.Println(inputGearSetup.GearSetup.Name + ":")
-		// fmt.Print(dpsDetailEntries.SprintAll())
+		calcDetails = dpsDetailEntries.GetAllEntries()
 	}
-	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100, hitDist}
+
+	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100, hitDist, calcDetails}
 }
 func GetNpc(id string) npc {
 	npcId, _ := strconv.Atoi(id)

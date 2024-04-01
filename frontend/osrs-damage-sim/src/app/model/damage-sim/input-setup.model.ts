@@ -10,6 +10,7 @@ import { TrailblazerRelic } from '../osrs/leagues/trailblazer-relics.model';
 export interface InputSetup {
   globalSettings: GlobalSettings;
   inputGearSetups: InputGearSetup[];
+  enableDebugTrack: boolean;
 }
 
 export interface GlobalSettings {

@@ -78,6 +78,16 @@
       </tbody>
     </table>
   </div>
+
+  <div class="row mb-3" *ngIf="dpsResults.dpsCalcResults.results[0].calcDetails">
+    <div *ngFor="let result of dpsResults.dpsCalcResults.results" class="mb-2">
+      <div>{{ result.labels.gearSetupName }}</div>
+      <div *ngFor="let detail of result.calcDetails">
+        {{ detail }}
+      </div>
+    </div>
+  </div>
+
   <div class="row mb-3">
     <h3 class="mb-2 fw-light text-center">Hit Distribution</h3>
     <div class="mb-2 d-flex align-items-center">

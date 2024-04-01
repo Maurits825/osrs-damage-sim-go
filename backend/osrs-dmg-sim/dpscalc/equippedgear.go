@@ -46,6 +46,8 @@ const (
 	tomeOfFire = 20714
 
 	zaryteCrossbow = 26374
+
+	bandosGodsword = 11804
 )
 
 var virtusSet = []int{26241, 26243, 26245}

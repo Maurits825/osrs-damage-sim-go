@@ -35,6 +35,7 @@ const (
 	BandosGodsword  GraphType = "Bandos godsword"
 	AccursedSceptre GraphType = "Accursed sceptre"
 	ToaRaidLevel    GraphType = "TOA raid level"
+	NpcHitpoints    GraphType = "Npc hitpoints" //TODO
 )
 
 // TODO kinda scuffed
