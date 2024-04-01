@@ -84,9 +84,13 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	if player.equippedGear.isEquipped(abbysalDagger) && style.isMeleeStyle() && isSpecial {
-		//todo aby dagger double hitsplats, one roll so one dist!
 		dist := attackdist.GetMultiHitOneRollHitDistribution(accuracy, 0, maxHit, 2)
 		attackDistribution.SetSingleAttackDistribution(dist)
+	}
+
+	if player.equippedGear.isEquipped(dragonDagger) && style.isMeleeStyle() && isSpecial {
+		dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
+		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
 	spell := player.inputGearSetup.GearSetup.Spell

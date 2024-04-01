@@ -188,7 +188,10 @@ func getMagicMaxHit(player *player) int {
 
 	dpsDetailEntries.TrackValue(dpsdetail.DamageEffectiveLevel, magicLevel)
 
-	if spell != "" {
+	isVolatileStaffSpec := player.equippedGear.isEquipped(volatileStaff) && player.inputGearSetup.GearSetup.IsSpecialAttack
+	if isVolatileStaffSpec {
+		baseMaxhit = int(1.0 + (58.0 / 99.0 * float64(min(98, player.inputGearSetup.GearSetupSettings.CombatStats.Magic))))
+	} else if spell != "" {
 		baseMaxhit = spellDamage[spell]
 		//TODO magic dart
 	} else if player.equippedGear.isEquipped(tridentSeas) {
@@ -217,27 +220,39 @@ func getMagicMaxHit(player *player) int {
 	magicDmgBonus := player.equipmentStats.damageStats.magicStrength * 10
 
 	if player.equippedGear.isWearingEliteMageVoid() {
-
 		magicDmgBonus += 25
 	}
+
+	gearMagicBonus := 0
 	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
-		magicDmgBonus += 100
+		gearMagicBonus += 100
 	}
 
 	blackMaskBonus := false
 	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.isUndead {
-		magicDmgBonus += 200
+		gearMagicBonus += 200
 	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.isUndead {
-		magicDmgBonus += 150
+		gearMagicBonus += 150
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		blackMaskBonus = true
 	}
 
-	maxHit := int(baseMaxhit * (1000 + magicDmgBonus) / 1000)
+	maxHit := 0
+	//TODO better way to handle
+	if isVolatileStaffSpec {
+		if blackMaskBonus {
+			baseMaxhit = int(baseMaxhit * 23 / 20)
+		}
+		maxHit = int(baseMaxhit * (1000.0 + (gearMagicBonus)) / 1000.00)
+		maxHit = int(maxHit * (1000.0 + (magicDmgBonus)) / 1000.0)
+	} else {
+		maxHit = int(baseMaxhit * (1000.0 + (magicDmgBonus + gearMagicBonus)) / 1000.0)
+		if blackMaskBonus {
+			maxHit = int(maxHit * 23 / 20)
+		}
+	}
 
-	if blackMaskBonus {
-		maxHit = int(maxHit * 23 / 20)
-	} //TODO else avarice
+	//TODO else avarice --> next to black mask bonus...
 
 	//TODO demonbane spell, rev
 
@@ -256,7 +271,10 @@ func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
 		return int(math.Floor(baseMax*1.1) * 1.25)
 	}
 	if player.equippedGear.isEquipped(abbysalDagger) {
-		return int(math.Floor(baseMax * 0.85))
+		return int(baseMax * 0.85)
+	}
+	if player.equippedGear.isEquipped(dragonDagger) {
+		return int(baseMax * 1.15)
 	}
 
 	if player.equippedGear.isEquipped(blowpipe) {

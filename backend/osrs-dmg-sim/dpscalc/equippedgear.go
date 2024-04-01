@@ -54,6 +54,9 @@ const (
 	ancientGodsword   = 26233
 
 	abbysalDagger = 13265
+	dragonDagger  = 1215
+
+	volatileStaff = 24424
 )
 
 var virtusSet = []int{26241, 26243, 26245}

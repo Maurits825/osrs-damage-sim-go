@@ -1067,7 +1067,7 @@
     }
   },
   "Hespori max dds spec": {
-    "expectedDps": 16.64075743,
+    "expectedDps": 16.640759,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1179,7 +1179,7 @@
       ]
     }
   },
-  "Rex max volatile magus ring spec": {
+  "Rex slayer helm max volatile spec": {
     "expectedDps": 15.07005448,
     "inputSetup": {
       "globalSettings": {
