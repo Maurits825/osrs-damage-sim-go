@@ -186,7 +186,8 @@ func getAttackSpeed(player *player) int {
 func getAccuracy(player *player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
-	if slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer) {
+	if (slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
+		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) {
 		accuracy := float32(1)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyDawnbringer, accuracy)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)

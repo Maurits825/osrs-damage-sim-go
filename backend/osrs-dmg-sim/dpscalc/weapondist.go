@@ -1,6 +1,7 @@
 package dpscalc
 
 import (
+	"math"
 	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/attackdist"
@@ -93,6 +94,21 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
+	if player.equippedGear.isEquipped(crystalHalberd) && style.isMeleeStyle() && isSpecial {
+		reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
+		defenceRoll := getNpcDefenceRoll(player)
+		reducedAccuracy := float64(getNormalAccuracy(reducedRoll, defenceRoll))
+		reducedDist := attackdist.GetLinearHitDistribution(reducedAccuracy, 0, maxHit)
+		dists := []attackdist.HitDistribution{*baseHitDist, *reducedDist}
+		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
+	}
+
+	if player.equippedGear.isEquipped(voidwaker) && style.isMeleeStyle() && isSpecial {
+		//TODO min hit based on dps spreadsheet is rounded up
+		dist := attackdist.GetLinearHitDistribution(accuracy, int(math.Ceil(float64(maxHit)*0.5)), int(float32(maxHit)*1.5))
+		attackDistribution.SetSingleAttackDistribution(dist)
+	}
+
 	spell := player.inputGearSetup.GearSetup.Spell
 	if player.npc.id == iceDemon && (slices.Contains(fireSpells, spell) || spell == "Flames of Zamorak") {
 		attackDistribution.ScaleDamage(3, 2)
@@ -106,7 +122,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	applyNonRubyBoltEffects(player, baseHitDist, attackDistribution, accuracy, maxHit)
 
-	if player.npc.id == corporealBeast && !player.equippedGear.isWearingCorpbaneWeapon(player.combatStyle.combatStyleType) {
+	if player.npc.id == corporealBeast && !player.equippedGear.isWearingCorpbaneWeapon(player) {
 		attackDistribution.ScaleDamage(1, 2)
 	}
 

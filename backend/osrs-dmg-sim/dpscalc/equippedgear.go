@@ -53,8 +53,10 @@ const (
 	zamorakGodsword   = 11808
 	ancientGodsword   = 26233
 
-	abbysalDagger = 13265
-	dragonDagger  = 1215
+	abbysalDagger  = 13265
+	dragonDagger   = 1215
+	crystalHalberd = 23987
+	voidwaker      = 27690
 
 	volatileStaff = 24424
 )
@@ -145,7 +147,8 @@ func (gear *equippedGear) isWearingBlackMask() bool {
 	return gear.isWearingImbuedBlackMask() || gear.isEquipped(blackMask) || gear.isEquipped(slayerHelm)
 }
 
-func (gear *equippedGear) isWearingCorpbaneWeapon(style combatStyleType) bool {
+func (gear *equippedGear) isWearingCorpbaneWeapon(player *player) bool {
+	style := player.combatStyle.combatStyleType
 	isStab := style == Stab
 
 	if gear.isEquipped(osmumtenFang) {
@@ -157,6 +160,10 @@ func (gear *equippedGear) isWearingCorpbaneWeapon(style combatStyleType) bool {
 	}
 
 	if style == Magic {
+		return true
+	}
+
+	if player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack {
 		return true
 	}
 

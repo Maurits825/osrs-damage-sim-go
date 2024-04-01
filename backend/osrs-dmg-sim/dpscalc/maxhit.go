@@ -276,6 +276,9 @@ func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
 	if player.equippedGear.isEquipped(dragonDagger) {
 		return int(baseMax * 1.15)
 	}
+	if player.equippedGear.isEquipped(crystalHalberd) {
+		return int(baseMax * 1.1)
+	}
 
 	if player.equippedGear.isEquipped(blowpipe) {
 		return int(baseMax * 1.5)
