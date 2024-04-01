@@ -62,7 +62,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	player := getPlayer(globalSettings, inputGearSetup)
 
-	dps, maxHit, accuracy, hitDist := calculateDps(player)
+	dps, maxHitsplats, accuracy, hitDist := calculateDps(player)
 
 	//TODO get hitsplat maxhits
 
@@ -72,7 +72,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		calcDetails = dpsDetailEntries.GetAllEntries()
 	}
 
-	return DpsCalcResult{inputGearSetupLabels, dps, []int{maxHit}, accuracy * 100, hitDist, calcDetails}
+	return DpsCalcResult{inputGearSetupLabels, dps, maxHitsplats, accuracy * 100, hitDist, calcDetails}
 }
 func GetNpc(id string) npc {
 	npcId, _ := strconv.Atoi(id)
@@ -135,26 +135,23 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
-	//TODO prob other stuff to init or get here b4 running calcs
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear}
 }
 
-func calculateDps(player *player) (dps float32, maxHit int, accuracy float32, hitDist []float64) {
-	maxHit = getMaxHit(player)
+func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy float32, hitDist []float64) {
+	maxHit := getMaxHit(player)
 	accuracy = getAccuracy(player)
 	attackSpeed := getAttackSpeed(player)
 
-	//TODO where to put fn to get the specific dist
 	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
 	expectedHit := attackDist.GetExpectedHit()
 	hitDist = attackDist.GetFlatHitDistribution()
+	maxHitsplats = attackDist.GetMaxHitsplats()
 
 	dps = float32(expectedHit / (float64(attackSpeed) * TickLength))
 
-	// dps = ((float32(maxHit) * accuracy) / 2) / (float32(attackSpeed) * TickLength)
-
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
-	return dps, maxHit, accuracy, attackDist.GetFlatHitDistribution()
+	return dps, maxHitsplats, accuracy, hitDist
 }
 
 func getAttackSpeed(player *player) int {

@@ -22,6 +22,14 @@ func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 	return expectedHit
 }
 
+func (attackDist *AttackDistribution) GetMaxHitsplats() []int {
+	maxHits := make([]int, len(attackDist.Distributions))
+	for i, dist := range attackDist.Distributions {
+		maxHits[i] = dist.getMaxHit()
+	}
+	return maxHits
+}
+
 func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	//first get max hit of all distributions, to know the range of dist list
 	maxHit := 0

@@ -39,6 +39,7 @@ import { AttackCycleComponent } from './shared/components/attack-cycle/attack-cy
 import { SettingsModalComponent } from './shared/modals/settings-modal/settings-modal.component';
 import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
 import { DpsResultsComponent } from './core/dps-results/dps-results.component';
+import { MaxHitPipe } from './shared/pipes/max-hit.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { DpsResultsComponent } from './core/dps-results/dps-results.component';
     SettingsModalComponent,
     LoadRlSetupGuideModalComponent,
     DpsResultsComponent,
+    MaxHitPipe,
   ],
   imports: [
     NgSelectModule,
