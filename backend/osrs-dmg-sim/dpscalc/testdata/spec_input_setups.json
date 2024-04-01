@@ -854,7 +854,7 @@
     }
   },
   "Dawn max darkbow spec": {
-    "expectedDps": 9.46764603,
+    "expectedDps": 7.931561,
     "inputSetup": {
       "globalSettings": {
         "npc": {

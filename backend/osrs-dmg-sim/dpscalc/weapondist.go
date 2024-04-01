@@ -121,6 +121,24 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
 
+	if player.equippedGear.isEquipped(darkbow) && style == Ranged {
+		dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
+		if isSpecial {
+			if player.equippedGear.isEquipped(dragonArrows) {
+				bowMax := int(float32(maxHit) * 1.5)
+				dist1 := attackdist.GetLinearHitDistribution(accuracy, 0, bowMax)
+				dist1.MinMaxCap(8, 48)
+				//TODO wiki is kinda confusing, second attack is rolled this way i think, with no min cap
+				dist2 := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit)
+				dist2.MinMaxCap(0, 48)
+				dists[0] = *dist1
+				dists[1] = *dist2
+			}
+			//TODO non d-arrow spec
+		}
+		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
+	}
+
 	spell := player.inputGearSetup.GearSetup.Spell
 	if player.npc.id == iceDemon && (slices.Contains(fireSpells, spell) || spell == "Flames of Zamorak") {
 		attackDistribution.ScaleDamage(3, 2)

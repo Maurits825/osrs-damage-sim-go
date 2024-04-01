@@ -158,6 +158,7 @@ func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy flo
 	maxHitsplats = attackDist.GetMaxHitsplats()
 
 	dps = float32(expectedHit / (float64(attackSpeed) * TickLength))
+	dps *= getAttackCycleFactor(attackSpeed, player.inputGearSetup.GearSetupSettings.AttackCycle)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
 	return dps, maxHitsplats, accuracy, attackRoll, hitDist
@@ -236,4 +237,23 @@ func getFangAccuracy(attackRoll int, defenceRoll int) float32 {
 		return 1 - (d+2)*(2*d+3)/(a+1)/(a+1)/6
 	}
 	return a * (4*a + 5) / 6 / (a + 1) / (d + 1)
+}
+
+func getAttackCycleFactor(attackSpeed int, attackCycle int) float32 {
+	if attackCycle == 0 || attackSpeed%attackCycle == 0 || attackCycle%attackSpeed == 0 {
+		return 1
+	}
+
+	d := float32(lcm(attackSpeed, attackCycle) - attackCycle)
+	return (d - 1) / d
+}
+
+func gcd(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
+}
+func lcm(a, b int) int {
+	return int(math.Abs(float64(a*b)) / float64(gcd(a, b)))
 }

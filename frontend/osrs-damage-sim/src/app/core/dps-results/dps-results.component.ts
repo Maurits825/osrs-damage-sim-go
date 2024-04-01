@@ -186,7 +186,7 @@ export class DpsResultsComponent implements OnChanges {
         x: {
           title: {
             display: true,
-            text: 'Hitsplat',
+            text: 'Total damage',
           },
         },
       },

@@ -62,6 +62,9 @@ const (
 	webweaver       = 27652
 	accursedSceptre = 27662
 	ursineMace      = 27657
+
+	darkbow      = 11235
+	dragonArrows = 11212
 )
 
 var virtusSet = []int{26241, 26243, 26245}

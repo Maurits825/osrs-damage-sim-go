@@ -72,6 +72,14 @@ func (dist *HitDistribution) ScaleDamage(factor float64, divisor float64) {
 	}
 }
 
+func (dist *HitDistribution) MinMaxCap(minHit, maxHit int) {
+	for i := range dist.Hits {
+		for j, hitsplat := range dist.Hits[i].Hitsplats {
+			dist.Hits[i].Hitsplats[j] = min(max(hitsplat, minHit), maxHit)
+		}
+	}
+}
+
 func (dist *HitDistribution) getExpectedHit() float64 {
 	expectedHit := 0.0
 	for _, weightedHit := range dist.Hits {

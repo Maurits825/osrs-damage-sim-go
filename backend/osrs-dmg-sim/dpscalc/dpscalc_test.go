@@ -66,8 +66,6 @@ func TestRunDpsCalcSpec(t *testing.T) {
 		dpsCalcResults := RunDpsCalc(&testInputSetup.InputSetup)
 		if !isFloatEqual(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, tolerance) {
 			t.Errorf("FAIL: " + setupName + " - Expected: " + fmt.Sprintf("%f", testInputSetup.ExpectedDps) + ", Actual: " + fmt.Sprintf("%f", dpsCalcResults.Results[0].TheoreticalDps))
-		} else {
-			t.Log("PASS: " + setupName)
 		}
 	}
 }
