@@ -55,6 +55,10 @@ func getGearSetupLabel(gearSetup *GearSetup) string {
 		label += prayerLabel[prayer] + ", "
 	}
 
+	if gearSetup.IsSpecialAttack {
+		label += "Special, "
+	}
+
 	if label != "" {
 		return gearSetup.Name + " (" + label[:len(label)-2] + ")"
 	}

@@ -40,6 +40,10 @@ func getNpcDefenceRoll(player *player) int {
 		defence = player.npc.defensiveStats.ranged
 	}
 
+	if player.equippedGear.isAnyEquipped(godswords) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+		defence = player.npc.defensiveStats.slash
+	}
+
 	statBonus := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceStatBonus, defence, 64)
 	defenceRoll := dpsDetailEntries.TrackFactor(dpsdetail.NPCAccuracyRollBase, effectiveLevel, statBonus, 1)
 
