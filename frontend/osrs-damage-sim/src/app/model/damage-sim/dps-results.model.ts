@@ -12,6 +12,7 @@ export interface DpsCalcResult {
   theoreticalDps: number;
   maxHit: number[];
   accuracy: number;
+  attackRoll: number;
   hitDist: number[];
   calcDetails?: string[];
 }

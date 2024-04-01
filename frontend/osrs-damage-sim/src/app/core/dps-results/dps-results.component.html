@@ -21,7 +21,7 @@
               </div>
             </div>
           </th>
-          <ng-container *ngFor="let dpsSortField of dpsSortFields.slice(0, 3)">
+          <ng-container *ngFor="let dpsSortField of dpsSortFields">
             <th scope="col" style="width: 10%" (click)="sortDpsResults(dpsSortField)">
               <button type="button" class="btn w-100 fw-bold p-0 text-end">
                 {{ sortLabels[dpsSortField] }}
@@ -72,6 +72,7 @@
               <td>{{ result.theoreticalDps | number : "1.3-3" }}</td>
               <td>{{ result.maxHit | maxHit }}</td>
               <td>{{ result.accuracy | number : "1.2-2" }}%</td>
+              <td>{{ result.attackRoll }}</td>
             </tr>
           </ng-container>
         </ng-container>

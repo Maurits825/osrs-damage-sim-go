@@ -19,6 +19,7 @@ export class DpsResultsComponent implements OnChanges {
     theoreticalDps: { sortOrder: SortOrder.Ascending, isSorted: false },
     maxHit: { sortOrder: SortOrder.Ascending, isSorted: false },
     accuracy: { sortOrder: SortOrder.Ascending, isSorted: false },
+    attackRoll: { sortOrder: SortOrder.Ascending, isSorted: false },
   };
 
   SortOrder = SortOrder;
@@ -67,15 +68,20 @@ export class DpsResultsComponent implements OnChanges {
   sortDpsResults(dpsSortField: DpsSortField): void {
     const sortOrder = this.sortConfigs[dpsSortField].sortOrder;
     this.sortIndexOrder.sort((index1: number, index2: number) => {
-      const result1 = this.dpsResults.dpsCalcResults.results[index1];
-      const result2 = this.dpsResults.dpsCalcResults.results[index2];
-      if (typeof result1[dpsSortField] === 'number') {
-        return sortOrder * ((result1[dpsSortField] as number) - (result2[dpsSortField] as number));
-      }
-      return (
-        sortOrder *
-        ((result1[dpsSortField] as number[][0] as number) - (result2[dpsSortField] as number[][0] as number))
-      );
+      const result1 = this.dpsResults.dpsCalcResults.results[index1][dpsSortField];
+      const result2 = this.dpsResults.dpsCalcResults.results[index2][dpsSortField];
+
+      const sum = (a: number[]): number => {
+        let r = 0;
+        for (let i = 0; i < a.length; i++) {
+          r += a[i];
+        }
+        return r;
+      };
+      const r1 = Array.isArray(result1) ? sum(result1) : result1;
+      const r2 = Array.isArray(result2) ? sum(result2) : result2;
+
+      return sortOrder * (r1 - r2);
     });
 
     this.updateSortConfigs(dpsSortField);

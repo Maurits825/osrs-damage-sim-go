@@ -23,6 +23,7 @@ type DpsCalcResult struct {
 	TheoreticalDps float32              `json:"theoreticalDps"`
 	MaxHit         []int                `json:"maxHit"`
 	Accuracy       float32              `json:"accuracy"`
+	AttackRoll     int                  `json:"attackRoll"`
 	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
 	CalcDetails    []string             `json:"calcDetails"`
 }
@@ -62,7 +63,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	player := getPlayer(globalSettings, inputGearSetup)
 
-	dps, maxHitsplats, accuracy, hitDist := calculateDps(player)
+	dps, maxHitsplats, accuracy, attackRoll, hitDist := calculateDps(player)
 
 	//TODO get hitsplat maxhits
 
@@ -72,7 +73,15 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		calcDetails = dpsDetailEntries.GetAllEntries()
 	}
 
-	return DpsCalcResult{inputGearSetupLabels, dps, maxHitsplats, accuracy * 100, hitDist, calcDetails}
+	return DpsCalcResult{
+		Labels:         inputGearSetupLabels,
+		TheoreticalDps: dps,
+		MaxHit:         maxHitsplats,
+		Accuracy:       accuracy * 100,
+		AttackRoll:     attackRoll,
+		HitDist:        hitDist,
+		CalcDetails:    calcDetails,
+	}
 }
 func GetNpc(id string) npc {
 	npcId, _ := strconv.Atoi(id)
@@ -138,9 +147,9 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear}
 }
 
-func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy float32, hitDist []float64) {
+func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy float32, attackRoll int, hitDist []float64) {
 	maxHit := getMaxHit(player)
-	accuracy = getAccuracy(player)
+	accuracy, attackRoll = getAccuracy(player)
 	attackSpeed := getAttackSpeed(player)
 
 	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
@@ -151,7 +160,7 @@ func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy flo
 	dps = float32(expectedHit / (float64(attackSpeed) * TickLength))
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
-	return dps, maxHitsplats, accuracy, hitDist
+	return dps, maxHitsplats, accuracy, attackRoll, hitDist
 }
 
 func getAttackSpeed(player *player) int {
@@ -174,17 +183,18 @@ func getAttackSpeed(player *player) int {
 	return attackSpeed
 }
 
-func getAccuracy(player *player) float32 {
+func getAccuracy(player *player) (float32, int) {
+	attackRoll := getAttackRoll(player)
+
 	if slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer) {
 		accuracy := float32(1)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyDawnbringer, accuracy)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
-		return accuracy
+		return accuracy, attackRoll
 	}
 
 	// TODO scurrius check
 
-	attackRoll := getAttackRoll(player)
 	defenceRoll := getNpcDefenceRoll(player)
 
 	accuracy := getNormalAccuracy(attackRoll, defenceRoll)
@@ -208,7 +218,7 @@ func getAccuracy(player *player) float32 {
 	}
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
-	return accuracy
+	return accuracy, attackRoll
 }
 
 func getNormalAccuracy(attackRoll int, defenceRoll int) float32 {
