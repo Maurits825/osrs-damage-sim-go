@@ -245,14 +245,19 @@ func getMagicMaxHit(player *player) int {
 }
 
 func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
+	baseMax := float64(baseMaxHit)
 	if player.equippedGear.isEquipped(bandosGodsword) {
-		return int(math.Floor(float64(baseMaxHit)*1.1) * 1.1)
+		return int(math.Floor(baseMax*1.1) * 1.1)
 	}
 	if player.equippedGear.isAnyEquipped([]int{ancientGodsword, saradominGodsword, zamorakGodsword}) {
-		return int(float64(baseMaxHit) * 1.1)
+		return int(baseMax * 1.1)
 	}
 	if player.equippedGear.isEquipped(armadylGodsword) {
-		return int(math.Floor(float64(baseMaxHit)*1.1) * 1.25)
+		return int(math.Floor(baseMax*1.1) * 1.25)
+	}
+
+	if player.equippedGear.isEquipped(blowpipe) {
+		return int(baseMax * 1.5)
 	}
 
 	return baseMaxHit

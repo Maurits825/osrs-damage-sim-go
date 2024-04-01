@@ -1378,7 +1378,7 @@
             },
             "attackStyle": "Rapid (Ranged/Rapid)",
             "spell": null,
-            "isSpecial": false,
+            "isSpecial": true,
             "prayers": [
               "rigour"
             ],
@@ -1487,7 +1487,7 @@
             },
             "attackStyle": "Lunge (Stab/Aggressive)",
             "spell": null,
-            "isSpecial": false,
+            "isSpecial": true,
             "prayers": [
               "piety"
             ],

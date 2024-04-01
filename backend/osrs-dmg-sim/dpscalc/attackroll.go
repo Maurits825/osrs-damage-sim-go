@@ -220,6 +220,14 @@ func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 		return baseAttackRoll * 2
 	}
 
+	if player.equippedGear.isEquipped(osmumtenFang) {
+		return int(float32(baseAttackRoll) * 1.5)
+	}
+
+	if player.equippedGear.isEquipped(blowpipe) {
+		return baseAttackRoll * 2
+	}
+
 	return baseAttackRoll
 }
 

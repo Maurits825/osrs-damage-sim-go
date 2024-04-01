@@ -27,7 +27,11 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	if player.equippedGear.isEquipped(osmumtenFang) && style.isMeleeStyle() {
 		maxHitReduction := int(maxHit * 3 / 20)
-		hitDistribution = attackdist.GetLinearHitDistribution(accuracy, maxHitReduction, maxHit-maxHitReduction)
+		fangMaxHit := maxHit - maxHitReduction
+		if player.inputGearSetup.GearSetup.IsSpecialAttack {
+			fangMaxHit = maxHit
+		}
+		hitDistribution = attackdist.GetLinearHitDistribution(accuracy, maxHitReduction, fangMaxHit)
 		attackDistribution = attackdist.NewSingleAttackDistribution(hitDistribution)
 	}
 
