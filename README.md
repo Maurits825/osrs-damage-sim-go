@@ -7,7 +7,10 @@ Damage simulator for OSRS written in Go with a angular web app frontend.
 
 ## Environment Setup
 ### Go
-- todo
+- navigate to osrs-damage-sim/backend/osrs-dmg-sim
+- `go install github.com/cosmtrek/air@latest`
+- `go get .`
+- `air`
 
 ### Angular Frontend
 - navigate to osrs-damage-sim/frontend/osrs-damage-sim
