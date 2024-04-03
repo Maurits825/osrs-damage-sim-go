@@ -38,6 +38,8 @@ func loadTestInputSetups(file string) testInputSetups {
 	return testInputSetups
 }
 
+var floatTolerance = float32(0.000001)
+
 func isFloatEqual(a, b, t float32) bool {
 	if a == b {
 		return true
@@ -48,24 +50,20 @@ func isFloatEqual(a, b, t float32) bool {
 	return false
 }
 
-func TestRunDpsCalc(t *testing.T) {
-	testInputSetups := loadTestInputSetups("input_setups.json")
-	tolerance := float32(0.000001)
+func testDpsCalc(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
 		dpsCalcResults := RunDpsCalc(&testInputSetup.InputSetup)
-		if !isFloatEqual(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, tolerance) {
-			t.Errorf("FAIL: " + setupName + " - Expected: " + fmt.Sprintf("%f", testInputSetup.ExpectedDps) + ", Actual: " + fmt.Sprintf("%f", dpsCalcResults.Results[0].TheoreticalDps))
+		if !isFloatEqual(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, floatTolerance) {
+			t.Errorf("FAIL: " + setupName + " - Expected dps:" + fmt.Sprintf("%f", testInputSetup.ExpectedDps) + ", Actual: " + fmt.Sprintf("%f", dpsCalcResults.Results[0].TheoreticalDps))
 		}
 	}
+}
+func TestRunDpsCalc(t *testing.T) {
+	testInputSetups := loadTestInputSetups("input_setups.json")
+	testDpsCalc(t, testInputSetups)
 }
 
 func TestRunDpsCalcSpec(t *testing.T) {
 	testInputSetups := loadTestInputSetups("spec_input_setups.json")
-	tolerance := float32(0.000001)
-	for setupName, testInputSetup := range testInputSetups {
-		dpsCalcResults := RunDpsCalc(&testInputSetup.InputSetup)
-		if !isFloatEqual(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, tolerance) {
-			t.Errorf("FAIL: " + setupName + " - Expected: " + fmt.Sprintf("%f", testInputSetup.ExpectedDps) + ", Actual: " + fmt.Sprintf("%f", dpsCalcResults.Results[0].TheoreticalDps))
-		}
-	}
+	testDpsCalc(t, testInputSetups)
 }

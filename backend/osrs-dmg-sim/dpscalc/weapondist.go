@@ -112,6 +112,10 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.SetSingleAttackDistribution(dist)
 	}
 
+	if player.equippedGear.isEquipped(dragonClaws) && style.isMeleeStyle() && isSpecial {
+		attackDistribution = getDragonClawsSpecDist(accuracy, maxHit)
+	}
+
 	if player.equippedGear.isEquipped(webweaver) && style == Ranged && isSpecial {
 		totalHits := 4
 		hitDists := make([]attackdist.HitDistribution, totalHits)
@@ -247,4 +251,79 @@ func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribu
 	}
 
 	//TODO kraken ranged, vasa crystal mage, olm hands,
+}
+
+func getDragonClawsSpecDist(accuracy float64, maxHit int) *attackdist.AttackDistribution {
+	allHits := getDragonClawsSpecHits(accuracy, maxHit)
+	//add 0-0-0-0 and 0-0-1-1 hits
+	missAccuracy := math.Pow(1-accuracy, 4) * 0.5
+	allHits = append(allHits, attackdist.WeightedHit{Probability: missAccuracy, Hitsplats: []int{0, 0, 0, 0}})
+	allHits = append(allHits, attackdist.WeightedHit{Probability: missAccuracy, Hitsplats: []int{0, 0, 1, 1}})
+	return attackdist.NewSingleAttackDistribution(&attackdist.HitDistribution{Hits: allHits})
+}
+
+var dragonClawsMinMaxHits = []func(baseMaxHit float32) (minHit, maxHit int){
+	func(baseMaxHit float32) (minHit int, maxHit int) {
+		return int(baseMaxHit / 2.0), int(baseMaxHit - 1)
+	},
+	func(baseMaxHit float32) (minHit int, maxHit int) {
+		return int(baseMaxHit * 3.0 / 8.0), int(baseMaxHit * 7.0 / 8.0)
+	},
+	func(baseMaxHit float32) (minHit int, maxHit int) {
+		return int(baseMaxHit * 1.0 / 4.0), int(baseMaxHit * 3.0 / 4.0)
+	},
+	func(baseMaxHit float32) (minHit int, maxHit int) {
+		return int(baseMaxHit * 1.0 / 4.0), int(baseMaxHit * 5.0 / 4.0)
+	},
+}
+
+func getDragonClawsSpecHits(baseAccuracy float64, baseMaxHit int) []attackdist.WeightedHit {
+	allHits := make([]attackdist.WeightedHit, 0)
+	for rollHit := 0; rollHit < 4; rollHit++ {
+		minHit, maxHit := dragonClawsMinMaxHits[rollHit](float32(baseMaxHit))
+		accuracy := math.Pow(1-baseAccuracy, float64(rollHit)) * baseAccuracy
+		dist := attackdist.GetLinearHitDistribution(accuracy, minHit, maxHit)
+		//we have to remove the 1-acc 0 hit, which is the last item
+		hitsplats := dist.Hits[:len(dist.Hits)-1]
+		hitsplatsPlus1 := make([]attackdist.WeightedHit, len(hitsplats))
+		//iterate through and add the 4 hitsplats
+		for i, weightedHit := range hitsplats {
+			hit1 := 0
+			hit2 := 0
+			hit3 := 0
+			hit4 := 0
+			switch rollHit {
+			case 0:
+				hit1 = weightedHit.Hitsplats[0]
+				hit2 = int(hit1 / 2.0)
+				hit3 = int(hit2 / 2.0)
+				hit4 = hit3
+			case 1:
+				hit1 = 0
+				hit2 = weightedHit.Hitsplats[0]
+				hit3 = int(hit2 / 2.0)
+				hit4 = hit3
+			case 2:
+				hit1 = 0
+				hit2 = 0
+				hit3 = weightedHit.Hitsplats[0]
+				hit4 = hit3
+			case 3:
+				hit1 = 0
+				hit2 = 0
+				hit3 = 0
+				hit4 = weightedHit.Hitsplats[0]
+
+			}
+			hitsplats[i].Hitsplats = []int{hit1, hit2, hit3, hit4}
+			hitsplatsPlus1[i] = attackdist.WeightedHit{Probability: weightedHit.Probability, Hitsplats: []int{hit1, hit2, hit3, hit4 + 1}}
+
+		}
+		allHits = append(allHits, hitsplats...)
+		if rollHit < 3 {
+			allHits = append(allHits, hitsplatsPlus1...)
+		}
+	}
+
+	return allHits
 }

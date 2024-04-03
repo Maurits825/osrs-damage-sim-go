@@ -39,7 +39,7 @@ func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum in
 	}
 
 	//also add miss hit
-	dist.Hits = append(dist.Hits, WeightedHit{1 - accuracy, []int{0}})
+	dist.Hits = append(dist.Hits, WeightedHit{1 - accuracy, make([]int, hitsplatCount)})
 
 	return dist
 }

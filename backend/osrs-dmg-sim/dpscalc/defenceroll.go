@@ -20,6 +20,7 @@ var slashOverrideSpecWeapons = []int{
 	armadylGodsword, bandosGodsword, saradominGodsword, zamorakGodsword,
 	abbysalDagger, dragonDagger, crystalHalberd,
 	ursineMace,
+	dragonClaws,
 }
 
 func getNpcDefenceRoll(player *player) int {
