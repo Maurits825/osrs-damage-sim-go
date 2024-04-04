@@ -18,7 +18,7 @@ type testInputSetup struct {
 }
 
 func loadTestInputSetups(file string) testInputSetups {
-	filePath := filepath.Join("testdata", file)
+	filePath := filepath.Join("../testdata", file)
 	inputSetupFile, err := os.Open(filePath)
 
 	if err != nil {

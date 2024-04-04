@@ -38,7 +38,6 @@ const (
 	NpcHitpoints    GraphType = "Npc hitpoints" //TODO
 )
 
-// TODO kinda scuffed
 var allGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
 var statDrainGraphTypes = []GraphType{DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre}
 var levelGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
@@ -76,6 +75,20 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 
 func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *dpscalc.GlobalSettings, inputGearSetup *dpscalc.InputGearSetup) DpsGraphData {
 	dps := make([]float32, (maxValue-startValue)+1)
+	for _, v := range []int{startValue, maxValue} {
+		*value = v
+		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, false)
+		dps[v-startValue] = dpsCalcResult.TheoreticalDps
+	}
+
+	//if the first and last dps are the same, just assume they all will be to avoid unnecessary calcs
+	if dps[0] == dps[len(dps)-1] {
+		for i := 0; i < len(dps); i++ {
+			dps[i] = dps[0]
+		}
+		return DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+	}
+
 	for v := startValue; v <= maxValue; v++ {
 		*value = v
 		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, false)
