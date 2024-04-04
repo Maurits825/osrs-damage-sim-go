@@ -21,6 +21,7 @@ func getAttackDistProbabilitySums(attackDist *attackdist.AttackDistribution) []f
 func testGetAttackDist(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
 		player := getPlayer(&testInputSetup.InputSetup.GlobalSettings, &testInputSetup.InputSetup.InputGearSetups[0])
+		//todo could also do with a range of acc and max hits
 		accuracy := 0.543
 		maxHit := 73
 		attackDist := getAttackDistribution(player, accuracy, maxHit)

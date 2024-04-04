@@ -277,6 +277,38 @@ var dragonClawsMinMaxHits = []func(baseMaxHit float32) (minHit, maxHit int){
 	},
 }
 
+var dragonClawsHits = []func(baseHit int) (h1, h2, h3, h4 int){
+	func(baseHit int) (h1, h2, h3, h4 int) {
+		h1 = baseHit
+		h2 = int(h1 / 2.0)
+		h3 = int(h2 / 2.0)
+		h4 = h3
+		return
+	},
+	func(baseHit int) (h1, h2, h3, h4 int) {
+		h1 = 0
+		h2 = baseHit
+		h3 = int(h2 / 2.0)
+		h4 = h3
+		return
+	},
+	func(baseHit int) (h1, h2, h3, h4 int) {
+		h1 = 0
+		h2 = 0
+		h3 = baseHit
+		h4 = h3
+		return
+	},
+	func(baseHit int) (h1, h2, h3, h4 int) {
+		h1 = 0
+		h1 = 0
+		h2 = 0
+		h3 = 0
+		h4 = baseHit
+		return
+	},
+}
+
 func getDragonClawsSpecHits(baseAccuracy float64, baseMaxHit int) []attackdist.WeightedHit {
 	allHits := make([]attackdist.WeightedHit, 0)
 	for rollHit := 0; rollHit < 4; rollHit++ {
@@ -288,37 +320,16 @@ func getDragonClawsSpecHits(baseAccuracy float64, baseMaxHit int) []attackdist.W
 		hitsplatsPlus1 := make([]attackdist.WeightedHit, len(hitsplats))
 		//iterate through and add the 4 hitsplats
 		for i, weightedHit := range hitsplats {
-			hit1 := 0
-			hit2 := 0
-			hit3 := 0
-			hit4 := 0
-			switch rollHit {
-			case 0:
-				hit1 = weightedHit.Hitsplats[0]
-				hit2 = int(hit1 / 2.0)
-				hit3 = int(hit2 / 2.0)
-				hit4 = hit3
-			case 1:
-				hit1 = 0
-				hit2 = weightedHit.Hitsplats[0]
-				hit3 = int(hit2 / 2.0)
-				hit4 = hit3
-			case 2:
-				hit1 = 0
-				hit2 = 0
-				hit3 = weightedHit.Hitsplats[0]
-				hit4 = hit3
-			case 3:
-				hit1 = 0
-				hit2 = 0
-				hit3 = 0
-				hit4 = weightedHit.Hitsplats[0]
-
+			hit1, hit2, hit3, hit4 := dragonClawsHits[rollHit](weightedHit.Hitsplats[0])
+			probability := weightedHit.Probability / 2
+			if rollHit < 3 {
+				hitsplats[i] = attackdist.WeightedHit{Probability: probability, Hitsplats: []int{hit1, hit2, hit3, hit4}}
+				hitsplatsPlus1[i] = attackdist.WeightedHit{Probability: probability, Hitsplats: []int{hit1, hit2, hit3, hit4 + 1}}
+			} else {
+				hitsplats[i] = attackdist.WeightedHit{Probability: weightedHit.Probability, Hitsplats: []int{hit1, hit2, hit3, hit4}}
 			}
-			hitsplats[i].Hitsplats = []int{hit1, hit2, hit3, hit4}
-			hitsplatsPlus1[i] = attackdist.WeightedHit{Probability: weightedHit.Probability, Hitsplats: []int{hit1, hit2, hit3, hit4 + 1}}
-
 		}
+
 		allHits = append(allHits, hitsplats...)
 		if rollHit < 3 {
 			allHits = append(allHits, hitsplatsPlus1...)
