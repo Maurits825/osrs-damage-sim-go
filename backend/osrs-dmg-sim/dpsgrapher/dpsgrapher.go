@@ -39,7 +39,9 @@ const (
 )
 
 // TODO kinda scuffed
-var graphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
+var allGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
+var statDrainGraphTypes = []GraphType{DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre}
+var levelGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
 	maxLevel        = 99
@@ -47,27 +49,25 @@ const (
 )
 
 func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
-	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(graphTypes))}
+	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
 	npcId, _ := strconv.Atoi(inputSetup.GlobalSettings.Npc.Id)
 
-GraphTypesLoop:
-	for _, graphType := range graphTypes {
-		dpsGrapherResult := DpsGrapherResult{}
-		switch graphType {
-		case AttackLevel, StrengthLevel, RangedLevel, MagicLevel:
-			dpsGrapherResult = getLevelDpsGrapher(inputSetup, graphType)
-		case TeamSize:
-			dpsGrapherResult = getTeamSizeDpsGrapher(inputSetup, graphType)
-		case DragonWarhammer, Arclight, BandosGodsword, AccursedSceptre:
-			dpsGrapherResult = getStatDrainDpsGrapher(inputSetup, graphType)
-		case ToaRaidLevel:
-			if slices.Contains(dpscalc.ToaIds, npcId) {
-				dpsGrapherResult = getToaRaidLevelDpsGrapher(inputSetup, graphType)
-			} else {
-				break GraphTypesLoop
-			}
-		}
+	for _, graphType := range levelGraphTypes {
+		dpsGrapherResult := getLevelDpsGrapher(inputSetup, graphType)
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	}
 
+	for _, graphType := range statDrainGraphTypes {
+		dpsGrapherResult := getStatDrainDpsGrapher(inputSetup, graphType)
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	}
+
+	if dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id).IsXerician {
+		dpsGrapherResult := getTeamSizeDpsGrapher(inputSetup, TeamSize)
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	}
+	if slices.Contains(dpscalc.ToaIds, npcId) {
+		dpsGrapherResult := getToaRaidLevelDpsGrapher(inputSetup, ToaRaidLevel)
 		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
 	}
 

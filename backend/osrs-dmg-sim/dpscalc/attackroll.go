@@ -157,7 +157,7 @@ func getRangedAttackRoll(player *player) int {
 
 	if player.equippedGear.isEquipped(twistedBow) {
 		cap := 250
-		if player.npc.isXerician {
+		if player.npc.IsXerician {
 			cap = 350
 		}
 		tbowMagic := min(cap, max(player.npc.combatStats.Magic, player.npc.aggressiveStats.magic))

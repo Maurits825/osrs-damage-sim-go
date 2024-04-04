@@ -112,7 +112,7 @@ func (n *npc) UnmarshalJSON(data []byte) error {
 	n.isDragon = flat.IsDragon
 	n.isUndead = flat.IsUndead
 	n.isLeafy = flat.IsLeafy
-	n.isXerician = flat.IsXerician
+	n.IsXerician = flat.IsXerician
 	n.isShade = flat.IsShade
 	n.isTobEntryMode = flat.IsTobEntryMode
 	n.isTobNormalMode = flat.IsTobNormalMode

@@ -35,7 +35,7 @@ type npc struct {
 	isVampyre2      bool
 	isVampyre3      bool
 	isLeafy         bool
-	isXerician      bool
+	IsXerician      bool
 	isShade         bool
 	isTobEntryMode  bool
 	isTobNormalMode bool
