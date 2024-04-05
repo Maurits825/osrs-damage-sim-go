@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
@@ -26,7 +28,15 @@ type DpsResults struct {
 var ginLambda *ginadapter.GinLambda
 
 func main() {
-	lambda.Start(Handler)
+	router := getGinEngine()
+	if os.Args[1] == "localhost" {
+		log.Println("Starting local server")
+		router.Run("localhost:8080")
+	} else {
+		log.Println("Using gin adapter for aws lambda")
+		ginLambda = ginadapter.New(router)
+		lambda.Start(Handler)
+	}
 }
 
 func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
@@ -34,7 +44,7 @@ func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.API
 	return ginLambda.ProxyWithContext(ctx, req)
 }
 
-func init() {
+func getGinEngine() *gin.Engine {
 	router := gin.Default()
 
 	config := cors.DefaultConfig()
@@ -43,10 +53,7 @@ func init() {
 
 	router.GET("/status", getStatus)
 	router.POST("/run-dps-calc", postDpsCalc)
-
-	router.Run("localhost:8080")
-
-	ginLambda = ginadapter.New(router)
+	return router
 }
 
 func getStatus(c *gin.Context) {
