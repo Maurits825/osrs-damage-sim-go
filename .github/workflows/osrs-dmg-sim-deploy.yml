@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: [osrs-dmg-sim-test]
     types: [completed]
-    branches: [main]
+    branches: [master]
 
 jobs:
   deploy:
