@@ -21,7 +21,7 @@ functions:
         path: /run-dps-calc
         method: POST
         cors:
-          origin: '*'
+          origin: 'https://maurits825.github.io'
           headers:
             - Content-Type
             - X-Amz-Date

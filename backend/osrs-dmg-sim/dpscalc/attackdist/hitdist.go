@@ -140,6 +140,9 @@ func (dist *HitDistribution) linearMin(maximum, offset int) {
 			expandedHitsplats = append(expandedHitsplats, minHitsplats)
 		}
 
+		//TODO this is a very big array on dclaw spec verzik
+		//0-10 hits -> 11hitsplats, 11^4=14k
+		//times ~200 for each hitsplats -> 2.8m size array
 		product := cross(expandedHitsplats)
 		probability := weightedHit.Probability / float64(len(product))
 		for _, expandedHitsplat := range product {

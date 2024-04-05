@@ -29,7 +29,7 @@ var ginLambda *ginadapter.GinLambda
 
 func main() {
 	router := getGinEngine()
-	if os.Args[1] == "localhost" {
+	if len(os.Args) > 1 && os.Args[1] == "localhost" {
 		log.Println("Starting local server")
 		router.Run("localhost:8080")
 	} else {
@@ -48,7 +48,7 @@ func getGinEngine() *gin.Engine {
 	router := gin.Default()
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:4200", "https://maurits825.github.io"}
+	config.AllowOrigins = []string{"https://maurits825.github.io"}
 	router.Use(cors.New(config))
 
 	router.GET("/status", getStatus)
