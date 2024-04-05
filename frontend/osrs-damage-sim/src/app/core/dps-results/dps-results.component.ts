@@ -58,7 +58,6 @@ export class DpsResultsComponent implements OnChanges {
       this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.sortIndexOrder[0]];
 
       this.cd.detectChanges();
-      this.createCharts();
 
       this.updateDpsGrapherChart();
       this.updateHitDistChart();
@@ -103,7 +102,10 @@ export class DpsResultsComponent implements OnChanges {
     this.updateHitDistChart();
   }
 
-  createCharts() {
+  updateDpsGrapherChart(): void {
+    if (this.dpsGrapherChart) {
+      this.dpsGrapherChart.destroy();
+    }
     this.dpsGrapherChart = new Chart('dpsGrapherChart', {
       type: 'line',
       data: {
@@ -111,15 +113,6 @@ export class DpsResultsComponent implements OnChanges {
       },
     });
 
-    this.hitDistChart = new Chart('hitDistChart', {
-      type: 'bar',
-      data: {
-        datasets: [],
-      },
-    });
-  }
-
-  updateDpsGrapherChart(): void {
     const datasets = this.selectedDpsGrapherResult.dpsData.map((dpsGraphData: DpsGraphData, index: number) => ({
       label: dpsGraphData.label,
       data: dpsGraphData.dps,
@@ -159,6 +152,16 @@ export class DpsResultsComponent implements OnChanges {
   }
 
   updateHitDistChart(): void {
+    if (this.hitDistChart) {
+      this.hitDistChart.destroy();
+    }
+    this.hitDistChart = new Chart('hitDistChart', {
+      type: 'bar',
+      data: {
+        datasets: [],
+      },
+    });
+
     const labels = new Array<number>(this.selectedDpsCalcResult.hitDist.length);
     for (let i = 0; i < this.selectedDpsCalcResult.hitDist.length; i++) {
       labels[i] = i;
