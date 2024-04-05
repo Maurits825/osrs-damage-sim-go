@@ -1,0 +1,37 @@
+service: osrs-dmg-sim-go
+frameworkVersion: '>=3.0'
+configValidationMode: error
+
+provider:
+  name: aws
+  runtime: provided.al2023
+  region: eu-central-1
+  stage: ${opt:stage}
+
+functions:
+  api:
+   handler: bootstrap
+   timeout: 10
+   
+   events:
+    - http:
+        path: /status
+        method: GET
+    - http:
+        path: /run-dps-calc
+        method: POST
+        cors:
+          origin: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+
+package:
+  patterns:
+    - '!*/**'
+    - bootstrap
