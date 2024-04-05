@@ -36,10 +36,10 @@ jobs:
         run: npm install --legacy-peer-deps #TODO npm ci
       
       - name: Build
-        run: npm run build -- --configuration production --base-href=/osrs-damage-sim/
+        run: npm run build -- --configuration production --base-href=/osrs-damage-sim-go/
 
       - name: Create 404 fallback
-        run: cp ./dist/osrs-damage-sim/index.html ./dist/osrs-damage-sim/404.html
+        run: cp ./dist/osrs-damage-sim/index.html ./dist/osrs-damage-sim-go/404.html
           
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
