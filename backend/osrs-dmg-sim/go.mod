@@ -8,6 +8,8 @@ require (
 )
 
 require (
+	github.com/aws/aws-lambda-go v1.46.0
+	github.com/awslabs/aws-lambda-go-api-proxy v0.16.1
 	github.com/bytedance/sonic v1.11.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect

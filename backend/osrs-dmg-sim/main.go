@@ -1,11 +1,15 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -14,13 +18,23 @@ type status struct {
 	Status string `json:"status"`
 }
 
-// TODO maybe put elsewhere
 type DpsResults struct {
 	DpsCalcResults    dpscalc.DpsCalcResults       `json:"dpsCalcResults"`
 	DpsGrapherResults dpsgrapher.DpsGrapherResults `json:"dpsGrapherResults"`
 }
 
+var ginLambda *ginadapter.GinLambda
+
 func main() {
+	lambda.Start(Handler)
+}
+
+func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	// If no name is provided in the HTTP request body, throw an error
+	return ginLambda.ProxyWithContext(ctx, req)
+}
+
+func init() {
 	router := gin.Default()
 
 	config := cors.DefaultConfig()
@@ -31,6 +45,8 @@ func main() {
 	router.POST("/run-dps-calc", postDpsCalc)
 
 	router.Run("localhost:8080")
+
+	ginLambda = ginadapter.New(router)
 }
 
 func getStatus(c *gin.Context) {
@@ -45,7 +61,6 @@ func postDpsCalc(c *gin.Context) {
 		return
 	}
 
-	//TODO enableTrack variable
 	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
 	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
 	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
