@@ -6,6 +6,9 @@ on:
     types: [completed]
     branches: [master]
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     name: Deploy to GitHub pages
