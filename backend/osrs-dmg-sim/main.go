@@ -46,9 +46,10 @@ func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.API
 
 func getGinEngine() *gin.Engine {
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://maurits825.github.io"}
+	config.AllowOrigins = []string{"http://localhost:4200", "https://maurits825.github.io"}
 	router.Use(cors.New(config))
 
 	router.GET("/status", getStatus)
