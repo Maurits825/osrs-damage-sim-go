@@ -7,8 +7,6 @@ import {
   UNARMED_EQUIVALENT_ID,
   DEFAULT_GEAR_SETUP,
   AUTOCAST_STLYE as AUTOCAST_STYLE,
-  DHAROK_SET,
-  KARIL_SET,
   QUICK_GEAR_SETS,
 } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
