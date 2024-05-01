@@ -9,8 +9,9 @@ import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
-import { CombatStats } from '../model/osrs/skill.type';
+import { CombatStats, Skill } from '../model/osrs/skill.type';
 import { RuneliteGear } from '../model/damage-sim/runelite-gear.model';
+import { Highscore, HighScoreSkill } from '../model/osrs/highscore.model';
 
 @Injectable({
   providedIn: 'root',
@@ -82,7 +83,15 @@ export class DamageSimService {
   }
 
   public lookupHighscore(rsn: string): Observable<CombatStats> {
-    return this.http.get<CombatStats>(this.damageSimServiceUrl + '/lookup-highscore' + '?rsn=' + rsn);
+    return this.http.get<Highscore>(this.damageSimServiceUrl + '/lookup-highscore?player=' + rsn).pipe(
+      map((highscore: Highscore) => highscore.skills),
+      map((skills: HighScoreSkill[]) =>
+        skills.reduce((combatStats: CombatStats, skills: HighScoreSkill) => {
+          combatStats[skills.name.toLowerCase() as Skill] = skills.level;
+          return combatStats;
+        }, {} as CombatStats)
+      )
+    );
   }
 
   public getRuneliteGearSetup(): Observable<number[]> {

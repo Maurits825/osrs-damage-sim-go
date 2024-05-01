@@ -1,24 +1,31 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LoadRlSetupGuideModalComponent } from '../load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
+import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
 
 @Component({
   selector: 'app-settings-modal',
   templateUrl: './settings-modal.component.html',
   styleUrls: ['./settings-modal.component.css'],
 })
-export class SettingsModalComponent {
+export class SettingsModalComponent implements OnInit {
   userSettings$: Observable<UserSettings>;
+  totalSavedGearSetups$: Observable<number>;
 
   constructor(
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
     private localStorageService: LocalStorageService
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.userSettings$ = this.localStorageService.userSettingsWatch$;
+    this.totalSavedGearSetups$ = this.localStorageService.gearSetupWatch$.pipe(
+      map((presets: GearSetupPreset[]) => presets.length),
+      shareReplay(1)
+    );
   }
 
   updateUserSettings(userSettings: UserSettings): void {

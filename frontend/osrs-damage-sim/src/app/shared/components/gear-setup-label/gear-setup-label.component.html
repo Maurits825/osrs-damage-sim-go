@@ -1,0 +1,31 @@
+<ng-container *ngIf="showTextLabel; else imageResults">
+  <div class="d-flex align-items-center">
+    <div class="">{{ dpsCalcResult.labels.gearSetupName }} -&nbsp;</div>
+    <span style="font-weight: normal">{{ dpsCalcResult.labels.gearSetupSettingsLabel }}</span>
+  </div>
+</ng-container>
+
+<ng-template #imageResults>
+  <div class="d-flex align-items-center" *ngIf="inputGearSetup">
+    <div>{{ inputGearSetup.gearSetup.setupName }}</div>
+    <div class="px-1" *ngIf="inputGearSetup.gearSetup.isSpecial">
+      <img src="assets/img/other/special_attack_orb.png" />
+    </div>
+    <div class="d-flex mx-1">
+      <div class="px-1" *ngFor="let prayer of inputGearSetup.gearSetup.prayers">
+        <img src="assets/img/prayer/{{ prayer }}.png" />
+      </div>
+    </div>
+    <div class="d-flex mx-1">
+      <div class="px-1" *ngFor="let boost of inputGearSetup.gearSetupSettings.boosts">
+        <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+      </div>
+    </div>
+    <div class="d-flex mx-1">
+      <div class="px-1" *ngFor="let statDrain of inputGearSetup.gearSetupSettings.statDrains">
+        <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
+        {{ statDrain.value }}
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -27,6 +28,8 @@ type DpsResults struct {
 
 var ginLambda *ginadapter.GinLambda
 
+var highscoreUrl = "https://services.runescape.com/m=hiscore_oldschool/index_lite.json"
+
 func main() {
 	router := getGinEngine()
 	if len(os.Args) > 1 && os.Args[1] == "localhost" {
@@ -46,13 +49,15 @@ func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.API
 
 func getGinEngine() *gin.Engine {
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://maurits825.github.io"}
+	config.AllowOrigins = []string{"http://localhost:4200", "https://maurits825.github.io"}
 	router.Use(cors.New(config))
 
 	router.GET("/status", getStatus)
-	router.POST("/run-dps-calc", postDpsCalc)
+	router.GET("/lookup-highscore", highscoreLookup)
+	router.POST("/run-dps-calc", dpsCalc)
 	return router
 }
 
@@ -60,7 +65,7 @@ func getStatus(c *gin.Context) {
 	c.JSON(http.StatusOK, &status{"osrs-dmg-sim-go is running!"})
 }
 
-func postDpsCalc(c *gin.Context) {
+func dpsCalc(c *gin.Context) {
 	var inputSetup dpscalc.InputSetup
 	if err := c.ShouldBindJSON(&inputSetup); err != nil {
 		fmt.Println(err)
@@ -71,4 +76,30 @@ func postDpsCalc(c *gin.Context) {
 	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
 	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
 	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
+}
+
+func highscoreLookup(c *gin.Context) {
+	player := c.Query("player")
+	response, err := http.Get(highscoreUrl + "?player=" + player)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	defer response.Body.Close()
+
+	if response.StatusCode == http.StatusNotFound {
+		c.Status(http.StatusNotFound)
+		return
+	}
+
+	var result map[string]interface{}
+	err = json.NewDecoder(response.Body).Decode(&result)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
 }

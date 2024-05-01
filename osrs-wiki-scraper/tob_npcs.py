@@ -51,9 +51,9 @@ class TobNpcs:
         if "Prinkipas" in name:
             name += " " + str(version["version"]).strip()
             version["attributes"] = "TobHardMode"
-        elif "162" in npc_version:
+        elif "Small" in npc_version:
             name += " " + "(small)"
-        elif "260" in npc_version:
+        elif "Big" in npc_version:
             name += " " + "(big)"
         elif "Verzik" in name:
             name += " (" + re.sub("^.*phase ", "p", str(version.get("smwname", "").strip().lower())) + ")"

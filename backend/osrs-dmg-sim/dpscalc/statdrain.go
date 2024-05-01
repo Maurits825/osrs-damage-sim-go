@@ -67,6 +67,10 @@ func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 				npc.combatStats.Defence = max(minDefence, int(npc.BaseCombatStats.Defence*17/20))
 				npc.combatStats.Magic = int(npc.BaseCombatStats.Magic * 17 / 20)
 			}
+		case BoneDagger:
+			npc.combatStats.Defence = max(minDefence, npc.combatStats.Defence-statDrain.Value)
+		case BarrelChestAnchor:
+			npc.combatStats.Defence = max(minDefence, npc.combatStats.Defence-int(float32(statDrain.Value)*0.1))
 		}
 	}
 }

@@ -104,10 +104,12 @@ type StatDrainWeapon string
 
 // TODO others
 const (
-	DragonWarhammer StatDrainWeapon = "Dragon warhammer"
-	Arclight        StatDrainWeapon = "Arclight"
-	BandosGodsword  StatDrainWeapon = "Bandos godsword"
-	AccursedSceptre StatDrainWeapon = "Accursed sceptre"
+	DragonWarhammer   StatDrainWeapon = "Dragon warhammer"
+	Arclight          StatDrainWeapon = "Arclight"
+	BandosGodsword    StatDrainWeapon = "Bandos godsword"
+	AccursedSceptre   StatDrainWeapon = "Accursed sceptre"
+	BoneDagger        StatDrainWeapon = "Bone dagger"
+	BarrelChestAnchor StatDrainWeapon = "Barrelchest anchor"
 )
 
 type StatDrain struct {

@@ -222,11 +222,7 @@ func getMagicMaxHit(player *player) int {
 
 	//chaos gauntlets
 
-	magicDmgBonus := player.equipmentStats.damageStats.magicStrength * 10
-
-	if player.equippedGear.isWearingEliteMageVoid() {
-		magicDmgBonus += 25
-	}
+	magicDmgBonus := player.equipmentStats.damageStats.magicStrength
 
 	gearMagicBonus := 0
 	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
@@ -286,6 +282,12 @@ func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
 	}
 	if player.equippedGear.isEquipped(crystalHalberd) {
 		return int(baseMax * 1.1)
+	}
+	if player.equippedGear.isEquipped(barrelChestAnchor) {
+		return int(baseMax * 1.1)
+	}
+	if player.equippedGear.isEquipped(dragonWarhammer) {
+		return int(baseMax * 1.5)
 	}
 
 	if player.equippedGear.isEquipped(blowpipe) {

@@ -15,9 +15,9 @@ jobs:
     
     steps:
     - name: Check out
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
-    - uses: dorny/paths-filter@v2
+    - uses: dorny/paths-filter@v3
       id: filter
       with:
         filters: |
@@ -51,4 +51,4 @@ jobs:
         run: npm install --legacy-peer-deps
         
       - name: Lint
-        run: npm run lint
+        run: npm run lint -- --max-warnings=0

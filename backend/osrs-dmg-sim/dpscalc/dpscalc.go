@@ -38,11 +38,7 @@ var AllNpcs npcs = loadNpcWikiData()
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
-// TODO just have a bool to turn track off, and have a NewDetailEntries function
 var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
-
-type DpsCalc struct {
-}
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
@@ -119,6 +115,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		equipmentStats.addStats(&darts)
 	}
 
+	equipmentStats.damageStats.magicStrength *= 10
 	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.combatStyleStance != Autocast {
 		factor := 3
 		if slices.Contains(ToaIds, npc.id) {
@@ -131,7 +128,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	if slices.Contains(ancientSpells, inputGearSetup.GearSetup.Spell) {
 		for _, virtus := range virtusSet {
 			if equippedGear.isEquipped(virtus) {
-				equipmentStats.damageStats.magicStrength += 3
+				equipmentStats.damageStats.magicStrength += 30
 			}
 		}
 	}
@@ -140,6 +137,15 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		defensives := equipmentStats.defensiveStats
 		defenceSum := defensives.stab + defensives.slash + defensives.crush + defensives.ranged
 		equipmentStats.damageStats.meleeStrength += max(0, int((defenceSum-800)/12)-38)
+	}
+
+	if equippedGear.isWearingEliteMageVoid() {
+		equipmentStats.damageStats.magicStrength += 25
+	}
+
+	if equippedGear.isBlessedQuiverBonus() {
+		equipmentStats.offensiveStats.ranged += 10
+		equipmentStats.damageStats.rangedStrength += 1
 	}
 
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
@@ -188,7 +194,8 @@ func getAccuracy(player *player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
 	if (slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
-		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) {
+		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
+		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) {
 		accuracy := float32(1)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyDawnbringer, accuracy)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)

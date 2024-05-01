@@ -9,12 +9,27 @@ const (
 	MaxLevel = 99
 )
 
-var prayerLabel = map[Prayer]string{
-	PietyPrayer: "Piety",
+var prayerLabels = map[Prayer]string{
+	PietyPrayer:  "Piety",
+	RigourPrayer: "Rigour",
+	AuguryPrayer: "Augury",
 }
 
-var potionLabel = map[PotionBoost]string{
+var potionLabels = map[PotionBoost]string{
+	OverloadPlus:     "Overload+",
+	SmellingSalts:    "Salts",
 	SuperCombatBoost: "SCP",
+	RangingBoost:     "Ranging",
+	SaturatedHeart:   "Saturated heart",
+}
+
+var statDrainLabels = map[StatDrainWeapon]string{
+	DragonWarhammer:   "DHW",
+	Arclight:          "Arclight",
+	BandosGodsword:    "BGS",
+	AccursedSceptre:   "Accursed Sceptre",
+	BoneDagger:        "Bone Dagger",
+	BarrelChestAnchor: "Anchor",
 }
 
 func getDpsCalcTitle(globalSettings *GlobalSettings) string {
@@ -52,7 +67,7 @@ func getNpcTitle(globalSettings *GlobalSettings, npc *npc) string {
 func getGearSetupLabel(gearSetup *GearSetup) string {
 	label := ""
 	for _, prayer := range gearSetup.Prayers {
-		label += prayerLabel[prayer] + ", "
+		label += prayerLabels[prayer] + ", "
 	}
 
 	if gearSetup.IsSpecialAttack {
@@ -110,7 +125,7 @@ func getCombatStatsLabel(combatStats *CombatStats) string {
 func getPotionBoostLabel(potionBoosts []PotionBoost) string {
 	label := ""
 	for _, potionBoost := range potionBoosts {
-		label += potionLabel[potionBoost] + ", "
+		label += potionLabels[potionBoost] + ", "
 	}
 	if label != "" {
 		return "Potions: " + label[:len(label)-2]
@@ -133,17 +148,7 @@ func getStatDrainLabel(statDrains []StatDrain) string {
 			statDrainType = "damage"
 		}
 
-		var statDrainName string
-		switch statDrain.Name {
-		case DragonWarhammer:
-			statDrainName = "DHW"
-		case Arclight:
-			statDrainName = "Arclight"
-		case BandosGodsword:
-			statDrainName = "BGS"
-		}
-
-		label += statDrainName + ": " + strconv.Itoa(statDrain.Value) + " " + statDrainType + ", "
+		label += statDrainLabels[statDrain.Name] + ": " + strconv.Itoa(statDrain.Value) + " " + statDrainType + ", "
 	}
 	if label != "" {
 		return "Stat drain - " + label[:len(label)-2]

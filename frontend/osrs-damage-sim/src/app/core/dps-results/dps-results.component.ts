@@ -1,16 +1,19 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/dps-results.model';
 import { DpsGraphData, DpsGrapherResult } from 'src/app/model/damage-sim/dps-grapher-results.model';
 import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Observable, map, shareReplay } from 'rxjs';
+import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 
 @Component({
   selector: 'app-dps-results',
   templateUrl: './dps-results.component.html',
 })
-export class DpsResultsComponent implements OnChanges {
+export class DpsResultsComponent implements OnChanges, OnInit {
   @Input()
   dpsResults: DpsResults;
 
@@ -33,13 +36,24 @@ export class DpsResultsComponent implements OnChanges {
 
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;
+  selectedDpsCalcResultIndex: number;
   hitDistChart: Chart;
   hideZeroDist = false;
 
-  showResultTextLabel = true;
+  showResultTextLabel$: Observable<boolean>;
   chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
 
-  constructor(private cd: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    private inputSetupService: InputSetupService,
+    private localStorageService: LocalStorageService
+  ) {}
+  ngOnInit(): void {
+    this.showResultTextLabel$ = this.localStorageService.userSettingsWatch$.pipe(
+      map((userSettings: UserSettings) => userSettings.showTextLabels),
+      shareReplay(1)
+    );
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsResults'] && this.dpsResults && !this.dpsResults.error) {
@@ -55,7 +69,8 @@ export class DpsResultsComponent implements OnChanges {
       );
 
       //TODO should we sort the results in the hit dist dropdown also?
-      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.sortIndexOrder[0]];
+      this.selectedDpsCalcResultIndex = this.sortIndexOrder[0];
+      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.selectedDpsCalcResultIndex];
 
       this.cd.detectChanges();
 
@@ -99,6 +114,9 @@ export class DpsResultsComponent implements OnChanges {
 
   selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
     this.selectedDpsCalcResult = dpsCalcResult;
+    this.selectedDpsCalcResultIndex = this.dpsResults.dpsCalcResults.results.findIndex(
+      (dpsResult) => dpsResult === dpsCalcResult
+    );
     this.updateHitDistChart();
   }
 

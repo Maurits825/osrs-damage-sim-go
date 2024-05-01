@@ -18,6 +18,9 @@ functions:
         path: /status
         method: GET
     - http:
+        path: /lookup-highscore
+        method: GET
+    - http:
         path: /run-dps-calc
         method: POST
         cors:
