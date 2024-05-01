@@ -1,0 +1,65 @@
+name: wiki-data-update
+
+env:
+  VENV_FOLDER: ~/.venv
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 16 1 * *'
+
+jobs:
+  update:
+    name: Update wiki data
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./osrs-wiki-scraper
+
+    steps:    
+    - name: Check out
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Cache venv
+      id: cache-venv
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.VENV_FOLDER }}
+        key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
+
+    - name: Create venv
+      if: steps.cache-venv.outputs.cache-hit != 'true'
+      run: |
+        python -m venv ${{ env.VENV_FOLDER }}
+        . ${{ env.VENV_FOLDER }}/bin/activate
+        pip install -r requirements.txt
+        
+    - name: Update all json data
+      run: |
+        . ${{ env.VENV_FOLDER }}/bin/activate
+        . update-all-json-data.sh
+      
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    - name: Create pull request
+      id: cpr
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.PAT }}
+        branch: wiki-data-update-${{ steps.date.outputs.date }}
+        title: Wiki data update ${{ steps.date.outputs.date }}
+        commit-message: Wiki data update ${{ steps.date.outputs.date }}
+        delete-branch: true
+  
+    - name: Display pull request
+      if: ${{ steps.cpr.outputs.pull-request-number }}
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
