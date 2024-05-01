@@ -31,12 +31,14 @@ var ginLambda *ginadapter.GinLambda
 var highscoreUrl = "https://services.runescape.com/m=hiscore_oldschool/index_lite.json"
 
 func main() {
-	router := getGinEngine()
 	if len(os.Args) > 1 && os.Args[1] == "localhost" {
 		log.Println("Starting local server")
+		router := getGinEngine()
 		router.Run("localhost:8080")
 	} else {
 		log.Println("Using gin adapter for aws lambda")
+		gin.SetMode(gin.ReleaseMode)
+		router := getGinEngine()
 		ginLambda = ginadapter.New(router)
 		lambda.Start(Handler)
 	}
