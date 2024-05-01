@@ -38,11 +38,7 @@ var AllNpcs npcs = loadNpcWikiData()
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
-// TODO just have a bool to turn track off, and have a NewDetailEntries function
 var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
-
-type DpsCalc struct {
-}
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
