@@ -66,7 +66,11 @@ const (
 	darkbow      = 11235
 	dragonArrows = 11212
 
-	dragonClaws = 13652
+	dragonClaws     = 13652
+	dragonWarhammer = 13576
+
+	boneDagger        = 8872
+	barrelChestAnchor = 10887
 )
 
 var virtusSet = []int{26241, 26243, 26245}
