@@ -115,6 +115,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		equipmentStats.addStats(&darts)
 	}
 
+	equipmentStats.damageStats.magicStrength *= 10
 	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.combatStyleStance != Autocast {
 		factor := 3
 		if slices.Contains(ToaIds, npc.id) {
@@ -127,7 +128,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	if slices.Contains(ancientSpells, inputGearSetup.GearSetup.Spell) {
 		for _, virtus := range virtusSet {
 			if equippedGear.isEquipped(virtus) {
-				equipmentStats.damageStats.magicStrength += 3
+				equipmentStats.damageStats.magicStrength += 30
 			}
 		}
 	}
@@ -136,6 +137,15 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		defensives := equipmentStats.defensiveStats
 		defenceSum := defensives.stab + defensives.slash + defensives.crush + defensives.ranged
 		equipmentStats.damageStats.meleeStrength += max(0, int((defenceSum-800)/12)-38)
+	}
+
+	if equippedGear.isWearingEliteMageVoid() {
+		equipmentStats.damageStats.magicStrength += 25
+	}
+
+	if equippedGear.isBlessedQuiverBonus() {
+		equipmentStats.offensiveStats.ranged += 10
+		equipmentStats.damageStats.rangedStrength += 1
 	}
 
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
