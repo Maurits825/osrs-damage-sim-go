@@ -40,7 +40,7 @@ import { SettingsModalComponent } from './shared/modals/settings-modal/settings-
 import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
 import { DpsResultsComponent } from './core/dps-results/dps-results.component';
 import { MaxHitPipe } from './shared/pipes/max-hit.pipe';
-import { GearSetupImgLabelComponent } from './shared/components/gear-setup-img-label/gear-setup-img-label.component';
+import { GearSetupLabelComponent } from './shared/components/gear-setup-label/gear-setup-label.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +76,7 @@ import { GearSetupImgLabelComponent } from './shared/components/gear-setup-img-l
     LoadRlSetupGuideModalComponent,
     DpsResultsComponent,
     MaxHitPipe,
-    GearSetupImgLabelComponent,
+    GearSetupLabelComponent,
   ],
   imports: [
     NgSelectModule,

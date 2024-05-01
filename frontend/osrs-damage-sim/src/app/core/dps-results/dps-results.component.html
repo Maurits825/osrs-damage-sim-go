@@ -36,15 +36,11 @@
           <ng-container *ngIf="dpsResults.dpsCalcResults.results[i]; let result">
             <tr class="align-middle text-end">
               <th scope="row" class="text-start">
-                <ng-container *ngIf="showResultTextLabel; else imageResults">
-                  <div class="d-flex align-items-center">
-                    <div class="">{{ result.labels.gearSetupName }} -&nbsp;</div>
-                    <span style="font-weight: normal">{{ result.labels.gearSetupSettingsLabel }}</span>
-                  </div>
-                </ng-container>
-                <ng-template #imageResults>
-                  <app-gear-setup-img-label [inputGearSetup]="inputSetup.inputGearSetups[i]"></app-gear-setup-img-label>
-                </ng-template>
+                <app-gear-setup-label
+                  [showTextLabel]="showResultTextLabel$ | async"
+                  [dpsCalcResult]="result"
+                  [inputGearSetup]="inputSetup.inputGearSetups[i]"
+                ></app-gear-setup-label>
               </th>
               <td>{{ result.theoreticalDps | number : "1.3-3" }}</td>
               <td>{{ result.maxHit | maxHit }}</td>
@@ -80,12 +76,18 @@
           (valueChanged)="selectedDpsResultChange($event)"
         >
           <ng-template #dropdownLabel>
-            <app-gear-setup-img-label
+            <app-gear-setup-label
+              [showTextLabel]="showResultTextLabel$ | async"
+              [dpsCalcResult]="selectedDpsCalcResult"
               [inputGearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex]"
-            ></app-gear-setup-img-label>
+            ></app-gear-setup-label>
           </ng-template>
           <ng-template #dropdownOptions let-index="index" let-item="item">
-            <app-gear-setup-img-label [inputGearSetup]="inputSetup.inputGearSetups[index]"></app-gear-setup-img-label>
+            <app-gear-setup-label
+              [showTextLabel]="showResultTextLabel$ | async"
+              [dpsCalcResult]="item"
+              [inputGearSetup]="inputSetup.inputGearSetups[index]"
+            ></app-gear-setup-label>
           </ng-template>
         </app-ng-select-lazy-load>
       </div>

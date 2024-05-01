@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GearSetupImgLabelComponent } from './gear-setup-img-label.component';
+import { GearSetupLabelComponent } from './gear-setup-label.component';
 
 describe('GearSetupImgLabelComponent', () => {
-  let component: GearSetupImgLabelComponent;
-  let fixture: ComponentFixture<GearSetupImgLabelComponent>;
+  let component: GearSetupLabelComponent;
+  let fixture: ComponentFixture<GearSetupLabelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GearSetupImgLabelComponent ]
-    })
-    .compileComponents();
+      declarations: [GearSetupLabelComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(GearSetupImgLabelComponent);
+    fixture = TestBed.createComponent(GearSetupLabelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

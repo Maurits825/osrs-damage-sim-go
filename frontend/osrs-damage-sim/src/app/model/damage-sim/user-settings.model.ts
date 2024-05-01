@@ -3,6 +3,7 @@ export interface UserSettings {
   showTrailblazerReloadedRelics: boolean;
   showLoadFromRunelite: boolean;
   enableDebugTracking: boolean;
+  showTextLabels: boolean;
 }
 
 export const DEFAULT_USER_SETTINGS: UserSettings = {
@@ -10,4 +11,5 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   showTrailblazerReloadedRelics: false,
   showLoadFromRunelite: false,
   enableDebugTracking: false,
+  showTextLabels: false,
 };
