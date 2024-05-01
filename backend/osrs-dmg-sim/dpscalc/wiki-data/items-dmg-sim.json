@@ -45999,9 +45999,7 @@
   "name": "Dizana's quiver",
   "weight": 0.453,
   "equipable": true,
-  "slot": 1,
-  "arange": 18,
-  "rstr": 3
+  "slot": 1
  },
  "28949": {
   "name": "Dizana's quiver",
