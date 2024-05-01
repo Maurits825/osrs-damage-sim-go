@@ -33,6 +33,7 @@ export class DpsResultsComponent implements OnChanges {
 
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;
+  selectedDpsCalcResultIndex: number;
   hitDistChart: Chart;
   hideZeroDist = false;
 
@@ -55,7 +56,8 @@ export class DpsResultsComponent implements OnChanges {
       );
 
       //TODO should we sort the results in the hit dist dropdown also?
-      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.sortIndexOrder[0]];
+      this.selectedDpsCalcResultIndex = this.sortIndexOrder[0];
+      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.selectedDpsCalcResultIndex];
 
       this.cd.detectChanges();
 
@@ -99,6 +101,9 @@ export class DpsResultsComponent implements OnChanges {
 
   selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
     this.selectedDpsCalcResult = dpsCalcResult;
+    this.selectedDpsCalcResultIndex = this.dpsResults.dpsCalcResults.results.findIndex(
+      (dpsResult) => dpsResult === dpsCalcResult
+    );
     this.updateHitDistChart();
   }
 
