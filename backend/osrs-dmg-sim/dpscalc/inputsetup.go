@@ -1,5 +1,23 @@
 package dpscalc
 
+import (
+	"errors"
+	"fmt"
+)
+
+const (
+	MinTeamSize       = 1
+	MaxTeamSize       = 100
+	MinRaidLevel      = 0
+	MaxRaidLevel      = 600
+	MinPathLevel      = 0
+	MaxPathLevel      = 4
+	MinStatLevel      = 1
+	MaxStatLevel      = 99
+	MaxStatDrainCount = 5
+	MaxStatDrainValue = 1000
+)
+
 type GearSlot int
 
 const (
@@ -159,4 +177,146 @@ type InputSetup struct {
 	GlobalSettings   GlobalSettings   `json:"globalSettings"`
 	InputGearSetups  []InputGearSetup `json:"inputGearSetups"`
 	EnableDebugTrack bool             `json:"enableDebugTrack"`
+}
+
+func (inputSetup *InputSetup) Validate() error {
+	if err := inputSetup.GlobalSettings.validate(); err != nil {
+		return err
+	}
+
+	if len(inputSetup.InputGearSetups) == 0 {
+		return errors.New("no input gear setups")
+	}
+
+	for _, inputGearSetup := range inputSetup.InputGearSetups {
+		if err := inputGearSetup.validate(); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (globalSettings *GlobalSettings) validate() error {
+	return runValidators(globalSettings, globalSettingsValidators)
+}
+
+func (inputGearSetup *InputGearSetup) validate() error {
+	if err := inputGearSetup.GearSetupSettings.validate(); err != nil {
+		return err
+	}
+	if err := inputGearSetup.GearSetup.validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (gearSetupSettings *GearSetupSettings) validate() error {
+	return runValidators(gearSetupSettings, gearSetupSettingsValidators)
+}
+
+func (gearSetup *GearSetup) validate() error {
+	return runValidators(gearSetup, gearSetupValidators)
+}
+
+var globalSettingsValidators = []func(gs *GlobalSettings) error{
+	func(gs *GlobalSettings) error {
+		if gs.Npc.Id == "0" || len(gs.Npc.Id) == 0 {
+			return errors.New("invalid npc")
+		}
+		return nil
+	},
+	func(gs *GlobalSettings) error {
+		return isValidRange(gs.TeamSize, MinTeamSize, MaxTeamSize, "Team size")
+	},
+	func(gs *GlobalSettings) error {
+		return isValidRange(gs.RaidLevel, MinRaidLevel, MaxRaidLevel, "Raid Level")
+	},
+	func(gs *GlobalSettings) error {
+		return isValidRange(gs.PathLevel, MinPathLevel, MaxPathLevel, "Path level")
+	},
+}
+
+var gearSetupSettingsValidators = []func(settings *GearSetupSettings) error{
+	func(s *GearSetupSettings) error {
+		return isCombatStatsValid(s.CombatStats)
+	},
+	func(s *GearSetupSettings) error {
+		return isValidRange(s.AttackCycle, 0, 100, "Attack cycle")
+	},
+	func(s *GearSetupSettings) error {
+		if err := isValidRange(len(s.StatDrain), 0, MaxStatDrainCount, "Stat drain count"); err != nil {
+			return err
+		}
+		for _, statDrain := range s.StatDrain { //TODO maybe check only on hits stat drain type
+			if err := isValidRange(statDrain.Value, 0, MaxStatDrainValue, "Stat drain value"); err != nil {
+				return err
+			}
+		}
+		return nil
+	},
+}
+
+func isCombatStatsValid(combatStats CombatStats) error {
+	isLevelValid := func(stat string, level int) error {
+		return isValidRange(level, MinStatLevel, MaxStatLevel, stat)
+	}
+
+	if err := isLevelValid("Attack", combatStats.Attack); err != nil {
+		return err
+	}
+	if err := isLevelValid("Strength", combatStats.Strength); err != nil {
+		return err
+	}
+	if err := isLevelValid("Ranged", combatStats.Ranged); err != nil {
+		return err
+	}
+	if err := isLevelValid("Magic", combatStats.Magic); err != nil {
+		return err
+	}
+	if err := isLevelValid("Hitpoints", combatStats.Hitpoints); err != nil {
+		return err
+	}
+	if err := isLevelValid("Defence", combatStats.Defence); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var gearSetupValidators = []func(t *GearSetup) error{
+	func(gs *GearSetup) error {
+		if len(gs.Name) == 0 {
+			return errors.New("empty gear setup name")
+		}
+		return nil
+	},
+	func(gs *GearSetup) error {
+		if len(gs.AttackStyle) == 0 {
+			return errors.New("empty attack style in (" + gs.Name + ") setup")
+		}
+		return nil
+	},
+	func(gs *GearSetup) error {
+		return isValidRange(gs.CurrentHp, MinStatLevel, MaxStatLevel, "Current hp")
+	},
+	func(gs *GearSetup) error {
+		return isValidRange(gs.MiningLevel, MinStatLevel, MaxStatLevel, "Mining level")
+	},
+}
+
+func runValidators[T any](t T, validators []func(t T) error) error {
+	for _, validator := range validators {
+		if err := validator(t); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func isValidRange(value, min, max int, label string) error {
+	if value < min || value > max {
+		return fmt.Errorf("%s (%d) must be between %d and %d", label, value, min, max)
+	}
+	return nil
 }

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -69,9 +68,14 @@ func getStatus(c *gin.Context) {
 
 func dpsCalc(c *gin.Context) {
 	var inputSetup dpscalc.InputSetup
+
 	if err := c.ShouldBindJSON(&inputSetup); err != nil {
-		fmt.Println(err)
-		c.JSON(http.StatusOK, gin.H{"error": "Error with request body"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := inputSetup.Validate(); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 

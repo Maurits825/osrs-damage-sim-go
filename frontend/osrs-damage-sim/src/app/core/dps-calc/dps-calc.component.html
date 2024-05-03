@@ -46,6 +46,7 @@
 
     <ng-container *ngIf="!loading">
       <div class="text-success" *ngIf="dpsResults && !dpsResults?.error">Dps calculator done, results above!</div>
+      <div class="text-danger" *ngIf="dpsResults?.error">{{ dpsResults.error }}</div>
     </ng-container>
   </div>
 

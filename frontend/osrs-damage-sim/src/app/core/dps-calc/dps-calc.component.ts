@@ -24,9 +24,10 @@ export class DpsCalcComponent {
         this.loading = false;
         this.dpsResults = results;
       },
-      error: (error) => {
+      error: ({ error: { error } }) => {
         this.loading = false;
-        this.dpsResults = { ...this.dpsResults, error: error.statusText };
+        const errorMessage = error[0].toUpperCase() + error.slice(1);
+        this.dpsResults = { ...this.dpsResults, error: errorMessage };
       },
     });
   }
