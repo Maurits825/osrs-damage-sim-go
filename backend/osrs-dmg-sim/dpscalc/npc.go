@@ -47,6 +47,10 @@ type npc struct {
 func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
 	npc.ApplyNpcScaling(globalSettings)
 	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
+
+	if globalSettings.Npc.Hitpoints != 0 {
+		npc.combatStats.Hitpoints = globalSettings.Npc.Hitpoints
+	}
 }
 
 func (npc *npc) ApplyNpcScaling(globalSettings *GlobalSettings) {

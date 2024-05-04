@@ -165,9 +165,9 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		if player.inputGearSetup.GearSetup.IsKandarinDiary {
 			effectChance *= 1.1
 		}
-		effectDmg := min(100, int(player.npc.BaseCombatStats.Hitpoints/5))
+		effectDmg := min(100, int(player.npc.combatStats.Hitpoints/5))
 		if player.equippedGear.isEquipped(zaryteCrossbow) {
-			effectDmg = min(110, int(player.npc.BaseCombatStats.Hitpoints*22/100))
+			effectDmg = min(110, int(player.npc.combatStats.Hitpoints*22/100))
 		}
 		attackDistribution.ScaleProbability(1 - effectChance)
 		attackDistribution.Distributions[0].AddWeightedHit(effectChance, []int{effectDmg})

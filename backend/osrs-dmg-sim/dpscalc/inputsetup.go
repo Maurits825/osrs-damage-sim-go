@@ -36,7 +36,8 @@ const (
 
 // nested struct kinda nice if we want manual stat input here
 type Npc struct {
-	Id string `json:"id"`
+	Id        string `json:"id"`
+	Hitpoints int    `json:"hitpoints"`
 }
 
 type CoxScaling struct {
