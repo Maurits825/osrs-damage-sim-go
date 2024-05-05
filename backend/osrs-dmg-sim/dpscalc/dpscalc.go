@@ -46,7 +46,7 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, inputSetup.EnableDebugTrack)
 	}
 
-	return &DpsCalcResults{getDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
+	return &DpsCalcResults{GetDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
 }
 
 func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, enableTrack bool) DpsCalcResult {

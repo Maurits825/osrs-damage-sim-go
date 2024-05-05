@@ -1,1 +1,63 @@
-<div>{{ bisResults | json }}</div>
+<div *ngIf="bisResults?.meleeGearSetups && !bisResults?.error">
+  <h3 class="mb-3 fw-light text-center">{{ bisResults.title }}</h3>
+
+  <div class="mb-4">
+    <h5 class="fw-light text-center">Melee BiS</h5>
+    <div class="d-flex">
+      <ng-container *ngFor="let result of bisResults.meleeGearSetups">
+        <ng-container *ngTemplateOutlet="gearViewTemplate; context: { $implicit: result }"> </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="fw-light text-center">Magic BiS</h5>
+    <div class="d-flex">
+      <ng-container *ngFor="let result of bisResults.magicGearSetups">
+        <ng-container *ngTemplateOutlet="gearViewTemplate; context: { $implicit: result }"> </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #gearViewTemplate let-result>
+  <div class="d-flex me-4">
+    <div class="p-2 me-2">
+      <ng-container *ngFor="let gearRow of gearSlotTable">
+        <div class="row align-items-center">
+          <ng-container *ngFor="let gearSlot of gearRow">
+            <div class="col text-center px-1 mt-1">
+              <img *ngIf="result.gear[gearSlot]?.icon" src="data:image/png;base64,{{ result.gear[gearSlot].icon }}" />
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="p-2 d-flex flex-column justify-content-center">
+      <div *ngIf="gearSetupSettings" class="d-flex">
+        <div class="d-flex mx-1">
+          <div class="px-1" *ngFor="let prayer of prayers">
+            <img src="assets/img/prayer/{{ prayer }}.png" />
+          </div>
+        </div>
+        <div class="d-flex mx-1">
+          <div class="px-1" *ngFor="let boost of gearSetupSettings.boosts">
+            <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+          </div>
+        </div>
+        <div class="d-flex mx-1">
+          <div class="px-1" *ngFor="let statDrain of gearSetupSettings.statDrains">
+            <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
+            {{ statDrain.value }}
+          </div>
+        </div>
+      </div>
+      <div>{{ result.attackStyle }}</div>
+      <div>Dps: {{ result.theoreticalDps | number : "1.3-3" }}</div>
+      <div>Max hit: {{ result.maxHit | maxHit }}</div>
+      <div>Accuracy: {{ result.accuracy | number : "1.2-2" }}%</div>
+      <div>Attack roll: {{ result.attackRoll }}</div>
+    </div>
+  </div>
+</ng-template>

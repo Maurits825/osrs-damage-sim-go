@@ -13,16 +13,21 @@ type BisCalcSetup struct {
 }
 
 type BisCalcResults struct {
+	Title           string          `json:"title"`
 	MeleeGearSetups []BisCalcResult `json:"meleeGearSetups"`
 	MagicGearSetups []BisCalcResult `json:"magicGearSetups"`
 }
 
 type BisCalcResult struct {
-	Gear map[dpscalc.GearSlot]dpscalc.GearItem `json:"gear"`
-	Dps  float32                               `json:"dps"`
+	Gear           map[dpscalc.GearSlot]dpscalc.GearItem `json:"gear"`
+	AttackStyle    string                                `json:"attackStyle"`
+	TheoreticalDps float32                               `json:"theoreticalDps"`
+	MaxHit         []int                                 `json:"maxHit"`
+	Accuracy       float32                               `json:"accuracy"`
+	AttackRoll     int                                   `json:"attackRoll"`
 }
 
-type gearOption map[dpscalc.GearSlot]dpscalc.GearItem
+type gearSetupOption map[dpscalc.GearSlot]dpscalc.GearItem
 
 var defaultGearSetup = dpscalc.GearSetup{
 	Name:            "default",
@@ -33,6 +38,22 @@ var defaultGearSetup = dpscalc.GearSetup{
 }
 
 func RunBisDpsCalc(bisCalcSetup *BisCalcSetup) BisCalcResults {
+	bisMelee := getBisFromGearOptions(bisCalcSetup, meleeGearOptions, 3)
+
+	bisCalcResults := BisCalcResults{
+		Title:           dpscalc.GetDpsCalcTitle(&bisCalcSetup.GlobalSettings),
+		MeleeGearSetups: bisMelee,
+		MagicGearSetups: bisMelee,
+	}
+	//TODO remove
+	bisCalcResults.MagicGearSetups[0] = bisCalcResults.MeleeGearSetups[0]
+
+	return bisCalcResults
+}
+
+func getBisFromGearOptions(bisCalcSetup *BisCalcSetup, gearOptions gearOptions, count int) []BisCalcResult {
+	bisResults := make([]BisCalcResult, count)
+
 	inputGearSetup := &dpscalc.InputGearSetup{
 		GearSetupSettings: bisCalcSetup.GearSetupSettings,
 		GearSetup:         defaultGearSetup,
@@ -41,14 +62,21 @@ func RunBisDpsCalc(bisCalcSetup *BisCalcSetup) BisCalcResults {
 	//TODO prayers in input
 	gearSetup.Prayers = []dpscalc.Prayer{dpscalc.PietyPrayer}
 
-	meleeGearOptions := gearOptionIterator(meleeGearOptions)
-	maxDps := float32(0)
-	var bisGear gearOption
-	gear, err := meleeGearOptions()
-	for ; err == nil; gear, err = meleeGearOptions() {
+	maxDps := make([]float32, count)
+	calcCount := 0
+
+	gearOptionsNext := gearOptionsIterator(gearOptions)
+	gearOption, err := gearOptionsNext()
+	for ; err == nil; gearOption, err = gearOptionsNext() {
 		for _, weapon := range meleeWeapons {
 			for _, attackStyle := range weapon.attackStyles {
 				gearSetup.AttackStyle = attackStyle
+
+				//copy gear
+				var gear gearSetupOption = make(gearSetupOption)
+				for gearSlot, gearItem := range gearOption {
+					gear[gearSlot] = dpscalc.GearItem{Id: gearItem.Id}
+				}
 
 				for gearSlot, id := range weapon.gear {
 					if id == -1 {
@@ -59,19 +87,33 @@ func RunBisDpsCalc(bisCalcSetup *BisCalcSetup) BisCalcResults {
 				gearSetup.Gear = gear
 
 				dpsCalcResult := dpscalc.DpsCalcGearSetup(&bisCalcSetup.GlobalSettings, inputGearSetup, false)
-				if dpsCalcResult.TheoreticalDps > maxDps {
-					maxDps = dpsCalcResult.TheoreticalDps
-					bisGear = gear
+				calcCount++
+				if dpsCalcResult.TheoreticalDps > maxDps[count-1] {
+					newBisResult := BisCalcResult{
+						Gear:           gear,
+						TheoreticalDps: dpsCalcResult.TheoreticalDps,
+						MaxHit:         dpsCalcResult.MaxHit,
+						Accuracy:       dpsCalcResult.Accuracy,
+						AttackRoll:     dpsCalcResult.AttackRoll,
+						AttackStyle:    attackStyle,
+					}
+					for i, mDps := range maxDps {
+						if dpsCalcResult.TheoreticalDps > mDps {
+							maxDps[i] = dpsCalcResult.TheoreticalDps
+							for j := count - 1; j > i; j-- {
+								bisResults[j] = bisResults[j-1]
+							}
+							bisResults[i] = newBisResult
+							break
+						}
+					}
 				}
 			}
 		}
 	}
 
-	fmt.Println("Bis: ", bisGear)
-	meleeResult := BisCalcResult{Gear: bisGear, Dps: maxDps}
-	return BisCalcResults{
-		MeleeGearSetups: []BisCalcResult{meleeResult},
-	}
+	fmt.Println("Total calcs: ", calcCount)
+	return bisResults
 }
 
 var allGearSlots = []dpscalc.GearSlot{
@@ -88,8 +130,9 @@ var allGearSlots = []dpscalc.GearSlot{
 	dpscalc.Ammo,
 }
 
-func gearOptionIterator(gearOptions gearOptions) func() (gearOption, error) {
-	var currentGear gearOption = make(gearOption)
+func gearOptionsIterator(gearOptions gearOptions) func() (gearSetupOption, error) {
+	var currentGear gearSetupOption = make(gearSetupOption)
+
 	var gearIndices map[dpscalc.GearSlot]int = make(map[dpscalc.GearSlot]int)
 	var gearLengths map[dpscalc.GearSlot]int = make(map[dpscalc.GearSlot]int)
 	for _, slot := range allGearSlots {
@@ -104,7 +147,7 @@ func gearOptionIterator(gearOptions gearOptions) func() (gearOption, error) {
 	gearSlotIndex := len(allGearSlots) - 1
 	lastGearSlotIndex := gearSlotIndex
 
-	return func() (gearOption, error) {
+	return func() (gearSetupOption, error) {
 		//get current gear based on indices
 		for _, slot := range allGearSlots {
 			ids, ok := gearOptions[slot]

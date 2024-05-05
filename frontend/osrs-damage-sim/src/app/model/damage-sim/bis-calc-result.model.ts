@@ -2,6 +2,7 @@ import { GearSlot } from '../osrs/gear-slot.enum';
 import { Item } from '../osrs/item.model';
 
 export interface BisCalcResults {
+  title: string;
   meleeGearSetups: BisCalcResult[];
   magicGearSetups: BisCalcResult[];
 
@@ -10,5 +11,9 @@ export interface BisCalcResults {
 
 export interface BisCalcResult {
   gear: Record<GearSlot, Item>;
-  dps: number;
+  attackStyle: string;
+  theoreticalDps: number;
+  maxHit: number[];
+  accuracy: number;
+  attackRoll: number;
 }
