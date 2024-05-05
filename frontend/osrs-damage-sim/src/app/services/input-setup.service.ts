@@ -17,6 +17,8 @@ import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
 import { UserSettings } from '../model/damage-sim/user-settings.model';
+import { BisCalcSetup } from '../model/damage-sim/bis-calc-input.model';
+import { GlobalSettingsService } from './global-settings.service';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +36,8 @@ export class InputSetupService {
   constructor(
     private damageSimservice: DamageSimService,
     private itemService: ItemService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private globalSettingsService: GlobalSettingsService
   ) {
     this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
@@ -43,6 +46,19 @@ export class InputSetupService {
 
   getInputSetupAsJson(): string {
     const inputSetup: InputSetup = this.getInputSetup();
+    return this.convertInputObjectToJson(inputSetup);
+  }
+
+  getBisCalcInputSetupAsJson(): string {
+    const inputSetup: BisCalcSetup = {
+      globalSettings: this.globalSettingsComponent$.getValue().globalSettings,
+      gearSetupSettings: {
+        statDrains: this.globalSettingsService.globalStatDrain$.getValue(),
+        combatStats: this.globalSettingsService.globalCombatStats$.getValue(),
+        boosts: this.globalSettingsService.globalBoosts$.getValue(),
+        attackCycle: 0,
+      },
+    };
     return this.convertInputObjectToJson(inputSetup);
   }
 
@@ -119,7 +135,7 @@ export class InputSetupService {
     };
   }
 
-  private convertInputObjectToJson(inputObject: InputSetup): string {
+  private convertInputObjectToJson(inputObject: unknown): string {
     return JSON.stringify(
       inputObject,
       this.replacerWithPath((key: string, value: unknown, path: string) => {

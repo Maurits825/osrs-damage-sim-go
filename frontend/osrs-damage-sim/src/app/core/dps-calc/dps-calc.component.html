@@ -8,6 +8,7 @@
 
   <div class="mb-2">
     <app-dps-results [dpsResults]="dpsResults"></app-dps-results>
+    <app-bis-calc-results [bisResults]="bisResults"></app-bis-calc-results>
   </div>
 
   <hr class="row mb-4" />
@@ -37,6 +38,9 @@
         <ng-container *ngIf="!loading">
           <button class="btn btn-primary" type="button" (click)="runDpsCalc()">
             <span class="sr-only">Run Dps Calculator</span>
+          </button>
+          <button class="btn btn-primary" type="button" (click)="runBisCalc()">
+            <span class="sr-only">Run BiS Calculator</span>
           </button>
         </ng-container>
       </div>
