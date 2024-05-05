@@ -51,6 +51,9 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
 	npcId, _ := strconv.Atoi(inputSetup.GlobalSettings.Npc.Id)
 
+	dpsGrapherResult := getNpcHitpointsDpsGrapher(inputSetup, NpcHitpoints)
+	dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+
 	for _, graphType := range levelGraphTypes {
 		dpsGrapherResult := getLevelDpsGrapher(inputSetup, graphType)
 		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
@@ -192,6 +195,23 @@ func getToaRaidLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphTy
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
 		dpsGraphDatas[i] = getDpsGraphData(raidLevel, 1, maxToaRaidLevel, &globalSettings, &inputGearSetup)
+	}
+	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
+}
+
+func getNpcHitpointsDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
+	npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
+	npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
+	maxHitpoints := npc.BaseCombatStats.Hitpoints
+	xValues := getXValues(1, maxHitpoints)
+	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+
+	//create a copy
+	globalSettings := inputSetup.GlobalSettings
+	npcHitpoints := &globalSettings.Npc.Hitpoints
+
+	for i, inputGearSetup := range inputSetup.InputGearSetups {
+		dpsGraphDatas[i] = getDpsGraphData(npcHitpoints, 1, maxHitpoints, &globalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }

@@ -187,6 +187,10 @@ func getAttackSpeed(player *player) int {
 
 	//TODO scurrius 1t weapons
 
+	//if we have zero here its because unarmed
+	if attackSpeed == 0 {
+		attackSpeed = 4
+	}
 	return attackSpeed
 }
 
