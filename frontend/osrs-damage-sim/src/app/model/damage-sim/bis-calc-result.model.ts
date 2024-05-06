@@ -4,6 +4,7 @@ import { Item } from '../osrs/item.model';
 export interface BisCalcResults {
   title: string;
   meleeGearSetups: BisCalcResult[];
+  rangedGearSetups: BisCalcResult[];
   magicGearSetups: BisCalcResult[];
 
   error?: string;

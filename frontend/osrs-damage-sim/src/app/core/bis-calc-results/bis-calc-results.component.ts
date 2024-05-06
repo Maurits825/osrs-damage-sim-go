@@ -6,7 +6,6 @@ import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item } from 'src/app/model/osrs/item.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
-import { InputSetupService } from 'src/app/services/input-setup.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -15,127 +14,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class BisCalcResultsComponent implements OnChanges {
   @Input()
-  bisResults: BisCalcResults = {
-    title: ' | HP: 0',
-    meleeGearSetups: [
-      {
-        gear: {
-          '0': {
-            id: 26382,
-          },
-          '1': {
-            id: 21295,
-          },
-          '2': {
-            id: 19553,
-          },
-          '3': {
-            id: 26219,
-          },
-          '4': {
-            id: 26384,
-          },
-          '5': {
-            id: 22322,
-          },
-          '7': {
-            id: 26386,
-          },
-          '9': {
-            id: 22981,
-          },
-          '10': {
-            id: 13239,
-          },
-          '12': {
-            id: 28307,
-          },
-        },
-        theoreticalDps: 8.332285,
-        maxHit: [50, 25],
-        accuracy: 0,
-        attackRoll: 0,
-      },
-      {
-        gear: {
-          '0': {
-            id: 26382,
-          },
-          '1': {
-            id: 21295,
-          },
-          '2': {
-            id: 19553,
-          },
-          '3': {
-            id: 26219,
-          },
-          '4': {
-            id: 26384,
-          },
-          '5': {
-            id: 22322,
-          },
-          '7': {
-            id: 26386,
-          },
-          '9': {
-            id: 22981,
-          },
-          '10': {
-            id: 13239,
-          },
-          '12': {
-            id: 28307,
-          },
-        },
-        theoreticalDps: 8.332285,
-        maxHit: [50, 25],
-        accuracy: 0,
-        attackRoll: 0,
-      },
-    ],
-    magicGearSetups: [
-      {
-        gear: {
-          '0': {
-            id: 26382,
-          },
-          '1': {
-            id: 21295,
-          },
-          '2': {
-            id: 19553,
-          },
-          '3': {
-            id: 26219,
-          },
-          '4': {
-            id: 26384,
-          },
-          '5': {
-            id: 22322,
-          },
-          '7': {
-            id: 26386,
-          },
-          '9': {
-            id: 22981,
-          },
-          '10': {
-            id: 13239,
-          },
-          '12': {
-            id: 28307,
-          },
-        },
-        theoreticalDps: 8.332285,
-        maxHit: [50, 25],
-        accuracy: 0,
-        attackRoll: 0,
-      },
-    ],
-  } as any;
+  bisResults: BisCalcResults;
 
   allGearSlots: GearSlot[] = Object.values(GearSlot);
   gearSlotTable = [
@@ -151,14 +30,14 @@ export class BisCalcResultsComponent implements OnChanges {
 
   constructor(private itemService: ItemService, private globalSettingsService: GlobalSettingsService) {}
 
-  ngAfterViewInit() {
-    of(true)
-      .pipe(delay(500))
-      .subscribe(() => {
-        this.fillAllItems();
-        this.gearSetupSettings = this.getGearSetupSettings();
-      });
-  }
+  // ngAfterViewInit() {
+  //   of(true)
+  //     .pipe(delay(500))
+  //     .subscribe(() => {
+  //       this.fillAllItems();
+  //       this.gearSetupSettings = this.getGearSetupSettings();
+  //     });
+  // }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bisResults'] && this.bisResults) {
@@ -169,16 +48,20 @@ export class BisCalcResultsComponent implements OnChanges {
 
   //TODO from elsewhere if we have bis-calc route?
   private getGearSetupSettings(): GearSetupSettings {
+    console.log('update');
     return {
-      statDrains: this.globalSettingsService.globalStatDrain$.getValue(),
+      statDrains: [...this.globalSettingsService.globalStatDrain$.getValue()],
       combatStats: this.globalSettingsService.globalCombatStats$.getValue(),
-      boosts: this.globalSettingsService.globalBoosts$.getValue(),
+      boosts: new Set(this.globalSettingsService.globalBoosts$.getValue()),
       attackCycle: 0,
     };
   }
 
   private fillAllItems(): void {
     for (const gearSetup of this.bisResults.meleeGearSetups) {
+      this.fillGearItems(gearSetup);
+    }
+    for (const gearSetup of this.bisResults.rangedGearSetups) {
       this.fillGearItems(gearSetup);
     }
     for (const gearSetup of this.bisResults.magicGearSetups) {

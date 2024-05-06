@@ -11,6 +11,15 @@
   </div>
 
   <div class="mb-4">
+    <h5 class="fw-light text-center">Ranged BiS</h5>
+    <div class="d-flex">
+      <ng-container *ngFor="let result of bisResults.rangedGearSetups">
+        <ng-container *ngTemplateOutlet="gearViewTemplate; context: { $implicit: result }"> </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-4">
     <h5 class="fw-light text-center">Magic BiS</h5>
     <div class="d-flex">
       <ng-container *ngFor="let result of bisResults.magicGearSetups">
