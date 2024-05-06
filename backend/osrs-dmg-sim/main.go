@@ -87,7 +87,7 @@ func dpsCalc(c *gin.Context) {
 }
 
 func bisCalc(c *gin.Context) {
-	var inputSetup biscalc.BisCalcSetup
+	var inputSetup biscalc.BisCalcInputSetup
 
 	if err := c.ShouldBindJSON(&inputSetup); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

@@ -7,9 +7,22 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
-type BisCalcSetup struct {
-	GlobalSettings    dpscalc.GlobalSettings    `json:"globalSettings"`
-	GearSetupSettings dpscalc.GearSetupSettings `json:"gearSetupSettings"`
+type BisCalcInputSetup struct {
+	GlobalSettings    dpscalc.GlobalSettings      `json:"globalSettings"`
+	GearSetupSettings dpscalc.GearSetupSettings   `json:"gearSetupSettings"`
+	Prayers           map[string][]dpscalc.Prayer `json:"prayers"`
+	IsOnSlayerTask    bool                        `json:"isOnSlayerTask"`
+}
+
+type BisCalcAttackTypeSetup struct {
+	globalSettings    dpscalc.GlobalSettings
+	gearSetupSettings dpscalc.GearSetupSettings
+	prayers           []dpscalc.Prayer
+	isOnSlayerTask    bool
+
+	gearOptions gearOptions
+	weapons     []weapon
+	count       int
 }
 
 type BisCalcResults struct {
@@ -39,10 +52,39 @@ var defaultGearSetup = dpscalc.GearSetup{
 	MiningLevel:     99,
 }
 
-func RunBisDpsCalc(bisCalcSetup *BisCalcSetup) BisCalcResults {
-	bisMelee := getBisFromGearOptions(bisCalcSetup, meleeGearOptions, meleeWeapons, 3)
-	bisRanged := getBisFromGearOptions(bisCalcSetup, rangedGearOptions, rangedWeapons, 3)
-	bisMagic := getBisFromGearOptions(bisCalcSetup, magicGearOptions, magicWeapons, 3)
+func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup) BisCalcResults {
+	meleeInput := BisCalcAttackTypeSetup{
+		globalSettings:    bisCalcSetup.GlobalSettings,
+		gearSetupSettings: bisCalcSetup.GearSetupSettings,
+		prayers:           bisCalcSetup.Prayers["melee"],
+		isOnSlayerTask:    bisCalcSetup.IsOnSlayerTask,
+		gearOptions:       meleeGearOptions,
+		weapons:           meleeWeapons,
+		count:             3,
+	}
+	bisMelee := getBisFromGearOptions(meleeInput)
+
+	rangedInput := BisCalcAttackTypeSetup{
+		globalSettings:    bisCalcSetup.GlobalSettings,
+		gearSetupSettings: bisCalcSetup.GearSetupSettings,
+		prayers:           bisCalcSetup.Prayers["ranged"],
+		isOnSlayerTask:    bisCalcSetup.IsOnSlayerTask,
+		gearOptions:       rangedGearOptions,
+		weapons:           rangedWeapons,
+		count:             3,
+	}
+	bisRanged := getBisFromGearOptions(rangedInput)
+
+	magicInput := BisCalcAttackTypeSetup{
+		globalSettings:    bisCalcSetup.GlobalSettings,
+		gearSetupSettings: bisCalcSetup.GearSetupSettings,
+		prayers:           bisCalcSetup.Prayers["magic"],
+		isOnSlayerTask:    bisCalcSetup.IsOnSlayerTask,
+		gearOptions:       magicGearOptions,
+		weapons:           magicWeapons,
+		count:             3,
+	}
+	bisMagic := getBisFromGearOptions(magicInput)
 
 	bisCalcResults := BisCalcResults{
 		Title:            dpscalc.GetDpsCalcTitle(&bisCalcSetup.GlobalSettings),
@@ -53,21 +95,20 @@ func RunBisDpsCalc(bisCalcSetup *BisCalcSetup) BisCalcResults {
 	return bisCalcResults
 }
 
-func getBisFromGearOptions(bisCalcSetup *BisCalcSetup, gearOptions gearOptions, weapons []weapon, count int) []BisCalcResult {
-	bisResults := make([]BisCalcResult, count)
+func getBisFromGearOptions(setup BisCalcAttackTypeSetup) []BisCalcResult {
+	bisResults := make([]BisCalcResult, setup.count)
 
 	inputGearSetup := &dpscalc.InputGearSetup{
-		GearSetupSettings: bisCalcSetup.GearSetupSettings,
+		GearSetupSettings: setup.gearSetupSettings,
 		GearSetup:         defaultGearSetup,
 	}
 	gearSetup := &inputGearSetup.GearSetup
-	//TODO prayers in input -- this
-	gearSetup.Prayers = []dpscalc.Prayer{dpscalc.PietyPrayer}
+	gearSetup.Prayers = setup.prayers
 
-	maxDps := make([]float32, count)
+	maxDps := make([]float32, setup.count)
 	calcCount := 0
 
-	gearOptionsNext := gearOptionsIterator(gearOptions)
+	gearOptionsNext := gearOptionsIterator(setup.gearOptions)
 	gearOption, err := gearOptionsNext()
 
 	runDpsCalc := func(weapon weapon, attackStyle string) {
@@ -91,9 +132,9 @@ func getBisFromGearOptions(bisCalcSetup *BisCalcSetup, gearOptions gearOptions, 
 			weapon.gearSetupMod(gearSetup)
 		}
 
-		dpsCalcResult := dpscalc.DpsCalcGearSetup(&bisCalcSetup.GlobalSettings, inputGearSetup, false)
+		dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.globalSettings, inputGearSetup, false)
 		calcCount++
-		if dpsCalcResult.TheoreticalDps > maxDps[count-1] {
+		if dpsCalcResult.TheoreticalDps > maxDps[setup.count-1] {
 			newBisResult := BisCalcResult{
 				Gear:           gear,
 				TheoreticalDps: dpsCalcResult.TheoreticalDps,
@@ -105,7 +146,7 @@ func getBisFromGearOptions(bisCalcSetup *BisCalcSetup, gearOptions gearOptions, 
 			for i, mDps := range maxDps {
 				if dpsCalcResult.TheoreticalDps > mDps {
 					maxDps[i] = dpsCalcResult.TheoreticalDps
-					for j := count - 1; j > i; j-- {
+					for j := setup.count - 1; j > i; j-- {
 						bisResults[j] = bisResults[j-1]
 					}
 					bisResults[i] = newBisResult
@@ -116,7 +157,7 @@ func getBisFromGearOptions(bisCalcSetup *BisCalcSetup, gearOptions gearOptions, 
 	}
 
 	for ; err == nil; gearOption, err = gearOptionsNext() {
-		for _, weapon := range weapons {
+		for _, weapon := range setup.weapons {
 			for _, attackStyle := range weapon.attackStyles {
 				runDpsCalc(weapon, attackStyle)
 			}

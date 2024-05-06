@@ -1,38 +1,37 @@
 import { Component } from '@angular/core';
-import { DpsResults } from 'src/app/model/damage-sim/dps-results.model';
+import { BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 
 @Component({
-  selector: 'app-dps-calc',
-  templateUrl: './dps-calc.component.html',
+  selector: 'app-bis-calc',
+  templateUrl: './bis-calc.component.html',
 })
-export class DpsCalcComponent {
+export class BisCalcComponent {
   loading = false;
 
-  dpsResults: DpsResults;
+  bisResults: BisCalcResults;
 
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
-
-  runDpsCalc(): void {
+  runBisCalc(): void {
     this.loading = true;
     this.clearResults();
-    const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
+    const inputSetupJson = this.inputSetupService.getBisCalcInputSetupAsJson();
 
-    this.damageSimservice.runDpsCalc(inputSetupJson).subscribe({
-      next: (results: DpsResults) => {
+    this.damageSimservice.runBisCalc(inputSetupJson).subscribe({
+      next: (results: BisCalcResults) => {
         this.loading = false;
-        this.dpsResults = results;
+        this.bisResults = results;
       },
       error: ({ error: { error } }) => {
         this.loading = false;
         const errorMessage = error[0].toUpperCase() + error.slice(1);
-        this.dpsResults = { ...this.dpsResults, error: errorMessage };
+        this.bisResults = { ...this.bisResults, error: errorMessage };
       },
     });
   }
 
   clearResults(): void {
-    this.dpsResults = null;
+    this.bisResults = null;
   }
 }

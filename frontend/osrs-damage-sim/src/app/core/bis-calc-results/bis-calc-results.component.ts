@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { delay, of } from 'rxjs';
 import { BisCalcResult, BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
@@ -26,29 +25,19 @@ export class BisCalcResultsComponent implements OnChanges {
   ];
 
   gearSetupSettings: GearSetupSettings;
-  prayers: Prayer[] = ['piety']; //TODO input value for this?
+  prayers: Record<string, Set<Prayer>>;
 
   constructor(private itemService: ItemService, private globalSettingsService: GlobalSettingsService) {}
-
-  // ngAfterViewInit() {
-  //   of(true)
-  //     .pipe(delay(500))
-  //     .subscribe(() => {
-  //       this.fillAllItems();
-  //       this.gearSetupSettings = this.getGearSetupSettings();
-  //     });
-  // }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bisResults'] && this.bisResults) {
       this.fillAllItems();
       this.gearSetupSettings = this.getGearSetupSettings();
+      this.prayers = this.globalSettingsService.globalPrayers$.getValue();
     }
   }
 
-  //TODO from elsewhere if we have bis-calc route?
   private getGearSetupSettings(): GearSetupSettings {
-    console.log('update');
     return {
       statDrains: [...this.globalSettingsService.globalStatDrain$.getValue()],
       combatStats: this.globalSettingsService.globalCombatStats$.getValue(),

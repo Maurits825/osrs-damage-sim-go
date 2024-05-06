@@ -58,6 +58,8 @@ export class InputSetupService {
         boosts: this.globalSettingsService.globalBoosts$.getValue(),
         attackCycle: 0,
       },
+      prayers: this.globalSettingsService.globalPrayers$.getValue(),
+      isOnSlayerTask: false,
     };
     return this.convertInputObjectToJson(inputSetup);
   }
