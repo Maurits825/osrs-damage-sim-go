@@ -143,6 +143,7 @@ var allGearSlots = []dpscalc.GearSlot{
 
 func gearOptionsIterator(gearOptions gearOptions) func() (gearSetupOption, error) {
 	var currentGear gearSetupOption = make(gearSetupOption)
+	iteratorEmpty := false
 
 	var gearIndices map[dpscalc.GearSlot]int = make(map[dpscalc.GearSlot]int)
 	var gearLengths map[dpscalc.GearSlot]int = make(map[dpscalc.GearSlot]int)
@@ -159,6 +160,10 @@ func gearOptionsIterator(gearOptions gearOptions) func() (gearSetupOption, error
 	lastGearSlotIndex := gearSlotIndex
 
 	return func() (gearSetupOption, error) {
+		if iteratorEmpty {
+			return nil, errors.New("iterator empty")
+		}
+
 		//get current gear based on indices
 		for _, slot := range allGearSlots {
 			ids, ok := gearOptions[slot]
@@ -175,7 +180,8 @@ func gearOptionsIterator(gearOptions gearOptions) func() (gearSetupOption, error
 		for gearIndices[gearSlot] == gearLengths[gearSlot] {
 			//iterator is empty
 			if gearSlotIndex == 0 {
-				return nil, errors.New("iterator empty")
+				iteratorEmpty = true
+				return currentGear, nil
 			}
 
 			gearIndices[gearSlot] = 0
