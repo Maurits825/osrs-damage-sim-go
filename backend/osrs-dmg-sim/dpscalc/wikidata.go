@@ -1,6 +1,7 @@
 // TODO should this be its own package in wiki data?
 // then have to think where to define equipmentItems
 // in wikidata or damagesim?
+// could define a Item struct here with the flat data structure, then other packages can get the items and provide their own structure
 package dpscalc
 
 import (
@@ -29,7 +30,7 @@ func (e *equipmentItem) UnmarshalJSON(data []byte) error {
 		RangedStrength int    `json:"rstr"`
 		MagicStrength  int    `json:"mdmg"`
 		Prayer         int    `json:"prayer"`
-		//TODO weapon category enum?
+		Is2h           bool   `json:"is2h"`
 	}
 
 	var item itemFlat
@@ -57,6 +58,7 @@ func (e *equipmentItem) UnmarshalJSON(data []byte) error {
 	e.equipmentStats.attackSpeed = item.AttackSpeed
 
 	e.name = item.Name
+	e.IsTwoHand = item.Is2h
 
 	return nil
 }

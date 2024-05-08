@@ -33,7 +33,7 @@ type InputGearSetupLabels struct {
 	GearSetupName          string `json:"gearSetupName"`
 }
 
-var allItems equipmentItems = loadItemWikiData()
+var AllItems equipmentItems = loadItemWikiData()
 var AllNpcs npcs = loadNpcWikiData()
 
 // TODO where to put this??, we have to clear it now also...
@@ -92,7 +92,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
 		itemId := getIdAlias(gearItem.Id)
 
-		itemStats := allItems[strconv.Itoa(itemId)].equipmentStats
+		itemStats := AllItems[strconv.Itoa(itemId)].equipmentStats
 		equipmentStats.addStats(&itemStats)
 
 		equippedGear.ids = append(equippedGear.ids, itemId)
@@ -111,7 +111,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	if equippedGear.isEquipped(blowpipe) {
-		darts := allItems[strconv.Itoa(inputGearSetup.GearSetup.BlowpipeDarts.Id)].equipmentStats
+		darts := AllItems[strconv.Itoa(inputGearSetup.GearSetup.BlowpipeDarts.Id)].equipmentStats
 		equipmentStats.addStats(&darts)
 	}
 

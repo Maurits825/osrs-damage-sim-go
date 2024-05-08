@@ -14,6 +14,15 @@ const (
 	scythe = 22325
 	fang   = 26219
 
+	bandosGodsword  = 11804
+	armadylGodsword = 11802
+	abbysalDagger   = 13265
+	dragonDagger    = 1215
+	crystalHalberd  = 23987
+	voidwaker       = 27690
+	dragonClaws     = 13652
+	dragonWarhammer = 13576
+
 	ultor    = 28307
 	bellator = 28316
 
@@ -94,24 +103,80 @@ var meleeGearOptions = gearOptions{
 	dpscalc.Ring:   {ultor, bellator},
 }
 
+//TODO spec weapons here?
+var stabSwordStyles = []string{"Stab (Stab/Accurate)", "Lunge (Stab/Aggressive)", "Slash (Slash/Aggressive)"}
+var twoHandedSwordStyles = []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Smash (Crush/Aggressive)", "Block (Slash/Defensive)"}
+var hallyStyles = []string{"Jab (Stab/Controlled)", "Swipe (Slash/Aggressive)", "Fend (Stab/Defensive)"}
+var slashSwordStyle = []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Lunge (Stab/Controlled)", "Block (Slash/Defensive)"}
+
 var meleeWeapons = []weapon{
 	{
 		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: scythe,
-			dpscalc.Shield: -1,
 		},
 		attackStyles: []string{"Reap (Slash/Accurate)", "Chop (Slash/Aggressive)", "Jab (Crush/Aggressive)"},
 	},
 	{
 		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: fang, //TODO we dont want to dupe here right? if we have another meleeWeaponSpecs with {fang}
+		},
+		attackStyles: stabSwordStyles,
+	},
+}
+
+var meleeSpecWeapons = []weapon{
+	{
+		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: fang,
 		},
-		attackStyles: []string{"Stab (Stab/Accurate)", "Lunge (Stab/Aggressive)", "Slash (Slash/Aggressive)"},
+		attackStyles: stabSwordStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: bandosGodsword,
+		},
+		attackStyles: twoHandedSwordStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: armadylGodsword,
+		},
+		attackStyles: twoHandedSwordStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: abbysalDagger,
+		},
+		attackStyles: stabSwordStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: crystalHalberd,
+		},
+		attackStyles: hallyStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: voidwaker,
+		},
+		attackStyles: slashSwordStyle,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: dragonClaws,
+		},
+		attackStyles: []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Lunge (Stab/Controlled)", "Block (Slash/Defensive)"},
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: dragonWarhammer,
+		},
+		attackStyles: []string{"Pound (Crush/Accurate)", "Pummel (Crush/Aggressive)", "Block (Crush/Defensive)"},
 	},
 }
 
 var rangedGearOptions = gearOptions{
-	dpscalc.Head:   {masoriHelm, crystalHelm}, //TODO is bowfa full crystal being calced correct??
+	dpscalc.Head:   {masoriHelm, crystalHelm},
 	dpscalc.Cape:   {blessedQuiver},
 	dpscalc.Neck:   {anguish},
 	dpscalc.Body:   {masoriBody, crystalBody},
@@ -122,37 +187,52 @@ var rangedGearOptions = gearOptions{
 	dpscalc.Ring:   {venatorRing},
 }
 
+var bowStyles = []string{"Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)"}
 var rangedWeapons = []weapon{
 	{
 		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: tbow,
-			dpscalc.Shield: -1,
 			dpscalc.Ammo:   11212,
 		},
-		attackStyles: []string{"Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)"},
+		attackStyles: bowStyles,
 	},
 	{
 		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: blowpipe,
-			dpscalc.Shield: -1,
 			dpscalc.Ammo:   -1,
 		},
-		attackStyles: []string{"Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)"},
+		attackStyles: bowStyles,
 	},
 	{
 		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: zaryteCrossbow,
 			dpscalc.Ammo:   rubyDragonBolts,
 		},
-		attackStyles: []string{"Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)"},
+		attackStyles: bowStyles,
 	},
 	{
 		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: bowfa,
-			dpscalc.Shield: -1,
 			dpscalc.Ammo:   -1,
 		},
-		attackStyles: []string{"Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)"},
+		attackStyles: bowStyles,
+	},
+}
+
+var rangedSpecWeapons = []weapon{
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: blowpipe,
+			dpscalc.Ammo:   -1,
+		},
+		attackStyles: bowStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: zaryteCrossbow,
+			dpscalc.Ammo:   rubyDragonBolts,
+		},
+		attackStyles: bowStyles,
 	},
 }
 
@@ -172,7 +252,6 @@ var magicWeapons = []weapon{
 	{
 		gear: map[dpscalc.GearSlot]int{
 			dpscalc.Weapon: shadowStaff,
-			dpscalc.Shield: -1,
 		},
 		attackStyles: []string{"Accurate (Magic/Accurate)"},
 	},
