@@ -47,24 +47,34 @@
     </div>
 
     <div class="p-2 d-flex flex-column justify-content-center">
-      <div *ngIf="bisCalcInputSetup.gearSetupSettings" class="d-flex">
-        <div class="d-flex mx-1">
-          <div class="px-1" *ngFor="let prayer of bisCalcInputSetup.prayers[attackType]">
-            <img src="assets/img/prayer/{{ prayer }}.png" />
+      <ng-container *ngIf="bisCalcInputSetup.gearSetupSettings">
+        <div class="d-flex">
+          <div class="d-flex mx-1">
+            <div class="px-1" *ngFor="let prayer of bisCalcInputSetup.prayers[attackType]">
+              <img src="assets/img/prayer/{{ prayer }}.png" />
+            </div>
+          </div>
+          <div class="d-flex mx-1">
+            <div class="px-1" *ngFor="let boost of bisCalcInputSetup.gearSetupSettings.boosts">
+              <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+            </div>
           </div>
         </div>
-        <div class="d-flex mx-1">
-          <div class="px-1" *ngFor="let boost of bisCalcInputSetup.gearSetupSettings.boosts">
-            <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+        <div class="d-flex">
+          <div class="d-flex mx-1">
+            <div class="px-1" *ngFor="let statDrain of bisCalcInputSetup.gearSetupSettings.statDrains">
+              <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
+              {{ statDrain.value }}
+            </div>
+          </div>
+          <div *ngIf="bisCalcInputSetup.isOnSlayerTask" class="mx-1">
+            <img style="width: 25px" src="assets/img/skills/slayer.png" title="Slayer task" />
+          </div>
+          <div *ngIf="bisCalcInputSetup.isSpecialAttack" class="mx-1">
+            <img style="width: 25px" src="assets/img/other/special_attack_orb.png" title="Special attack" />
           </div>
         </div>
-        <div class="d-flex mx-1">
-          <div class="px-1" *ngFor="let statDrain of bisCalcInputSetup.gearSetupSettings.statDrains">
-            <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
-            {{ statDrain.value }}
-          </div>
-        </div>
-      </div>
+      </ng-container>
       <div>{{ result.attackStyle }}</div>
       <div>Dps: {{ result.theoreticalDps | number : "1.3-3" }}</div>
       <div>Max hit: {{ result.maxHit | maxHit }}</div>

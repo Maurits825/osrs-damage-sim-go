@@ -105,9 +105,6 @@ func getBisFromGearOptions(setup BisCalcAttackTypeSetup) []BisCalcResult {
 	gearSetup := &inputGearSetup.GearSetup
 	gearSetup.Prayers = setup.prayers
 
-	maxDps := make([]float32, setup.count)
-	calcCount := 0
-
 	var gearOptions gearOptions = make(gearOptions)
 	for gearSlot := range setup.gearOptions {
 		gearOptions[gearSlot] = setup.gearOptions[gearSlot]
@@ -120,6 +117,7 @@ func getBisFromGearOptions(setup BisCalcAttackTypeSetup) []BisCalcResult {
 	gearOptionsNext := gearOptionsIterator(gearOptions)
 	gearOption, err := gearOptionsNext()
 
+	calcCount := 0
 	runDpsCalc := func(weapon weapon, attackStyle string) {
 		gearSetup.AttackStyle = attackStyle
 		gearSetup.Spell = ""
@@ -143,7 +141,7 @@ func getBisFromGearOptions(setup BisCalcAttackTypeSetup) []BisCalcResult {
 
 		dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.globalSettings, inputGearSetup, false)
 		calcCount++
-		if dpsCalcResult.TheoreticalDps > maxDps[setup.count-1] {
+		if dpsCalcResult.TheoreticalDps > bisResults[setup.count-1].TheoreticalDps {
 			newBisResult := BisCalcResult{
 				Gear:           gear,
 				TheoreticalDps: dpsCalcResult.TheoreticalDps,
@@ -152,9 +150,8 @@ func getBisFromGearOptions(setup BisCalcAttackTypeSetup) []BisCalcResult {
 				AttackRoll:     dpsCalcResult.AttackRoll,
 				AttackStyle:    attackStyle,
 			}
-			for i, mDps := range maxDps {
-				if dpsCalcResult.TheoreticalDps > mDps {
-					maxDps[i] = dpsCalcResult.TheoreticalDps
+			for i := range bisResults {
+				if dpsCalcResult.TheoreticalDps > bisResults[i].TheoreticalDps {
 					for j := setup.count - 1; j > i; j-- {
 						bisResults[j] = bisResults[j-1]
 					}
