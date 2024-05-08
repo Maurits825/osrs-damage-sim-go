@@ -35,7 +35,7 @@ const (
 	twistedBuckler = 21000
 
 	tbow            = 20997
-	blowpipe        = 1292
+	blowpipe        = 12926
 	dragonDarts     = 11230
 	zaryteCrossbow  = 26374
 	rubyDragonBolts = 21944
