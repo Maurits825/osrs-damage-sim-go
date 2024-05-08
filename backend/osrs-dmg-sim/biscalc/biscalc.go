@@ -3,9 +3,10 @@ package biscalc
 import (
 	"errors"
 	"fmt"
-	"strconv"
+	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
 )
 
 type AttackStyle string
@@ -43,8 +44,8 @@ type BisCalcResult struct {
 type gearSetupOption map[dpscalc.GearSlot]dpscalc.GearItem //TODO gearOption
 type gearSetupOptions struct {
 	gearOptions gearOptions
-	weapons     []weapon
-	specWeapons []weapon
+	weapons     []int
+	specWeapons []int
 }
 
 var defaultGearSetupOptions = map[AttackStyle]gearSetupOptions{
@@ -72,6 +73,12 @@ var defaultGearSetup = dpscalc.GearSetup{
 	IsOnSlayerTask:  false,
 	IsSpecialAttack: false,
 	MiningLevel:     99,
+}
+
+var allItems map[int]wikidata.ItemData
+
+func init() {
+	allItems = wikidata.GetItemData()
 }
 
 func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup) BisCalcResults {
@@ -103,25 +110,28 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []
 	for gearSlot, gearOpt := range defaultGearSetupOptions[attackStyle].gearOptions {
 		gearOptions[gearSlot] = gearOpt
 	}
+	gearOptions[dpscalc.Weapon] = defaultGearSetupOptions[attackStyle].weapons
+	if setup.IsSpecialAttack {
+		gearOptions[dpscalc.Weapon] = defaultGearSetupOptions[attackStyle].specWeapons
+	}
 
 	if setup.IsOnSlayerTask {
 		gearOptions[dpscalc.Head] = append(gearOptions[dpscalc.Head], slayerHelm)
 		gearSetup.IsOnSlayerTask = true
 	}
 
-	weapons := defaultGearSetupOptions[attackStyle].weapons
-	if setup.IsSpecialAttack {
-		weapons = defaultGearSetupOptions[attackStyle].specWeapons
-		gearSetup.IsSpecialAttack = true
+	//there is no ammo slot that increases melee/magic?
+	if attackStyle != Ranged {
+		delete(gearOptions, dpscalc.Ammo)
 	}
 
 	gearOptionsNext := gearOptionsIterator(gearOptions)
 	gearOption, err := gearOptionsNext()
 
 	calcCount := 0
-	runDpsCalc := func(weapon weapon, attackStyle string) {
-		gearSetup.AttackStyle = attackStyle
-		gearSetup.Spell = ""
+	runDpsCalc := func(combatOptionName string, spell string) {
+		gearSetup.AttackStyle = combatOptionName
+		gearSetup.Spell = spell
 
 		//copy gear
 		var gear gearSetupOption = make(gearSetupOption)
@@ -129,20 +139,22 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []
 			gear[gearSlot] = dpscalc.GearItem{Id: gearItem.Id}
 		}
 
-		for gearSlot, id := range weapon.gear {
-			if id == -1 {
-				delete(gear, gearSlot)
-			}
-			if gearSlot == dpscalc.Weapon && dpscalc.AllItems[strconv.Itoa(id)].IsTwoHand {
-				delete(gear, dpscalc.Shield)
-			}
-			gear[gearSlot] = dpscalc.GearItem{Id: id}
+		weaponId := gearOption[dpscalc.Weapon].Id
+		//remove shield if 2h
+		if allItems[weaponId].Is2h {
+			delete(gear, dpscalc.Shield)
+		}
+
+		if weaponId == blowpipe || weaponId == bowfa {
+			delete(gear, dpscalc.Ammo)
+		}
+
+		//TODO invalidate setups here like blowpipe with different ammo types, same dps so could save bunch of calcs
+		if !isGearSetupOptionValid(gearOption) {
+			return
 		}
 
 		gearSetup.Gear = gear
-		if weapon.gearSetupMod != nil {
-			weapon.gearSetupMod(gearSetup)
-		}
 
 		dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
 		calcCount++
@@ -153,7 +165,7 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []
 				MaxHit:         dpsCalcResult.MaxHit,
 				Accuracy:       dpsCalcResult.Accuracy,
 				AttackRoll:     dpsCalcResult.AttackRoll,
-				AttackStyle:    attackStyle,
+				AttackStyle:    combatOptionName,
 			}
 			for i := range bisResults {
 				if dpsCalcResult.TheoreticalDps > bisResults[i].TheoreticalDps {
@@ -168,10 +180,14 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []
 	}
 
 	for ; err == nil; gearOption, err = gearOptionsNext() {
-		for _, weapon := range weapons {
-			for _, attackStyle := range weapon.attackStyles {
-				runDpsCalc(weapon, attackStyle)
+		attackStyles := dpscalc.WeaponStyles[allItems[gearOption[dpscalc.Weapon].Id].WeaponCategory]
+		for _, attackStyle := range attackStyles {
+			if attackStyle.StyleStance == dpscalc.Autocast {
+				for _, spell := range []string{"Fire Surge"} {
+					runDpsCalc(attackStyle.Name, spell)
+				}
 			}
+			runDpsCalc(attackStyle.Name, "")
 		}
 	}
 
@@ -244,4 +260,26 @@ func gearOptionsIterator(gearOptions gearOptions) func() (gearSetupOption, error
 
 		return currentGear, nil
 	}
+}
+
+var bolts = []int{rubyDragonBolts}
+var arrows = []int{dragonArrows}
+
+func isGearSetupOptionValid(gear gearSetupOption) bool {
+	weaponId := gear[dpscalc.Weapon].Id
+
+	//check ammo
+	switch allItems[weaponId].WeaponCategory {
+	case "CROSSBOW":
+		if !slices.Contains(bolts, gear[dpscalc.Ammo].Id) {
+			return false
+		}
+	case "BOW":
+		if !slices.Contains(arrows, gear[dpscalc.Ammo].Id) {
+			return false
+		}
+	}
+
+	//TODO other checks?
+	return true
 }

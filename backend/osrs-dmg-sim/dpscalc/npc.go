@@ -1,6 +1,10 @@
 package dpscalc
 
-import "slices"
+import (
+	"slices"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
+)
 
 const (
 	iceDemon = 7584
@@ -42,6 +46,64 @@ type npc struct {
 	isTobHardMode   bool
 
 	respawn int
+}
+
+type npcs map[string]npc
+
+func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
+	npcs := make(npcs)
+
+	for id, npcData := range npcsData {
+		n := npc{}
+		n.name = npcData.Name
+		n.respawn = npcData.Respawn
+		n.size = npcData.Size
+		n.isKalphite = npcData.IsKalphite
+		n.isDemon = npcData.IsDemon
+		n.isDragon = npcData.IsDragon
+		n.isUndead = npcData.IsUndead
+		n.isLeafy = npcData.IsLeafy
+		n.IsXerician = npcData.IsXerician
+		n.isShade = npcData.IsShade
+		n.isTobEntryMode = npcData.IsTobEntryMode
+		n.isTobNormalMode = npcData.IsTobNormalMode
+		n.isTobHardMode = npcData.IsTobHardMode
+
+		n.combatStats = CombatStats{
+			Attack:    npcData.Attack,
+			Strength:  npcData.Strength,
+			Ranged:    npcData.Ranged,
+			Magic:     npcData.Magic,
+			Hitpoints: npcData.Hitpoints,
+			Defence:   npcData.Defence,
+		}
+
+		n.BaseCombatStats = n.combatStats
+
+		n.aggressiveStats = aggressiveStats{
+			attack: npcData.AAttack,
+			magic:  npcData.AMagic,
+			ranged: npcData.ARange,
+		}
+
+		n.damageStats = damageStats{
+			meleeStrength:  npcData.MeleeStrength,
+			rangedStrength: npcData.RangedStrength,
+			magicStrength:  npcData.MagicStrength,
+		}
+
+		n.defensiveStats = defensiveStats{
+			stab:   npcData.DStab,
+			slash:  npcData.DSlash,
+			crush:  npcData.DSCrush,
+			magic:  npcData.DMagic,
+			ranged: npcData.DRange,
+		}
+
+		npcs[id] = n
+	}
+
+	return npcs
 }
 
 func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {

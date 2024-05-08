@@ -29,7 +29,6 @@ type damageStats struct {
 
 type equipmentItem struct {
 	name           string
-	IsTwoHand      bool
 	equipmentStats equipmentStats
 }
 

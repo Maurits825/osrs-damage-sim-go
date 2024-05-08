@@ -45,12 +45,11 @@ const (
 	pegs           = 13237
 	twistedBuckler = 21000
 
-	tbow            = 20997
-	blowpipe        = 12926
-	dragonDarts     = 11230
-	zaryteCrossbow  = 26374
-	rubyDragonBolts = 21944
-	bowfa           = 25865
+	tbow           = 20997
+	blowpipe       = 12926
+	dragonDarts    = 11230
+	zaryteCrossbow = 26374
+	bowfa          = 25865
 
 	masoriHelm = 27235
 	masoriBody = 27238
@@ -59,9 +58,12 @@ const (
 	crystalHelm = 23971
 	crystalBody = 23975
 	crystalLegs = 23979
+
+	dragonArrows    = 11212
+	rubyDragonBolts = 21944
 )
 
-const ( //TODO
+const (
 	occult        = 12002
 	mageArenaCape = 21795
 	tormented     = 19544
@@ -83,13 +85,8 @@ const ( //TODO
 	virtusLegs = 26245
 )
 
-//TODO gear sets like void, always better to wear the set + other gear
-
-type weapon struct {
-	gear         map[dpscalc.GearSlot]int
-	attackStyles []string
-	gearSetupMod func(gearSetup *dpscalc.GearSetup)
-}
+//TODO otherGear sets like void, always better to wear the set + other otherGear
+//TODO also salve if undead? or always... but kinda of a waste when we get more and more items
 
 type gearOptions map[dpscalc.GearSlot][]int
 
@@ -105,91 +102,8 @@ var meleeGearOptions = gearOptions{
 	dpscalc.Ring:   {ultor, bellator},
 }
 
-//TODO spec weapons here?
-var stabSwordStyles = []string{"Stab (Stab/Accurate)", "Lunge (Stab/Aggressive)", "Slash (Slash/Aggressive)"}
-var twoHandedSwordStyles = []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Smash (Crush/Aggressive)", "Block (Slash/Defensive)"}
-var hallyStyles = []string{"Jab (Stab/Controlled)", "Swipe (Slash/Aggressive)", "Fend (Stab/Defensive)"}
-var slashSwordStyle = []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Lunge (Stab/Controlled)", "Block (Slash/Defensive)"}
-
-//TODO if we refactor wiki data, have attack syles somewhere, we can just generate this
-//generate this 'default' once, in future we will have inputs to generate more
-var meleeWeapons = []weapon{
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: scythe,
-		},
-		attackStyles: []string{"Reap (Slash/Accurate)", "Chop (Slash/Aggressive)", "Jab (Crush/Aggressive)"},
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: fang,
-		},
-		attackStyles: stabSwordStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: rapier,
-		},
-		attackStyles: stabSwordStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: saladBlade,
-		},
-		attackStyles: stabSwordStyles,
-	},
-}
-
-var meleeSpecWeapons = []weapon{
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: fang,
-		},
-		attackStyles: stabSwordStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: bandosGodsword,
-		},
-		attackStyles: twoHandedSwordStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: armadylGodsword,
-		},
-		attackStyles: twoHandedSwordStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: abbysalDagger,
-		},
-		attackStyles: stabSwordStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: crystalHalberd,
-		},
-		attackStyles: hallyStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: voidwaker,
-		},
-		attackStyles: slashSwordStyle,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: dragonClaws,
-		},
-		attackStyles: []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Lunge (Stab/Controlled)", "Block (Slash/Defensive)"},
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: dragonWarhammer,
-		},
-		attackStyles: []string{"Pound (Crush/Accurate)", "Pummel (Crush/Aggressive)", "Block (Crush/Defensive)"},
-	},
-}
+var meleeWeapons = []int{scythe, fang, rapier, saladBlade}
+var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
 
 var rangedGearOptions = gearOptions{
 	dpscalc.Head:   {masoriHelm, crystalHelm},
@@ -201,90 +115,22 @@ var rangedGearOptions = gearOptions{
 	dpscalc.Hands:  {zaryteVambs},
 	dpscalc.Feet:   {pegs},
 	dpscalc.Ring:   {venatorRing},
+	dpscalc.Ammo:   {dragonArrows, rubyDragonBolts},
 }
 
-var bowStyles = []string{"Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)"}
-var rangedWeapons = []weapon{
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: tbow,
-			dpscalc.Ammo:   11212,
-		},
-		attackStyles: bowStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: blowpipe,
-			dpscalc.Ammo:   -1,
-		},
-		attackStyles: bowStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: zaryteCrossbow,
-			dpscalc.Ammo:   rubyDragonBolts,
-		},
-		attackStyles: bowStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: bowfa,
-			dpscalc.Ammo:   -1,
-		},
-		attackStyles: bowStyles,
-	},
-}
-
-var rangedSpecWeapons = []weapon{
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: blowpipe,
-			dpscalc.Ammo:   -1,
-		},
-		attackStyles: bowStyles,
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: zaryteCrossbow,
-			dpscalc.Ammo:   rubyDragonBolts,
-		},
-		attackStyles: bowStyles,
-	},
-}
+var rangedWeapons = []int{tbow, blowpipe, zaryteCrossbow, bowfa}
+var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
 
 var magicGearOptions = gearOptions{
 	dpscalc.Head:   {ancestralHat, virtusHat},
 	dpscalc.Cape:   {mageArenaCape},
 	dpscalc.Neck:   {occult},
 	dpscalc.Body:   {ancestralBody, virtusBody},
-	dpscalc.Shield: {elidinisWard},
+	dpscalc.Shield: {elidinisWard, tomeOfFire},
 	dpscalc.Legs:   {ancestralLegs, virtusLegs},
 	dpscalc.Hands:  {tormented},
 	dpscalc.Feet:   {eternal},
 	dpscalc.Ring:   {magusRing},
 }
 
-var magicWeapons = []weapon{
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: shadowStaff,
-		},
-		attackStyles: []string{"Accurate (Magic/Accurate)"},
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: sangStaff,
-		},
-		attackStyles: []string{"Accurate (Magic/Accurate)"},
-	},
-	{
-		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: harmStaff,
-			dpscalc.Shield: tomeOfFire,
-		},
-		attackStyles: []string{"Spell (Magic/Autocast)"},
-		gearSetupMod: func(gearSetup *dpscalc.GearSetup) {
-			gearSetup.Spell = "Fire Surge"
-		},
-	},
-}
+var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}
