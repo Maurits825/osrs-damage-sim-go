@@ -6,24 +6,13 @@
     <div class="ms-2"><h1 class="display-1">BiS Calculator</h1></div>
   </div>
 
-  <div class="mb-2">
-    <app-bis-calc-results [bisResults]="bisResults"></app-bis-calc-results>
+  <div class="mb-2" *ngIf="bisResults">
+    <app-bis-calc-results [bisResults]="bisResults" [bisCalcInputSetup]="bisCalcInputSetup"></app-bis-calc-results>
   </div>
 
   <hr class="row mb-4" />
 
-  <div class="d-flex justify-content-between mb-5 flex-wrap">
-    <div class="flex-fill">
-      <app-example-setups></app-example-setups>
-    </div>
-    <div class="flex-grow-1"></div>
-
-    <div class="flex-shrink-1 ms-1">
-      <app-share-input-setup></app-share-input-setup>
-    </div>
-  </div>
-
-  <app-global-settings></app-global-settings>
+  <app-bis-calc-settings (bisCalcInputSetupChanged)="onBisCalcInputSetupChanged($event)"></app-bis-calc-settings>
 
   <div class="mb-4">
     <div class="d-flex mb-1">

@@ -108,7 +108,16 @@ func getBisFromGearOptions(setup BisCalcAttackTypeSetup) []BisCalcResult {
 	maxDps := make([]float32, setup.count)
 	calcCount := 0
 
-	gearOptionsNext := gearOptionsIterator(setup.gearOptions)
+	var gearOptions gearOptions = make(gearOptions)
+	for gearSlot := range setup.gearOptions {
+		gearOptions[gearSlot] = setup.gearOptions[gearSlot]
+	}
+
+	if setup.isOnSlayerTask {
+		gearOptions[dpscalc.Head] = append(gearOptions[dpscalc.Head], slayerHelm)
+	}
+
+	gearOptionsNext := gearOptionsIterator(gearOptions)
 	gearOption, err := gearOptionsNext()
 
 	runDpsCalc := func(weapon weapon, attackStyle string) {

@@ -83,7 +83,7 @@ type weapon struct {
 type gearOptions map[dpscalc.GearSlot][]int
 
 var meleeGearOptions = gearOptions{
-	dpscalc.Head:   {torvaHelm, inqHelm}, //slayerHelm
+	dpscalc.Head:   {torvaHelm, inqHelm},
 	dpscalc.Cape:   {infernal},
 	dpscalc.Neck:   {torture},
 	dpscalc.Body:   {torvaBody, inqBody},

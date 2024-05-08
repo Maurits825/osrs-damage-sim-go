@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
 import { BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { InputSetupService } from 'src/app/services/input-setup.service';
@@ -10,13 +11,19 @@ import { InputSetupService } from 'src/app/services/input-setup.service';
 export class BisCalcComponent {
   loading = false;
 
+  bisCalcInputSetup: BisCalcInputSetup;
   bisResults: BisCalcResults;
 
   constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
+
+  onBisCalcInputSetupChanged(bisCalcInputSetup: BisCalcInputSetup): void {
+    this.bisCalcInputSetup = bisCalcInputSetup;
+  }
+
   runBisCalc(): void {
     this.loading = true;
     this.clearResults();
-    const inputSetupJson = this.inputSetupService.getBisCalcInputSetupAsJson();
+    const inputSetupJson = this.inputSetupService.convertInputObjectToJson(this.bisCalcInputSetup);
 
     this.damageSimservice.runBisCalc(inputSetupJson).subscribe({
       next: (results: BisCalcResults) => {

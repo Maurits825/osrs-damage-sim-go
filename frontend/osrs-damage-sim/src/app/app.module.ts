@@ -43,6 +43,7 @@ import { MaxHitPipe } from './shared/pipes/max-hit.pipe';
 import { GearSetupLabelComponent } from './shared/components/gear-setup-label/gear-setup-label.component';
 import { BisCalcResultsComponent } from './core/bis-calc-results/bis-calc-results.component';
 import { BisCalcComponent } from './core/bis-calc/bis-calc.component';
+import { BisCalcSettingsComponent } from './core/bis-calc-settings/bis-calc-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +82,7 @@ import { BisCalcComponent } from './core/bis-calc/bis-calc.component';
     GearSetupLabelComponent,
     BisCalcResultsComponent,
     BisCalcComponent,
+    BisCalcSettingsComponent,
   ],
   imports: [
     NgSelectModule,

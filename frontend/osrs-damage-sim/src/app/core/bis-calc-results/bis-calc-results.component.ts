@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
 import { BisCalcResult, BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
 import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
@@ -15,6 +16,9 @@ export class BisCalcResultsComponent implements OnChanges {
   @Input()
   bisResults: BisCalcResults;
 
+  @Input()
+  bisCalcInputSetup: BisCalcInputSetup;
+
   allGearSlots: GearSlot[] = Object.values(GearSlot);
   gearSlotTable = [
     [null, GearSlot.Head, GearSlot.Ammo],
@@ -24,26 +28,12 @@ export class BisCalcResultsComponent implements OnChanges {
     [GearSlot.Hands, GearSlot.Feet, GearSlot.Ring],
   ];
 
-  gearSetupSettings: GearSetupSettings;
-  prayers: Record<string, Set<Prayer>>;
-
   constructor(private itemService: ItemService, private globalSettingsService: GlobalSettingsService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bisResults'] && this.bisResults) {
       this.fillAllItems();
-      this.gearSetupSettings = this.getGearSetupSettings();
-      this.prayers = this.globalSettingsService.globalPrayers$.getValue();
     }
-  }
-
-  private getGearSetupSettings(): GearSetupSettings {
-    return {
-      statDrains: [...this.globalSettingsService.globalStatDrain$.getValue()],
-      combatStats: this.globalSettingsService.globalCombatStats$.getValue(),
-      boosts: new Set(this.globalSettingsService.globalBoosts$.getValue()),
-      attackCycle: 0,
-    };
   }
 
   private fillAllItems(): void {

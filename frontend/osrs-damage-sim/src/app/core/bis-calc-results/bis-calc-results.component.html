@@ -47,19 +47,19 @@
     </div>
 
     <div class="p-2 d-flex flex-column justify-content-center">
-      <div *ngIf="gearSetupSettings" class="d-flex">
+      <div *ngIf="bisCalcInputSetup.gearSetupSettings" class="d-flex">
         <div class="d-flex mx-1">
-          <div class="px-1" *ngFor="let prayer of prayers[attackType]">
+          <div class="px-1" *ngFor="let prayer of bisCalcInputSetup.prayers[attackType]">
             <img src="assets/img/prayer/{{ prayer }}.png" />
           </div>
         </div>
         <div class="d-flex mx-1">
-          <div class="px-1" *ngFor="let boost of gearSetupSettings.boosts">
+          <div class="px-1" *ngFor="let boost of bisCalcInputSetup.gearSetupSettings.boosts">
             <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
           </div>
         </div>
         <div class="d-flex mx-1">
-          <div class="px-1" *ngFor="let statDrain of gearSetupSettings.statDrains">
+          <div class="px-1" *ngFor="let statDrain of bisCalcInputSetup.gearSetupSettings.statDrains">
             <img src="assets/img/stat_drain/{{ statDrain.name.replaceAll(' ', '_') | lowercase }}.png" />
             {{ statDrain.value }}
           </div>
