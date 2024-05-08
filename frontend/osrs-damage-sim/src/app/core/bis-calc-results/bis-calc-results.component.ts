@@ -1,11 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
 import { BisCalcResult, BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
-import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item } from 'src/app/model/osrs/item.model';
-import { Prayer } from 'src/app/model/osrs/prayer.model';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -28,7 +25,7 @@ export class BisCalcResultsComponent implements OnChanges {
     [GearSlot.Hands, GearSlot.Feet, GearSlot.Ring],
   ];
 
-  constructor(private itemService: ItemService, private globalSettingsService: GlobalSettingsService) {}
+  constructor(private itemService: ItemService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bisResults'] && this.bisResults) {

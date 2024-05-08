@@ -17,8 +17,6 @@ import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
 import { UserSettings } from '../model/damage-sim/user-settings.model';
-import { BisCalcInputSetup } from '../model/damage-sim/bis-calc-input.model';
-import { GlobalSettingsService } from './global-settings.service';
 
 @Injectable({
   providedIn: 'root',
@@ -36,8 +34,7 @@ export class InputSetupService {
   constructor(
     private damageSimservice: DamageSimService,
     private itemService: ItemService,
-    private localStorageService: LocalStorageService,
-    private globalSettingsService: GlobalSettingsService
+    private localStorageService: LocalStorageService
   ) {
     this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;

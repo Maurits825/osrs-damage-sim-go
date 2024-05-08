@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
@@ -9,7 +9,6 @@ import { Npc } from 'src/app/model/osrs/npc.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
-import { InputSetupService } from 'src/app/services/input-setup.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TOA_PATH_LVL_NPCS, TOA_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { DEFAULT_BIS_INPUT_SETUP } from './default-settings.const';
@@ -42,11 +41,7 @@ export class BisCalcSettingsComponent implements OnInit {
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(
-    private globalSettingsService: GlobalSettingsService,
-    private inputSetupService: InputSetupService,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private globalSettingsService: GlobalSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
