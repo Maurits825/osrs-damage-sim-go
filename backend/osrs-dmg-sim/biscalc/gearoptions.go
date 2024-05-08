@@ -11,8 +11,10 @@ const (
 	ferocious = 22981
 	prims     = 13239
 
-	scythe = 22325
-	fang   = 26219
+	scythe     = 22325
+	fang       = 26219
+	rapier     = 22324
+	saladBlade = 23995
 
 	bandosGodsword  = 11804
 	armadylGodsword = 11802
@@ -109,6 +111,8 @@ var twoHandedSwordStyles = []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggre
 var hallyStyles = []string{"Jab (Stab/Controlled)", "Swipe (Slash/Aggressive)", "Fend (Stab/Defensive)"}
 var slashSwordStyle = []string{"Chop (Slash/Accurate)", "Slash (Slash/Aggressive)", "Lunge (Stab/Controlled)", "Block (Slash/Defensive)"}
 
+//TODO if we refactor wiki data, have attack syles somewhere, we can just generate this
+//generate this 'default' once, in future we will have inputs to generate more
 var meleeWeapons = []weapon{
 	{
 		gear: map[dpscalc.GearSlot]int{
@@ -118,7 +122,19 @@ var meleeWeapons = []weapon{
 	},
 	{
 		gear: map[dpscalc.GearSlot]int{
-			dpscalc.Weapon: fang, //TODO we dont want to dupe here right? if we have another meleeWeaponSpecs with {fang}
+			dpscalc.Weapon: fang,
+		},
+		attackStyles: stabSwordStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: rapier,
+		},
+		attackStyles: stabSwordStyles,
+	},
+	{
+		gear: map[dpscalc.GearSlot]int{
+			dpscalc.Weapon: saladBlade,
 		},
 		attackStyles: stabSwordStyles,
 	},
