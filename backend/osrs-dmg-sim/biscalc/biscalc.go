@@ -17,6 +17,8 @@ const (
 	Magic  AttackStyle = "magic"
 )
 
+var allAttackStyles = []AttackStyle{Melee, Ranged, Magic}
+
 type BisCalcInputSetup struct {
 	GlobalSettings    dpscalc.GlobalSettings           `json:"globalSettings"`
 	GearSetupSettings dpscalc.GearSetupSettings        `json:"gearSetupSettings"`
@@ -81,10 +83,18 @@ func init() {
 	allItems = wikidata.GetItemData()
 }
 
-func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup) BisCalcResults {
-	bisMelee := getBisFromGearOptions(bisCalcSetup, Melee)
-	bisRanged := getBisFromGearOptions(bisCalcSetup, Ranged)
-	bisMagic := getBisFromGearOptions(bisCalcSetup, Magic)
+func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup, inputGearOpts map[AttackStyle]gearSetupOptions) BisCalcResults {
+	gearSetupOptions := inputGearOpts
+	if gearSetupOptions == nil {
+		gearSetupOptions = defaultGearSetupOptions
+	} else {
+		//add blessing to allow a slot for thrown weapons
+		gearSetupOptions[Ranged].gearOptions[dpscalc.Ammo] = append(gearSetupOptions[Ranged].gearOptions[dpscalc.Ammo], radaBlessing)
+	}
+
+	bisMelee := getBisFromGearOptions(bisCalcSetup, Melee, gearSetupOptions)
+	bisRanged := getBisFromGearOptions(bisCalcSetup, Ranged, gearSetupOptions)
+	bisMagic := getBisFromGearOptions(bisCalcSetup, Magic, gearSetupOptions)
 
 	bisCalcResults := BisCalcResults{
 		Title:            dpscalc.GetDpsCalcTitle(&bisCalcSetup.GlobalSettings),
@@ -95,7 +105,7 @@ func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup) BisCalcResults {
 	return bisCalcResults
 }
 
-func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []BisCalcResult {
+func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, gearSetupOptions map[AttackStyle]gearSetupOptions) []BisCalcResult {
 	count := 3 //TODO?
 	bisResults := make([]BisCalcResult, count)
 
@@ -107,15 +117,16 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []
 	gearSetup.Prayers = setup.Prayers[attackStyle]
 
 	var gearOptions gearOptions = make(gearOptions)
-	for gearSlot, gearOpt := range defaultGearSetupOptions[attackStyle].gearOptions {
+	for gearSlot, gearOpt := range gearSetupOptions[attackStyle].gearOptions {
 		gearOptions[gearSlot] = gearOpt
 	}
-	gearOptions[dpscalc.Weapon] = defaultGearSetupOptions[attackStyle].weapons
+	gearOptions[dpscalc.Weapon] = gearSetupOptions[attackStyle].weapons
 	if setup.IsSpecialAttack {
-		gearOptions[dpscalc.Weapon] = defaultGearSetupOptions[attackStyle].specWeapons
+		gearOptions[dpscalc.Weapon] = gearSetupOptions[attackStyle].specWeapons
 	}
 
 	if setup.IsOnSlayerTask {
+		//TODO maybe include by default, we need a special filter for these items in gearjson
 		gearOptions[dpscalc.Head] = append(gearOptions[dpscalc.Head], slayerHelm)
 		gearSetup.IsOnSlayerTask = true
 	}
@@ -158,6 +169,9 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle) []
 
 		dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
 		calcCount++
+		if calcCount%50000 == 0 {
+			fmt.Println(calcCount)
+		}
 		if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
 			newBisResult := BisCalcResult{
 				Gear:           gear,
@@ -276,6 +290,10 @@ func isGearSetupOptionValid(gear gearSetupOption) bool {
 		}
 	case "BOW":
 		if !slices.Contains(arrows, gear[dpscalc.Ammo].Id) {
+			return false
+		}
+	case "THROWN", "CHINCHOMPAS":
+		if gear[dpscalc.Ammo].Id != radaBlessing {
 			return false
 		}
 	}

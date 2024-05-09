@@ -3,7 +3,8 @@ package biscalc
 import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 
 const (
-	slayerHelm = 25912
+	slayerHelm   = 25912
+	radaBlessing = 22947
 
 	infernal  = 21295
 	torture   = 19553
@@ -131,6 +132,7 @@ var magicGearOptions = gearOptions{
 	dpscalc.Hands:  {tormented},
 	dpscalc.Feet:   {eternal},
 	dpscalc.Ring:   {magusRing},
+	dpscalc.Ammo:   {radaBlessing},
 }
 
 var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}

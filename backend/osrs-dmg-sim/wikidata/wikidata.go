@@ -25,6 +25,8 @@ type ItemData struct {
 	Prayer         int    `json:"prayer"`
 	Is2h           bool   `json:"is2h"`
 	WeaponCategory string `json:"weaponCategory"`
+	Slot           int    `json:"slot"`
+	Equipable      bool   `json:"equipable"`
 }
 
 type NpcData struct {
@@ -68,33 +70,42 @@ type NpcData struct {
 var jsonDataEmbed embed.FS
 
 func GetItemData() map[int]ItemData {
-	byteValue, err := jsonDataEmbed.ReadFile("json-data/items-dmg-sim.json")
+	items, err := GetJsonData[map[int]ItemData]("json-data/items-dmg-sim.json")
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
-
-	var items map[int]ItemData
-	if err := json.Unmarshal(byteValue, &items); err != nil {
-		fmt.Println("Error decoding item JSON:", err)
-		return nil
-	}
-
 	return items
 }
 
 func GetNpcData() map[string]NpcData {
-	byteValue, err := jsonDataEmbed.ReadFile("json-data/npcs-dmg-sim.json")
+	npcs, err := GetJsonData[map[string]NpcData]("json-data/npcs-dmg-sim.json")
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
+	return npcs
+}
 
-	var npcs map[string]NpcData
-	if err := json.Unmarshal(byteValue, &npcs); err != nil {
-		fmt.Println("Error decoding npc JSON:", err)
+func GetSpecData() map[string]int {
+	specData, err := GetJsonData[map[string]int]("json-data/special_attack.json")
+	if err != nil {
+		fmt.Println(err)
 		return nil
 	}
+	return specData
+}
 
-	return npcs
+func GetJsonData[T any](fileName string) (T, error) {
+	var data T
+	byteValue, err := jsonDataEmbed.ReadFile(fileName)
+
+	if err != nil {
+		return data, err
+	}
+
+	if err := json.Unmarshal(byteValue, &data); err != nil {
+		return data, err
+	}
+	return data, err
 }

@@ -20,13 +20,13 @@ var WeaponStyles = map[string][]CombatOption{
 		{"Block (Slash/Defensive)", combatStyleType("Slash"), combatStyleStance("Defensive")},
 	},
 	"BANNER": {
-		{"Lunge (Stab/Accurate)", combatStyleType("stab"), combatStyleStance("Accurate")},
+		{"Lunge (Stab/Accurate)", combatStyleType("Stab"), combatStyleStance("Accurate")},
 		{"Swipe (Slash/Aggressive)", combatStyleType("Slash"), combatStyleStance("Aggressive")},
 		{"Pound (Crush/Aggressive)", combatStyleType("Crush"), combatStyleStance("Aggressive")},
 		{"Block (Stab/Defensive)", combatStyleType("Stab"), combatStyleStance("Defensive")},
 	},
 	"BLADED_STAFF": {
-		{"Jab (Stab/Accurate)", combatStyleType("stab"), combatStyleStance("Accurate")},
+		{"Jab (Stab/Accurate)", combatStyleType("Stab"), combatStyleStance("Accurate")},
 		{"Swipe (Slash/Aggressive)", combatStyleType("Slash"), combatStyleStance("Aggressive")},
 		{"Fend (Crush/Defensive)", combatStyleType("Crush"), combatStyleStance("Defensive")},
 		{"Spell (Magic/Autocast)", combatStyleType("Magic"), combatStyleStance("Autocast")},
@@ -57,7 +57,7 @@ var WeaponStyles = map[string][]CombatOption{
 	"CLAW": {
 		{"Chop (Slash/Accurate)", combatStyleType("Slash"), combatStyleStance("Accurate")},
 		{"Slash (Slash/Aggressive)", combatStyleType("Slash"), combatStyleStance("Aggressive")},
-		{"Lunge (Stab/Controlled)", combatStyleType("stab"), combatStyleStance("Controlled")},
+		{"Lunge (Stab/Controlled)", combatStyleType("Stab"), combatStyleStance("Controlled")},
 		{"Block (Slash/Defensive)", combatStyleType("Slash"), combatStyleStance("Defensive")},
 	},
 	"CROSSBOW": {
@@ -66,21 +66,21 @@ var WeaponStyles = map[string][]CombatOption{
 		{"Longrange (Ranged/Longrange)", combatStyleType("Ranged"), combatStyleStance("Longrange")},
 	},
 	"PARTISAN": {
-		{"Stab (Stab/Accurate)", combatStyleType("stab"), combatStyleStance("Accurate")},
-		{"Lunge (Stab/Aggressive)", combatStyleType("stab"), combatStyleStance("Aggressive")},
+		{"Stab (Stab/Accurate)", combatStyleType("Stab"), combatStyleStance("Accurate")},
+		{"Lunge (Stab/Aggressive)", combatStyleType("Stab"), combatStyleStance("Aggressive")},
 		{"Pound (Crush/Aggressive)", combatStyleType("Crush"), combatStyleStance("Aggressive")},
-		{"Block (Stab/Defensive)", combatStyleType("stab"), combatStyleStance("Accurate")},
+		{"Block (Stab/Defensive)", combatStyleType("Stab"), combatStyleStance("Accurate")},
 	},
 	"PICKAXE": {
-		{"Spike (Stab/Accurate)", combatStyleType("stab"), combatStyleStance("Accurate")},
-		{"Impale (Stab/Aggressive)", combatStyleType("stab"), combatStyleStance("Aggressive")},
+		{"Spike (Stab/Accurate)", combatStyleType("Stab"), combatStyleStance("Accurate")},
+		{"Impale (Stab/Aggressive)", combatStyleType("Stab"), combatStyleStance("Aggressive")},
 		{"Smash (Crush/Aggressive)", combatStyleType("Crush"), combatStyleStance("Aggressive")},
-		{"Block (Stab/Defensive)", combatStyleType("stab"), combatStyleStance("Defensive")},
+		{"Block (Stab/Defensive)", combatStyleType("Stab"), combatStyleStance("Defensive")},
 	},
 	"POLEARM": {
-		{"Jab (Stab/Controlled)", combatStyleType("stab"), combatStyleStance("Controlled")},
+		{"Jab (Stab/Controlled)", combatStyleType("Stab"), combatStyleStance("Controlled")},
 		{"Swipe (Slash/Aggressive)", combatStyleType("Slash"), combatStyleStance("Aggressive")},
-		{"Fend (Stab/Defensive)", combatStyleType("stab"), combatStyleStance("Defensive")},
+		{"Fend (Stab/Defensive)", combatStyleType("Stab"), combatStyleStance("Defensive")},
 	},
 	"POLESTAFF": {
 		{"Bash (Crush/Accurate)", combatStyleType("Crush"), combatStyleStance("Accurate")},
@@ -106,26 +106,26 @@ var WeaponStyles = map[string][]CombatOption{
 	"SLASH_SWORD": {
 		{"Chop (Slash/Accurate)", combatStyleType("Slash"), combatStyleStance("Accurate")},
 		{"Slash (Slash/Aggressive)", combatStyleType("Slash"), combatStyleStance("Aggressive")},
-		{"Lunge (Stab/Controlled)", combatStyleType("stab"), combatStyleStance("Controlled")},
+		{"Lunge (Stab/Controlled)", combatStyleType("Stab"), combatStyleStance("Controlled")},
 		{"Block (Slash/Defensive)", combatStyleType("Slash"), combatStyleStance("Defensive")},
 	},
 	"SPEAR": {
-		{"Lunge (Stab/Controlled)", combatStyleType("stab"), combatStyleStance("Controlled")},
+		{"Lunge (Stab/Controlled)", combatStyleType("Stab"), combatStyleStance("Controlled")},
 		{"Swipe (Slash/Controlled)", combatStyleType("Slash"), combatStyleStance("Controlled")},
 		{"Pound (Crush/Controlled)", combatStyleType("Crush"), combatStyleStance("Controlled")},
-		{"Block (Stab/Defensive)", combatStyleType("stab"), combatStyleStance("Defensive")},
+		{"Block (Stab/Defensive)", combatStyleType("Stab"), combatStyleStance("Defensive")},
 	},
 	"SPIKED": {
 		{"Pound (Crush/Accurate)", combatStyleType("Crush"), combatStyleStance("Accurate")},
 		{"Pummel (Crush/Aggressive)", combatStyleType("Crush"), combatStyleStance("Aggressive")},
-		{"Spike (Stab/Controlled)", combatStyleType("stab"), combatStyleStance("Controlled")},
+		{"Spike (Stab/Controlled)", combatStyleType("Stab"), combatStyleStance("Controlled")},
 		{"Block (Crush/Defensive)", combatStyleType("Crush"), combatStyleStance("Defensive")},
 	},
 	"STAB_SWORD": {
-		{"Stab (Stab/Accurate)", combatStyleType("stab"), combatStyleStance("Accurate")},
-		{"Lunge (Stab/Aggressive)", combatStyleType("stab"), combatStyleStance("Aggressive")},
+		{"Stab (Stab/Accurate)", combatStyleType("Stab"), combatStyleStance("Accurate")},
+		{"Lunge (Stab/Aggressive)", combatStyleType("Stab"), combatStyleStance("Aggressive")},
 		{"Slash (Slash/Aggressive)", combatStyleType("Slash"), combatStyleStance("Aggressive")},
-		{"Block (Stab/Defensive)", combatStyleType("stab"), combatStyleStance("Defensive")},
+		{"Block (Stab/Defensive)", combatStyleType("Stab"), combatStyleStance("Defensive")},
 	},
 	"STAFF": {
 		{"Bash (Crush/Accurate)", combatStyleType("Crush"), combatStyleStance("Accurate")},
@@ -150,4 +150,5 @@ var WeaponStyles = map[string][]CombatOption{
 	},
 	"GUN": {
 		{"Kick (Crush/Aggressive)", combatStyleType("Crush"), combatStyleStance("Aggressive")},
-	}}
+	},
+}
