@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"slices"
+	"strings"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
@@ -87,9 +88,6 @@ func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup, inputGearOpts map[AttackStyl
 	gearSetupOptions := inputGearOpts
 	if gearSetupOptions == nil {
 		gearSetupOptions = defaultGearSetupOptions
-	} else {
-		//add blessing to allow a slot for thrown weapons
-		gearSetupOptions[Ranged].gearOptions[dpscalc.Ammo] = append(gearSetupOptions[Ranged].gearOptions[dpscalc.Ammo], radaBlessing)
 	}
 
 	bisMelee := getBisFromGearOptions(bisCalcSetup, Melee, gearSetupOptions)
@@ -120,6 +118,15 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 	for gearSlot, gearOpt := range gearSetupOptions[attackStyle].gearOptions {
 		gearOptions[gearSlot] = gearOpt
 	}
+	//add empty id to allow one handed
+	gearOptions[dpscalc.Shield] = append(gearOptions[dpscalc.Shield], dpscalc.EmptyItemId)
+	//add empty ammo to allow bp/bowfa, if melee/magic only put empty id
+	if attackStyle == Ranged {
+		gearOptions[dpscalc.Ammo] = append(gearOptions[dpscalc.Ammo], dpscalc.EmptyItemId)
+	} else {
+		gearOptions[dpscalc.Ammo] = []int{dpscalc.EmptyItemId}
+	}
+
 	gearOptions[dpscalc.Weapon] = gearSetupOptions[attackStyle].weapons
 	if setup.IsSpecialAttack {
 		gearOptions[dpscalc.Weapon] = gearSetupOptions[attackStyle].specWeapons
@@ -129,11 +136,6 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 		//TODO maybe include by default, we need a special filter for these items in gearjson
 		gearOptions[dpscalc.Head] = append(gearOptions[dpscalc.Head], slayerHelm)
 		gearSetup.IsOnSlayerTask = true
-	}
-
-	//there is no ammo slot that increases melee/magic?
-	if attackStyle != Ranged {
-		delete(gearOptions, dpscalc.Ammo)
 	}
 
 	gearOptionsNext := gearOptionsIterator(gearOptions)
@@ -150,17 +152,7 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 			gear[gearSlot] = dpscalc.GearItem{Id: gearItem.Id}
 		}
 
-		weaponId := gearOption[dpscalc.Weapon].Id
-		//remove shield if 2h
-		if allItems[weaponId].Is2h {
-			delete(gear, dpscalc.Shield)
-		}
-
-		if weaponId == blowpipe || weaponId == bowfa {
-			delete(gear, dpscalc.Ammo)
-		}
-
-		//TODO invalidate setups here like blowpipe with different ammo types, same dps so could save bunch of calcs
+		//TODO invalidate setups to save calcs
 		if !isGearSetupOptionValid(gearOption) {
 			return
 		}
@@ -195,13 +187,13 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 
 	for ; err == nil; gearOption, err = gearOptionsNext() {
 		attackStyles := dpscalc.WeaponStyles[allItems[gearOption[dpscalc.Weapon].Id].WeaponCategory]
-		for _, attackStyle := range attackStyles {
-			if attackStyle.StyleStance == dpscalc.Autocast {
+		for _, cmbtOption := range attackStyles {
+			if cmbtOption.StyleStance == dpscalc.Autocast {
 				for _, spell := range []string{"Fire Surge"} {
-					runDpsCalc(attackStyle.Name, spell)
+					runDpsCalc(cmbtOption.Name, spell)
 				}
 			}
-			runDpsCalc(attackStyle.Name, "")
+			runDpsCalc(cmbtOption.Name, "")
 		}
 	}
 
@@ -281,19 +273,32 @@ var arrows = []int{dragonArrows}
 
 func isGearSetupOptionValid(gear gearSetupOption) bool {
 	weaponId := gear[dpscalc.Weapon].Id
+	isAmmoEmpty := gear[dpscalc.Ammo].Id == dpscalc.EmptyItemId
+
+	if weaponId == blowpipe || weaponId == bowfa {
+		if !isAmmoEmpty {
+			return false
+		}
+	}
+
+	//check 2h and shield
+	if allItems[weaponId].Is2h && gear[dpscalc.Shield].Id != dpscalc.EmptyItemId {
+		return false
+	}
 
 	//check ammo
+	ammoName := allItems[gear[dpscalc.Ammo].Id].Name
 	switch allItems[weaponId].WeaponCategory {
 	case "CROSSBOW":
-		if !slices.Contains(bolts, gear[dpscalc.Ammo].Id) {
+		if !slices.Contains(bolts, gear[dpscalc.Ammo].Id) || !strings.Contains(ammoName, "bolts") {
 			return false
 		}
 	case "BOW":
-		if !slices.Contains(arrows, gear[dpscalc.Ammo].Id) {
+		if !slices.Contains(arrows, gear[dpscalc.Ammo].Id) || !strings.Contains(ammoName, "arrow") {
 			return false
 		}
 	case "THROWN", "CHINCHOMPAS":
-		if gear[dpscalc.Ammo].Id != radaBlessing {
+		if !isAmmoEmpty {
 			return false
 		}
 	}

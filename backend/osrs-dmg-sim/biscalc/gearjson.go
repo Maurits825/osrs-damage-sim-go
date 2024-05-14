@@ -27,23 +27,6 @@ func init() {
 func RunGearJsonBis(bisCalcSetup *BisCalcInputSetup) BisCalcResults {
 	itemIds := loadJson()
 	options := getGearSetupOptions(itemIds)
-
-	//TODO remove
-	// totalOptions := 1
-	// style := Magic
-	// for _, slot := range allGearSlots {
-	// 	l := len(options[style].gearOptions[slot])
-	// 	if l > 0 {
-	// 		totalOptions *= l
-	// 		fmt.Println(allItems[options[style].gearOptions[slot][0]].Name)
-	// 		fmt.Println(allItems[options[style].gearOptions[slot][1]].Name)
-	// 	}
-	// }
-	// fmt.Println("total options: ", totalOptions)
-	// for _, itemId := range options[style].weapons {
-	// 	fmt.Println(allItems[itemId].Name)
-	// }
-	// fmt.Println(options[style].weapons)
 	bisResults := RunBisDpsCalc(bisCalcSetup, options)
 	return bisResults
 }

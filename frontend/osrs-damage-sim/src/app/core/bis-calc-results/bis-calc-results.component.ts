@@ -50,6 +50,7 @@ export class BisCalcResultsComponent implements OnChanges {
     for (const slot of Object.keys(gearSetup.gear)) {
       const gearSlot: GearSlot = slot as GearSlot;
       const itemId: number = gearSetup.gear[gearSlot].id;
+      if (itemId == -1) continue;
       const item: Item = this.itemService.getItem(gearSlot, itemId);
       updatedGear[gearSlot] = item;
     }

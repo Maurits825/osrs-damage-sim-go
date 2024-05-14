@@ -1,6 +1,8 @@
 package dpscalc
 
 const (
+	EmptyItemId = -1
+
 	harmStaff            = 24423
 	blowpipe             = 12926
 	tumekenShadow        = 27275

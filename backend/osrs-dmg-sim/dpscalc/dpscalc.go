@@ -96,6 +96,10 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	equippedGear := equippedGear{make([]int, 0)}
 	equipmentStats := equipmentStats{}
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
+		if gearItem.Id == EmptyItemId {
+			continue
+		}
+
 		itemId := getIdAlias(gearItem.Id)
 
 		itemStats := allItems[itemId].equipmentStats
