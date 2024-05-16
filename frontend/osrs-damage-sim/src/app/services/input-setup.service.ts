@@ -119,7 +119,8 @@ export class InputSetupService {
     };
   }
 
-  private convertInputObjectToJson(inputObject: InputSetup): string {
+  //TODO refactor?
+  public convertInputObjectToJson(inputObject: unknown): string {
     return JSON.stringify(
       inputObject,
       this.replacerWithPath((key: string, value: unknown, path: string) => {

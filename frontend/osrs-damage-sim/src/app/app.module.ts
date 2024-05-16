@@ -41,6 +41,9 @@ import { LoadRlSetupGuideModalComponent } from './shared/modals/load-rl-setup-gu
 import { DpsResultsComponent } from './core/dps-results/dps-results.component';
 import { MaxHitPipe } from './shared/pipes/max-hit.pipe';
 import { GearSetupLabelComponent } from './shared/components/gear-setup-label/gear-setup-label.component';
+import { BisCalcResultsComponent } from './core/bis-calc-results/bis-calc-results.component';
+import { BisCalcComponent } from './core/bis-calc/bis-calc.component';
+import { BisCalcSettingsComponent } from './core/bis-calc-settings/bis-calc-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +80,9 @@ import { GearSetupLabelComponent } from './shared/components/gear-setup-label/ge
     DpsResultsComponent,
     MaxHitPipe,
     GearSetupLabelComponent,
+    BisCalcResultsComponent,
+    BisCalcComponent,
+    BisCalcSettingsComponent,
   ],
   imports: [
     NgSelectModule,

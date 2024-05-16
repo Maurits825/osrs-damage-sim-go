@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center mb-4">
+    <div>
+      <img style="width: 70px" class="img-fluid" src="assets/img/menu/bis-detail.png" />
+    </div>
+    <div class="ms-2"><h1 class="display-1">BiS Calculator (wip)</h1></div>
+  </div>
+
+  <div class="mb-2" *ngIf="bisResults">
+    <app-bis-calc-results [bisResults]="bisResults" [bisCalcInputSetup]="bisCalcInputSetup"></app-bis-calc-results>
+  </div>
+
+  <hr class="row mb-4" />
+
+  <app-bis-calc-settings (bisCalcInputSetupChanged)="onBisCalcInputSetupChanged($event)"></app-bis-calc-settings>
+
+  <div class="mb-4">
+    <div class="d-flex mb-1">
+      <div class="flex-fill btn-group btn-group-lg" role="group">
+        <ng-container *ngIf="loading">
+          <button class="btn btn-primary" type="button" [disabled]="loading">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only"> Loading...</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+          <button class="btn btn-primary" type="button" (click)="runBisCalc()">
+            <span class="sr-only">Run BiS Calculator</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div *ngIf="loading">&nbsp;</div>
+
+    <ng-container *ngIf="!loading">
+      <div class="text-success" *ngIf="bisResults && !bisResults?.error">BiS calculator done, results above!</div>
+      <div class="text-danger" *ngIf="bisResults?.error">{{ bisResults.error }}</div>
+    </ng-container>
+  </div>
+
+  <!-- TODO include/exclude/lock items in future -->
+  <!-- <app-gear-setup-tabs></app-gear-setup-tabs> -->
+</div>

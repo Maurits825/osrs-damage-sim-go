@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
 )
 
 const (
@@ -33,12 +34,17 @@ type InputGearSetupLabels struct {
 	GearSetupName          string `json:"gearSetupName"`
 }
 
-var allItems equipmentItems = loadItemWikiData()
-var AllNpcs npcs = loadNpcWikiData()
+var allItems equipmentItems
+var allNpcs npcs
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
 var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
+
+func init() {
+	allItems = getEquipmentItems(wikidata.GetItemData())
+	allNpcs = getNpcs(wikidata.GetNpcData())
+}
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
@@ -46,7 +52,7 @@ func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, inputSetup.EnableDebugTrack)
 	}
 
-	return &DpsCalcResults{getDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
+	return &DpsCalcResults{GetDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
 }
 
 func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, enableTrack bool) DpsCalcResult {
@@ -81,7 +87,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 }
 func GetNpc(id string) npc {
 	npcId, _ := strconv.Atoi(id)
-	npc := AllNpcs[id]
+	npc := allNpcs[id]
 	npc.id = npcId
 	return npc
 }
@@ -90,9 +96,13 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	equippedGear := equippedGear{make([]int, 0)}
 	equipmentStats := equipmentStats{}
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
+		if gearItem.Id == EmptyItemId {
+			continue
+		}
+
 		itemId := getIdAlias(gearItem.Id)
 
-		itemStats := allItems[strconv.Itoa(itemId)].equipmentStats
+		itemStats := allItems[itemId].equipmentStats
 		equipmentStats.addStats(&itemStats)
 
 		equippedGear.ids = append(equippedGear.ids, itemId)
@@ -111,7 +121,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	if equippedGear.isEquipped(blowpipe) {
-		darts := allItems[strconv.Itoa(inputGearSetup.GearSetup.BlowpipeDarts.Id)].equipmentStats
+		darts := allItems[inputGearSetup.GearSetup.BlowpipeDarts.Id].equipmentStats
 		equipmentStats.addStats(&darts)
 	}
 

@@ -8,6 +8,7 @@ import { InputSetupService } from 'src/app/services/input-setup.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Observable, map, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-dps-results',
@@ -62,7 +63,7 @@ export class DpsResultsComponent implements OnChanges, OnInit {
 
       this.sortDpsResults('theoreticalDps');
 
-      this.inputSetup = this.inputSetupService.getInputSetup();
+      this.inputSetup = cloneDeep(this.inputSetupService.getInputSetup());
 
       this.selectedDpsGrapherResult = this.dpsResults.dpsGrapherResults.results.find(
         (dpsResult) => dpsResult.graphType === 'Dragon warhammer'

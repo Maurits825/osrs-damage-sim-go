@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/biscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
 	"github.com/aws/aws-lambda-go/events"
@@ -59,6 +60,7 @@ func getGinEngine() *gin.Engine {
 	router.GET("/status", getStatus)
 	router.GET("/lookup-highscore", highscoreLookup)
 	router.POST("/run-dps-calc", dpsCalc)
+	router.POST("/run-bis-calc", bisCalc)
 	return router
 }
 
@@ -82,6 +84,21 @@ func dpsCalc(c *gin.Context) {
 	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
 	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
 	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
+}
+
+func bisCalc(c *gin.Context) {
+	var inputSetup biscalc.BisCalcInputSetup
+
+	if err := c.ShouldBindJSON(&inputSetup); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	//TODO validation?
+	//TODO fe for json inpput or default, could do some fe input work
+	bisCalcResults := biscalc.RunBisDpsCalc(&inputSetup, nil)
+	// bisCalcResults := biscalc.RunGearJsonBis(&inputSetup)
+	c.JSON(http.StatusOK, bisCalcResults)
 }
 
 func highscoreLookup(c *gin.Context) {

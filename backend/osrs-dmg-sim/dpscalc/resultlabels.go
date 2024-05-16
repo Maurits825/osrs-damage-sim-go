@@ -32,7 +32,7 @@ var statDrainLabels = map[StatDrainWeapon]string{
 	BarrelChestAnchor: "Anchor",
 }
 
-func getDpsCalcTitle(globalSettings *GlobalSettings) string {
+func GetDpsCalcTitle(globalSettings *GlobalSettings) string {
 	npc := GetNpc(globalSettings.Npc.Id)
 	npc.ApplyNpcScaling(globalSettings)
 
