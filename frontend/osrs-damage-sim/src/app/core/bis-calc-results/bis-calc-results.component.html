@@ -3,7 +3,7 @@
 
   <div class="mb-4">
     <h5 class="fw-light text-center">Melee BiS</h5>
-    <div class="d-flex">
+    <div class="d-flex justify-content-between flex-wrap">
       <ng-container *ngFor="let result of bisResults.meleeGearSetups">
         <ng-container *ngTemplateOutlet="gearViewTemplate; context: { $implicit: result, attackType: 'melee' }">
         </ng-container>
@@ -13,7 +13,7 @@
 
   <div class="mb-4">
     <h5 class="fw-light text-center">Ranged BiS</h5>
-    <div class="d-flex">
+    <div class="d-flex justify-content-between flex-wrap">
       <ng-container *ngFor="let result of bisResults.rangedGearSetups">
         <ng-container *ngTemplateOutlet="gearViewTemplate; context: { $implicit: result, attackType: 'ranged' }">
         </ng-container>
@@ -23,7 +23,7 @@
 
   <div class="mb-4">
     <h5 class="fw-light text-center">Magic BiS</h5>
-    <div class="d-flex">
+    <div class="d-flex justify-content-between flex-wrap">
       <ng-container *ngFor="let result of bisResults.magicGearSetups">
         <ng-container *ngTemplateOutlet="gearViewTemplate; context: { $implicit: result, attackType: 'magic' }">
         </ng-container>
@@ -75,7 +75,12 @@
           </div>
         </div>
       </ng-container>
-      <div>{{ result.attackStyle }}</div>
+      <ng-container *ngIf="result.spell; else noSpell">
+        <div><img src="assets/img/magic_spells/{{ result.spell }}.png" /> {{ result.spell }}</div>
+      </ng-container>
+      <ng-template #noSpell>
+        <div>{{ result.attackStyle }}</div>
+      </ng-template>
       <div>Dps: {{ result.theoreticalDps | number : "1.3-3" }}</div>
       <div>Max hit: {{ result.maxHit | maxHit }}</div>
       <div>Accuracy: {{ result.accuracy | number : "1.2-2" }}%</div>

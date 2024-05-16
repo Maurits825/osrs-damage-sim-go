@@ -38,6 +38,7 @@ type BisCalcResults struct {
 type BisCalcResult struct {
 	Gear           map[dpscalc.GearSlot]dpscalc.GearItem `json:"gear"`
 	AttackStyle    string                                `json:"attackStyle"`
+	Spell          string                                `json:"spell"`
 	TheoreticalDps float32                               `json:"theoreticalDps"`
 	MaxHit         []int                                 `json:"maxHit"`
 	Accuracy       float32                               `json:"accuracy"`
@@ -130,6 +131,7 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 	gearOptions[dpscalc.Weapon] = gearSetupOptions[attackStyle].weapons
 	if setup.IsSpecialAttack {
 		gearOptions[dpscalc.Weapon] = gearSetupOptions[attackStyle].specWeapons
+		gearSetup.IsSpecialAttack = true
 	}
 
 	if setup.IsOnSlayerTask {
@@ -167,6 +169,7 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 		if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
 			newBisResult := BisCalcResult{
 				Gear:           gear,
+				Spell:          spell,
 				TheoreticalDps: dpsCalcResult.TheoreticalDps,
 				MaxHit:         dpsCalcResult.MaxHit,
 				Accuracy:       dpsCalcResult.Accuracy,
@@ -185,8 +188,10 @@ func getBisFromGearOptions(setup *BisCalcInputSetup, attackStyle AttackStyle, ge
 		}
 	}
 
+	//TODO other ways to save calcs??
 	for ; err == nil; gearOption, err = gearOptionsNext() {
 		attackStyles := dpscalc.WeaponStyles[allItems[gearOption[dpscalc.Weapon].Id].WeaponCategory]
+		//TODO maybe have specific melee/ranged/magic for getting attack styles
 		for _, cmbtOption := range attackStyles {
 			if cmbtOption.StyleStance == dpscalc.Autocast {
 				for _, spell := range []string{"Fire Surge"} {

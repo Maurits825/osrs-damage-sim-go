@@ -12,6 +12,7 @@ export interface BisCalcResults {
 
 export interface BisCalcResult {
   gear: Record<GearSlot, Item>;
+  spell: string;
   attackStyle: string;
   theoreticalDps: number;
   maxHit: number[];

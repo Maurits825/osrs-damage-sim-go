@@ -95,8 +95,9 @@ func bisCalc(c *gin.Context) {
 	}
 
 	//TODO validation?
-	// bisCalcResults := biscalc.RunBisDpsCalc(&inputSetup, nil)
-	bisCalcResults := biscalc.RunGearJsonBis(&inputSetup)
+	//TODO fe for json inpput or default, could do some fe input work
+	bisCalcResults := biscalc.RunBisDpsCalc(&inputSetup, nil)
+	// bisCalcResults := biscalc.RunGearJsonBis(&inputSetup)
 	c.JSON(http.StatusOK, bisCalcResults)
 }
 

@@ -165,7 +165,7 @@ func sortByAttackStyle(style AttackStyle) func(id1, id2 int) int {
 				return i.ASlash //TODO for now
 			},
 		}
-	case Ranged:
+	case Ranged: //TODO crossbows are basically always sorted last because no rstr
 		getStats = []func(item wikidata.ItemData) int{
 			func(i wikidata.ItemData) int {
 				return i.RangedStrength
