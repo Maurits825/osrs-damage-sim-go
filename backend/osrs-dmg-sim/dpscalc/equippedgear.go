@@ -73,6 +73,7 @@ const (
 
 	boneDagger        = 8872
 	barrelChestAnchor = 10887
+	elderMaul         = 21003
 
 	blessedQuiver = 28955
 )

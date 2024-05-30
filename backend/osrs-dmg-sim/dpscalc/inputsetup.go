@@ -124,6 +124,7 @@ type StatDrainWeapon string
 // TODO others
 const (
 	DragonWarhammer   StatDrainWeapon = "Dragon warhammer"
+	ElderMaul         StatDrainWeapon = "Elder maul"
 	Arclight          StatDrainWeapon = "Arclight"
 	BandosGodsword    StatDrainWeapon = "Bandos godsword"
 	AccursedSceptre   StatDrainWeapon = "Accursed sceptre"

@@ -1,5 +1,6 @@
 export const allStatDrains = [
   'Dragon warhammer',
+  'Elder maul',
   'Bandos godsword',
   'Arclight',
   'Bone dagger',
@@ -20,6 +21,7 @@ export type StatDrainLabel = {
 
 export const statDrainLabels: StatDrainLabel = {
   'Dragon warhammer': 'Hits',
+  'Elder maul': 'Hits',
   'Bandos godsword': 'Damage',
   Arclight: 'Hits',
   'Bone dagger': 'Damage',

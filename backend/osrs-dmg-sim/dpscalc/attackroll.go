@@ -241,6 +241,9 @@ func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 	if player.equippedGear.isEquipped(barrelChestAnchor) {
 		return int(baseRoll * 2)
 	}
+	if player.equippedGear.isEquipped(elderMaul) {
+		return int(baseRoll * 1.25)
+	}
 
 	if player.equippedGear.isEquipped(blowpipe) {
 		return baseAttackRoll * 2

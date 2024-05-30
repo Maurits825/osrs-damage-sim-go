@@ -49,6 +49,12 @@ func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 				defence := currentDefence - int(currentDefence*3/10)
 				npc.combatStats.Defence = max(minDefence, defence)
 			}
+		case ElderMaul:
+			for range statDrain.Value {
+				currentDefence := npc.combatStats.Defence
+				defence := currentDefence - int(currentDefence*35/100) //TODO math
+				npc.combatStats.Defence = max(minDefence, defence)
+			}
 		case Arclight:
 			divisor := 20
 			if npc.isDemon {
