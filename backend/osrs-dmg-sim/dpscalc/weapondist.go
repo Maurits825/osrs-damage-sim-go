@@ -234,11 +234,6 @@ func getZcbSpecEffectChance(accuracy, effectChance float64) float64 {
 }
 
 func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribution) {
-	spell := player.inputGearSetup.GearSetup.Spell
-	if player.npc.id == iceDemon && !slices.Contains(fireSpells, spell) && spell != "Flames of Zamorak" {
-		attackDistribution.ScaleDamage(1, 3)
-	}
-
 	if slices.Contains(zulrahs, player.npc.id) {
 		attackDistribution.CappedReroll(50, 5, 45)
 	}
