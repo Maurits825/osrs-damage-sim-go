@@ -10,10 +10,11 @@ from custom_names import CustomNames
 from tob_npcs import TobNpcs
 
 # Modification here to include many more attributes
-npc_trait_keys = ["hitpoints", "att", "str", "def", "mage", "range",
+npc_trait_keys_int = ["hitpoints", "att", "str", "def", "mage", "range",
                   "attbns", "strbns", "defbns", "amagic", "mbns", "arange", "rngbns",
                   "dstab", "dslash", "dcrush", "dmagic", "drange", "dlight", "dstandard", "dheavy",
-                  "combat", "size", "respawn"]
+                  "combat", "size", "respawn", "elementalweaknesspercent"]
+npc_trait_keys_str = ["elementalweaknesstype"]
 
 FILTER_NPCS = ["4303", "4304", "6500", "6501"]
 
@@ -70,9 +71,15 @@ def run():
                 if is_cox or is_tob or custom_name:
                     doc["name"] = custom_name
 
-                for key in npc_trait_keys:
+                for key in npc_trait_keys_int:
                     try:
                         util.copy(key, doc, version, lambda x: int(x))
+                    except ValueError:
+                        pass
+
+                for key in npc_trait_keys_str:
+                    try:
+                        util.copy(key, doc, version, lambda x: str(x))
                     except ValueError:
                         pass
 
