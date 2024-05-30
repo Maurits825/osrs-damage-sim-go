@@ -39,7 +39,7 @@ func (prayer Prayer) getPrayerBoost() prayerBoost {
 	case RigourPrayer:
 		return prayerBoost{rangedAttack: factor{6, 5}, rangedStrength: factor{123, 100}, defence: factor{5, 4}}
 	case AuguryPrayer:
-		return prayerBoost{magicAttack: factor{5, 4}, defence: factor{5, 4}, defenceMagic: factor{5, 4}}
+		return prayerBoost{magicAttack: factor{5, 4}, magicStrength: factor{4, 1}, defence: factor{5, 4}, defenceMagic: factor{5, 4}}
 	}
 
 	return prayerBoost{}

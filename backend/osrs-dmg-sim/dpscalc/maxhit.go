@@ -222,7 +222,16 @@ func getMagicMaxHit(player *player) int {
 
 	//chaos gauntlets
 
-	magicDmgBonus := player.equipmentStats.damageStats.magicStrength
+	prayerStr := 0
+	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
+		prayerBoost := prayer.getPrayerBoost()
+		if prayerBoost.magicStrength.denominator != 0 {
+			//TODO kinda scuffed, can only be one dmg prayer, so just break out?
+			prayerStr = 10 * int(prayerBoost.magicStrength.numerator/prayerBoost.magicStrength.denominator)
+			dpsDetailEntries.TrackValue(dpsdetail.DamageLevelPrayer, prayerStr)
+		}
+	}
+	magicDmgBonus := player.equipmentStats.damageStats.magicStrength + prayerStr
 
 	gearMagicBonus := 0
 	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
