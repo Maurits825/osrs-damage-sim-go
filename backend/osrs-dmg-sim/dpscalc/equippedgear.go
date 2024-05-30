@@ -76,6 +76,8 @@ const (
 	elderMaul         = 21003
 
 	blessedQuiver = 28955
+
+	inqMace = 24417
 )
 
 var virtusSet = []int{26241, 26243, 26245}

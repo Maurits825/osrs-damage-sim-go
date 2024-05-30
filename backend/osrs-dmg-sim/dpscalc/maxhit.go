@@ -108,6 +108,9 @@ func getMeleeMaxHit(player *player) int {
 			inqCount = 5
 		}
 		if inqCount > 0 {
+			if player.equippedGear.isEquipped(inqMace) {
+				inqCount *= 3
+			}
 			maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitInq, maxHit, 200+inqCount, 200)
 		}
 	}

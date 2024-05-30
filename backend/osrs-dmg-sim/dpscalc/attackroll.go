@@ -101,6 +101,9 @@ func getMeleeAttackRoll(player *player) int {
 			inqCount = 5
 		}
 		if inqCount > 0 {
+			if player.equippedGear.isEquipped(inqMace) {
+				inqCount *= 3
+			}
 			attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyInq, attackRoll, 200+inqCount, 200)
 		}
 	}
