@@ -95,6 +95,7 @@ func GetNpc(id string) npc {
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
 	equippedGear := equippedGear{make([]int, 0)}
 	equipmentStats := equipmentStats{}
+	weaponStyle := "UNARMED"
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
 		if gearItem.Id == EmptyItemId {
 			continue
@@ -102,13 +103,15 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 		itemId := getIdAlias(gearItem.Id)
 
-		itemStats := allItems[itemId].equipmentStats
+		item := allItems[itemId]
+		itemStats := item.equipmentStats
 		equipmentStats.addStats(&itemStats)
 
 		equippedGear.ids = append(equippedGear.ids, itemId)
 
 		if gearSlot == Weapon {
 			equipmentStats.attackSpeed = itemStats.attackSpeed
+			weaponStyle = item.weaponStyle
 		}
 	}
 
@@ -160,7 +163,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
-	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear}
+	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle}
 }
 
 func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy float32, attackRoll int, hitDist []float64) {

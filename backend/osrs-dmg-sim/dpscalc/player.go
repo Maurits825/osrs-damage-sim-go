@@ -14,11 +14,14 @@ type offensiveStats struct {
 }
 
 type defensiveStats struct {
-	stab   int
-	slash  int
-	crush  int
-	magic  int
-	ranged int
+	stab     int
+	slash    int
+	crush    int
+	magic    int
+	ranged   int
+	light    int
+	standard int
+	heavy    int
 }
 
 type damageStats struct {
@@ -29,6 +32,7 @@ type damageStats struct {
 
 type equipmentItem struct {
 	name           string
+	weaponStyle    string
 	equipmentStats equipmentStats
 }
 
@@ -130,4 +134,5 @@ type player struct {
 	equipmentStats  equipmentStats
 	combatStyle     combatStyle
 	equippedGear    equippedGear
+	weaponStyle     string
 }

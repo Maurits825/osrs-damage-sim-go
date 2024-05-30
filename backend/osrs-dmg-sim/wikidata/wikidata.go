@@ -46,11 +46,14 @@ type NpcData struct {
 	MagicStrength  int `json:"rngbns"`
 	RangedStrength int `json:"mbns"`
 
-	DStab   int `json:"dstab"`
-	DSlash  int `json:"dslash"`
-	DSCrush int `json:"dcrush"`
-	DMagic  int `json:"dmagic"`
-	DRange  int `json:"drange"`
+	DStab     int `json:"dstab"`
+	DSlash    int `json:"dslash"`
+	DSCrush   int `json:"dcrush"`
+	DMagic    int `json:"dmagic"`
+	DRange    int `json:"drange"`
+	DLight    int `json:"dlight"`
+	DStandard int `json:"dstandard"`
+	DHeavy    int `json:"dheavy"`
 
 	Size            int  `json:"size"`
 	IsKalphite      bool `json:"isKalphite"`

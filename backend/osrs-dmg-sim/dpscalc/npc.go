@@ -93,11 +93,14 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		}
 
 		n.defensiveStats = defensiveStats{
-			stab:   npcData.DStab,
-			slash:  npcData.DSlash,
-			crush:  npcData.DSCrush,
-			magic:  npcData.DMagic,
-			ranged: npcData.DRange,
+			stab:     npcData.DStab,
+			slash:    npcData.DSlash,
+			crush:    npcData.DSCrush,
+			magic:    npcData.DMagic,
+			ranged:   npcData.DRange,
+			light:    npcData.DLight,
+			standard: npcData.DStandard,
+			heavy:    npcData.DHeavy,
 		}
 
 		npcs[id] = n
