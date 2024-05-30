@@ -153,7 +153,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	if equippedGear.isWearingEliteMageVoid() {
-		equipmentStats.damageStats.magicStrength += 25
+		equipmentStats.damageStats.magicStrength += 50
 	}
 
 	if equippedGear.isBlessedQuiverBonus() {
