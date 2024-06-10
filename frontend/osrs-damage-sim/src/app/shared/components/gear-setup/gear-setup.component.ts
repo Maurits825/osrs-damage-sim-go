@@ -236,6 +236,9 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   updateSpecialGear(): void {
     this.specialGear = this.specialGearService.getSpecialGear(this.gearSetup);
+    if (!this.specialGear.isSpecialWeapon) {
+      this.gearSetup.isSpecial = false;
+    }
   }
 
   selectedSpellChange(): void {
