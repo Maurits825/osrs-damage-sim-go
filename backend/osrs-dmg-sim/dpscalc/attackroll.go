@@ -2,7 +2,6 @@ package dpscalc
 
 import (
 	"math"
-	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
@@ -216,17 +215,23 @@ func getMagicAttackRoll(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
-	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
+	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && player.spell.spellbook == standardSpellBook {
 		attackRoll = int(float32(attackRoll*11) / float32(10))
 	}
 	//TODO water tome w/ water spell
+
+	if player.npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
+		if player.npc.elementalWeaknessType == player.spell.elementalType {
+			attackRoll += int(player.npc.elementalWeaknessPercent * baseRoll / 100)
+		}
+	}
 
 	return attackRoll
 }
 
 func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 	baseRoll := float32(baseAttackRoll)
-	if player.equippedGear.isEquipped(bandosGodsword) {
+	if player.equippedGear.isEquipped(bandosGodsword) || player.equippedGear.isEquipped(zamorakGodsword) || player.equippedGear.isEquipped(armadylGodsword) {
 		return baseAttackRoll * 2
 	}
 	if player.equippedGear.isEquipped(osmumtenFang) {

@@ -119,7 +119,8 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 
 	cmbStyle := parseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
-	if inputGearSetup.GearSetup.Spell != "" {
+	spell := getSpellByName(inputGearSetup.GearSetup.Spell)
+	if spell.name != "" {
 		cmbStyle = combatStyle{Magic, Autocast}
 	}
 
@@ -138,7 +139,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		equipmentStats.offensiveStats.magic *= factor
 	}
 
-	if slices.Contains(ancientSpells, inputGearSetup.GearSetup.Spell) {
+	if spell.spellbook == ancientSpellBook {
 		for _, virtus := range virtusSet {
 			if equippedGear.isEquipped(virtus) {
 				equipmentStats.damageStats.magicStrength += 30
@@ -163,7 +164,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
-	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle}
+	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell}
 }
 
 func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy float32, attackRoll int, hitDist []float64) {
@@ -190,9 +191,8 @@ func getAttackSpeed(player *player) int {
 		attackSpeed -= 1
 	}
 
-	spell := player.inputGearSetup.GearSetup.Spell
-	if spell != "" {
-		if player.equippedGear.isEquipped(harmStaff) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
+	if player.spell.name != "" {
+		if player.equippedGear.isEquipped(harmStaff) && player.spell.spellbook == standardSpellBook {
 			return 4
 		}
 		return 5

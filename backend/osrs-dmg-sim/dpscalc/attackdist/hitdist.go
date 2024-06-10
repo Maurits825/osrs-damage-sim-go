@@ -10,7 +10,7 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDi
 	hitProbability := accuracy / (float64(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {
-		dist.Hits = append(dist.Hits, WeightedHit{hitProbability, []int{(i)}})
+		dist.Hits = append(dist.Hits, WeightedHit{hitProbability, []int{(max(1, i))}}) //TODO test if right
 	}
 
 	//also add miss hit
@@ -30,11 +30,12 @@ func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum in
 		hitsplats[i] = hits
 
 	}
-	product := cross(hitsplats)
+	product := cross(hitsplats) //TODO we modify cross to get 0->1 roll?
 
 	dist := &HitDistribution{make([]WeightedHit, len(product))}
 	probability := accuracy / float64(len(product))
 	for i, expandedHitsplat := range product {
+		//TODO otherwise we have to go through the hitsplats and max(1, hit) on them?
 		dist.Hits[i] = WeightedHit{Probability: probability, Hitsplats: expandedHitsplat}
 	}
 

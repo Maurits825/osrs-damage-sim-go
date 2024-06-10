@@ -143,15 +143,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
-	spell := player.inputGearSetup.GearSetup.Spell
-	if player.npc.id == iceDemon && (slices.Contains(fireSpells, spell) || spell == "Flames of Zamorak") {
-		attackDistribution.ScaleDamage(3, 2)
-	}
-	//TODO seared pages?
-	if player.equippedGear.isEquipped(tomeOfFire) && slices.Contains(fireSpells, spell) {
-		attackDistribution.ScaleDamage(3, 2)
-	}
-	//TODO tome of water
+	//TODO tome of water??
 
 	//TODO ahrims
 

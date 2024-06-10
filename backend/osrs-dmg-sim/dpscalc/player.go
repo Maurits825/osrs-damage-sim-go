@@ -135,4 +135,5 @@ type player struct {
 	combatStyle     combatStyle
 	equippedGear    equippedGear
 	weaponStyle     string
+	spell           spell
 }
