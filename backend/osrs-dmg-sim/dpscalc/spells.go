@@ -1,93 +1,133 @@
 package dpscalc
 
-var spellDamage = map[string]int{
-	"Wind Strike":       2,
-	"Water Strike":      4,
-	"Earth Strike":      6,
-	"Fire Strike":       8,
-	"Wind Bolt":         9,
-	"Water Bolt":        10,
-	"Earth Bolt":        11,
-	"Fire Bolt":         12,
-	"Wind Blast":        13,
-	"Water Blast":       14,
-	"Crumble Undead":    15,
-	"Earth Blast":       15,
-	"Fire Blast":        16,
-	"Wind Wave":         17,
-	"Water Wave":        18,
-	"Earth Wave":        19,
-	"Saradomin Strike":  20,
-	"Claws of Guthix":   20,
-	"Flames of Zamorak": 20,
-	"Fire Wave":         20,
-	"Wind Surge":        21,
-	"Water Surge":       22,
-	"Earth Surge":       23,
-	"Fire Surge":        24,
-	"Iban Blast":        25,
-	"Smoke Rush":        13,
-	"Shadow Rush":       14,
-	"Blood Rush":        15,
-	"Ice Rush":          16,
-	"Smoke Burst":       17,
-	"Shadow Burst":      18,
-	"Blood Burst":       21,
-	"Ice Burst":         22,
-	"Smoke Blitz":       23,
-	"Shadow Blitz":      24,
-	"Blood Blitz":       25,
-	"Ice Blitz":         26,
-	"Smoke Barrage":     27,
-	"Shadow Barrage":    28,
-	"Blood Barrage":     29,
-	"Ice Barrage":       30,
+import (
+	"strings"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+)
+
+type elementalType string
+
+const (
+	NoneElement  elementalType = "No"
+	WaterElement elementalType = "Water"
+	FireElement  elementalType = "Fire"
+	EarthElement elementalType = "Earth"
+	AirElement   elementalType = "Air"
+)
+
+type spellBook string
+
+const (
+	standardSpellBook spellBook = "standard"
+	ancientSpellBook  spellBook = "ancient"
+	lunarSpellBook    spellBook = "lunar"
+	arceuusSpellBook  spellBook = "arceuus"
+)
+
+type spell struct {
+	name          string
+	maxHit        int
+	spellbook     spellBook
+	elementalType elementalType
 }
 
-var standardSpells = []string{
-	"Wind Strike",
-	"Water Strike",
-	"Earth Strike",
-	"Fire Strike",
-	"Wind Bolt",
-	"Water Bolt",
-	"Earth Bolt",
-	"Fire Bolt",
-	"Wind Blast",
-	"Water Blast",
-	"Crumble Undead",
-	"Earth Blast",
-	"Fire Blast",
-	"Wind Wave",
-	"Water Wave",
-	"Earth Wave",
-	"Saradomin Strike",
-	"Claws of Guthix",
-	"Flames of Zamorak",
-	"Fire Wave",
-	"Wind Surge",
-	"Water Surge",
-	"Earth Surge",
-	"Fire Surge",
+var spells = getSpells()
+
+func getSpells() []spell {
+	spellData := wikidata.GetSpellData()
+
+	spells := make([]spell, len(spellData))
+	for i, s := range spellData {
+		spells[i] = spell{
+			name:          s.Name,
+			maxHit:        s.MaxHit,
+			spellbook:     spellBook(s.SpellBook),
+			elementalType: elementalType(cases.Title(language.English).String(s.Element)),
+		}
+	}
+	return spells
 }
 
-var ancientSpells = []string{
-	"Smoke Rush",
-	"Shadow Rush",
-	"Blood Rush",
-	"Ice Rush",
-	"Smoke Burst",
-	"Shadow Burst",
-	"Blood Burst",
-	"Ice Burst",
-	"Smoke Blitz",
-	"Shadow Blitz",
-	"Blood Blitz",
-	"Ice Blitz",
-	"Smoke Barrage",
-	"Shadow Barrage",
-	"Blood Barrage",
-	"Ice Barrage",
+func getSpellByName(name string) spell {
+	for _, s := range spells {
+		if s.name == name {
+			return s
+		}
+	}
+	return spell{}
 }
 
-var fireSpells = []string{"Fire Strike", "Fire Bolt", "Fire Blast", "Fire Wave", "Fire Surge"}
+func getSpellMaxHit(spell spell, magicLevel int) int {
+	if spell.elementalType == NoneElement {
+		return spell.maxHit
+	}
+
+	spellClass := strings.Split(spell.name, " ")[1]
+	switch spellClass {
+	case "Strike":
+		if magicLevel >= 13 {
+			return getSpellByName("Fire " + spellClass).maxHit
+		}
+		if magicLevel >= 9 {
+			return getSpellByName("Earth " + spellClass).maxHit
+		}
+		if magicLevel >= 5 {
+			return getSpellByName("Water " + spellClass).maxHit
+		}
+		return getSpellByName("Wind " + spellClass).maxHit
+
+	case "Bolt":
+		if magicLevel >= 35 {
+			return getSpellByName("Fire " + spellClass).maxHit
+		}
+		if magicLevel >= 29 {
+			return getSpellByName("Earth " + spellClass).maxHit
+		}
+		if magicLevel >= 23 {
+			return getSpellByName("Water " + spellClass).maxHit
+		}
+		return getSpellByName("Wind " + spellClass).maxHit
+
+	case "Blast":
+		if magicLevel >= 59 {
+			return getSpellByName("Fire " + spellClass).maxHit
+		}
+		if magicLevel >= 53 {
+			return getSpellByName("Earth " + spellClass).maxHit
+		}
+		if magicLevel >= 47 {
+			return getSpellByName("Water " + spellClass).maxHit
+		}
+		return getSpellByName("Wind " + spellClass).maxHit
+
+	case "Wave":
+		if magicLevel >= 75 {
+			return getSpellByName("Fire " + spellClass).maxHit
+		}
+		if magicLevel >= 70 {
+			return getSpellByName("Earth " + spellClass).maxHit
+		}
+		if magicLevel >= 65 {
+			return getSpellByName("Water " + spellClass).maxHit
+		}
+		return getSpellByName("Wind " + spellClass).maxHit
+
+	case "Surge":
+		if magicLevel >= 95 {
+			return getSpellByName("Fire " + spellClass).maxHit
+		}
+		if magicLevel >= 90 {
+			return getSpellByName("Earth " + spellClass).maxHit
+		}
+		if magicLevel >= 85 {
+			return getSpellByName("Water " + spellClass).maxHit
+		}
+		return getSpellByName("Wind " + spellClass).maxHit
+
+	default:
+		return 0
+	}
+}

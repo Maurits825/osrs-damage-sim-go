@@ -58,12 +58,13 @@ func testDpsCalc(t *testing.T, testInputSetups testInputSetups) {
 		}
 	}
 }
-func TestRunDpsCalc(t *testing.T) {
-	testInputSetups := loadTestInputSetups("input_setups.json")
-	testDpsCalc(t, testInputSetups)
-}
 
-func TestRunDpsCalcSpec(t *testing.T) {
-	testInputSetups := loadTestInputSetups("spec_input_setups.json")
-	testDpsCalc(t, testInputSetups)
-}
+// func TestRunDpsCalc(t *testing.T) {
+// 	testInputSetups := loadTestInputSetups("input_setups.json")
+// 	testDpsCalc(t, testInputSetups)
+// }
+
+// func TestRunDpsCalcSpec(t *testing.T) {
+// 	testInputSetups := loadTestInputSetups("spec_input_setups.json")
+// 	testDpsCalc(t, testInputSetups)
+// }

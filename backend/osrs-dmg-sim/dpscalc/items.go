@@ -31,6 +31,7 @@ func getEquipmentItems(items map[int]wikidata.ItemData) equipmentItems {
 		e.equipmentStats.attackSpeed = item.AttackSpeed
 
 		e.name = item.Name
+		e.weaponStyle = item.WeaponCategory
 
 		equipmentItems[id] = e
 	}

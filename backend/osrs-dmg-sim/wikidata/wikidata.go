@@ -46,11 +46,16 @@ type NpcData struct {
 	MagicStrength  int `json:"rngbns"`
 	RangedStrength int `json:"mbns"`
 
-	DStab   int `json:"dstab"`
-	DSlash  int `json:"dslash"`
-	DSCrush int `json:"dcrush"`
-	DMagic  int `json:"dmagic"`
-	DRange  int `json:"drange"`
+	DStab                    int    `json:"dstab"`
+	DSlash                   int    `json:"dslash"`
+	DSCrush                  int    `json:"dcrush"`
+	DMagic                   int    `json:"dmagic"`
+	DRange                   int    `json:"drange"`
+	DLight                   int    `json:"dlight"`
+	DStandard                int    `json:"dstandard"`
+	DHeavy                   int    `json:"dheavy"`
+	ElementalWeaknessType    string `json:"elementalweaknesstype"`
+	ElementalWeaknessPercent int    `json:"elementalweaknesspercent"`
 
 	Size            int  `json:"size"`
 	IsKalphite      bool `json:"isKalphite"`
@@ -64,6 +69,14 @@ type NpcData struct {
 	IsTobNormalMode bool `json:"isTobNormalMode"`
 	IsTobHardMode   bool `json:"isTobHardMode"`
 	Respawn         int  `json:"respawn"`
+}
+
+type SpellData struct {
+	Name      string `json:"name"`
+	Image     string `json:"image"`
+	MaxHit    int    `json:"max_hit"`
+	SpellBook string `json:"spellbook"`
+	Element   string `json:"element"`
 }
 
 //go:embed json-data/*
@@ -85,6 +98,15 @@ func GetNpcData() map[string]NpcData {
 		return nil
 	}
 	return npcs
+}
+
+func GetSpellData() []SpellData {
+	spells, err := GetJsonData[[]SpellData]("json-data/spells.json")
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return spells
 }
 
 func GetSpecData() map[string]int {

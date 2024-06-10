@@ -2,7 +2,6 @@ package dpscalc
 
 import (
 	"math"
-	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
@@ -108,6 +107,9 @@ func getMeleeMaxHit(player *player) int {
 			inqCount = 5
 		}
 		if inqCount > 0 {
+			if player.equippedGear.isEquipped(inqMace) {
+				inqCount *= 3
+			}
 			maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitInq, maxHit, 200+inqCount, 200)
 		}
 	}
@@ -186,18 +188,18 @@ func getRangedMaxHit(player *player) int {
 	return maxHit
 }
 
-func getMagicMaxHit(player *player) int {
+func getMagicMaxHit(player *player) int { //TODO maybe look over again and have same order with wiki dps
 	baseMaxhit := 0
 	magicLevel := player.inputGearSetup.GearSetupSettings.CombatStats.Magic + player.combatStatBoost.Magic
-	spell := player.inputGearSetup.GearSetup.Spell
+	spell := player.spell
 
 	dpsDetailEntries.TrackValue(dpsdetail.DamageEffectiveLevel, magicLevel)
 
 	isVolatileStaffSpec := player.equippedGear.isEquipped(volatileStaff) && player.inputGearSetup.GearSetup.IsSpecialAttack
 	if isVolatileStaffSpec {
 		baseMaxhit = int(1.0 + (58.0 / 99.0 * float64(min(98, player.inputGearSetup.GearSetupSettings.CombatStats.Magic))))
-	} else if spell != "" {
-		baseMaxhit = spellDamage[spell]
+	} else if spell.name != "" {
+		baseMaxhit = getSpellMaxHit(spell, magicLevel)
 		//TODO magic dart
 	} else if player.equippedGear.isEquipped(tridentSeas) {
 		baseMaxhit = int(magicLevel/3 - 5)
@@ -222,10 +224,19 @@ func getMagicMaxHit(player *player) int {
 
 	//chaos gauntlets
 
-	magicDmgBonus := player.equipmentStats.damageStats.magicStrength
+	prayerStr := 0
+	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
+		prayerBoost := prayer.getPrayerBoost()
+		if prayerBoost.magicStrength.denominator != 0 {
+			//TODO kinda scuffed, can only be one dmg prayer, so just break out?
+			prayerStr = 10 * int(prayerBoost.magicStrength.numerator/prayerBoost.magicStrength.denominator)
+			dpsDetailEntries.TrackValue(dpsdetail.DamageLevelPrayer, prayerStr)
+		}
+	}
+	magicDmgBonus := player.equipmentStats.damageStats.magicStrength + prayerStr
 
 	gearMagicBonus := 0
-	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && slices.Contains(standardSpells, player.inputGearSetup.GearSetup.Spell) {
+	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && spell.spellbook == standardSpellBook {
 		gearMagicBonus += 100
 	}
 
@@ -258,6 +269,17 @@ func getMagicMaxHit(player *player) int {
 	//TODO demonbane spell
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
+	}
+
+	if player.npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
+		if player.npc.elementalWeaknessType == player.spell.elementalType {
+			maxHit += int(float32(baseMaxhit) * float32(player.npc.elementalWeaknessPercent) / 100.0)
+		}
+	}
+
+	//todo water tome
+	if player.equippedGear.isEquipped(tomeOfFire) && player.spell.elementalType == FireElement {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitTome, maxHit, 11, 10)
 	}
 
 	return maxHit

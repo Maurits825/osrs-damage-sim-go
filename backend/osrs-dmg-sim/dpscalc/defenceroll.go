@@ -45,7 +45,7 @@ func getNpcDefenceRoll(player *player) int {
 	case Magic:
 		defence = player.npc.defensiveStats.magic
 	case Ranged:
-		defence = player.npc.defensiveStats.ranged
+		defence = getRangedDefence(player.weaponStyle, player.npc.defensiveStats)
 	}
 
 	if player.equippedGear.isAnyEquipped(slashOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
@@ -62,4 +62,21 @@ func getNpcDefenceRoll(player *player) int {
 
 	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollFinal, defenceRoll)
 	return defenceRoll
+}
+
+func getRangedDefence(category string, stats defensiveStats) int {
+	baseRangedDef := stats.ranged
+	d := 0
+	switch category {
+	case "THROWN":
+		d = stats.light
+	case "BOW":
+		d = stats.standard
+	case "CROSSBOW", "CHINCHOMPAS":
+		d = stats.heavy
+	case "SALAMANDER":
+		d = (stats.light + stats.standard + stats.heavy) / 3
+	}
+
+	return max(baseRangedDef, d)
 }

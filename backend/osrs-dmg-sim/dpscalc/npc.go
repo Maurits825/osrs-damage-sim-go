@@ -29,6 +29,9 @@ type npc struct {
 	damageStats     damageStats
 	defensiveStats  defensiveStats
 
+	elementalWeaknessType    elementalType
+	elementalWeaknessPercent int
+
 	size int
 
 	isKalphite      bool
@@ -69,6 +72,9 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		n.isTobNormalMode = npcData.IsTobNormalMode
 		n.isTobHardMode = npcData.IsTobHardMode
 
+		n.elementalWeaknessPercent = npcData.ElementalWeaknessPercent
+		n.elementalWeaknessType = elementalType(npcData.ElementalWeaknessType)
+
 		n.combatStats = CombatStats{
 			Attack:    npcData.Attack,
 			Strength:  npcData.Strength,
@@ -93,11 +99,14 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		}
 
 		n.defensiveStats = defensiveStats{
-			stab:   npcData.DStab,
-			slash:  npcData.DSlash,
-			crush:  npcData.DSCrush,
-			magic:  npcData.DMagic,
-			ranged: npcData.DRange,
+			stab:     npcData.DStab,
+			slash:    npcData.DSlash,
+			crush:    npcData.DSCrush,
+			magic:    npcData.DMagic,
+			ranged:   npcData.DRange,
+			light:    npcData.DLight,
+			standard: npcData.DStandard,
+			heavy:    npcData.DHeavy,
 		}
 
 		npcs[id] = n

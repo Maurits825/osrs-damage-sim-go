@@ -60,6 +60,7 @@ const (
 	MaxHitColossalblade               DetailKey = "Max hit colossal blade"
 	MaxHitInq                         DetailKey = "Max hit inquisitor's"
 	MaxHitRatbane                     DetailKey = "Max hit ratbane"
+	MaxHitTome                        DetailKey = "Max hit tome "
 	MaxHitFinal                       DetailKey = "Max hit"
 	SpecialMaxHitFinal                DetailKey = "Spec Max hit"
 	PlayerAccuracyDawnbringer         DetailKey = "Player accuracy override dawnbringer"
