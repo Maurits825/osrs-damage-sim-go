@@ -35,9 +35,9 @@ func TestSingleGetHitDistribution(t *testing.T) {
 	attackDist := NewSingleAttackDistribution(hitDist)
 	flatDist := attackDist.GetFlatHitDistribution()
 
-	expectedZeroProb := (1 - accuracy) + hitProbability
+	expectedZeroProb := (1 - accuracy)
 	isProbabilityEqual(flatDist[0], expectedZeroProb*100, t)
-	isProbabilityEqual(flatDist[1], hitProbability*100, t)
+	isProbabilityEqual(flatDist[1], hitProbability*100*2, t)
 }
 
 func TestMultiGetHitDistribution(t *testing.T) {
@@ -57,11 +57,11 @@ func TestMultiGetHitDistribution(t *testing.T) {
 
 	miss := 1 - accuracy
 
-	//zero dmg is two hitsplats of [0, 0] -> miss,miss - miss,hit0 - hit0,miss - hit0,hit0
-	expectedZeroProb := (miss * miss) + (miss * hitProbability[1]) + (hitProbability[0] * miss) + (hitProbability[0] * hitProbability[1])
+	//zero dmg is two misses
+	expectedZeroProb := (miss * miss)
 	isProbabilityEqual(flatDist[0], expectedZeroProb*100, t)
 
-	//1 dmg -> miss,hit1 - hit0,hit1 - hit1,miss - hit1,hit0
-	expectedZeroProb = (miss * hitProbability[1]) + (hitProbability[0] * hitProbability[1]) + (hitProbability[0] * miss) + (hitProbability[0] * hitProbability[1])
-	isProbabilityEqual(flatDist[1], expectedZeroProb*100, t)
+	//1 dmg -> [miss, hit 0 or 1] - [hit 0 or 1, miss]
+	expected1HitProb := (miss * hitProbability[1] * 2) + (hitProbability[0] * 2 * miss)
+	isProbabilityEqual(flatDist[1], expected1HitProb*100, t)
 }
