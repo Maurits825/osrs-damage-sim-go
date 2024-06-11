@@ -23743,7 +23743,8 @@
   "equipable": true,
   "slot": 0,
   "amagic": 6,
-  "dmagic": 6
+  "dmagic": 6,
+  "mdmg": 1
  },
  "12420": {
   "name": "Light infinity top",
@@ -23751,7 +23752,8 @@
   "equipable": true,
   "slot": 4,
   "amagic": 22,
-  "dmagic": 22
+  "dmagic": 22,
+  "mdmg": 1
  },
  "12421": {
   "name": "Light infinity bottoms",
@@ -23759,7 +23761,8 @@
   "equipable": true,
   "slot": 7,
   "amagic": 17,
-  "dmagic": 17
+  "dmagic": 17,
+  "mdmg": 1
  },
  "12422": {
   "name": "3rd age wand",
@@ -23918,7 +23921,8 @@
   "equipable": true,
   "slot": 0,
   "amagic": 6,
-  "dmagic": 6
+  "dmagic": 6,
+  "mdmg": 1
  },
  "12458": {
   "name": "Dark infinity top",
@@ -23926,7 +23930,8 @@
   "equipable": true,
   "slot": 4,
   "amagic": 22,
-  "dmagic": 22
+  "dmagic": 22,
+  "mdmg": 1
  },
  "12459": {
   "name": "Dark infinity bottoms",
@@ -23934,7 +23939,8 @@
   "equipable": true,
   "slot": 7,
   "amagic": 17,
-  "dmagic": 17
+  "dmagic": 17,
+  "mdmg": 1
  },
  "12460": {
   "name": "Ancient platebody",
@@ -24670,7 +24676,8 @@
   "dstab": 50,
   "dslash": 52,
   "dcrush": 48,
-  "dmagic": 15
+  "dmagic": 15,
+  "mdmg": 2
  },
  "12807": {
   "name": "Odium ward (or)",
@@ -33946,7 +33953,7 @@
   "equipable": true,
   "slot": 2,
   "amagic": 12,
-  "mdmg": 10,
+  "mdmg": 5,
   "prayer": 2
  },
  "23673": {
@@ -36568,7 +36575,7 @@
   "dslash": 11,
   "dcrush": 13,
   "dmagic": 5,
-  "mdmg": 2
+  "mdmg": 3
  },
  "24666": {
   "name": "Twisted ancestral robe top",
@@ -36581,7 +36588,7 @@
   "dslash": 31,
   "dcrush": 51,
   "dmagic": 28,
-  "mdmg": 2
+  "mdmg": 3
  },
  "24668": {
   "name": "Twisted ancestral robe bottom",
@@ -36594,7 +36601,7 @@
   "dslash": 24,
   "dcrush": 30,
   "dmagic": 20,
-  "mdmg": 2
+  "mdmg": 3
  },
  "24676": {
   "name": "Vyre noble top",
@@ -46223,7 +46230,8 @@
   "dcrush": 49,
   "dmagic": 32,
   "drange": 46,
-  "str": 2
+  "str": 2,
+  "mdmg": 1
  },
  "29028": {
   "name": "Blood moon helm",
@@ -46617,5 +46625,113 @@
   "slot": 2,
   "amagic": -3,
   "mdmg": -80
+ },
+ "29489": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29491": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29493": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29495": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29497": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29499": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29501": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29503": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29505": {
+  "name": "Rainbow cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29507": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29509": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29510": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29511": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29512": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29513": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29514": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29515": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
+ },
+ "29516": {
+  "name": "Rainbow crown shirt",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 4
  }
 }

@@ -24,6 +24,12 @@ JSON_INDENT = 1
 DMM_BREACH_NPCS = ["12439", "12440", "12441", "12442", "12443", "12444", "12445", "12446", "12447", "12448", "12449",
                    "12450", "12451", "12452", "12453", "12454", "12455", "12456", "12457", "12458", "12459"]
 
+NPC_KEY_NAMES = [
+    "name", "hitpoints", "att", "str", "def", "mage", "range", "attbns", "strbns", "amagic", "mbns", "arange", "rngbns",
+    "dmagic", "combat", "size", "combat",
+    "isTobHardMode", "isTobNormalMode", "isTobEntryMode"
+]
+
 
 class GenerateWebAppData:
     def __init__(self, use_gear_slot_item_json=True, verbose=0):
@@ -86,13 +92,7 @@ class GenerateWebAppData:
                     print("Filtered: " + npc["name"])
                 continue
 
-            npc_key = (
-                    npc["name"] + "_" +
-                    str(npc.get("combat", 0)) + "_" +
-                    str(npc.get("hitpoints", 0)) + "_" +
-                    str(npc.get("isTobHardMode", 0)) + "_" +
-                    str(len(npc))
-            )
+            npc_key = self.get_npc_key(npc)
             if npc_key not in seen_npc_name:
                 npc["id"] = npc_id
                 unique_npcs.append(npc)
@@ -169,6 +169,14 @@ class GenerateWebAppData:
         special_attack_dict = GenerateWebAppData.get_special_attack_weapons()
         with open(SPECIAL_ATTACK_JSON, "w") as special_attack_json:
             json.dump(special_attack_dict, special_attack_json, indent=JSON_INDENT)
+
+    @staticmethod
+    def get_npc_key(npc) -> str:
+        key = ""
+        for name in NPC_KEY_NAMES:
+            key += str(npc.get(name, 0)) + "_"
+
+        return key
 
     @staticmethod
     def get_cached_item(gear_slot_items_old, slot, item_id, item_name):
