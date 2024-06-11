@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -59,8 +60,11 @@ func getGinEngine() *gin.Engine {
 
 	router.GET("/status", getStatus)
 	router.GET("/lookup-highscore", highscoreLookup)
+
 	router.POST("/run-dps-calc", dpsCalc)
 	router.POST("/run-bis-calc", bisCalc)
+
+	router.POST("/wiki-dps-shortlink", wikiDpsShortlink)
 	return router
 }
 
@@ -99,6 +103,25 @@ func bisCalc(c *gin.Context) {
 	bisCalcResults := biscalc.RunBisDpsCalc(&inputSetup, nil)
 	// bisCalcResults := biscalc.RunGearJsonBis(&inputSetup)
 	c.JSON(http.StatusOK, bisCalcResults)
+}
+
+func wikiDpsShortlink(c *gin.Context) {
+	var inputSetup dpscalc.InputSetup
+
+	if err := c.ShouldBindJSON(&inputSetup); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := inputSetup.Validate(); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	//TODO create the short link payload and return the shortlink string
+	shortLink := dpscalc.CreateWikiDpsShortlink(inputSetup)
+	fmt.Println("shortlink: ", shortLink)
+	c.JSON(http.StatusOK, shortLink)
 }
 
 func highscoreLookup(c *gin.Context) {

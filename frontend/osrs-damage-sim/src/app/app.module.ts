@@ -44,6 +44,7 @@ import { GearSetupLabelComponent } from './shared/components/gear-setup-label/ge
 import { BisCalcResultsComponent } from './core/bis-calc-results/bis-calc-results.component';
 import { BisCalcComponent } from './core/bis-calc/bis-calc.component';
 import { BisCalcSettingsComponent } from './core/bis-calc-settings/bis-calc-settings.component';
+import { WikiDpsShortlinkComponent } from './core/wiki-dps-shortlink/wiki-dps-shortlink.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +84,7 @@ import { BisCalcSettingsComponent } from './core/bis-calc-settings/bis-calc-sett
     BisCalcResultsComponent,
     BisCalcComponent,
     BisCalcSettingsComponent,
+    WikiDpsShortlinkComponent,
   ],
   imports: [
     NgSelectModule,
