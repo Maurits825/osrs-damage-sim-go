@@ -2947,6 +2947,16 @@
  "RuneScape Official Forums": [
   "RSOF"
  ],
+ "bones": [
+  "Runner",
+  "Ess",
+  "Essence"
+ ],
+ "pure essence": [
+  "Runner",
+  "Ess",
+  "Essence"
+ ],
  "spec": [
   "Rush",
   "Rusher"
@@ -2997,10 +3007,6 @@
   "Essence"
  ],
  "Rune": [
-  "Ess",
-  "Essence"
- ],
- "pure essence": [
   "Ess",
   "Essence"
  ],
