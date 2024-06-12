@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-share-input-setup-modal',
   templateUrl: './share-input-setup-modal.component.html',
-  styleUrls: ['./share-input-setup-modal.component.css'],
 })
 export class ShareInputSetupModalComponent {
   @Input()

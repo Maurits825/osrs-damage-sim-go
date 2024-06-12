@@ -7,3 +7,12 @@ body {
   width: fit-content;
   margin: auto;
 }
+
+.modal-header {
+  background-color: rgb(192, 168, 134);
+  border-bottom-width: 0;
+}
+
+.modal-body {
+  background-color: rgb(141, 122, 95);
+}

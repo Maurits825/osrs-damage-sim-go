@@ -9,7 +9,6 @@ import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
 @Component({
   selector: 'app-settings-modal',
   templateUrl: './settings-modal.component.html',
-  styleUrls: ['./settings-modal.component.css'],
 })
 export class SettingsModalComponent implements OnInit {
   userSettings$: Observable<UserSettings>;
