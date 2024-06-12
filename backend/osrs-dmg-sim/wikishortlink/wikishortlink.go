@@ -48,7 +48,6 @@ type Buffs struct {
 	OnSlayerTask  bool  `json:"onSlayerTask"`
 }
 
-// TODO separate package? otherwise have these struct that pollute entire dpscalc
 type Style struct {
 	Name   string `json:"name"`
 	Stance string `json:"stance"`
