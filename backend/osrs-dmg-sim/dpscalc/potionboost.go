@@ -1,6 +1,6 @@
 package dpscalc
 
-func getPotionBoostStats(baseStats CombatStats, potionBoosts []PotionBoost) CombatStats {
+func GetPotionBoostStats(baseStats CombatStats, potionBoosts []PotionBoost) CombatStats {
 	combatBoost := CombatStats{}
 	for _, potionBoost := range potionBoosts {
 		combatBoost.boostStats(baseStats, potionBoost)

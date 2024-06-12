@@ -11,6 +11,7 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/biscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikishortlink"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
@@ -118,8 +119,7 @@ func wikiDpsShortlink(c *gin.Context) {
 		return
 	}
 
-	//TODO create the short link payload and return the shortlink string
-	shortLink := dpscalc.CreateWikiDpsShortlink(inputSetup)
+	shortLink := wikishortlink.CreateWikiDpsShortlink(inputSetup)
 	fmt.Println("shortlink: ", shortLink)
 	c.JSON(http.StatusOK, shortLink)
 }

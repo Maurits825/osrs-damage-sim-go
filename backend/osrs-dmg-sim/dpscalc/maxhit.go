@@ -7,7 +7,7 @@ import (
 )
 
 func getMaxHit(player *player) int {
-	style := player.combatStyle.combatStyleType
+	style := player.combatStyle.CombatStyleType
 	maxHit := 0
 
 	if style.isMeleeStyle() {
@@ -45,7 +45,7 @@ func getMeleeMaxHit(player *player) int {
 	}
 
 	stanceBonus := 8
-	switch player.combatStyle.combatStyleStance {
+	switch player.combatStyle.CombatStyleStance {
 	case Aggressive:
 		stanceBonus += 3
 	case Controlled:
@@ -96,7 +96,7 @@ func getMeleeMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitColossalblade, maxHit, min(0, player.npc.size), 10)
 	}
 
-	if player.combatStyle.combatStyleType == Crush {
+	if player.combatStyle.CombatStyleType == Crush {
 		inqCount := 0
 		for _, inq := range inquisitorSet {
 			if player.equippedGear.isEquipped(inq) {
@@ -129,7 +129,7 @@ func getRangedMaxHit(player *player) int {
 	}
 
 	stanceBonus := 8
-	switch player.combatStyle.combatStyleStance {
+	switch player.combatStyle.CombatStyleStance {
 	case Accurate:
 		stanceBonus += 3
 	}
