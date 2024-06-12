@@ -89,11 +89,11 @@ const (
 )
 
 type combatStyle struct {
-	combatStyleType   combatStyleType
-	combatStyleStance combatStyleStance
+	CombatStyleType   combatStyleType
+	CombatStyleStance combatStyleStance
 }
 
-func parseCombatStyle(style string) combatStyle {
+func ParseCombatStyle(style string) combatStyle {
 	re := regexp.MustCompile(`([^\s]+) \(([^/]+)/([^)]+)\)`)
 	matches := re.FindStringSubmatch(style)
 
@@ -105,8 +105,8 @@ func parseCombatStyle(style string) combatStyle {
 	combatStance := combatStyleStance(matches[3])
 
 	return combatStyle{
-		combatStyleType:   combatType,
-		combatStyleStance: combatStance,
+		CombatStyleType:   combatType,
+		CombatStyleStance: combatStance,
 	}
 }
 

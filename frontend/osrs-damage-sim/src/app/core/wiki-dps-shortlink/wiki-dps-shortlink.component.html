@@ -1,0 +1,23 @@
+<div>
+  <ng-template #shortlingError let-error="error">
+    <div *ngIf="error" class="text-danger">
+      {{ error }}
+    </div>
+    <div *ngIf="error === undefined" class="text-success">Loaded!</div>
+  </ng-template>
+  <button
+    class="btn btn-primary"
+    (click)="getWikiDpsShortlink(loadShortlinkPopover)"
+    [ngbPopover]="shortlingError"
+    triggers="manual"
+    #loadShortlinkPopover="ngbPopover"
+    [disabled]="loading"
+  >
+    <div>
+      <ng-container *ngIf="loading">
+        Wiki Dps Setup <span class="spinner-border spinner-border-sm"></span>
+      </ng-container>
+      <ng-container *ngIf="!loading"> Wiki Dps Setup <i class="bi bi-box-arrow-in-up-right"></i> </ng-container>
+    </div>
+  </button>
+</div>

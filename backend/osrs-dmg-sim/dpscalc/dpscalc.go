@@ -118,7 +118,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	npc := GetNpc(globalSettings.Npc.Id)
 	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
 
-	cmbStyle := parseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
+	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
 	spell := getSpellByName(inputGearSetup.GearSetup.Spell)
 	if spell.name != "" {
 		cmbStyle = combatStyle{Magic, Autocast}
@@ -130,7 +130,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	equipmentStats.damageStats.magicStrength *= 10
-	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.combatStyleStance != Autocast {
+	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.CombatStyleStance != Autocast {
 		factor := 3
 		if slices.Contains(ToaIds, npc.id) {
 			factor = 4
@@ -162,7 +162,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		equipmentStats.damageStats.rangedStrength += 1
 	}
 
-	combatStatBoost := getPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
+	combatStatBoost := GetPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell}
 }
@@ -187,7 +187,7 @@ func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy flo
 func getAttackSpeed(player *player) int {
 	attackSpeed := player.equipmentStats.attackSpeed
 
-	if player.combatStyle.combatStyleStance == Rapid {
+	if player.combatStyle.CombatStyleStance == Rapid {
 		attackSpeed -= 1
 	}
 
@@ -226,14 +226,14 @@ func getAccuracy(player *player) (float32, int) {
 	accuracy := getNormalAccuracy(attackRoll, defenceRoll)
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyBase, accuracy)
 
-	if player.combatStyle.combatStyleType == Magic && player.equippedGear.isEquipped(brimstoneRing) {
+	if player.combatStyle.CombatStyleType == Magic && player.equippedGear.isEquipped(brimstoneRing) {
 		effectDefenceRoll := int(defenceRoll * 9 / 10)
 		effectHitChance := getNormalAccuracy(attackRoll, effectDefenceRoll)
 		accuracy = 0.75*accuracy + 0.25*effectHitChance
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyBrimstone, accuracy)
 	}
 
-	if player.equippedGear.isEquipped(osmumtenFang) && player.combatStyle.combatStyleType == Stab {
+	if player.equippedGear.isEquipped(osmumtenFang) && player.combatStyle.CombatStyleType == Stab {
 		if slices.Contains(ToaIds, player.npc.id) {
 			accuracy = 1 - float32(math.Pow(float64(1-accuracy), 2))
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFangTOA, accuracy)

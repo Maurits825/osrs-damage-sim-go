@@ -15,7 +15,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	baseHitDist := attackdist.GetLinearHitDistribution(float64(accuracy), 0, maxHit)
 	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
 
-	style := player.combatStyle.combatStyleType
+	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
 	if player.equippedGear.isEquipped(scythe) && style.isMeleeStyle() {
@@ -189,7 +189,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribution, attackDistribution *attackdist.AttackDistribution, accuracy float64, maxHit int) {
 	//TODO bolt effects
-	style := player.combatStyle.combatStyleType
+	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 	kandarinFactor := 1.0
 	if player.inputGearSetup.GearSetup.IsKandarinDiary {
@@ -232,7 +232,7 @@ func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribu
 
 	if slices.Contains(verzikP1Ids, player.npc.id) && !player.equippedGear.isEquipped(dawnbringer) {
 		limit := 3
-		if player.combatStyle.combatStyleType.isMeleeStyle() {
+		if player.combatStyle.CombatStyleType.isMeleeStyle() {
 			limit = 10
 		}
 		attackDistribution.LinearMinTransformer(limit, 0)

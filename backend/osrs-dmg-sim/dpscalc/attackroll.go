@@ -7,7 +7,7 @@ import (
 )
 
 func getAttackRoll(player *player) int {
-	style := player.combatStyle.combatStyleType
+	style := player.combatStyle.CombatStyleType
 	attackRoll := 0
 
 	if style.isMeleeStyle() {
@@ -36,7 +36,7 @@ func getMeleeAttackRoll(player *player) int {
 	}
 
 	stanceBonus := 8
-	switch player.combatStyle.combatStyleStance {
+	switch player.combatStyle.CombatStyleStance {
 	case Accurate:
 		stanceBonus += 3
 	case Controlled:
@@ -50,7 +50,7 @@ func getMeleeAttackRoll(player *player) int {
 	}
 
 	accuracy := 0
-	switch player.combatStyle.combatStyleType {
+	switch player.combatStyle.CombatStyleType {
 	case Stab:
 		accuracy = player.equipmentStats.offensiveStats.stab
 	case Slash:
@@ -89,7 +89,7 @@ func getMeleeAttackRoll(player *player) int {
 
 	//TODO blisterwood
 
-	if player.combatStyle.combatStyleType == Crush {
+	if player.combatStyle.CombatStyleType == Crush {
 		inqCount := 0
 		for _, inq := range inquisitorSet {
 			if player.equippedGear.isEquipped(inq) {
@@ -119,7 +119,7 @@ func getRangedAttackRoll(player *player) int {
 	}
 
 	stanceBonus := 8
-	switch player.combatStyle.combatStyleStance {
+	switch player.combatStyle.CombatStyleStance {
 	case Accurate:
 		stanceBonus += 3
 	}
@@ -185,7 +185,7 @@ func getMagicAttackRoll(player *player) int {
 	}
 
 	stanceBonus := 9
-	switch player.combatStyle.combatStyleStance {
+	switch player.combatStyle.CombatStyleStance {
 	case Accurate:
 		stanceBonus += 2
 	}

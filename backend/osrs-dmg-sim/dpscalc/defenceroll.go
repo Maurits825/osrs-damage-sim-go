@@ -27,7 +27,7 @@ func getNpcDefenceRoll(player *player) int {
 	npcId := player.npc.id
 
 	level := player.npc.combatStats.Defence
-	if player.combatStyle.combatStyleType == Magic && !slices.Contains(useDefLevelForMagicDefNpcs, npcId) {
+	if player.combatStyle.CombatStyleType == Magic && !slices.Contains(useDefLevelForMagicDefNpcs, npcId) {
 		level = player.npc.combatStats.Magic
 	}
 
@@ -35,7 +35,7 @@ func getNpcDefenceRoll(player *player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceRollEffectiveLevel, level, 9)
 
 	defence := 0
-	switch player.combatStyle.combatStyleType {
+	switch player.combatStyle.CombatStyleType {
 	case Stab:
 		defence = player.npc.defensiveStats.stab
 	case Slash:

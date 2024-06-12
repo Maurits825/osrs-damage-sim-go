@@ -173,7 +173,7 @@ func (gear *equippedGear) isWearingBlackMask() bool {
 }
 
 func (gear *equippedGear) isWearingCorpbaneWeapon(player *player) bool {
-	style := player.combatStyle.combatStyleType
+	style := player.combatStyle.CombatStyleType
 	isStab := style == Stab
 
 	if gear.isEquipped(osmumtenFang) {

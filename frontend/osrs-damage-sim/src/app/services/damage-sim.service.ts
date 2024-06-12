@@ -88,6 +88,11 @@ export class DamageSimService {
     return this.http.post<BisCalcResults>(this.damageSimServiceUrl + '/run-bis-calc', inputSetupJson, options);
   }
 
+  public getWikiDpsShortlink(inputSetupJson: string): Observable<string> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<string>(this.damageSimServiceUrl + '/wiki-dps-shortlink', inputSetupJson, options);
+  }
+
   public lookupHighscore(rsn: string): Observable<CombatStats> {
     return this.http.get<Highscore>(this.damageSimServiceUrl + '/lookup-highscore?player=' + rsn).pipe(
       map((highscore: Highscore) => highscore.skills),
