@@ -8,6 +8,18 @@ provider:
   region: eu-central-1
   stage: ${opt:stage}
 
+custom:
+  corsConfig:
+    origin: 'https://maurits825.github.io'
+    headers:
+      - Content-Type
+      - X-Amz-Date
+      - Authorization
+      - X-Api-Key
+      - X-Amz-Security-Token
+      - X-Amz-User-Agent
+    allowCredentials: false
+  
 functions:
   api:
    handler: bootstrap
@@ -23,29 +35,15 @@ functions:
     - http:
         path: /run-dps-calc
         method: POST
-        cors:
-          origin: 'https://maurits825.github.io'
-          headers:
-            - Content-Type
-            - X-Amz-Date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-            - X-Amz-User-Agent
-          allowCredentials: false
+        cors: ${self:custom.corsConfig}
     - http:
         path: /run-bis-calc
         method: POST
-        cors:
-          origin: 'https://maurits825.github.io'
-          headers:
-            - Content-Type
-            - X-Amz-Date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-            - X-Amz-User-Agent
-          allowCredentials: false
+        cors: ${self:custom.corsConfig}
+    - http:
+        path: /wiki-dps-shortlink
+        method: POST
+        cors: ${self:custom.corsConfig}
     
 package:
   patterns:
