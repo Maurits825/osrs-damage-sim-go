@@ -55,6 +55,10 @@ type Style struct {
 	Type   string `json:"type"`
 }
 
+type Spell struct {
+	Name string `json:"name"`
+}
+
 type Loadout struct {
 	Name      string    `json:"name"`
 	Style     Style     `json:"style"`
@@ -63,7 +67,7 @@ type Loadout struct {
 	Equipment Equipment `json:"equipment"`
 	Prayers   []int     `json:"prayers"`
 	Buffs     Buffs     `json:"buffs"`
-	// Spell string `json:"spell"` //TODO spell object
+	Spell     Spell     `json:"spell"`
 }
 
 type DefenceReductions struct {
@@ -103,6 +107,7 @@ type wikiDpsShortLink struct {
 const shortLinkEndpoint = "https://tools.runescape.wiki/osrs-dps/shortlink"
 const wikiDpsUrl = "https://dps.osrs.wiki"
 
+// TODO figure out error stuff
 func CreateWikiDpsShortlink(inputSetup dpscalc.InputSetup) string {
 	shortlinkData := buildShortlinkData(inputSetup)
 	jsonData, err := json.Marshal(shortlinkData)
@@ -110,7 +115,6 @@ func CreateWikiDpsShortlink(inputSetup dpscalc.InputSetup) string {
 		fmt.Println("Error marshalling to JSON:", err)
 		return ""
 	}
-	fmt.Println(string(jsonData))
 
 	req, err := http.NewRequest("POST", shortLinkEndpoint, bytes.NewBuffer(jsonData))
 	if err != nil {
@@ -141,8 +145,7 @@ func CreateWikiDpsShortlink(inputSetup dpscalc.InputSetup) string {
 		return ""
 	}
 
-	// return wikiDpsUrl + "?id=" + shortLink.Data
-	return "http://localhost:3000/osrs-dps" + "?id=" + shortLink.Data
+	return wikiDpsUrl + "?id=" + shortLink.Data
 }
 
 func buildShortlinkData(inputSetup dpscalc.InputSetup) ShortlinkData {
@@ -251,6 +254,7 @@ func buildLoadout(inputGearSetup dpscalc.InputGearSetup) Loadout {
 		Equipment: eq,
 		Prayers:   buildPrayers(inputGearSetup.GearSetup),
 		Buffs:     buffs,
+		Spell:     Spell{Name: inputGearSetup.GearSetup.Spell},
 	}
 }
 

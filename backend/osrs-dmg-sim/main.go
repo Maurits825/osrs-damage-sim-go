@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -120,7 +119,6 @@ func wikiDpsShortlink(c *gin.Context) {
 	}
 
 	shortLink := wikishortlink.CreateWikiDpsShortlink(inputSetup)
-	fmt.Println("shortlink: ", shortLink)
 	c.JSON(http.StatusOK, shortLink)
 }
 
