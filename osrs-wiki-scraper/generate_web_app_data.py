@@ -191,7 +191,7 @@ class GenerateWebAppData:
         return None
 
     @staticmethod
-    def is_filtered_item(item, item_id):  # noqa: C901
+    def is_filtered_item(item, item_id):
         # teleport charges
         if re.match(r".*\(\d+\)", item["name"]):
             return "Shayzien" not in item["name"]
@@ -216,6 +216,10 @@ class GenerateWebAppData:
         if item_id == "12924":
             return True
 
+        # uncharged serp
+        if item_id == "12929":
+            return True
+
         if "(uncharged)" in item["name"]:
             return True
 
@@ -226,6 +230,9 @@ class GenerateWebAppData:
             return True
 
         if "(Last Man Standing)" in item["name"]:
+            return True
+
+        if "corrupted" in item["name"].lower():
             return True
 
         # heraldic symbol items
