@@ -1,10 +1,13 @@
+import base64
 import io
 import json
+import os
 from dataclasses import dataclass
-from typing import Optional
-from PIL import Image
-import base64
 from enum import Enum
+from typing import List, Optional
+
+from PIL import Image
+from graphviz import Digraph
 
 from constants import CACHE_DATA_FOLDER
 from generate_web_app_data import GenerateWebAppData
@@ -30,12 +33,12 @@ STYLE_STATS = {
 @dataclass()
 class BisItem:
     item_id: str
-    next: Optional['BisItem']
+    next: Optional[List['BisItem']]
 
 
 @dataclass()
 class BisItemsGraph:
-    items: dict[Style, dict[int, list[BisItem]]]
+    items: dict[Style, dict[int, List[BisItem]]]
 
 
 class GenerateBisItems:
@@ -59,7 +62,7 @@ class GenerateBisItems:
             Style.MAGIC: {},
         })
         for item_id, item in self.items.items():
-            if item_id == "12931":
+            if item_id == "8847":
                 a = 1
             if GenerateWebAppData.is_filtered_item(item, item_id):
                 continue
@@ -85,7 +88,7 @@ class GenerateBisItems:
                 self.insert_item_in_bis_list(style, bis_item_graph.items[style][slot], item_id)
 
         img = self.create_graph_image(bis_item_graph)
-        img.show()
+        # img.show()
 
     def is_filtered_item(self, item, item_id):
         if "(perfected)" in item["name"]:
@@ -94,7 +97,9 @@ class GenerateBisItems:
             return True
         if "(basic)" in item["name"]:
             return True
-        if any(orn_kit in item["name"] for orn_kit in ["(or)", "(g)", "(t)"]):
+        if any(orn_kit in item["name"] for orn_kit in ["(or)", "(g)", "(t)", "(cr)"]):
+            return True
+        if "(Deadman Mode)" in item["name"]:
             return True
         return False
 
@@ -114,32 +119,47 @@ class GenerateBisItems:
     def insert_item_in_bis_list(self, style, items: list[BisItem], new_item_id):
         new_item = self.items[new_item_id]
         for i, bis_item in enumerate(items):
-            # check if item is a direct upgrade
-            true_count = 0
             item = self.items[bis_item.item_id]
-            for stat in STYLE_STATS[style]:
-                v = item.get(stat, 0)
-                v_new = new_item.get(stat, 0)
-                if v_new >= v:
-                    true_count += 1
-            if true_count == len(STYLE_STATS[style]):
-                items[i] = BisItem(new_item_id, bis_item)
+            # check if item is a direct upgrade
+            if self.is_item_upgrade(style, item, new_item):
+                items[i] = BisItem(new_item_id, [bis_item])
                 return
 
             # check if item is a direct downgrade
-            # since its a direct downgrade, we have to travel the linked list and insert
             if self.is_item_downgrade(style, item, new_item):
+                # find the place to put the item
                 current_bis_item = bis_item
                 while current_bis_item.next is not None:
-                    if self.is_item_downgrade(style, self.items[current_bis_item.next.item_id], new_item):
-                        current_bis_item = current_bis_item.next
-                    else:
-                        break
-                current_bis_item.next = BisItem(new_item_id, current_bis_item.next)
+                    for next_item in current_bis_item.next:
+                        if self.is_item_downgrade(style, self.items[next_item.item_id], new_item):
+                            current_bis_item = next_item
+                            break
+                        else:
+                            # have to check if its a direct upgrade b4 insert
+                            if self.is_item_upgrade(style, self.items[next_item.item_id], new_item):
+                                current_bis_item.next.append(BisItem(new_item_id, next_item.next))
+                                return
+                            else:
+                                # TODO not a direct up, so append here??
+                                current_bis_item.next.append(BisItem(new_item_id, None))
+                                return
+                if current_bis_item.next:
+                    current_bis_item.next.append(BisItem(new_item_id, current_bis_item.next))
+                else:
+                    current_bis_item.next = [BisItem(new_item_id, current_bis_item.next)]
                 return
 
-        # if we reach here there are not direct up/downgrade, so this because a new node
+        # if we reach here there are no direct up/downgrade, so create a new node
         items.append(BisItem(new_item_id, None))
+
+    def is_item_upgrade(self, style, item, new_item) -> bool:
+        true_count = 0
+        for stat in STYLE_STATS[style]:
+            v = item.get(stat, 0)
+            v_new = new_item.get(stat, 0)
+            if v_new >= v:
+                true_count += 1
+        return true_count == len(STYLE_STATS[style])
 
     def is_item_downgrade(self, style, item, new_item) -> bool:
         true_count = 0
@@ -159,35 +179,76 @@ class GenerateBisItems:
         y_offset = 0
         x_diff = 40
         y_diff = 40
-        for style in [Style.MELEE]:
+        for style in [Style.MELEE]:  # TODO other styles
             for slot in bis_graph.items[style]:
                 print("slot: " + str(slot))
+                if slot == 4:
+                    a = 2
                 items = self.gear_slot_items[str(slot)]
-                for bis_item in bis_graph.items[style][slot]:
-                    y_offset = 0
-                    while bis_item is not None:
-                        icon = None
-                        for item in items:
-                            if str(item["id"]) == bis_item.item_id:
-                                icon = item["icon"]
-                        if not icon:
-                            bis_item = bis_item.next
-                            continue
-
-                        try:
-                            decoded_icon = base64.b64decode(icon)
-                            icon = Image.open(io.BytesIO(decoded_icon))
-                        except Exception:
-                            bis_item = bis_item.next
-                            continue
-
-                        final_image.paste(icon, (x_offset, y_offset))
-                        y_offset += y_diff
-
-                        bis_item = bis_item.next
-                    x_offset += x_diff
-                x_offset += x_diff
+                # bis_items = bis_graph.items[style][slot]
+                self.create_spring_graph_image(bis_graph.items[style][slot], "slot_" + str(slot))
         return final_image
+
+    def create_spring_graph_image(self, items: List[BisItem], output_path: str):
+        # Create a graph using graphviz
+        dot = Digraph()
+
+        img_dir = 'img'
+
+        # Dictionary to hold item_id to BisItem mappings
+        item_dict = {item.item_id: item for item in items}
+
+        # Set to keep track of visited nodes
+        visited = set()
+
+        # Helper function to add nodes and edges
+        def add_nodes_and_edges(item: BisItem):
+            if item.item_id == "11832":
+                a = 2
+            if item.item_id in visited:
+                return
+            visited.add(item.item_id)
+
+            # Add the node with an image placeholder
+            icon_base64 = self.get_icon(item.item_id)
+            if icon_base64 is None:
+                print("skip: " + str(item.item_id))
+                return
+
+            try:
+                icon_image = Image.open(io.BytesIO(base64.b64decode(icon_base64)))
+            except Exception:
+                print("skip: " + str(item.item_id))
+                return
+
+            icon_path = os.path.join(img_dir, f'{item.item_id}.png')
+            icon_image.save(icon_path)  # Save the icon as a PNG file
+
+            dot.node(item.item_id, label=item.item_id, image=icon_path, shape='rect', fontsize='10')
+
+            if item.next:
+                for next_item in item.next:
+                    dot.edge(item.item_id, next_item.item_id)
+                    add_nodes_and_edges(next_item)
+
+        # Add nodes and edges for all items
+        for item in items:
+            add_nodes_and_edges(item)
+
+        # Save the graph to a file
+        dot.render(output_path, format='png')
+
+    def get_icon(self, item_id):
+        icon = None
+        try:
+            slot = self.items[item_id]["slot"]
+            items = self.gear_slot_items[str(slot)]
+            for item in items:
+                if str(item["id"]) == item_id:
+                    return item["icon"]
+        except KeyError:
+            pass
+        return icon
 
 
 if __name__ == '__main__':
