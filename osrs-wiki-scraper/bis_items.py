@@ -33,7 +33,7 @@ STYLE_STATS = {
 @dataclass()
 class BisItem:
     item_id: str
-    next: Optional[List['BisItem']]
+    next: List['BisItem']
 
 
 @dataclass()
@@ -62,7 +62,7 @@ class GenerateBisItems:
             Style.MAGIC: {},
         })
         for item_id, item in self.items.items():
-            if item_id == "8847":
+            if item_id == "1211":
                 a = 1
             if GenerateWebAppData.is_filtered_item(item, item_id):
                 continue
@@ -82,10 +82,11 @@ class GenerateBisItems:
             slot = item["slot"]
             for style in styles:
                 if slot not in bis_item_graph.items[style]:
-                    bis_item_graph.items[style][slot] = [BisItem(item_id, None)]
+                    bis_item_graph.items[style][slot] = [BisItem(item_id, [])]
                     continue
 
-                self.insert_item_in_bis_list(style, bis_item_graph.items[style][slot], item_id)
+                current_bis_item = BisItem("", bis_item_graph.items[style][slot])
+                self.insert_item_in_bis_list(style, current_bis_item, item_id)
 
         img = self.create_graph_image(bis_item_graph)
         # img.show()
@@ -116,41 +117,55 @@ class GenerateBisItems:
 
         return styles
 
-    def insert_item_in_bis_list(self, style, items: list[BisItem], new_item_id):
+    def insert_item_in_bis_list(self, style, current_bis_item: BisItem, new_item_id):
         new_item = self.items[new_item_id]
-        for i, bis_item in enumerate(items):
-            item = self.items[bis_item.item_id]
-            # check if item is a direct upgrade
-            if self.is_item_upgrade(style, item, new_item):
-                items[i] = BisItem(new_item_id, [bis_item])
+        while len(current_bis_item.next) > 0:
+            # first lets check how many up/down grades there are
+            upgrades = []
+            downgrades = []
+            for next_bis_item in current_bis_item.next:
+                if self.is_item_upgrade(style, self.items[next_bis_item.item_id], new_item):
+                    upgrades.append(next_bis_item)
+                if self.is_item_downgrade(style, self.items[next_bis_item.item_id], new_item):
+                    downgrades.append(next_bis_item)
+
+            up_count = len(upgrades)
+            down_count = len(downgrades)
+
+            if down_count == up_count == 0:
+                current_bis_item.next.append(BisItem(new_item_id, []))
+                return
+            if down_count == up_count == 1 and upgrades[0] == downgrades[0]:
+                current_bis_item.next.remove(upgrades[0])
+                current_bis_item.next.append(BisItem(new_item_id, upgrades))
                 return
 
-            # check if item is a direct downgrade
-            if self.is_item_downgrade(style, item, new_item):
-                # find the place to put the item
-                current_bis_item = bis_item
-                while current_bis_item.next is not None:
-                    for next_item in current_bis_item.next:
-                        if self.is_item_downgrade(style, self.items[next_item.item_id], new_item):
-                            current_bis_item = next_item
-                            break
-                        else:
-                            # have to check if its a direct upgrade b4 insert
-                            if self.is_item_upgrade(style, self.items[next_item.item_id], new_item):
-                                current_bis_item.next.append(BisItem(new_item_id, next_item.next))
-                                return
-                            else:
-                                # TODO not a direct up, so append here??
-                                current_bis_item.next.append(BisItem(new_item_id, None))
-                                return
-                if current_bis_item.next:
-                    current_bis_item.next.append(BisItem(new_item_id, current_bis_item.next))
+            # only upgrades
+            if down_count == 0:
+                if up_count == 0:
+                    current_bis_item.next.append(BisItem(new_item_id, []))
+                    return
+                for upgrade in upgrades:
+                    current_bis_item.next.remove(upgrade)
+                current_bis_item.next.append(BisItem(new_item_id, upgrades))
+                return
+
+            # only downgrades
+            if up_count == 0:
+                if down_count > 1:
+                    print("recursively go through downgrades......")
+                    # here we go
+                    for downgrade in downgrades:
+                        self.insert_item_in_bis_list(style, downgrade, new_item_id)
+                    return
                 else:
-                    current_bis_item.next = [BisItem(new_item_id, current_bis_item.next)]
-                return
+                    # only one downgrade so we travel down
+                    current_bis_item = downgrades[0]
+                    continue
 
-        # if we reach here there are no direct up/downgrade, so create a new node
-        items.append(BisItem(new_item_id, None))
+            # mix of up and downgrades, idk
+            print("TODO ....")
+        current_bis_item.next.append(BisItem(new_item_id, []))
 
     def is_item_upgrade(self, style, item, new_item) -> bool:
         true_count = 0
