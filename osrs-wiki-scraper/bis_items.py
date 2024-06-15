@@ -4,7 +4,7 @@ import json
 import os
 from dataclasses import dataclass
 from enum import Enum
-from typing import List, Optional
+from typing import List
 
 from PIL import Image
 from graphviz import Digraph
@@ -62,7 +62,7 @@ class GenerateBisItems:
             Style.MAGIC: {},
         })
         for item_id, item in self.items.items():
-            if item_id == "1211":
+            if item_id == "11826":  # ARMA HELM BUG????
                 a = 1
             if GenerateWebAppData.is_filtered_item(item, item_id):
                 continue
@@ -100,7 +100,24 @@ class GenerateBisItems:
             return True
         if any(orn_kit in item["name"] for orn_kit in ["(or)", "(g)", "(t)", "(cr)"]):
             return True
+
         if "(Deadman Mode)" in item["name"]:
+            return True
+        if "(bh)" in item["name"]:
+            return True
+        # some emirs arena stuff
+        if "calamity" in item["name"].lower():
+            return True
+        if "Maoma's" in item["name"]:
+            return True
+        if "Koriff's" in item["name"]:
+            return True
+        if "Saika's" in item["name"]:
+            return True
+        if "(wrapped)" in item["name"]:
+            return True
+
+        if "Ghommal's" in item["name"]:
             return True
         return False
 
@@ -194,14 +211,15 @@ class GenerateBisItems:
         y_offset = 0
         x_diff = 40
         y_diff = 40
-        for style in [Style.MELEE]:  # TODO other styles
+        for style in [Style.MELEE, Style.RANGED, Style.MAGIC]:  # TODO other styles
             for slot in bis_graph.items[style]:
                 print("slot: " + str(slot))
                 if slot == 4:
                     a = 2
                 items = self.gear_slot_items[str(slot)]
                 # bis_items = bis_graph.items[style][slot]
-                self.create_spring_graph_image(bis_graph.items[style][slot], "slot_" + str(slot))
+                self.create_spring_graph_image(bis_graph.items[style][slot],
+                                               "graphs/" + str(style.name) + "_slot_" + str(slot))
         return final_image
 
     def create_spring_graph_image(self, items: List[BisItem], output_path: str):
@@ -237,9 +255,17 @@ class GenerateBisItems:
                 return
 
             icon_path = os.path.join(img_dir, f'{item.item_id}.png')
-            icon_image.save(icon_path)  # Save the icon as a PNG file
+            icon_image.save(os.path.join("graphs", icon_path))
 
-            dot.node(item.item_id, label=item.item_id, image=icon_path, shape='rect', fontsize='10')
+            label_text = self.items[item.item_id]["name"] + "(" + str(item.item_id) + ")"
+            dot.node(item.item_id, label=(
+                    '<'
+                    '<table border="0" cellborder="0">'
+                    '  <tr><td><img src="' + icon_path + '"/></td></tr>'
+                                                         '  <tr><td>' + label_text + '</td></tr>'
+                                                                                     '</table>'
+                                                                                     '>'
+            ), shape='plain')
 
             if item.next:
                 for next_item in item.next:
