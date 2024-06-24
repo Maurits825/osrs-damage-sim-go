@@ -1,5 +1,5 @@
 service: osrs-dmg-sim-go
-frameworkVersion: '>=3.0'
+frameworkVersion: '>=4.1'
 configValidationMode: error
 
 provider:
