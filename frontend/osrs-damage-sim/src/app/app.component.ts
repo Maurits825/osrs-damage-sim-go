@@ -4,6 +4,7 @@ import { DamageSimService } from './services/damage-sim.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SettingsModalComponent } from './shared/modals/settings-modal/settings-modal.component';
 import { ChangelogModalComponent } from './shared/modals/changelog-modal/changelog-modal.component';
+import { UnitTestModalComponent } from './shared/modals/unit-test-modal/unit-test-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ import { ChangelogModalComponent } from './shared/modals/changelog-modal/changel
 export class AppComponent implements OnInit {
   isDamageSimActive = false;
   damageSimServiceUrl = environment.OSRS_DAMAGE_SIM_SERVICE_URL + '/status';
+
+  isDev = !environment.production;
 
   constructor(private damageSimservice: DamageSimService, private modalService: NgbModal) {}
 
@@ -33,5 +36,9 @@ export class AppComponent implements OnInit {
 
   openChangelogModal(): void {
     this.modalService.open(ChangelogModalComponent, { animation: false, centered: true });
+  }
+
+  openUnitTestModal(): void {
+    this.modalService.open(UnitTestModalComponent, { animation: false, centered: true });
   }
 }

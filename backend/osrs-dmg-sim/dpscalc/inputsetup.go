@@ -294,7 +294,7 @@ var gearSetupValidators = []func(t *GearSetup) error{
 		return nil
 	},
 	func(gs *GearSetup) error {
-		if len(gs.AttackStyle) == 0 {
+		if len(gs.AttackStyle) == 0 && len(gs.Spell) == 0 {
 			return errors.New("empty attack style in (" + gs.Name + ") setup")
 		}
 		return nil

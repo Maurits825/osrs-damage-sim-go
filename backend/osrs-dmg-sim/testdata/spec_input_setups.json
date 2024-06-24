@@ -1,6 +1,6 @@
 {
   "Maiden void BGS spec": {
-    "expectedDps": 9.18022121,
+    "expectedDps": 9.183619,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -103,7 +103,7 @@
     }
   },
   "Zebak max ZCB diamond e spec": {
-    "expectedDps": 10.682251,
+    "expectedDps": 10.686804,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -522,7 +522,7 @@
     }
   },
   "Venenatis max webweaver bow spec": {
-    "expectedDps": 15.11837483,
+    "expectedDps": 15.197945,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -628,7 +628,7 @@
     }
   },
   "Callisto max ursine spec": {
-    "expectedDps": 11.81323475,
+    "expectedDps": 11.817271,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -740,7 +740,7 @@
     }
   },
   "Bloat max c hally spec": {
-    "expectedDps": 13.04417333,
+    "expectedDps": 13.050073,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -854,7 +854,7 @@
     }
   },
   "Dawn max darkbow spec": {
-    "expectedDps": 7.931561,
+    "expectedDps": 7.937361,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1067,7 +1067,7 @@
     }
   },
   "Hespori max dds spec": {
-    "expectedDps": 16.640759,
+    "expectedDps": 16.654343,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1180,7 +1180,7 @@
     }
   },
   "Rex slayer helm max volatile spec": {
-    "expectedDps": 15.07005448,
+    "expectedDps": 15.239222,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1288,7 +1288,7 @@
     }
   },
   "Big mutta max blowpipe spec archer rp": {
-    "expectedDps": 17.07968721,
+    "expectedDps": 17.095488,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1507,7 +1507,7 @@
     }
   },
   "Max zcb ruby nex": {
-    "expectedDps": 24.442080,
+    "expectedDps": 26.367153,
     "inputSetup": {
       "globalSettings": {
         "npc": {

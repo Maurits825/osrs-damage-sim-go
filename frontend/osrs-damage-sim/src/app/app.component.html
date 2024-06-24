@@ -17,6 +17,9 @@
       </ul>
     </div>
     <div class="ms-auto me-2">
+      <button *ngIf="isDev" class="btn py-0" (click)="openUnitTestModal()">
+        <div class="d-flex align-items-center">UT Select</div>
+      </button>
       <button class="btn py-0" (click)="openChangelogModal()">
         <div class="d-flex align-items-center">Changelog<i class="ms-1 fs-3 bi bi-journal-text"></i></div>
       </button>

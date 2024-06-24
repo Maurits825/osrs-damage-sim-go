@@ -45,6 +45,7 @@ import { BisCalcResultsComponent } from './core/bis-calc-results/bis-calc-result
 import { BisCalcComponent } from './core/bis-calc/bis-calc.component';
 import { BisCalcSettingsComponent } from './core/bis-calc-settings/bis-calc-settings.component';
 import { WikiDpsShortlinkComponent } from './core/wiki-dps-shortlink/wiki-dps-shortlink.component';
+import { UnitTestModalComponent } from './shared/modals/unit-test-modal/unit-test-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +86,7 @@ import { WikiDpsShortlinkComponent } from './core/wiki-dps-shortlink/wiki-dps-sh
     BisCalcComponent,
     BisCalcSettingsComponent,
     WikiDpsShortlinkComponent,
+    UnitTestModalComponent,
   ],
   imports: [
     NgSelectModule,

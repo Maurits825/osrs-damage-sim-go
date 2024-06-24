@@ -1,7 +1,7 @@
 <div *ngIf="bisResults?.meleeGearSetups && !bisResults?.error">
   <h3 class="mb-3 fw-light text-center">{{ bisResults.title }}</h3>
 
-  <div class="mb-4">
+  <div class="mb-4 px-2 pt-2">
     <h5 class="fw-light text-center">Melee BiS</h5>
     <div class="d-flex justify-content-between flex-wrap">
       <ng-container *ngFor="let result of bisResults.meleeGearSetups">
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="mb-4">
+  <div class="mb-4 px-2 pt-2">
     <h5 class="fw-light text-center">Ranged BiS</h5>
     <div class="d-flex justify-content-between flex-wrap">
       <ng-container *ngFor="let result of bisResults.rangedGearSetups">
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="mb-4">
+  <div class="mb-4 px-2 pt-2">
     <h5 class="fw-light text-center">Magic BiS</h5>
     <div class="d-flex justify-content-between flex-wrap">
       <ng-container *ngFor="let result of bisResults.magicGearSetups">
@@ -33,12 +33,12 @@
 </div>
 
 <ng-template #gearViewTemplate let-result let-attackType="attackType">
-  <div class="d-flex me-4">
+  <div class="d-flex px-2">
     <div class="p-2 me-2">
       <ng-container *ngFor="let gearRow of gearSlotTable">
         <div class="row align-items-center">
           <ng-container *ngFor="let gearSlot of gearRow">
-            <div class="col text-center px-1 mt-1">
+            <div class="col-4 text-center px-1 mt-1">
               <img *ngIf="result.gear[gearSlot]?.icon" src="data:image/png;base64,{{ result.gear[gearSlot].icon }}" />
             </div>
           </ng-container>
@@ -46,7 +46,7 @@
       </ng-container>
     </div>
 
-    <div class="p-2 d-flex flex-column justify-content-center">
+    <div class="ps-2 d-flex flex-column justify-content-center">
       <ng-container *ngIf="bisCalcInputSetup.gearSetupSettings">
         <div class="d-flex">
           <div class="d-flex mx-1">

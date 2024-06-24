@@ -4,77 +4,77 @@
       "image": "Bind.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Blood Barrage",
       "image": "Blood Barrage.png",
       "max_hit": 29,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Blood Blitz",
       "image": "Blood Blitz.png",
       "max_hit": 25,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Blood Burst",
       "image": "Blood Burst.png",
       "max_hit": 21,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Blood Rush",
       "image": "Blood Rush.png",
       "max_hit": 15,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Claws of Guthix",
       "image": "Claws of Guthix.png",
       "max_hit": 20,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Confuse",
       "image": "Confuse.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Crumble Undead",
       "image": "Crumble Undead.png",
       "max_hit": 15,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Curse",
       "image": "Curse.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Dark Demonbane",
       "image": "Dark Demonbane.png",
       "max_hit": 30,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Dark Lure",
       "image": "Dark Lure.png",
       "max_hit": 0,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Earth Blast",
@@ -116,14 +116,14 @@
       "image": "Enfeeble.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Entangle",
       "image": "Entangle.png",
       "max_hit": 5,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Fire Blast",
@@ -165,189 +165,189 @@
       "image": "Flames of Zamorak.png",
       "max_hit": 20,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Ghostly Grasp",
       "image": "Ghostly Grasp.png",
       "max_hit": 12,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Greater Corruption",
       "image": "Greater Corruption.png",
       "max_hit": 0,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Iban Blast",
       "image": "Iban Blast.png",
       "max_hit": 25,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Ice Barrage",
       "image": "Ice Barrage.png",
       "max_hit": 30,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Ice Blitz",
       "image": "Ice Blitz.png",
       "max_hit": 26,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Ice Burst",
       "image": "Ice Burst.png",
       "max_hit": 22,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Ice Rush",
       "image": "Ice Rush.png",
       "max_hit": 16,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Inferior Demonbane",
       "image": "Inferior Demonbane.png",
       "max_hit": 16,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Lesser Corruption",
       "image": "Lesser Corruption.png",
       "max_hit": 0,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Magic Dart",
       "image": "Magic Dart.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Saradomin Strike",
       "image": "Saradomin Strike.png",
       "max_hit": 20,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Shadow Barrage",
       "image": "Shadow Barrage.png",
       "max_hit": 28,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Shadow Blitz",
       "image": "Shadow Blitz.png",
       "max_hit": 24,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Shadow Burst",
       "image": "Shadow Burst.png",
       "max_hit": 18,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Shadow Rush",
       "image": "Shadow Rush.png",
       "max_hit": 14,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Skeletal Grasp",
       "image": "Skeletal Grasp.png",
       "max_hit": 17,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Smoke Barrage",
       "image": "Smoke Barrage.png",
       "max_hit": 27,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Smoke Blitz",
       "image": "Smoke Blitz.png",
       "max_hit": 23,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Smoke Burst",
       "image": "Smoke Burst.png",
       "max_hit": 17,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Smoke Rush",
       "image": "Smoke Rush.png",
       "max_hit": 13,
       "spellbook": "ancient",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Snare",
       "image": "Snare.png",
       "max_hit": 3,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Stun",
       "image": "Stun.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Superior Demonbane",
       "image": "Superior Demonbane.png",
       "max_hit": 23,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Tele Block",
       "image": "Tele Block.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Undead Grasp",
       "image": "Undead Grasp.png",
       "max_hit": 24,
       "spellbook": "arceuus",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Vulnerability",
       "image": "Vulnerability.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Water Blast",
@@ -389,7 +389,7 @@
       "image": "Weaken.png",
       "max_hit": 0,
       "spellbook": "standard",
-      "element": null
+      "element": "No"
     },
     {
       "name": "Wind Blast",
