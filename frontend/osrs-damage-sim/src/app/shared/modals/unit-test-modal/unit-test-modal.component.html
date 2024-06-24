@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h5 class="modal-title">Unit Test select</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+  <div class="mb-2"><input type="file" (change)="onFileSelected($event)" /></div>
+  <div class="mb-2">
+    <table class="table table-bordered border-dark">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Expected dps</th>
+          <th>Load</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ut of unitTests | keyvalue">
+          <td>
+            {{ ut.key }}
+          </td>
+          <td>
+            {{ ut.value.expectedDps }}
+          </td>
+          <td><button class="btn btn-primary" (click)="loadSetup(ut.value.inputSetup)">Load</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
