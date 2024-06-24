@@ -1,6 +1,6 @@
 {
   "Vorkath max dhcb": {
-    "expectedDps": 11.52638006,
+    "expectedDps": 11.529653,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -29,6 +29,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -85,6 +86,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -107,7 +109,7 @@
     }
   },
   "Cerb max scythe inq slayer": {
-    "expectedDps": 12.59982607,
+    "expectedDps": 12.634607,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -136,6 +138,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -189,6 +192,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -211,7 +215,7 @@
     }
   },
   "Olm max tbow": {
-    "expectedDps": 11.721295,
+    "expectedDps": 11.724658,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -240,6 +244,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -293,6 +298,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -315,7 +321,7 @@
     }
   },
   "Tekton max fang": {
-    "expectedDps": 3.45439992,
+    "expectedDps": 3.4543998,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -344,6 +350,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -397,6 +404,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -417,7 +425,7 @@
     }
   },
   "Vorkath sang void ei brim": {
-    "expectedDps": 4.427755,
+    "expectedDps":  4.6967006,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -446,6 +454,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -502,6 +511,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -523,7 +533,7 @@
     }
   },
   "Nech max kodai ice barrage salt": {
-    "expectedDps": 7.94313678,
+    "expectedDps": 8.115961,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -552,6 +562,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -590,7 +601,7 @@
                 "id": 13235
               },
               "12": {
-                "id": 11770
+                "id": 28313
               },
               "13": {
                 "id": 22947
@@ -608,6 +619,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -629,7 +641,7 @@
     }
   },
   "Thermy max harm tome of fire": {
-    "expectedDps": 8.64685476,
+    "expectedDps": 6.554868,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -658,6 +670,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -694,7 +707,7 @@
                 "id": 13235
               },
               "12": {
-                "id": 11770
+                "id": 28313
               },
               "13": {
                 "id": 22947
@@ -712,6 +725,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -731,7 +745,7 @@
     }
   },
   "Mystic max tbow": {
-    "expectedDps": 6.35046859,
+    "expectedDps": 6.353827,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -760,6 +774,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -813,6 +828,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -834,7 +850,7 @@
     }
   },
   "Zebak bowfa corrupted": {
-    "expectedDps": 8.41333061,
+    "expectedDps": 8.421114,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -863,6 +879,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -916,6 +933,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -937,7 +955,7 @@
     }
   },
   "Olm head CM max blowpipe": {
-    "expectedDps": 8.65877863,
+    "expectedDps": 8.674213,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -969,6 +987,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1029,7 +1048,7 @@
     }
   },
   "Olm melee hand scythe crush 1 dwh 50 bgs": {
-    "expectedDps": 11.55880847,
+    "expectedDps": 11.596047,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -1070,6 +1089,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1132,7 +1152,7 @@
     }
   },
   "Sote 3 man max rapier 3 dwh": {
-    "expectedDps": 8.96201207,
+    "expectedDps": 8.967832,
     "inputSetup": {
       "globalSettings": {
         "iterations": 1000,
@@ -1170,6 +1190,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1234,7 +1255,7 @@
     }
   },
   "Skotizo max arclight 4 arc": {
-    "expectedDps": 9.05897691,
+    "expectedDps": 9.064652,
     "inputSetup": {
       "globalSettings": {
         "iterations": 1000,
@@ -1272,6 +1293,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1336,7 +1358,7 @@
     }
   },
   "Tekton CM inquisitor mace": {
-    "expectedDps": 5.10304031,
+    "expectedDps": 5.5536447,
     "inputSetup": {
       "globalSettings": {
         "iterations": 1000,
@@ -1379,6 +1401,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1447,7 +1470,7 @@
     }
   },
   "Ice demon shadow fire surge 1 dwh": {
-    "expectedDps": 5.82144704,
+    "expectedDps": 10.178679,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1499,6 +1522,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1609,6 +1633,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1720,6 +1745,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1785,7 +1811,7 @@
     }
   },
   "Zulrah max tbow ranging pot": {
-    "expectedDps": 9.095582,
+    "expectedDps": 9.099011,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1831,6 +1857,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -1894,7 +1921,7 @@
     }
   },
   "Verzik p1 normal max scythe scp": {
-    "expectedDps": 3.93922784,
+    "expectedDps": 3.9792178,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1945,6 +1972,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2055,6 +2083,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2120,25 +2149,11 @@
     }
   },
   "Vardorvis max soulreaper axe bellator": {
-    "expectedDps": 7.53996473,
+    "expectedDps": 7.5427566,
     "inputSetup": {
       "globalSettings": {
         "npc": {
-          "name": "Vardorvis",
-          "hitpoints": 700,
-          "att": 280,
-          "mage": 215,
-          "attbns": 190,
-          "strbns": 10,
-          "dstab": 215,
-          "dslash": 65,
-          "dcrush": 85,
-          "dmagic": 580,
-          "drange": 580,
-          "combat": 784,
-          "size": 2,
-          "def": 215,
-          "id": "12426"
+          "id": "12223"
         },
         "iterations": 10000,
         "teamSize": 1,
@@ -2166,6 +2181,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2228,31 +2244,12 @@
     }
   },
   "Whisperer max shadow accursed drain": {
-    "expectedDps": 10.21453839,
+    "expectedDps": 10.219158,
     "inputSetup": {
       "globalSettings": {
         "npc": {
           "name": "The Whisperer",
-          "hitpoints": 900,
-          "att": 280,
-          "str": 280,
-          "def": 250,
-          "mage": 180,
-          "range": 180,
-          "attbns": 140,
-          "strbns": 30,
-          "amagic": 190,
-          "mbns": 58,
-          "arange": 160,
-          "rngbns": 70,
-          "dstab": 180,
-          "dslash": 300,
-          "dcrush": 220,
-          "dmagic": 10,
-          "drange": 300,
-          "combat": 791,
-          "size": 3,
-          "id": "12205"
+          "id": "12204"
         },
         "iterations": 1000,
         "teamSize": 1,
@@ -2285,6 +2282,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2348,7 +2346,7 @@
     }
   },
   "Sote max verac 3 man": {
-    "expectedDps": 4.6965218,
+    "expectedDps": 4.6991673,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2400,6 +2398,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2462,7 +2461,7 @@
     }
   },
   "Zulrah max karil amulet damned": {
-    "expectedDps": 4.558083,
+    "expectedDps": 4.568101,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2509,6 +2508,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2572,7 +2572,7 @@
     }
   },
   "Arcane scarab 300/2 size 4 max breaching keris scp": {
-    "expectedDps": 9.96394802,
+    "expectedDps": 9.969771,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2622,6 +2622,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2687,7 +2688,7 @@
     }
   },
   "Graardor dihns justi b gloves guarding scp": {
-    "expectedDps": 3.19913756,
+    "expectedDps": 3.2020972,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2737,6 +2738,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2799,8 +2801,8 @@
       ]
     }
   },
-  "Verzik p2 max shadow seers ring": {
-    "expectedDps": 8.85819673,
+  "Verzik p2 max shadow": {
+    "expectedDps": 9.169349,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2851,6 +2853,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -2886,7 +2889,7 @@
                 "id": 13235
               },
               "12": {
-                "id": 11770
+                "id": 28313
               },
               "13": {
                 "id": 22947
@@ -2914,7 +2917,7 @@
     }
   },
   "Olm mage hand max virtus kodai blood barrage": {
-    "expectedDps": 6.16390132,
+    "expectedDps": 6.313619,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2961,6 +2964,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -3026,7 +3030,7 @@
     }
   },
   "Xarpus max scy 4 tick cycle": {
-    "expectedDps": 10.24768931,
+    "expectedDps": 10.279491,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -3072,6 +3076,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -3137,7 +3142,7 @@
     }
   },
   "Max fang slash duke": {
-    "expectedDps": 4.09912338,
+    "expectedDps": 4.851232,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -3191,6 +3196,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99
@@ -3258,7 +3264,7 @@
     }
   },
   "Max dharok 10 hp giant mole": {
-    "expectedDps": 5.9330115,
+    "expectedDps": 5.935238,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -3300,6 +3306,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99,
@@ -3374,7 +3381,7 @@
     }
   },
   "Max tbow zebak 305/3": {
-    "expectedDps": 10.012671,
+    "expectedDps": 10.015686,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -3421,6 +3428,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99,
@@ -3496,7 +3504,7 @@
     }
   },
   "Max crystal pick guardians": {
-    "expectedDps": 9.122149,
+    "expectedDps": 9.128525,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -3535,6 +3543,7 @@
             "combatStats": {
               "attack": 99,
               "strength": 99,
+              "defence": 99,
               "ranged": 99,
               "magic": 99,
               "hitpoints": 99,

@@ -226,6 +226,10 @@ func getZcbSpecEffectChance(accuracy, effectChance float64) float64 {
 }
 
 func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribution) {
+	if player.npc.id == iceDemon && player.spell.elementalType != FireElement {
+		attackDistribution.ScaleDamage(1, 3)
+	}
+
 	if slices.Contains(zulrahs, player.npc.id) {
 		attackDistribution.CappedReroll(50, 5, 45)
 	}
