@@ -425,7 +425,7 @@
     }
   },
   "Vorkath sang void ei brim": {
-    "expectedDps":  4.6967006,
+    "expectedDps": 4.6967006,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,

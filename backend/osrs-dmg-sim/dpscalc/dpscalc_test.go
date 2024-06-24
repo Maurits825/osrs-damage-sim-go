@@ -64,7 +64,7 @@ func TestRunDpsCalc(t *testing.T) {
 	testDpsCalc(t, testInputSetups)
 }
 
-// func TestRunDpsCalcSpec(t *testing.T) {
-// 	testInputSetups := loadTestInputSetups("spec_input_setups.json")
-// 	testDpsCalc(t, testInputSetups)
-// }
+func TestRunDpsCalcSpec(t *testing.T) {
+	testInputSetups := loadTestInputSetups("spec_input_setups.json")
+	testDpsCalc(t, testInputSetups)
+}
