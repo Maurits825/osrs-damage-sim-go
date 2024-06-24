@@ -11,7 +11,6 @@ from graphviz import Digraph
 
 from constants import CACHE_DATA_FOLDER
 from generate_web_app_data import GenerateWebAppData
-from model.weapon_category import WeaponCategory
 
 ITEMS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "items-dmg-sim.json"
 GEAR_SLOT_ITEM_JSON = CACHE_DATA_FOLDER / "gear_slot_items.json"
@@ -19,6 +18,7 @@ GEAR_SLOT_ITEM_JSON = CACHE_DATA_FOLDER / "gear_slot_items.json"
 # twisted, blorva, other stuff
 FILTER_IDS = [
     "24664", "24666", "24668", "28254", "13199", "13197", "28256", "28258",
+    "28687", "28688", "28682"
 ]
 
 
@@ -68,7 +68,7 @@ class GenerateBisItems:
             Style.MAGIC: {},
         })
         for item_id, item in self.items.items():
-            if item_id == "13195":  # TODO remove
+            if item_id == "8845":  # TODO remove
                 a = 1
             if GenerateWebAppData.is_filtered_item(item, item_id):
                 continue
@@ -185,6 +185,8 @@ class GenerateBisItems:
 
             if down_count == up_count == 0:
                 current_bis_item.next.append(new_bis_item)
+                # TODO in this situtation there are no direct up/downgrades, so append is correct
+                # although the item can still be a direct upgrade/downgrade of a next[...] item
                 return
             if down_count == up_count:
                 print("can this happen??")
@@ -204,6 +206,8 @@ class GenerateBisItems:
                     # TODO???
                     print("pls dont go here")
                     for downgrade in downgrades:
+                        # TODO this is scuffed, we potentially edit the same new_bis_item twice?
+                        # if its on two different paths
                         self.insert_item_in_bis_list(style, downgrade, new_bis_item)
                     return
                 else:
