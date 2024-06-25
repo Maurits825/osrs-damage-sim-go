@@ -53,6 +53,43 @@
     </table>
   </div>
 
+  <div class="row mb-3">
+    <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+      <div class="container-fluid">
+        <ul class="navbar-nav nav-tabs flex-wrap">
+          <ng-container *ngFor="let resultTab of RESULT_TABS">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                role="button"
+                [ngClass]="{
+                  active: activeResultTab.resultType === resultTab.resultType
+                }"
+                (click)="activeResultTab = resultTab"
+              >
+                <div class="text-center">{{ resultTab.label }}</div>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </nav>
+    <div *ngIf="activeResultTab.resultType === ResultType.DpsGraph">
+      <app-dps-graph
+        [dpsGrapherResults]="dpsResults.dpsGrapherResults"
+        [inputSetup]="inputSetup"
+        [showResultTextLabel$]="showResultTextLabel$"
+      ></app-dps-graph>
+    </div>
+    <div *ngIf="activeResultTab.resultType === ResultType.HitDist">
+      <app-hit-dist-graph
+        [dpsCalcResults]="dpsResults.dpsCalcResults"
+        [inputSetup]="inputSetup"
+        [showResultTextLabel$]="showResultTextLabel$"
+      ></app-hit-dist-graph>
+    </div>
+  </div>
+
   <div class="row mb-3" *ngIf="dpsResults.dpsCalcResults.results[0].calcDetails">
     <div *ngFor="let result of dpsResults.dpsCalcResults.results" class="mb-2">
       <div>{{ result.labels.gearSetupName }}</div>
@@ -61,16 +98,4 @@
       </div>
     </div>
   </div>
-
-  <app-hit-dist-graph
-    [dpsCalcResults]="dpsResults.dpsCalcResults"
-    [inputSetup]="inputSetup"
-    [showResultTextLabel$]="showResultTextLabel$"
-  ></app-hit-dist-graph>
-
-  <app-dps-graph
-    [dpsGrapherResults]="dpsResults.dpsGrapherResults"
-    [inputSetup]="inputSetup"
-    [showResultTextLabel$]="showResultTextLabel$"
-  ></app-dps-graph>
 </div>

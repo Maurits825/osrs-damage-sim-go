@@ -22,7 +22,6 @@ export class DpsGraphComponent implements OnChanges {
 
   DpsGrapherResult: DpsGrapherResult;
   selectedDpsGrapherResult: DpsGrapherResult;
-  selectedDpsCalcResultIndex: number;
 
   hitDistChart: Chart;
   hideZeroDist = false;
@@ -31,8 +30,9 @@ export class DpsGraphComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsGrapherResults']) {
-      this.selectedDpsCalcResultIndex = 0;
-      this.selectedDpsGrapherResult = this.dpsGrapherResults.results[this.selectedDpsCalcResultIndex];
+      this.selectedDpsGrapherResult = this.dpsGrapherResults.results.find(
+        (dpsResult) => dpsResult.graphType === 'Elder maul'
+      );
       this.updateDpsGrapherChart();
     }
   }

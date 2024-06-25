@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Observable, map, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 import { cloneDeep } from 'lodash-es';
+import { RESULT_TABS, ResultTab, ResultType } from './result-tab.model';
 
 @Component({
   selector: 'app-dps-results',
@@ -15,6 +16,10 @@ import { cloneDeep } from 'lodash-es';
 export class DpsResultsComponent implements OnInit, OnChanges {
   @Input()
   dpsResults: DpsResults;
+
+  RESULT_TABS = RESULT_TABS;
+  ResultType = ResultType;
+  activeResultTab: ResultTab = RESULT_TABS[0];
 
   sortIndexOrder: number[];
   sortConfigs: Partial<SortConfigs> = {
