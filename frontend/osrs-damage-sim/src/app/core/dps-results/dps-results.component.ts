@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Chart } from 'chart.js/auto';
-import { DpsResults, DpsCalcResult } from 'src/app/model/damage-sim/dps-results.model';
-import { DpsGraphData, DpsGrapherResult } from 'src/app/model/damage-sim/dps-grapher-results.model';
+import { DpsResults } from 'src/app/model/damage-sim/dps-results.model';
 import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
@@ -14,7 +12,7 @@ import { cloneDeep } from 'lodash-es';
   selector: 'app-dps-results',
   templateUrl: './dps-results.component.html',
 })
-export class DpsResultsComponent implements OnChanges, OnInit {
+export class DpsResultsComponent implements OnInit, OnChanges {
   @Input()
   dpsResults: DpsResults;
 
@@ -29,26 +27,15 @@ export class DpsResultsComponent implements OnChanges, OnInit {
   SortOrder = SortOrder;
   dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
-
-  inputSetup: InputSetup;
-  DpsGrapherResult: DpsGrapherResult;
-  selectedDpsGrapherResult: DpsGrapherResult;
-  dpsGrapherChart: Chart;
-
-  DpsCalcResult: DpsCalcResult;
-  selectedDpsCalcResult: DpsCalcResult;
-  selectedDpsCalcResultIndex: number;
-  hitDistChart: Chart;
-  hideZeroDist = false;
-
   showResultTextLabel$: Observable<boolean>;
-  chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
+  inputSetup: InputSetup;
 
   constructor(
     private cd: ChangeDetectorRef,
     private inputSetupService: InputSetupService,
     private localStorageService: LocalStorageService
   ) {}
+
   ngOnInit(): void {
     this.showResultTextLabel$ = this.localStorageService.userSettingsWatch$.pipe(
       map((userSettings: UserSettings) => userSettings.showTextLabels),
@@ -65,18 +52,7 @@ export class DpsResultsComponent implements OnChanges, OnInit {
 
       this.inputSetup = cloneDeep(this.inputSetupService.getInputSetup());
 
-      this.selectedDpsGrapherResult = this.dpsResults.dpsGrapherResults.results.find(
-        (dpsResult) => dpsResult.graphType === 'Dragon warhammer'
-      );
-
-      //TODO should we sort the results in the hit dist dropdown also?
-      this.selectedDpsCalcResultIndex = this.sortIndexOrder[0];
-      this.selectedDpsCalcResult = this.dpsResults.dpsCalcResults.results[this.selectedDpsCalcResultIndex];
-
       this.cd.detectChanges();
-
-      this.updateDpsGrapherChart();
-      this.updateHitDistChart();
     }
   }
 
@@ -106,138 +82,5 @@ export class DpsResultsComponent implements OnChanges, OnInit {
 
     this.sortConfigs[sortField].isSorted = true;
     this.sortConfigs[sortField].sortOrder *= -1;
-  }
-
-  selectedGraphResultChange(dpsGrapherResult: DpsGrapherResult): void {
-    this.selectedDpsGrapherResult = dpsGrapherResult;
-    this.updateDpsGrapherChart();
-  }
-
-  selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
-    this.selectedDpsCalcResult = dpsCalcResult;
-    this.selectedDpsCalcResultIndex = this.dpsResults.dpsCalcResults.results.findIndex(
-      (dpsResult) => dpsResult === dpsCalcResult
-    );
-    this.updateHitDistChart();
-  }
-
-  updateDpsGrapherChart(): void {
-    if (this.dpsGrapherChart) {
-      this.dpsGrapherChart.destroy();
-    }
-    this.dpsGrapherChart = new Chart('dpsGrapherChart', {
-      type: 'line',
-      data: {
-        datasets: [],
-      },
-    });
-
-    const datasets = this.selectedDpsGrapherResult.dpsData.map((dpsGraphData: DpsGraphData, index: number) => ({
-      label: dpsGraphData.label,
-      data: dpsGraphData.dps,
-      backgroundColor: this.chartColors[index % this.chartColors.length],
-    }));
-
-    this.dpsGrapherChart.data = {
-      labels: this.selectedDpsGrapherResult.xValues,
-      datasets: datasets,
-    };
-
-    this.dpsGrapherChart.options = {
-      scales: {
-        y: {
-          title: {
-            display: true,
-            text: 'Dps',
-          },
-        },
-        x: {
-          title: {
-            display: true,
-            text: this.selectedDpsGrapherResult.graphType,
-          },
-        },
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            title: (items) => this.selectedDpsGrapherResult.graphType + ': ' + items[0].label,
-          },
-        },
-      },
-    };
-
-    this.dpsGrapherChart.update();
-  }
-
-  updateHitDistChart(): void {
-    if (this.hitDistChart) {
-      this.hitDistChart.destroy();
-    }
-    this.hitDistChart = new Chart('hitDistChart', {
-      type: 'bar',
-      data: {
-        datasets: [],
-      },
-    });
-
-    const labels = new Array<number>(this.selectedDpsCalcResult.hitDist.length);
-    for (let i = 0; i < this.selectedDpsCalcResult.hitDist.length; i++) {
-      labels[i] = i;
-    }
-
-    const start = this.hideZeroDist ? 1 : 0;
-    this.hitDistChart.data = {
-      labels: labels.slice(start),
-      datasets: [
-        {
-          label: 'Hit Distribution',
-          data: this.selectedDpsCalcResult.hitDist.slice(start),
-        },
-      ],
-    };
-
-    this.hitDistChart.options = {
-      scales: {
-        y: {
-          title: {
-            display: true,
-            text: 'Chance %',
-          },
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Total damage',
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-    };
-
-    this.hitDistChart.update();
-  }
-
-  hideZeroDistChange(isHide: boolean): void {
-    this.hideZeroDist = isHide;
-    this.updateHitDistChart();
-  }
-
-  dpsCalcFilter(result: DpsCalcResult, searchTerm: string): boolean {
-    if (!searchTerm) return true;
-
-    const name = result.labels.gearSetupName;
-
-    return (
-      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      name
-        .replace(/[^0-9a-z]/gi, '')
-        .toLowerCase()
-        .includes(searchTerm.replace(/[^0-9a-z]/gi, '').toLowerCase())
-    );
   }
 }
