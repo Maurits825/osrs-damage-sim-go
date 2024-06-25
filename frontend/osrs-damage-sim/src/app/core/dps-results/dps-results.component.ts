@@ -4,10 +4,10 @@ import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay, tap } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 import { cloneDeep } from 'lodash-es';
-import { RESULT_TABS, ResultTab, ResultType } from './result-tab.model';
+import { CALC_DETAILS_TAB, RESULT_TABS, ResultTab, ResultType } from './result-tab.model';
 
 @Component({
   selector: 'app-dps-results',
@@ -17,7 +17,7 @@ export class DpsResultsComponent implements OnInit, OnChanges {
   @Input()
   dpsResults: DpsResults;
 
-  RESULT_TABS = RESULT_TABS;
+  resultTabs = RESULT_TABS;
   ResultType = ResultType;
   activeResultTab: ResultTab = RESULT_TABS[0];
 
@@ -46,6 +46,12 @@ export class DpsResultsComponent implements OnInit, OnChanges {
       map((userSettings: UserSettings) => userSettings.showTextLabels),
       shareReplay(1)
     );
+
+    this.localStorageService.userSettingsWatch$
+      .pipe(map((userSettings: UserSettings) => userSettings.enableDebugTracking))
+      .subscribe((enableDebugTracking: boolean) => {
+        enableDebugTracking ? (this.resultTabs = [...RESULT_TABS, CALC_DETAILS_TAB]) : (this.resultTabs = RESULT_TABS);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {

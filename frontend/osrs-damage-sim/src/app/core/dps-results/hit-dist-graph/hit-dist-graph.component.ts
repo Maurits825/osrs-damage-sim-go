@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { Observable } from 'rxjs';
 import { DpsCalcResult, DpsCalcResults } from 'src/app/model/damage-sim/dps-results.model';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 
@@ -16,7 +15,7 @@ export class HitDistGraphComponent implements OnChanges {
   inputSetup: InputSetup;
 
   @Input()
-  showResultTextLabel$: Observable<boolean>;
+  showResultTextLabel: boolean;
 
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;

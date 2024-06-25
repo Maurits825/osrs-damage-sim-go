@@ -48,6 +48,7 @@ import { WikiDpsShortlinkComponent } from './core/wiki-dps-shortlink/wiki-dps-sh
 import { UnitTestModalComponent } from './shared/modals/unit-test-modal/unit-test-modal.component';
 import { HitDistGraphComponent } from './core/dps-results/hit-dist-graph/hit-dist-graph.component';
 import { DpsGraphComponent } from './core/dps-results/dps-graph/dps-graph.component';
+import { CalcDetailsComponent } from './core/dps-results/calc-details/calc-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +92,7 @@ import { DpsGraphComponent } from './core/dps-results/dps-graph/dps-graph.compon
     UnitTestModalComponent,
     HitDistGraphComponent,
     DpsGraphComponent,
+    CalcDetailsComponent,
   ],
   imports: [
     NgSelectModule,

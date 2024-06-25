@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { Observable } from 'rxjs';
 import { DpsGraphData, DpsGrapherResult, DpsGrapherResults } from 'src/app/model/damage-sim/dps-grapher-results.model';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 
@@ -14,9 +13,6 @@ export class DpsGraphComponent implements OnChanges {
 
   @Input()
   inputSetup: InputSetup;
-
-  @Input()
-  showResultTextLabel$: Observable<boolean>;
 
   dpsGrapherChart: Chart;
 
