@@ -1,0 +1,49 @@
+<div>
+  <div class="mb-2 d-flex align-items-center">
+    <div class="flex-grow-1">
+      <app-ng-select-lazy-load
+        [valueType]="DpsCalcResult"
+        [allValues]="dpsCalcResults.results"
+        [selectedValue]="selectedDpsCalcResult"
+        [clearable]="false"
+        [valueFilter]="dpsCalcFilter"
+        placeholder="Select input value"
+        (valueChanged)="selectedDpsResultChange($event)"
+      >
+        <ng-template #dropdownLabel>
+          <app-gear-setup-label
+            [showTextLabel]="showResultTextLabel"
+            [dpsCalcResult]="selectedDpsCalcResult"
+            [inputGearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex]"
+          ></app-gear-setup-label>
+        </ng-template>
+        <ng-template #dropdownOptions let-index="index" let-item="item">
+          <app-gear-setup-label
+            [showTextLabel]="showResultTextLabel"
+            [dpsCalcResult]="item"
+            [inputGearSetup]="inputSetup.inputGearSetups[index]"
+          ></app-gear-setup-label>
+        </ng-template>
+      </app-ng-select-lazy-load>
+    </div>
+    <div class="ps-3">
+      <div class="form-check form-switch">
+        <label class="fw-lighter me-1" for="hideZeroDist">Hide misses</label>
+        <input
+          #hideZeroDist
+          id="hideZeroDist"
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          (change)="hideZeroDistChange(hideZeroDist.checked)"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="chart-container">
+      <canvas id="hitDistChart">{{ hitDistChart }}</canvas>
+    </div>
+  </div>
+</div>

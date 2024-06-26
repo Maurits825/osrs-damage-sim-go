@@ -1,0 +1,28 @@
+<div>
+  <div class="mb-2">
+    <app-ng-select-lazy-load
+      [valueType]="DpsGrapherResult"
+      [allValues]="dpsGrapherResults.results"
+      [selectedValue]="selectedDpsGrapherResult"
+      [clearable]="false"
+      searchProperty="graphType"
+      placeholder="Select input value"
+      (valueChanged)="selectedGraphResultChange($event)"
+    >
+      <ng-template #dropdownLabel #dropdownOptions let-item="item">
+        <div class="d-flex align-items-center">
+          <div class="text-center" style="width: 35px">
+            <img src="assets/img/dps_grapher_input/{{ item.graphType.replaceAll(' ', '_') | lowercase }}.png" />
+          </div>
+          <div class="ps-2">{{ item.graphType }}</div>
+        </div>
+      </ng-template>
+    </app-ng-select-lazy-load>
+  </div>
+
+  <div>
+    <div class="chart-container">
+      <canvas id="dpsGrapherChart">{{ dpsGrapherChart }}</canvas>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,6 @@
   <h3 class="mb-3 fw-light text-center">{{ dpsResults.dpsCalcResults.title }}</h3>
 
   <div class="row mb-1">
-    <h2 class="mb-1 ps-0">Dps</h2>
     <table class="table table-bordered border-dark mb-3">
       <thead>
         <tr class="text-end">
@@ -53,95 +52,44 @@
     </table>
   </div>
 
-  <div class="row mb-3" *ngIf="dpsResults.dpsCalcResults.results[0].calcDetails">
-    <div *ngFor="let result of dpsResults.dpsCalcResults.results" class="mb-2">
-      <div>{{ result.labels.gearSetupName }}</div>
-      <div *ngFor="let detail of result.calcDetails">
-        {{ detail }}
-      </div>
-    </div>
-  </div>
-
   <div class="row mb-3">
-    <h3 class="mb-2 fw-light text-center">Hit Distribution</h3>
-    <div class="mb-2 d-flex align-items-center">
-      <div class="flex-grow-1">
-        <app-ng-select-lazy-load
-          [valueType]="DpsCalcResult"
-          [allValues]="dpsResults.dpsCalcResults.results"
-          [selectedValue]="selectedDpsCalcResult"
-          [clearable]="false"
-          [valueFilter]="dpsCalcFilter"
-          placeholder="Select input value"
-          (valueChanged)="selectedDpsResultChange($event)"
-        >
-          <ng-template #dropdownLabel>
-            <app-gear-setup-label
-              [showTextLabel]="showResultTextLabel$ | async"
-              [dpsCalcResult]="selectedDpsCalcResult"
-              [inputGearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex]"
-            ></app-gear-setup-label>
-          </ng-template>
-          <ng-template #dropdownOptions let-index="index" let-item="item">
-            <app-gear-setup-label
-              [showTextLabel]="showResultTextLabel$ | async"
-              [dpsCalcResult]="item"
-              [inputGearSetup]="inputSetup.inputGearSetups[index]"
-            ></app-gear-setup-label>
-          </ng-template>
-        </app-ng-select-lazy-load>
+    <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+      <div class="container-fluid">
+        <ul class="navbar-nav nav-tabs flex-wrap">
+          <ng-container *ngFor="let resultTab of resultTabs">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                role="button"
+                [ngClass]="{
+                  active: activeResultTab.resultType === resultTab.resultType
+                }"
+                (click)="activeResultTab = resultTab"
+              >
+                <div class="text-center">{{ resultTab.label }}</div>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
       </div>
-      <div class="ps-3">
-        <div class="form-check form-switch">
-          <label class="fw-lighter me-1" for="hideZeroDist">Hide misses</label>
-          <input
-            #hideZeroDist
-            id="hideZeroDist"
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
-            (change)="hideZeroDistChange(hideZeroDist.checked)"
-          />
-        </div>
-      </div>
-    </div>
+    </nav>
 
-    <div>
-      <div class="chart-container">
-        <canvas id="hitDistChart">{{ hitDistChart }}</canvas>
-      </div>
+    <div *ngIf="activeResultTab.resultType === ResultType.DpsGraph">
+      <app-dps-graph [dpsGrapherResults]="dpsResults.dpsGrapherResults" [inputSetup]="inputSetup"></app-dps-graph>
+    </div>
+    <div *ngIf="activeResultTab.resultType === ResultType.HitDist">
+      <app-hit-dist-graph
+        [dpsCalcResults]="dpsResults.dpsCalcResults"
+        [inputSetup]="inputSetup"
+        [showResultTextLabel]="showResultTextLabel$ | async"
+      ></app-hit-dist-graph>
+    </div>
+    <div *ngIf="activeResultTab.resultType === ResultType.CalcDetails">
+      <app-calc-details
+        [dpsCalcResults]="dpsResults.dpsCalcResults"
+        [inputSetup]="inputSetup"
+        [showResultTextLabel]="showResultTextLabel$ | async"
+      ></app-calc-details>
     </div>
   </div>
-</div>
-
-<div *ngIf="dpsResults?.dpsGrapherResults && !dpsResults?.error">
-  <h3 class="mb-2 fw-light text-center">Dps Graphs</h3>
-  <div class="mb-2">
-    <app-ng-select-lazy-load
-      [valueType]="DpsGrapherResult"
-      [allValues]="dpsResults?.dpsGrapherResults.results"
-      [selectedValue]="selectedDpsGrapherResult"
-      [clearable]="false"
-      searchProperty="graphType"
-      placeholder="Select input value"
-      (valueChanged)="selectedGraphResultChange($event)"
-    >
-      <ng-template #dropdownLabel #dropdownOptions let-item="item">
-        <div class="d-flex align-items-center">
-          <div class="text-center" style="width: 35px">
-            <img src="assets/img/dps_grapher_input/{{ item.graphType.replaceAll(' ', '_') | lowercase }}.png" />
-          </div>
-          <div class="ps-2">{{ item.graphType }}</div>
-        </div>
-      </ng-template>
-    </app-ng-select-lazy-load>
-  </div>
-
-  <ng-container *ngIf="selectedDpsGrapherResult">
-    <div>
-      <div class="chart-container">
-        <canvas id="dpsGrapherChart">{{ dpsGrapherChart }}</canvas>
-      </div>
-    </div>
-  </ng-container>
 </div>

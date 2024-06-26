@@ -132,7 +132,7 @@
   </div>
 
   <div class="d-flex flex-wrap mb-2 align-items-center" *ngFor="let slot of allGearSlots">
-    <div class="col-1 text-center">
+    <div class="text-center pe-2" style="width: 45px">
       <ng-container *ngIf="gearSetup.gear[slot]; else placeholder">
         <img src="data:image/png;base64,{{ gearSetup.gear[slot].icon }}" />
       </ng-container>
