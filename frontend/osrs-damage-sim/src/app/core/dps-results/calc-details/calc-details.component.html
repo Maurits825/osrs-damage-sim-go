@@ -28,9 +28,23 @@
     </div>
   </div>
   <div>
-    <div>{{ selectedDpsCalcResult.labels.gearSetupName }}</div>
-    <div *ngFor="let detail of selectedDpsCalcResult.calcDetails">
-      {{ detail }}
-    </div>
+    <table class="table table-bordered border-dark w-auto">
+      <thead>
+        <tr>
+          <th>Key Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detail of selectedDpsCalcResult.calcDetails">
+          <td>
+            {{ detail.split(":")[0] }}
+          </td>
+          <td>
+            {{ detail.split(":")[1] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
