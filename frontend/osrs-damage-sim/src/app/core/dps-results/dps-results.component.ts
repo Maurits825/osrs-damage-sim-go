@@ -4,7 +4,7 @@ import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 import { InputSetupService } from 'src/app/services/input-setup.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
 import { cloneDeep } from 'lodash-es';
 import { CALC_DETAILS_TAB, RESULT_TABS, ResultTab, ResultType } from './result-tab.model';
