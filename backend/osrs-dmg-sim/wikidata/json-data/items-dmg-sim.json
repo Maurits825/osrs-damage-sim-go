@@ -11771,25 +11771,25 @@
   "slot": 0
  },
  "6184": {
-  "name": "Prince tunic",
+  "name": "Royal frog tunic",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "6185": {
-  "name": "Prince leggings",
+  "name": "Royal frog leggings",
   "weight": 2.267,
   "equipable": true,
   "slot": 7
  },
  "6186": {
-  "name": "Princess blouse",
+  "name": "Royal frog blouse",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "6187": {
-  "name": "Princess skirt",
+  "name": "Royal frog skirt",
   "weight": 2.267,
   "equipable": true,
   "slot": 7
@@ -42123,7 +42123,8 @@
   "equipable": true,
   "slot": 4,
   "amagic": 10,
-  "dmagic": 8
+  "dmagic": 8,
+  "mdmg": 1
  },
  "27117": {
   "name": "Elder chaos robe (or)",
@@ -42132,7 +42133,8 @@
   "equipable": true,
   "slot": 7,
   "amagic": 6,
-  "dmagic": 6
+  "dmagic": 6,
+  "mdmg": 1
  },
  "27119": {
   "name": "Elder chaos hood (or)",
@@ -42141,7 +42143,8 @@
   "equipable": true,
   "slot": 0,
   "amagic": 5,
-  "dmagic": 4
+  "dmagic": 4,
+  "mdmg": 1
  },
  "27123": {
   "name": "Dagon'hai hat (or)",
@@ -46042,9 +46045,7 @@
   "name": "Dizana's quiver",
   "weight": 0.453,
   "equipable": true,
-  "slot": 1,
-  "arange": 18,
-  "rstr": 3
+  "slot": 1
  },
  "28949": {
   "name": "Dizana's quiver",
@@ -46230,8 +46231,7 @@
   "dcrush": 49,
   "dmagic": 32,
   "drange": 46,
-  "str": 2,
-  "mdmg": 1
+  "str": 2
  },
  "29028": {
   "name": "Blood moon helm",
@@ -46630,55 +46630,55 @@
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29491": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29493": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29495": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29497": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29499": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29501": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29503": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29505": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29507": {
   "name": "Rainbow crown shirt",
