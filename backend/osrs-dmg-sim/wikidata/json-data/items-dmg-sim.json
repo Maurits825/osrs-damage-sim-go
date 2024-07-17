@@ -11771,25 +11771,25 @@
   "slot": 0
  },
  "6184": {
-  "name": "Prince tunic",
+  "name": "Royal frog tunic",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "6185": {
-  "name": "Prince leggings",
+  "name": "Royal frog leggings",
   "weight": 2.267,
   "equipable": true,
   "slot": 7
  },
  "6186": {
-  "name": "Princess blouse",
+  "name": "Royal frog blouse",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "6187": {
-  "name": "Princess skirt",
+  "name": "Royal frog skirt",
   "weight": 2.267,
   "equipable": true,
   "slot": 7
@@ -33927,7 +33927,8 @@
   "equipable": true,
   "slot": 5,
   "amagic": 15,
-  "dmagic": 15
+  "dmagic": 15,
+  "mdmg": 2
  },
  "23653": {
   "name": "Ahrim's staff (Last Man Standing)",
@@ -42123,7 +42124,8 @@
   "equipable": true,
   "slot": 4,
   "amagic": 10,
-  "dmagic": 8
+  "dmagic": 8,
+  "mdmg": 1
  },
  "27117": {
   "name": "Elder chaos robe (or)",
@@ -42132,7 +42134,8 @@
   "equipable": true,
   "slot": 7,
   "amagic": 6,
-  "dmagic": 6
+  "dmagic": 6,
+  "mdmg": 1
  },
  "27119": {
   "name": "Elder chaos hood (or)",
@@ -42141,7 +42144,8 @@
   "equipable": true,
   "slot": 0,
   "amagic": 5,
-  "dmagic": 4
+  "dmagic": 4,
+  "mdmg": 1
  },
  "27123": {
   "name": "Dagon'hai hat (or)",
@@ -46042,9 +46046,7 @@
   "name": "Dizana's quiver",
   "weight": 0.453,
   "equipable": true,
-  "slot": 1,
-  "arange": 18,
-  "rstr": 3
+  "slot": 1
  },
  "28949": {
   "name": "Dizana's quiver",
@@ -46230,8 +46232,7 @@
   "dcrush": 49,
   "dmagic": 32,
   "drange": 46,
-  "str": 2,
-  "mdmg": 1
+  "str": 2
  },
  "29028": {
   "name": "Blood moon helm",
@@ -46630,55 +46631,55 @@
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29491": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29493": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29495": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29497": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29499": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29501": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29503": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29505": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29507": {
   "name": "Rainbow crown shirt",
@@ -46733,5 +46734,133 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 4
+ },
+ "29560": {
+  "name": "Elite black full helm",
+  "quest": true,
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -3,
+  "dstab": 13,
+  "dslash": 14,
+  "dcrush": 11,
+  "dmagic": -1,
+  "drange": 13,
+  "prayer": 4
+ },
+ "29562": {
+  "name": "Elite black platebody",
+  "quest": true,
+  "weight": 9.979,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -30,
+  "arange": -15,
+  "dstab": 46,
+  "dslash": 44,
+  "dcrush": 38,
+  "dmagic": -6,
+  "drange": 44,
+  "prayer": 8
+ },
+ "29564": {
+  "name": "Elite black platelegs",
+  "quest": true,
+  "weight": 9.071,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -21,
+  "arange": -11,
+  "dstab": 24,
+  "dslash": 22,
+  "dcrush": 20,
+  "dmagic": -4,
+  "drange": 22,
+  "prayer": 6
+ },
+ "29566": {
+  "name": "Dark squall hood",
+  "quest": true,
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 2,
+  "dmagic": 2
+ },
+ "29568": {
+  "name": "Dark squall robe top",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 4,
+  "dmagic": 4
+ },
+ "29570": {
+  "name": "Dark squall robe bottom",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 3,
+  "dmagic": 3
+ },
+ "29577": {
+  "name": "Burning claws",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 43,
+  "aslash": 54,
+  "dstab": 3,
+  "dslash": 6,
+  "dcrush": 1,
+  "str": 32,
+  "aspeed": 4,
+  "weaponCategory": "CLAW"
+ },
+ "29589": {
+  "name": "Emberlight",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "astab": 63,
+  "aslash": 70,
+  "dslash": 3,
+  "dmagic": 5,
+  "str": 13,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "29591": {
+  "name": "Scorching bow",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 124,
+  "rstr": 40,
+  "aspeed": 5,
+  "weaponCategory": "BOW"
+ },
+ "29594": {
+  "name": "Purging staff",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": -5,
+  "acrush": 83,
+  "amagic": 37,
+  "dstab": 1,
+  "dslash": 1,
+  "dmagic": 25,
+  "str": 62,
+  "mdmg": 10,
+  "aspeed": 5,
+  "weaponCategory": "STAFF"
  }
 }
