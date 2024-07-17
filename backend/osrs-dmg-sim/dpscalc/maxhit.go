@@ -194,6 +194,10 @@ func getRangedMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
 	}
 
+	if player.equippedGear.isEquipped(ralos) {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRalos, maxHit, 3, 4)
+	}
+
 	return maxHit
 }
 

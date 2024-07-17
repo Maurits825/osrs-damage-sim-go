@@ -132,6 +132,7 @@ const (
 	AccursedSceptre   StatDrainWeapon = "Accursed sceptre"
 	BoneDagger        StatDrainWeapon = "Bone dagger"
 	BarrelChestAnchor StatDrainWeapon = "Barrelchest anchor"
+	Ralos             StatDrainWeapon = "Ralos"
 )
 
 type StatDrain struct {

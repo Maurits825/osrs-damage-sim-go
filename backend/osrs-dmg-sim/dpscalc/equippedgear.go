@@ -82,6 +82,8 @@ const (
 
 	scorchingBow = 29591
 	emberlight   = 29589
+
+	ralos = 28919
 )
 
 var virtusSet = []int{26241, 26243, 26245}

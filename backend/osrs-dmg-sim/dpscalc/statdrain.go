@@ -80,6 +80,12 @@ func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 			npc.combatStats.Defence = max(minDefence, npc.combatStats.Defence-statDrain.Value)
 		case BarrelChestAnchor:
 			npc.combatStats.Defence = max(minDefence, npc.combatStats.Defence-int(float32(statDrain.Value)*0.1))
+		case Ralos:
+			for range statDrain.Value {
+				currentDefence := npc.combatStats.Defence
+				defence := currentDefence - int(npc.combatStats.Magic/10)
+				npc.combatStats.Defence = max(minDefence, defence)
+			}
 		}
 	}
 }

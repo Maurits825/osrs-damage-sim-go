@@ -76,6 +76,7 @@ type DefenceReductions struct {
 	Bgs           int  `json:"bgs"`
 	Dwh           int  `json:"dwh"`
 	ElderMaul     int  `json:"elderMaul"`
+	Tonalztic     int  `json:"tonalztic"`
 	Vulnerability bool `json:"vulnerability"`
 }
 
@@ -189,6 +190,7 @@ func buildDefenceReduction(statDrains []dpscalc.StatDrain) DefenceReductions {
 		Bgs:           0,
 		Dwh:           0,
 		ElderMaul:     0,
+		Tonalztic:     0,
 		Vulnerability: false,
 	}
 
@@ -206,6 +208,8 @@ func buildDefenceReduction(statDrains []dpscalc.StatDrain) DefenceReductions {
 			defenceReductions.Dwh += statDrain.Value
 		case dpscalc.ElderMaul:
 			defenceReductions.ElderMaul += statDrain.Value
+		case dpscalc.Ralos:
+			defenceReductions.Tonalztic += statDrain.Value
 		}
 	}
 

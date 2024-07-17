@@ -146,6 +146,16 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
+	if player.equippedGear.isEquipped(ralos) && style == Ranged {
+		if isSpecial {
+			//todo
+		} else {
+			dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
+			attackDistribution = attackdist.NewMultiAttackDistribution(dists)
+		}
+
+	}
+
 	//TODO tome of water??
 
 	//TODO ahrims

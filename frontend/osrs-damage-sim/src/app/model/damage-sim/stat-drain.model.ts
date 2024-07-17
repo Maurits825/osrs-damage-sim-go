@@ -7,6 +7,7 @@ export const allStatDrains = [
   'Bone dagger',
   'Accursed sceptre',
   'Barrelchest anchor',
+  'Ralos',
 ] as const;
 
 export type StatDrainItem = (typeof allStatDrains)[number];
@@ -29,4 +30,5 @@ export const statDrainLabels: StatDrainLabel = {
   'Bone dagger': 'Damage',
   'Accursed sceptre': 'Hits',
   'Barrelchest anchor': 'Damage',
+  Ralos: 'Hits',
 };
