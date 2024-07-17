@@ -215,7 +215,7 @@ func getNpcHitpointsDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphTy
 
 	//create a copy
 	globalSettings := inputSetup.GlobalSettings
-	npcHitpoints := &globalSettings.Npc.Hitpoints
+	npcHitpoints := &globalSettings.NpcHitpoints
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
 		dpsGraphDatas[i] = getDpsGraphData(npcHitpoints, 1, maxHitpoints, &globalSettings, &inputGearSetup)

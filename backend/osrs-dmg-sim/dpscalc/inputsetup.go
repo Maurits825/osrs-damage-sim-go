@@ -49,6 +49,7 @@ type CoxScaling struct {
 
 type GlobalSettings struct {
 	Npc            Npc        `json:"npc"`
+	NpcHitpoints   int        `json:"npcHitpoints"`
 	TeamSize       int        `json:"teamSize"`
 	RaidLevel      int        `json:"raidLevel"`
 	PathLevel      int        `json:"pathLevel"`

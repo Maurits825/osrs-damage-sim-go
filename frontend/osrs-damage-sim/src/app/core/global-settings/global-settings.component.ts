@@ -107,7 +107,6 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   }
 
   npcChanged(npc: Npc): void {
-    npc.hitpoints = 0; // TODO setting this value overwrites the hp, after scaling
     this.globalSettings.npc = npc;
 
     if (!npc) return;
