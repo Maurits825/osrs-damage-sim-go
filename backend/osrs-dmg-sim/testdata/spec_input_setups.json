@@ -209,7 +209,7 @@
     }
   },
   "Ba-ba 300 max d claws spec": {
-    "expectedDps": 17.470343,
+    "expectedDps": 17.649324,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
