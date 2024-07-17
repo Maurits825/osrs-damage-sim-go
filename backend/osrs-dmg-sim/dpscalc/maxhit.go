@@ -72,7 +72,7 @@ func getMeleeMaxHit(player *player) int {
 	}
 
 	//TODO tzhaar weapon, barronite, blister wood, flail, ef aid, rat bone
-	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
@@ -183,6 +183,11 @@ func getRangedMaxHit(player *player) int {
 	}
 	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 5, 4)
+	}
+
+	if player.equippedGear.isEquipped(scorchingBow) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
 	}
 
 	return maxHit

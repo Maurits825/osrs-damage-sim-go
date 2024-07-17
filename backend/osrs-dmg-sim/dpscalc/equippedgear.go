@@ -78,6 +78,9 @@ const (
 	blessedQuiver = 28955
 
 	inqMace = 24417
+
+	scorchingBow = 29591
+	emberlight   = 29589
 )
 
 var virtusSet = []int{26241, 26243, 26245}
