@@ -69,6 +69,7 @@ const (
 	dragonArrows = 11212
 
 	dragonClaws     = 13652
+	burningClaws    = 29577
 	dragonWarhammer = 13576
 
 	boneDagger        = 8872

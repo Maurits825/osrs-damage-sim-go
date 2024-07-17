@@ -115,6 +115,9 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	if player.equippedGear.isEquipped(dragonClaws) && style.isMeleeStyle() && isSpecial {
 		attackDistribution = getDragonClawsSpecDist(accuracy, maxHit)
 	}
+	if player.equippedGear.isEquipped(burningClaws) && style.isMeleeStyle() && isSpecial {
+		attackDistribution = getBurningClawsSpecDist(accuracy, maxHit)
+	}
 
 	if player.equippedGear.isEquipped(webweaver) && style == Ranged && isSpecial {
 		totalHits := 4

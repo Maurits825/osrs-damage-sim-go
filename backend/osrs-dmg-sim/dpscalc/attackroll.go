@@ -80,6 +80,10 @@ func getMeleeAttackRoll(player *player) int {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
+	if player.equippedGear.isEquipped(burningClaws) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
+	}
 	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.isDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 6, 5)
 	}

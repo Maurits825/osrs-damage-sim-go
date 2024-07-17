@@ -89,6 +89,10 @@ func getMeleeMaxHit(player *player) int {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 5)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
+	if player.equippedGear.isEquipped(burningClaws) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
+	}
 	if player.equippedGear.isEquipped(leafBladedAxe) && player.npc.isLeafy {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitLeafy, maxHit, 47, 40)
 	}
