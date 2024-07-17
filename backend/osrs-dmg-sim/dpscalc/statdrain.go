@@ -55,13 +55,16 @@ func (npc *npc) applyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 				defence := currentDefence - int(currentDefence*35/100) //TODO math
 				npc.combatStats.Defence = max(minDefence, defence)
 			}
-		case Arclight:
-			divisor := 20
+		case Arclight, Emberlight:
+			numerator := 1
 			if npc.isDemon {
-				divisor = 10
+				numerator = 2
+				if statDrain.Name == Emberlight {
+					numerator = 3
+				}
 			}
 			scaleStat := func(base int, current int) int {
-				return current - (statDrain.Value * (int(base/divisor) + 1))
+				return current - (statDrain.Value * (int(base*numerator/20) + 1))
 			}
 			npc.combatStats.Attack = scaleStat(npc.BaseCombatStats.Attack, npc.combatStats.Attack)
 			npc.combatStats.Strength = scaleStat(npc.BaseCombatStats.Strength, npc.combatStats.Strength)

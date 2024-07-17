@@ -126,6 +126,7 @@ const (
 	DragonWarhammer   StatDrainWeapon = "Dragon warhammer"
 	ElderMaul         StatDrainWeapon = "Elder maul"
 	Arclight          StatDrainWeapon = "Arclight"
+	Emberlight        StatDrainWeapon = "Emberlight"
 	BandosGodsword    StatDrainWeapon = "Bandos godsword"
 	AccursedSceptre   StatDrainWeapon = "Accursed sceptre"
 	BoneDagger        StatDrainWeapon = "Bone dagger"

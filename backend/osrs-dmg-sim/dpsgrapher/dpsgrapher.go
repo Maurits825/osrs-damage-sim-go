@@ -33,6 +33,7 @@ const (
 	DragonWarhammer GraphType = "Dragon warhammer"
 	ElderMaul       GraphType = "Elder maul"
 	Arclight        GraphType = "Arclight"
+	Emberlight      GraphType = "Emberlight"
 	BandosGodsword  GraphType = "Bandos godsword"
 	AccursedSceptre GraphType = "Accursed sceptre"
 	ToaRaidLevel    GraphType = "TOA raid level"
@@ -40,8 +41,8 @@ const (
 )
 
 // TODO make this better?
-var allGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, ElderMaul, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
-var statDrainGraphTypes = []GraphType{DragonWarhammer, ElderMaul, Arclight, BandosGodsword, AccursedSceptre}
+var allGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
+var statDrainGraphTypes = []GraphType{DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre}
 var levelGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
@@ -174,6 +175,8 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 			statDrainName = dpscalc.DragonWarhammer
 		case ElderMaul:
 			statDrainName = dpscalc.ElderMaul
+		case Emberlight:
+			statDrainName = dpscalc.Emberlight
 		case Arclight:
 			statDrainName = dpscalc.Arclight
 		case BandosGodsword:
