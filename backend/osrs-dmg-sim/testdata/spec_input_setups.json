@@ -1631,5 +1631,128 @@
       ],
       "enableDebugTrack": false
     }
+  },
+  "Max slayer burning claw krill": {
+    "expectedDps": 17.115814,
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "K'ril Tsutsaroth",
+          "isDemon": true,
+          "hitpoints": 0,
+          "att": 340,
+          "str": 300,
+          "def": 270,
+          "mage": 200,
+          "range": 1,
+          "attbns": 160,
+          "strbns": 31,
+          "dstab": 80,
+          "dslash": 80,
+          "dcrush": 80,
+          "dmagic": 130,
+          "dlight": 80,
+          "dstandard": 80,
+          "dheavy": 80,
+          "combat": 650,
+          "size": 5,
+          "respawn": 150,
+          "elementalweaknesspercent": 30,
+          "elementalweaknesstype": "Water",
+          "id": "3129"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": [
+              "super_combat"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "gearSetup": {
+            "setupName": "Burning claws",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Tzkal slayer helmet (i)",
+                "id": 25912
+              },
+              "1": {
+                "name": "Infernal max cape",
+                "id": 21285
+              },
+              "2": {
+                "name": "Amulet of torture",
+                "id": 19553
+              },
+              "3": {
+                "name": "Burning claws",
+                "id": 29577
+              },
+              "4": {
+                "name": "Torva platebody",
+                "id": 26384
+              },
+              "7": {
+                "name": "Torva platelegs",
+                "id": 26386
+              },
+              "9": {
+                "name": "Ferocious gloves",
+                "id": 22981
+              },
+              "10": {
+                "name": "Primordial boots",
+                "id": 13239
+              },
+              "12": {
+                "name": "Ultor ring",
+                "id": 28307
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Slash (Slash/Aggressive)",
+            "spell": null,
+            "isSpecial": false,
+            "prayers": [
+              "piety"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true
+          }
+        }
+      ],
+      "enableDebugTrack": false
+    }
   }
-}

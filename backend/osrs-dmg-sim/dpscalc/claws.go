@@ -6,13 +6,6 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/attackdist"
 )
 
-func getClawsMinMaxHits(roll int, totalRolls int, accuracy float64, baseMaxhit float32, highOffset int) (prob float64, minHit, maxHit int) {
-	minHit = int(baseMaxhit * float32((totalRolls - roll)) / 4)
-	maxHit = int(baseMaxhit) + minHit + highOffset
-	prob = (math.Pow(float64(1-accuracy), float64(roll)) * accuracy) / float64((maxHit - minHit + 1))
-	return
-}
-
 func getDragonClawsSpecDist(accuracy float64, maxHit int) *attackdist.AttackDistribution {
 	allHits := getDragonClawsSpecHits(accuracy, maxHit)
 	missAccuracy := math.Pow(1-accuracy, 4)
@@ -28,6 +21,13 @@ func getBurningClawsSpecDist(accuracy float64, maxHit int) *attackdist.AttackDis
 	allHits = append(allHits, attackdist.WeightedHit{Probability: 2 * missAccuracy / 5, Hitsplats: []int{1, 0, 0}})
 	allHits = append(allHits, attackdist.WeightedHit{Probability: 2 * missAccuracy / 5, Hitsplats: []int{1, 1, 0}})
 	return attackdist.NewSingleAttackDistribution(&attackdist.HitDistribution{Hits: allHits})
+}
+
+func getClawsMinMaxHits(roll int, totalRolls int, accuracy float64, baseMaxhit float32, highOffset int) (prob float64, minHit, maxHit int) {
+	minHit = int(baseMaxhit * float32((totalRolls - roll)) / 4)
+	maxHit = int(baseMaxhit) + minHit + highOffset
+	prob = (math.Pow(1-accuracy, float64(roll)) * accuracy) / float64((maxHit - minHit + 1))
+	return
 }
 
 var dragonClawsHits = []func(baseHit int) (h1, h2, h3, h4 int){
@@ -53,7 +53,6 @@ var dragonClawsHits = []func(baseHit int) (h1, h2, h3, h4 int){
 		return
 	},
 	func(baseHit int) (h1, h2, h3, h4 int) {
-		h1 = 0
 		h1 = 0
 		h2 = 0
 		h3 = 0
@@ -113,4 +112,14 @@ func getBurningClawsSpecHits(baseAccuracy float64, baseMaxHit int) []attackdist.
 	}
 
 	return allHits
+}
+
+func burningClawsDoT(accuracy float64) float64 {
+	totalDamage := 0.0
+	for roll := 0; roll < 3; roll++ {
+		rollHits := (math.Pow(1-accuracy, float64(roll)) * accuracy)
+		burnChancePerHit := 0.15 * float64(roll+1)
+		totalDamage += 30 * rollHits * burnChancePerHit
+	}
+	return totalDamage
 }
