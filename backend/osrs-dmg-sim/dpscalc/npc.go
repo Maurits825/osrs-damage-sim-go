@@ -95,7 +95,7 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		n.damageStats = damageStats{
 			meleeStrength:  npcData.MeleeStrength,
 			rangedStrength: npcData.RangedStrength,
-			magicStrength:  npcData.MagicStrength,
+			magicStrength:  float32(npcData.MagicStrength),
 		}
 
 		n.defensiveStats = defensiveStats{

@@ -27,7 +27,7 @@ type defensiveStats struct {
 type damageStats struct {
 	meleeStrength  int
 	rangedStrength int
-	magicStrength  int
+	magicStrength  float32
 }
 
 type equipmentItem struct {

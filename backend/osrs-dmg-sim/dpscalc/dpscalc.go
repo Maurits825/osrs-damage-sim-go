@@ -135,7 +135,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		if slices.Contains(ToaIds, npc.id) {
 			factor = 4
 		}
-		equipmentStats.damageStats.magicStrength *= factor
+		equipmentStats.damageStats.magicStrength *= float32(factor)
 		equipmentStats.offensiveStats.magic *= factor
 	}
 

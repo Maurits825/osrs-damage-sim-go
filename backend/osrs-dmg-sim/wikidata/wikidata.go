@@ -7,26 +7,26 @@ import (
 )
 
 type ItemData struct {
-	Name           string `json:"name"`
-	AttackSpeed    int    `json:"aspeed"`
-	AStab          int    `json:"astab"`
-	ASlash         int    `json:"aslash"`
-	ACrush         int    `json:"acrush"`
-	AMagic         int    `json:"amagic"`
-	ARanged        int    `json:"arange"`
-	DStab          int    `json:"dstab"`
-	DSlash         int    `json:"dslash"`
-	DCrush         int    `json:"dcrush"`
-	DMagic         int    `json:"dmagic"`
-	DRanged        int    `json:"drange"`
-	MeleeStrength  int    `json:"str"`
-	RangedStrength int    `json:"rstr"`
-	MagicStrength  int    `json:"mdmg"`
-	Prayer         int    `json:"prayer"`
-	Is2h           bool   `json:"is2h"`
-	WeaponCategory string `json:"weaponCategory"`
-	Slot           int    `json:"slot"`
-	Equipable      bool   `json:"equipable"`
+	Name           string  `json:"name"`
+	AttackSpeed    int     `json:"aspeed"`
+	AStab          int     `json:"astab"`
+	ASlash         int     `json:"aslash"`
+	ACrush         int     `json:"acrush"`
+	AMagic         int     `json:"amagic"`
+	ARanged        int     `json:"arange"`
+	DStab          int     `json:"dstab"`
+	DSlash         int     `json:"dslash"`
+	DCrush         int     `json:"dcrush"`
+	DMagic         int     `json:"dmagic"`
+	DRanged        int     `json:"drange"`
+	MeleeStrength  int     `json:"str"`
+	RangedStrength int     `json:"rstr"`
+	MagicStrength  float32 `json:"mdmg"`
+	Prayer         int     `json:"prayer"`
+	Is2h           bool    `json:"is2h"`
+	WeaponCategory string  `json:"weaponCategory"`
+	Slot           int     `json:"slot"`
+	Equipable      bool    `json:"equipable"`
 }
 
 type NpcData struct {
