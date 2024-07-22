@@ -135,7 +135,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		if slices.Contains(ToaIds, npc.id) {
 			factor = 4
 		}
-		equipmentStats.damageStats.magicStrength *= factor
+		equipmentStats.damageStats.magicStrength *= float32(factor)
 		equipmentStats.offensiveStats.magic *= factor
 	}
 
@@ -173,7 +173,7 @@ func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy flo
 	attackSpeed := getAttackSpeed(player)
 
 	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
-	expectedHit := attackDist.GetExpectedHit()
+	expectedHit := attackDist.GetExpectedHit() + getDoTExpected(player, float64(accuracy))
 	hitDist = attackDist.GetFlatHitDistribution()
 	maxHitsplats = attackDist.GetMaxHitsplats()
 
@@ -270,6 +270,14 @@ func getAttackCycleFactor(attackSpeed int, attackCycle int) float32 {
 
 	d := float32(lcm(attackSpeed, attackCycle) - attackCycle)
 	return (d - 1) / d
+}
+
+func getDoTExpected(player *player, accuracy float64) float64 {
+	if player.equippedGear.isEquipped(burningClaws) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+		return burningClawsDoT(accuracy)
+	}
+
+	return 0
 }
 
 func gcd(a, b int) int {

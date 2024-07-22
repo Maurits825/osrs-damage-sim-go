@@ -95,7 +95,7 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		n.damageStats = damageStats{
 			meleeStrength:  npcData.MeleeStrength,
 			rangedStrength: npcData.RangedStrength,
-			magicStrength:  npcData.MagicStrength,
+			magicStrength:  float32(npcData.MagicStrength),
 		}
 
 		n.defensiveStats = defensiveStats{
@@ -119,8 +119,8 @@ func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetu
 	npc.ApplyNpcScaling(globalSettings)
 	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
 
-	if globalSettings.Npc.Hitpoints != 0 {
-		npc.combatStats.Hitpoints = globalSettings.Npc.Hitpoints
+	if globalSettings.NpcHitpoints != 0 {
+		npc.combatStats.Hitpoints = globalSettings.NpcHitpoints
 	}
 }
 

@@ -33,15 +33,21 @@ const (
 	DragonWarhammer GraphType = "Dragon warhammer"
 	ElderMaul       GraphType = "Elder maul"
 	Arclight        GraphType = "Arclight"
+	Emberlight      GraphType = "Emberlight"
 	BandosGodsword  GraphType = "Bandos godsword"
 	AccursedSceptre GraphType = "Accursed sceptre"
+	Ralos           GraphType = "Ralos"
 	ToaRaidLevel    GraphType = "TOA raid level"
-	NpcHitpoints    GraphType = "Npc hitpoints" //TODO
+	NpcHitpoints    GraphType = "Npc hitpoints"
 )
 
 // TODO make this better?
-var allGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize, DragonWarhammer, ElderMaul, Arclight, BandosGodsword, AccursedSceptre, ToaRaidLevel}
-var statDrainGraphTypes = []GraphType{DragonWarhammer, ElderMaul, Arclight, BandosGodsword, AccursedSceptre}
+var allGraphTypes = []GraphType{
+	AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize,
+	DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, Ralos,
+	ToaRaidLevel,
+}
+var statDrainGraphTypes = []GraphType{DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, Ralos}
 var levelGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
@@ -151,10 +157,6 @@ func getTeamSizeDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) 
 func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
 	maxValue := 10
 	switch graphType {
-	case DragonWarhammer, ElderMaul:
-		maxValue = 10
-	case Arclight:
-		maxValue = 10
 	case BandosGodsword:
 		npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
 		npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
@@ -174,12 +176,16 @@ func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType)
 			statDrainName = dpscalc.DragonWarhammer
 		case ElderMaul:
 			statDrainName = dpscalc.ElderMaul
+		case Emberlight:
+			statDrainName = dpscalc.Emberlight
 		case Arclight:
 			statDrainName = dpscalc.Arclight
 		case BandosGodsword:
 			statDrainName = dpscalc.BandosGodsword
 		case AccursedSceptre:
 			statDrainName = dpscalc.AccursedSceptre
+		case Ralos:
+			statDrainName = dpscalc.Ralos
 		}
 		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: statDrainName, Value: 0}}
 		currentValue := &inputGearSetup.GearSetupSettings.StatDrain[0].Value
@@ -212,7 +218,7 @@ func getNpcHitpointsDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphTy
 
 	//create a copy
 	globalSettings := inputSetup.GlobalSettings
-	npcHitpoints := &globalSettings.Npc.Hitpoints
+	npcHitpoints := &globalSettings.NpcHitpoints
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
 		dpsGraphDatas[i] = getDpsGraphData(npcHitpoints, 1, maxHitpoints, &globalSettings, &inputGearSetup)

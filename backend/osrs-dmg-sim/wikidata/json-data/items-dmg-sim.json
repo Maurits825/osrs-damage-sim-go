@@ -8398,7 +8398,7 @@
   "dslash": 13,
   "dcrush": 16,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4710": {
   "name": "Ahrim's staff",
@@ -8414,8 +8414,8 @@
   "dcrush": 2,
   "dmagic": 15,
   "str": 68,
-  "mdmg": 5,
   "aspeed": 6,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "4712": {
@@ -8429,7 +8429,7 @@
   "dslash": 37,
   "dcrush": 63,
   "dmagic": 30,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4714": {
   "name": "Ahrim's robeskirt",
@@ -8442,7 +8442,7 @@
   "dslash": 30,
   "dcrush": 36,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4716": {
   "name": "Dharok's helm",
@@ -8777,7 +8777,7 @@
   "dslash": 13,
   "dcrush": 16,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4857": {
   "name": "Ahrim's hood",
@@ -8790,7 +8790,7 @@
   "dslash": 13,
   "dcrush": 16,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4858": {
   "name": "Ahrim's hood",
@@ -8803,7 +8803,7 @@
   "dslash": 13,
   "dcrush": 16,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4859": {
   "name": "Ahrim's hood",
@@ -8816,7 +8816,7 @@
   "dslash": 13,
   "dcrush": 16,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4860": {
   "name": "Ahrim's hood",
@@ -8838,8 +8838,8 @@
   "dcrush": 2,
   "dmagic": 15,
   "str": 68,
-  "mdmg": 5,
   "aspeed": 6,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "4863": {
@@ -8856,8 +8856,8 @@
   "dcrush": 2,
   "dmagic": 15,
   "str": 68,
-  "mdmg": 5,
   "aspeed": 6,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "4864": {
@@ -8874,8 +8874,8 @@
   "dcrush": 2,
   "dmagic": 15,
   "str": 68,
-  "mdmg": 5,
   "aspeed": 6,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "4865": {
@@ -8892,8 +8892,8 @@
   "dcrush": 2,
   "dmagic": 15,
   "str": 68,
-  "mdmg": 5,
   "aspeed": 6,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "4866": {
@@ -8915,7 +8915,7 @@
   "dslash": 37,
   "dcrush": 63,
   "dmagic": 30,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4869": {
   "name": "Ahrim's robetop",
@@ -8928,7 +8928,7 @@
   "dslash": 37,
   "dcrush": 63,
   "dmagic": 30,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4870": {
   "name": "Ahrim's robetop",
@@ -8941,7 +8941,7 @@
   "dslash": 37,
   "dcrush": 63,
   "dmagic": 30,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4871": {
   "name": "Ahrim's robetop",
@@ -8954,7 +8954,7 @@
   "dslash": 37,
   "dcrush": 63,
   "dmagic": 30,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4872": {
   "name": "Ahrim's robetop",
@@ -8973,7 +8973,7 @@
   "dslash": 30,
   "dcrush": 36,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4875": {
   "name": "Ahrim's robeskirt",
@@ -8986,7 +8986,7 @@
   "dslash": 30,
   "dcrush": 36,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4876": {
   "name": "Ahrim's robeskirt",
@@ -8999,7 +8999,7 @@
   "dslash": 30,
   "dcrush": 36,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4877": {
   "name": "Ahrim's robeskirt",
@@ -9012,7 +9012,7 @@
   "dslash": 30,
   "dcrush": 36,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "4878": {
   "name": "Ahrim's robeskirt",
@@ -11771,25 +11771,25 @@
   "slot": 0
  },
  "6184": {
-  "name": "Prince tunic",
+  "name": "Royal frog tunic",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "6185": {
-  "name": "Prince leggings",
+  "name": "Royal frog leggings",
   "weight": 2.267,
   "equipable": true,
   "slot": 7
  },
  "6186": {
-  "name": "Princess blouse",
+  "name": "Royal frog blouse",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "6187": {
-  "name": "Princess skirt",
+  "name": "Royal frog skirt",
   "weight": 2.267,
   "equipable": true,
   "slot": 7
@@ -13262,7 +13262,8 @@
   "equipable": true,
   "slot": 12,
   "amagic": 6,
-  "dmagic": 6
+  "dmagic": 6,
+  "mdmg": 0.2
  },
  "6733": {
   "name": "Archers ring",
@@ -13613,7 +13614,7 @@
   "slot": 5,
   "amagic": 15,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "6908": {
   "name": "Beginner wand",
@@ -13662,7 +13663,7 @@
   "slot": 4,
   "amagic": 22,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "6918": {
   "name": "Infinity hat",
@@ -13671,7 +13672,7 @@
   "slot": 0,
   "amagic": 6,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "6920": {
   "name": "Infinity boots",
@@ -13696,7 +13697,7 @@
   "slot": 7,
   "amagic": 17,
   "dmagic": 17,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "6959": {
   "name": "Pink cape",
@@ -19059,7 +19060,7 @@
   "slot": 4,
   "amagic": 24,
   "dmagic": 24,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "10340": {
   "name": "3rd age robe",
@@ -19068,7 +19069,7 @@
   "slot": 7,
   "amagic": 19,
   "dmagic": 19,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "10342": {
   "name": "3rd age mage hat",
@@ -19077,7 +19078,7 @@
   "slot": 0,
   "amagic": 8,
   "dmagic": 8,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "10344": {
   "name": "3rd age amulet",
@@ -21564,7 +21565,8 @@
   "equipable": true,
   "slot": 12,
   "amagic": 12,
-  "dmagic": 12
+  "dmagic": 12,
+  "mdmg": 0.5
  },
  "11771": {
   "name": "Archers ring (i)",
@@ -21767,8 +21769,8 @@
   "dcrush": 3,
   "dmagic": 17,
   "str": 72,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "11802": {
@@ -22351,7 +22353,7 @@
   "dslash": 52,
   "dcrush": 48,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "11926": {
   "name": "Odium ward",
@@ -22570,8 +22572,8 @@
   "equipable": true,
   "slot": 2,
   "amagic": 12,
-  "mdmg": 5,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 5.0
  },
  "12006": {
   "name": "Abyssal tentacle",
@@ -23744,7 +23746,7 @@
   "slot": 0,
   "amagic": 6,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "12420": {
   "name": "Light infinity top",
@@ -23753,7 +23755,7 @@
   "slot": 4,
   "amagic": 22,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "12421": {
   "name": "Light infinity bottoms",
@@ -23762,7 +23764,7 @@
   "slot": 7,
   "amagic": 17,
   "dmagic": 17,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "12422": {
   "name": "3rd age wand",
@@ -23922,7 +23924,7 @@
   "slot": 0,
   "amagic": 6,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "12458": {
   "name": "Dark infinity top",
@@ -23931,7 +23933,7 @@
   "slot": 4,
   "amagic": 22,
   "dmagic": 22,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "12459": {
   "name": "Dark infinity bottoms",
@@ -23940,7 +23942,7 @@
   "slot": 7,
   "amagic": 17,
   "dmagic": 17,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "12460": {
   "name": "Ancient platebody",
@@ -24677,7 +24679,7 @@
   "dslash": 52,
   "dcrush": 48,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "12807": {
   "name": "Odium ward (or)",
@@ -24832,8 +24834,8 @@
   "dcrush": 73,
   "dmagic": 2,
   "drange": 52,
-  "mdmg": 3,
-  "prayer": 3
+  "prayer": 3,
+  "mdmg": 3.0
  },
  "12829": {
   "name": "Spirit shield",
@@ -25022,8 +25024,8 @@
   "dcrush": 3,
   "dmagic": 17,
   "str": 72,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "12904": {
@@ -25038,8 +25040,8 @@
   "dcrush": 3,
   "dmagic": 17,
   "str": 72,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "12924": {
@@ -25768,7 +25770,7 @@
   "dcrush": 5,
   "dmagic": 8,
   "drange": 5,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "13237": {
   "name": "Pegasian boots",
@@ -27168,8 +27170,8 @@
   "equipable": true,
   "slot": 9,
   "amagic": 10,
-  "mdmg": 5,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 5.0
  },
  "19547": {
   "name": "Necklace of anguish",
@@ -27405,8 +27407,8 @@
   "equipable": true,
   "slot": 2,
   "amagic": 12,
-  "mdmg": 5,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 5.0
  },
  "19722": {
   "name": "Dragon defender (t)",
@@ -28646,7 +28648,7 @@
   "slot": 4,
   "amagic": 10,
   "dmagic": 8,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "20520": {
   "name": "Elder chaos robe",
@@ -28655,7 +28657,7 @@
   "slot": 7,
   "amagic": 6,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "20557": {
   "name": "Granite maul (Last Man Standing)",
@@ -28762,7 +28764,7 @@
   "slot": 0,
   "amagic": 5,
   "dmagic": 4,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "20598": {
   "name": "Ahrim's robetop (Last Man Standing)",
@@ -29236,8 +29238,8 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 20,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "21009": {
@@ -29290,7 +29292,7 @@
   "dslash": 11,
   "dcrush": 13,
   "dmagic": 5,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "21021": {
   "name": "Ancestral robe top",
@@ -29303,7 +29305,7 @@
   "dslash": 31,
   "dcrush": 51,
   "dmagic": 28,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "21024": {
   "name": "Ancestral robe bottom",
@@ -29316,7 +29318,7 @@
   "dslash": 24,
   "dcrush": 30,
   "dmagic": 20,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "21028": {
   "name": "Dragon harpoon",
@@ -30090,7 +30092,7 @@
   "dmagic": 15,
   "drange": -5,
   "str": -2,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21634": {
   "name": "Ancient wyvern shield",
@@ -30108,7 +30110,7 @@
   "dmagic": 15,
   "drange": -55,
   "str": -2,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21643": {
   "name": "Granite boots",
@@ -30248,7 +30250,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21778": {
   "name": "Imbued saradomin max hood",
@@ -30266,7 +30268,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21782": {
   "name": "Imbued zamorak max hood",
@@ -30284,7 +30286,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21786": {
   "name": "Imbued guthix max hood",
@@ -30302,7 +30304,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21793": {
   "name": "Imbued guthix cape",
@@ -30314,7 +30316,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21795": {
   "name": "Imbued zamorak cape",
@@ -30326,7 +30328,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "21816": {
   "name": "Bracelet of ethereum",
@@ -31423,8 +31425,8 @@
   "dcrush": 3,
   "dmagic": 17,
   "str": 72,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "22316": {
@@ -32083,8 +32085,8 @@
   "dcrush": 4,
   "dmagic": 18,
   "str": 72,
-  "mdmg": 10,
   "aspeed": 5,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "22650": {
@@ -33446,8 +33448,8 @@
   "equipable": true,
   "slot": 9,
   "amagic": 10,
-  "mdmg": 5,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 5.0
  },
  "23446": {
   "name": "Giant easter egg",
@@ -33581,7 +33583,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "23605": {
   "name": "Imbued zamorak cape (Last Man Standing)",
@@ -33593,7 +33595,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "23607": {
   "name": "Imbued saradomin cape (Last Man Standing)",
@@ -33605,7 +33607,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "23611": {
   "name": "Armadyl crossbow (Last Man Standing)",
@@ -33629,8 +33631,8 @@
   "dcrush": 3,
   "dmagic": 17,
   "str": 72,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "23615": {
@@ -33662,8 +33664,8 @@
   "dcrush": 4,
   "dmagic": 18,
   "str": 72,
-  "mdmg": 10,
   "aspeed": 5,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "23619": {
@@ -33722,8 +33724,8 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 20,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "23628": {
@@ -33927,7 +33929,8 @@
   "equipable": true,
   "slot": 5,
   "amagic": 15,
-  "dmagic": 15
+  "dmagic": 15,
+  "mdmg": 2.0
  },
  "23653": {
   "name": "Ahrim's staff (Last Man Standing)",
@@ -33943,8 +33946,8 @@
   "dcrush": 2,
   "dmagic": 15,
   "str": 68,
-  "mdmg": 5,
   "aspeed": 6,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "23654": {
@@ -33953,8 +33956,8 @@
   "equipable": true,
   "slot": 2,
   "amagic": 12,
-  "mdmg": 5,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 5.0
  },
  "23673": {
   "name": "Crystal axe",
@@ -35299,8 +35302,8 @@
   "dcrush": 3,
   "dmagic": 17,
   "str": 72,
-  "mdmg": 15,
   "aspeed": 4,
+  "mdmg": 15.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "24157": {
@@ -35938,7 +35941,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "24233": {
   "name": "Imbued zamorak max cape",
@@ -35950,7 +35953,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "24234": {
   "name": "Imbued guthix max cape",
@@ -35962,7 +35965,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "24248": {
   "name": "Imbued saradomin cape",
@@ -35974,7 +35977,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "24249": {
   "name": "Imbued guthix cape",
@@ -35986,7 +35989,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "24250": {
   "name": "Imbued zamorak cape",
@@ -35998,7 +36001,7 @@
   "dslash": 3,
   "dcrush": 3,
   "dmagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "24265": {
   "name": "V's shield",
@@ -36044,8 +36047,8 @@
   "slot": 0,
   "amagic": 5,
   "dmagic": 5,
-  "mdmg": 1,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 1.0
  },
  "24291": {
   "name": "Dagon'hai robe top",
@@ -36054,8 +36057,8 @@
   "slot": 4,
   "amagic": 25,
   "dmagic": 21,
-  "mdmg": 1,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 1.0
  },
  "24294": {
   "name": "Dagon'hai robe bottom",
@@ -36064,8 +36067,8 @@
   "slot": 7,
   "amagic": 18,
   "dmagic": 14,
-  "mdmg": 1,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 1.0
  },
  "24305": {
   "name": "Spooky hood",
@@ -36417,8 +36420,8 @@
   "slot": 3,
   "amagic": 16,
   "dmagic": 14,
-  "mdmg": 15,
   "aspeed": 5,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "24423": {
@@ -36428,8 +36431,8 @@
   "slot": 3,
   "amagic": 16,
   "dmagic": 14,
-  "mdmg": 15,
   "aspeed": 5,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "24424": {
@@ -36439,8 +36442,8 @@
   "slot": 3,
   "amagic": 16,
   "dmagic": 14,
-  "mdmg": 15,
   "aspeed": 5,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "24425": {
@@ -36450,8 +36453,8 @@
   "slot": 3,
   "amagic": 16,
   "dmagic": 14,
-  "mdmg": 15,
   "aspeed": 5,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "24428": {
@@ -36575,7 +36578,7 @@
   "dslash": 11,
   "dcrush": 13,
   "dmagic": 5,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "24666": {
   "name": "Twisted ancestral robe top",
@@ -36588,7 +36591,7 @@
   "dslash": 31,
   "dcrush": 51,
   "dmagic": 28,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "24668": {
   "name": "Twisted ancestral robe bottom",
@@ -36601,7 +36604,7 @@
   "dslash": 24,
   "dcrush": 30,
   "dmagic": 20,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "24676": {
   "name": "Vyre noble top",
@@ -37703,7 +37706,8 @@
   "equipable": true,
   "slot": 12,
   "amagic": 12,
-  "dmagic": 12
+  "dmagic": 12,
+  "mdmg": 0.5
  },
  "25260": {
   "name": "Archers ring (i)",
@@ -38085,7 +38089,7 @@
   "dslash": 39,
   "dcrush": 64,
   "dmagic": 24,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "25407": {
   "name": "Bloodbark gauntlets",
@@ -38119,7 +38123,7 @@
   "dslash": 14,
   "dcrush": 17,
   "dmagic": 6,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "25416": {
   "name": "Bloodbark legs",
@@ -38131,7 +38135,7 @@
   "dslash": 31,
   "dcrush": 38,
   "dmagic": 17,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "25434": {
   "name": "Zealot's robe top",
@@ -38278,8 +38282,8 @@
   "slot": 3,
   "amagic": 16,
   "dmagic": 14,
-  "mdmg": 15,
   "aspeed": 5,
+  "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
  "25518": {
@@ -38293,7 +38297,7 @@
   "dslash": 11,
   "dcrush": 13,
   "dmagic": 5,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "25539": {
   "name": "Celestial ring",
@@ -39147,8 +39151,8 @@
   "dslash": 3,
   "dcrush": 9,
   "drange": 6,
-  "mdmg": 3,
-  "prayer": 1
+  "prayer": 1,
+  "mdmg": 3.0
  },
  "26156": {
   "name": "Group ironman helm",
@@ -39439,8 +39443,8 @@
   "dslash": 14,
   "dcrush": 16,
   "dmagic": 6,
-  "mdmg": 2,
-  "prayer": 1
+  "prayer": 1,
+  "mdmg": 2.0
  },
  "26243": {
   "name": "Virtus robe top",
@@ -39453,8 +39457,8 @@
   "dslash": 38,
   "dcrush": 56,
   "dmagic": 31,
-  "mdmg": 2,
-  "prayer": 2
+  "prayer": 2,
+  "mdmg": 2.0
  },
  "26245": {
   "name": "Virtus robe bottom",
@@ -39467,8 +39471,8 @@
   "dslash": 28,
   "dcrush": 34,
   "dmagic": 22,
-  "mdmg": 2,
-  "prayer": 1
+  "prayer": 1,
+  "mdmg": 2.0
  },
  "26254": {
   "name": "Saucepan",
@@ -41302,7 +41306,8 @@
   "equipable": true,
   "slot": 12,
   "amagic": 12,
-  "dmagic": 12
+  "dmagic": 12,
+  "mdmg": 0.5
  },
  "26768": {
   "name": "Archers ring (i)",
@@ -42123,7 +42128,8 @@
   "equipable": true,
   "slot": 4,
   "amagic": 10,
-  "dmagic": 8
+  "dmagic": 8,
+  "mdmg": 1.0
  },
  "27117": {
   "name": "Elder chaos robe (or)",
@@ -42132,7 +42138,8 @@
   "equipable": true,
   "slot": 7,
   "amagic": 6,
-  "dmagic": 6
+  "dmagic": 6,
+  "mdmg": 1.0
  },
  "27119": {
   "name": "Elder chaos hood (or)",
@@ -42141,7 +42148,8 @@
   "equipable": true,
   "slot": 0,
   "amagic": 5,
-  "dmagic": 4
+  "dmagic": 4,
+  "mdmg": 1.0
  },
  "27123": {
   "name": "Dagon'hai hat (or)",
@@ -42354,8 +42362,8 @@
   "dcrush": 73,
   "dmagic": 2,
   "drange": 52,
-  "mdmg": 5,
-  "prayer": 4
+  "prayer": 4,
+  "mdmg": 5.0
  },
  "27253": {
   "name": "Elidinis' ward (or)",
@@ -42368,8 +42376,8 @@
   "dcrush": 73,
   "dmagic": 2,
   "drange": 52,
-  "mdmg": 5,
-  "prayer": 4
+  "prayer": 4,
+  "mdmg": 5.0
  },
  "27257": {
   "name": "Icthlarin's shroud (tier 1)",
@@ -43095,9 +43103,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "27626": {
@@ -43114,9 +43122,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "27645": {
@@ -43941,7 +43949,7 @@
   "dslash": 16,
   "dcrush": 22,
   "dmagic": 8,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "27840": {
   "name": "Zuriel's robe top (bh)",
@@ -43954,7 +43962,7 @@
   "dslash": 45,
   "dcrush": 74,
   "dmagic": 35,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "27841": {
   "name": "Zuriel's robe bottom (bh)",
@@ -43967,7 +43975,7 @@
   "dslash": 35,
   "dcrush": 44,
   "dmagic": 25,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "27842": {
   "name": "Corrupted vesta's chainbody (bh)",
@@ -44107,7 +44115,7 @@
   "dslash": 11,
   "dcrush": 14,
   "dmagic": 5,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "27851": {
   "name": "Corrupted zuriel's robe top (bh)",
@@ -44120,7 +44128,7 @@
   "dslash": 39,
   "dcrush": 47,
   "dmagic": 22,
-  "mdmg": 3
+  "mdmg": 3.0
  },
  "27852": {
   "name": "Corrupted zuriel's robe bottom (bh)",
@@ -44133,7 +44141,7 @@
   "dslash": 20,
   "dcrush": 23,
   "dmagic": 14,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "27853": {
   "name": "Dark bow (bh)",
@@ -44366,8 +44374,8 @@
   "dcrush": 4,
   "dmagic": 18,
   "str": 72,
-  "mdmg": 10,
   "aspeed": 5,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28019": {
@@ -45134,9 +45142,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28262": {
@@ -45153,9 +45161,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28264": {
@@ -45172,9 +45180,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28266": {
@@ -45191,9 +45199,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28307": {
@@ -45217,7 +45225,7 @@
   "equipable": true,
   "slot": 12,
   "amagic": 15,
-  "mdmg": 2
+  "mdmg": 2.0
  },
  "28316": {
   "name": "Bellator ring",
@@ -45291,9 +45299,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28474": {
@@ -45310,9 +45318,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28475": {
@@ -45329,9 +45337,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28476": {
@@ -45348,9 +45356,9 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 60,
-  "mdmg": 5,
   "prayer": -1,
   "aspeed": 4,
+  "mdmg": 5.0,
   "weaponCategory": "STAFF"
  },
  "28531": {
@@ -46042,9 +46050,7 @@
   "name": "Dizana's quiver",
   "weight": 0.453,
   "equipable": true,
-  "slot": 1,
-  "arange": 18,
-  "rstr": 3
+  "slot": 1
  },
  "28949": {
   "name": "Dizana's quiver",
@@ -46095,8 +46101,8 @@
   "dcrush": 1,
   "dmagic": 15,
   "str": 71,
-  "mdmg": 5,
   "aspeed": 5,
+  "mdmg": 5.0,
   "weaponCategory": "BLADED_STAFF"
  },
  "28991": {
@@ -46180,7 +46186,7 @@
   "dcrush": 51,
   "dmagic": 28,
   "str": 2,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29016": {
   "name": "Blue moon tassets",
@@ -46191,7 +46197,7 @@
   "dcrush": 23,
   "dmagic": 32,
   "str": 1,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29019": {
   "name": "Blue moon helm",
@@ -46202,7 +46208,7 @@
   "dcrush": 10,
   "dmagic": 6,
   "str": 3,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29022": {
   "name": "Blood moon chestplate",
@@ -46230,8 +46236,7 @@
   "dcrush": 49,
   "dmagic": 32,
   "drange": 46,
-  "str": 2,
-  "mdmg": 1
+  "str": 2
  },
  "29028": {
   "name": "Blood moon helm",
@@ -46298,7 +46303,7 @@
   "dcrush": 51,
   "dmagic": 28,
   "str": 2,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29039": {
   "name": "Blue moon tassets",
@@ -46309,7 +46314,7 @@
   "dcrush": 23,
   "dmagic": 32,
   "str": 1,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29041": {
   "name": "Blue moon helm",
@@ -46320,7 +46325,7 @@
   "dcrush": 10,
   "dmagic": 6,
   "str": 3,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29043": {
   "name": "Blood moon chestplate",
@@ -46415,7 +46420,7 @@
   "dcrush": 51,
   "dmagic": 28,
   "str": 2,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29061": {
   "name": "Blue moon tassets",
@@ -46426,7 +46431,7 @@
   "dcrush": 23,
   "dmagic": 32,
   "str": 1,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29064": {
   "name": "Blue moon helm",
@@ -46437,7 +46442,7 @@
   "dcrush": 10,
   "dmagic": 6,
   "str": 3,
-  "mdmg": 1
+  "mdmg": 1.0
  },
  "29067": {
   "name": "Blood moon chestplate",
@@ -46624,61 +46629,61 @@
   "equipable": true,
   "slot": 2,
   "amagic": -3,
-  "mdmg": -80
+  "mdmg": -80.0
  },
  "29489": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29491": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29493": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29495": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29497": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29499": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29501": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29503": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29505": {
   "name": "Rainbow cape",
   "weight": 0.453,
   "equipable": true,
-  "slot": 4
+  "slot": 1
  },
  "29507": {
   "name": "Rainbow crown shirt",
@@ -46733,5 +46738,133 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 4
+ },
+ "29560": {
+  "name": "Elite black full helm",
+  "quest": true,
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -3,
+  "dstab": 13,
+  "dslash": 14,
+  "dcrush": 11,
+  "dmagic": -1,
+  "drange": 13,
+  "prayer": 4
+ },
+ "29562": {
+  "name": "Elite black platebody",
+  "quest": true,
+  "weight": 9.979,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -30,
+  "arange": -15,
+  "dstab": 46,
+  "dslash": 44,
+  "dcrush": 38,
+  "dmagic": -6,
+  "drange": 44,
+  "prayer": 8
+ },
+ "29564": {
+  "name": "Elite black platelegs",
+  "quest": true,
+  "weight": 9.071,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -21,
+  "arange": -11,
+  "dstab": 24,
+  "dslash": 22,
+  "dcrush": 20,
+  "dmagic": -4,
+  "drange": 22,
+  "prayer": 6
+ },
+ "29566": {
+  "name": "Dark squall hood",
+  "quest": true,
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 2,
+  "dmagic": 2
+ },
+ "29568": {
+  "name": "Dark squall robe top",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 4,
+  "dmagic": 4
+ },
+ "29570": {
+  "name": "Dark squall robe bottom",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 3,
+  "dmagic": 3
+ },
+ "29577": {
+  "name": "Burning claws",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 43,
+  "aslash": 54,
+  "dstab": 3,
+  "dslash": 6,
+  "dcrush": 1,
+  "str": 32,
+  "aspeed": 4,
+  "weaponCategory": "CLAW"
+ },
+ "29589": {
+  "name": "Emberlight",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "astab": 63,
+  "aslash": 70,
+  "dslash": 3,
+  "dmagic": 5,
+  "str": 13,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "29591": {
+  "name": "Scorching bow",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 124,
+  "rstr": 40,
+  "aspeed": 5,
+  "weaponCategory": "BOW"
+ },
+ "29594": {
+  "name": "Purging staff",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": -5,
+  "acrush": 83,
+  "amagic": 37,
+  "dstab": 1,
+  "dslash": 1,
+  "dmagic": 25,
+  "str": 62,
+  "aspeed": 5,
+  "mdmg": 10.0,
+  "weaponCategory": "STAFF"
  }
 }

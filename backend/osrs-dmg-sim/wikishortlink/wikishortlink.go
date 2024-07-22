@@ -72,9 +72,11 @@ type Loadout struct {
 type DefenceReductions struct {
 	Accursed      bool `json:"accursed"`
 	Arclight      int  `json:"arclight"`
+	Emberlight    int  `json:"emberlight"`
 	Bgs           int  `json:"bgs"`
 	Dwh           int  `json:"dwh"`
 	ElderMaul     int  `json:"elderMaul"`
+	Tonalztic     int  `json:"tonalztic"`
 	Vulnerability bool `json:"vulnerability"`
 }
 
@@ -184,9 +186,11 @@ func buildDefenceReduction(statDrains []dpscalc.StatDrain) DefenceReductions {
 	defenceReductions := DefenceReductions{
 		Accursed:      false,
 		Arclight:      0,
+		Emberlight:    0,
 		Bgs:           0,
 		Dwh:           0,
 		ElderMaul:     0,
+		Tonalztic:     0,
 		Vulnerability: false,
 	}
 
@@ -194,6 +198,8 @@ func buildDefenceReduction(statDrains []dpscalc.StatDrain) DefenceReductions {
 		switch statDrain.Name {
 		case dpscalc.AccursedSceptre:
 			defenceReductions.Accursed = true
+		case dpscalc.Emberlight:
+			defenceReductions.Emberlight += statDrain.Value
 		case dpscalc.Arclight:
 			defenceReductions.Arclight += statDrain.Value
 		case dpscalc.BandosGodsword:
@@ -202,6 +208,8 @@ func buildDefenceReduction(statDrains []dpscalc.StatDrain) DefenceReductions {
 			defenceReductions.Dwh += statDrain.Value
 		case dpscalc.ElderMaul:
 			defenceReductions.ElderMaul += statDrain.Value
+		case dpscalc.Ralos:
+			defenceReductions.Tonalztic += statDrain.Value
 		}
 	}
 

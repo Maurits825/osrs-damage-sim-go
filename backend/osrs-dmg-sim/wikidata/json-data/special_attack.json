@@ -13,6 +13,7 @@
  "Ancient godsword": 50,
  "Eldritch nightmare staff": 55,
  "Keris partisan of the sun": 75,
+ "Purging staff": 25,
  "Toxic blowpipe": 50,
  "Saradomin godsword": 50,
  "Brine sabre": 75,
@@ -32,6 +33,7 @@
  "Bone dagger": 75,
  "Darklight": 50,
  "Arclight": 50,
+ "Emberlight": 50,
  "Dorgeshuun crossbow": 75,
  "Dragon scimitar": 55,
  "Dragon warhammer": 50,
@@ -67,6 +69,7 @@
  "Volatile nightmare staff": 55,
  "Zaryte crossbow": 75,
  "Abyssal dagger": 25,
+ "Burning claws": 30,
  "Dark bow": 55,
  "Dragon claws": 50,
  "Dragon dagger": 25,
@@ -84,6 +87,7 @@
  "Rod of Ivandis": 10,
  "Ivandis flail": 10,
  "Blisterwood flail": 10,
+ "Scorching bow": 25,
  "Ursine chainmace": 50,
  "Zamorak godsword": 50
 }

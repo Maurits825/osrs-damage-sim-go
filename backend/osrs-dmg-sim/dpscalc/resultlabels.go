@@ -26,6 +26,7 @@ var potionLabels = map[PotionBoost]string{
 var statDrainLabels = map[StatDrainWeapon]string{
 	DragonWarhammer:   "DHW",
 	Arclight:          "Arclight",
+	Emberlight:        "Emberlight",
 	BandosGodsword:    "BGS",
 	AccursedSceptre:   "Accursed Sceptre",
 	BoneDagger:        "Bone Dagger",

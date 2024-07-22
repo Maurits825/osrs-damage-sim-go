@@ -5,7 +5,6 @@ import { DamageSimService } from 'src/app/services/damage-sim.service';
 @Component({
   selector: 'app-npc-input',
   templateUrl: './npc-input.component.html',
-  styleUrls: ['./npc-input.component.css'],
 })
 export class NpcInputComponent implements OnInit {
   @Input()

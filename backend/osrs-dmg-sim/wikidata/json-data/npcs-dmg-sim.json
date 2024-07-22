@@ -2815,7 +2815,8 @@
   "strbns": 7,
   "dmagic": 5,
   "combat": 10,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "291": {
   "name": "Chaos dwarf",
@@ -2893,7 +2894,8 @@
   "strbns": 7,
   "dmagic": 5,
   "combat": 10,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "299": {
   "name": "Gunthor the brave",
@@ -3836,6 +3838,10 @@
  "455": {
   "name": "Crawling Hand",
   "isUndead": true,
+  "hitpoints": 18,
+  "att": 10,
+  "str": 6,
+  "def": 6,
   "mage": 1,
   "range": 1,
   "combat": 11,
@@ -8295,24 +8301,44 @@
  "1060": {
   "name": "Angry bear",
   "hitpoints": 200,
+  "att": 37,
+  "str": 38,
+  "def": 38,
+  "mage": 1,
+  "range": 1,
   "combat": 40,
   "size": 2
  },
  "1061": {
   "name": "Angry unicorn",
   "hitpoints": 200,
+  "att": 37,
+  "str": 38,
+  "def": 38,
+  "mage": 1,
+  "range": 1,
   "combat": 45,
   "size": 2
  },
  "1062": {
   "name": "Angry giant rat",
   "hitpoints": 200,
+  "att": 37,
+  "str": 38,
+  "def": 38,
+  "mage": 1,
+  "range": 1,
   "combat": 45,
   "size": 1
  },
  "1065": {
   "name": "Angry goblin",
   "hitpoints": 200,
+  "att": 37,
+  "str": 38,
+  "def": 38,
+  "mage": 1,
+  "range": 1,
   "combat": 45,
   "size": 1
  },
@@ -8879,7 +8905,6 @@
  "1213": {},
  "1224": {
   "name": "Bouncer",
-  "isDemon": true,
   "hitpoints": 116,
   "att": 120,
   "str": 120,
@@ -8920,6 +8945,10 @@
  },
  "1227": {
   "name": "Arzinian Avatar of Strength",
+  "hitpoints": 200,
+  "att": 150,
+  "str": 130,
+  "def": 120,
   "size": 1
  },
  "1228": {
@@ -8952,6 +8981,11 @@
  },
  "1230": {
   "name": "Arzinian Avatar of Ranging",
+  "hitpoints": 200,
+  "att": 20,
+  "str": 110,
+  "def": 130,
+  "range": 140,
   "size": 1
  },
  "1231": {
@@ -8988,6 +9022,11 @@
  },
  "1233": {
   "name": "Arzinian Avatar of Magic",
+  "hitpoints": 200,
+  "att": 10,
+  "str": 100,
+  "def": 130,
+  "mage": 150,
   "size": 1
  },
  "1234": {
@@ -9287,7 +9326,8 @@
   "str": 47,
   "def": 42,
   "combat": 60,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "1281": {
   "name": "Riyl Shadow",
@@ -9311,7 +9351,8 @@
   "str": 55,
   "def": 60,
   "combat": 80,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "1283": {
   "name": "Asyn Shadow",
@@ -9359,7 +9400,8 @@
   "str": 100,
   "def": 85,
   "combat": 120,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "1293": {
   "name": "Afflicted",
@@ -9756,7 +9798,8 @@
   "strbns": 7,
   "dmagic": 5,
   "combat": 10,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "1406": {
   "name": "Dwarf",
@@ -10269,31 +10312,61 @@
  "1603": {
   "name": "Kolodion",
   "hitpoints": 3,
+  "att": 15,
+  "str": 10,
+  "def": 20,
+  "mage": 15,
+  "range": 1,
   "size": 1
  },
  "1604": {
   "name": "Kolodion",
   "hitpoints": 3,
+  "att": 15,
+  "str": 10,
+  "def": 20,
+  "mage": 15,
+  "range": 1,
   "size": 1
  },
  "1605": {
   "name": "Kolodion",
   "hitpoints": 3,
+  "att": 15,
+  "str": 10,
+  "def": 20,
+  "mage": 15,
+  "range": 1,
   "size": 1
  },
  "1606": {
   "name": "Kolodion",
   "hitpoints": 65,
+  "att": 55,
+  "str": 70,
+  "def": 72,
+  "mage": 50,
+  "range": 1,
   "size": 1
  },
  "1607": {
   "name": "Kolodion",
-  "hitpoints": 65,
+  "hitpoints": 78,
+  "att": 69,
+  "str": 78,
+  "def": 47,
+  "mage": 70,
+  "range": 1,
   "size": 3
  },
  "1608": {
   "name": "Kolodion",
   "hitpoints": 78,
+  "att": 28,
+  "str": 23,
+  "def": 58,
+  "mage": 30,
+  "range": 1,
   "size": 1
  },
  "1609": {
@@ -10591,6 +10664,7 @@
   "str": 26,
   "def": 25,
   "mage": 1,
+  "range": 1,
   "combat": 30,
   "size": 1
  },
@@ -10598,7 +10672,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 20,
+  "att": 22,
+  "str": 1,
   "def": 21,
+  "mage": 1,
   "range": 23,
   "combat": 21,
   "size": 1
@@ -10606,11 +10683,21 @@
  "1669": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "1670": {
   "name": "Penance Healer",
   "hitpoints": 27,
+  "att": 9,
+  "str": 8,
+  "def": 9,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "1672": {
@@ -11355,11 +11442,16 @@
  },
  "1738": {
   "name": "Brawler",
+  "hitpoints": 173,
+  "att": 87,
+  "str": 157,
+  "def": 143,
   "combat": 158,
   "size": 2
  },
  "1739": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
@@ -11369,15 +11461,17 @@
  },
  "1740": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dmagic": 100,
+  "dcrush": 100,
   "drange": 100,
   "size": 3
  },
  "1741": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dcrush": 100,
   "dmagic": 100,
@@ -11386,15 +11480,17 @@
  },
  "1742": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dcrush": 100,
+  "dmagic": 100,
   "drange": 100,
   "size": 3
  },
  "1743": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
@@ -11404,15 +11500,17 @@
  },
  "1744": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dmagic": 100,
+  "dcrush": 100,
   "drange": 100,
   "size": 3
  },
  "1745": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dcrush": 100,
   "dmagic": 100,
@@ -11421,15 +11519,17 @@
  },
  "1746": {
   "name": "Portal",
+  "hitpoints": 250,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dcrush": 100,
+  "dmagic": 100,
   "drange": 100,
   "size": 3
  },
  "1747": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
@@ -11439,15 +11539,17 @@
  },
  "1748": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dmagic": 100,
+  "dcrush": 100,
   "drange": 100,
   "size": 3
  },
  "1749": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dcrush": 100,
   "dmagic": 100,
@@ -11456,15 +11558,17 @@
  },
  "1750": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dcrush": 100,
+  "dmagic": 100,
   "drange": 100,
   "size": 3
  },
  "1751": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
@@ -11474,15 +11578,17 @@
  },
  "1752": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dmagic": 100,
+  "dcrush": 100,
   "drange": 100,
   "size": 3
  },
  "1753": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dcrush": 100,
   "dmagic": 100,
@@ -11491,10 +11597,11 @@
  },
  "1754": {
   "name": "Portal",
+  "hitpoints": 200,
   "def": 120,
   "dstab": 100,
   "dslash": 100,
-  "dcrush": 100,
+  "dmagic": 100,
   "drange": 100,
   "size": 3
  },
@@ -16468,6 +16575,12 @@
   "name": "Golem",
   "is<!-- if no monster attributes apply": true,
   "isRemove this parameter -->": true,
+  "hitpoints": 70,
+  "att": 35,
+  "str": 60,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
   "combat": 55,
   "size": 2
  },
@@ -16614,9 +16727,15 @@
   "respawn": 30
  },
  "2847": {
-  "name": "Yeti",
-  "combat": 58,
-  "size": 3
+  "name": "Skeleton",
+  "hitpoints": 60,
+  "att": 30,
+  "str": 24,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "combat": 35,
+  "size": 2
  },
  "2848": {
   "name": "Monkey",
@@ -17053,8 +17172,11 @@
  },
  "2950": {
   "name": "Void Knight",
+  "att": 1,
+  "str": 1,
   "def": 50,
   "mage": 50,
+  "range": 1,
   "dstab": 100,
   "dslash": 100,
   "dcrush": 100,
@@ -17063,8 +17185,11 @@
  },
  "2951": {
   "name": "Void Knight",
+  "att": 1,
+  "str": 1,
   "def": 50,
   "mage": 50,
+  "range": 1,
   "dstab": 100,
   "dslash": 100,
   "dcrush": 100,
@@ -17073,8 +17198,11 @@
  },
  "2952": {
   "name": "Void Knight",
+  "att": 1,
+  "str": 1,
   "def": 50,
   "mage": 50,
+  "range": 1,
   "dstab": 100,
   "dslash": 100,
   "dcrush": 100,
@@ -17083,8 +17211,11 @@
  },
  "2953": {
   "name": "Void Knight",
+  "att": 1,
+  "str": 1,
   "def": 50,
   "mage": 50,
+  "range": 1,
   "dstab": 100,
   "dslash": 100,
   "dcrush": 100,
@@ -18849,7 +18980,9 @@
   "attbns": 45,
   "strbns": 25,
   "combat": 143,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "Air"
  },
  "3164": {
   "name": "Flockleader Geerin",
@@ -19861,6 +19994,12 @@
  },
  "3300": {
   "name": "Knight of Ardougne",
+  "hitpoints": 52,
+  "att": 38,
+  "str": 40,
+  "def": 31,
+  "mage": 1,
+  "range": 1,
   "combat": 46,
   "size": 1
  },
@@ -19931,6 +20070,11 @@
  "3316": {
   "name": "Chicken",
   "hitpoints": 3,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "combat": 3,
   "size": 1
  },
@@ -21971,6 +22115,8 @@
   "att": 20,
   "str": 20,
   "def": 20,
+  "mage": 1,
+  "range": 1,
   "dstab": 20,
   "dslash": 20,
   "dcrush": 20,
@@ -21984,6 +22130,8 @@
   "att": 40,
   "str": 40,
   "def": 40,
+  "mage": 1,
+  "range": 1,
   "dstab": 40,
   "dslash": 40,
   "dcrush": 40,
@@ -21997,6 +22145,8 @@
   "att": 60,
   "str": 60,
   "def": 60,
+  "mage": 1,
+  "range": 1,
   "dstab": 60,
   "dslash": 60,
   "dcrush": 60,
@@ -22010,6 +22160,8 @@
   "att": 255,
   "str": 5,
   "def": 255,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "3901": {
@@ -24257,10 +24409,10 @@
  },
  "4382": {
   "name": "Ogre shaman",
-  "hitpoints": 1,
-  "att": 1,
-  "str": 1,
-  "def": 1,
+  "hitpoints": 99,
+  "att": 99,
+  "str": 99,
+  "def": 99,
   "mage": 1,
   "range": 1,
   "combat": 113,
@@ -25769,6 +25921,7 @@
  },
  "4863": {
   "name": "Jubbly bird",
+  "hitpoints": 20,
   "att": 5,
   "str": 5,
   "def": 6,
@@ -26142,11 +26295,21 @@
  "4930": {
   "name": "Solus Dellagar",
   "hitpoints": 40,
+  "att": 25,
+  "str": 25,
+  "def": 25,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "4933": {
   "name": "Solus Dellagar",
   "hitpoints": 40,
+  "att": 25,
+  "str": 25,
+  "def": 25,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "4934": {
@@ -26206,6 +26369,11 @@
  "4962": {
   "name": "Solus Dellagar",
   "hitpoints": 40,
+  "att": 25,
+  "str": 25,
+  "def": 25,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "4969": {
@@ -26504,6 +26672,12 @@
  },
  "5141": {
   "name": "Guard",
+  "hitpoints": 30,
+  "att": 16,
+  "str": 20,
+  "def": 12,
+  "mage": 1,
+  "range": 1,
   "combat": 22,
   "size": 1
  },
@@ -28424,7 +28598,10 @@
  "5656": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28433,7 +28610,10 @@
  "5657": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28442,7 +28622,10 @@
  "5658": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28451,7 +28634,10 @@
  "5659": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28460,7 +28646,10 @@
  "5660": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28469,7 +28658,10 @@
  "5661": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28478,7 +28670,10 @@
  "5662": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28487,7 +28682,10 @@
  "5663": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 11,
+  "att": 87,
+  "str": 6,
+  "def": 11,
   "mage": 1,
   "range": 1,
   "combat": 35,
@@ -28784,7 +28982,10 @@
  "5689": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28793,7 +28994,10 @@
  "5690": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28802,7 +29006,10 @@
  "5691": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28811,7 +29018,10 @@
  "5692": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28820,7 +29030,10 @@
  "5693": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28829,7 +29042,10 @@
  "5694": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28838,7 +29054,10 @@
  "5695": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28847,7 +29066,10 @@
  "5696": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 15,
+  "att": 133,
+  "str": 16,
+  "def": 15,
   "mage": 1,
   "range": 1,
   "combat": 55,
@@ -28856,7 +29078,7 @@
  "5697": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28868,7 +29090,7 @@
  "5698": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28880,7 +29102,7 @@
  "5699": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28892,7 +29114,7 @@
  "5700": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28904,7 +29126,7 @@
  "5701": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28916,7 +29138,7 @@
  "5702": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28928,7 +29150,7 @@
  "5703": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28940,7 +29162,7 @@
  "5704": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 16,
   "att": 137,
   "str": 26,
   "def": 16,
@@ -28952,7 +29174,10 @@
  "5705": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -28961,7 +29186,10 @@
  "5706": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -28970,7 +29198,10 @@
  "5707": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -28979,7 +29210,10 @@
  "5708": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -28988,7 +29222,10 @@
  "5709": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -28997,7 +29234,10 @@
  "5710": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -29006,7 +29246,10 @@
  "5711": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -29015,7 +29258,10 @@
  "5712": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 17,
+  "att": 147,
+  "str": 26,
+  "def": 17,
   "mage": 1,
   "range": 1,
   "combat": 64,
@@ -29024,7 +29270,10 @@
  "5713": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29033,7 +29282,10 @@
  "5714": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29042,7 +29294,10 @@
  "5715": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29051,7 +29306,10 @@
  "5716": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29060,7 +29318,10 @@
  "5717": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29069,7 +29330,10 @@
  "5718": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29078,7 +29342,10 @@
  "5719": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29087,7 +29354,10 @@
  "5720": {
   "name": "Undead Lumberjack",
   "isUndead": true,
-  "hitpoints": 12,
+  "hitpoints": 18,
+  "att": 163,
+  "str": 26,
+  "def": 18,
   "mage": 1,
   "range": 1,
   "combat": 70,
@@ -29132,6 +29402,7 @@
   "str": 26,
   "def": 25,
   "mage": 1,
+  "range": 1,
   "combat": 30,
   "size": 1
  },
@@ -29143,6 +29414,7 @@
   "str": 29,
   "def": 27,
   "mage": 1,
+  "range": 1,
   "combat": 32,
   "size": 1
  },
@@ -29154,6 +29426,7 @@
   "str": 32,
   "def": 34,
   "mage": 1,
+  "range": 1,
   "combat": 37,
   "size": 1
  },
@@ -29165,6 +29438,7 @@
   "str": 38,
   "def": 37,
   "mage": 1,
+  "range": 1,
   "combat": 42,
   "size": 1
  },
@@ -29176,6 +29450,7 @@
   "str": 43,
   "def": 44,
   "mage": 1,
+  "range": 1,
   "combat": 47,
   "size": 1
  },
@@ -29187,6 +29462,7 @@
   "str": 48,
   "def": 48,
   "mage": 1,
+  "range": 1,
   "combat": 56,
   "size": 1
  },
@@ -29198,6 +29474,7 @@
   "str": 55,
   "def": 52,
   "mage": 1,
+  "range": 1,
   "combat": 61,
   "size": 1
  },
@@ -29209,6 +29486,7 @@
   "str": 61,
   "def": 62,
   "mage": 1,
+  "range": 1,
   "combat": 68,
   "size": 1
  },
@@ -29220,59 +29498,108 @@
   "str": 73,
   "def": 66,
   "mage": 1,
+  "range": 1,
   "combat": 77,
   "size": 1
  },
  "5748": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5749": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5750": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5751": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5752": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5753": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5754": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5755": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5756": {
   "name": "Penance Runner",
   "hitpoints": 5,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5757": {
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 20,
+  "att": 22,
+  "str": 1,
   "def": 21,
+  "mage": 1,
   "range": 23,
   "combat": 21,
   "size": 1
@@ -29281,7 +29608,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 28,
+  "att": 27,
+  "str": 1,
   "def": 29,
+  "mage": 1,
   "range": 24,
   "combat": 25,
   "size": 1
@@ -29290,7 +29620,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 29,
+  "att": 32,
+  "str": 1,
   "def": 33,
+  "mage": 1,
   "range": 34,
   "combat": 32,
   "size": 1
@@ -29299,7 +29632,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 34,
+  "att": 41,
+  "str": 1,
   "def": 42,
+  "mage": 1,
   "range": 40,
   "combat": 38,
   "size": 1
@@ -29308,7 +29644,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 41,
+  "att": 44,
+  "str": 1,
   "def": 46,
+  "mage": 1,
   "range": 45,
   "combat": 43,
   "size": 1
@@ -29317,7 +29656,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 50,
+  "att": 51,
+  "str": 1,
   "def": 54,
+  "mage": 1,
   "range": 52,
   "combat": 51,
   "size": 1
@@ -29326,7 +29668,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 50,
+  "att": 63,
+  "str": 1,
   "def": 61,
+  "mage": 1,
   "range": 62,
   "combat": 57,
   "size": 1
@@ -29335,7 +29680,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 54,
+  "att": 69,
+  "str": 1,
   "def": 68,
+  "mage": 1,
   "range": 70,
   "combat": 64,
   "size": 1
@@ -29344,7 +29692,10 @@
   "name": "Penance Ranger",
   "isPenance": true,
   "hitpoints": 58,
+  "att": 79,
+  "str": 1,
   "def": 80,
+  "mage": 1,
   "range": 78,
   "combat": 72,
   "size": 1
@@ -29352,46 +29703,91 @@
  "5766": {
   "name": "Penance Healer",
   "hitpoints": 27,
+  "att": 9,
+  "str": 8,
+  "def": 9,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5767": {
   "name": "Penance Healer",
   "hitpoints": 32,
+  "att": 13,
+  "str": 15,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5768": {
   "name": "Penance Healer",
   "hitpoints": 37,
+  "att": 20,
+  "str": 18,
+  "def": 19,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5769": {
   "name": "Penance Healer",
   "hitpoints": 43,
+  "att": 22,
+  "str": 23,
+  "def": 21,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5770": {
   "name": "Penance Healer",
   "hitpoints": 49,
+  "att": 26,
+  "str": 27,
+  "def": 25,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5771": {
   "name": "Penance Healer",
   "hitpoints": 55,
+  "att": 30,
+  "str": 32,
+  "def": 28,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5772": {
   "name": "Penance Healer",
   "hitpoints": 60,
+  "att": 33,
+  "str": 36,
+  "def": 34,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5773": {
   "name": "Penance Healer",
   "hitpoints": 67,
+  "att": 40,
+  "str": 38,
+  "def": 36,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5774": {
   "name": "Penance Healer",
   "hitpoints": 76,
+  "att": 40,
+  "str": 44,
+  "def": 38,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "5775": {
@@ -30093,6 +30489,7 @@
  },
  "5914": {
   "name": "Respiratory system",
+  "isDemon": true,
   "hitpoints": 50,
   "def": 80,
   "size": 2
@@ -30282,6 +30679,11 @@
  "5946": {
   "name": "Suspicious water",
   "hitpoints": 100,
+  "att": 10,
+  "str": 10,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
   "combat": 34,
   "size": 1,
   "respawn": 500
@@ -30293,7 +30695,7 @@
   "str": 10,
   "def": 10,
   "mage": 1,
-  "range": 1,
+  "range": 100,
   "dstab": 100,
   "dslash": 100,
   "dcrush": 100,
@@ -30306,6 +30708,11 @@
  "5948": {
   "name": "Suspicious water",
   "hitpoints": 100,
+  "att": 10,
+  "str": 10,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
   "combat": 34,
   "size": 1,
   "respawn": 500
@@ -30330,6 +30737,11 @@
  "5962": {
   "name": "Suspicious water",
   "hitpoints": 100,
+  "att": 10,
+  "str": 10,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
   "combat": 34,
   "size": 1,
   "respawn": 500
@@ -30341,7 +30753,7 @@
   "str": 10,
   "def": 10,
   "mage": 1,
-  "range": 1,
+  "range": 100,
   "dstab": 100,
   "dslash": 100,
   "dcrush": 100,
@@ -31210,7 +31622,6 @@
  },
  "6293": {
   "name": "Bouncer (hard)",
-  "isDemon": true,
   "hitpoints": 232,
   "att": 240,
   "str": 240,
@@ -32075,7 +32486,6 @@
  },
  "6355": {
   "name": "Bouncer",
-  "isDemon": true,
   "hitpoints": 116,
   "att": 120,
   "str": 120,
@@ -36802,26 +37212,47 @@
  "7288": {
   "name": "Awakened Altar",
   "hitpoints": 100,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "7290": {
   "name": "Awakened Altar",
   "hitpoints": 100,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "7292": {
   "name": "Awakened Altar",
   "hitpoints": 100,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "7294": {
   "name": "Awakened Altar",
   "hitpoints": 100,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "7296": {
   "name": "Dark Ankou",
   "isUndead": true,
+  "isSpectral": true,
   "hitpoints": 60,
   "att": 100,
   "str": 70,
@@ -38419,6 +38850,12 @@
   "name": "Armoured Foe",
   "is<!-- if no monster attributes apply": true,
   "isRemove this parameter -->": true,
+  "hitpoints": 1500,
+  "att": 500,
+  "str": 420,
+  "def": 500,
+  "mage": 1,
+  "range": 1,
   "combat": 820,
   "size": 5
  },
@@ -38426,6 +38863,12 @@
   "name": "Well-armed Foe",
   "is<!-- if no monster attributes apply": true,
   "isRemove this parameter -->": true,
+  "hitpoints": 1500,
+  "att": 500,
+  "str": 420,
+  "def": 500,
+  "mage": 1,
+  "range": 1,
   "combat": 820,
   "size": 3
  },
@@ -38594,8 +39037,14 @@
  },
  "7817": {
   "name": "Lava beast",
-  "hitpoints": 65,
-  "size": 2
+  "att": 1,
+  "str": 1,
+  "def": 70,
+  "mage": 20,
+  "range": 1,
+  "size": 2,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "Water"
  },
  "7851": {
   "name": "Dusk",
@@ -41749,6 +42198,10 @@
  "8584": {
   "name": "Flower",
   "hitpoints": 10,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "8609": {
@@ -43457,6 +43910,11 @@
  "9051": {
   "name": "Golem",
   "hitpoints": 14,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
   "combat": 64,
   "size": 1
  },
@@ -44203,6 +44661,10 @@
  "9435": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
   "elementalweaknesstype": "Fire"
@@ -44210,11 +44672,19 @@
  "9436": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3
  },
  "9438": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
   "elementalweaknesstype": "Fire"
@@ -44222,11 +44692,19 @@
  "9439": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3
  },
  "9441": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
   "elementalweaknesstype": "Fire"
@@ -44234,11 +44712,19 @@
  "9442": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3
  },
  "9444": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
   "elementalweaknesstype": "Fire"
@@ -44246,6 +44732,10 @@
  "9445": {
   "name": "Totem",
   "hitpoints": 300,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 3
  },
  "9446": {
@@ -46181,6 +46671,7 @@
  "10820": {
   "name": "Nylocas Matomenos",
   "isTobEntryMode": true,
+  "hitpoints": 64,
   "att": 100,
   "str": 100,
   "def": 100,
@@ -47693,6 +48184,10 @@
  "11193": {
   "name": "Flower",
   "hitpoints": 10,
+  "att": 1,
+  "str": 1,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "11198": {
@@ -48516,6 +49011,11 @@
  "11485": {
   "name": "Shadow Rift",
   "hitpoints": 20,
+  "att": 1,
+  "str": 1,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
   "size": 1
  },
  "11492": {
@@ -48723,7 +49223,7 @@
  },
  "11711": {
   "name": "Baboon Mage",
-  "hitpoints": 25,
+  "hitpoints": 20,
   "att": 40,
   "str": 40,
   "def": 12,
@@ -48780,7 +49280,7 @@
  },
  "11714": {
   "name": "Baboon Mage",
-  "hitpoints": 30,
+  "hitpoints": 25,
   "att": 60,
   "str": 60,
   "def": 20,
@@ -51289,7 +51789,7 @@
  "12193": {
   "name": "Duke Sucellus (Quest)",
   "isDemon": true,
-  "hitpoints": 200,
+  "hitpoints": 330,
   "att": 250,
   "str": 280,
   "def": 215,
@@ -51313,7 +51813,7 @@
  "12194": {
   "name": "Duke Sucellus (Quest)",
   "isDemon": true,
-  "hitpoints": 200,
+  "hitpoints": 330,
   "att": 250,
   "str": 280,
   "def": 215,
@@ -51337,7 +51837,7 @@
  "12195": {
   "name": "Duke Sucellus (Quest)",
   "isDemon": true,
-  "hitpoints": 200,
+  "hitpoints": 330,
   "att": 250,
   "str": 280,
   "def": 215,
@@ -51755,6 +52255,10 @@
  "12288": {
   "name": "Strangled Bear",
   "hitpoints": 100,
+  "att": 190,
+  "str": 70,
+  "def": 40,
+  "mage": 60,
   "combat": 197,
   "size": 3,
   "respawn": 60
@@ -51762,6 +52266,10 @@
  "12289": {
   "name": "Strangled Boar",
   "hitpoints": 40,
+  "att": 190,
+  "str": 70,
+  "def": 40,
+  "mage": 60,
   "combat": 166,
   "size": 1,
   "respawn": 60
@@ -51769,6 +52277,10 @@
  "12290": {
   "name": "Strangled Lynx",
   "hitpoints": 50,
+  "att": 190,
+  "str": 70,
+  "def": 40,
+  "mage": 60,
   "combat": 182,
   "size": 2,
   "respawn": 60
@@ -52270,7 +52782,8 @@
   "dcrush": 10,
   "dmagic": 75,
   "drange": 75,
-  "combat": 109
+  "combat": 109,
+  "size": 1
  },
  "12393": {
   "name": "Abyssal leech",
@@ -52292,6 +52805,10 @@
  },
  "12394": {
   "name": "Abyssal walker",
+  "hitpoints": 120,
+  "att": 20,
+  "str": 150,
+  "def": 20,
   "mage": 1,
   "range": 1,
   "dstab": 75,
@@ -52299,7 +52816,8 @@
   "dcrush": 10,
   "dmagic": 75,
   "drange": 75,
-  "combat": 90
+  "combat": 90,
+  "size": 1
  },
  "12425": {
   "name": "Vardorvis (Quest)",
@@ -52814,7 +53332,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12492": {
   "name": "Warped Terrorbird",
@@ -52829,7 +53348,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12493": {
   "name": "Warped Terrorbird",
@@ -52844,7 +53364,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12494": {
   "name": "Warped Terrorbird",
@@ -52859,7 +53380,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12495": {
   "name": "Warped Terrorbird",
@@ -52874,7 +53396,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12496": {
   "name": "Warped Terrorbird",
@@ -52889,7 +53412,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12497": {
   "name": "Warped Terrorbird",
@@ -52904,7 +53428,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12498": {
   "name": "Warped Terrorbird",
@@ -52919,7 +53444,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 96,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12499": {
   "name": "Warped Terrorbird",
@@ -52934,7 +53460,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12500": {
   "name": "Warped Terrorbird",
@@ -52949,7 +53476,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12501": {
   "name": "Warped Terrorbird",
@@ -52964,7 +53492,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12502": {
   "name": "Warped Terrorbird",
@@ -52979,7 +53508,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12503": {
   "name": "Warped Terrorbird",
@@ -52994,7 +53524,8 @@
   "dslash": 50,
   "drange": 62,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12504": {
   "name": "Warped Terrorbird",
@@ -53009,26 +53540,51 @@
   "dslash": 50,
   "drange": 62,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "respawn": 50
  },
  "12538": {
   "name": "Bloodthirsty hand",
   "isUndead": true,
+  "hitpoints": 55,
+  "att": 45,
+  "str": 42,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
   "combat": 45,
   "size": 3
  },
  "12539": {
   "name": "Bloodthirsty Crawler",
+  "hitpoints": 60,
+  "att": 64,
+  "str": 59,
+  "def": 55,
+  "mage": 1,
+  "range": 1,
   "combat": 68,
   "size": 3
  },
  "12561": {
   "name": "Bloodthirst rockslug{{Sic}}",
+  "hitpoints": 77,
+  "att": 72,
+  "str": 77,
+  "def": 77,
+  "mage": 1,
+  "range": 1,
   "combat": 86,
   "size": 3
  },
  "12567": {
   "name": "Bloodthirsty Mage",
+  "hitpoints": 175,
+  "att": 1,
+  "str": 1,
+  "def": 175,
+  "mage": 175,
+  "range": 1,
   "combat": 162,
   "size": 2
  },
@@ -53036,6 +53592,12 @@
   "name": "Bloodthirsty spectre",
   "isUndead": true,
   "isSpectral": true,
+  "hitpoints": 250,
+  "att": 1,
+  "str": 1,
+  "def": 180,
+  "mage": 300,
+  "range": 1,
   "combat": 253,
   "size": 3
  },
@@ -53043,6 +53605,12 @@
   "name": "Bloodthirsty Repugnant spectre",
   "isUndead": true,
   "isSpectral": true,
+  "hitpoints": 380,
+  "att": 1,
+  "str": 1,
+  "def": 220,
+  "mage": 380,
+  "range": 1,
   "combat": 335,
   "size": 3
  },
@@ -54562,6 +55130,194 @@
   "combat": 23,
   "size": 1
  },
+ "13463": {
+  "name": "Elite Black Knight",
+  "hitpoints": 90,
+  "att": 90,
+  "str": 120,
+  "def": 90,
+  "mage": 70,
+  "range": 20,
+  "attbns": 85,
+  "dstab": 110,
+  "dslash": 130,
+  "dcrush": 40,
+  "dmagic": -5,
+  "dlight": 140,
+  "dstandard": 135,
+  "dheavy": 60,
+  "combat": 138,
+  "size": 1
+ },
+ "13464": {
+  "name": "Elite Black Knight",
+  "hitpoints": 90,
+  "att": 90,
+  "str": 120,
+  "def": 90,
+  "mage": 70,
+  "range": 20,
+  "attbns": 85,
+  "dstab": 110,
+  "dslash": 130,
+  "dcrush": 40,
+  "dmagic": -5,
+  "dlight": 140,
+  "dstandard": 135,
+  "dheavy": 60,
+  "combat": 138,
+  "size": 1
+ },
+ "13465": {
+  "name": "Elite Dark Warrior",
+  "hitpoints": 80,
+  "att": 80,
+  "str": 80,
+  "def": 80,
+  "mage": 40,
+  "range": 25,
+  "attbns": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13466": {
+  "name": "Elite Dark Warrior",
+  "hitpoints": 80,
+  "att": 80,
+  "str": 80,
+  "def": 80,
+  "mage": 40,
+  "range": 25,
+  "attbns": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13467": {
+  "name": "Elite Dark Ranger",
+  "hitpoints": 80,
+  "att": 25,
+  "str": 25,
+  "def": 80,
+  "mage": 40,
+  "range": 80,
+  "arange": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13468": {
+  "name": "Elite Dark Ranger",
+  "hitpoints": 80,
+  "att": 25,
+  "str": 25,
+  "def": 80,
+  "mage": 40,
+  "range": 80,
+  "arange": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13469": {
+  "name": "Elite Dark Mage",
+  "hitpoints": 80,
+  "att": 25,
+  "str": 25,
+  "def": 80,
+  "mage": 80,
+  "range": 25,
+  "amagic": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13470": {
+  "name": "Elite Dark Mage",
+  "hitpoints": 80,
+  "att": 25,
+  "str": 25,
+  "def": 80,
+  "mage": 80,
+  "range": 25,
+  "amagic": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13480": {
+  "name": "Elite Black Knight",
+  "hitpoints": 90,
+  "att": 90,
+  "str": 120,
+  "def": 90,
+  "mage": 70,
+  "range": 20,
+  "attbns": 85,
+  "dstab": 110,
+  "dslash": 130,
+  "dcrush": 40,
+  "dmagic": -5,
+  "dlight": 140,
+  "dstandard": 135,
+  "dheavy": 60,
+  "combat": 138,
+  "size": 1
+ },
+ "13481": {
+  "name": "Elite Black Knight",
+  "hitpoints": 90,
+  "att": 90,
+  "str": 120,
+  "def": 90,
+  "mage": 70,
+  "range": 20,
+  "attbns": 85,
+  "dstab": 110,
+  "dslash": 130,
+  "dcrush": 40,
+  "dmagic": -5,
+  "dlight": 140,
+  "dstandard": 135,
+  "dheavy": 60,
+  "combat": 138,
+  "size": 1
+ },
+ "13482": {
+  "name": "Surok Magis",
+  "hitpoints": 450,
+  "att": 1,
+  "str": 1,
+  "def": 160,
+  "mage": 160,
+  "range": 1,
+  "amagic": 85,
+  "mbns": 105,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 40,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 265
+ },
+ "13483": {
+  "name": "Agile Warrior",
+  "hitpoints": 30,
+  "att": 25,
+  "str": 25,
+  "def": 80,
+  "mage": 1,
+  "range": 80,
+  "combat": 96,
+  "size": 1
+ },
+ "13484": {
+  "name": "Strong Warrior",
+  "hitpoints": 30,
+  "att": 25,
+  "str": 200,
+  "def": 80,
+  "mage": 1,
+  "range": 80,
+  "combat": 96,
+  "size": 1
+ },
  "13489": {
   "name": "Zombie pirate",
   "isUndead": true,
@@ -54621,6 +55377,472 @@
   "range": 1,
   "combat": 34,
   "size": 1
+ },
+ "13495": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13496": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13497": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13498": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13499": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13500": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13501": {
+  "name": "Skeleton",
+  "isUndead": true,
+  "hitpoints": 17,
+  "att": 24,
+  "str": 1,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "attbns": 15,
+  "strbns": 14,
+  "dstab": 9,
+  "dslash": 11,
+  "dcrush": -2,
+  "dmagic": 1,
+  "drange": 4,
+  "combat": 18,
+  "size": 1,
+  "respawn": 14
+ },
+ "13514": {
+  "name": "Assassin",
+  "hitpoints": 85,
+  "att": 50,
+  "str": 70,
+  "def": 70,
+  "mage": 30,
+  "range": 110,
+  "arange": 90,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 15,
+  "dmagic": 30,
+  "dlight": 60,
+  "dstandard": 20,
+  "dheavy": 30,
+  "combat": 147,
+  "size": 1
+ },
+ "13515": {
+  "name": "Assassin",
+  "hitpoints": 85,
+  "att": 50,
+  "str": 70,
+  "def": 70,
+  "mage": 30,
+  "range": 110,
+  "arange": 90,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 15,
+  "dmagic": 30,
+  "dlight": 60,
+  "dstandard": 20,
+  "dheavy": 30,
+  "combat": 147,
+  "size": 1
+ },
+ "13528": {
+  "name": "Balance Elemental",
+  "hitpoints": 750,
+  "att": 275,
+  "str": 286,
+  "def": 275,
+  "mage": 275,
+  "range": 275,
+  "dstab": 5,
+  "dcrush": -40,
+  "dmagic": -40,
+  "dlight": 5,
+  "dheavy": -40,
+  "combat": 524
+ },
+ "13529": {
+  "name": "Balance Elemental",
+  "hitpoints": 750,
+  "att": 275,
+  "str": 286,
+  "def": 275,
+  "mage": 275,
+  "range": 275,
+  "dstab": 5,
+  "dcrush": -40,
+  "dmagic": -40,
+  "dlight": 5,
+  "dheavy": -40,
+  "combat": 524
+ },
+ "13530": {
+  "name": "Balance Elemental",
+  "hitpoints": 750,
+  "att": 275,
+  "str": 286,
+  "def": 275,
+  "mage": 275,
+  "range": 275,
+  "dstab": 5,
+  "dcrush": -40,
+  "dmagic": -40,
+  "dlight": 5,
+  "dheavy": -40,
+  "combat": 524
+ },
+ "13531": {
+  "name": "Elite Khazard Guard",
+  "hitpoints": 85,
+  "att": 80,
+  "str": 88,
+  "def": 80,
+  "mage": 30,
+  "range": 1,
+  "attbns": 10,
+  "strbns": 14,
+  "dstab": 44,
+  "dslash": 38,
+  "dcrush": 30,
+  "combat": 95,
+  "size": 1
+ },
+ "13532": {
+  "name": "Elite Khazard Guard",
+  "hitpoints": 85,
+  "att": 80,
+  "str": 88,
+  "def": 80,
+  "mage": 30,
+  "range": 1,
+  "attbns": 10,
+  "strbns": 14,
+  "dstab": 44,
+  "dslash": 38,
+  "dcrush": 30,
+  "combat": 95,
+  "size": 1
+ },
+ "13533": {
+  "name": "Elite Khazard Guard",
+  "hitpoints": 85,
+  "att": 80,
+  "str": 88,
+  "def": 80,
+  "mage": 30,
+  "range": 1,
+  "attbns": 10,
+  "strbns": 14,
+  "dstab": 44,
+  "dslash": 38,
+  "dcrush": 30,
+  "combat": 95,
+  "size": 1
+ },
+ "13534": {
+  "name": "Elite Khazard Guard",
+  "hitpoints": 85,
+  "att": 80,
+  "str": 88,
+  "def": 80,
+  "mage": 30,
+  "range": 1,
+  "attbns": 10,
+  "strbns": 14,
+  "dstab": 44,
+  "dslash": 38,
+  "dcrush": 30,
+  "combat": 95,
+  "size": 1
+ },
+ "13535": {
+  "name": "Mercenary axeman",
+  "hitpoints": 110,
+  "att": 150,
+  "str": 150,
+  "def": 110,
+  "mage": 40,
+  "range": 1,
+  "attbns": 75,
+  "strbns": 25,
+  "dstab": 110,
+  "dslash": 80,
+  "dcrush": 80,
+  "dmagic": 10,
+  "dlight": 90,
+  "dstandard": 70,
+  "dheavy": 30,
+  "combat": 131,
+  "size": 1
+ },
+ "13536": {
+  "name": "Mercenary axeman",
+  "hitpoints": 110,
+  "att": 150,
+  "str": 150,
+  "def": 110,
+  "mage": 40,
+  "range": 1,
+  "attbns": 75,
+  "strbns": 25,
+  "dstab": 110,
+  "dslash": 80,
+  "dcrush": 80,
+  "dmagic": 10,
+  "dlight": 90,
+  "dstandard": 70,
+  "dheavy": 30,
+  "combat": 131,
+  "size": 1
+ },
+ "13537": {
+  "name": "Mercenary mage",
+  "hitpoints": 150,
+  "att": 40,
+  "str": 40,
+  "def": 90,
+  "mage": 150,
+  "range": 1,
+  "amagic": 150,
+  "mbns": 10,
+  "dstab": 50,
+  "dslash": 40,
+  "dcrush": 60,
+  "dmagic": 10,
+  "dlight": 5,
+  "dstandard": 10,
+  "dheavy": 15,
+  "combat": 112,
+  "size": 1
+ },
+ "13566": {
+  "name": "Elite Black Knight",
+  "hitpoints": 90,
+  "att": 90,
+  "str": 120,
+  "def": 90,
+  "mage": 70,
+  "range": 20,
+  "attbns": 85,
+  "dstab": 110,
+  "dslash": 130,
+  "dcrush": 40,
+  "dmagic": -5,
+  "dlight": 140,
+  "dstandard": 135,
+  "dheavy": 60,
+  "combat": 138,
+  "size": 1
+ },
+ "13599": {
+  "name": "Tormented Demon",
+  "isDemon": true,
+  "hitpoints": 600,
+  "att": 255,
+  "str": 255,
+  "def": 150,
+  "mage": 255,
+  "range": 255,
+  "attbns": 400,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "arange": 300,
+  "rngbns": 5,
+  "dstab": 75,
+  "dslash": 175,
+  "dcrush": 68,
+  "dmagic": 5,
+  "dlight": 140,
+  "dstandard": 150,
+  "dheavy": 90,
+  "combat": 450,
+  "size": 3
+ },
+ "13600": {
+  "name": "Tormented Demon",
+  "isDemon": true,
+  "hitpoints": 600,
+  "att": 255,
+  "str": 255,
+  "def": 150,
+  "mage": 255,
+  "range": 255,
+  "attbns": 400,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "arange": 300,
+  "rngbns": 5,
+  "dstab": 75,
+  "dslash": 175,
+  "dcrush": 68,
+  "dmagic": 5,
+  "dlight": 140,
+  "dstandard": 150,
+  "dheavy": 90,
+  "combat": 450,
+  "size": 3
+ },
+ "13601": {
+  "name": "Tormented Demon",
+  "isDemon": true,
+  "hitpoints": 600,
+  "att": 255,
+  "str": 255,
+  "def": 150,
+  "mage": 255,
+  "range": 255,
+  "attbns": 400,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "arange": 300,
+  "rngbns": 5,
+  "dstab": 75,
+  "dslash": 175,
+  "dcrush": 68,
+  "dmagic": 5,
+  "dlight": 140,
+  "dstandard": 150,
+  "dheavy": 90,
+  "combat": 450,
+  "size": 3
+ },
+ "13602": {
+  "name": "Tormented Demon",
+  "isDemon": true,
+  "hitpoints": 600,
+  "att": 255,
+  "str": 255,
+  "def": 150,
+  "mage": 255,
+  "range": 255,
+  "attbns": 400,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "arange": 300,
+  "rngbns": 5,
+  "dstab": 75,
+  "dslash": 175,
+  "dcrush": 68,
+  "dmagic": 5,
+  "dlight": 140,
+  "dstandard": 150,
+  "dheavy": 90,
+  "combat": 450,
+  "size": 3
  },
  "8367_2": {
   "name": "Blood spawn",

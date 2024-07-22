@@ -180,7 +180,7 @@ func sortByAttackStyle(style AttackStyle) func(id1, id2 int) int {
 	case Magic:
 		getStats = []func(item wikidata.ItemData) int{
 			func(i wikidata.ItemData) int {
-				return i.MagicStrength
+				return int(i.MagicStrength) //TODO
 			},
 			func(i wikidata.ItemData) int {
 				return i.AttackSpeed

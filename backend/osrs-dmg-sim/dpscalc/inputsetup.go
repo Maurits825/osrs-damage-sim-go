@@ -49,6 +49,7 @@ type CoxScaling struct {
 
 type GlobalSettings struct {
 	Npc            Npc        `json:"npc"`
+	NpcHitpoints   int        `json:"npcHitpoints"`
 	TeamSize       int        `json:"teamSize"`
 	RaidLevel      int        `json:"raidLevel"`
 	PathLevel      int        `json:"pathLevel"`
@@ -126,10 +127,12 @@ const (
 	DragonWarhammer   StatDrainWeapon = "Dragon warhammer"
 	ElderMaul         StatDrainWeapon = "Elder maul"
 	Arclight          StatDrainWeapon = "Arclight"
+	Emberlight        StatDrainWeapon = "Emberlight"
 	BandosGodsword    StatDrainWeapon = "Bandos godsword"
 	AccursedSceptre   StatDrainWeapon = "Accursed sceptre"
 	BoneDagger        StatDrainWeapon = "Bone dagger"
 	BarrelChestAnchor StatDrainWeapon = "Barrelchest anchor"
+	Ralos             StatDrainWeapon = "Ralos"
 )
 
 type StatDrain struct {

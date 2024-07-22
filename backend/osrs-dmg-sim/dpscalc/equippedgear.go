@@ -69,6 +69,7 @@ const (
 	dragonArrows = 11212
 
 	dragonClaws     = 13652
+	burningClaws    = 29577
 	dragonWarhammer = 13576
 
 	boneDagger        = 8872
@@ -78,6 +79,11 @@ const (
 	blessedQuiver = 28955
 
 	inqMace = 24417
+
+	scorchingBow = 29591
+	emberlight   = 29589
+
+	ralos = 28919
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -207,7 +213,7 @@ func (gear *equippedGear) getWearingPickaxe() (int, bool) {
 // TODO proper check for bolts/arrows? this will give bonus if throwing darts with quiver
 func (gear *equippedGear) isBlessedQuiverBonus() bool {
 	if gear.isEquipped(blessedQuiver) {
-		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) {
+		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) || gear.isEquipped(ralos) {
 			return false
 		}
 		return true

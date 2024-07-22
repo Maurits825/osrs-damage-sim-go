@@ -76,8 +76,12 @@ func getMeleeAttackRoll(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
-	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
+	}
+	if player.equippedGear.isEquipped(burningClaws) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
 	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.isDragon {
@@ -170,6 +174,11 @@ func getRangedAttackRoll(player *player) int {
 	}
 	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 13, 10)
+	}
+
+	if player.equippedGear.isEquipped(scorchingBow) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
 
 	return attackRoll
@@ -267,6 +276,9 @@ func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
 		return int(baseRoll * 1.5)
 	}
 
+	if player.equippedGear.isEquipped(scorchingBow) {
+		return int(baseRoll * 1.3)
+	}
 	return baseAttackRoll
 }
 

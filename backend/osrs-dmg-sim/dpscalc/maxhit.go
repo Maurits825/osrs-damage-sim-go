@@ -72,7 +72,7 @@ func getMeleeMaxHit(player *player) int {
 	}
 
 	//TODO tzhaar weapon, barronite, blister wood, flail, ef aid, rat bone
-	if player.equippedGear.isEquipped(arclight) && player.npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
@@ -87,6 +87,10 @@ func getMeleeMaxHit(player *player) int {
 	}
 	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 5)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
+	}
+	if player.equippedGear.isEquipped(burningClaws) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
 	if player.equippedGear.isEquipped(leafBladedAxe) && player.npc.isLeafy {
@@ -185,6 +189,15 @@ func getRangedMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 5, 4)
 	}
 
+	if player.equippedGear.isEquipped(scorchingBow) && player.npc.isDemon {
+		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
+	}
+
+	if player.equippedGear.isEquipped(ralos) {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRalos, maxHit, 3, 4)
+	}
+
 	return maxHit
 }
 
@@ -233,7 +246,7 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 			dpsDetailEntries.TrackValue(dpsdetail.DamageLevelPrayer, prayerStr)
 		}
 	}
-	magicDmgBonus := player.equipmentStats.damageStats.magicStrength + prayerStr
+	magicDmgBonus := player.equipmentStats.damageStats.magicStrength + float32(prayerStr)
 
 	gearMagicBonus := 0
 	if player.equippedGear.isAnyEquipped(smokeBattleStaves) && spell.spellbook == standardSpellBook {
@@ -256,9 +269,9 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 			baseMaxhit = int(baseMaxhit * 23 / 20)
 		}
 		maxHit = int(baseMaxhit * (1000.0 + (gearMagicBonus)) / 1000.00)
-		maxHit = int(maxHit * (1000.0 + (magicDmgBonus)) / 1000.0)
+		maxHit = int(float32(maxHit) * (1000.0 + (magicDmgBonus)) / 1000.0)
 	} else {
-		maxHit = int(baseMaxhit * (1000.0 + (magicDmgBonus + gearMagicBonus)) / 1000.0)
+		maxHit = int(float32(baseMaxhit) * (1000.0 + (magicDmgBonus + float32(gearMagicBonus))) / 1000.0)
 		if blackMaskBonus {
 			maxHit = int(maxHit * 23 / 20)
 		}

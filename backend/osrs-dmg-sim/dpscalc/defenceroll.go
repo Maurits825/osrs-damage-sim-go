@@ -23,6 +23,10 @@ var slashOverrideSpecWeapons = []int{
 	dragonClaws,
 }
 
+var stabOverrideSpecWeapons = []int{
+	emberlight,
+}
+
 func getNpcDefenceRoll(player *player) int {
 	npcId := player.npc.id
 
@@ -50,6 +54,9 @@ func getNpcDefenceRoll(player *player) int {
 
 	if player.equippedGear.isAnyEquipped(slashOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
 		defence = player.npc.defensiveStats.slash
+	}
+	if player.equippedGear.isAnyEquipped(stabOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+		defence = player.npc.defensiveStats.stab
 	}
 
 	statBonus := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceStatBonus, defence, 64)
