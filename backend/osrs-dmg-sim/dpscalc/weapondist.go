@@ -148,7 +148,10 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	if player.equippedGear.isEquipped(ralos) && style == Ranged {
 		if isSpecial {
-			//todo
+			//TODO second hit rolls after def reductions if first roll hits ...
+			secondHit := attackdist.GetLinearHitDistribution(float64(accuracy), 0, maxHit)
+			dists := []attackdist.HitDistribution{*baseHitDist, *secondHit}
+			attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 		} else {
 			dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
 			attackDistribution = attackdist.NewMultiAttackDistribution(dists)

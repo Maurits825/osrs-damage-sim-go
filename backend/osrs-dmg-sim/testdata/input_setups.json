@@ -3309,8 +3309,7 @@
               "defence": 99,
               "ranged": 99,
               "magic": 99,
-              "hitpoints": 99,
-              "defence": 99
+              "hitpoints": 99
             },
             "attackCycle": 0,
             "trailblazerRelics": []
@@ -3431,8 +3430,7 @@
               "defence": 99,
               "ranged": 99,
               "magic": 99,
-              "hitpoints": 99,
-              "defence": 99
+              "hitpoints": 99
             },
             "attackCycle": 0,
             "trailblazerRelics": []
@@ -3546,8 +3544,7 @@
               "defence": 99,
               "ranged": 99,
               "magic": 99,
-              "hitpoints": 99,
-              "defence": 99
+              "hitpoints": 99
             },
             "attackCycle": 0,
             "trailblazerRelics": []
@@ -3619,6 +3616,122 @@
           }
         }
       ]
+    }
+  },
+  "Ralos void maiden 1 ralos": {
+    "expectedDps": 5.668469,
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "The Maiden of Sugadinti",
+          "isTobNormalMode": true,
+          "hitpoints": 3500,
+          "att": 350,
+          "str": 350,
+          "def": 200,
+          "mage": 350,
+          "range": 350,
+          "amagic": 300,
+          "combat": 940,
+          "size": 6,
+          "id": "8360"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [
+              {
+                "name": "Ralos",
+                "value": 1
+              }
+            ],
+            "boosts": [
+              "ranging"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "gearSetup": {
+            "setupName": "Tonalztics of ralos",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Void ranger helm",
+                "id": 11664
+              },
+              "1": {
+                "name": "Blessed dizana's quiver",
+                "id": 28955
+              },
+              "2": {
+                "name": "Necklace of anguish",
+                "id": 19547
+              },
+              "3": {
+                "name": "Tonalztics of ralos",
+                "id": 28919
+              },
+              "4": {
+                "name": "Elite void top",
+                "id": 13072
+              },
+              "5": null,
+              "7": {
+                "name": "Elite void robe",
+                "id": 13073
+              },
+              "9": {
+                "name": "Void knight gloves",
+                "id": 8842
+              },
+              "10": {
+                "name": "Pegasian boots",
+                "id": 13237
+              },
+              "12": {
+                "name": "Venator ring",
+                "id": 28310
+              },
+              "13": null
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Rapid (Ranged/Rapid)",
+            "spell": null,
+            "isSpecial": false,
+            "prayers": [
+              "rigour"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true
+          }
+        }
+      ],
+      "enableDebugTrack": false
     }
   }
 }

@@ -213,7 +213,7 @@ func (gear *equippedGear) getWearingPickaxe() (int, bool) {
 // TODO proper check for bolts/arrows? this will give bonus if throwing darts with quiver
 func (gear *equippedGear) isBlessedQuiverBonus() bool {
 	if gear.isEquipped(blessedQuiver) {
-		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) {
+		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) || gear.isEquipped(ralos) {
 			return false
 		}
 		return true

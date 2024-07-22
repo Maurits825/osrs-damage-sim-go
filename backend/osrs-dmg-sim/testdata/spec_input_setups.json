@@ -1741,7 +1741,7 @@
             },
             "attackStyle": "Slash (Slash/Aggressive)",
             "spell": null,
-            "isSpecial": false,
+            "isSpecial": true,
             "prayers": [
               "piety"
             ],
@@ -1756,3 +1756,4 @@
       "enableDebugTrack": false
     }
   }
+}
