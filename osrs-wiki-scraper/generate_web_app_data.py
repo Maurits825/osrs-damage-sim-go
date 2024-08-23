@@ -232,6 +232,9 @@ class GenerateWebAppData:
         if "(Last Man Standing)" in item["name"]:
             return True
 
+        if "(deadman)" in item["name"]:
+            return True
+
         if "corrupted" in item["name"].lower():
             return True
 

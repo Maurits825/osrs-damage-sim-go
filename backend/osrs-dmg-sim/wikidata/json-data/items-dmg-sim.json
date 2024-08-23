@@ -16193,8 +16193,7 @@
   "name": "Defensive shield",
   "weight": 3.628,
   "equipable": true,
-  "slot": 3,
-  "is2h": true,
+  "slot": 5,
   "amagic": -6,
   "arange": -2,
   "dstab": 8,
@@ -23483,7 +23482,7 @@
   "slot": 0
  },
  "12361": {
-  "name": "Cat mask",
+  "name": "Cat h",
   "weight": 2.267,
   "equipable": true,
   "slot": 0
@@ -24868,7 +24867,7 @@
   "slot": 0
  },
  "12848": {
-  "name": "Granite maul (or)",
+  "name": "Granite maul",
   "weight": 4.535,
   "equipable": true,
   "slot": 3,
@@ -29009,7 +29008,7 @@
   "acrush": -100,
   "str": -100,
   "aspeed": 4,
-  "weaponCategory": "BLUNT"
+  "weaponCategory": "STAB_SWORD"
  },
  "20784": {
   "name": "Dragon claws (Last Man Standing)",
@@ -35910,7 +35909,7 @@
   "prayer": 2
  },
  "24225": {
-  "name": "Granite maul",
+  "name": "Granite maul (ornate handle)",
   "weight": 4.535,
   "equipable": true,
   "slot": 3,
@@ -35921,7 +35920,7 @@
   "weaponCategory": "BLUNT"
  },
  "24227": {
-  "name": "Granite maul (or)",
+  "name": "Granite maul (ornate handle)",
   "weight": 4.535,
   "equipable": true,
   "slot": 3,
@@ -46866,5 +46865,129 @@
   "aspeed": 5,
   "mdmg": 10.0,
   "weaponCategory": "STAFF"
+ },
+ "29599": {
+  "name": "Corrupted dark bow",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 95,
+  "aspeed": 6,
+  "weaponCategory": "BOW"
+ },
+ "29602": {
+  "name": "Corrupted volatile nightmare staff",
+  "weight": 1.6,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 16,
+  "dmagic": 14,
+  "aspeed": 5,
+  "mdmg": 15.0,
+  "weaponCategory": "STAFF"
+ },
+ "29605": {
+  "name": "Armadyl godsword (deadman)",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "aslash": 132,
+  "acrush": 80,
+  "str": 132,
+  "prayer": 8,
+  "aspeed": 6,
+  "weaponCategory": "TWO_HANDED_SWORD"
+ },
+ "29607": {
+  "name": "Voidwaker (deadman)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 70,
+  "aslash": 80,
+  "acrush": -2,
+  "amagic": 5,
+  "dslash": 1,
+  "dmagic": 2,
+  "str": 80,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "29609": {
+  "name": "Volatile nightmare staff (deadman)",
+  "weight": 1.6,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 16,
+  "dmagic": 14,
+  "aspeed": 5,
+  "mdmg": 15.0,
+  "weaponCategory": "STAFF"
+ },
+ "29611": {
+  "name": "Dark bow (deadman)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 95,
+  "aspeed": 9,
+  "weaponCategory": "BOW"
+ },
+ "29613": {
+  "name": "Imbued zamorak cape (deadman)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "29615": {
+  "name": "Imbued guthix cape (deadman)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "29617": {
+  "name": "Imbued saradomin cape (deadman)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "29774": {
+  "name": "Amy's saw (off-hand)",
+  "weight": 0.8,
+  "equipable": true,
+  "slot": 5
+ },
+ "29775": {
+  "name": "Imcando hammer (offhand)",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 5
+ },
+ "29777": {
+  "name": "Bruma torch (off-hand)",
+  "weight": 0.003,
+  "equipable": true,
+  "slot": 5
  }
 }
