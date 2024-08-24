@@ -68,7 +68,7 @@ class GenerateBisItems:
             Style.MAGIC: {},
         })
         for item_id, item in self.items.items():
-            if item_id == "8845":  # TODO remove
+            if item_id == "8847":  # TODO remove
                 a = 1
             if GenerateWebAppData.is_filtered_item(item, item_id):
                 continue
@@ -87,13 +87,15 @@ class GenerateBisItems:
 
             slot = item["slot"]
             for style in styles:
+                if style != Style.MELEE or slot != 5:
+                    continue  # TODO remove
+
                 if slot not in bis_item_graph.items[style]:
                     bis_item_graph.items[style][slot] = [BisItem([item_id], [])]
                     continue
 
                 current_bis_item = BisItem([], bis_item_graph.items[style][slot])
-                new_bis_item = BisItem([item_id], [])
-                self.insert_item_in_bis_list(style, current_bis_item, new_bis_item)
+                self.insert_item_in_bis_list(style, current_bis_item, item_id)
 
         img = self.create_graph_image(bis_item_graph)
         # img.show()
@@ -110,7 +112,7 @@ class GenerateBisItems:
         if any(orn_kit in item["name"] for orn_kit in ["(or)", "(g)", "(t)", "(cr)"]):
             return True
 
-        if "(Deadman Mode)" in item["name"]:
+        if "(Deadman Mode)" in item["name"] or "(deadman)" in item["name"]:
             return True
         if "(bh)" in item["name"]:
             return True
@@ -162,7 +164,83 @@ class GenerateBisItems:
 
         return styles
 
-    def insert_item_in_bis_list(self, style, current_bis_item: BisItem, new_bis_item: BisItem):
+    def insert_item_in_bis_list(self, style, current_bis_item: BisItem, new_item_id: str):
+        new_item = self.items[new_item_id]
+        upgrades: list[BisItem] = []
+        downgrades: list[BisItem] = []
+        exact_match: list[BisItem] = []
+
+        def process_item(bis_item: BisItem):
+            if id(bis_item) in visited:
+                return
+            visited.add(id(bis_item))
+
+            # check if this item is up/down grade and add to the list
+            current_item = self.items[bis_item.item_ids[0]]
+            if self.compare_item(style, current_item, new_item, lambda i1, i2: i1 == i2):
+                exact_match.append(bis_item)
+                return  # return if exact match, no need to travel more (could actually return 'twice')
+            if self.compare_item(style, current_item, new_item, lambda i1, i2: i1 >= i2):
+                # have to remove 'overlapping' upgrades
+                # to fully remove have to traverse the graph again...
+                # or traverse graph backwards
+                for up in upgrades:
+                    if up in bis_item.next:
+                        upgrades.remove(up)
+                upgrades.append(bis_item)
+                return  # if we have an upgrade, we dont need to further travel this branch
+            if self.compare_item(style, current_item, new_item, lambda i1, i2: i1 <= i2):
+                # have to remove previous nodes if this downgrade is in same chain
+                for downgrade in downgrades:
+                    if bis_item in downgrade.next:
+                        downgrades.remove(downgrade)
+                downgrades.append(bis_item)
+
+            # recursively process other items
+            for next_bis_item in bis_item.next:
+                process_item(next_bis_item)
+
+            return
+
+        # recursively visit nodes
+        visited = set()
+        for bis_item in current_bis_item.next:
+            process_item(bis_item)
+
+        # check the lists
+        if len(exact_match) == 1:
+            exact_match[0].item_ids.append(new_item_id)
+            return
+
+        up_count = len(upgrades)
+        down_count = len(downgrades)
+        new_bis_item = BisItem([new_item_id], [])
+        if up_count == 0 and down_count == 0:
+            current_bis_item.next.append(new_bis_item)
+            return
+
+        # only upgrade
+        if down_count == 0:
+            for upgrade in upgrades:
+                new_bis_item.next.append(upgrade)
+            current_bis_item.next.append(new_bis_item)
+            return
+
+        # only downgrades
+        if up_count == 0:
+            if down_count != 1:
+                pass
+                # print("TODO!!")
+            downgrades[-1].next.append(new_bis_item) # just do last one, wont always work
+            return
+
+        if up_count >= 1 and down_count >= 1:
+            # TODO idk...
+            new_bis_item.next.append(upgrades[0])
+            downgrades[-1].next.append(new_bis_item) # just do last one, wont always work
+
+
+    def insert_item_in_bis_list_old(self, style, current_bis_item: BisItem, new_bis_item: BisItem):
         new_item_id = new_bis_item.item_ids[0]
         new_item = self.items[new_item_id]
         while len(current_bis_item.next) > 0:
@@ -170,6 +248,8 @@ class GenerateBisItems:
             upgrades = []
             downgrades = []
             for next_bis_item in current_bis_item.next:
+                if any(new_item_id == next_id for next_id in next_bis_item.item_ids):
+                    print("same id??? - should not happen")
                 next_item = self.items[next_bis_item.item_ids[0]]
                 if self.compare_item(style, next_item, new_item, lambda i1, i2: i1 == i2):
                     if new_item_id not in next_bis_item.item_ids:
@@ -183,6 +263,9 @@ class GenerateBisItems:
             up_count = len(upgrades)
             down_count = len(downgrades)
 
+            # TODO this -- an item is a side grade,
+            #  there could still be a direct up/downgrade item of that side grade
+            # iron def is side grade of balance and a upgrade of the bronze def
             if down_count == up_count == 0:
                 current_bis_item.next.append(new_bis_item)
                 # TODO in this situtation there are no direct up/downgrades, so append is correct
