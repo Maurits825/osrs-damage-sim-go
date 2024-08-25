@@ -1,8 +1,7 @@
 import json
 from pathlib import Path
 
-from constants import CACHE_DATA_FOLDER
-
+CACHE_DATA_FOLDER = Path("data_cache")
 ITEMS_DMG_SIM_JSON = Path(__file__).parent.parent / CACHE_DATA_FOLDER / "items-dmg-sim.json"
 GEAR_SLOT_ITEM_JSON = Path(__file__).parent.parent / CACHE_DATA_FOLDER / "gear_slot_items.json"
 

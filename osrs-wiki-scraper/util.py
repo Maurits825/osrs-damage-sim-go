@@ -3,6 +3,9 @@ import json
 import re
 from typing import *
 
+from model.attack_type import AttackType
+from model.weapon_category import WeaponCategory
+
 VERSION_EXTRACTOR = re.compile(r"(.*?)([0-9]+)?$")
 
 
@@ -82,7 +85,7 @@ def get_doc_for_id_string(source: str, version: Dict[str, str], docs: Dict[str, 
     ids = get_ids(version)
 
     if len(ids) == 0:
-        #print("page {} is has an empty id".format(source))
+        # print("page {} is has an empty id".format(source))
         return None
 
     doc = {}
@@ -122,3 +125,103 @@ def copy(name: Union[str, Tuple[str, str]],
 
 def has_template(name: str, code) -> bool:
     return len(code.filter_templates(matches=lambda t: t.name.matches(name))) != 0
+
+
+def get_attack_style_and_type(item):
+    weapon_category_name = item.get("weaponCategory", None)
+    attack_styles = None
+    attack_type = None
+
+    if weapon_category_name:
+        weapon_category = WeaponCategory[weapon_category_name]
+
+        attack_styles = [style.name for style in weapon_category.value]
+
+        if weapon_category.value[-1].attack_type == AttackType.MAGIC:
+            attack_type = "magic"
+        elif weapon_category.value[0].attack_type in [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]:
+            attack_type = "melee"
+        elif weapon_category.value[0].attack_type == AttackType.RANGED:
+            attack_type = "ranged"
+
+    return attack_styles, attack_type
+
+
+def is_filtered_item(item, item_id):
+    # teleport charges
+    if re.match(r".*\(\d+\)", item["name"]):
+        return "Shayzien" not in item["name"]
+
+    # imbued ring charges
+    if re.match(r".*\(i\d+\)", item["name"]):
+        return True
+
+    # heraldic helms
+    if re.match(r".*\(h\d+\)", item["name"]):
+        return "(h1)" not in item["name"]
+
+    # team capes
+    if re.match(r"Team-\d+ cape", item["name"]):
+        return "Team-1 cape" not in item["name"]
+
+    # inactive bowfa id
+    if item_id == "25862":
+        return True
+
+    # no r str blowpipe
+    if item_id == "12924":
+        return True
+
+    # uncharged serp
+    if item_id == "12929":
+        return True
+
+    if "(uncharged)" in item["name"]:
+        return True
+
+    if "Wilderness Wars" in item["name"]:
+        return True
+
+    if "unobtainable item" in item["name"]:
+        return True
+
+    if "(Last Man Standing)" in item["name"]:
+        return True
+
+    if "(deadman)" in item["name"]:
+        return True
+
+    if "corrupted" in item["name"].lower():
+        return True
+
+    # heraldic symbol items
+    if any(symbol in item["name"] for symbol in
+           ["(Asgarnia)", "(Dorgeshuun)", "(Dragon)", "(Fairy)", "(Guthix)", "(HAM)", "(Horse)", "(Jogre)",
+            "(Kandarin)", "(Misthalin)", "(Money)", "(Saradomin)", "(Skull)", "(Varrock)", "(Zamorak)"]):
+        return True
+
+    # graceful variants
+    if any(symbol in item["name"] for symbol in
+           ["(Arceuus)", "(Piscarilius)", "(Lovakengj)", "(Shayzien)", "(Hosidius)", "(Agility Arena)"]):
+        return True
+
+    # barrows item degradation
+    if any(number in item["name"] for number in ["0", "25", "50", "75", "100"]):
+        if any(barrows in item["name"].lower() for barrows in
+               ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
+            return True
+
+    # crystal recolors
+    if any(symbol in item["name"] for symbol in
+           ["(Amlodd)", "(Crwys)", "(Cadarn)", "(Trahaearn)", "(Iorwerth)", "(Ithell)", "(Hefin)", "(Meilyr)"]):
+        return True
+
+    # nightmare zone items
+    if "(nz)" in item["name"]:
+        return True
+
+    # weapon with no attack styles, eg 2h axes
+    if item["slot"] == 3 and "weaponCategory" not in item:
+        return True
+
+    return False

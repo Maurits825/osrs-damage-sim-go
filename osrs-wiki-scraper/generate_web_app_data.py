@@ -1,14 +1,13 @@
 import base64
 import json
-import re
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
 
+from bis_graph.bis_graph import GenerateBisItems
 from constants import CACHE_DATA_FOLDER
-from model.attack_type import AttackType
-from model.weapon_category import WeaponCategory
+from util import is_filtered_item, get_attack_style_and_type
 
 NPCS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "npcs-dmg-sim.json"
 ITEMS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "items-dmg-sim.json"
@@ -120,7 +119,7 @@ class GenerateWebAppData:
                 if slot not in gear_slot_items:
                     gear_slot_items[slot] = []
 
-                if GenerateWebAppData.is_filtered_item(item, item_id):
+                if is_filtered_item(item, item_id):
                     if self.verbose >= 3:
                         print("Filtered: " + item["name"])
                     continue
@@ -140,7 +139,7 @@ class GenerateWebAppData:
                         "id": int(item_id),
                     }
 
-                    attack_styles, attack_type = GenerateWebAppData.get_attack_style_and_type(item)
+                    attack_styles, attack_type = get_attack_style_and_type(item)
                     if attack_styles:
                         item_dict["attackStyles"] = attack_styles
                     if attack_type:
@@ -191,111 +190,11 @@ class GenerateWebAppData:
         return None
 
     @staticmethod
-    def is_filtered_item(item, item_id):
-        # teleport charges
-        if re.match(r".*\(\d+\)", item["name"]):
-            return "Shayzien" not in item["name"]
-
-        # imbued ring charges
-        if re.match(r".*\(i\d+\)", item["name"]):
-            return True
-
-        # heraldic helms
-        if re.match(r".*\(h\d+\)", item["name"]):
-            return "(h1)" not in item["name"]
-
-        # team capes
-        if re.match(r"Team-\d+ cape", item["name"]):
-            return "Team-1 cape" not in item["name"]
-
-        # inactive bowfa id
-        if item_id == "25862":
-            return True
-
-        # no r str blowpipe
-        if item_id == "12924":
-            return True
-
-        # uncharged serp
-        if item_id == "12929":
-            return True
-
-        if "(uncharged)" in item["name"]:
-            return True
-
-        if "Wilderness Wars" in item["name"]:
-            return True
-
-        if "unobtainable item" in item["name"]:
-            return True
-
-        if "(Last Man Standing)" in item["name"]:
-            return True
-
-        if "(deadman)" in item["name"]:
-            return True
-
-        if "corrupted" in item["name"].lower():
-            return True
-
-        # heraldic symbol items
-        if any(symbol in item["name"] for symbol in
-               ["(Asgarnia)", "(Dorgeshuun)", "(Dragon)", "(Fairy)", "(Guthix)", "(HAM)", "(Horse)", "(Jogre)",
-                "(Kandarin)", "(Misthalin)", "(Money)", "(Saradomin)", "(Skull)", "(Varrock)", "(Zamorak)"]):
-            return True
-
-        # graceful variants
-        if any(symbol in item["name"] for symbol in
-               ["(Arceuus)", "(Piscarilius)", "(Lovakengj)", "(Shayzien)", "(Hosidius)", "(Agility Arena)"]):
-            return True
-
-        # barrows item degradation
-        if any(number in item["name"] for number in ["0", "25", "50", "75", "100"]):
-            if any(barrows in item["name"].lower() for barrows in
-                   ["ahrim", "dharok", "guthan", "karil", "torag", "verac"]):
-                return True
-
-        # crystal recolors
-        if any(symbol in item["name"] for symbol in
-               ["(Amlodd)", "(Crwys)", "(Cadarn)", "(Trahaearn)", "(Iorwerth)", "(Ithell)", "(Hefin)", "(Meilyr)"]):
-            return True
-
-        # nightmare zone items
-        if "(nz)" in item["name"]:
-            return True
-
-        # weapon with no attack styles, eg 2h axes
-        if item["slot"] == 3 and "weaponCategory" not in item:
-            return True
-
-        return False
-
-    @staticmethod
     def is_filtered_npc(npc, npc_id):
         if npc_id in DMM_BREACH_NPCS:
             return True
 
         return False
-
-    @staticmethod
-    def get_attack_style_and_type(item):
-        weapon_category_name = item.get("weaponCategory", None)
-        attack_styles = None
-        attack_type = None
-
-        if weapon_category_name:
-            weapon_category = WeaponCategory[weapon_category_name]
-
-            attack_styles = [style.name for style in weapon_category.value]
-
-            if weapon_category.value[-1].attack_type == AttackType.MAGIC:
-                attack_type = "magic"
-            elif weapon_category.value[0].attack_type in [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]:
-                attack_type = "melee"
-            elif weapon_category.value[0].attack_type == AttackType.RANGED:
-                attack_type = "ranged"
-
-        return attack_styles, attack_type
 
     @staticmethod
     def get_item_encoded_image(name):
@@ -356,8 +255,11 @@ class GenerateWebAppData:
 
 
 if __name__ == '__main__':
-    GenerateWebAppData.update_special_attack_json()
+    # GenerateWebAppData.update_special_attack_json()
+    #
+    # generate = GenerateWebAppData(True, 2)  # TODO add click params
+    # generate.update_gear_slot_items_json()
+    # generate.update_unique_npcs_json()
 
-    generate = GenerateWebAppData(True, 2)  # TODO add click params
-    generate.update_gear_slot_items_json()
-    generate.update_unique_npcs_json()
+    bis_items = GenerateBisItems()
+    bis_items.create_bis_items()

@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import List
 
-from bis_constants import STYLE_STATS
-from wiki_data import WikiData
+from bis_graph.bis_constants import STYLE_STATS
+from bis_graph.wiki_data import WikiData
 
 
 @dataclass()
@@ -10,9 +10,6 @@ class BisItem:
     item_ids: List[str]
     previous: List['BisItem']
     next: List['BisItem']
-
-    def __hash__(self):
-        return id(self)
 
     def add_next(self, item: 'BisItem'):
         self.next.append(item)
@@ -24,7 +21,7 @@ class BisItem:
 
 
 @dataclass
-class BisItemResult:  # TODO name???
+class BisItemResult:
     upgrades: list[BisItem]
     downgrades: list[BisItem]
     exact_match: BisItem | None = None
@@ -59,8 +56,6 @@ class BisItemWalker:
 
         # only downgrades
         if up_count == 0:
-            if down_count != 1:
-                print("multiple downgrades...")  # TODO have to handle something else???
             for downgrade in results.downgrades:
                 downgrade.add_next(new_bis_item)
                 if downgrade in leaves:
@@ -69,14 +64,12 @@ class BisItemWalker:
             return
 
         if up_count == 1 and down_count == 1:
-            # TODO this works????? test
-            # TODO have to 'insert' this node
             upgrade = results.upgrades[0]
             downgrade = results.downgrades[0]
             for up_previous in upgrade.previous:
                 if up_previous == downgrade:
                     upgrade.previous.remove(up_previous)
-                    downgrade.next.remove(up_previous)
+                    downgrade.next.remove(upgrade)
             new_bis_item.add_next(upgrade)
             downgrade.add_next(new_bis_item)
 
@@ -84,17 +77,18 @@ class BisItemWalker:
     def get_insert_result(roots: list[BisItem], leaves: list[BisItem], style, new_item_id: str) -> BisItemResult:
         # first check exact match
         new_item = WikiData.items[new_item_id]
-        bis_item_stack = set([i for i in roots])
+        bis_item_stack = [i for i in roots]
         while len(bis_item_stack) > 0:
             current_bis_item = bis_item_stack.pop()
             current_item = WikiData.items[current_bis_item.item_ids[0]]
             if BisItemWalker.compare_item(style, current_item, new_item, lambda i1, i2: i1 == i2):
                 return BisItemResult([], [], current_bis_item)
             for next_bis_item in current_bis_item.next:
-                bis_item_stack.add(next_bis_item)
+                if next_bis_item not in bis_item_stack:
+                    bis_item_stack.append(next_bis_item)
 
         # if here then no exact match, check downgrades & upgrades
-        bis_item_stack = set([i for i in roots])
+        bis_item_stack = [i for i in roots]
         downgrades: list[BisItem] = []
         while len(bis_item_stack) > 0:
             current_bis_item = bis_item_stack.pop()
@@ -106,10 +100,11 @@ class BisItemWalker:
                 if current_bis_item not in downgrades:
                     downgrades.append(current_bis_item)
             for next_bis_item in current_bis_item.next:
-                bis_item_stack.add(next_bis_item)
+                if next_bis_item not in bis_item_stack:
+                    bis_item_stack.append(next_bis_item)
 
         # for upgrades walk backwards starting at the leaves
-        bis_item_stack = set([i for i in leaves])
+        bis_item_stack = [i for i in leaves]
         upgrades: list[BisItem] = []
         while len(bis_item_stack) > 0:
             current_bis_item = bis_item_stack.pop()
@@ -121,7 +116,8 @@ class BisItemWalker:
                 if current_bis_item not in upgrades:
                     upgrades.append(current_bis_item)
             for previous_bis_item in current_bis_item.previous:
-                bis_item_stack.add(previous_bis_item)
+                if previous_bis_item not in bis_item_stack:
+                    bis_item_stack.append(previous_bis_item)
 
         return BisItemResult(upgrades, downgrades)
 
