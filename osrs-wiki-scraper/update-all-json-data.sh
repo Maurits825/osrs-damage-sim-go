@@ -19,5 +19,6 @@ echo "Copying json data to dmg-sim-service ..."
 cp data_cache/items-dmg-sim.json ../backend/osrs-dmg-sim/wikidata/json-data/items-dmg-sim.json
 cp data_cache/npcs-dmg-sim.json ../backend/osrs-dmg-sim/wikidata/json-data/npcs-dmg-sim.json
 cp data_cache/special_attack.json ../backend/osrs-dmg-sim/wikidata/json-data/special_attack.json
+cp data_cache/bis_graph.json ../backend/osrs-dmg-sim/wikidata/json-data/bis_graph.json
 
 echo "Done!"

@@ -424,6 +424,7 @@
  },
  {
   "name": "Agrith Naar",
+  "isDemon": true,
   "hitpoints": 95,
   "att": 83,
   "str": 90,
@@ -436,6 +437,7 @@
  },
  {
   "name": "Agrith Naar (hard)",
+  "isDemon": true,
   "hitpoints": 209,
   "att": 182,
   "str": 198,
@@ -1347,6 +1349,8 @@
   "dmagic": 3,
   "combat": 97,
   "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "Air",
   "id": "6587"
  },
  {
@@ -1617,7 +1621,7 @@
  },
  {
   "name": "Assassin",
-  "hitpoints": 85,
+  "hitpoints": 275,
   "att": 50,
   "str": 70,
   "def": 70,
@@ -1631,7 +1635,7 @@
   "dlight": 60,
   "dstandard": 20,
   "dheavy": 30,
-  "combat": 147,
+  "combat": 167,
   "size": 1,
   "id": "13514"
  },
@@ -2257,14 +2261,18 @@
   "def": 40,
   "mage": 1,
   "range": 1,
-  "dstab": 30,
+  "dstab": 10,
   "dslash": 50,
   "dcrush": 50,
   "dmagic": 40,
-  "drange": 30,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 15,
   "combat": 48,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "Water",
   "id": "244"
  },
  {
@@ -2287,6 +2295,9 @@
   "def": 275,
   "mage": 275,
   "range": 275,
+  "strbns": 22,
+  "mbns": 22,
+  "rngbns": 22,
   "dstab": 5,
   "dcrush": -40,
   "dmagic": -40,
@@ -3203,6 +3214,8 @@
   "dmagic": -10,
   "combat": 292,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "6295"
  },
  {
@@ -7475,6 +7488,12 @@
   "mage": 80,
   "range": 25,
   "amagic": 80,
+  "dstab": 5,
+  "dslash": 10,
+  "dcrush": 15,
+  "dmagic": 50,
+  "dlight": 5,
+  "dheavy": 10,
   "combat": 96,
   "size": 1,
   "id": "13469"
@@ -7488,6 +7507,12 @@
   "mage": 40,
   "range": 80,
   "arange": 80,
+  "dstab": 5,
+  "dcrush": 20,
+  "dmagic": 60,
+  "dlight": 10,
+  "dstandard": 5,
+  "dheavy": 15,
   "combat": 96,
   "size": 1,
   "id": "13467"
@@ -7501,6 +7526,13 @@
   "mage": 40,
   "range": 25,
   "attbns": 80,
+  "dstab": 15,
+  "dslash": 20,
+  "dcrush": 10,
+  "dmagic": -10,
+  "dlight": 40,
+  "dstandard": 30,
+  "dheavy": 15,
   "combat": 96,
   "size": 1,
   "id": "13465"
@@ -9019,13 +9051,12 @@
   "def": 68,
   "mage": 1,
   "range": 1,
-  "dstab": 55,
+  "dstab": 45,
   "dslash": 55,
   "dcrush": 5,
   "dmagic": 55,
   "dlight": 55,
   "dstandard": 55,
-  "dheavy": 55,
   "combat": 77,
   "size": 1,
   "respawn": 40,
@@ -9043,7 +9074,6 @@
   "def": 68,
   "mage": 1,
   "range": 1,
-  "dstab": 45,
   "dslash": 45,
   "dcrush": 5,
   "dmagic": -5,
@@ -14234,7 +14264,7 @@
   "arange": 100,
   "combat": 94,
   "size": 2,
-  "id": "12365"
+  "id": "12361"
  },
  {
   "name": "Lesser demon",
@@ -16252,6 +16282,7 @@
  },
  {
   "name": "Nezikchened",
+  "isDemon": true,
   "hitpoints": 150,
   "att": 165,
   "str": 168,
@@ -16264,6 +16295,7 @@
  },
  {
   "name": "Nezikchened (hard)",
+  "isDemon": true,
   "hitpoints": 150,
   "att": 330,
   "str": 336,
@@ -21906,6 +21938,8 @@
   "combat": 132,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "Air",
   "id": "1538"
  },
  {
@@ -25076,6 +25110,7 @@
   "dheavy": 90,
   "combat": 450,
   "size": 3,
+  "respawn": 21,
   "id": "13599"
  },
  {
@@ -27280,6 +27315,15 @@
   "size": 1,
   "respawn": 30,
   "id": "3950"
+ },
+ {
+  "name": "Warrior of Murahs",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "combat": 21,
+  "id": "10394"
  },
  {
   "name": "Watchman",

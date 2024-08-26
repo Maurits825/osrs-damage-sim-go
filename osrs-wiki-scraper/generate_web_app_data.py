@@ -19,7 +19,8 @@ GEAR_SLOT_ITEM_FALLBACK_JSON = Path(
     __file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
 
 DMM_BREACH_NPCS = ["12439", "12440", "12441", "12442", "12443", "12444", "12445", "12446", "12447", "12448", "12449",
-                   "12450", "12451", "12452", "12453", "12454", "12455", "12456", "12457", "12458", "12459"]
+                   "12450", "12451", "12452", "12453", "12454", "12455", "12456", "12457", "12458", "12459",
+                   "13658", "13657", "13662", "13660", "12363", "13663", "13664", "13659", "13661", "13656", "10393"]
 
 NPC_KEY_NAMES = [
     "name", "hitpoints", "att", "str", "def", "mage", "range", "attbns", "strbns", "amagic", "mbns", "arange", "rngbns",
