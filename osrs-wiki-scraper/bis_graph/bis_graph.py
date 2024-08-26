@@ -84,7 +84,7 @@ class GenerateBisItems:
             style_key = style.value
             flat_graph[style_key] = dict()
             for slot, leaves in slot_graphs.items():
-                if slot == 3:  # skip weapon slot
+                if slot == 3 or slot == 13:  # skip weapon & ammo slot
                     continue
                 bis_item_queue = [item for item in leaves]
                 node_id = 0
