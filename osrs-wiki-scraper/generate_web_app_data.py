@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from bis_graph.bis_graph import GenerateBisItems
-from constants import CACHE_DATA_FOLDER
+from constants import CACHE_DATA_FOLDER, JSON_INDENT
 from util import is_filtered_item, get_attack_style_and_type
 
 NPCS_DMG_SIM_JSON = CACHE_DATA_FOLDER / "npcs-dmg-sim.json"
@@ -17,8 +17,6 @@ UNIQUE_NPCS_JSON = CACHE_DATA_FOLDER / "unique_npcs.json"
 
 GEAR_SLOT_ITEM_FALLBACK_JSON = Path(
     __file__).parent.parent / "frontend/osrs-damage-sim/src/assets/json_data/gear_slot_items.json"
-
-JSON_INDENT = 1
 
 DMM_BREACH_NPCS = ["12439", "12440", "12441", "12442", "12443", "12444", "12445", "12446", "12447", "12448", "12449",
                    "12450", "12451", "12452", "12453", "12454", "12455", "12456", "12457", "12458", "12459"]
@@ -255,11 +253,11 @@ class GenerateWebAppData:
 
 
 if __name__ == '__main__':
-    # GenerateWebAppData.update_special_attack_json()
-    #
-    # generate = GenerateWebAppData(True, 2)  # TODO add click params
-    # generate.update_gear_slot_items_json()
-    # generate.update_unique_npcs_json()
+    GenerateWebAppData.update_special_attack_json()
+
+    generate = GenerateWebAppData(True, 2)  # TODO add click params
+    generate.update_gear_slot_items_json()
+    generate.update_unique_npcs_json()
 
     bis_items = GenerateBisItems()
     bis_items.create_bis_items()

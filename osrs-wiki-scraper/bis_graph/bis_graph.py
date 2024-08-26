@@ -1,4 +1,6 @@
+import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import List
 
 from bis_graph.bis_constants import Style, STYLE_STATS
@@ -6,6 +8,9 @@ from bis_graph.bis_item import BisItem, BisItemWalker
 from bis_graph.bis_visual_graph import BisVisualGraph
 from bis_graph.wiki_data import WikiData
 from util import get_attack_style_and_type, is_filtered_item
+from constants import CACHE_DATA_FOLDER, JSON_INDENT
+
+BIS_GRAPH_JSON = Path(__file__).parent.parent / CACHE_DATA_FOLDER / "bis_graph.json"
 
 # twisted, blorva, other stuff
 FILTER_IDS = [
@@ -25,7 +30,8 @@ class GenerateBisItems:
     def __init__(self):
         WikiData.load_all()
 
-    def create_bis_items(self):
+    def create_bis_items(self, create_visuals=False):
+        print("Creating bis graph json ...")
         seen_item_names = []
         bis_item_root = BisItemsGraph({
             Style.MELEE: {},
@@ -66,8 +72,45 @@ class GenerateBisItems:
                     bis_item_root.items[style][slot], bis_item_leaf.items[style][slot], style, item_id
                 )
 
-        visual = BisVisualGraph()
-        visual.create_graph_image(bis_item_root)
+        if create_visuals:
+            visual = BisVisualGraph()
+            visual.create_graph_image(bis_item_root)
+
+        self.save_graph_to_json(bis_item_leaf)
+
+    def save_graph_to_json(self, bis_item_leaf):
+        flat_graph = dict()
+        for style, slot_graphs in bis_item_leaf.items.items():
+            style_key = style.value
+            flat_graph[style_key] = dict()
+            for slot, leaves in slot_graphs.items():
+                if slot == 3:  # skip weapon slot
+                    continue
+                bis_item_queue = [item for item in leaves]
+                node_id = 0
+                slot_item_json = dict()
+                bis_item_id = dict()
+                while len(bis_item_queue) > 0:
+                    current_bis_item = bis_item_queue.pop(0)
+                    try:
+                        next_ids = [bis_item_id[id(next_bis_item)] for next_bis_item in current_bis_item.next]
+                    except KeyError:
+                        bis_item_queue.append(current_bis_item)
+                        continue
+
+                    node_id += 1
+                    bis_item_id[id(current_bis_item)] = node_id
+                    slot_item_json[node_id] = {
+                        "ids": current_bis_item.item_ids,
+                        "next": next_ids
+                    }
+                    for previous in current_bis_item.previous:
+                        if previous not in bis_item_queue:
+                            bis_item_queue.append(previous)
+
+                flat_graph[style_key][slot] = slot_item_json
+        with open(BIS_GRAPH_JSON, 'w') as bis_json:
+            json.dump(flat_graph, bis_json, indent=JSON_INDENT)
 
     def is_bis_filtered_item(self, item, item_id):
         if any(i == item_id for i in FILTER_IDS):
