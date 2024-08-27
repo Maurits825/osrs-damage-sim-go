@@ -7,8 +7,8 @@ from bis_graph.bis_constants import Style, STYLE_STATS
 from bis_graph.bis_item import BisItem, BisItemWalker
 from bis_graph.bis_visual_graph import BisVisualGraph
 from bis_graph.wiki_data import WikiData
-from util import get_attack_style_and_type, is_filtered_item
 from constants import CACHE_DATA_FOLDER, JSON_INDENT
+from util import get_attack_style_and_type, is_filtered_item
 
 BIS_GRAPH_JSON = Path(__file__).parent.parent / CACHE_DATA_FOLDER / "bis_graph.json"
 
@@ -76,9 +76,9 @@ class GenerateBisItems:
             visual = BisVisualGraph()
             visual.create_graph_image(bis_item_root)
 
-        self.save_graph_to_json(bis_item_leaf)
+        self.save_graph_to_json(bis_item_leaf, bis_item_root)
 
-    def save_graph_to_json(self, bis_item_leaf):
+    def save_graph_to_json(self, bis_item_leaf, bis_item_root):
         flat_graph = dict()
         for style, slot_graphs in bis_item_leaf.items.items():
             style_key = style.value
@@ -108,9 +108,13 @@ class GenerateBisItems:
                         if previous not in bis_item_queue:
                             bis_item_queue.append(previous)
 
-                flat_graph[style_key][slot] = slot_item_json
-        with open(BIS_GRAPH_JSON, 'w') as bis_json:
-            json.dump(flat_graph, bis_json, indent=JSON_INDENT)
+                flat_graph[style_key][slot] = {
+                    "nodes": slot_item_json,
+                    "roots": [bis_item_id[id(root)] for root in bis_item_root.items[style][slot]],
+                }
+
+                with open(BIS_GRAPH_JSON, 'w') as bis_json:
+                    json.dump(flat_graph, bis_json, indent=JSON_INDENT)
 
     def is_bis_filtered_item(self, item, item_id):
         if any(i == item_id for i in FILTER_IDS):

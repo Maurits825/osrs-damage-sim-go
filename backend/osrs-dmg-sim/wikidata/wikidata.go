@@ -89,13 +89,18 @@ type SpellData struct {
 	Element   string `json:"element"`
 }
 
+type BisSlotGraph struct {
+	Nodes map[string]BisItem `json:"nodes"`
+	Roots []string           `json:"roots"`
+}
+
 type BisItem struct {
 	Ids  []string `json:"ids"`
 	Next []string `json:"next"`
 }
 
 // graph[style][slot][nodeId]
-type BisGraph map[string]map[string]map[string]BisItem
+type BisGraphs map[string]map[string]BisSlotGraph
 
 //go:embed json-data/*
 var jsonDataEmbed embed.FS
@@ -114,7 +119,7 @@ func GetWikiData(p DataTypeProvider) any {
 	case SpecProvider:
 		data, err = getJsonData[map[string]int]("json-data/special_attack.json")
 	case BisGraphProvider:
-		data, err = getJsonData[BisGraph]("json-data/bis_graph.json")
+		data, err = getJsonData[BisGraphs]("json-data/bis_graph.json")
 	}
 
 	if err != nil {
