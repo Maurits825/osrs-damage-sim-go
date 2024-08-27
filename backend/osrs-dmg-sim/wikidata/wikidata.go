@@ -6,6 +6,16 @@ import (
 	"fmt"
 )
 
+type DataTypeProvider int
+
+const (
+	ItemProvider     DataTypeProvider = 1
+	NpcProvider      DataTypeProvider = 2
+	SpellProvider    DataTypeProvider = 3
+	SpecProvider     DataTypeProvider = 4
+	BisGraphProvider DataTypeProvider = 5
+)
+
 type ItemData struct {
 	Name           string  `json:"name"`
 	AttackSpeed    int     `json:"aspeed"`
@@ -79,46 +89,42 @@ type SpellData struct {
 	Element   string `json:"element"`
 }
 
+type BisItem struct {
+	Ids  []string `json:"ids"`
+	Next []string `json:"next"`
+}
+
+// graph[style][slot][nodeId]
+type BisGraph map[string]map[string]map[string]BisItem
+
 //go:embed json-data/*
 var jsonDataEmbed embed.FS
 
-func GetItemData() map[int]ItemData {
-	items, err := GetJsonData[map[int]ItemData]("json-data/items-dmg-sim.json")
+func GetWikiData(p DataTypeProvider) any {
+	var data any
+	var err error
+
+	switch p {
+	case ItemProvider:
+		data, err = getJsonData[map[int]ItemData]("json-data/items-dmg-sim.json")
+	case NpcProvider:
+		data, err = getJsonData[map[string]NpcData]("json-data/npcs-dmg-sim.json")
+	case SpellProvider:
+		data, err = getJsonData[[]SpellData]("json-data/spells.json")
+	case SpecProvider:
+		data, err = getJsonData[map[string]int]("json-data/special_attack.json")
+	case BisGraphProvider:
+		data, err = getJsonData[BisGraph]("json-data/bis_graph.json")
+	}
+
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
-	return items
+	return data
 }
 
-func GetNpcData() map[string]NpcData {
-	npcs, err := GetJsonData[map[string]NpcData]("json-data/npcs-dmg-sim.json")
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return npcs
-}
-
-func GetSpellData() []SpellData {
-	spells, err := GetJsonData[[]SpellData]("json-data/spells.json")
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return spells
-}
-
-func GetSpecData() map[string]int {
-	specData, err := GetJsonData[map[string]int]("json-data/special_attack.json")
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return specData
-}
-
-func GetJsonData[T any](fileName string) (T, error) {
+func getJsonData[T any](fileName string) (T, error) {
 	var data T
 	byteValue, err := jsonDataEmbed.ReadFile(fileName)
 

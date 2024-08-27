@@ -37,7 +37,7 @@ type spell struct {
 var spells = getSpells()
 
 func getSpells() []spell {
-	spellData := wikidata.GetSpellData()
+	spellData := wikidata.GetWikiData(wikidata.SpellProvider).([]wikidata.SpellData)
 
 	spells := make([]spell, len(spellData))
 	for i, s := range spellData {

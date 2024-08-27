@@ -21,7 +21,7 @@ type ItemId struct {
 var specData map[string]int
 
 func init() {
-	specData = wikidata.GetSpecData()
+	specData = wikidata.GetWikiData(wikidata.SpecProvider).(map[string]int)
 }
 
 func RunGearJsonBis(bisCalcSetup *BisCalcInputSetup) BisCalcResults {

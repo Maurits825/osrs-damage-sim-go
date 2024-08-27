@@ -99,7 +99,7 @@ class GenerateBisItems:
                         continue
 
                     node_id += 1
-                    bis_item_id[id(current_bis_item)] = node_id
+                    bis_item_id[id(current_bis_item)] = str(node_id)
                     slot_item_json[node_id] = {
                         "ids": current_bis_item.item_ids,
                         "next": next_ids

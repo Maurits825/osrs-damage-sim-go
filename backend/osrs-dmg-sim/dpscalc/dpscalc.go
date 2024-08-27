@@ -42,8 +42,8 @@ var allNpcs npcs
 var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
 
 func init() {
-	allItems = getEquipmentItems(wikidata.GetItemData())
-	allNpcs = getNpcs(wikidata.GetNpcData())
+	allItems = getEquipmentItems(wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData))
+	allNpcs = getNpcs(wikidata.GetWikiData(wikidata.NpcProvider).(map[string]wikidata.NpcData))
 }
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
