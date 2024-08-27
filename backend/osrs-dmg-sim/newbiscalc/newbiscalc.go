@@ -1,7 +1,6 @@
-package biscalc
+package newbiscalc
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
@@ -9,6 +8,14 @@ import (
 )
 
 var allItems map[int]wikidata.ItemData
+
+type AttackStyle string
+
+const (
+	Melee  AttackStyle = "melee"
+	Ranged AttackStyle = "ranged"
+	Magic  AttackStyle = "magic"
+)
 
 type ItemNode struct {
 	ids  []int
@@ -20,13 +27,27 @@ type StyleBisGraph map[AttackStyle]SlotBisGraph
 
 var bisGraphs StyleBisGraph
 
+var allGearSlots = []dpscalc.GearSlot{
+	dpscalc.Head,
+	dpscalc.Cape,
+	dpscalc.Neck,
+	dpscalc.Weapon,
+	dpscalc.Body,
+	dpscalc.Shield,
+	dpscalc.Legs,
+	dpscalc.Hands,
+	dpscalc.Feet,
+	dpscalc.Ring,
+	dpscalc.Ammo,
+}
+
 func init() {
 	allItems = wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData)
 	graphs := wikidata.GetWikiData(wikidata.BisGraphProvider).(wikidata.BisGraphs)
 	bisGraphs = getStyleBisGraph(graphs)
-	fmt.Println(bisGraphs[Melee][dpscalc.Neck][0].ids)
 }
 
+// TODO maybe put in another file
 func getStyleBisGraph(graphs wikidata.BisGraphs) StyleBisGraph {
 	styleMap := map[string]AttackStyle{
 		"1": Melee,
@@ -73,3 +94,5 @@ func getSlotBisGraph(bisSlotNode wikidata.BisSlotGraph) []*ItemNode {
 
 	return rootNodes
 }
+
+//TODO something that uses the bisgraphs to create gear options

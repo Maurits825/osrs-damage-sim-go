@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
 )
 
 type AttackStyle string
@@ -44,7 +45,6 @@ type BisCalcResult struct {
 	AttackRoll     int                                   `json:"attackRoll"`
 }
 
-type gearSetupOption map[dpscalc.GearSlot]dpscalc.GearItem //TODO gearOption
 type gearSetupOptions struct {
 	gearOptions gearOptions
 	weapons     []int
@@ -76,6 +76,12 @@ var defaultGearSetup = dpscalc.GearSetup{
 	IsOnSlayerTask:  false,
 	IsSpecialAttack: false,
 	MiningLevel:     99,
+}
+
+var allItems map[int]wikidata.ItemData
+
+func init() {
+	allItems = wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData)
 }
 
 func RunBisDpsCalc(bisCalcSetup *BisCalcInputSetup, inputGearOpts map[AttackStyle]gearSetupOptions) BisCalcResults {

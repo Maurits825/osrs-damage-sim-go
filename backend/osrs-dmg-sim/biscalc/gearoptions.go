@@ -89,6 +89,7 @@ const (
 //TODO also salve if undead? or always... but kinda of a waste when we get more and more items
 
 type gearOptions map[dpscalc.GearSlot][]int
+type gearSetupOption map[dpscalc.GearSlot]dpscalc.GearItem //TODO gearOption
 
 var meleeGearOptions = gearOptions{
 	dpscalc.Head:   {torvaHelm, inqHelm},
