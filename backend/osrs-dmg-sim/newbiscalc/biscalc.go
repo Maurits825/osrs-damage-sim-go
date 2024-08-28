@@ -1,7 +1,7 @@
 package newbiscalc
 
 import (
-	"strconv"
+	"fmt"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
@@ -17,28 +17,42 @@ const (
 	Magic  AttackStyle = "magic"
 )
 
-type ItemNode struct {
-	ids  []int
-	next []*ItemNode
+var allAttackStyle = []AttackStyle{Melee, Ranged, Magic}
+
+type BisCalcInputSetup struct {
+	GlobalSettings    dpscalc.GlobalSettings           `json:"globalSettings"`
+	GearSetupSettings dpscalc.GearSetupSettings        `json:"gearSetupSettings"`
+	Prayers           map[AttackStyle][]dpscalc.Prayer `json:"prayers"`
+	IsOnSlayerTask    bool                             `json:"isOnSlayerTask"`
+	IsSpecialAttack   bool                             `json:"isSpecialAttack"`
 }
 
-type SlotBisGraph map[dpscalc.GearSlot][]*ItemNode
-type StyleBisGraph map[AttackStyle]SlotBisGraph
+type BisCalcResults struct {
+	Title            string          `json:"title"`
+	MeleeGearSetups  []BisCalcResult `json:"meleeGearSetups"`
+	RangedGearSetups []BisCalcResult `json:"rangedGearSetups"`
+	MagicGearSetups  []BisCalcResult `json:"magicGearSetups"`
+}
 
-var bisGraphs StyleBisGraph
+type BisCalcResult struct {
+	Gear           map[dpscalc.GearSlot]dpscalc.GearItem `json:"gear"`
+	AttackStyle    string                                `json:"attackStyle"`
+	Spell          string                                `json:"spell"`
+	TheoreticalDps float32                               `json:"theoreticalDps"`
+	MaxHit         []int                                 `json:"maxHit"`
+	Accuracy       float32                               `json:"accuracy"`
+	AttackRoll     int                                   `json:"attackRoll"`
+}
 
-var allGearSlots = []dpscalc.GearSlot{
-	dpscalc.Head,
-	dpscalc.Cape,
-	dpscalc.Neck,
-	dpscalc.Weapon,
-	dpscalc.Body,
-	dpscalc.Shield,
-	dpscalc.Legs,
-	dpscalc.Hands,
-	dpscalc.Feet,
-	dpscalc.Ring,
-	dpscalc.Ammo,
+var defaultGearSetup = dpscalc.GearSetup{
+	Name:            "default",
+	BlowpipeDarts:   dpscalc.GearItem{Id: dragonDarts},
+	CurrentHp:       1,
+	IsOnSlayerTask:  false,
+	IsSpecialAttack: false,
+	IsInWilderness:  false, // TODO options for this?
+	IsKandarinDiary: true,
+	MiningLevel:     99,
 }
 
 func init() {
@@ -47,52 +61,95 @@ func init() {
 	bisGraphs = getStyleBisGraph(graphs)
 }
 
-// TODO maybe put in another file
-func getStyleBisGraph(graphs wikidata.BisGraphs) StyleBisGraph {
-	styleMap := map[string]AttackStyle{
-		"1": Melee,
-		"2": Ranged,
-		"3": Magic,
+func RunBisCalc(setup *BisCalcInputSetup) BisCalcResults {
+	options := make(map[AttackStyle]gearSetupOptions)
+	inputs := make(map[AttackStyle]*dpscalc.InputGearSetup)
+	for _, style := range allAttackStyle {
+		opt := getGearSetupOptions(bisGraphs[style])
+		opt.enrichGearSetupOptions(style, setup)
+		input := getInputGearSetup(setup, style)
+
+		options[style] = opt
+		inputs[style] = &input
 	}
 
-	styleBisGraph := make(StyleBisGraph)
-	for styleString, style := range styleMap {
-		slotBisGraph := make(SlotBisGraph)
-		for _, gearSlot := range allGearSlots {
-			slotBisGraph[gearSlot] = getSlotBisGraph(graphs[styleString][strconv.Itoa(int(gearSlot))])
-		}
-		styleBisGraph[style] = slotBisGraph
-	}
+	bisMelee := doStuff(setup, inputs[Melee], options[Melee])
 
-	return styleBisGraph
+	results := BisCalcResults{
+		Title:            dpscalc.GetDpsCalcTitle(&setup.GlobalSettings),
+		MeleeGearSetups:  bisMelee,
+		RangedGearSetups: []BisCalcResult{},
+		MagicGearSetups:  []BisCalcResult{},
+	}
+	return results
 }
 
-func getSlotBisGraph(bisSlotNode wikidata.BisSlotGraph) []*ItemNode {
-	var createItemNode func(item wikidata.BisItem) *ItemNode
-	createItemNode = func(item wikidata.BisItem) *ItemNode {
-		var ids = make([]int, len(item.Ids))
-		for i, id := range item.Ids {
-			ids[i], _ = strconv.Atoi(id)
-		}
-
-		if len(item.Next) == 0 {
-			return &ItemNode{ids: ids, next: []*ItemNode{}}
-		}
-
-		var nextNodes = make([]*ItemNode, len(item.Next))
-		for i, next := range item.Next {
-			nextNodes[i] = createItemNode(bisSlotNode.Nodes[next])
-		}
-
-		return &ItemNode{ids: ids, next: nextNodes}
+func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.InputGearSetup {
+	inputGearSetup := dpscalc.InputGearSetup{
+		GearSetupSettings: setup.GearSetupSettings,
+		GearSetup:         defaultGearSetup,
 	}
-
-	var rootNodes = make([]*ItemNode, len(bisSlotNode.Roots))
-	for i, rootId := range bisSlotNode.Roots {
-		rootNodes[i] = createItemNode(bisSlotNode.Nodes[rootId])
-	}
-
-	return rootNodes
+	inputGearSetup.GearSetup.Prayers = setup.Prayers[style]
+	inputGearSetup.GearSetup.IsSpecialAttack = setup.IsSpecialAttack
+	inputGearSetup.GearSetup.IsOnSlayerTask = setup.IsOnSlayerTask
+	return inputGearSetup
 }
 
-//TODO something that uses the bisgraphs to create gear options
+// func for main iterator
+func doStuff(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions) []BisCalcResult {
+	count := 3 //TODO?
+	bisResults := make([]BisCalcResult, count)
+
+	optionsNext := gearSetupOptionsIterator(options)
+	gearOption, err := optionsNext()
+
+	calcCount := 0
+	//TODO also iter att style
+	for ; err == nil; gearOption, err = optionsNext() {
+		attackStyles := dpscalc.WeaponStyles[allItems[gearOption[dpscalc.Weapon].Id].WeaponCategory]
+
+		inputGearSetup.GearSetup.Gear = gearOption //TOOD copy???
+		inputGearSetup.GearSetup.Spell = ""
+		inputGearSetup.GearSetup.AttackStyle = attackStyles[0].Name
+
+		//TODO filter out invalid setups
+
+		dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
+
+		calcCount++
+		if calcCount%10000 == 0 {
+			fmt.Println(calcCount)
+		}
+
+		// fmt.Println("dps: ", dpsCalcResult.TheoreticalDps)
+		if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
+			newBisResult := BisCalcResult{
+				Gear:           gearOption.clone(), //TODO copy here??
+				Spell:          "",
+				TheoreticalDps: dpsCalcResult.TheoreticalDps,
+				MaxHit:         dpsCalcResult.MaxHit,
+				Accuracy:       dpsCalcResult.Accuracy,
+				AttackRoll:     dpsCalcResult.AttackRoll,
+				AttackStyle:    "combatOptionName",
+			}
+			updateBisResult(newBisResult, bisResults)
+		}
+
+	}
+
+	fmt.Println("Total calcs: ", calcCount)
+	return bisResults
+}
+
+func updateBisResult(newResult BisCalcResult, results []BisCalcResult) {
+	count := len(results)
+	for i := range results {
+		if newResult.TheoreticalDps > results[i].TheoreticalDps {
+			for j := count - 1; j > i; j-- {
+				results[j] = results[j-1]
+			}
+			results[i] = newResult
+			break
+		}
+	}
+}

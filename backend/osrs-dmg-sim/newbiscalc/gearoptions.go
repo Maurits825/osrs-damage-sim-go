@@ -6,11 +6,65 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
+var allGearSlots = []dpscalc.GearSlot{
+	dpscalc.Head,
+	dpscalc.Cape,
+	dpscalc.Neck,
+	dpscalc.Weapon,
+	dpscalc.Body,
+	dpscalc.Shield,
+	dpscalc.Legs,
+	dpscalc.Hands,
+	dpscalc.Feet,
+	dpscalc.Ring,
+	dpscalc.Ammo,
+}
+
 type gearSetupOptions map[dpscalc.GearSlot][]int
 type gearSetup map[dpscalc.GearSlot]dpscalc.GearItem
 
+func (setup gearSetup) clone() gearSetup {
+	newSetup := make(gearSetup)
+	for _, slot := range allGearSlots {
+		newSetup[slot] = setup[slot]
+	}
+	return newSetup
+}
+
+func (options gearSetupOptions) enrichGearSetupOptions(style AttackStyle, setup *BisCalcInputSetup) {
+	options.addGearId(dpscalc.Shield, dpscalc.EmptyItemId)
+	options.addGearId(dpscalc.Ammo, dpscalc.EmptyItemId)
+
+	//add weapons based on style
+	if setup.IsSpecialAttack {
+		options.addGearIds(dpscalc.Weapon, specWeapons[style])
+	} else {
+		options.addGearIds(dpscalc.Weapon, weapons[style])
+	}
+
+	if setup.IsOnSlayerTask {
+		options.addGearId(dpscalc.Head, slayerHelm)
+	}
+
+	npc := dpscalc.GetNpc(setup.GlobalSettings.Npc.Id)
+	if npc.IsUndead {
+		options.addGearId(dpscalc.Neck, salveAmuletEI)
+	}
+
+	//TODO could also add dragon bane weapons if dragon
+	//demon bane if demon and stuff
+}
+
+func (opt gearSetupOptions) addGearId(slot dpscalc.GearSlot, id int) {
+	opt[slot] = append(opt[slot], id)
+}
+
+func (opt gearSetupOptions) addGearIds(slot dpscalc.GearSlot, ids []int) {
+	opt[slot] = append(opt[slot], ids...)
+}
+
 // TODO simple func to get bis without budget consideration for now, from the bis graph
-func getBisGearSetupOptions(graph SlotBisGraph) gearSetupOptions {
+func getGearSetupOptions(graph SlotBisGraph) gearSetupOptions {
 	options := make(gearSetupOptions)
 	for _, slot := range allGearSlots {
 		options[slot] = make([]int, len(graph[slot]))

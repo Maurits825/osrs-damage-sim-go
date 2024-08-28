@@ -85,6 +85,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		CalcDetails:    calcDetails,
 	}
 }
+
 func GetNpc(id string) npc {
 	npcId, _ := strconv.Atoi(id)
 	npc := allNpcs[id]

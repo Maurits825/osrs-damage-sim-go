@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/biscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/newbiscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikishortlink"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -91,7 +91,7 @@ func dpsCalc(c *gin.Context) {
 }
 
 func bisCalc(c *gin.Context) {
-	var inputSetup biscalc.BisCalcInputSetup
+	var inputSetup newbiscalc.BisCalcInputSetup
 
 	if err := c.ShouldBindJSON(&inputSetup); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -100,7 +100,8 @@ func bisCalc(c *gin.Context) {
 
 	//TODO validation?
 	//TODO fe for json inpput or default, could do some fe input work
-	bisCalcResults := biscalc.RunBisDpsCalc(&inputSetup, nil)
+	// bisCalcResults := biscalc.RunBisDpsCalc(&inputSetup, nil)
+	bisCalcResults := newbiscalc.RunBisCalc(&inputSetup)
 	// bisCalcResults := biscalc.RunGearJsonBis(&inputSetup)
 	c.JSON(http.StatusOK, bisCalcResults)
 }
