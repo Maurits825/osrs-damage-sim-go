@@ -27,23 +27,6 @@ type BisCalcInputSetup struct {
 	IsSpecialAttack   bool                             `json:"isSpecialAttack"`
 }
 
-type BisCalcResults struct {
-	Title            string          `json:"title"`
-	MeleeGearSetups  []BisCalcResult `json:"meleeGearSetups"`
-	RangedGearSetups []BisCalcResult `json:"rangedGearSetups"`
-	MagicGearSetups  []BisCalcResult `json:"magicGearSetups"`
-}
-
-type BisCalcResult struct {
-	Gear           map[dpscalc.GearSlot]dpscalc.GearItem `json:"gear"`
-	AttackStyle    string                                `json:"attackStyle"`
-	Spell          string                                `json:"spell"`
-	TheoreticalDps float32                               `json:"theoreticalDps"`
-	MaxHit         []int                                 `json:"maxHit"`
-	Accuracy       float32                               `json:"accuracy"`
-	AttackRoll     int                                   `json:"attackRoll"`
-}
-
 var defaultGearSetup = dpscalc.GearSetup{
 	Name:            "default",
 	BlowpipeDarts:   dpscalc.GearItem{Id: dragonDarts},
@@ -73,7 +56,7 @@ func RunBisCalc(setup *BisCalcInputSetup) BisCalcResults {
 		inputs[style] = &input
 	}
 
-	bisMelee := doStuff(setup, inputs[Melee], options[Melee])
+	bisMelee := RunDpsCalcs(setup, inputs[Melee], options[Melee])
 
 	results := BisCalcResults{
 		Title:            dpscalc.GetDpsCalcTitle(&setup.GlobalSettings),
@@ -96,60 +79,46 @@ func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.Inpu
 }
 
 // func for main iterator
-func doStuff(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions) []BisCalcResult {
+func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions) []BisCalcResult {
 	count := 3 //TODO?
 	bisResults := make([]BisCalcResult, count)
 
 	optionsNext := gearSetupOptionsIterator(options)
-	gearOption, err := optionsNext()
+	gearSetup, err := optionsNext()
 
 	calcCount := 0
-	//TODO also iter att style
-	for ; err == nil; gearOption, err = optionsNext() {
-		attackStyles := dpscalc.WeaponStyles[allItems[gearOption[dpscalc.Weapon].Id].WeaponCategory]
-
-		inputGearSetup.GearSetup.Gear = gearOption //TOOD copy???
-		inputGearSetup.GearSetup.Spell = ""
-		inputGearSetup.GearSetup.AttackStyle = attackStyles[0].Name
-
-		//TODO filter out invalid setups
-
-		dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
-
-		calcCount++
-		if calcCount%10000 == 0 {
-			fmt.Println(calcCount)
+	for ; err == nil; gearSetup, err = optionsNext() {
+		if !gearSetup.isValid() {
+			continue
 		}
 
-		// fmt.Println("dps: ", dpsCalcResult.TheoreticalDps)
-		if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
-			newBisResult := BisCalcResult{
-				Gear:           gearOption.clone(), //TODO copy here??
-				Spell:          "",
-				TheoreticalDps: dpsCalcResult.TheoreticalDps,
-				MaxHit:         dpsCalcResult.MaxHit,
-				Accuracy:       dpsCalcResult.Accuracy,
-				AttackRoll:     dpsCalcResult.AttackRoll,
-				AttackStyle:    "combatOptionName",
+		combatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
+
+		for _, combatOption := range combatOptions {
+			if combatOption.StyleStance == dpscalc.Defensive || combatOption.StyleStance == dpscalc.Longrange {
+				continue
 			}
-			updateBisResult(newBisResult, bisResults)
-		}
 
+			//TODO how to handle spells, if autocast then iter four elemental spells?
+
+			inputGearSetup.GearSetup.Gear = gearSetup
+			inputGearSetup.GearSetup.Spell = ""
+			inputGearSetup.GearSetup.AttackStyle = combatOption.Name
+
+			dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
+
+			calcCount++
+			if calcCount%10000 == 0 {
+				fmt.Println(calcCount)
+			}
+
+			if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
+				updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
+			}
+
+		}
 	}
 
 	fmt.Println("Total calcs: ", calcCount)
 	return bisResults
-}
-
-func updateBisResult(newResult BisCalcResult, results []BisCalcResult) {
-	count := len(results)
-	for i := range results {
-		if newResult.TheoreticalDps > results[i].TheoreticalDps {
-			for j := count - 1; j > i; j-- {
-				results[j] = results[j-1]
-			}
-			results[i] = newResult
-			break
-		}
-	}
 }

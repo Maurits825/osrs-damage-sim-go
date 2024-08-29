@@ -2,6 +2,7 @@ package newbiscalc
 
 import (
 	"errors"
+	"strings"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
@@ -22,6 +23,43 @@ var allGearSlots = []dpscalc.GearSlot{
 
 type gearSetupOptions map[dpscalc.GearSlot][]int
 type gearSetup map[dpscalc.GearSlot]dpscalc.GearItem
+
+func (gear gearSetup) isValid() bool {
+	weaponId := gear[dpscalc.Weapon].Id
+	isAmmoEmpty := gear[dpscalc.Ammo].Id == dpscalc.EmptyItemId
+
+	// TODO add more charged based ranged weapons
+	if weaponId == blowpipe || weaponId == bowfa {
+		if !isAmmoEmpty {
+			return false
+		}
+	}
+
+	//check 2h and shield
+	if allItems[weaponId].Is2h && gear[dpscalc.Shield].Id != dpscalc.EmptyItemId {
+		return false
+	}
+
+	//check ammo, TODO a bit scuffed
+	ammoName := allItems[gear[dpscalc.Ammo].Id].Name
+	switch allItems[weaponId].WeaponCategory {
+	case "CROSSBOW":
+		if !strings.Contains(ammoName, "bolts") {
+			return false
+		}
+	case "BOW":
+		if !strings.Contains(ammoName, "arrow") {
+			return false
+		}
+	case "THROWN", "CHINCHOMPAS":
+		if !isAmmoEmpty {
+			return false
+		}
+	}
+
+	//TODO other checks?
+	return true
+}
 
 func (setup gearSetup) clone() gearSetup {
 	newSetup := make(gearSetup)
