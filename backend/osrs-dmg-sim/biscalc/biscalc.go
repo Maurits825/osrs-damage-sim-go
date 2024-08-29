@@ -74,6 +74,8 @@ func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.Inpu
 }
 
 // TODO how to add sets like void, would be similar input to 'locking' items from FE input
+// TODO if slayer task, lock in slayer helm? if undead torva+salve could be better...
+// TODO otherwise perf test to make it faster
 func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions) []BisCalcResult {
 	count := 3 //TODO?
 	bisResults := make([]BisCalcResult, count)
