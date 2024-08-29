@@ -41759,6 +41759,7 @@
  },
  "8359": {
   "name": "Pestilent Bloat",
+  "isUndead": true,
   "isTobNormalMode": true,
   "hitpoints": 2000,
   "att": 250,
@@ -46658,6 +46659,7 @@
  },
  "10812": {
   "name": "Pestilent Bloat",
+  "isUndead": true,
   "isTobEntryMode": true,
   "hitpoints": 1280,
   "att": 100,
@@ -46679,6 +46681,7 @@
  },
  "10813": {
   "name": "Pestilent Bloat",
+  "isUndead": true,
   "isTobHardMode": true,
   "hitpoints": 2400,
   "att": 250,

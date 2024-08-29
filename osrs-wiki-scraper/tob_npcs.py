@@ -34,14 +34,15 @@ class TobNpcs:
 
         doc = {"__source__": source}
         tob_mode = version.get("smwname") if "Verzik" in str(version["name"]).strip() else npc_version
+        attributes = str(version.get("attributes", "")).strip()
         if "Entry" in tob_mode:
-            version["attributes"] = "TobEntryMode"
+            version["attributes"] = attributes + ",TobEntryMode"
         elif "Normal" in tob_mode:
-            version["attributes"] = "TobNormalMode"
+            version["attributes"] = attributes + ",TobNormalMode"
         elif "Hard" in tob_mode:
-            version["attributes"] = "TobHardMode"
+            version["attributes"] = attributes + ",TobHardMode"
         else:
-            version["attributes"] = "TobNormalMode"
+            version["attributes"] = attributes + ",TobNormalMode"
 
         if npc_id in docs:
             npc_id += "_" + str(vid).replace("-", "")
