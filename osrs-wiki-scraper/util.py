@@ -8,6 +8,8 @@ from model.weapon_category import WeaponCategory
 
 VERSION_EXTRACTOR = re.compile(r"(.*?)([0-9]+)?$")
 
+ITEM_FILTER = ["29804", "25862", "12924", "12929"]
+
 
 def each_version(template_name: str, code, include_base: bool = False,
                  mergable_keys: List[str] = None) -> Iterator[Tuple[int, Dict[str, Any]]]:
@@ -164,16 +166,7 @@ def is_filtered_item(item, item_id):
     if re.match(r"Team-\d+ cape", item["name"]):
         return "Team-1 cape" not in item["name"]
 
-    # inactive bowfa id
-    if item_id == "25862":
-        return True
-
-    # no r str blowpipe
-    if item_id == "12924":
-        return True
-
-    # uncharged serp
-    if item_id == "12929":
+    if any(item_id == filter_id for filter_id in ITEM_FILTER):
         return True
 
     if "(uncharged)" in item["name"]:

@@ -6899,6 +6899,9 @@
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
+  "aslash": 4,
+  "acrush": 4,
+  "amagic": 4,
   "prayer": 5
  },
  "3844": {
@@ -23482,7 +23485,7 @@
   "slot": 0
  },
  "12361": {
-  "name": "Cat h",
+  "name": "Cat mask",
   "weight": 2.267,
   "equipable": true,
   "slot": 0
@@ -32364,7 +32367,7 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 3,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "22844": {
@@ -32372,7 +32375,7 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 3,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "22846": {
@@ -32380,7 +32383,7 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 3,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "22941": {
@@ -32646,7 +32649,7 @@
   "weight": 0.481,
   "equipable": true,
   "slot": 3,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "23188": {
@@ -46979,7 +46982,7 @@
   "slot": 5
  },
  "29775": {
-  "name": "Imcando hammer (offhand)",
+  "name": "Imcando hammer (off-hand)",
   "weight": 2.0,
   "equipable": true,
   "slot": 5
@@ -46989,5 +46992,105 @@
   "weight": 0.003,
   "equipable": true,
   "slot": 5
+ },
+ "29796": {
+  "name": "Noxious halberd",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 80,
+  "aslash": 132,
+  "str": 142,
+  "aspeed": 5,
+  "weaponCategory": "POLEARM"
+ },
+ "29801": {
+  "name": "Amulet of rancour",
+  "weight": 0.012,
+  "equipable": true,
+  "slot": 2,
+  "astab": 25,
+  "aslash": 25,
+  "acrush": 25,
+  "amagic": -6,
+  "arange": -8,
+  "str": 12,
+  "prayer": 2
+ },
+ "29804": {
+  "name": "Amulet of rancour",
+  "weight": 0.011,
+  "equipable": true,
+  "slot": 2,
+  "astab": 25,
+  "aslash": 25,
+  "acrush": 25,
+  "amagic": -6,
+  "arange": -8,
+  "str": 12,
+  "prayer": 2
+ },
+ "29806": {
+  "name": "Aranea boots",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 10,
+  "amagic": 5,
+  "arange": 6,
+  "str": 4,
+  "prayer": 1
+ },
+ "29816": {
+  "name": "Araxyte slayer helmet",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -2,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": -1,
+  "drange": 30
+ },
+ "29818": {
+  "name": "Araxyte slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "29820": {
+  "name": "Araxyte slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "29822": {
+  "name": "Araxyte slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
  }
 }
