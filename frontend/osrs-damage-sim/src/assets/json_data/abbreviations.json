@@ -1250,6 +1250,12 @@
  "Xarpus": [
   "Xarp"
  ],
+ "Logout button#X-logging": [
+  "X-logging"
+ ],
+ "X-logging": [
+  "X-logging"
+ ],
  "Experience": [
   "XP/H",
   "XPH"
@@ -1695,6 +1701,24 @@
  "Wizard robes": [
   "Wizzy"
  ],
+ "Vorkath": [
+  "Woox walking",
+  "Vork",
+  "Money snake",
+  "Money dragon"
+ ],
+ "The Walk": [
+  "Woox walking",
+  "Vork",
+  "Money snake",
+  "Money dragon"
+ ],
+ "here": [
+  "Woox walking",
+  "Vork",
+  "Money snake",
+  "Money dragon"
+ ],
  "Wintertodt": [
   "WT",
   "Todt"
@@ -1789,11 +1813,6 @@
   "Voli",
   "Volly",
   "Vola"
- ],
- "Vorkath": [
-  "Vork",
-  "Money snake",
-  "Money dragon"
  ],
  "Verac's plateskirt": [
   "VSkirt"

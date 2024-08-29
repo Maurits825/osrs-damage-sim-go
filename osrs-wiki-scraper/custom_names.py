@@ -38,6 +38,8 @@ CUSTOM_NAME_MAP = {
     "12167_1": "Duke Sucellus (Awakened)",
     "12191_1": "Duke Sucellus (Awakened)",
     "12192_1": "Duke Sucellus (Awakened)",
+
+    "5908": "Abyssal Sire (post portal)",
 }
 
 

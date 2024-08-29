@@ -63,9 +63,9 @@ func getMeleeMaxHit(player *player) int {
 
 	//TODO avarice amulet
 	maxHit := baseMaxHit
-	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.isUndead {
+	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 6, 5)
-	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.isUndead {
+	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 7, 6)
 	} else if player.equippedGear.isWearingBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitBlackMask, maxHit, 7, 6)
@@ -166,9 +166,9 @@ func getRangedMaxHit(player *player) int {
 		maxHit = int(maxHit * (40 + crystalPieces) / 40)
 	}
 
-	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.isUndead {
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 6, 5)
-	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.isUndead {
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 7, 6)
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitBlackMask, maxHit, 23, 20)
@@ -254,9 +254,9 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 	}
 
 	blackMaskBonus := false
-	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.isUndead {
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.IsUndead {
 		gearMagicBonus += 200
-	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.isUndead {
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
 		gearMagicBonus += 150
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		blackMaskBonus = true
