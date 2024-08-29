@@ -1,4 +1,4 @@
-package newbiscalc
+package biscalc
 
 const (
 	slayerHelm    = 25912

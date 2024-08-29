@@ -1,4 +1,4 @@
-package newbiscalc
+package biscalc
 
 import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 
