@@ -28,8 +28,9 @@ const (
 	zaryteCrossbow = 26374
 	bowfa          = 25865
 
-	dragonArrows    = 11212
-	rubyDragonBolts = 21944
+	dragonArrows  = 11212
+	rubyDBolts    = 21944
+	diamondDBolts = 21946
 )
 
 const (
@@ -45,6 +46,7 @@ var meleeWeapons = []int{scythe, fang, rapier, saladBlade}
 var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
 
 var rangedWeapons = []int{tbow, blowpipe, zaryteCrossbow, bowfa}
+var rangedAmmo = []int{dragonArrows, rubyDBolts, diamondDBolts}
 var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
 
 var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}

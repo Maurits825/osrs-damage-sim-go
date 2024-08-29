@@ -45,26 +45,21 @@ func init() {
 }
 
 func RunBisCalc(setup *BisCalcInputSetup) BisCalcResults {
-	options := make(map[AttackStyle]gearSetupOptions)
-	inputs := make(map[AttackStyle]*dpscalc.InputGearSetup)
+	results := make(map[AttackStyle][]BisCalcResult)
 	for _, style := range allAttackStyle {
-		opt := getGearSetupOptions(bisGraphs[style])
-		opt.enrichGearSetupOptions(style, setup)
+		option := getGearSetupOptions(bisGraphs[style])
+		option.enrichGearSetupOptions(style, setup)
 		input := getInputGearSetup(setup, style)
-
-		options[style] = opt
-		inputs[style] = &input
+		result := RunDpsCalcs(setup, &input, option)
+		results[style] = result
 	}
 
-	bisMelee := RunDpsCalcs(setup, inputs[Melee], options[Melee])
-
-	results := BisCalcResults{
+	return BisCalcResults{
 		Title:            dpscalc.GetDpsCalcTitle(&setup.GlobalSettings),
-		MeleeGearSetups:  bisMelee,
-		RangedGearSetups: []BisCalcResult{},
-		MagicGearSetups:  []BisCalcResult{},
+		MeleeGearSetups:  results[Melee],
+		RangedGearSetups: results[Ranged],
+		MagicGearSetups:  results[Magic],
 	}
-	return results
 }
 
 func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.InputGearSetup {

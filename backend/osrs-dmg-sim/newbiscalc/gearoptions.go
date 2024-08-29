@@ -36,7 +36,14 @@ func (gear gearSetup) isValid() bool {
 	}
 
 	//check 2h and shield
-	if allItems[weaponId].Is2h && gear[dpscalc.Shield].Id != dpscalc.EmptyItemId {
+	is2h := allItems[weaponId].Is2h
+	if is2h && gear[dpscalc.Shield].Id != dpscalc.EmptyItemId {
+		return false
+	}
+
+	//invalidate one handed weapon with no shield
+	//TODO for budget setups could allow this
+	if !is2h && gear[dpscalc.Shield].Id == dpscalc.EmptyItemId {
 		return false
 	}
 
@@ -72,6 +79,10 @@ func (setup gearSetup) clone() gearSetup {
 func (options gearSetupOptions) enrichGearSetupOptions(style AttackStyle, setup *BisCalcInputSetup) {
 	options.addGearId(dpscalc.Shield, dpscalc.EmptyItemId)
 	options.addGearId(dpscalc.Ammo, dpscalc.EmptyItemId)
+
+	if style == Ranged {
+		options.addGearIds(dpscalc.Ammo, rangedAmmo)
+	}
 
 	//add weapons based on style
 	if setup.IsSpecialAttack {
