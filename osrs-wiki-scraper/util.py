@@ -132,21 +132,23 @@ def has_template(name: str, code) -> bool:
 def get_attack_style_and_type(item):
     weapon_category_name = item.get("weaponCategory", None)
     attack_styles = None
-    attack_type = None
+    attack_style = None
+    attack_types = []
 
     if weapon_category_name:
         weapon_category = WeaponCategory[weapon_category_name]
 
         attack_styles = [style.name for style in weapon_category.value]
+        attack_types = list(set([style.attack_type for style in weapon_category.value]))
 
         if weapon_category.value[-1].attack_type == AttackType.MAGIC:
-            attack_type = "magic"
+            attack_style = "magic"
         elif weapon_category.value[0].attack_type in [AttackType.STAB, AttackType.SLASH, AttackType.CRUSH]:
-            attack_type = "melee"
+            attack_style = "melee"
         elif weapon_category.value[0].attack_type == AttackType.RANGED:
-            attack_type = "ranged"
+            attack_style = "ranged"
 
-    return attack_styles, attack_type
+    return attack_styles, attack_style, attack_types
 
 
 def is_filtered_item(item, item_id):

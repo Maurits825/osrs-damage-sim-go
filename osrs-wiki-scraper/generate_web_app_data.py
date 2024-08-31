@@ -138,7 +138,7 @@ class GenerateWebAppData:
                         "id": int(item_id),
                     }
 
-                    attack_styles, attack_type = get_attack_style_and_type(item)
+                    attack_styles, attack_type, _ = get_attack_style_and_type(item)
                     if attack_styles:
                         item_dict["attackStyles"] = attack_styles
                     if attack_type:
