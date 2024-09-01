@@ -111,6 +111,10 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	} else if style == dpscalc.Ranged {
 		options.addGearId(dpscalc.Head, rangeVoidHelm)
 		options.addGearIds(dpscalc.Ammo, rangedAmmo)
+
+		options.addGearId(dpscalc.Head, crystalHelm)
+		options.addGearId(dpscalc.Body, crystalTop)
+		options.addGearId(dpscalc.Legs, crystalBot)
 	} else if style == dpscalc.Magic {
 		options.addGearId(dpscalc.Head, mageVoidHelm)
 	}

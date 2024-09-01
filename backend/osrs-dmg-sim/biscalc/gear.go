@@ -44,6 +44,12 @@ const (
 )
 
 const (
+	crystalHelm = 23971
+	crystalTop  = 23975
+	crystalBot  = 23979
+)
+
+const (
 	shadowStaff   = 27275
 	sangStaff     = 22323
 	harmStaff     = 24423
