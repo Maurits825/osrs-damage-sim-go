@@ -10,7 +10,7 @@ func getAttackRoll(player *player) int {
 	style := player.combatStyle.CombatStyleType
 	attackRoll := 0
 
-	if style.isMeleeStyle() {
+	if style.IsMeleeStyle() {
 		attackRoll = getMeleeAttackRoll(player)
 	} else if style == Ranged {
 		attackRoll = getRangedAttackRoll(player)

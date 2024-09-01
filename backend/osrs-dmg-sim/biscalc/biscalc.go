@@ -45,29 +45,37 @@ func init() {
 }
 
 func RunBisCalc(setup *BisCalcInputSetup) BisCalcResults {
-	results := make(map[AttackStyle][]BisCalcResult)
-	for _, style := range allAttackStyle {
+	results := make(map[dpscalc.CombatStyleType][]BisCalcResult)
+	for _, style := range dpscalc.AllCombatStyleTypes {
 		option := getGearSetupOptions(bisGraphs[style])
 		option.enrichGearSetupOptions(style, setup)
 		input := getInputGearSetup(setup, style)
-		result := RunDpsCalcs(setup, &input, option)
+		result := RunDpsCalcs(setup, &input, option, style)
 		results[style] = result
 	}
 
+	meleeResults := aggregateBisResults(results, []dpscalc.CombatStyleType{dpscalc.Slash, dpscalc.Stab, dpscalc.Crush}, 3)
 	return BisCalcResults{
 		Title:            dpscalc.GetDpsCalcTitle(&setup.GlobalSettings),
-		MeleeGearSetups:  results[Melee],
-		RangedGearSetups: results[Ranged],
-		MagicGearSetups:  results[Magic],
+		MeleeGearSetups:  meleeResults,
+		RangedGearSetups: results[dpscalc.Ranged],
+		MagicGearSetups:  results[dpscalc.Magic],
 	}
 }
 
-func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.InputGearSetup {
+func getInputGearSetup(setup *BisCalcInputSetup, style dpscalc.CombatStyleType) dpscalc.InputGearSetup {
 	inputGearSetup := dpscalc.InputGearSetup{
 		GearSetupSettings: setup.GearSetupSettings,
 		GearSetup:         defaultGearSetup,
 	}
-	inputGearSetup.GearSetup.Prayers = setup.Prayers[style]
+	if style.IsMeleeStyle() {
+		inputGearSetup.GearSetup.Prayers = setup.Prayers[Melee]
+	} else if style == dpscalc.Ranged {
+		inputGearSetup.GearSetup.Prayers = setup.Prayers[Ranged]
+	} else {
+		inputGearSetup.GearSetup.Prayers = setup.Prayers[Magic]
+	}
+
 	inputGearSetup.GearSetup.IsSpecialAttack = setup.IsSpecialAttack
 	inputGearSetup.GearSetup.IsOnSlayerTask = setup.IsOnSlayerTask
 	return inputGearSetup
@@ -76,7 +84,7 @@ func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.Inpu
 // TODO how to add sets like void, would be similar input to 'locking' items from FE input
 // TODO if slayer task, lock in slayer helm? if undead torva+salve could be better...
 // TODO otherwise perf test to make it faster
-func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions) []BisCalcResult {
+func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions, style dpscalc.CombatStyleType) []BisCalcResult {
 	count := 3 //TODO?
 	bisResults := make([]BisCalcResult, count)
 
@@ -91,7 +99,13 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 
 		combatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
 
+		// TODO now skip cmbt option that isnt the style, if melee crush, only do crush stance
+		// TODO could also put cmbt opt in gearoptions? for stab/slash usually have two cmt opts acc/str
 		for _, combatOption := range combatOptions {
+			if combatOption.StyleType != style {
+				continue
+			}
+
 			if combatOption.StyleStance == dpscalc.Defensive || combatOption.StyleStance == dpscalc.Longrange {
 				continue
 			}
@@ -112,10 +126,20 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 			if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
 				updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
 			}
-
 		}
 	}
 
 	fmt.Println("Total calcs: ", calcCount)
+	return bisResults
+}
+
+func aggregateBisResults(results map[dpscalc.CombatStyleType][]BisCalcResult, styles []dpscalc.CombatStyleType, count int) []BisCalcResult {
+	bisResults := make([]BisCalcResult, count)
+	for _, style := range styles {
+		for i := range results[style] {
+			insertBisResult(results[style][i], bisResults)
+		}
+	}
+
 	return bisResults
 }

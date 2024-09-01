@@ -13,15 +13,17 @@ type ItemNode struct {
 }
 
 type SlotBisGraph map[dpscalc.GearSlot][]*ItemNode
-type StyleBisGraph map[AttackStyle]SlotBisGraph
+type StyleBisGraph map[dpscalc.CombatStyleType]SlotBisGraph
 
 var bisGraphs StyleBisGraph
 
 func getStyleBisGraph(graphs wikidata.BisGraphs) StyleBisGraph {
-	styleMap := map[string]AttackStyle{
-		"1": Melee,
-		"2": Ranged,
-		"3": Magic,
+	styleMap := map[string]dpscalc.CombatStyleType{
+		"1": dpscalc.Stab,
+		"2": dpscalc.Slash,
+		"3": dpscalc.Crush,
+		"4": dpscalc.Ranged,
+		"5": dpscalc.Magic,
 	}
 
 	styleBisGraph := make(StyleBisGraph)

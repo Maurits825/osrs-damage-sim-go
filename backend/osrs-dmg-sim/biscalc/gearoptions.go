@@ -76,11 +76,11 @@ func (setup gearSetup) clone() gearSetup {
 	return newSetup
 }
 
-func (options gearSetupOptions) enrichGearSetupOptions(style AttackStyle, setup *BisCalcInputSetup) {
+func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyleType, setup *BisCalcInputSetup) {
 	options.addGearId(dpscalc.Shield, dpscalc.EmptyItemId)
 	options.addGearId(dpscalc.Ammo, dpscalc.EmptyItemId)
 
-	if style == Ranged {
+	if style == dpscalc.Ranged {
 		options.addGearIds(dpscalc.Ammo, rangedAmmo)
 	}
 

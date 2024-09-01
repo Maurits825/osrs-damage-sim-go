@@ -1,15 +1,25 @@
 package biscalc
 
+import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
+
 const (
 	slayerHelm    = 25912
 	salveAmuletEI = 12018
 )
 
 const (
-	scythe     = 22325
+	scythe        = 22325
+	saladBlade    = 23995
+	soulreaperAxe = 28338
+	noxHally      = 29796
+
 	fang       = 26219
 	rapier     = 22324
-	saladBlade = 23995
+	zammySpear = 11824
+
+	inqMace         = 24417
+	elderMaul       = 21003
+	abbysalBludgeon = 13263
 
 	bandosGodsword  = 11804
 	armadylGodsword = 11802
@@ -42,9 +52,13 @@ const (
 
 // TODO hardcoded weapons, better way?
 // TODO add more weapons, tentwhip, inq mace ...
-var meleeWeapons = []int{scythe, fang, rapier, saladBlade}
+// TODO have stab/slash/crush weapons?
+var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
+var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
+var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}
 var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
 
+//TODO bowfa has to be with crystal armour, crystal armour is only good with bowfa
 var rangedWeapons = []int{tbow, blowpipe, zaryteCrossbow, bowfa}
 var rangedAmmo = []int{dragonArrows, rubyDBolts, diamondDBolts}
 var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
@@ -52,14 +66,18 @@ var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
 var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}
 var magicSpecWeapons = []int{volatileStaff}
 
-var weapons = map[AttackStyle][]int{
-	Melee:  meleeWeapons,
-	Ranged: rangedWeapons,
-	Magic:  magicWeapons,
+var weapons = map[dpscalc.CombatStyleType][]int{
+	dpscalc.Stab:   meleeStabWeapons,
+	dpscalc.Slash:  meleeSlashWeapons,
+	dpscalc.Crush:  meleeCrushWeapons,
+	dpscalc.Ranged: rangedWeapons,
+	dpscalc.Magic:  magicWeapons,
 }
 
-var specWeapons = map[AttackStyle][]int{
-	Melee:  meleeSpecWeapons,
-	Ranged: rangedSpecWeapons,
-	Magic:  magicSpecWeapons,
+var specWeapons = map[dpscalc.CombatStyleType][]int{
+	dpscalc.Stab:   meleeSpecWeapons,
+	dpscalc.Slash:  meleeSpecWeapons,
+	dpscalc.Crush:  meleeSpecWeapons,
+	dpscalc.Ranged: rangedSpecWeapons,
+	dpscalc.Magic:  magicSpecWeapons,
 }
