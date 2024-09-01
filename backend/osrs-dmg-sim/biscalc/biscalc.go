@@ -81,9 +81,7 @@ func getInputGearSetup(setup *BisCalcInputSetup, style dpscalc.CombatStyleType) 
 	return inputGearSetup
 }
 
-// TODO how to add sets like void, would be similar input to 'locking' items from FE input
-// TODO if slayer task, lock in slayer helm? if undead torva+salve could be better...
-// TODO otherwise perf test to make it faster
+// TODO add locking gear from FE input
 func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions, style dpscalc.CombatStyleType) []BisCalcResult {
 	count := 3 //TODO?
 	bisResults := make([]BisCalcResult, count)
@@ -99,8 +97,6 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 
 		combatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
 
-		// TODO now skip cmbt option that isnt the style, if melee crush, only do crush stance
-		// TODO could also put cmbt opt in gearoptions? for stab/slash usually have two cmt opts acc/str
 		for _, combatOption := range combatOptions {
 			if combatOption.StyleType != style {
 				continue

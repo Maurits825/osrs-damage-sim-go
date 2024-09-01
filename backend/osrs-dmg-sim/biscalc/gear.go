@@ -50,9 +50,16 @@ const (
 	volatileStaff = 24424
 )
 
+const (
+	meleeVoidHelm   = 11665
+	mageVoidHelm    = 11663
+	rangeVoidHelm   = 11664
+	eliteVoidTop    = 13072
+	eliteVoidBot    = 13073
+	eliteVoidGloves = 8842
+)
+
 // TODO hardcoded weapons, better way?
-// TODO add more weapons, tentwhip, inq mace ...
-// TODO have stab/slash/crush weapons?
 var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
 var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
 var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}

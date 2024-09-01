@@ -47,6 +47,10 @@ func (gear gearSetup) isValid() bool {
 		return false
 	}
 
+	if gear.isWearingIncompleteVoid() {
+		return false
+	}
+
 	//check ammo, TODO a bit scuffed
 	ammoName := allItems[gear[dpscalc.Ammo].Id].Name
 	switch allItems[weaponId].WeaponCategory {
@@ -68,6 +72,24 @@ func (gear gearSetup) isValid() bool {
 	return true
 }
 
+func (setup gearSetup) isWearingIncompleteVoid() bool {
+	count := 0
+	if setup[dpscalc.Head].Id == meleeVoidHelm || setup[dpscalc.Head].Id == rangeVoidHelm || setup[dpscalc.Head].Id == mageVoidHelm {
+		count++
+	}
+	if setup[dpscalc.Body].Id == eliteVoidTop {
+		count++
+	}
+	if setup[dpscalc.Legs].Id == eliteVoidBot {
+		count++
+	}
+	if setup[dpscalc.Hands].Id == eliteVoidGloves {
+		count++
+	}
+
+	return count > 0 && count < 4
+}
+
 func (setup gearSetup) clone() gearSetup {
 	newSetup := make(gearSetup)
 	for _, slot := range allGearSlots {
@@ -80,8 +102,17 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	options.addGearId(dpscalc.Shield, dpscalc.EmptyItemId)
 	options.addGearId(dpscalc.Ammo, dpscalc.EmptyItemId)
 
-	if style == dpscalc.Ranged {
+	options.addGearId(dpscalc.Body, eliteVoidTop)
+	options.addGearId(dpscalc.Legs, eliteVoidBot)
+	options.addGearId(dpscalc.Hands, eliteVoidGloves)
+
+	if style.IsMeleeStyle() {
+		options.addGearId(dpscalc.Head, meleeVoidHelm)
+	} else if style == dpscalc.Ranged {
+		options.addGearId(dpscalc.Head, rangeVoidHelm)
 		options.addGearIds(dpscalc.Ammo, rangedAmmo)
+	} else if style == dpscalc.Magic {
+		options.addGearId(dpscalc.Head, mageVoidHelm)
 	}
 
 	//add weapons based on style
