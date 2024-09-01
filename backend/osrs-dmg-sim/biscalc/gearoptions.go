@@ -28,7 +28,6 @@ func (gear gearSetup) isValid() bool {
 	weaponId := gear[dpscalc.Weapon].Id
 	isAmmoEmpty := gear[dpscalc.Ammo].Id == dpscalc.EmptyItemId
 
-	// TODO add more charged based ranged weapons
 	if weaponId == blowpipe || weaponId == bowfa {
 		if !isAmmoEmpty {
 			return false

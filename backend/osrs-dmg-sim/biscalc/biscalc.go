@@ -2,6 +2,7 @@ package biscalc
 
 import (
 	"fmt"
+	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
@@ -95,9 +96,9 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 			continue
 		}
 
-		combatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
-
-		for _, combatOption := range combatOptions {
+		allCombatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
+		combatOptions := make([]dpscalc.CombatOption, 0)
+		for _, combatOption := range allCombatOptions {
 			if combatOption.StyleType != style {
 				continue
 			}
@@ -106,6 +107,14 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 				continue
 			}
 
+			if slices.Contains(combatOptions, combatOption) {
+				continue
+			}
+
+			combatOptions = append(combatOptions, combatOption)
+		}
+
+		for _, combatOption := range combatOptions {
 			//TODO how to handle spells, if autocast then iter four elemental spells?
 
 			inputGearSetup.GearSetup.Gear = gearSetup
