@@ -25,8 +25,17 @@ type DpsCalcResult struct {
 	MaxHit         []int                `json:"maxHit"`
 	Accuracy       float32              `json:"accuracy"`
 	AttackRoll     int                  `json:"attackRoll"`
+	ExpectedHit    float64              `json:"expectedHit"`
 	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
 	CalcDetails    []string             `json:"calcDetails"`
+}
+type dpsDetails struct {
+	dps          float32
+	maxHitsplats []int
+	accuracy     float32
+	attackRoll   int
+	hitDist      []float64
+	expectedHit  float64
 }
 
 type InputGearSetupLabels struct {
@@ -65,7 +74,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	player := getPlayer(globalSettings, inputGearSetup)
 
-	dps, maxHitsplats, accuracy, attackRoll, hitDist := calculateDps(player)
+	dpsDetails := calculateDps(player)
 
 	//TODO get hitsplat maxhits
 
@@ -77,11 +86,12 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	return DpsCalcResult{
 		Labels:         inputGearSetupLabels,
-		TheoreticalDps: dps,
-		MaxHit:         maxHitsplats,
-		Accuracy:       accuracy * 100,
-		AttackRoll:     attackRoll,
-		HitDist:        hitDist,
+		TheoreticalDps: dpsDetails.dps,
+		MaxHit:         dpsDetails.maxHitsplats,
+		Accuracy:       dpsDetails.accuracy * 100,
+		AttackRoll:     dpsDetails.attackRoll,
+		ExpectedHit:    dpsDetails.expectedHit,
+		HitDist:        dpsDetails.hitDist,
 		CalcDetails:    calcDetails,
 	}
 }
@@ -168,21 +178,21 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell}
 }
 
-func calculateDps(player *player) (dps float32, maxHitsplats []int, accuracy float32, attackRoll int, hitDist []float64) {
+func calculateDps(player *player) dpsDetails {
 	maxHit := getMaxHit(player)
-	accuracy, attackRoll = getAccuracy(player)
+	accuracy, attackRoll := getAccuracy(player)
 	attackSpeed := getAttackSpeed(player)
 
 	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
 	expectedHit := attackDist.GetExpectedHit() + getDoTExpected(player, float64(accuracy))
-	hitDist = attackDist.GetFlatHitDistribution()
-	maxHitsplats = attackDist.GetMaxHitsplats()
+	hitDist := attackDist.GetFlatHitDistribution()
+	maxHitsplats := attackDist.GetMaxHitsplats()
 
-	dps = float32(expectedHit / (float64(attackSpeed) * TickLength))
+	dps := float32(expectedHit / (float64(attackSpeed) * TickLength))
 	dps *= getAttackCycleFactor(attackSpeed, player.inputGearSetup.GearSetupSettings.AttackCycle)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
-	return dps, maxHitsplats, accuracy, attackRoll, hitDist
+	return dpsDetails{dps, maxHitsplats, accuracy, attackRoll, hitDist, expectedHit}
 }
 
 func getAttackSpeed(player *player) int {

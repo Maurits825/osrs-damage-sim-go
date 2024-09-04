@@ -26,6 +26,7 @@ export class DpsResultsComponent implements OnInit, OnChanges {
     theoreticalDps: { sortOrder: SortOrder.Ascending, isSorted: false },
     maxHit: { sortOrder: SortOrder.Ascending, isSorted: false },
     accuracy: { sortOrder: SortOrder.Ascending, isSorted: false },
+    expectedHit: { sortOrder: SortOrder.Ascending, isSorted: false },
     attackRoll: { sortOrder: SortOrder.Ascending, isSorted: false },
   };
 
