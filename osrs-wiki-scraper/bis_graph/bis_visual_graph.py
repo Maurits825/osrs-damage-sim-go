@@ -6,7 +6,7 @@ from typing import List
 from PIL import Image
 from graphviz import Digraph
 
-from bis_graph.bis_constants import Style
+from bis_graph.bis_constants import Style, ALL_STYLES
 from bis_graph.wiki_data import WikiData
 from bis_graph.bis_item import BisItem
 
@@ -17,9 +17,10 @@ class BisVisualGraph:
         height = 5000
         final_image = Image.new('RGBA', (width, height))
 
-        for style in [Style.MELEE, Style.RANGED, Style.MAGIC]:
+        for style in ALL_STYLES:
+            print("Style: " + str(style))
             for slot in bis_graph.items[style]:
-                print("slot: " + str(slot))
+                print("Slot: " + str(slot))
                 self.create_spring_graph_image(bis_graph.items[style][slot],
                                                "bis_graph/graphs/" + str(style.name) + "_slot_" + str(slot))
         return final_image

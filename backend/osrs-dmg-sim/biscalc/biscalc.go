@@ -2,6 +2,7 @@ package biscalc
 
 import (
 	"fmt"
+	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
@@ -16,8 +17,6 @@ const (
 	Ranged AttackStyle = "ranged"
 	Magic  AttackStyle = "magic"
 )
-
-var allAttackStyle = []AttackStyle{Melee, Ranged, Magic}
 
 type BisCalcInputSetup struct {
 	GlobalSettings    dpscalc.GlobalSettings           `json:"globalSettings"`
@@ -45,38 +44,44 @@ func init() {
 }
 
 func RunBisCalc(setup *BisCalcInputSetup) BisCalcResults {
-	results := make(map[AttackStyle][]BisCalcResult)
-	for _, style := range allAttackStyle {
+	results := make(map[dpscalc.CombatStyleType][]BisCalcResult)
+	for _, style := range dpscalc.AllCombatStyleTypes {
 		option := getGearSetupOptions(bisGraphs[style])
 		option.enrichGearSetupOptions(style, setup)
 		input := getInputGearSetup(setup, style)
-		result := RunDpsCalcs(setup, &input, option)
+		result := RunDpsCalcs(setup, &input, option, style)
 		results[style] = result
 	}
 
+	meleeResults := aggregateBisResults(results, []dpscalc.CombatStyleType{dpscalc.Slash, dpscalc.Stab, dpscalc.Crush}, 3)
 	return BisCalcResults{
 		Title:            dpscalc.GetDpsCalcTitle(&setup.GlobalSettings),
-		MeleeGearSetups:  results[Melee],
-		RangedGearSetups: results[Ranged],
-		MagicGearSetups:  results[Magic],
+		MeleeGearSetups:  meleeResults,
+		RangedGearSetups: results[dpscalc.Ranged],
+		MagicGearSetups:  results[dpscalc.Magic],
 	}
 }
 
-func getInputGearSetup(setup *BisCalcInputSetup, style AttackStyle) dpscalc.InputGearSetup {
+func getInputGearSetup(setup *BisCalcInputSetup, style dpscalc.CombatStyleType) dpscalc.InputGearSetup {
 	inputGearSetup := dpscalc.InputGearSetup{
 		GearSetupSettings: setup.GearSetupSettings,
 		GearSetup:         defaultGearSetup,
 	}
-	inputGearSetup.GearSetup.Prayers = setup.Prayers[style]
+	if style.IsMeleeStyle() {
+		inputGearSetup.GearSetup.Prayers = setup.Prayers[Melee]
+	} else if style == dpscalc.Ranged {
+		inputGearSetup.GearSetup.Prayers = setup.Prayers[Ranged]
+	} else {
+		inputGearSetup.GearSetup.Prayers = setup.Prayers[Magic]
+	}
+
 	inputGearSetup.GearSetup.IsSpecialAttack = setup.IsSpecialAttack
 	inputGearSetup.GearSetup.IsOnSlayerTask = setup.IsOnSlayerTask
 	return inputGearSetup
 }
 
-// TODO how to add sets like void, would be similar input to 'locking' items from FE input
-// TODO if slayer task, lock in slayer helm? if undead torva+salve could be better...
-// TODO otherwise perf test to make it faster
-func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions) []BisCalcResult {
+// TODO add locking gear from FE input
+func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions, style dpscalc.CombatStyleType) []BisCalcResult {
 	count := 3 //TODO?
 	bisResults := make([]BisCalcResult, count)
 
@@ -89,33 +94,65 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 			continue
 		}
 
-		combatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
+		combatOptions := getCombatOptions(gearSetup, style)
 
 		for _, combatOption := range combatOptions {
-			if combatOption.StyleStance == dpscalc.Defensive || combatOption.StyleStance == dpscalc.Longrange {
-				continue
+			spells := []string{""}
+			if combatOption.StyleStance == dpscalc.Autocast {
+				spells = surgeSpells
 			}
 
-			//TODO how to handle spells, if autocast then iter four elemental spells?
+			for _, spell := range spells {
+				inputGearSetup.GearSetup.Gear = gearSetup
+				inputGearSetup.GearSetup.Spell = spell
+				inputGearSetup.GearSetup.AttackStyle = combatOption.Name
 
-			inputGearSetup.GearSetup.Gear = gearSetup
-			inputGearSetup.GearSetup.Spell = ""
-			inputGearSetup.GearSetup.AttackStyle = combatOption.Name
+				dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
 
-			dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
+				calcCount++
+				if calcCount%10000 == 0 {
+					fmt.Println(calcCount)
+				}
 
-			calcCount++
-			if calcCount%10000 == 0 {
-				fmt.Println(calcCount)
+				if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
+					updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
+				}
 			}
-
-			if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
-				updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
-			}
-
 		}
 	}
 
-	fmt.Println("Total calcs: ", calcCount)
+	fmt.Println(style, "calcs:", calcCount)
+	return bisResults
+}
+
+func getCombatOptions(gear gearSetup, style dpscalc.CombatStyleType) []dpscalc.CombatOption {
+	allCombatOptions := dpscalc.WeaponStyles[allItems[gear[dpscalc.Weapon].Id].WeaponCategory]
+	combatOptions := make([]dpscalc.CombatOption, 0)
+	for _, combatOption := range allCombatOptions {
+		if combatOption.StyleType != style {
+			continue
+		}
+
+		if combatOption.StyleStance == dpscalc.Defensive || combatOption.StyleStance == dpscalc.Longrange {
+			continue
+		}
+
+		if slices.Contains(combatOptions, combatOption) {
+			continue
+		}
+
+		combatOptions = append(combatOptions, combatOption)
+	}
+
+	return combatOptions
+}
+func aggregateBisResults(results map[dpscalc.CombatStyleType][]BisCalcResult, styles []dpscalc.CombatStyleType, count int) []BisCalcResult {
+	bisResults := make([]BisCalcResult, count)
+	for _, style := range styles {
+		for i := range results[style] {
+			insertBisResult(results[style][i], bisResults)
+		}
+	}
+
 	return bisResults
 }

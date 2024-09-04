@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import List
 
@@ -131,4 +133,5 @@ class BisItemWalker:
                 true_count += 1
 
         attack_speed = item.get('aspeed', 0) == new_item.get('aspeed', 0)
-        return true_count == len(STYLE_STATS[style]) and attack_speed
+        is2h = item.get('is2h', False) == new_item.get('is2h', False)
+        return true_count == len(STYLE_STATS[style]) and attack_speed and is2h

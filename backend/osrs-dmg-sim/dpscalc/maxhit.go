@@ -10,7 +10,7 @@ func getMaxHit(player *player) int {
 	style := player.combatStyle.CombatStyleType
 	maxHit := 0
 
-	if style.isMeleeStyle() {
+	if style.IsMeleeStyle() {
 		maxHit = getMeleeMaxHit(player)
 	} else if style == Ranged {
 		maxHit = getRangedMaxHit(player)
@@ -76,7 +76,7 @@ func getMeleeMaxHit(player *player) int {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
-	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.isDragon {
+	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.IsDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 6, 5)
 	}
 	if player.equippedGear.isAnyEquipped(kerisWeapons) && player.npc.isKalphite {
@@ -185,7 +185,7 @@ func getRangedMaxHit(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
-	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
+	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.IsDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 5, 4)
 	}
 

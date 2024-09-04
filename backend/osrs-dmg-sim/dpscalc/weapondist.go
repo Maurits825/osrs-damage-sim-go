@@ -18,7 +18,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
-	if player.equippedGear.isEquipped(scythe) && style.isMeleeStyle() {
+	if player.equippedGear.isEquipped(scythe) && style.IsMeleeStyle() {
 		totalHits := min(max(player.npc.size, 1), 3)
 		hitDists := make([]attackdist.HitDistribution, totalHits)
 		for i := 0; i < totalHits; i++ {
@@ -27,7 +27,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
 
-	if player.equippedGear.isEquipped(osmumtenFang) && style.isMeleeStyle() {
+	if player.equippedGear.isEquipped(osmumtenFang) && style.IsMeleeStyle() {
 		maxHitReduction := int(maxHit * 3 / 20)
 		fangMaxHit := maxHit - maxHitReduction
 		if isSpecial {
@@ -39,13 +39,13 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	//TODO gadderhammer
 
-	if player.equippedGear.isAllEquipped(dharokSet) && style.isMeleeStyle() {
+	if player.equippedGear.isAllEquipped(dharokSet) && style.IsMeleeStyle() {
 		maxHp := player.inputGearSetup.GearSetupSettings.CombatStats.Hitpoints
 		currentHp := player.inputGearSetup.GearSetup.CurrentHp
 		attackDistribution.ScaleDamage(float64(10000+(maxHp-currentHp)*maxHp), 10000)
 	}
 
-	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.isMeleeStyle() && player.npc.isKalphite {
+	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.IsMeleeStyle() && player.npc.isKalphite {
 		critDist := baseHitDist.Clone()
 		critDist.ScaleProbability(1.0 / 51.0)
 		critDist.ScaleDamage(3, 1)
@@ -55,7 +55,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.SetSingleAttackDistribution(baseHitDist)
 	}
 
-	if player.equippedGear.isAllEquipped(veracSet) && style.isMeleeStyle() {
+	if player.equippedGear.isAllEquipped(veracSet) && style.IsMeleeStyle() {
 		baseHitDist.ScaleProbability(0.75)
 		effectHits := attackdist.GetLinearHitDistribution(1.0, 1, maxHit+1)
 		effectHits.ScaleProbability(0.25)
@@ -76,7 +76,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	pickId, isPickEquipped := player.equippedGear.getWearingPickaxe()
-	if slices.Contains(guardianIds, player.npc.id) && style.isMeleeStyle() && isPickEquipped {
+	if slices.Contains(guardianIds, player.npc.id) && style.IsMeleeStyle() && isPickEquipped {
 		pickBonus := pickaxes[pickId]
 		factor := float64(50 + player.inputGearSetup.GearSetup.MiningLevel + pickBonus)
 		divisor := 150.0
@@ -84,17 +84,17 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution.ScaleDamage(factor, divisor)
 	}
 
-	if player.equippedGear.isEquipped(abbysalDagger) && style.isMeleeStyle() && isSpecial {
+	if player.equippedGear.isEquipped(abbysalDagger) && style.IsMeleeStyle() && isSpecial {
 		dist := attackdist.GetMultiHitOneRollHitDistribution(accuracy, 0, maxHit, 2)
 		attackDistribution.SetSingleAttackDistribution(dist)
 	}
 
-	if player.equippedGear.isEquipped(dragonDagger) && style.isMeleeStyle() && isSpecial {
+	if player.equippedGear.isEquipped(dragonDagger) && style.IsMeleeStyle() && isSpecial {
 		dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
-	if player.equippedGear.isEquipped(crystalHalberd) && style.isMeleeStyle() && isSpecial {
+	if player.equippedGear.isEquipped(crystalHalberd) && style.IsMeleeStyle() && isSpecial {
 		dists := []attackdist.HitDistribution{*baseHitDist}
 		if player.npc.size > 1 {
 			reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
@@ -106,16 +106,16 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
-	if player.equippedGear.isEquipped(voidwaker) && style.isMeleeStyle() && isSpecial {
+	if player.equippedGear.isEquipped(voidwaker) && style.IsMeleeStyle() && isSpecial {
 		//TODO min hit based on dps spreadsheet is rounded up
 		dist := attackdist.GetLinearHitDistribution(accuracy, int(math.Ceil(float64(maxHit)*0.5)), int(float32(maxHit)*1.5))
 		attackDistribution.SetSingleAttackDistribution(dist)
 	}
 
-	if player.equippedGear.isEquipped(dragonClaws) && style.isMeleeStyle() && isSpecial {
+	if player.equippedGear.isEquipped(dragonClaws) && style.IsMeleeStyle() && isSpecial {
 		attackDistribution = getDragonClawsSpecDist(accuracy, maxHit)
 	}
-	if player.equippedGear.isEquipped(burningClaws) && style.isMeleeStyle() && isSpecial {
+	if player.equippedGear.isEquipped(burningClaws) && style.IsMeleeStyle() && isSpecial {
 		attackDistribution = getBurningClawsSpecDist(accuracy, maxHit)
 	}
 
@@ -252,7 +252,7 @@ func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribu
 
 	if slices.Contains(verzikP1Ids, player.npc.id) && !player.equippedGear.isEquipped(dawnbringer) {
 		limit := 3
-		if player.combatStyle.CombatStyleType.isMeleeStyle() {
+		if player.combatStyle.CombatStyleType.IsMeleeStyle() {
 			limit = 10
 		}
 		attackDistribution.LinearMinTransformer(limit, 0)

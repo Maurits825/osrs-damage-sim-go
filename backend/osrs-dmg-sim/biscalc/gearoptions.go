@@ -28,7 +28,6 @@ func (gear gearSetup) isValid() bool {
 	weaponId := gear[dpscalc.Weapon].Id
 	isAmmoEmpty := gear[dpscalc.Ammo].Id == dpscalc.EmptyItemId
 
-	// TODO add more charged based ranged weapons
 	if weaponId == blowpipe || weaponId == bowfa {
 		if !isAmmoEmpty {
 			return false
@@ -44,6 +43,10 @@ func (gear gearSetup) isValid() bool {
 	//invalidate one handed weapon with no shield
 	//TODO for budget setups could allow this
 	if !is2h && gear[dpscalc.Shield].Id == dpscalc.EmptyItemId {
+		return false
+	}
+
+	if gear.isWearingIncompleteVoid() {
 		return false
 	}
 
@@ -68,6 +71,24 @@ func (gear gearSetup) isValid() bool {
 	return true
 }
 
+func (setup gearSetup) isWearingIncompleteVoid() bool {
+	count := 0
+	if setup[dpscalc.Head].Id == meleeVoidHelm || setup[dpscalc.Head].Id == rangeVoidHelm || setup[dpscalc.Head].Id == mageVoidHelm {
+		count++
+	}
+	if setup[dpscalc.Body].Id == eliteVoidTop {
+		count++
+	}
+	if setup[dpscalc.Legs].Id == eliteVoidBot {
+		count++
+	}
+	if setup[dpscalc.Hands].Id == eliteVoidGloves {
+		count++
+	}
+
+	return count > 0 && count < 4
+}
+
 func (setup gearSetup) clone() gearSetup {
 	newSetup := make(gearSetup)
 	for _, slot := range allGearSlots {
@@ -76,12 +97,23 @@ func (setup gearSetup) clone() gearSetup {
 	return newSetup
 }
 
-func (options gearSetupOptions) enrichGearSetupOptions(style AttackStyle, setup *BisCalcInputSetup) {
+func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyleType, setup *BisCalcInputSetup) {
 	options.addGearId(dpscalc.Shield, dpscalc.EmptyItemId)
 	options.addGearId(dpscalc.Ammo, dpscalc.EmptyItemId)
 
-	if style == Ranged {
+	options.addGearId(dpscalc.Body, eliteVoidTop)
+	options.addGearId(dpscalc.Legs, eliteVoidBot)
+	options.addGearId(dpscalc.Hands, eliteVoidGloves)
+	options.addGearId(dpscalc.Head, voidHelm[style])
+
+	if style == dpscalc.Ranged {
 		options.addGearIds(dpscalc.Ammo, rangedAmmo)
+
+		options.addGearId(dpscalc.Head, crystalHelm)
+		options.addGearId(dpscalc.Body, crystalTop)
+		options.addGearId(dpscalc.Legs, crystalBot)
+	} else if style == dpscalc.Magic {
+		options.addGearId(dpscalc.Shield, tomeOfFire)
 	}
 
 	//add weapons based on style
@@ -99,9 +131,9 @@ func (options gearSetupOptions) enrichGearSetupOptions(style AttackStyle, setup 
 	if npc.IsUndead {
 		options.addGearId(dpscalc.Neck, salveAmuletEI)
 	}
-
-	//TODO could also add dragon bane weapons if dragon
-	//demon bane if demon and stuff
+	if npc.IsDragon && style != dpscalc.Magic {
+		options.addGearId(dpscalc.Weapon, dragonBaneWeapons[style])
+	}
 }
 
 func (opt gearSetupOptions) addGearId(slot dpscalc.GearSlot, id int) {

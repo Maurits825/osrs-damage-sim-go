@@ -10,7 +10,7 @@ func getAttackRoll(player *player) int {
 	style := player.combatStyle.CombatStyleType
 	attackRoll := 0
 
-	if style.isMeleeStyle() {
+	if style.IsMeleeStyle() {
 		attackRoll = getMeleeAttackRoll(player)
 	} else if style == Ranged {
 		attackRoll = getRangedAttackRoll(player)
@@ -84,7 +84,7 @@ func getMeleeAttackRoll(player *player) int {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
-	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.isDragon {
+	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.IsDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 6, 5)
 	}
 	if player.equippedGear.isEquipped(kerisBreaching) && player.npc.isKalphite {
@@ -172,7 +172,7 @@ func getRangedAttackRoll(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
-	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.isDragon {
+	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.IsDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 13, 10)
 	}
 

@@ -62,17 +62,19 @@ func (stats *equipmentStats) addStats(statsAdd *equipmentStats) {
 	stats.damageStats.magicStrength += statsAdd.damageStats.magicStrength
 }
 
-type combatStyleType string
+type CombatStyleType string
 
 const (
-	Stab   combatStyleType = "Stab"
-	Slash  combatStyleType = "Slash"
-	Crush  combatStyleType = "Crush"
-	Magic  combatStyleType = "Magic"
-	Ranged combatStyleType = "Ranged"
+	Stab   CombatStyleType = "Stab"
+	Slash  CombatStyleType = "Slash"
+	Crush  CombatStyleType = "Crush"
+	Magic  CombatStyleType = "Magic"
+	Ranged CombatStyleType = "Ranged"
 )
 
-func (style combatStyleType) isMeleeStyle() bool {
+var AllCombatStyleTypes = []CombatStyleType{Stab, Slash, Crush, Magic, Ranged}
+
+func (style CombatStyleType) IsMeleeStyle() bool {
 	return style == Stab || style == Slash || style == Crush
 }
 
@@ -89,7 +91,7 @@ const (
 )
 
 type combatStyle struct {
-	CombatStyleType   combatStyleType
+	CombatStyleType   CombatStyleType
 	CombatStyleStance combatStyleStance
 }
 
@@ -101,7 +103,7 @@ func ParseCombatStyle(style string) combatStyle {
 		return combatStyle{}
 	}
 
-	combatType := combatStyleType(matches[2])
+	combatType := CombatStyleType(matches[2])
 	combatStance := combatStyleStance(matches[3])
 
 	return combatStyle{

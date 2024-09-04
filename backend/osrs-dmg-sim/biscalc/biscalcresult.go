@@ -21,6 +21,10 @@ type BisCalcResult struct {
 
 func updateBisResult(gear gearSetup, input *dpscalc.InputGearSetup, dpsResult *dpscalc.DpsCalcResult, results []BisCalcResult) {
 	newResult := getBisResult(gear, input, dpsResult)
+	insertBisResult(newResult, results)
+}
+
+func insertBisResult(newResult BisCalcResult, results []BisCalcResult) {
 	count := len(results)
 	for i := range results {
 		if newResult.TheoreticalDps > results[i].TheoreticalDps {

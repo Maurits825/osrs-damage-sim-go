@@ -1,7 +1,7 @@
 export const timeSortFields = ['average', 'most_frequent', 'maximum', 'minimum', 'chance_to_kill'] as const;
 export type TimeSortField = (typeof timeSortFields)[number];
 
-export const dpsSortFields = ['theoreticalDps', 'maxHit', 'accuracy', 'attackRoll'] as const;
+export const dpsSortFields = ['theoreticalDps', 'maxHit', 'accuracy', 'expectedHit', 'attackRoll'] as const;
 export type DpsSortField = (typeof dpsSortFields)[number];
 
 export enum SortOrder {
@@ -33,6 +33,7 @@ export const sortLabels: SortLabels = {
   maxHit: 'Max hit',
   accuracy: 'Accuracy',
   attackRoll: 'Attack roll',
+  expectedHit: 'Expected hit',
 
   targetTimeChance: 'Chance',
 };

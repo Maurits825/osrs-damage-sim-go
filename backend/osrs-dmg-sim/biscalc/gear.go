@@ -1,15 +1,27 @@
 package biscalc
 
+import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
+
 const (
 	slayerHelm    = 25912
 	salveAmuletEI = 12018
 )
 
 const (
-	scythe     = 22325
+	scythe        = 22325
+	saladBlade    = 23995
+	soulreaperAxe = 28338
+	noxHally      = 29796
+
 	fang       = 26219
 	rapier     = 22324
-	saladBlade = 23995
+	zammySpear = 11824
+
+	inqMace         = 24417
+	elderMaul       = 21003
+	abbysalBludgeon = 13263
+
+	dhl = 22978
 
 	bandosGodsword  = 11804
 	armadylGodsword = 11802
@@ -28,9 +40,17 @@ const (
 	zaryteCrossbow = 26374
 	bowfa          = 25865
 
+	dhcb = 21012
+
 	dragonArrows  = 11212
 	rubyDBolts    = 21944
 	diamondDBolts = 21946
+)
+
+const (
+	crystalHelm = 23971
+	crystalTop  = 23975
+	crystalBot  = 23979
 )
 
 const (
@@ -38,28 +58,61 @@ const (
 	sangStaff     = 22323
 	harmStaff     = 24423
 	volatileStaff = 24424
+
+	tomeOfFire = 20714
+)
+
+const (
+	meleeVoidHelm   = 11665
+	mageVoidHelm    = 11663
+	rangeVoidHelm   = 11664
+	eliteVoidTop    = 13072
+	eliteVoidBot    = 13073
+	eliteVoidGloves = 8842
 )
 
 // TODO hardcoded weapons, better way?
-// TODO add more weapons, tentwhip, inq mace ...
-var meleeWeapons = []int{scythe, fang, rapier, saladBlade}
+var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
+var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
+var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}
 var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
 
+//TODO bowfa has to be with crystal armour, crystal armour is only good with bowfa
 var rangedWeapons = []int{tbow, blowpipe, zaryteCrossbow, bowfa}
 var rangedAmmo = []int{dragonArrows, rubyDBolts, diamondDBolts}
 var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
 
 var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}
 var magicSpecWeapons = []int{volatileStaff}
+var surgeSpells = []string{"Earth Surge", "Water Surge", "Fire Surge", "Air Surge"}
 
-var weapons = map[AttackStyle][]int{
-	Melee:  meleeWeapons,
-	Ranged: rangedWeapons,
-	Magic:  magicWeapons,
+var weapons = map[dpscalc.CombatStyleType][]int{
+	dpscalc.Stab:   meleeStabWeapons,
+	dpscalc.Slash:  meleeSlashWeapons,
+	dpscalc.Crush:  meleeCrushWeapons,
+	dpscalc.Ranged: rangedWeapons,
+	dpscalc.Magic:  magicWeapons,
 }
 
-var specWeapons = map[AttackStyle][]int{
-	Melee:  meleeSpecWeapons,
-	Ranged: rangedSpecWeapons,
-	Magic:  magicSpecWeapons,
+var specWeapons = map[dpscalc.CombatStyleType][]int{
+	dpscalc.Stab:   meleeSpecWeapons,
+	dpscalc.Slash:  meleeSpecWeapons,
+	dpscalc.Crush:  meleeSpecWeapons,
+	dpscalc.Ranged: rangedSpecWeapons,
+	dpscalc.Magic:  magicSpecWeapons,
+}
+
+var voidHelm = map[dpscalc.CombatStyleType]int{
+	dpscalc.Stab:   meleeVoidHelm,
+	dpscalc.Slash:  meleeVoidHelm,
+	dpscalc.Crush:  meleeVoidHelm,
+	dpscalc.Ranged: rangeVoidHelm,
+	dpscalc.Magic:  mageVoidHelm,
+}
+
+var dragonBaneWeapons = map[dpscalc.CombatStyleType]int{
+	dpscalc.Stab:   dhl,
+	dpscalc.Slash:  dhl,
+	dpscalc.Crush:  dhl,
+	dpscalc.Ranged: dhcb,
 }

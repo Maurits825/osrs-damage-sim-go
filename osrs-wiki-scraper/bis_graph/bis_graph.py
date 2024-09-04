@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
-from bis_graph.bis_constants import Style, STYLE_STATS
+from bis_graph.bis_constants import Style, STYLE_STATS, ALL_STYLES, STYLE_TYPE_MAP
 from bis_graph.bis_item import BisItem, BisItemWalker
 from bis_graph.bis_visual_graph import BisVisualGraph
 from bis_graph.wiki_data import WikiData
@@ -33,16 +33,13 @@ class GenerateBisItems:
     def create_bis_items(self, create_visuals=False):
         print("Creating bis graph json ...")
         seen_item_names = []
-        bis_item_root = BisItemsGraph({
-            Style.MELEE: {},
-            Style.RANGED: {},
-            Style.MAGIC: {},
-        })
-        bis_item_leaf = BisItemsGraph({
-            Style.MELEE: {},
-            Style.RANGED: {},
-            Style.MAGIC: {},
-        })
+        root = dict()
+        leaf = dict()
+        for style in ALL_STYLES:
+            root[style] = dict()
+            leaf[style] = dict()
+        bis_item_root = BisItemsGraph(root)
+        bis_item_leaf = BisItemsGraph(leaf)
 
         for item_id, item in WikiData.items.items():
             if is_filtered_item(item, item_id):
@@ -73,6 +70,7 @@ class GenerateBisItems:
                 )
 
         if create_visuals:
+            print("Creating visual graphs ...")
             visual = BisVisualGraph()
             visual.create_graph_image(bis_item_root)
 
@@ -156,15 +154,20 @@ class GenerateBisItems:
 
     def get_item_style(self, item) -> list[Style]:
         styles = []
-        attack_styles, attack_type = get_attack_style_and_type(item)
-        if attack_type:
-            if item.get("str", 0) < 0 or item.get("rstr", 0) < 0 or item.get("mdmg", 0) < 0:
+        attack_styles, attack_style, attack_types = get_attack_style_and_type(item)
+        if attack_style:
+            if (item.get("str", 0) < 0 or
+                    item.get("rstr", 0) < 0 or
+                    item.get("mdmg", 0) < 0 or
+                    item.get("aspeed", 0) <= 0):
                 return []
-        if attack_type == "melee":
-            styles.append(Style.MELEE)
-        if attack_type == "ranged":
+        if attack_style == "melee":
+            for melee_style in STYLE_TYPE_MAP:
+                if STYLE_TYPE_MAP[melee_style] in attack_types:
+                    styles.append(melee_style)
+        if attack_style == "ranged":
             styles.append(Style.RANGED)
-        if attack_type == "magic":
+        if attack_style == "magic":
             styles.append(Style.MAGIC)
 
         for style in STYLE_STATS:
@@ -174,7 +177,10 @@ class GenerateBisItems:
                 if v <= 0:
                     zero_or_less += 1
             if zero_or_less != len(STYLE_STATS[style]):
-                styles.append(style)
+                if len(attack_types) == 0:
+                    styles.append(style)
+                elif STYLE_TYPE_MAP[style] in attack_types:
+                    styles.append(style)
             elif style in styles:
                 styles.remove(style)
 
