@@ -116,6 +116,7 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 		options.addGearId(dpscalc.Legs, crystalBot)
 	} else if style == dpscalc.Magic {
 		options.addGearId(dpscalc.Head, mageVoidHelm)
+		options.addGearId(dpscalc.Shield, tomeOfFire)
 	}
 
 	//add weapons based on style

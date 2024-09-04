@@ -96,48 +96,58 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 			continue
 		}
 
-		allCombatOptions := dpscalc.WeaponStyles[allItems[gearSetup[dpscalc.Weapon].Id].WeaponCategory]
-		combatOptions := make([]dpscalc.CombatOption, 0)
-		for _, combatOption := range allCombatOptions {
-			if combatOption.StyleType != style {
-				continue
-			}
-
-			if combatOption.StyleStance == dpscalc.Defensive || combatOption.StyleStance == dpscalc.Longrange {
-				continue
-			}
-
-			if slices.Contains(combatOptions, combatOption) {
-				continue
-			}
-
-			combatOptions = append(combatOptions, combatOption)
-		}
+		combatOptions := getCombatOptions(gearSetup, style)
 
 		for _, combatOption := range combatOptions {
-			//TODO how to handle spells, if autocast then iter four elemental spells?
-
-			inputGearSetup.GearSetup.Gear = gearSetup
-			inputGearSetup.GearSetup.Spell = ""
-			inputGearSetup.GearSetup.AttackStyle = combatOption.Name
-
-			dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
-
-			calcCount++
-			if calcCount%10000 == 0 {
-				fmt.Println(calcCount)
+			spells := []string{""}
+			if combatOption.StyleStance == dpscalc.Autocast {
+				spells = surgeSpells
 			}
 
-			if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
-				updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
+			for _, spell := range spells {
+				inputGearSetup.GearSetup.Gear = gearSetup
+				inputGearSetup.GearSetup.Spell = spell
+				inputGearSetup.GearSetup.AttackStyle = combatOption.Name
+
+				dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
+
+				calcCount++
+				if calcCount%10000 == 0 {
+					fmt.Println(calcCount)
+				}
+
+				if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
+					updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
+				}
 			}
 		}
 	}
 
-	fmt.Println("Total calcs: ", calcCount)
+	fmt.Println(style, "calcs:", calcCount)
 	return bisResults
 }
 
+func getCombatOptions(gear gearSetup, style dpscalc.CombatStyleType) []dpscalc.CombatOption {
+	allCombatOptions := dpscalc.WeaponStyles[allItems[gear[dpscalc.Weapon].Id].WeaponCategory]
+	combatOptions := make([]dpscalc.CombatOption, 0)
+	for _, combatOption := range allCombatOptions {
+		if combatOption.StyleType != style {
+			continue
+		}
+
+		if combatOption.StyleStance == dpscalc.Defensive || combatOption.StyleStance == dpscalc.Longrange {
+			continue
+		}
+
+		if slices.Contains(combatOptions, combatOption) {
+			continue
+		}
+
+		combatOptions = append(combatOptions, combatOption)
+	}
+
+	return combatOptions
+}
 func aggregateBisResults(results map[dpscalc.CombatStyleType][]BisCalcResult, styles []dpscalc.CombatStyleType, count int) []BisCalcResult {
 	bisResults := make([]BisCalcResult, count)
 	for _, style := range styles {

@@ -54,6 +54,8 @@ const (
 	sangStaff     = 22323
 	harmStaff     = 24423
 	volatileStaff = 24424
+
+	tomeOfFire = 20714
 )
 
 const (
@@ -78,6 +80,7 @@ var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
 
 var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}
 var magicSpecWeapons = []int{volatileStaff}
+var surgeSpells = []string{"Earth Surge", "Water Surge", "Fire Surge", "Air Surge"}
 
 var weapons = map[dpscalc.CombatStyleType][]int{
 	dpscalc.Stab:   meleeStabWeapons,
