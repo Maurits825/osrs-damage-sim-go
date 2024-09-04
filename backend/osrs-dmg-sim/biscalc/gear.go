@@ -21,6 +21,8 @@ const (
 	elderMaul       = 21003
 	abbysalBludgeon = 13263
 
+	dhl = 22978
+
 	bandosGodsword  = 11804
 	armadylGodsword = 11802
 	abbysalDagger   = 13265
@@ -37,6 +39,8 @@ const (
 	dragonDarts    = 11230
 	zaryteCrossbow = 26374
 	bowfa          = 25865
+
+	dhcb = 21012
 
 	dragonArrows  = 11212
 	rubyDBolts    = 21944
@@ -96,4 +100,19 @@ var specWeapons = map[dpscalc.CombatStyleType][]int{
 	dpscalc.Crush:  meleeSpecWeapons,
 	dpscalc.Ranged: rangedSpecWeapons,
 	dpscalc.Magic:  magicSpecWeapons,
+}
+
+var voidHelm = map[dpscalc.CombatStyleType]int{
+	dpscalc.Stab:   meleeVoidHelm,
+	dpscalc.Slash:  meleeVoidHelm,
+	dpscalc.Crush:  meleeVoidHelm,
+	dpscalc.Ranged: rangeVoidHelm,
+	dpscalc.Magic:  mageVoidHelm,
+}
+
+var dragonBaneWeapons = map[dpscalc.CombatStyleType]int{
+	dpscalc.Stab:   dhl,
+	dpscalc.Slash:  dhl,
+	dpscalc.Crush:  dhl,
+	dpscalc.Ranged: dhcb,
 }

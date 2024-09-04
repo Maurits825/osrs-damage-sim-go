@@ -18,8 +18,6 @@ const (
 	Magic  AttackStyle = "magic"
 )
 
-var allAttackStyle = []AttackStyle{Melee, Ranged, Magic}
-
 type BisCalcInputSetup struct {
 	GlobalSettings    dpscalc.GlobalSettings           `json:"globalSettings"`
 	GearSetupSettings dpscalc.GearSetupSettings        `json:"gearSetupSettings"`

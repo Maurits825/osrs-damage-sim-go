@@ -104,18 +104,15 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	options.addGearId(dpscalc.Body, eliteVoidTop)
 	options.addGearId(dpscalc.Legs, eliteVoidBot)
 	options.addGearId(dpscalc.Hands, eliteVoidGloves)
+	options.addGearId(dpscalc.Head, voidHelm[style])
 
-	if style.IsMeleeStyle() {
-		options.addGearId(dpscalc.Head, meleeVoidHelm)
-	} else if style == dpscalc.Ranged {
-		options.addGearId(dpscalc.Head, rangeVoidHelm)
+	if style == dpscalc.Ranged {
 		options.addGearIds(dpscalc.Ammo, rangedAmmo)
 
 		options.addGearId(dpscalc.Head, crystalHelm)
 		options.addGearId(dpscalc.Body, crystalTop)
 		options.addGearId(dpscalc.Legs, crystalBot)
 	} else if style == dpscalc.Magic {
-		options.addGearId(dpscalc.Head, mageVoidHelm)
 		options.addGearId(dpscalc.Shield, tomeOfFire)
 	}
 
@@ -134,9 +131,9 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	if npc.IsUndead {
 		options.addGearId(dpscalc.Neck, salveAmuletEI)
 	}
-
-	//TODO could also add dragon bane weapons if dragon
-	//demon bane if demon and stuff
+	if npc.IsDragon && style != dpscalc.Magic {
+		options.addGearId(dpscalc.Weapon, dragonBaneWeapons[style])
+	}
 }
 
 func (opt gearSetupOptions) addGearId(slot dpscalc.GearSlot, id int) {
