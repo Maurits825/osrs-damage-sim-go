@@ -40,32 +40,35 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	for i := range attackDist.Distributions {
 		maxHit += attackDist.Distributions[i].getMaxHit()
 	}
-	flatHitDist := make([]float64, maxHit+1)
 
-	//start with hit dist of 100% hitting 0
-	hitDistMap := map[int]float64{0: 1.0}
+	flatHitDist := make([]float64, maxHit+1)
+	flatHitDist[0] = 1.0
+
 	for i := range attackDist.Distributions {
 		dist := &attackDist.Distributions[i]
-		distMap := make(map[int]float64)
+		distCombined := make([]float64, maxHit+1)
 
 		flat := dist.flatten()
 		//iterate over current hit dist
-		for hit1, prob1 := range hitDistMap {
+		for hit1, prob1 := range flatHitDist {
+			if prob1 == 0 {
+				continue
+			}
+
 			for hit2, prob2 := range flat {
 				//skip 0 probability hits
 				if prob1 == 0 && prob2 == 0 {
 					continue
 				}
 				//add up new probability
-				distMap[hit1+hit2] += prob1 * prob2
+				distCombined[hit1+hit2] += prob1 * prob2
 			}
 		}
 
-		hitDistMap = distMap
+		flatHitDist = distCombined
 	}
 
-	//flatten map
-	for hit, prob := range hitDistMap {
+	for hit, prob := range flatHitDist {
 		flatHitDist[hit] = prob * 100
 	}
 
