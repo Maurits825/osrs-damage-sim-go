@@ -6,15 +6,15 @@ type HitDistribution struct {
 }
 
 func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
-	dist := &HitDistribution{make([]WeightedHit, 0)}
+	dist := &HitDistribution{make([]WeightedHit, 2+maximum-minimum)}
 	hitProbability := accuracy / (float64(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {
-		dist.Hits = append(dist.Hits, WeightedHit{Probability: hitProbability, Hitsplats: []int{(max(1, i))}})
+		dist.Hits[1+i-minimum] = WeightedHit{Probability: hitProbability, Hitsplats: []int{(max(1, i))}}
 	}
 
 	//also add miss hit
-	dist.Hits = append(dist.Hits, WeightedHit{Probability: 1 - accuracy, Hitsplats: []int{0}})
+	dist.Hits[0] = WeightedHit{Probability: 1 - accuracy, Hitsplats: []int{0}}
 
 	return dist
 }
