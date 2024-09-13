@@ -27,6 +27,7 @@ type DpsCalcResult struct {
 	AttackRoll     int                  `json:"attackRoll"`
 	ExpectedHit    float64              `json:"expectedHit"`
 	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
+	TicksToKill    float64              `json:"ticksToKill"`
 	CalcDetails    []string             `json:"calcDetails"`
 }
 type dpsDetails struct {
@@ -36,6 +37,7 @@ type dpsDetails struct {
 	attackRoll   int
 	hitDist      []float64
 	expectedHit  float64
+	attackSpeed  int
 }
 
 type InputGearSetupLabels struct {
@@ -75,6 +77,8 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	player := getPlayer(globalSettings, inputGearSetup)
 
 	dpsDetails := calculateDps(player)
+	htk := getHtk(dpsDetails.hitDist, player.npc.combatStats.Hitpoints)
+	ttk := htk * float64(dpsDetails.attackSpeed)
 
 	//TODO get hitsplat maxhits
 
@@ -92,6 +96,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		AttackRoll:     dpsDetails.attackRoll,
 		ExpectedHit:    dpsDetails.expectedHit,
 		HitDist:        dpsDetails.hitDist,
+		TicksToKill:    ttk,
 		CalcDetails:    calcDetails,
 	}
 }
@@ -192,7 +197,7 @@ func calculateDps(player *player) dpsDetails {
 	dps *= getAttackCycleFactor(attackSpeed, player.inputGearSetup.GearSetupSettings.AttackCycle)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
-	return dpsDetails{dps, maxHitsplats, accuracy, attackRoll, hitDist, expectedHit}
+	return dpsDetails{dps, maxHitsplats, accuracy, attackRoll, hitDist, expectedHit, attackSpeed}
 }
 
 func getAttackSpeed(player *player) int {
@@ -289,6 +294,23 @@ func getDoTExpected(player *player, accuracy float64) float64 {
 	}
 
 	return 0
+}
+
+func getHtk(hitDist []float64, npcHp int) float64 {
+	hitP := 1 - (hitDist[0] / 100.0)
+	maxValue := min(npcHp, len(hitDist)-1)
+	htk := make([]float64, npcHp+1)
+
+	for hp := 1; hp <= npcHp; hp++ {
+		val := 1.0
+		for hit := 1; hit <= min(hp, maxValue); hit++ {
+			p := hitDist[hit] / 100.0
+			val += p * htk[hp-hit]
+		}
+		htk[hp] = val / hitP
+	}
+
+	return htk[npcHp]
 }
 
 func gcd(a, b int) int {
