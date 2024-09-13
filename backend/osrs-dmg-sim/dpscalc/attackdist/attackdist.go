@@ -20,16 +20,16 @@ func (attackDist *AttackDistribution) SetSingleAttackDistribution(dist *HitDistr
 
 func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 	expectedHit := 0.0
-	for _, dist := range attackDist.Distributions {
-		expectedHit += dist.getExpectedHit()
+	for i := range attackDist.Distributions {
+		expectedHit += attackDist.Distributions[i].getExpectedHit()
 	}
 	return expectedHit
 }
 
 func (attackDist *AttackDistribution) GetMaxHitsplats() []int {
 	maxHits := make([]int, len(attackDist.Distributions))
-	for i, dist := range attackDist.Distributions {
-		maxHits[i] = dist.getMaxHit()
+	for i := range attackDist.Distributions {
+		maxHits[i] = attackDist.Distributions[i].getMaxHit()
 	}
 	return maxHits
 }
@@ -37,14 +37,15 @@ func (attackDist *AttackDistribution) GetMaxHitsplats() []int {
 func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	//first get max hit of all distributions, to know the range of dist list
 	maxHit := 0
-	for _, dist := range attackDist.Distributions {
-		maxHit += dist.getMaxHit()
+	for i := range attackDist.Distributions {
+		maxHit += attackDist.Distributions[i].getMaxHit()
 	}
 	flatHitDist := make([]float64, maxHit+1)
 
 	//start with hit dist of 100% hitting 0
 	hitDistMap := map[int]float64{0: 1.0}
-	for _, dist := range attackDist.Distributions {
+	for i := range attackDist.Distributions {
+		dist := &attackDist.Distributions[i]
 		distMap := make(map[int]float64)
 
 		flat := dist.flatten()

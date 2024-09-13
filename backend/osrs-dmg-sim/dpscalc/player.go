@@ -95,9 +95,10 @@ type combatStyle struct {
 	CombatStyleStance combatStyleStance
 }
 
+var combatStyleRegex = regexp.MustCompile(`([^\s]+) \(([^/]+)/([^)]+)\)`)
+
 func ParseCombatStyle(style string) combatStyle {
-	re := regexp.MustCompile(`([^\s]+) \(([^/]+)/([^)]+)\)`)
-	matches := re.FindStringSubmatch(style)
+	matches := combatStyleRegex.FindStringSubmatch(style)
 
 	if len(matches) != 4 {
 		return combatStyle{}
