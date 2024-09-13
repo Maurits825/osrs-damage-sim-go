@@ -33,6 +33,9 @@ func getMinDefence(npc *npc) int {
 	if npc.name == "Nex" {
 		return 250
 	}
+	if slices.Contains(araxxor, npc.id) {
+		return 90
+	}
 
 	// no limit
 	return 0

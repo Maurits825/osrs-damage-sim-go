@@ -7,12 +7,13 @@ import (
 )
 
 const (
-	iceDemon = 7584
+	iceDemon       = 7584
+	corporealBeast = 319
 )
 
 var dukeSucellus = []string{"12166", "12166_1", "12193"}
 var zulrahs = []int{2043, 2042, 2044}
-var corporealBeast = 319
+var araxxor = []int{13668}
 
 type aggressiveStats struct {
 	attack int
