@@ -47,6 +47,7 @@ type InputGearSetupLabels struct {
 
 var allItems equipmentItems
 var allNpcs npcs
+var idAliases map[string]int
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
@@ -55,6 +56,7 @@ var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
 func init() {
 	allItems = getEquipmentItems(wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData))
 	allNpcs = getNpcs(wikidata.GetWikiData(wikidata.NpcProvider).(map[string]wikidata.NpcData))
+	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[string]int)
 }
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
@@ -106,6 +108,13 @@ func GetNpc(id string) npc {
 	npc := allNpcs[id]
 	npc.id = npcId
 	return npc
+}
+
+func getIdAlias(itemId int) int {
+	if idAlias, exists := idAliases[strconv.Itoa(itemId)]; exists {
+		return idAlias
+	}
+	return itemId
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {

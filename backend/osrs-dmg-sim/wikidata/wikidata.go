@@ -14,6 +14,7 @@ const (
 	SpellProvider    DataTypeProvider = 3
 	SpecProvider     DataTypeProvider = 4
 	BisGraphProvider DataTypeProvider = 5
+	IdAliasProvider  DataTypeProvider = 6
 )
 
 type ItemData struct {
@@ -99,7 +100,6 @@ type BisItem struct {
 	Next []string `json:"next"`
 }
 
-// graph[style][slot][nodeId]
 type BisGraphs map[string]map[string]BisSlotGraph
 
 //go:embed json-data/*
@@ -120,6 +120,8 @@ func GetWikiData(p DataTypeProvider) any {
 		data, err = getJsonData[map[string]int]("json-data/special_attack.json")
 	case BisGraphProvider:
 		data, err = getJsonData[BisGraphs]("json-data/bis_graph.json")
+	case IdAliasProvider:
+		data, err = getJsonData[map[string]int]("json-data/id_aliases.json")
 	}
 
 	if err != nil {
