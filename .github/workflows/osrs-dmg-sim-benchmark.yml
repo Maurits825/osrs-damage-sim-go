@@ -15,9 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: "stable"
+          cache-dependency-path: ./backend/osrs-dmg-sim/go.sum
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
         run: go test -v ./... -bench . -run=xxx | tee output.txt
