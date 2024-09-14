@@ -1,3 +1,6 @@
 tmp
 .serverless
 bootstrap
+*cpu.prof
+*mem.prof
+*test.exe

@@ -1,0 +1,1255 @@
+{
+    "Manticore scy/fang/tbow/shadow/bp": {
+        "inputSetup": {
+            "globalSettings": {
+                "npc": {
+                    "name": "Manticore",
+                    "hitpoints": 250,
+                    "att": 300,
+                    "str": 300,
+                    "def": 250,
+                    "mage": 300,
+                    "range": 350,
+                    "dmagic": 10,
+                    "drange": 25,
+                    "combat": 320,
+                    "size": 3,
+                    "id": "12818"
+                },
+                "teamSize": 1,
+                "raidLevel": 0,
+                "pathLevel": 0,
+                "overlyDraining": false,
+                "coxScaling": {
+                    "partyMaxCombatLevel": 126,
+                    "partyAvgMiningLevel": 99,
+                    "partyMaxHpLevel": 99,
+                    "isChallengeMode": false
+                }
+            },
+            "inputGearSetups": [
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "boosts": [
+                            "super_combat",
+                            "ranging",
+                            "saturated_heart"
+                        ],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Scythe",
+                        "presetName": "Max Scythe",
+                        "gear": {
+                            "0": {
+                                "name": "Torva full helm",
+                                "id": 26382
+                            },
+                            "1": {
+                                "name": "Infernal max cape",
+                                "id": 21285
+                            },
+                            "2": {
+                                "name": "Amulet of rancour",
+                                "id": 29801
+                            },
+                            "3": {
+                                "name": "Scythe of vitur",
+                                "id": 22325
+                            },
+                            "4": {
+                                "name": "Torva platebody",
+                                "id": 26384
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Torva platelegs",
+                                "id": 26386
+                            },
+                            "9": {
+                                "name": "Ferocious gloves",
+                                "id": 22981
+                            },
+                            "10": {
+                                "name": "Primordial boots",
+                                "id": 13239
+                            },
+                            "12": {
+                                "name": "Ultor ring",
+                                "id": 28307
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Chop (Slash/Aggressive)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "piety"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "boosts": [
+                            "super_combat",
+                            "ranging",
+                            "saturated_heart"
+                        ],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Fang",
+                        "presetName": "Max Fang",
+                        "gear": {
+                            "0": {
+                                "name": "Torva full helm",
+                                "id": 26382
+                            },
+                            "1": {
+                                "name": "Infernal max cape",
+                                "id": 21285
+                            },
+                            "2": {
+                                "name": "Amulet of rancour",
+                                "id": 29801
+                            },
+                            "3": {
+                                "name": "Osmumten's fang",
+                                "id": 26219
+                            },
+                            "4": {
+                                "name": "Torva platebody",
+                                "id": 26384
+                            },
+                            "5": {
+                                "name": "Avernic defender",
+                                "id": 22322
+                            },
+                            "7": {
+                                "name": "Torva platelegs",
+                                "id": 26386
+                            },
+                            "9": {
+                                "name": "Ferocious gloves",
+                                "id": 22981
+                            },
+                            "10": {
+                                "name": "Primordial boots",
+                                "id": 13239
+                            },
+                            "12": {
+                                "name": "Ultor ring",
+                                "id": 28307
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Lunge (Stab/Aggressive)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "piety"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "boosts": [
+                            "super_combat",
+                            "ranging",
+                            "saturated_heart"
+                        ],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Tbow",
+                        "presetName": "Max Tbow",
+                        "gear": {
+                            "0": {
+                                "name": "Masori mask (f)",
+                                "id": 27235
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Twisted bow",
+                                "id": 20997
+                            },
+                            "4": {
+                                "name": "Masori body (f)",
+                                "id": 27238
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Masori chaps (f)",
+                                "id": 27241
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": {
+                                "name": "Dragon arrow",
+                                "id": 11212
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "boosts": [
+                            "super_combat",
+                            "ranging",
+                            "saturated_heart"
+                        ],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Shadow",
+                        "presetName": "Max Shadow",
+                        "gear": {
+                            "0": {
+                                "name": "Ancestral hat",
+                                "id": 21018
+                            },
+                            "1": {
+                                "name": "Imbued zamorak max cape",
+                                "id": 21780
+                            },
+                            "2": {
+                                "name": "Occult necklace",
+                                "id": 12002
+                            },
+                            "3": {
+                                "name": "Tumeken's shadow",
+                                "id": 27275
+                            },
+                            "4": {
+                                "name": "Twisted ancestral robe top",
+                                "id": 24666
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Twisted ancestral robe bottom",
+                                "id": 24668
+                            },
+                            "9": {
+                                "name": "Tormented bracelet",
+                                "id": 19544
+                            },
+                            "10": {
+                                "name": "Eternal boots",
+                                "id": 13235
+                            },
+                            "12": {
+                                "name": "Magus ring",
+                                "id": 28313
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Accurate (Magic/Accurate)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "augury"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "boosts": [
+                            "super_combat",
+                            "ranging",
+                            "saturated_heart"
+                        ],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Blowpipe",
+                        "presetName": "Max Blowpipe",
+                        "gear": {
+                            "0": {
+                                "name": "Masori mask (f)",
+                                "id": 27235
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Toxic blowpipe",
+                                "id": 12926
+                            },
+                            "4": {
+                                "name": "Masori body (f)",
+                                "id": 27238
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Masori chaps (f)",
+                                "id": 27241
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": null
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                }
+            ],
+            "enableDebugTrack": false
+        }
+    },
+    "Levi tbow/bowfa/bp/zcb": {
+        "inputSetup": {
+            "globalSettings": {
+                "npc": {
+                    "name": "The Leviathan",
+                    "hitpoints": 900,
+                    "att": 300,
+                    "str": 360,
+                    "def": 250,
+                    "mage": 160,
+                    "range": 160,
+                    "attbns": 200,
+                    "strbns": 22,
+                    "amagic": 160,
+                    "mbns": 58,
+                    "arange": 300,
+                    "rngbns": 26,
+                    "dstab": 260,
+                    "dslash": 190,
+                    "dcrush": 230,
+                    "dmagic": 280,
+                    "dlight": 50,
+                    "dstandard": 50,
+                    "dheavy": 25,
+                    "combat": 798,
+                    "size": 7,
+                    "elementalweaknesstype": "No",
+                    "id": "12214"
+                },
+                "raidLevel": 0,
+                "pathLevel": 0,
+                "overlyDraining": false,
+                "teamSize": 1,
+                "coxScaling": {
+                    "partyMaxCombatLevel": 126,
+                    "partyAvgMiningLevel": 99,
+                    "partyMaxHpLevel": 99,
+                    "isChallengeMode": false
+                }
+            },
+            "inputGearSetups": [
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "ranging"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Tbow",
+                        "presetName": "Max Tbow",
+                        "gear": {
+                            "0": {
+                                "name": "Masori mask (f)",
+                                "id": 27235
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Twisted bow",
+                                "id": 20997
+                            },
+                            "4": {
+                                "name": "Masori body (f)",
+                                "id": 27238
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Masori chaps (f)",
+                                "id": 27241
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": {
+                                "name": "Dragon arrow",
+                                "id": 11212
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "ranging"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max Blowpipe",
+                        "presetName": "Max Blowpipe",
+                        "gear": {
+                            "0": {
+                                "name": "Masori mask (f)",
+                                "id": 27235
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Toxic blowpipe",
+                                "id": 12926
+                            },
+                            "4": {
+                                "name": "Masori body (f)",
+                                "id": 27238
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Masori chaps (f)",
+                                "id": 27241
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": null
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "ranging"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Max bowfa",
+                        "presetName": "Max bowfa",
+                        "gear": {
+                            "0": {
+                                "name": "Crystal helm",
+                                "id": 23971
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Bow of faerdhinen",
+                                "id": 25865
+                            },
+                            "4": {
+                                "name": "Crystal body",
+                                "id": 23975
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Crystal legs",
+                                "id": 23979
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": null
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "ranging"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Maz ZCB",
+                        "presetName": null,
+                        "gear": {
+                            "0": {
+                                "name": "Masori mask (f)",
+                                "id": 27235
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Zaryte crossbow",
+                                "id": 26374
+                            },
+                            "4": {
+                                "name": "Masori body (f)",
+                                "id": 27238
+                            },
+                            "5": {
+                                "name": "Twisted buckler",
+                                "id": 21000
+                            },
+                            "7": {
+                                "name": "Masori chaps (f)",
+                                "id": 27241
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": {
+                                "name": "Ruby dragon bolts (e)",
+                                "id": 21944
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": false,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                }
+            ],
+            "enableDebugTrack": false
+        }
+    },
+    "Ba-ba spec zcb/waker/dclaws/bclaws/fang": {
+        "inputSetup": {
+            "globalSettings": {
+                "npc": {
+                    "name": "Ba-Ba",
+                    "hitpoints": 380,
+                    "att": 150,
+                    "str": 160,
+                    "def": 80,
+                    "mage": 100,
+                    "strbns": 26,
+                    "dstab": 80,
+                    "dslash": 160,
+                    "dcrush": 240,
+                    "dmagic": 280,
+                    "dlight": 200,
+                    "dstandard": 200,
+                    "dheavy": 120,
+                    "combat": 359,
+                    "size": 5,
+                    "elementalweaknesstype": "No",
+                    "id": "11778"
+                },
+                "raidLevel": 300,
+                "pathLevel": 0,
+                "overlyDraining": false,
+                "teamSize": 1,
+                "coxScaling": {
+                    "partyMaxCombatLevel": 126,
+                    "partyAvgMiningLevel": 99,
+                    "partyMaxHpLevel": 99,
+                    "isChallengeMode": false
+                }
+            },
+            "inputGearSetups": [
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "smelling_salts"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Fang",
+                        "presetName": "Max Fang",
+                        "gear": {
+                            "0": {
+                                "name": "Torva full helm",
+                                "id": 26382
+                            },
+                            "1": {
+                                "name": "Infernal max cape",
+                                "id": 21285
+                            },
+                            "2": {
+                                "name": "Amulet of torture",
+                                "id": 19553
+                            },
+                            "3": {
+                                "name": "Osmumten's fang",
+                                "id": 26219
+                            },
+                            "4": {
+                                "name": "Torva platebody",
+                                "id": 26384
+                            },
+                            "5": {
+                                "name": "Avernic defender",
+                                "id": 22322
+                            },
+                            "7": {
+                                "name": "Torva platelegs",
+                                "id": 26386
+                            },
+                            "9": {
+                                "name": "Ferocious gloves",
+                                "id": 22981
+                            },
+                            "10": {
+                                "name": "Primordial boots",
+                                "id": 13239
+                            },
+                            "12": {
+                                "name": "Ultor ring",
+                                "id": 28307
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Lunge (Stab/Aggressive)",
+                        "spell": null,
+                        "isSpecial": true,
+                        "prayers": [
+                            "piety"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "smelling_salts"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "ZCB",
+                        "presetName": null,
+                        "gear": {
+                            "0": {
+                                "name": "Masori mask (f)",
+                                "id": 27235
+                            },
+                            "1": {
+                                "name": "Blessed dizana's quiver",
+                                "id": 28955
+                            },
+                            "2": {
+                                "name": "Necklace of anguish",
+                                "id": 19547
+                            },
+                            "3": {
+                                "name": "Zaryte crossbow",
+                                "id": 26374
+                            },
+                            "4": {
+                                "name": "Masori body (f)",
+                                "id": 27238
+                            },
+                            "5": {
+                                "name": "Twisted buckler",
+                                "id": 21000
+                            },
+                            "7": {
+                                "name": "Masori chaps (f)",
+                                "id": 27241
+                            },
+                            "9": {
+                                "name": "Zaryte vambraces",
+                                "id": 26235
+                            },
+                            "10": {
+                                "name": "Pegasian boots",
+                                "id": 13237
+                            },
+                            "12": {
+                                "name": "Venator ring",
+                                "id": 28310
+                            },
+                            "13": {
+                                "name": "Ruby dragon bolts (e)",
+                                "id": 21944
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Rapid (Ranged/Rapid)",
+                        "spell": null,
+                        "isSpecial": true,
+                        "prayers": [
+                            "rigour"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "smelling_salts"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Dragon claws",
+                        "presetName": null,
+                        "gear": {
+                            "0": {
+                                "name": "Torva full helm",
+                                "id": 26382
+                            },
+                            "1": {
+                                "name": "Infernal max cape",
+                                "id": 21285
+                            },
+                            "2": {
+                                "name": "Amulet of torture",
+                                "id": 19553
+                            },
+                            "3": {
+                                "name": "Dragon claws",
+                                "id": 13652
+                            },
+                            "4": {
+                                "name": "Torva platebody",
+                                "id": 26384
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Torva platelegs",
+                                "id": 26386
+                            },
+                            "9": {
+                                "name": "Ferocious gloves",
+                                "id": 22981
+                            },
+                            "10": {
+                                "name": "Primordial boots",
+                                "id": 13239
+                            },
+                            "12": {
+                                "name": "Ultor ring",
+                                "id": 28307
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Slash (Slash/Aggressive)",
+                        "spell": null,
+                        "isSpecial": true,
+                        "prayers": [
+                            "piety"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "smelling_salts"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Voidwaker",
+                        "presetName": null,
+                        "gear": {
+                            "0": {
+                                "name": "Torva full helm",
+                                "id": 26382
+                            },
+                            "1": {
+                                "name": "Infernal max cape",
+                                "id": 21285
+                            },
+                            "2": {
+                                "name": "Amulet of torture",
+                                "id": 19553
+                            },
+                            "3": {
+                                "name": "Voidwaker",
+                                "id": 27690
+                            },
+                            "4": {
+                                "name": "Torva platebody",
+                                "id": 26384
+                            },
+                            "5": {
+                                "name": "Avernic defender",
+                                "id": 22322
+                            },
+                            "7": {
+                                "name": "Torva platelegs",
+                                "id": 26386
+                            },
+                            "9": {
+                                "name": "Ferocious gloves",
+                                "id": 22981
+                            },
+                            "10": {
+                                "name": "Primordial boots",
+                                "id": 13239
+                            },
+                            "12": {
+                                "name": "Ultor ring",
+                                "id": 28307
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Slash (Slash/Aggressive)",
+                        "spell": null,
+                        "isSpecial": true,
+                        "prayers": [
+                            "piety"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                },
+                {
+                    "gearSetupSettings": {
+                        "statDrains": [],
+                        "combatStats": {
+                            "attack": 99,
+                            "strength": 99,
+                            "ranged": 99,
+                            "magic": 99,
+                            "hitpoints": 99,
+                            "defence": 99
+                        },
+                        "boosts": [
+                            "smelling_salts"
+                        ],
+                        "attackCycle": 0,
+                        "trailblazerRelics": []
+                    },
+                    "gearSetup": {
+                        "setupName": "Burning claws",
+                        "presetName": null,
+                        "gear": {
+                            "0": {
+                                "name": "Torva full helm",
+                                "id": 26382
+                            },
+                            "1": {
+                                "name": "Infernal max cape",
+                                "id": 21285
+                            },
+                            "2": {
+                                "name": "Amulet of torture",
+                                "id": 19553
+                            },
+                            "3": {
+                                "name": "Burning claws",
+                                "id": 29577
+                            },
+                            "4": {
+                                "name": "Torva platebody",
+                                "id": 26384
+                            },
+                            "5": null,
+                            "7": {
+                                "name": "Torva platelegs",
+                                "id": 26386
+                            },
+                            "9": {
+                                "name": "Ferocious gloves",
+                                "id": 22981
+                            },
+                            "10": {
+                                "name": "Primordial boots",
+                                "id": 13239
+                            },
+                            "12": {
+                                "name": "Ultor ring",
+                                "id": 28307
+                            },
+                            "13": {
+                                "name": "Rada's blessing 4",
+                                "id": 22947
+                            }
+                        },
+                        "blowpipeDarts": {
+                            "name": "Dragon dart",
+                            "id": 11230
+                        },
+                        "attackStyle": "Slash (Slash/Aggressive)",
+                        "spell": null,
+                        "isSpecial": true,
+                        "prayers": [
+                            "piety"
+                        ],
+                        "isOnSlayerTask": true,
+                        "isInWilderness": true,
+                        "currentHp": 1,
+                        "miningLvl": 99,
+                        "isKandarinDiary": true
+                    }
+                }
+            ],
+            "enableDebugTrack": false
+        }
+    }
+}
