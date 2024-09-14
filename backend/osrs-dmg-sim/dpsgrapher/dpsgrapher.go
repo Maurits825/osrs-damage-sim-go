@@ -67,8 +67,9 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
 	}
 
+	dpsData := getDefenceDpsResults(inputSetup)
 	for _, graphType := range statDrainGraphTypes {
-		dpsGrapherResult := getStatDrainDpsGrapher(inputSetup, graphType)
+		dpsGrapherResult := getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
 		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
 	}
 
@@ -154,43 +155,57 @@ func getTeamSizeDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) 
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
 
-func getStatDrainDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
-	maxValue := 10
-	switch graphType {
-	case BandosGodsword:
-		npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
-		npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
-		maxValue = npc.BaseCombatStats.Defence
-	case AccursedSceptre:
-		maxValue = 1
-	}
+func getDefenceDpsResults(inputSetup *dpscalc.InputSetup) []DpsGraphData {
+	npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
+	npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
+	maxValue := npc.BaseCombatStats.Defence
 
-	xValues := getXValues(0, maxValue)
 	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
 
 	//loop here creates a copy of the slice
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		var statDrainName dpscalc.StatDrainWeapon
-		switch graphType {
-		case DragonWarhammer:
-			statDrainName = dpscalc.DragonWarhammer
-		case ElderMaul:
-			statDrainName = dpscalc.ElderMaul
-		case Emberlight:
-			statDrainName = dpscalc.Emberlight
-		case Arclight:
-			statDrainName = dpscalc.Arclight
-		case BandosGodsword:
-			statDrainName = dpscalc.BandosGodsword
-		case AccursedSceptre:
-			statDrainName = dpscalc.AccursedSceptre
-		case Ralos:
-			statDrainName = dpscalc.Ralos
-		}
-		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: statDrainName, Value: 0}}
+		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: dpscalc.BandosGodsword, Value: 0}}
 		currentValue := &inputGearSetup.GearSetupSettings.StatDrain[0].Value
 
 		dpsGraphDatas[i] = getDpsGraphData(currentValue, 0, maxValue, &inputSetup.GlobalSettings, &inputGearSetup)
+	}
+	return dpsGraphDatas
+}
+
+func getStatDrainDpsGrapher(dpsData []DpsGraphData, graphType GraphType, settings dpscalc.GlobalSettings) DpsGrapherResult {
+	var statDrainName dpscalc.StatDrainWeapon
+	maxValue := 10
+	switch graphType {
+	case DragonWarhammer:
+		statDrainName = dpscalc.DragonWarhammer
+	case ElderMaul:
+		statDrainName = dpscalc.ElderMaul
+	case Emberlight:
+		statDrainName = dpscalc.Emberlight
+	case Arclight:
+		statDrainName = dpscalc.Arclight
+	case BandosGodsword:
+		statDrainName = dpscalc.BandosGodsword
+		maxValue = len(dpsData[0].Dps)
+	case AccursedSceptre:
+		statDrainName = dpscalc.AccursedSceptre
+		maxValue = 1
+	case Ralos:
+		statDrainName = dpscalc.Ralos
+	}
+
+	xValues := getXValues(0, maxValue)
+	dpsGraphDatas := make([]DpsGraphData, len(dpsData))
+
+	for i := range dpsData {
+		dps := make([]float32, maxValue+1)
+		for value := 0; value <= maxValue; value++ {
+			npc := dpscalc.GetNpc(settings.Npc.Id)
+			npc.ApplyNpcScaling(&settings)
+			npc.ApplyStatDrain(&settings, []dpscalc.StatDrain{{Name: statDrainName, Value: value}})
+			dps[value] = dpsData[i].Dps[npc.BaseCombatStats.Defence-npc.CombatStats.Defence]
+		}
+		dpsGraphDatas[i] = DpsGraphData{Label: dpsData[i].Label, Dps: dps}
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }

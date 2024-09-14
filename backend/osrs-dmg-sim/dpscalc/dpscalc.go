@@ -79,7 +79,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	player := getPlayer(globalSettings, inputGearSetup)
 
 	dpsDetails := calculateDps(player)
-	htk := getHtk(dpsDetails.hitDist, player.npc.combatStats.Hitpoints)
+	htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
 	ttk := htk * float64(dpsDetails.attackSpeed)
 
 	//TODO get hitsplat maxhits

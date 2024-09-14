@@ -25,7 +25,7 @@ type npc struct {
 	id              int
 	name            string
 	BaseCombatStats CombatStats
-	combatStats     CombatStats
+	CombatStats     CombatStats
 	aggressiveStats aggressiveStats
 	damageStats     damageStats
 	defensiveStats  defensiveStats
@@ -76,7 +76,7 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		n.elementalWeaknessPercent = npcData.ElementalWeaknessPercent
 		n.elementalWeaknessType = elementalType(npcData.ElementalWeaknessType)
 
-		n.combatStats = CombatStats{
+		n.CombatStats = CombatStats{
 			Attack:    npcData.Attack,
 			Strength:  npcData.Strength,
 			Ranged:    npcData.Ranged,
@@ -85,7 +85,7 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 			Defence:   npcData.Defence,
 		}
 
-		n.BaseCombatStats = n.combatStats
+		n.BaseCombatStats = n.CombatStats
 
 		n.aggressiveStats = aggressiveStats{
 			attack: npcData.AAttack,
@@ -118,10 +118,10 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 
 func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
 	npc.ApplyNpcScaling(globalSettings)
-	npc.applyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
+	npc.ApplyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
 
 	if globalSettings.NpcHitpoints != 0 {
-		npc.combatStats.Hitpoints = globalSettings.NpcHitpoints
+		npc.CombatStats.Hitpoints = globalSettings.NpcHitpoints
 	}
 }
 
@@ -130,7 +130,7 @@ func (npc *npc) ApplyNpcScaling(globalSettings *GlobalSettings) {
 	npc.applyTobScaling(globalSettings)
 	npc.applyToaScaling(globalSettings)
 
-	npc.combatStats = npc.BaseCombatStats
+	npc.CombatStats = npc.BaseCombatStats
 }
 
 func getDemonbaneFactor(npcId string, numerator int, denominator int) (int, int) {

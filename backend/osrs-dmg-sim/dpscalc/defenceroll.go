@@ -30,9 +30,9 @@ var stabOverrideSpecWeapons = []int{
 func getNpcDefenceRoll(player *player) int {
 	npcId := player.npc.id
 
-	level := player.npc.combatStats.Defence
+	level := player.npc.CombatStats.Defence
 	if player.combatStyle.CombatStyleType == Magic && !slices.Contains(useDefLevelForMagicDefNpcs, npcId) {
-		level = player.npc.combatStats.Magic
+		level = player.npc.CombatStats.Magic
 	}
 
 	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollBase, level)
