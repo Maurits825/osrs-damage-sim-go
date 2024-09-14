@@ -10,7 +10,7 @@ func BenchmarkGetFlatHitDistribution(b *testing.B) {
 	maximum := 50
 
 	hitDist := GetLinearHitDistribution(accuracy, minimum, maximum)
-	attackDist := NewMultiAttackDistribution([]HitDistribution{*hitDist, *hitDist, *hitDist})
+	attackDist := NewMultiAttackDistribution([]*HitDistribution{hitDist, hitDist, hitDist})
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {

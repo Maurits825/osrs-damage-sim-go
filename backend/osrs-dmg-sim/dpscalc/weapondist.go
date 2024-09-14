@@ -20,9 +20,9 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	if player.equippedGear.isEquipped(scythe) && style.IsMeleeStyle() {
 		totalHits := min(max(player.npc.size, 1), 3)
-		hitDists := make([]attackdist.HitDistribution, totalHits)
+		hitDists := make([]*attackdist.HitDistribution, totalHits)
 		for i := 0; i < totalHits; i++ {
-			hitDists[i] = *attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit)))
+			hitDists[i] = attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit)))
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
@@ -90,18 +90,18 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	if player.equippedGear.isEquipped(dragonDagger) && style.IsMeleeStyle() && isSpecial {
-		dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
+		dists := []*attackdist.HitDistribution{baseHitDist, baseHitDist}
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
 
 	if player.equippedGear.isEquipped(crystalHalberd) && style.IsMeleeStyle() && isSpecial {
-		dists := []attackdist.HitDistribution{*baseHitDist}
+		dists := []*attackdist.HitDistribution{baseHitDist}
 		if player.npc.size > 1 {
 			reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
 			defenceRoll := getNpcDefenceRoll(player)
 			reducedAccuracy := float64(getNormalAccuracy(reducedRoll, defenceRoll))
 			reducedDist := attackdist.GetLinearHitDistribution(reducedAccuracy, 0, maxHit)
-			dists = append(dists, *reducedDist)
+			dists = append(dists, reducedDist)
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 	}
@@ -121,15 +121,15 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 
 	if player.equippedGear.isEquipped(webweaver) && style == Ranged && isSpecial {
 		totalHits := 4
-		hitDists := make([]attackdist.HitDistribution, totalHits)
+		hitDists := make([]*attackdist.HitDistribution, totalHits)
 		for i := 0; i < totalHits; i++ {
-			hitDists[i] = *baseHitDist
+			hitDists[i] = baseHitDist
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
 
 	if player.equippedGear.isEquipped(darkbow) && style == Ranged {
-		dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
+		dists := []*attackdist.HitDistribution{baseHitDist, baseHitDist}
 		if isSpecial {
 			if player.equippedGear.isEquipped(dragonArrows) {
 				bowMax := int(float32(maxHit) * 1.5)
@@ -138,8 +138,8 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 				//TODO wiki is kinda confusing, second attack is rolled this way i think, with no min cap
 				dist2 := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit)
 				dist2.MinMaxCap(0, 48)
-				dists[0] = *dist1
-				dists[1] = *dist2
+				dists[0] = dist1
+				dists[1] = dist2
 			}
 			//TODO non d-arrow spec
 		}
@@ -150,10 +150,10 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		if isSpecial {
 			//TODO second hit rolls after def reductions if first roll hits ...
 			secondHit := attackdist.GetLinearHitDistribution(float64(accuracy), 0, maxHit)
-			dists := []attackdist.HitDistribution{*baseHitDist, *secondHit}
+			dists := []*attackdist.HitDistribution{baseHitDist, secondHit}
 			attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 		} else {
-			dists := []attackdist.HitDistribution{*baseHitDist, *baseHitDist}
+			dists := []*attackdist.HitDistribution{baseHitDist, baseHitDist}
 			attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 		}
 

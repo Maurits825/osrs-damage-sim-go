@@ -315,7 +315,7 @@ func getHtk(hitDist64 []float64, npcHp int) float64 {
 		hitDist[i] = float32(hitDist64[i])
 	}
 
-	hitP := 1 - (hitDist[0] / 100.0)
+	hitP := 1 - hitDist[0]
 	maxValue := min(npcHp, len(hitDist)-1)
 	htk := make([]float32, npcHp+1)
 

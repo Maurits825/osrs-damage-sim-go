@@ -45,11 +45,11 @@ func TestMultiGetHitDistribution(t *testing.T) {
 	minimum := 0
 	maximum := []int{20, 10}
 	hitProbability := make([]float64, len(maximum))
-	hitDists := make([]HitDistribution, len(maximum))
+	hitDists := make([]*HitDistribution, len(maximum))
 
 	for i, m := range maximum {
 		hitProbability[i] = accuracy / (float64(m - minimum + 1))
-		hitDists[i] = *GetLinearHitDistribution(accuracy, minimum, m)
+		hitDists[i] = GetLinearHitDistribution(accuracy, minimum, m)
 	}
 
 	attackDist := NewMultiAttackDistribution(hitDists)

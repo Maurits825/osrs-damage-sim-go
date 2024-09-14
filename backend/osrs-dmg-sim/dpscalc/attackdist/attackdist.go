@@ -3,19 +3,19 @@ package attackdist
 //attack distribution of all hit distributions, most weapons just have one dist
 //scythe would have 3 dists
 type AttackDistribution struct {
-	Distributions []HitDistribution
+	Distributions []*HitDistribution
 }
 
 func NewSingleAttackDistribution(distributions *HitDistribution) *AttackDistribution {
-	return &AttackDistribution{Distributions: []HitDistribution{*distributions}}
+	return &AttackDistribution{Distributions: []*HitDistribution{distributions}}
 }
 
-func NewMultiAttackDistribution(distributions []HitDistribution) *AttackDistribution {
+func NewMultiAttackDistribution(distributions []*HitDistribution) *AttackDistribution {
 	return &AttackDistribution{Distributions: distributions}
 }
 
 func (attackDist *AttackDistribution) SetSingleAttackDistribution(dist *HitDistribution) {
-	attackDist.Distributions = []HitDistribution{*dist}
+	attackDist.Distributions = []*HitDistribution{dist}
 }
 
 func (attackDist *AttackDistribution) GetExpectedHit() float64 {
@@ -45,7 +45,7 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	flatHitDist[0] = 1.0
 
 	for i := range attackDist.Distributions {
-		dist := &attackDist.Distributions[i]
+		dist := attackDist.Distributions[i]
 		distCombined := make([]float64, maxHit+1)
 
 		flat := dist.flatten()
