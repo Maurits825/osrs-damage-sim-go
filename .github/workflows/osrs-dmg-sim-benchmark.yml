@@ -34,7 +34,7 @@ jobs:
           # What benchmark tool the output.txt came from
           tool: 'go'
           # Where the output from the benchmark tool is stored
-          output-file-path: output.txt
+          output-file-path: backend/osrs-dmg-sim/output.txt
           # Where the previous data file is stored
           external-data-json-path: ./cache/benchmark-data.json
           summary-always: true
