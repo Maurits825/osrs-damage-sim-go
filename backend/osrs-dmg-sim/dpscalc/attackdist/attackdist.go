@@ -68,10 +68,6 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 		flatHitDist = distCombined
 	}
 
-	for hit, prob := range flatHitDist {
-		flatHitDist[hit] = prob * 100
-	}
-
 	return flatHitDist
 }
 

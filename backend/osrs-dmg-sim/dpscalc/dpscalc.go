@@ -90,6 +90,10 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		calcDetails = dpsDetailEntries.GetAllEntries()
 	}
 
+	for i := range dpsDetails.hitDist {
+		dpsDetails.hitDist[i] *= 100
+	}
+
 	return DpsCalcResult{
 		Labels:         inputGearSetupLabels,
 		TheoreticalDps: dpsDetails.dps,
@@ -312,8 +316,9 @@ func getHtk(hitDist []float64, npcHp int) float64 {
 
 	for hp := 1; hp <= npcHp; hp++ {
 		val := 1.0
-		for hit := 1; hit <= min(hp, maxValue); hit++ {
-			p := hitDist[hit] / 100.0
+		maxCapped := min(hp, maxValue)
+		for hit := 1; hit <= maxCapped; hit++ {
+			p := hitDist[hit]
 			val += p * htk[hp-hit]
 		}
 		htk[hp] = val / hitP
