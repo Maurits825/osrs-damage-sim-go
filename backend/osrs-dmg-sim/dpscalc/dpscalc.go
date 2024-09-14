@@ -309,13 +309,18 @@ func getDoTExpected(player *player, accuracy float64) float64 {
 	return 0
 }
 
-func getHtk(hitDist []float64, npcHp int) float64 {
+func getHtk(hitDist64 []float64, npcHp int) float64 {
+	hitDist := make([]float32, len(hitDist64))
+	for i := range hitDist64 {
+		hitDist[i] = float32(hitDist64[i])
+	}
+
 	hitP := 1 - (hitDist[0] / 100.0)
 	maxValue := min(npcHp, len(hitDist)-1)
-	htk := make([]float64, npcHp+1)
+	htk := make([]float32, npcHp+1)
 
 	for hp := 1; hp <= npcHp; hp++ {
-		val := 1.0
+		val := float32(1.0)
 		maxCapped := min(hp, maxValue)
 		for hit := 1; hit <= maxCapped; hit++ {
 			p := hitDist[hit]
@@ -324,7 +329,7 @@ func getHtk(hitDist []float64, npcHp int) float64 {
 		htk[hp] = val / hitP
 	}
 
-	return htk[npcHp]
+	return float64(htk[npcHp])
 }
 
 func gcd(a, b int) int {
