@@ -27,7 +27,7 @@ type DpsCalcResult struct {
 	AttackRoll     int                  `json:"attackRoll"`
 	ExpectedHit    float64              `json:"expectedHit"`
 	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
-	TicksToKill    float64              `json:"ticksToKill"`
+	TicksToKill    float32              `json:"ticksToKill"`
 	CalcDetails    []string             `json:"calcDetails"`
 }
 type dpsDetails struct {
@@ -80,7 +80,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 
 	dpsDetails := calculateDps(player)
 	htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
-	ttk := htk * float64(dpsDetails.attackSpeed)
+	ttk := htk * float32(dpsDetails.attackSpeed)
 
 	//TODO get hitsplat maxhits
 
@@ -309,7 +309,7 @@ func getDoTExpected(player *player, accuracy float64) float64 {
 	return 0
 }
 
-func getHtk(hitDist64 []float64, npcHp int) float64 {
+func getHtk(hitDist64 []float64, npcHp int) float32 {
 	hitDist := make([]float32, len(hitDist64))
 	for i := range hitDist64 {
 		hitDist[i] = float32(hitDist64[i])
@@ -329,7 +329,7 @@ func getHtk(hitDist64 []float64, npcHp int) float64 {
 		htk[hp] = val / hitP
 	}
 
-	return float64(htk[npcHp])
+	return htk[npcHp]
 }
 
 func gcd(a, b int) int {
