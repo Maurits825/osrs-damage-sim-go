@@ -45,6 +45,11 @@ type InputGearSetupLabels struct {
 	GearSetupName          string `json:"gearSetupName"`
 }
 
+type DpsCalcOptions struct {
+	EnableTrack bool
+	CalcHtk     bool
+}
+
 var allItems equipmentItems
 var allNpcs npcs
 var idAliases map[string]int
@@ -61,15 +66,19 @@ func init() {
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
+	opts := &DpsCalcOptions{EnableTrack: inputSetup.EnableDebugTrack, CalcHtk: true}
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, inputSetup.EnableDebugTrack)
+		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, opts)
 	}
 
 	return &DpsCalcResults{GetDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
 }
 
-func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, enableTrack bool) DpsCalcResult {
-	dpsDetailEntries = dpsdetail.NewDetailEntries(enableTrack)
+func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, opt *DpsCalcOptions) DpsCalcResult {
+	if opt == nil {
+		opt = &DpsCalcOptions{false, false}
+	}
+	dpsDetailEntries = dpsdetail.NewDetailEntries(opt.EnableTrack)
 
 	inputGearSetupLabels := InputGearSetupLabels{
 		GearSetupSettingsLabel: getGearSetupSettingsLabel(&inputGearSetup.GearSetupSettings),
@@ -77,15 +86,18 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	}
 
 	player := getPlayer(globalSettings, inputGearSetup)
-
 	dpsDetails := calculateDps(player)
-	htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
-	ttk := htk * float32(dpsDetails.attackSpeed)
+
+	ttk := float32(0.0)
+	if opt.CalcHtk {
+		htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
+		ttk = htk * float32(dpsDetails.attackSpeed)
+	}
 
 	//TODO get hitsplat maxhits
 
 	var calcDetails []string
-	if enableTrack {
+	if opt.EnableTrack {
 		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 		calcDetails = dpsDetailEntries.GetAllEntries()
 	}

@@ -22,7 +22,6 @@ func (hit *WeightedHit) getSum() int {
 
 	sumHit := 0
 	for _, hit := range hit.Hitsplats {
-
 		sumHit += hit
 	}
 

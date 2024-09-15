@@ -87,10 +87,15 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 
 func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *dpscalc.GlobalSettings, inputGearSetup *dpscalc.InputGearSetup) DpsGraphData {
 	dps := make([]float32, (maxValue-startValue)+1)
-	for _, v := range []int{startValue, maxValue} {
+
+	calcDps := func(v int) {
 		*value = v
-		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, false)
+		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, nil)
 		dps[v-startValue] = dpsCalcResult.TheoreticalDps
+	}
+
+	for _, v := range []int{startValue, maxValue} {
+		calcDps(v)
 	}
 
 	//if the first and last dps are the same, just assume they all will be to avoid unnecessary calcs
@@ -102,9 +107,7 @@ func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *d
 	}
 
 	for v := startValue; v <= maxValue; v++ {
-		*value = v
-		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, false)
-		dps[v-startValue] = dpsCalcResult.TheoreticalDps
+		calcDps(v)
 	}
 	return DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
 }
