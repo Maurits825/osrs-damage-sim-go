@@ -1,14 +1,10 @@
 package dpsgrapher
 
 import (
-	"encoding/json"
-	"fmt"
-	"io"
-	"os"
-	"path/filepath"
 	"testing"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
 type testInputSetups map[string]testInputSetup
@@ -19,24 +15,8 @@ type testInputSetup struct {
 }
 
 func loadTestInputSetups(file string) testInputSetups {
-	filePath := filepath.Join("../testdata", file)
-	inputSetupFile, err := os.Open(filePath)
+	return *testutil.LoadTestFile[testInputSetups](file)
 
-	if err != nil {
-		fmt.Println(err)
-		return testInputSetups{}
-	}
-
-	defer inputSetupFile.Close()
-
-	byteValue, _ := io.ReadAll(inputSetupFile)
-	var testInputSetups testInputSetups
-	if err := json.Unmarshal(byteValue, &testInputSetups); err != nil {
-		fmt.Println("Error decoding inputsetup JSON:", err)
-		return nil
-	}
-
-	return testInputSetups
 }
 
 func testDpsGrapher(t *testing.T, testInputSetups testInputSetups) {
@@ -48,11 +28,11 @@ func testDpsGrapher(t *testing.T, testInputSetups testInputSetups) {
 	}
 }
 func TestRunDpsGrapher(t *testing.T) {
-	testInputSetups := loadTestInputSetups("input_setups.json")
+	testInputSetups := *testutil.LoadTestFile[testInputSetups]("input_setups.json")
 	testDpsGrapher(t, testInputSetups)
 }
 
 func TestRunDpsGrapherSpec(t *testing.T) {
-	testInputSetups := loadTestInputSetups("spec_input_setups.json")
+	testInputSetups := *testutil.LoadTestFile[testInputSetups]("spec_input_setups.json")
 	testDpsGrapher(t, testInputSetups)
 }

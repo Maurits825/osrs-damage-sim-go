@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/attackdist"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
 func getAttackDistProbabilitySums(attackDist *attackdist.AttackDistribution) []float64 {
@@ -36,11 +37,11 @@ func testGetAttackDist(t *testing.T, testInputSetups testInputSetups) {
 }
 
 func TestGetAttackDist(t *testing.T) {
-	testInputSetups := loadTestInputSetups("input_setups.json")
+	testInputSetups := *testutil.LoadTestFile[testInputSetups]("input_setups.json")
 	testGetAttackDist(t, testInputSetups)
 }
 
 func TestGetAttackDistSpec(t *testing.T) {
-	testInputSetups := loadTestInputSetups("spec_input_setups.json")
+	testInputSetups := *testutil.LoadTestFile[testInputSetups]("spec_input_setups.json")
 	testGetAttackDist(t, testInputSetups)
 }
