@@ -3,60 +3,18 @@
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 
-<!-- TODO styling and maybe a template for the format? -->
 <div class="modal-body">
-  <div class="mb-2">
-    <div>
-      <div>29 August 2024</div>
+  <div class="px-2" style="max-height: 50vh; overflow-y: auto">
+    <div *ngFor="let log of changeLogData">
       <div>
-        <ul>
-          <li>Araxxor update</li>
-        </ul>
+        <div>{{ log.title }}</div>
+        <div>
+          <ul>
+            <li *ngFor="let b of log.body">{{ b }}</li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <hr class="my-3" />
-    <div>
-      <div>18 July 2024</div>
-      <div>
-        <ul>
-          <li>Added scorching bow, emberlight & burning claws</li>
-          <li>Updated dragon claw spec calc</li>
-        </ul>
-      </div>
-    </div>
-
-    <hr class="my-3" />
-    <div>
-      <div>26 June 2024</div>
-      <div>
-        <ul>
-          <li>Moved result graphs in a tab view</li>
-        </ul>
-      </div>
-    </div>
-
-    <hr class="my-3" />
-
-    <div>
-      <div>12 June 2024</div>
-      <div>
-        <ul>
-          <li>Added changelog</li>
-          <li>Added wiki dps setup button</li>
-        </ul>
-      </div>
-    </div>
-
-    <hr class="my-3" />
-
-    <div>
-      <div>10 June 2024</div>
-      <div>
-        <ul>
-          <li>Added most combat rebalance changes</li>
-        </ul>
-      </div>
+      <hr class="my-3" />
     </div>
   </div>
 </div>
