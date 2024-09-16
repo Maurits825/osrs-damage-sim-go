@@ -3,6 +3,7 @@ package dpsgrapher
 import (
 	"slices"
 	"strconv"
+	"sync"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
@@ -56,36 +57,57 @@ const (
 )
 
 func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
-	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
 	npcId, _ := strconv.Atoi(inputSetup.GlobalSettings.Npc.Id)
 
-	dpsGrapherResult := getNpcHitpointsDpsGrapher(inputSetup, NpcHitpoints)
-	dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
-
-	for _, graphType := range levelGraphTypes {
-		dpsGrapherResult := getLevelDpsGrapher(inputSetup, graphType)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	dpsResults := make(chan DpsGrapherResult, len(allGraphTypes))
+	var wg sync.WaitGroup
+	runGrapher := func(f func() DpsGrapherResult) {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			dpsResults <- f()
+		}()
 	}
 
-	dpsData := getDefenceDpsResults(inputSetup)
-	for _, graphType := range statDrainGraphTypes {
-		dpsGrapherResult := getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	dpsDataCh := make(chan []DpsGraphData)
+	go func() {
+		dpsDataCh <- getDefenceDpsResults(inputSetup)
+	}()
+
+	runGrapher(func() DpsGrapherResult { return getNpcHitpointsDpsGrapher(inputSetup, NpcHitpoints) })
+
+	for _, graphType := range levelGraphTypes {
+		runGrapher(func() DpsGrapherResult { return getLevelDpsGrapher(inputSetup, graphType) })
 	}
 
 	if dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id).IsXerician {
-		dpsGrapherResult := getTeamSizeDpsGrapher(inputSetup, TeamSize)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+		runGrapher(func() DpsGrapherResult { return getTeamSizeDpsGrapher(inputSetup, TeamSize) })
 	}
+
 	if slices.Contains(dpscalc.ToaIds, npcId) {
-		dpsGrapherResult := getToaRaidLevelDpsGrapher(inputSetup, ToaRaidLevel)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+		runGrapher(func() DpsGrapherResult { return getToaRaidLevelDpsGrapher(inputSetup, ToaRaidLevel) })
+	}
+
+	wg.Wait()
+
+	close(dpsResults)
+
+	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
+	dpsData := <-dpsDataCh
+	for _, graphType := range statDrainGraphTypes {
+		statDrainResults := getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, statDrainResults)
+	}
+
+	for result := range dpsResults {
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, result)
 	}
 
 	return &dpsGrapherResults
 }
 
 func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *dpscalc.GlobalSettings, inputGearSetup *dpscalc.InputGearSetup) DpsGraphData {
+	//TODO also record acc,expectedhit,ttk?
 	dps := make([]float32, (maxValue-startValue)+1)
 
 	calcDps := func(v int) {
