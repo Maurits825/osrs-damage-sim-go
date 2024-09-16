@@ -3,11 +3,13 @@ package attackdist
 import (
 	"reflect"
 	"testing"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
 func checkProbabilities(t *testing.T, flat []float64, probs map[int]float64) {
 	for index, prob := range probs {
-		if !isFloatEqual(flat[index], prob, tolerance) {
+		if !testutil.IsFloatEqual64(flat[index], prob, tolerance) {
 			t.Errorf("Expected %v probability %f, got %f", index, prob, flat[index])
 		}
 	}

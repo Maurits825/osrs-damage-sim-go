@@ -4,6 +4,7 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"math"
 )
 
 //go:embed *
@@ -23,4 +24,24 @@ func LoadTestFile[T any](fileName string) *T {
 		return nil
 	}
 	return &data
+}
+
+func IsFloatEqual32(a, b, t float32) bool {
+	if a == b {
+		return true
+	}
+	if d := math.Abs(float64(a - b)); d < float64(t) {
+		return true
+	}
+	return false
+}
+
+func IsFloatEqual64(a, b, t float64) bool {
+	if a == b {
+		return true
+	}
+	if d := math.Abs(a - b); d < t {
+		return true
+	}
+	return false
 }

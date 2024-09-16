@@ -14,11 +14,6 @@ type testInputSetup struct {
 	InputSetup  dpscalc.InputSetup `json:"inputSetup"`
 }
 
-func loadTestInputSetups(file string) testInputSetups {
-	return *testutil.LoadTestFile[testInputSetups](file)
-
-}
-
 func testDpsGrapher(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
 		dpsCalcResults := RunDpsGrapher(&testInputSetup.InputSetup)

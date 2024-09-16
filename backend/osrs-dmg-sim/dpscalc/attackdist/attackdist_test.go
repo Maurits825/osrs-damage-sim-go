@@ -1,26 +1,15 @@
 package attackdist
 
 import (
-	"math"
 	"testing"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
-// TODO common test utils?
 var tolerance = float64(0.0000001)
 
-func isFloatEqual(a, b, t float64) bool {
-	if a == b {
-		return true
-	}
-	if d := math.Abs(float64(a - b)); d < float64(t) {
-		return true
-	}
-	return false
-}
-
 func isProbabilityEqual(actual, expected float64, t *testing.T) {
-
-	if !isFloatEqual(actual, expected, tolerance) {
+	if !testutil.IsFloatEqual64(actual, expected, tolerance) {
 		t.Fatalf("Expected probability to be %f, got %f", expected, actual)
 	}
 }

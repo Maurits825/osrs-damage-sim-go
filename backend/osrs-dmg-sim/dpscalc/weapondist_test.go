@@ -29,7 +29,7 @@ func testGetAttackDist(t *testing.T, testInputSetups testInputSetups) {
 		probabilitySums := getAttackDistProbabilitySums(attackDist)
 
 		for _, sum := range probabilitySums {
-			if !isFloatEqual(float32(sum), 1.0, floatTolerance) {
+			if !testutil.IsFloatEqual32(float32(sum), 1.0, floatTolerance) {
 				t.Errorf("FAIL: " + setupName + " - Expected probability: " + fmt.Sprintf("%f", 1.0) + ", Actual: " + fmt.Sprintf("%f", sum))
 			}
 		}
