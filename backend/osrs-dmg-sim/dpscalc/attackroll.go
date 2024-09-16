@@ -166,7 +166,7 @@ func getRangedAttackRoll(player *player) int {
 		if player.npc.IsXerician {
 			cap = 350
 		}
-		tbowMagic := min(cap, max(player.npc.combatStats.Magic, player.npc.aggressiveStats.magic))
+		tbowMagic := min(cap, max(player.npc.CombatStats.Magic, player.npc.aggressiveStats.magic))
 		attackRoll = twistedbowScaling(attackRoll, tbowMagic, true)
 	}
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {

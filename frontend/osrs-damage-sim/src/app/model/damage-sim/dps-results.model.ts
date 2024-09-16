@@ -15,6 +15,7 @@ export interface DpsCalcResult {
   attackRoll: number;
   expectedHit: number;
   hitDist: number[];
+  ticksToKill: number;
   calcDetails?: string[];
 }
 

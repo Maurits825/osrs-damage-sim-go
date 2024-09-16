@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TickToTimePipe implements PipeTransform {
   transform(tick: number): string {
-    const totalSeconds: number = Math.round(tick) * 0.6;
+    const totalSeconds: number = tick * 0.6;
     const minutes: number = Math.floor(totalSeconds / 60);
     const seconds: number = Math.round((totalSeconds % 60) * 10) / 10;
 

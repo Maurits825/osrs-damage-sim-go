@@ -42,6 +42,7 @@
                 ></app-gear-setup-label>
               </th>
               <td>{{ result.theoreticalDps | number : "1.3-3" }}</td>
+              <td>{{ result.ticksToKill | tickToTime }}</td>
               <td>{{ result.maxHit | maxHit }}</td>
               <td>{{ result.accuracy | number : "1.2-2" }}%</td>
               <td>{{ result.expectedHit | number : "1.1-1" }}</td>

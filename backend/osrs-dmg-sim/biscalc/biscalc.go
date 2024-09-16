@@ -107,7 +107,7 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 				inputGearSetup.GearSetup.Spell = spell
 				inputGearSetup.GearSetup.AttackStyle = combatOption.Name
 
-				dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, false)
+				dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, nil)
 
 				calcCount++
 				if calcCount%10000 == 0 {

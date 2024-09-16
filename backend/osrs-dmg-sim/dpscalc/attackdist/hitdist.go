@@ -6,15 +6,15 @@ type HitDistribution struct {
 }
 
 func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
-	dist := &HitDistribution{make([]WeightedHit, 0)}
+	dist := &HitDistribution{make([]WeightedHit, 2+maximum-minimum)}
 	hitProbability := accuracy / (float64(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {
-		dist.Hits = append(dist.Hits, WeightedHit{hitProbability, []int{(max(1, i))}}) //TODO test if right
+		dist.Hits[1+i-minimum] = WeightedHit{Probability: hitProbability, Hitsplats: []int{(max(1, i))}}
 	}
 
 	//also add miss hit
-	dist.Hits = append(dist.Hits, WeightedHit{1 - accuracy, []int{0}})
+	dist.Hits[0] = WeightedHit{Probability: 1 - accuracy, Hitsplats: []int{0}}
 
 	return dist
 }
@@ -40,7 +40,7 @@ func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum in
 	}
 
 	//also add miss hit
-	dist.Hits = append(dist.Hits, WeightedHit{1 - accuracy, make([]int, hitsplatCount)})
+	dist.Hits = append(dist.Hits, WeightedHit{Probability: 1 - accuracy, Hitsplats: make([]int, hitsplatCount)})
 
 	return dist
 }
@@ -50,7 +50,7 @@ func (dist *HitDistribution) Clone() HitDistribution {
 	for i, hit := range dist.Hits {
 		hitsplats := make([]int, len(hit.Hitsplats))
 		copy(hitsplats, hit.Hitsplats)
-		newDist.Hits[i] = WeightedHit{hit.Probability, hitsplats}
+		newDist.Hits[i] = WeightedHit{Probability: hit.Probability, Hitsplats: hitsplats}
 	}
 	return newDist
 }
@@ -83,16 +83,16 @@ func (dist *HitDistribution) MinMaxCap(minHit, maxHit int) {
 
 func (dist *HitDistribution) getExpectedHit() float64 {
 	expectedHit := 0.0
-	for _, weightedHit := range dist.Hits {
-		expectedHit += weightedHit.getExpectedHit()
+	for i := range dist.Hits {
+		expectedHit += dist.Hits[i].getExpectedHit()
 	}
 	return expectedHit
 }
 
 func (dist *HitDistribution) getMaxHit() int {
 	maxHit := 0
-	for _, weightedHit := range dist.Hits {
-		hit := weightedHit.getSum()
+	for i := range dist.Hits {
+		hit := dist.Hits[i].getSum()
 		if hit > maxHit {
 			maxHit = hit
 		}
@@ -103,8 +103,9 @@ func (dist *HitDistribution) getMaxHit() int {
 //index is the hitspat sum
 func (dist *HitDistribution) flatten() []float64 {
 	flat := make([]float64, dist.getMaxHit()+1)
-	for _, weightedHit := range dist.Hits {
-		flat[weightedHit.getSum()] += weightedHit.Probability
+	for i := range dist.Hits {
+		hit := &dist.Hits[i]
+		flat[hit.getSum()] += hit.Probability
 	}
 	return flat
 }

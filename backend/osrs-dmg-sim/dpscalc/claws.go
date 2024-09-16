@@ -79,15 +79,13 @@ var burningClawsHits = []func(baseHit int) []int{
 }
 
 func getClawsSpecHits(baseAccuracy float64, baseMaxHit int, totalRolls int, highOffset int, minMaxHits []func(int) []int) []attackdist.WeightedHit {
-	allHits := make([]attackdist.WeightedHit, 0)
+	allHits := make([]attackdist.WeightedHit, 0, 250) //~50maxhit * 4rolls
 	for rollHit := 0; rollHit < totalRolls; rollHit++ {
 		prob, minHit, maxHit := getClawsMinMaxHits(rollHit, totalRolls, baseAccuracy, float32(baseMaxHit), highOffset)
-		hitsplats := make([]attackdist.WeightedHit, maxHit-minHit+1)
 		for hit := minHit; hit <= maxHit; hit++ {
 			hits := minMaxHits[rollHit](hit)
-			hitsplats[hit-minHit] = attackdist.WeightedHit{Probability: float64(prob), Hitsplats: hits}
+			allHits = append(allHits, attackdist.WeightedHit{Probability: prob, Hitsplats: hits})
 		}
-		allHits = append(allHits, hitsplats...)
 	}
 
 	return allHits

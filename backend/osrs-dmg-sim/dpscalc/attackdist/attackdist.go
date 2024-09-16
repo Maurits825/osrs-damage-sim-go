@@ -3,33 +3,33 @@ package attackdist
 //attack distribution of all hit distributions, most weapons just have one dist
 //scythe would have 3 dists
 type AttackDistribution struct {
-	Distributions []HitDistribution
+	Distributions []*HitDistribution
 }
 
 func NewSingleAttackDistribution(distributions *HitDistribution) *AttackDistribution {
-	return &AttackDistribution{Distributions: []HitDistribution{*distributions}}
+	return &AttackDistribution{Distributions: []*HitDistribution{distributions}}
 }
 
-func NewMultiAttackDistribution(distributions []HitDistribution) *AttackDistribution {
+func NewMultiAttackDistribution(distributions []*HitDistribution) *AttackDistribution {
 	return &AttackDistribution{Distributions: distributions}
 }
 
 func (attackDist *AttackDistribution) SetSingleAttackDistribution(dist *HitDistribution) {
-	attackDist.Distributions = []HitDistribution{*dist}
+	attackDist.Distributions = []*HitDistribution{dist}
 }
 
 func (attackDist *AttackDistribution) GetExpectedHit() float64 {
 	expectedHit := 0.0
-	for _, dist := range attackDist.Distributions {
-		expectedHit += dist.getExpectedHit()
+	for i := range attackDist.Distributions {
+		expectedHit += attackDist.Distributions[i].getExpectedHit()
 	}
 	return expectedHit
 }
 
 func (attackDist *AttackDistribution) GetMaxHitsplats() []int {
 	maxHits := make([]int, len(attackDist.Distributions))
-	for i, dist := range attackDist.Distributions {
-		maxHits[i] = dist.getMaxHit()
+	for i := range attackDist.Distributions {
+		maxHits[i] = attackDist.Distributions[i].getMaxHit()
 	}
 	return maxHits
 }
@@ -37,35 +37,35 @@ func (attackDist *AttackDistribution) GetMaxHitsplats() []int {
 func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	//first get max hit of all distributions, to know the range of dist list
 	maxHit := 0
-	for _, dist := range attackDist.Distributions {
-		maxHit += dist.getMaxHit()
+	for i := range attackDist.Distributions {
+		maxHit += attackDist.Distributions[i].getMaxHit()
 	}
-	flatHitDist := make([]float64, maxHit+1)
 
-	//start with hit dist of 100% hitting 0
-	hitDistMap := map[int]float64{0: 1.0}
-	for _, dist := range attackDist.Distributions {
-		distMap := make(map[int]float64)
+	flatHitDist := make([]float64, maxHit+1)
+	flatHitDist[0] = 1.0
+
+	for i := range attackDist.Distributions {
+		dist := attackDist.Distributions[i]
+		distCombined := make([]float64, maxHit+1)
 
 		flat := dist.flatten()
 		//iterate over current hit dist
-		for hit1, prob1 := range hitDistMap {
+		for hit1, prob1 := range flatHitDist {
+			if prob1 == 0 {
+				continue
+			}
+
 			for hit2, prob2 := range flat {
 				//skip 0 probability hits
 				if prob1 == 0 && prob2 == 0 {
 					continue
 				}
 				//add up new probability
-				distMap[hit1+hit2] += prob1 * prob2
+				distCombined[hit1+hit2] += prob1 * prob2
 			}
 		}
 
-		hitDistMap = distMap
-	}
-
-	//flatten map
-	for hit, prob := range hitDistMap {
-		flatHitDist[hit] = prob * 100
+		flatHitDist = distCombined
 	}
 
 	return flatHitDist

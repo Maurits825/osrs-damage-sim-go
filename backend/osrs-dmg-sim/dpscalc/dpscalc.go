@@ -27,6 +27,7 @@ type DpsCalcResult struct {
 	AttackRoll     int                  `json:"attackRoll"`
 	ExpectedHit    float64              `json:"expectedHit"`
 	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
+	TicksToKill    float32              `json:"ticksToKill"`
 	CalcDetails    []string             `json:"calcDetails"`
 }
 type dpsDetails struct {
@@ -36,6 +37,7 @@ type dpsDetails struct {
 	attackRoll   int
 	hitDist      []float64
 	expectedHit  float64
+	attackSpeed  int
 }
 
 type InputGearSetupLabels struct {
@@ -43,8 +45,14 @@ type InputGearSetupLabels struct {
 	GearSetupName          string `json:"gearSetupName"`
 }
 
+type DpsCalcOptions struct {
+	EnableTrack bool
+	CalcHtk     bool
+}
+
 var allItems equipmentItems
 var allNpcs npcs
+var idAliases map[string]int
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
@@ -53,19 +61,24 @@ var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
 func init() {
 	allItems = getEquipmentItems(wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData))
 	allNpcs = getNpcs(wikidata.GetWikiData(wikidata.NpcProvider).(map[string]wikidata.NpcData))
+	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[string]int)
 }
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
+	opts := &DpsCalcOptions{EnableTrack: inputSetup.EnableDebugTrack, CalcHtk: true}
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, inputSetup.EnableDebugTrack)
+		dpsCalcResult[i] = DpsCalcGearSetup(&inputSetup.GlobalSettings, &inputGearSetup, opts)
 	}
 
 	return &DpsCalcResults{GetDpsCalcTitle(&inputSetup.GlobalSettings), dpsCalcResult}
 }
 
-func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, enableTrack bool) DpsCalcResult {
-	dpsDetailEntries = dpsdetail.NewDetailEntries(enableTrack)
+func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup, opt *DpsCalcOptions) DpsCalcResult {
+	if opt == nil {
+		opt = &DpsCalcOptions{false, false}
+	}
+	dpsDetailEntries = dpsdetail.NewDetailEntries(opt.EnableTrack)
 
 	inputGearSetupLabels := InputGearSetupLabels{
 		GearSetupSettingsLabel: getGearSetupSettingsLabel(&inputGearSetup.GearSetupSettings),
@@ -73,15 +86,24 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	}
 
 	player := getPlayer(globalSettings, inputGearSetup)
-
 	dpsDetails := calculateDps(player)
+
+	ttk := float32(0.0)
+	if opt.CalcHtk {
+		htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
+		ttk = htk * float32(dpsDetails.attackSpeed)
+	}
 
 	//TODO get hitsplat maxhits
 
 	var calcDetails []string
-	if enableTrack {
+	if opt.EnableTrack {
 		fmt.Println(inputGearSetup.GearSetup.Name + ": " + dpsDetailEntries.SprintFinal())
 		calcDetails = dpsDetailEntries.GetAllEntries()
+	}
+
+	for i := range dpsDetails.hitDist {
+		dpsDetails.hitDist[i] *= 100
 	}
 
 	return DpsCalcResult{
@@ -92,6 +114,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		AttackRoll:     dpsDetails.attackRoll,
 		ExpectedHit:    dpsDetails.expectedHit,
 		HitDist:        dpsDetails.hitDist,
+		TicksToKill:    ttk,
 		CalcDetails:    calcDetails,
 	}
 }
@@ -101,6 +124,13 @@ func GetNpc(id string) npc {
 	npc := allNpcs[id]
 	npc.id = npcId
 	return npc
+}
+
+func getIdAlias(itemId int) int {
+	if idAlias, exists := idAliases[strconv.Itoa(itemId)]; exists {
+		return idAlias
+	}
+	return itemId
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
@@ -192,7 +222,7 @@ func calculateDps(player *player) dpsDetails {
 	dps *= getAttackCycleFactor(attackSpeed, player.inputGearSetup.GearSetupSettings.AttackCycle)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
-	return dpsDetails{dps, maxHitsplats, accuracy, attackRoll, hitDist, expectedHit}
+	return dpsDetails{dps, maxHitsplats, accuracy, attackRoll, hitDist, expectedHit, attackSpeed}
 }
 
 func getAttackSpeed(player *player) int {
@@ -289,6 +319,29 @@ func getDoTExpected(player *player, accuracy float64) float64 {
 	}
 
 	return 0
+}
+
+func getHtk(hitDist64 []float64, npcHp int) float32 {
+	hitDist := make([]float32, len(hitDist64))
+	for i := range hitDist64 {
+		hitDist[i] = float32(hitDist64[i])
+	}
+
+	hitP := 1 - hitDist[0]
+	maxValue := min(npcHp, len(hitDist)-1)
+	htk := make([]float32, npcHp+1)
+
+	for hp := 1; hp <= npcHp; hp++ {
+		val := float32(1.0)
+		maxCapped := min(hp, maxValue)
+		for hit := 1; hit <= maxCapped; hit++ {
+			p := hitDist[hit]
+			val += p * htk[hp-hit]
+		}
+		htk[hp] = val / hitP
+	}
+
+	return htk[npcHp]
 }
 
 func gcd(a, b int) int {

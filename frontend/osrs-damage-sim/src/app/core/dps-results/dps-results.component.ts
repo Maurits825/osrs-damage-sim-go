@@ -24,6 +24,7 @@ export class DpsResultsComponent implements OnInit, OnChanges {
   sortIndexOrder: number[];
   sortConfigs: Partial<SortConfigs> = {
     theoreticalDps: { sortOrder: SortOrder.Ascending, isSorted: false },
+    ticksToKill: { sortOrder: SortOrder.Ascending, isSorted: false },
     maxHit: { sortOrder: SortOrder.Ascending, isSorted: false },
     accuracy: { sortOrder: SortOrder.Ascending, isSorted: false },
     expectedHit: { sortOrder: SortOrder.Ascending, isSorted: false },
