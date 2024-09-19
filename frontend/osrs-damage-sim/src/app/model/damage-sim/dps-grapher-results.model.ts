@@ -12,15 +12,21 @@ export const GraphTypes = [
 ] as const;
 export type GraphType = (typeof GraphTypes)[number];
 
-export interface DpsGraphData {
+export const GraphYValues = ['dps', 'expectedHit', 'maxHit', 'accuracy'] as const;
+export type GraphYValue = (typeof GraphYValues)[number];
+
+export interface GraphData {
   label: string;
   dps: number[];
+  expectedHit: number[];
+  maxHit: number[];
+  accuracy: number[];
 }
 
 export interface DpsGrapherResult {
   graphType: string;
   xValues: string[];
-  dpsData: DpsGraphData[];
+  graphData: GraphData[];
 }
 
 export interface DpsGrapherResults {

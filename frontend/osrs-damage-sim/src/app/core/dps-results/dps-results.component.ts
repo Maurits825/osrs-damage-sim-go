@@ -90,6 +90,7 @@ export class DpsResultsComponent implements OnInit, OnChanges {
 
     this.updateSortConfigs(dpsSortField);
   }
+
   updateSortConfigs(sortField: DpsSortField): void {
     this.dpsSortFields.forEach((field: DpsSortField) => (this.sortConfigs[field].isSorted = false));
 

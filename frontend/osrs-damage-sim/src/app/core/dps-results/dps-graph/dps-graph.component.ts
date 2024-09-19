@@ -1,7 +1,14 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { DpsGraphData, DpsGrapherResult, DpsGrapherResults } from 'src/app/model/damage-sim/dps-grapher-results.model';
+import {
+  GraphData,
+  DpsGrapherResult,
+  DpsGrapherResults,
+  GraphYValue,
+  GraphYValues,
+} from 'src/app/model/damage-sim/dps-grapher-results.model';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { graphTypeOrder, graphYLabel } from './dps-graph.const';
 
 @Component({
   selector: 'app-dps-graph',
@@ -19,6 +26,11 @@ export class DpsGraphComponent implements OnChanges {
   DpsGrapherResult: DpsGrapherResult;
   selectedDpsGrapherResult: DpsGrapherResult;
 
+  GraphYValue: GraphYValue;
+  GraphYValues = [...GraphYValues];
+  selectedGraphYValue: GraphYValue = 'dps';
+  graphYLabel = graphYLabel;
+
   hitDistChart: Chart;
   hideZeroDist = false;
 
@@ -26,9 +38,16 @@ export class DpsGraphComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsGrapherResults']) {
+      //TODO works but adds spacing in dropdown for some reason...
+      //maybe refactor to observables and dont use ngonchanges?
+      this.dpsGrapherResults.results.sort(
+        (r1: DpsGrapherResult, r2: DpsGrapherResult) => graphTypeOrder[r1.graphType] - graphTypeOrder[r2.graphType]
+      );
+
       this.selectedDpsGrapherResult = this.dpsGrapherResults.results.find(
         (dpsResult) => dpsResult.graphType === 'Elder maul'
       );
+
       this.updateDpsGrapherChart();
     }
   }
@@ -38,10 +57,33 @@ export class DpsGraphComponent implements OnChanges {
     this.updateDpsGrapherChart();
   }
 
+  selectedYValueChange(value: GraphYValue): void {
+    this.selectedGraphYValue = value;
+    this.updateDpsGrapherChart();
+  }
+
+  getGraphData(graphData: GraphData, graph: GraphYValue): number[] {
+    switch (graph) {
+      case 'dps': {
+        return graphData.dps;
+      }
+      case 'expectedHit': {
+        return graphData.expectedHit;
+      }
+      case 'maxHit': {
+        return graphData.maxHit;
+      }
+      case 'accuracy': {
+        return graphData.accuracy;
+      }
+    }
+  }
+
   updateDpsGrapherChart(): void {
     if (this.dpsGrapherChart) {
       this.dpsGrapherChart.destroy();
     }
+
     this.dpsGrapherChart = new Chart('dpsGrapherChart', {
       type: 'line',
       data: {
@@ -49,9 +91,9 @@ export class DpsGraphComponent implements OnChanges {
       },
     });
 
-    const datasets = this.selectedDpsGrapherResult.dpsData.map((dpsGraphData: DpsGraphData, index: number) => ({
-      label: dpsGraphData.label,
-      data: dpsGraphData.dps,
+    const datasets = this.selectedDpsGrapherResult.graphData.map((graphData: GraphData, index: number) => ({
+      label: graphData.label,
+      data: this.getGraphData(graphData, this.selectedGraphYValue),
       backgroundColor: this.chartColors[index % this.chartColors.length],
     }));
 
@@ -65,7 +107,7 @@ export class DpsGraphComponent implements OnChanges {
         y: {
           title: {
             display: true,
-            text: 'Dps',
+            text: graphYLabel[this.selectedGraphYValue],
           },
         },
         x: {
