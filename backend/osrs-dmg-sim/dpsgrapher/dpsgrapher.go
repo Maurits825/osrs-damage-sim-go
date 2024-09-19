@@ -275,7 +275,7 @@ func getToaRaidLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphTy
 	raidLevel := &globalSettings.RaidLevel
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsGraphDatas[i] = getDpsGraphData(raidLevel, 1, maxToaRaidLevel, &globalSettings, &inputGearSetup)
+		dpsGraphDatas[i] = getDpsGraphData(raidLevel, 0, maxToaRaidLevel, &globalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }

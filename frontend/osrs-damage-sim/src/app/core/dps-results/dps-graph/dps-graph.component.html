@@ -29,6 +29,8 @@
         [valueType]="GraphYValue"
         [allValues]="GraphYValues"
         [selectedValue]="selectedGraphYValue"
+        [searchable]="false"
+        [clearable]="false"
         (valueChanged)="selectedYValueChange($event)"
       >
         <ng-template #dropdownLabel #dropdownOptions let-item="item">
