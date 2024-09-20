@@ -4,6 +4,7 @@ interface logData {
 }
 
 export const changeLogData: logData[] = [
+  { title: '19 September 2024', body: ['Add Y axis options in dps graphs'] },
   { title: '16 September 2024', body: ['Added TTK and expected hit columns'] },
   { title: '29 August 2024', body: ['Araxxor update'] },
   { title: '18 July 2024', body: ['Added scorching bow, emberlight & burning claws', 'Updated dragon claw spec calc'] },
