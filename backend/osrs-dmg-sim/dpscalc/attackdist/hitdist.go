@@ -5,9 +5,9 @@ type HitDistribution struct {
 	Hits []WeightedHit
 }
 
-func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
+func GetLinearHitDistribution(accuracy float32, minimum int, maximum int) *HitDistribution {
 	dist := &HitDistribution{make([]WeightedHit, 2+maximum-minimum)}
-	hitProbability := accuracy / (float64(maximum - minimum + 1))
+	hitProbability := accuracy / (float32(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {
 		dist.Hits[1+i-minimum] = WeightedHit{Probability: hitProbability, Hitsplats: []int{(max(1, i))}}
@@ -19,7 +19,7 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDi
 	return dist
 }
 
-func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum int, hitsplatCount int) *HitDistribution {
+func GetMultiHitOneRollHitDistribution(accuracy float32, minimum int, maximum int, hitsplatCount int) *HitDistribution {
 	hits := make([]int, maximum-minimum+1)
 	for i := minimum; i <= maximum; i++ {
 		hits[i] = i
@@ -33,7 +33,7 @@ func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum in
 	product := cross(hitsplats) //TODO we modify cross to get 0->1 roll?
 
 	dist := &HitDistribution{make([]WeightedHit, len(product))}
-	probability := accuracy / float64(len(product))
+	probability := accuracy / float32(len(product))
 	for i, expandedHitsplat := range product {
 		//TODO otherwise we have to go through the hitsplats and max(1, hit) on them?
 		dist.Hits[i] = WeightedHit{Probability: probability, Hitsplats: expandedHitsplat}
@@ -55,20 +55,20 @@ func (dist *HitDistribution) Clone() HitDistribution {
 	return newDist
 }
 
-func (dist *HitDistribution) AddWeightedHit(probability float64, hitsplats []int) {
+func (dist *HitDistribution) AddWeightedHit(probability float32, hitsplats []int) {
 	dist.Hits = append(dist.Hits, WeightedHit{Probability: probability, Hitsplats: hitsplats})
 }
 
-func (dist *HitDistribution) ScaleProbability(factor float64) {
+func (dist *HitDistribution) ScaleProbability(factor float32) {
 	for i := range dist.Hits {
 		dist.Hits[i].scale(factor)
 	}
 }
 
-func (dist *HitDistribution) ScaleDamage(factor float64, divisor float64) {
+func (dist *HitDistribution) ScaleDamage(factor float32, divisor float32) {
 	for i := range dist.Hits {
 		for j, hitsplat := range dist.Hits[i].Hitsplats {
-			dist.Hits[i].Hitsplats[j] = int(float64(hitsplat) * factor / divisor)
+			dist.Hits[i].Hitsplats[j] = int(float32(hitsplat) * factor / divisor)
 		}
 	}
 }
@@ -81,8 +81,8 @@ func (dist *HitDistribution) MinMaxCap(minHit, maxHit int) {
 	}
 }
 
-func (dist *HitDistribution) getExpectedHit() float64 {
-	expectedHit := 0.0
+func (dist *HitDistribution) getExpectedHit() float32 {
+	expectedHit := float32(0.0)
 	for i := range dist.Hits {
 		expectedHit += dist.Hits[i].getExpectedHit()
 	}
@@ -101,8 +101,8 @@ func (dist *HitDistribution) getMaxHit() int {
 }
 
 //index is the hitspat sum
-func (dist *HitDistribution) flatten() []float64 {
-	flat := make([]float64, dist.getMaxHit()+1)
+func (dist *HitDistribution) flatten() []float32 {
+	flat := make([]float32, dist.getMaxHit()+1)
 	for i := range dist.Hits {
 		hit := &dist.Hits[i]
 		flat[hit.getSum()] += hit.Probability
@@ -125,7 +125,7 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 		}
 
 		product := cross(expandedHitsplats)
-		probability := weightedHit.Probability / float64(len(product))
+		probability := weightedHit.Probability / float32(len(product))
 		for _, expandedHitsplat := range product {
 			newHits = append(newHits, WeightedHit{Probability: probability, Hitsplats: expandedHitsplat})
 		}
@@ -146,7 +146,7 @@ func (dist *HitDistribution) linearMin(maximum, offset int) {
 		//0-10 hits -> 11hitsplats, 11^4=14k
 		//times ~200 for each hitsplats -> 2.8m size array
 		product := cross(expandedHitsplats)
-		probability := weightedHit.Probability / float64(len(product))
+		probability := weightedHit.Probability / float32(len(product))
 		for _, expandedHitsplat := range product {
 			newHits = append(newHits, WeightedHit{Probability: probability, Hitsplats: expandedHitsplat})
 		}

@@ -9,8 +9,8 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
-func getAttackDistProbabilitySums(attackDist *attackdist.AttackDistribution) []float64 {
-	sums := make([]float64, len(attackDist.Distributions))
+func getAttackDistProbabilitySums(attackDist *attackdist.AttackDistribution) []float32 {
+	sums := make([]float32, len(attackDist.Distributions))
 	for i, dist := range attackDist.Distributions {
 		for _, weightedHit := range dist.Hits {
 			sums[i] += weightedHit.Probability
@@ -23,7 +23,7 @@ func testGetAttackDist(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
 		player := getPlayer(&testInputSetup.InputSetup.GlobalSettings, &testInputSetup.InputSetup.InputGearSetups[0])
 		//todo could also do with a range of acc and max hits
-		accuracy := 0.543
+		accuracy := float32(0.543)
 		maxHit := 73
 		attackDist := getAttackDistribution(player, accuracy, maxHit)
 		probabilitySums := getAttackDistProbabilitySums(attackDist)

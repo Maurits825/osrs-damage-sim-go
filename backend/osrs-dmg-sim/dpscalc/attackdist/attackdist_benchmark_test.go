@@ -5,7 +5,7 @@ import "testing"
 func BenchmarkGetFlatHitDistribution(b *testing.B) {
 	b.StopTimer()
 
-	accuracy := 0.7
+	accuracy := float32(0.7)
 	minimum := 0
 	maximum := 50
 

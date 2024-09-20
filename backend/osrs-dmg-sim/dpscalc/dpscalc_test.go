@@ -14,7 +14,7 @@ type testInputSetup struct {
 	InputSetup  InputSetup `json:"inputSetup"`
 }
 
-var floatTolerance = float32(0.000001)
+var floatTolerance = float32(0.0001)
 
 func testDpsCalc(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {

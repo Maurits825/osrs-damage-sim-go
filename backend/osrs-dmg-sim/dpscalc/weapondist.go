@@ -8,11 +8,11 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
-var scytheHitReduction = []float64{1, 0.5, 0.25}
+var scytheHitReduction = []float32{1, 0.5, 0.25}
 
-func getAttackDistribution(player *player, accuracy float64, maxHit int) *attackdist.AttackDistribution {
+func getAttackDistribution(player *player, accuracy float32, maxHit int) *attackdist.AttackDistribution {
 	//default linear dist
-	baseHitDist := attackdist.GetLinearHitDistribution(float64(accuracy), 0, maxHit)
+	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit)
 	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
 
 	style := player.combatStyle.CombatStyleType
@@ -22,7 +22,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		totalHits := min(max(player.npc.size, 1), 3)
 		hitDists := make([]*attackdist.HitDistribution, totalHits)
 		for i := 0; i < totalHits; i++ {
-			hitDists[i] = attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float64(maxHit)))
+			hitDists[i] = attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float32(maxHit)))
 		}
 		attackDistribution = attackdist.NewMultiAttackDistribution(hitDists)
 	}
@@ -42,7 +42,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	if player.equippedGear.isAllEquipped(dharokSet) && style.IsMeleeStyle() {
 		maxHp := player.inputGearSetup.GearSetupSettings.CombatStats.Hitpoints
 		currentHp := player.inputGearSetup.GearSetup.CurrentHp
-		attackDistribution.ScaleDamage(float64(10000+(maxHp-currentHp)*maxHp), 10000)
+		attackDistribution.ScaleDamage(float32(10000+(maxHp-currentHp)*maxHp), 10000)
 	}
 
 	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.IsMeleeStyle() && player.npc.isKalphite {
@@ -78,8 +78,8 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	pickId, isPickEquipped := player.equippedGear.getWearingPickaxe()
 	if slices.Contains(guardianIds, player.npc.id) && style.IsMeleeStyle() && isPickEquipped {
 		pickBonus := pickaxes[pickId]
-		factor := float64(50 + player.inputGearSetup.GearSetup.MiningLevel + pickBonus)
-		divisor := 150.0
+		factor := float32(50 + player.inputGearSetup.GearSetup.MiningLevel + pickBonus)
+		divisor := float32(150.0)
 		dpsDetailEntries.TrackValue(dpsdetail.GuardiansDMGBonus, factor/divisor)
 		attackDistribution.ScaleDamage(factor, divisor)
 	}
@@ -99,7 +99,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 		if player.npc.size > 1 {
 			reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
 			defenceRoll := getNpcDefenceRoll(player)
-			reducedAccuracy := float64(getNormalAccuracy(reducedRoll, defenceRoll))
+			reducedAccuracy := float32(getNormalAccuracy(reducedRoll, defenceRoll))
 			reducedDist := attackdist.GetLinearHitDistribution(reducedAccuracy, 0, maxHit)
 			dists = append(dists, reducedDist)
 		}
@@ -149,7 +149,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	if player.equippedGear.isEquipped(ralos) && style == Ranged {
 		if isSpecial {
 			//TODO second hit rolls after def reductions if first roll hits ...
-			secondHit := attackdist.GetLinearHitDistribution(float64(accuracy), 0, maxHit)
+			secondHit := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit)
 			dists := []*attackdist.HitDistribution{baseHitDist, secondHit}
 			attackDistribution = attackdist.NewMultiAttackDistribution(dists)
 		} else {
@@ -170,7 +170,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	}
 
 	if player.equippedGear.isAnyEquipped(enchantedRubyBolts) && style == Ranged {
-		effectChance := 0.06
+		effectChance := float32(0.06)
 		if player.inputGearSetup.GearSetup.IsKandarinDiary {
 			effectChance *= 1.1
 		}
@@ -203,7 +203,7 @@ func getAttackDistribution(player *player, accuracy float64, maxHit int) *attack
 	return attackDistribution
 }
 
-func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribution, attackDistribution *attackdist.AttackDistribution, accuracy float64, maxHit int) {
+func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribution, attackDistribution *attackdist.AttackDistribution, accuracy float32, maxHit int) {
 	//TODO bolt effects
 	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
@@ -213,7 +213,7 @@ func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribu
 	}
 
 	if player.equippedGear.isAnyEquipped(enchantedDiamondBolts) && style == Ranged {
-		effectChance := 0.1 * kandarinFactor
+		effectChance := float32(0.1 * kandarinFactor)
 		zcbFactor := 15
 		if player.equippedGear.isEquipped(zaryteCrossbow) {
 			zcbFactor = 26
@@ -237,7 +237,7 @@ func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribu
 	}
 }
 
-func getZcbSpecEffectChance(accuracy, effectChance float64) float64 {
+func getZcbSpecEffectChance(accuracy, effectChance float32) float32 {
 	return accuracy + (1-accuracy)*effectChance
 }
 

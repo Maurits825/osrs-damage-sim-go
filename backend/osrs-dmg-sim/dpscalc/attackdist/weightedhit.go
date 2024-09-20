@@ -1,34 +1,27 @@
 package attackdist
 
 type WeightedHit struct {
-	Probability float64
+	Probability float32
 	//array of Hitsplats is for multiple hits with same roll like karils (not scy)
-	Hitsplats   []int
-	hitsplatSum *int
+	Hitsplats []int
 }
 
-func (hit *WeightedHit) getExpectedHit() float64 {
+func (hit *WeightedHit) getExpectedHit() float32 {
 	hitSum := 0
 	for _, hit := range hit.Hitsplats {
 		hitSum += hit
 	}
-	return hit.Probability * float64(hitSum)
+	return hit.Probability * float32(hitSum)
 }
 
 func (hit *WeightedHit) getSum() int {
-	if hit.hitsplatSum != nil {
-		return *hit.hitsplatSum
-	}
-
 	sumHit := 0
 	for _, hit := range hit.Hitsplats {
 		sumHit += hit
 	}
-
-	hit.hitsplatSum = &sumHit
 	return sumHit
 }
 
-func (hit *WeightedHit) scale(factor float64) {
+func (hit *WeightedHit) scale(factor float32) {
 	hit.Probability *= factor
 }

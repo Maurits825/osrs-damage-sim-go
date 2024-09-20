@@ -25,8 +25,8 @@ type DpsCalcResult struct {
 	MaxHit         []int                `json:"maxHit"`
 	Accuracy       float32              `json:"accuracy"`
 	AttackRoll     int                  `json:"attackRoll"`
-	ExpectedHit    float64              `json:"expectedHit"`
-	HitDist        []float64            `json:"hitDist"` //TODO float32 vs 64
+	ExpectedHit    float32              `json:"expectedHit"`
+	HitDist        []float32            `json:"hitDist"`
 	TicksToKill    float32              `json:"ticksToKill"`
 	CalcDetails    []string             `json:"calcDetails"`
 }
@@ -35,8 +35,8 @@ type dpsDetails struct {
 	maxHitsplats []int
 	accuracy     float32
 	attackRoll   int
-	hitDist      []float64
-	expectedHit  float64
+	hitDist      []float32
+	expectedHit  float32
 	attackSpeed  int
 }
 
@@ -52,7 +52,7 @@ type DpsCalcOptions struct {
 
 var allItems equipmentItems
 var allNpcs npcs
-var idAliases map[string]int
+var idAliases map[int]int
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
@@ -61,7 +61,7 @@ var dpsDetailEntries = dpsdetail.NewDetailEntries(false)
 func init() {
 	allItems = getEquipmentItems(wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData))
 	allNpcs = getNpcs(wikidata.GetWikiData(wikidata.NpcProvider).(map[string]wikidata.NpcData))
-	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[string]int)
+	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[int]int)
 }
 
 func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
@@ -127,7 +127,7 @@ func GetNpc(id string) npc {
 }
 
 func getIdAlias(itemId int) int {
-	if idAlias, exists := idAliases[strconv.Itoa(itemId)]; exists {
+	if idAlias, exists := idAliases[itemId]; exists {
 		return idAlias
 	}
 	return itemId
@@ -213,12 +213,12 @@ func calculateDps(player *player) dpsDetails {
 	accuracy, attackRoll := getAccuracy(player)
 	attackSpeed := getAttackSpeed(player)
 
-	attackDist := getAttackDistribution(player, float64(accuracy), maxHit)
-	expectedHit := attackDist.GetExpectedHit() + getDoTExpected(player, float64(accuracy))
+	attackDist := getAttackDistribution(player, accuracy, maxHit)
+	expectedHit := attackDist.GetExpectedHit() + getDoTExpected(player, accuracy)
 	hitDist := attackDist.GetFlatHitDistribution()
 	maxHitsplats := attackDist.GetMaxHitsplats()
 
-	dps := float32(expectedHit / (float64(attackSpeed) * TickLength))
+	dps := float32(expectedHit / (float32(attackSpeed) * TickLength))
 	dps *= getAttackCycleFactor(attackSpeed, player.inputGearSetup.GearSetupSettings.AttackCycle)
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerDpsFinal, dps)
@@ -313,7 +313,7 @@ func getAttackCycleFactor(attackSpeed int, attackCycle int) float32 {
 	return (d - 1) / d
 }
 
-func getDoTExpected(player *player, accuracy float64) float64 {
+func getDoTExpected(player *player, accuracy float32) float32 {
 	if player.equippedGear.isEquipped(burningClaws) && player.inputGearSetup.GearSetup.IsSpecialAttack {
 		return burningClawsDoT(accuracy)
 	}
@@ -321,12 +321,7 @@ func getDoTExpected(player *player, accuracy float64) float64 {
 	return 0
 }
 
-func getHtk(hitDist64 []float64, npcHp int) float32 {
-	hitDist := make([]float32, len(hitDist64))
-	for i := range hitDist64 {
-		hitDist[i] = float32(hitDist64[i])
-	}
-
+func getHtk(hitDist []float32, npcHp int) float32 {
 	hitP := 1 - hitDist[0]
 	maxValue := min(npcHp, len(hitDist)-1)
 	htk := make([]float32, npcHp+1)
