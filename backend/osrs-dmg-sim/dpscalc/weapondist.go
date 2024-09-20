@@ -37,6 +37,27 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 		attackDistribution.SetSingleAttackDistribution(baseHitDist)
 	}
 
+	if player.equippedGear.isEquipped(dualMachiato) && style.IsMeleeStyle() {
+		halfMax := maxHit / 2
+		firstDist := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit-halfMax)
+		secondDist := attackdist.GetLinearHitDistribution(accuracy, 0, halfMax)
+
+		combineDist := make([]attackdist.WeightedHit, 0)
+		for i := range firstDist.Hits {
+			firsHit := firstDist.Hits[i]
+			if firsHit.Hitsplats[0] == 0 {
+				continue
+			}
+			for j := range secondDist.Hits {
+				secondHit := secondDist.Hits[j]
+				combineDist = append(combineDist, attackdist.WeightedHit{Probability: firsHit.Probability * secondHit.Probability, Hitsplats: []int{firsHit.Hitsplats[0], secondHit.Hitsplats[0]}})
+			}
+		}
+
+		combineDist = append(combineDist, attackdist.WeightedHit{Probability: 1 - accuracy, Hitsplats: []int{0}})
+		attackDistribution = attackdist.NewSingleAttackDistribution(&attackdist.HitDistribution{Hits: combineDist})
+	}
+
 	//TODO gadderhammer
 
 	if player.equippedGear.isAllEquipped(dharokSet) && style.IsMeleeStyle() {

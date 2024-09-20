@@ -44,6 +44,8 @@ const (
 
 	scythe = 22325
 
+	dualMachiato = 28997
+
 	tomeOfFire = 20714
 
 	zaryteCrossbow = 26374
