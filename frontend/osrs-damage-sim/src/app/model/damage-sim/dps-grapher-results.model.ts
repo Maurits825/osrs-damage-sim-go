@@ -25,7 +25,7 @@ export interface GraphData {
 
 export interface DpsGrapherResult {
   graphType: string;
-  xValues: string[];
+  xValues: number[];
   graphData: GraphData[];
 }
 

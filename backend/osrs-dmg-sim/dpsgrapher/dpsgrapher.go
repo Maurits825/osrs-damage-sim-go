@@ -14,7 +14,7 @@ type DpsGrapherResults struct {
 
 type DpsGrapherResult struct {
 	GraphType string      `json:"graphType"`
-	XValues   []string    `json:"xValues"`
+	XValues   []int       `json:"xValues"`
 	GraphData []GraphData `json:"graphData"`
 }
 
@@ -152,10 +152,10 @@ func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *d
 	return graphData
 }
 
-func getXValues(startValue int, maxValue int) []string {
-	xValues := make([]string, (maxValue-startValue)+1)
+func getXValues(startValue int, maxValue int) []int {
+	xValues := make([]int, (maxValue-startValue)+1)
 	for value := startValue; value <= maxValue; value++ {
-		xValues[value-startValue] = strconv.Itoa(value)
+		xValues[value-startValue] = value
 	}
 	return xValues
 }

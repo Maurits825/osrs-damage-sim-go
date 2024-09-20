@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	TickLength = 0.6
+	TickLength   = 0.6
+	maxGearSlots = 11
 )
 
 type DpsCalcResults struct {
@@ -134,7 +135,7 @@ func getIdAlias(itemId int) int {
 }
 
 func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
-	equippedGear := equippedGear{make([]int, 0)}
+	equippedGear := equippedGear{ids: make([]int, 0, maxGearSlots)}
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
