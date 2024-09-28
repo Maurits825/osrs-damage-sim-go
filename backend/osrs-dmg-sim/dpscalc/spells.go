@@ -4,18 +4,16 @@ import (
 	"strings"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 )
 
 type elementalType string
 
 const (
-	NoneElement  elementalType = "No"
-	WaterElement elementalType = "Water"
-	FireElement  elementalType = "Fire"
-	EarthElement elementalType = "Earth"
-	AirElement   elementalType = "Air"
+	NoneElement  elementalType = "no"
+	WaterElement elementalType = "water"
+	FireElement  elementalType = "fire"
+	EarthElement elementalType = "earth"
+	AirElement   elementalType = "air"
 )
 
 type spellBook string
@@ -45,7 +43,7 @@ func getSpells() []spell {
 			name:          s.Name,
 			maxHit:        s.MaxHit,
 			spellbook:     spellBook(s.SpellBook),
-			elementalType: elementalType(cases.Title(language.English).String(s.Element)),
+			elementalType: elementalType(s.Element),
 		}
 	}
 	return spells

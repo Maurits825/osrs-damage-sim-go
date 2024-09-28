@@ -258,6 +258,8 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 		gearMagicBonus += 200
 	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
 		gearMagicBonus += 150
+	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.npc.IsDragon {
+		gearMagicBonus += 200
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		blackMaskBonus = true
 	}
