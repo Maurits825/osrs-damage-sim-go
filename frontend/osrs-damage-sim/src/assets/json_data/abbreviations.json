@@ -740,6 +740,12 @@
   "Chest",
   "CP"
  ],
+ "Chilli potato": [
+  "Chillpo"
+ ],
+ "Chili potato": [
+  "Chillpo"
+ ],
  "Chinchompas": [
   "Chins",
   "Chinning"
@@ -1542,6 +1548,24 @@
   "HH",
   "Hellies"
  ],
+ "Ironman Mode": [
+  "Helmet",
+  "IM",
+  "Iron",
+  "IM",
+  "Iron",
+  "Red helm",
+  "Red helm"
+ ],
+ "Ironman": [
+  "Helmet",
+  "IM",
+  "Iron",
+  "IM",
+  "Iron",
+  "Red helm",
+  "Red helm"
+ ],
  "Herblore": [
   "Herb"
  ],
@@ -1594,18 +1618,6 @@
  ],
  "Ignore list": [
   "Ignore"
- ],
- "Ironman Mode": [
-  "IM",
-  "Iron",
-  "Red helm",
-  "Red helm"
- ],
- "Ironman": [
-  "IM",
-  "Iron",
-  "Red helm",
-  "Red helm"
  ],
  "Infernal cape": [
   "Inf"
@@ -1940,6 +1952,9 @@
  "Toxic staff of the dead": [
   "TSotD",
   "TSoD"
+ ],
+ "Tuna potato": [
+  "Tupo"
  ],
  "multi-way combat": [
   "Safer"
@@ -2943,6 +2958,12 @@
  ],
  "Ring of the gods": [
   "RotG"
+ ],
+ "Rune platebody": [
+  "RPB"
+ ],
+ "Rune Platebody": [
+  "RPB"
  ],
  "RuneScape": [
   "RS"

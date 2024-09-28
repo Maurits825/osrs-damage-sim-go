@@ -6899,9 +6899,6 @@
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
-  "aslash": 4,
-  "acrush": 4,
-  "amagic": 4,
   "prayer": 5
  },
  "3844": {
@@ -41703,7 +41700,7 @@
   "dcrush": 1,
   "dmagic": 10,
   "str": 32,
-  "aspeed": 4,
+  "aspeed": 5,
   "weaponCategory": "POLESTAFF"
  },
  "26948": {
@@ -41720,7 +41717,7 @@
   "dcrush": 1,
   "dmagic": 10,
   "str": 32,
-  "aspeed": 4,
+  "aspeed": 5,
   "weaponCategory": "POLESTAFF"
  },
  "26950": {
@@ -41737,7 +41734,7 @@
   "dcrush": 1,
   "dmagic": 10,
   "str": 32,
-  "aspeed": 4,
+  "aspeed": 5,
   "weaponCategory": "POLESTAFF"
  },
  "26963": {
@@ -42254,6 +42251,19 @@
   "prayer": 6,
   "aspeed": 5,
   "weaponCategory": "SPIKED"
+ },
+ "27194": {
+  "name": "Ancestral robe bottom (Last Man Standing)",
+  "weight": 18.14,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 26,
+  "arange": -7,
+  "dstab": 27,
+  "dslash": 24,
+  "dcrush": 30,
+  "dmagic": 20,
+  "mdmg": 4.0
  },
  "27226": {
   "name": "Masori mask",
@@ -47019,7 +47029,7 @@
   "prayer": 2
  },
  "29804": {
-  "name": "Amulet of rancour",
+  "name": "Amulet of rancour (s)",
   "weight": 0.011,
   "equipable": true,
   "slot": 2,
@@ -47092,5 +47102,401 @@
   "dcrush": 27,
   "dmagic": 10,
   "drange": 30
+ },
+ "29840": {
+  "name": "Eclipse moon chestplate (Last Man Standing)",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -15,
+  "arange": 31,
+  "dstab": 15,
+  "dslash": 18,
+  "dcrush": 57,
+  "dmagic": 55,
+  "drange": 32,
+  "str": 3
+ },
+ "29841": {
+  "name": "Eclipse moon tassets (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -15,
+  "arange": 17,
+  "dstab": 9,
+  "dslash": 13,
+  "dcrush": 37,
+  "dmagic": 31,
+  "drange": 17,
+  "str": 1
+ },
+ "29842": {
+  "name": "Eclipse moon helm (Last Man Standing)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": 8,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 14,
+  "dmagic": 10,
+  "drange": 4,
+  "str": 3
+ },
+ "29843": {
+  "name": "Blue moon chestplate (Last Man Standing)",
+  "weight": 3.175,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 30,
+  "dcrush": 51,
+  "dmagic": 28,
+  "str": 2,
+  "mdmg": 1.0
+ },
+ "29844": {
+  "name": "Blue moon tassets (Last Man Standing)",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 22,
+  "dcrush": 23,
+  "dmagic": 32,
+  "str": 1,
+  "mdmg": 1.0
+ },
+ "29845": {
+  "name": "Blue moon helm (Last Man Standing)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 6,
+  "dcrush": 10,
+  "dmagic": 6,
+  "str": 3,
+  "mdmg": 1.0
+ },
+ "29846": {
+  "name": "Blood moon chestplate (Last Man Standing)",
+  "weight": 5.443,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -15,
+  "arange": -10,
+  "dstab": 60,
+  "dslash": 80,
+  "dcrush": 80,
+  "dmagic": 40,
+  "drange": 79,
+  "str": 4
+ },
+ "29847": {
+  "name": "Blood moon tassets (Last Man Standing)",
+  "weight": 4.082,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -21,
+  "arange": -7,
+  "dstab": 30,
+  "dslash": 50,
+  "dcrush": 49,
+  "dmagic": 32,
+  "drange": 46,
+  "str": 2
+ },
+ "29848": {
+  "name": "Blood moon helm (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -2,
+  "dstab": 20,
+  "dslash": 31,
+  "dcrush": 34,
+  "dmagic": 7,
+  "drange": 29,
+  "str": 4
+ },
+ "29849": {
+  "name": "Blue moon spear (Last Man Standing)",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 70,
+  "aslash": 62,
+  "acrush": 62,
+  "amagic": 30,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "str": 71,
+  "aspeed": 5,
+  "mdmg": 5.0,
+  "weaponCategory": "BLADED_STAFF"
+ },
+ "29850": {
+  "name": "Dual macuahuitl (Last Man Standing)",
+  "weight": 3.628,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 115,
+  "aslash": -4,
+  "acrush": 121,
+  "amagic": -4,
+  "str": 81,
+  "aspeed": 4,
+  "weaponCategory": "SPIKED"
+ },
+ "29851": {
+  "name": "Eclipse atlatl (Last Man Standing)",
+  "weight": 3.628,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 87,
+  "str": 40,
+  "aspeed": 4,
+  "weaponCategory": "THROWN"
+ },
+ "29852": {
+  "name": "Atlatl dart (Last Man Standing)",
+  "weight": 3.628,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 87,
+  "str": 40,
+  "aspeed": 4,
+  "weaponCategory": "THROWN"
+ },
+ "29870": {
+  "name": "Emissary robe top",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "29872": {
+  "name": "Emissary robe bottom",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "29874": {
+  "name": "Emissary sandals",
+  "quest": true,
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 10
+ },
+ "29889": {
+  "name": "Glacial temotli",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 11,
+  "acrush": 72,
+  "str": 64,
+  "prayer": 2,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "29892": {
+  "name": "Pendant of ates",
+  "weight": 0.06,
+  "equipable": true,
+  "slot": 2,
+  "dmagic": 3,
+  "prayer": 2
+ },
+ "29893": {
+  "name": "Pendant of ates",
+  "weight": 0.06,
+  "equipable": true,
+  "slot": 2,
+  "dmagic": 3,
+  "prayer": 2
+ },
+ "29912": {
+  "name": "Butler's tray",
+  "weight": 0.05,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "UNARMED"
+ },
+ "29913": {
+  "name": "Butler's tray",
+  "weight": 0.05,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "UNARMED"
+ },
+ "30048": {
+  "name": "Graceful cape (Varlamore)",
+  "weight": 0.8,
+  "equipable": true,
+  "slot": 1
+ },
+ "30050": {
+  "name": "Graceful cape (Varlamore)",
+  "weight": -4.0,
+  "equipable": true,
+  "slot": 1
+ },
+ "30051": {
+  "name": "Graceful top (Varlamore)",
+  "weight": 0.9,
+  "equipable": true,
+  "slot": 4
+ },
+ "30053": {
+  "name": "Graceful top (Varlamore)",
+  "weight": -5.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "30054": {
+  "name": "Graceful legs (Varlamore)",
+  "weight": 0.9,
+  "equipable": true,
+  "slot": 7
+ },
+ "30056": {
+  "name": "Graceful legs (Varlamore)",
+  "weight": -6.0,
+  "equipable": true,
+  "slot": 7
+ },
+ "30057": {
+  "name": "Graceful gloves (Varlamore)",
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 9
+ },
+ "30059": {
+  "name": "Graceful gloves (Varlamore)",
+  "weight": -3.0,
+  "equipable": true,
+  "slot": 9
+ },
+ "30060": {
+  "name": "Graceful boots (Varlamore)",
+  "weight": 0.4,
+  "equipable": true,
+  "slot": 10
+ },
+ "30062": {
+  "name": "Graceful boots (Varlamore)",
+  "weight": -4.0,
+  "equipable": true,
+  "slot": 10
+ },
+ "30064": {
+  "name": "Tome of earth",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 8,
+  "dmagic": 8
+ },
+ "30066": {
+  "name": "Tome of earth",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 8,
+  "dmagic": 8
+ },
+ "30070": {
+  "name": "Dragon hunter wand",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 16,
+  "dmagic": 16,
+  "aspeed": 5,
+  "mdmg": 10.0,
+  "weaponCategory": "STAFF"
+ },
+ "30073": {
+  "name": "Hueycoatl hide coif",
+  "weight": 0.9,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -1,
+  "arange": 7,
+  "dstab": 4,
+  "dslash": 7,
+  "dcrush": 10,
+  "dmagic": 5,
+  "drange": 8,
+  "prayer": 2
+ },
+ "30076": {
+  "name": "Hueycoatl hide body",
+  "weight": 6.803,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -15,
+  "arange": 30,
+  "dstab": 55,
+  "dslash": 47,
+  "dcrush": 60,
+  "dmagic": 56,
+  "drange": 55,
+  "prayer": 3
+ },
+ "30079": {
+  "name": "Hueycoatl hide chaps",
+  "weight": 5.443,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 31,
+  "dslash": 25,
+  "dcrush": 33,
+  "dmagic": 30,
+  "drange": 31,
+  "prayer": 2
+ },
+ "30082": {
+  "name": "Hueycoatl hide vambraces",
+  "weight": 0.283,
+  "equipable": true,
+  "slot": 9,
+  "amagic": -10,
+  "arange": 11,
+  "dstab": 6,
+  "dslash": 5,
+  "dcrush": 7,
+  "dmagic": 8,
+  "prayer": 1
+ },
+ "30156": {
+  "name": "Butler's tray",
+  "weight": 0.05,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "UNARMED"
+ },
+ "30157": {
+  "name": "Butler's tray",
+  "weight": 0.05,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "UNARMED"
  }
 }
