@@ -69,12 +69,12 @@ var burningClawsHits = []func(baseHit int) []int{
 	},
 	func(baseHit int) []int {
 		return []int{2,
-			int(baseHit/2) - 1,
-			int(baseHit/2) - 1,
+			max(0, int(baseHit/2)-1),
+			max(0, int(baseHit/2)-1),
 		}
 	},
 	func(baseHit int) []int {
-		return []int{1, 1, int(baseHit - 2)}
+		return []int{1, 1, max(0, int(baseHit-2))}
 	},
 }
 

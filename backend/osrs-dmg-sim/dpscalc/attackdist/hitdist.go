@@ -1,6 +1,10 @@
 package attackdist
 
-//hit distribution of one roll, for scythe this would be one of the 3 hitsplats
+import (
+	"errors"
+)
+
+// hit distribution of one roll, for scythe this would be one of the 3 hitsplats
 type HitDistribution struct {
 	Hits []WeightedHit
 }
@@ -100,7 +104,7 @@ func (dist *HitDistribution) getMaxHit() int {
 	return maxHit
 }
 
-//index is the hitspat sum
+// index is the hitspat sum
 func (dist *HitDistribution) flatten() []float32 {
 	flat := make([]float32, dist.getMaxHit()+1)
 	for i := range dist.Hits {
@@ -134,24 +138,39 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 }
 
 func (dist *HitDistribution) linearMin(maximum, offset int) {
-	newHits := make([]WeightedHit, 0)
+	rolls := len(dist.Hits[0].Hitsplats) //TODO assume all hits will have same num of rolls
+	sumProbs := make([]float32, (maximum+1)*rolls)
+
 	for _, weightedHit := range dist.Hits {
 		expandedHitsplats := make([][]int, 0)
+		totalProducts := 1
 		for _, hitsplat := range weightedHit.Hitsplats {
 			minHitsplats := getMinHitsplats(hitsplat, maximum, offset)
 			expandedHitsplats = append(expandedHitsplats, minHitsplats)
+			totalProducts *= len(minHitsplats)
 		}
 
-		//TODO this is a very big array on dclaw spec verzik
-		//0-10 hits -> 11hitsplats, 11^4=14k
-		//times ~200 for each hitsplats -> 2.8m size array
-		product := cross(expandedHitsplats)
-		probability := weightedHit.Probability / float32(len(product))
-		for _, expandedHitsplat := range product {
-			newHits = append(newHits, WeightedHit{Probability: probability, Hitsplats: expandedHitsplat})
+		crossIter := crossIterator(expandedHitsplats)
+		probability := weightedHit.Probability / float32(totalProducts)
+		product, err := crossIter()
+
+		for ; err == nil; product, err = crossIter() {
+			sumHit := 0
+			for _, hit := range product {
+				sumHit += hit
+			}
+			sumProbs[sumHit] += probability
 		}
 	}
-	dist.Hits = newHits
+
+	newH := make([]WeightedHit, 0, len(sumProbs))
+	for i := range sumProbs {
+		if sumProbs[i] != 0 {
+			newH = append(newH, WeightedHit{Probability: sumProbs[i], Hitsplats: []int{i}})
+		}
+	}
+
+	dist.Hits = newH
 }
 
 func getMinHitsplats(hit, maximum, offset int) []int {
@@ -212,5 +231,48 @@ func cross(values [][]int) [][]int {
 			i -= 1
 			indices[i] += 1
 		}
+	}
+}
+
+func crossIterator(values [][]int) func() ([]int, error) {
+	isEmpty := false
+	totalValues := len(values)
+	lastValueIndex := totalValues - 1
+
+	lengths := make([]int, totalValues)
+	indices := make([]int, totalValues)
+
+	for i := range values {
+		lengths[i] = len(values[i])
+	}
+
+	element := make([]int, totalValues)
+	return func() ([]int, error) {
+		if isEmpty {
+			return nil, errors.New("iterator empty")
+		}
+
+		//add the element based on the indices
+		for i, v := range indices {
+			element[i] = values[i][v]
+		}
+
+		//increment last index and handle roll over
+		i := lastValueIndex
+		indices[i] += 1
+		for indices[i] == lengths[i] {
+			//i==0 mean all indices have rolled over, cross is done
+			if i == 0 {
+				isEmpty = true
+				return element, nil
+			}
+
+			//index needs to roll over
+			indices[i] = 0
+			i -= 1
+			indices[i] += 1
+		}
+
+		return element, nil
 	}
 }

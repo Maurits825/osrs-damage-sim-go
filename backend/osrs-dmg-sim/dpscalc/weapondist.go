@@ -54,7 +54,7 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 			}
 		}
 
-		combineDist = append(combineDist, attackdist.WeightedHit{Probability: 1 - accuracy, Hitsplats: []int{0}})
+		combineDist = append(combineDist, attackdist.WeightedHit{Probability: 1 - accuracy, Hitsplats: []int{0, 0}})
 		attackDistribution = attackdist.NewSingleAttackDistribution(&attackdist.HitDistribution{Hits: combineDist})
 	}
 

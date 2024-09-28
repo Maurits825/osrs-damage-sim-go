@@ -14,12 +14,10 @@ type testInputSetup struct {
 	InputSetup  InputSetup `json:"inputSetup"`
 }
 
-var floatTolerance = float32(0.0001)
-
 func testDpsCalc(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
 		dpsCalcResults := RunDpsCalc(&testInputSetup.InputSetup)
-		if !testutil.IsFloatEqual32(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, floatTolerance) {
+		if !testutil.IsFloatEqual32(dpsCalcResults.Results[0].TheoreticalDps, testInputSetup.ExpectedDps, float32(0.0001)) {
 			t.Errorf("FAIL: " + setupName + " - Expected dps: " + fmt.Sprintf("%f", testInputSetup.ExpectedDps) + ", Actual: " + fmt.Sprintf("%f", dpsCalcResults.Results[0].TheoreticalDps))
 		}
 	}
