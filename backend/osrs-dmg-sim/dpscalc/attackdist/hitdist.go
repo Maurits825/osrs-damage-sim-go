@@ -2,6 +2,8 @@ package attackdist
 
 import (
 	"errors"
+	"math"
+	"slices"
 )
 
 // hit distribution of one roll, for scythe this would be one of the 3 hitsplats
@@ -140,27 +142,53 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 func (dist *HitDistribution) linearMin(maximum, offset int) {
 	rolls := len(dist.Hits[0].Hitsplats) //TODO assume all hits will have same num of rolls
 	sumProbs := make([]float32, (maximum+1)*rolls)
+	probCache := make(map[int][]float32)
 
-	for _, weightedHit := range dist.Hits {
-		expandedHitsplats := make([][]int, 0)
-		totalProducts := 1
-		for _, hitsplat := range weightedHit.Hitsplats {
-			minHitsplats := getMinHitsplats(hitsplat, maximum, offset)
-			expandedHitsplats = append(expandedHitsplats, minHitsplats)
-			totalProducts *= len(minHitsplats)
+	expandedHitsplats := make([][]int, rolls)
+	totalProducts := float32(math.Pow(float64(maximum+1), float64(rolls)))
+
+	for i := range expandedHitsplats {
+		expandedHitsplats[i] = make([]int, maximum+1)
+	}
+
+	for i := range dist.Hits {
+		hitsplats := dist.Hits[i].Hitsplats
+
+		//32bit/4max rolls = 8 bits for each hit, max 255
+		slices.Sort(hitsplats)
+		hash := 0
+		for _, hit := range hitsplats {
+			hash |= hit
+			hash <<= 8
+		}
+
+		if cachedProb, ok := probCache[hash]; ok {
+			for i := range cachedProb {
+				sumProbs[i] += cachedProb[i]
+			}
+			continue
+		}
+
+		for i, hit := range hitsplats {
+			for j := 0; j <= maximum; j++ {
+				expandedHitsplats[i][j] = min(hit, j+offset)
+			}
 		}
 
 		crossIter := crossIterator(expandedHitsplats)
-		probability := weightedHit.Probability / float32(totalProducts)
+		probability := dist.Hits[i].Probability / totalProducts
 		product, err := crossIter()
 
+		cachedProb := make([]float32, (maximum+1)*rolls)
 		for ; err == nil; product, err = crossIter() {
 			sumHit := 0
 			for _, hit := range product {
 				sumHit += hit
 			}
 			sumProbs[sumHit] += probability
+			cachedProb[sumHit] += probability
 		}
+		probCache[hash] = cachedProb
 	}
 
 	newH := make([]WeightedHit, 0, len(sumProbs))
@@ -171,15 +199,6 @@ func (dist *HitDistribution) linearMin(maximum, offset int) {
 	}
 
 	dist.Hits = newH
-}
-
-func getMinHitsplats(hit, maximum, offset int) []int {
-	hitsplats := make([]int, maximum+1)
-	for i := 0; i <= maximum; i++ {
-		hitsplats[i] = min(hit, i+offset)
-	}
-
-	return hitsplats
 }
 
 func getRerollHitsplats(rollmax, offset int) []int {
@@ -234,6 +253,8 @@ func cross(values [][]int) [][]int {
 	}
 }
 
+var errIterEmpty = errors.New("iterator is empty")
+
 func crossIterator(values [][]int) func() ([]int, error) {
 	isEmpty := false
 	totalValues := len(values)
@@ -249,7 +270,7 @@ func crossIterator(values [][]int) func() ([]int, error) {
 	element := make([]int, totalValues)
 	return func() ([]int, error) {
 		if isEmpty {
-			return nil, errors.New("iterator empty")
+			return nil, errIterEmpty
 		}
 
 		//add the element based on the indices
