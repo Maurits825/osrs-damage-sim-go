@@ -4,17 +4,27 @@
 </div>
 
 <div class="modal-body">
-  <div class="px-2" style="max-height: 50vh; overflow-y: auto">
-    <div *ngFor="let log of changeLogData">
-      <div>
-        <div>{{ log.title }}</div>
-        <div>
-          <ul>
-            <li *ngFor="let b of log.body">{{ b }}</li>
-          </ul>
+  <div class="card bg-transparent">
+    <div class="card-body p-2">
+      <div class="px-2" style="max-height: 50vh; overflow-y: auto">
+        <div *ngFor="let log of changeLogData">
+          <div>
+            <div>{{ log.title }}</div>
+            <div>
+              <ul>
+                <li *ngFor="let b of log.body">{{ b }}</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="my-3" />
         </div>
       </div>
-      <hr class="my-3" />
     </div>
+  </div>
+
+  <div class="text-center pt-2">
+    <a class="link-dark" target="_blank" href="https://github.com/Maurits825/osrs-damage-sim-go/commits/master/">
+      View commits on GitHub
+    </a>
   </div>
 </div>
