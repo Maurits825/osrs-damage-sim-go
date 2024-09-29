@@ -11,7 +11,10 @@ Damage simulator for OSRS written in Go with a angular web app frontend.
 - `go install github.com/air-verse/air@latest`
 - `go get .`
 - `air`
-- Run all unit tests `go test ./...`
+#### Test
+- Run all unit tests `go test -v ./...`
+- Run all benchmark tests `go test -v ./... -bench . -run=xxx`
+- Run benchmark with profiling `go test -bench . -cpuprofile='cpu.prof' -memprofile='mem.prof' -benchmem`
 
 ### Angular Frontend
 - navigate to osrs-damage-sim/frontend/osrs-damage-sim

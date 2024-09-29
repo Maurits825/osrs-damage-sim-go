@@ -916,7 +916,7 @@
   "size": 1,
   "respawn": 70,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "71": {
   "name": "Skeleton",
@@ -937,7 +937,7 @@
   "size": 1,
   "respawn": 70,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "72": {
   "name": "Skeleton",
@@ -958,7 +958,7 @@
   "size": 1,
   "respawn": 70,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "73": {
   "name": "Skeleton",
@@ -979,7 +979,7 @@
   "size": 1,
   "respawn": 70,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "74": {
   "name": "Skeleton",
@@ -1000,7 +1000,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "75": {
   "name": "Skeleton",
@@ -1021,7 +1021,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "76": {
   "name": "Skeleton",
@@ -1042,7 +1042,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "77": {
   "name": "Skeleton",
@@ -1066,7 +1066,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "78": {
   "name": "Skeleton",
@@ -1090,7 +1090,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "79": {
   "name": "Skeleton",
@@ -1114,7 +1114,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "80": {
   "name": "Skeleton",
@@ -1138,7 +1138,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "81": {
   "name": "Skeleton",
@@ -1162,7 +1162,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "82": {
   "name": "Skeleton",
@@ -1186,7 +1186,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "83": {
   "name": "Skeleton",
@@ -1210,7 +1210,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "84": {
   "name": "Skeleton Mage",
@@ -1246,7 +1246,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "86": {
   "name": "Ghost",
@@ -1269,7 +1269,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "87": {
   "name": "Ghost",
@@ -1292,7 +1292,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "88": {
   "name": "Ghost",
@@ -1315,7 +1315,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "89": {
   "name": "Ghost",
@@ -1338,7 +1338,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "90": {
   "name": "Ghost",
@@ -1361,7 +1361,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "91": {
   "name": "Ghost",
@@ -1384,7 +1384,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "92": {
   "name": "Ghost",
@@ -1407,7 +1407,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "93": {
   "name": "Ghost",
@@ -1430,7 +1430,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "94": {
   "name": "Ghost",
@@ -1453,7 +1453,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "95": {
   "name": "Ghost",
@@ -1476,7 +1476,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "96": {
   "name": "Ghost",
@@ -1499,7 +1499,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "97": {
   "name": "Ghost",
@@ -1522,7 +1522,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "98": {
   "name": "Ghost",
@@ -1545,7 +1545,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "99": {
   "name": "Ghost",
@@ -1568,7 +1568,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "100": {
   "name": "Rock Crab",
@@ -1631,7 +1631,7 @@
   "size": 2,
   "respawn": 89,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "105": {
   "name": "Hellhound",
@@ -1646,7 +1646,7 @@
   "size": 2,
   "respawn": 89,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "106": {
   "name": "Wolf",
@@ -1899,7 +1899,7 @@
   "combat": 246,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "140": {
   "name": "Dagannoth",
@@ -1986,7 +1986,7 @@
   "size": 5,
   "respawn": 16,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "240": {
   "name": "Black demon",
@@ -2002,7 +2002,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "241": {
   "name": "Baby blue dragon",
@@ -2024,7 +2024,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "242": {
   "name": "Baby blue dragon",
@@ -2046,7 +2046,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "243": {
   "name": "Baby blue dragon",
@@ -2068,7 +2068,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "244": {
   "name": "Baby red dragon",
@@ -2090,7 +2090,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "245": {
   "name": "Baby red dragon",
@@ -2112,7 +2112,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "246": {
   "name": "Baby red dragon",
@@ -2134,7 +2134,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "247": {
   "name": "Red dragon",
@@ -2157,7 +2157,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "248": {
   "name": "Red dragon",
@@ -2180,7 +2180,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "249": {
   "name": "Red dragon",
@@ -2203,7 +2203,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "250": {
   "name": "Red dragon",
@@ -2226,7 +2226,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "251": {
   "name": "Red dragon",
@@ -2249,7 +2249,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "252": {
   "name": "Black dragon",
@@ -2272,7 +2272,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "253": {
   "name": "Black dragon",
@@ -2295,7 +2295,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "254": {
   "name": "Black dragon",
@@ -2318,7 +2318,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "255": {
   "name": "Black dragon",
@@ -2341,7 +2341,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "256": {
   "name": "Black dragon",
@@ -2364,7 +2364,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "257": {
   "name": "Black dragon",
@@ -2387,7 +2387,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "258": {
   "name": "Black dragon",
@@ -2410,7 +2410,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "259": {
   "name": "Black dragon",
@@ -2433,7 +2433,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "260": {
   "name": "Green dragon",
@@ -2456,7 +2456,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "261": {
   "name": "Green dragon",
@@ -2479,7 +2479,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "262": {
   "name": "Green dragon",
@@ -2502,7 +2502,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "263": {
   "name": "Green dragon",
@@ -2525,7 +2525,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "264": {
   "name": "Green dragon",
@@ -2548,7 +2548,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "265": {
   "name": "Blue dragon",
@@ -2571,7 +2571,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "266": {
   "name": "Blue dragon",
@@ -2594,7 +2594,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "267": {
   "name": "Blue dragon",
@@ -2617,7 +2617,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "268": {
   "name": "Blue dragon",
@@ -2640,7 +2640,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "269": {
   "name": "Blue dragon",
@@ -2663,7 +2663,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "270": {
   "name": "Bronze dragon",
@@ -2686,7 +2686,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "271": {
   "name": "Bronze dragon",
@@ -2709,7 +2709,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "272": {
   "name": "Iron dragon",
@@ -2732,7 +2732,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "273": {
   "name": "Iron dragon",
@@ -2755,7 +2755,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "274": {
   "name": "Steel dragon",
@@ -2778,7 +2778,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "275": {
   "name": "Steel dragon",
@@ -2801,7 +2801,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "289": {
   "name": "Ghoul",
@@ -3025,7 +3025,7 @@
   "combat": 785,
   "size": 5,
   "respawn": 50,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "320": {
   "name": "Dark energy core",
@@ -3260,7 +3260,7 @@
   "combat": 111,
   "size": 3,
   "respawn": 15,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "413": {
   "name": "Gargoyle",
@@ -3280,7 +3280,7 @@
   "combat": 111,
   "size": 3,
   "respawn": 15,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "414": {
   "name": "Banshee",
@@ -3551,7 +3551,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "434": {
   "name": "Pyrefiend",
@@ -3573,7 +3573,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "435": {
   "name": "Pyrefiend",
@@ -3595,7 +3595,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "436": {
   "name": "Pyrefiend",
@@ -3617,7 +3617,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "437": {
   "name": "Jelly",
@@ -4120,7 +4120,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "473": {
   "name": "Ghost",
@@ -4143,7 +4143,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "474": {
   "name": "Ghost",
@@ -4166,7 +4166,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "475": {
   "name": "Hole in the wall",
@@ -4416,7 +4416,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "506": {
   "name": "Ghost",
@@ -4439,7 +4439,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "507": {
   "name": "Ghost",
@@ -4462,7 +4462,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "508": {
   "name": "Soulless",
@@ -5634,7 +5634,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "649": {
   "name": "Ice troll",
@@ -5653,7 +5653,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "650": {
   "name": "Ice troll",
@@ -5672,7 +5672,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "651": {
   "name": "Ice troll",
@@ -5691,7 +5691,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "652": {
   "name": "Ice troll",
@@ -5710,7 +5710,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "653": {
   "name": "Ice troll",
@@ -5729,7 +5729,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "654": {
   "name": "Ice troll",
@@ -5748,7 +5748,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "655": {
   "name": "Goblin",
@@ -6065,7 +6065,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "700": {
   "name": "Ice troll",
@@ -6084,7 +6084,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "701": {
   "name": "Ice troll",
@@ -6103,7 +6103,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "702": {
   "name": "Ice troll",
@@ -6122,7 +6122,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "703": {
   "name": "Ice troll",
@@ -6141,7 +6141,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "704": {
   "name": "Ice troll",
@@ -6160,7 +6160,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "705": {
   "name": "Ice troll",
@@ -6179,7 +6179,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "710": {
   "name": "Ice wolf",
@@ -6729,7 +6729,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "795": {
   "name": "Locust rider",
@@ -6820,7 +6820,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "800": {
   "name": "Locust rider",
@@ -7346,7 +7346,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "937": {
   "name": "Mountain troll",
@@ -7365,7 +7365,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "938": {
   "name": "Mountain troll",
@@ -7384,7 +7384,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "939": {
   "name": "Mountain troll",
@@ -7403,7 +7403,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "940": {
   "name": "Mountain troll",
@@ -7422,7 +7422,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "941": {
   "name": "Mountain troll",
@@ -7441,7 +7441,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "942": {
   "name": "Mountain troll",
@@ -7460,7 +7460,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "946": {
   "name": "Ghast",
@@ -10087,7 +10087,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1539": {
   "name": "Skeleton warlord",
@@ -10163,7 +10163,7 @@
   "combat": 111,
   "size": 3,
   "respawn": 15,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "1545": {
   "name": "Black knight",
@@ -10737,7 +10737,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1673": {
   "name": "Dharok the Wretched",
@@ -10761,7 +10761,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1674": {
   "name": "Guthan the Infested",
@@ -10785,7 +10785,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1675": {
   "name": "Karil the Tainted",
@@ -10809,7 +10809,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1676": {
   "name": "Torag the Corrupted",
@@ -10832,7 +10832,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1677": {
   "name": "Verac the Defiled",
@@ -10853,7 +10853,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "1678": {
   "name": "Bloodworm",
@@ -11672,7 +11672,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "1792": {
   "name": "Goat",
@@ -12039,7 +12039,7 @@
   "combat": 83,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "1872": {
   "name": "Baby black dragon",
@@ -12060,7 +12060,7 @@
   "combat": 83,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "1874": {
   "name": "Ice troll runt",
@@ -12079,7 +12079,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "1875": {
   "name": "Ice troll male",
@@ -12097,7 +12097,7 @@
   "combat": 82,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "1876": {
   "name": "Ice troll female",
@@ -12115,7 +12115,7 @@
   "combat": 82,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "1877": {
   "name": "Ice troll grunt",
@@ -12134,7 +12134,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2001": {
   "name": "Duckling",
@@ -12169,7 +12169,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2006": {
   "name": "Lesser demon",
@@ -12185,7 +12185,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2007": {
   "name": "Lesser demon",
@@ -12201,7 +12201,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2008": {
   "name": "Lesser demon",
@@ -12217,7 +12217,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2018": {
   "name": "Lesser demon",
@@ -12233,7 +12233,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2025": {
   "name": "Greater demon",
@@ -12249,7 +12249,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2026": {
   "name": "Greater demon",
@@ -12265,7 +12265,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2027": {
   "name": "Greater demon",
@@ -12281,7 +12281,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2028": {
   "name": "Greater demon",
@@ -12297,7 +12297,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2029": {
   "name": "Greater demon",
@@ -12313,7 +12313,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2030": {
   "name": "Greater demon",
@@ -12329,7 +12329,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2031": {
   "name": "Greater demon",
@@ -12345,7 +12345,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2032": {
   "name": "Greater demon",
@@ -12361,7 +12361,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2042": {
   "name": "Zulrah (Serpentine/Ranged)",
@@ -12382,7 +12382,7 @@
   "combat": 725,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2043": {
   "name": "Zulrah (Magma/Melee)",
@@ -12402,7 +12402,7 @@
   "combat": 725,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2044": {
   "name": "Zulrah (Tanzanite/Mage)",
@@ -12420,7 +12420,7 @@
   "combat": 725,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2045": {
   "name": "Snakeling",
@@ -12472,7 +12472,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2049": {
   "name": "Black demon",
@@ -12488,7 +12488,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2050": {
   "name": "Black demon",
@@ -12504,7 +12504,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2051": {
   "name": "Black demon",
@@ -12520,7 +12520,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2052": {
   "name": "Black demon",
@@ -12536,7 +12536,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2054": {
   "name": "Chaos Elemental",
@@ -12719,7 +12719,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2076": {
   "name": "Fire giant",
@@ -12738,7 +12738,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2077": {
   "name": "Fire giant",
@@ -12757,7 +12757,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2078": {
   "name": "Fire giant",
@@ -12776,7 +12776,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2079": {
   "name": "Fire giant",
@@ -12795,7 +12795,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2080": {
   "name": "Fire giant",
@@ -12814,7 +12814,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2081": {
   "name": "Fire giant",
@@ -12833,7 +12833,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2082": {
   "name": "Fire giant",
@@ -12852,7 +12852,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2083": {
   "name": "Fire giant",
@@ -12871,7 +12871,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2084": {
   "name": "Fire giant",
@@ -12890,7 +12890,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2085": {
   "name": "Ice giant",
@@ -12908,7 +12908,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2086": {
   "name": "Ice giant",
@@ -12926,7 +12926,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2087": {
   "name": "Ice giant",
@@ -12944,7 +12944,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2088": {
   "name": "Ice giant",
@@ -12962,7 +12962,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2089": {
   "name": "Ice giant",
@@ -12980,7 +12980,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2090": {
   "name": "Moss giant",
@@ -12996,7 +12996,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2091": {
   "name": "Moss giant",
@@ -13012,7 +13012,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2092": {
   "name": "Moss giant",
@@ -13028,7 +13028,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2093": {
   "name": "Moss giant",
@@ -13044,7 +13044,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2094": {
   "name": "Jogre",
@@ -13717,7 +13717,7 @@
   "combat": 596,
   "size": 2,
   "respawn": 150,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "2206": {
   "name": "Starlight",
@@ -13814,7 +13814,7 @@
   "combat": 125,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "2211": {
   "name": "Spiritual ranger",
@@ -13835,7 +13835,7 @@
   "combat": 122,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "2212": {
   "name": "Spiritual mage",
@@ -13856,7 +13856,7 @@
   "combat": 120,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "2213": {
   "name": "Knight of Saradomin",
@@ -14132,7 +14132,7 @@
   "combat": 115,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "2243": {
   "name": "Spiritual warrior",
@@ -14156,7 +14156,7 @@
   "combat": 134,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "2244": {
   "name": "Spiritual mage",
@@ -14177,7 +14177,7 @@
   "combat": 121,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "2245": {
   "name": "Goblin",
@@ -14638,7 +14638,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2478": {
   "name": "Spider",
@@ -14659,7 +14659,7 @@
   "size": 1,
   "respawn": 27,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2479": {
   "name": "Scorpion",
@@ -15343,7 +15343,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2528": {
   "name": "Ghost",
@@ -15365,7 +15365,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2529": {
   "name": "Ghost",
@@ -15387,7 +15387,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2530": {
   "name": "Ghost",
@@ -15409,7 +15409,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2531": {
   "name": "Ghost",
@@ -15431,7 +15431,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2532": {
   "name": "Ghost",
@@ -15453,7 +15453,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2533": {
   "name": "Ghost",
@@ -15475,7 +15475,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2534": {
   "name": "Ghost",
@@ -15497,7 +15497,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "2536": {
   "name": "H.A.M. Guard",
@@ -16666,7 +16666,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2842": {
   "name": "Ice warrior",
@@ -16687,7 +16687,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "2843": {
   "name": "Otherworldly being",
@@ -17051,7 +17051,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "2917": {
   "name": "Waterfiend",
@@ -17070,7 +17070,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "2918": {
   "name": "Brutal green dragon",
@@ -17092,7 +17092,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "2919": {
   "name": "Mithril dragon",
@@ -17115,7 +17115,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "2920": {
   "name": "Confused barbarian",
@@ -17412,7 +17412,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "3018": {
   "name": "Giant spider",
@@ -17426,7 +17426,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "3019": {
   "name": "Spider",
@@ -17447,7 +17447,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "3020": {
   "name": "Jungle spider",
@@ -18725,7 +18725,7 @@
   "size": 5,
   "respawn": 150,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "3130": {
   "name": "Tstanon Karlak",
@@ -18882,7 +18882,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "3140": {
   "name": "Icefiend",
@@ -18897,7 +18897,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "3141": {
   "name": "Gorak",
@@ -18924,7 +18924,7 @@
   "combat": 115,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "3160": {
   "name": "Spiritual ranger",
@@ -18938,7 +18938,7 @@
   "combat": 118,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "3161": {
   "name": "Spiritual mage",
@@ -18952,7 +18952,7 @@
   "combat": 121,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "3162": {
   "name": "Kree'arra",
@@ -18977,7 +18977,7 @@
   "size": 5,
   "respawn": 150,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3163": {
   "name": "Wingman Skree",
@@ -18992,7 +18992,7 @@
   "combat": 143,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3164": {
   "name": "Flockleader Geerin",
@@ -19007,7 +19007,7 @@
   "combat": 149,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3165": {
   "name": "Flight Kilisa",
@@ -19021,7 +19021,7 @@
   "combat": 159,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3166": {
   "name": "Spiritual warrior",
@@ -19043,7 +19043,7 @@
   "combat": 123,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "3167": {
   "name": "Spiritual ranger",
@@ -19064,7 +19064,7 @@
   "combat": 127,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "3168": {
   "name": "Spiritual mage",
@@ -19085,7 +19085,7 @@
   "combat": 123,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "None"
+  "elementalweaknesstype": "none"
  },
  "3169": {
   "name": "Aviansie",
@@ -19100,7 +19100,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3170": {
   "name": "Aviansie",
@@ -19115,7 +19115,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3171": {
   "name": "Aviansie",
@@ -19130,7 +19130,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3172": {
   "name": "Aviansie",
@@ -19145,7 +19145,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3173": {
   "name": "Aviansie",
@@ -19160,7 +19160,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3174": {
   "name": "Aviansie",
@@ -19175,7 +19175,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3175": {
   "name": "Aviansie",
@@ -19190,7 +19190,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3176": {
   "name": "Aviansie",
@@ -19205,7 +19205,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3177": {
   "name": "Aviansie",
@@ -19220,7 +19220,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3178": {
   "name": "Aviansie",
@@ -19235,7 +19235,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3179": {
   "name": "Aviansie",
@@ -19250,7 +19250,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3180": {
   "name": "Aviansie",
@@ -19265,7 +19265,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3181": {
   "name": "Aviansie",
@@ -19280,7 +19280,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3182": {
   "name": "Aviansie",
@@ -19295,7 +19295,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3183": {
   "name": "Aviansie",
@@ -19310,7 +19310,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3184": {
   "name": "Dagannoth spawn",
@@ -20995,7 +20995,7 @@
   "combat": 29,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "3651": {
   "name": "Gardener",
@@ -22065,7 +22065,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "3852": {
   "name": "Moss giant",
@@ -22081,7 +22081,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "3863": {
   "name": "Jake",
@@ -23570,7 +23570,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "4163": {
   "name": "King Roald",
@@ -23762,7 +23762,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "4195": {
   "name": "Apparition",
@@ -25123,7 +25123,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "4634": {
   "name": "Rowdy slave",
@@ -25864,7 +25864,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "4819": {
   "name": "Crab",
@@ -29842,7 +29842,7 @@
   "size": 3,
   "respawn": 16,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5816": {
   "name": "Yak",
@@ -29957,7 +29957,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "5829": {
   "name": "Ice troll male",
@@ -29975,7 +29975,7 @@
   "combat": 82,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "5830": {
   "name": "Ice troll female",
@@ -29993,7 +29993,7 @@
   "combat": 82,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "5831": {
   "name": "Ice troll grunt",
@@ -30012,7 +30012,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "5842": {
   "name": "Cow",
@@ -30089,7 +30089,7 @@
   "size": 5,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5863": {
   "name": "Cerberus",
@@ -30114,7 +30114,7 @@
   "size": 5,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5866": {
   "name": "Cerberus",
@@ -30139,7 +30139,7 @@
   "size": 5,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5872": {
   "name": "Baby green dragon",
@@ -30191,7 +30191,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5875": {
   "name": "Black demon",
@@ -30207,7 +30207,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5876": {
   "name": "Black demon",
@@ -30223,7 +30223,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5877": {
   "name": "Black demon",
@@ -30239,7 +30239,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5878": {
   "name": "Blue dragon",
@@ -30262,7 +30262,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5879": {
   "name": "Blue dragon",
@@ -30285,7 +30285,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5880": {
   "name": "Blue dragon",
@@ -30308,7 +30308,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5881": {
   "name": "Blue dragon",
@@ -30331,7 +30331,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5882": {
   "name": "Blue dragon",
@@ -30354,7 +30354,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "5886": {
   "name": "Abyssal Sire",
@@ -34099,7 +34099,7 @@
   "size": 3,
   "respawn": 16,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "6502": {
   "name": "King Black Dragon",
@@ -34331,7 +34331,7 @@
   "combat": 97,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "6588": {
   "name": "Bandosian guard",
@@ -34372,7 +34372,7 @@
   "size": 4,
   "respawn": 14,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "6594": {
   "name": "Ent",
@@ -35065,7 +35065,7 @@
   "combat": 150,
   "size": 3,
   "respawn": 27,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6767": {
   "name": "Lizardman shaman",
@@ -35087,7 +35087,7 @@
   "combat": 150,
   "size": 3,
   "respawn": 27,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6795": {
   "name": "Pyrelord",
@@ -35452,7 +35452,7 @@
   "combat": 53,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6915": {
   "name": "Lizardman",
@@ -35472,7 +35472,7 @@
   "combat": 53,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6916": {
   "name": "Lizardman",
@@ -35493,7 +35493,7 @@
   "combat": 62,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6917": {
   "name": "Lizardman",
@@ -35514,7 +35514,7 @@
   "combat": 62,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6918": {
   "name": "Lizardman brute",
@@ -35535,7 +35535,7 @@
   "combat": 75,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6919": {
   "name": "Lizardman brute",
@@ -35556,7 +35556,7 @@
   "combat": 75,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "6956": {
   "name": "Monk",
@@ -36205,7 +36205,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7145": {
   "name": "Demonic gorilla",
@@ -36227,7 +36227,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7146": {
   "name": "Demonic gorilla",
@@ -36249,7 +36249,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7147": {
   "name": "Demonic gorilla",
@@ -36271,7 +36271,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7148": {
   "name": "Demonic gorilla",
@@ -36293,7 +36293,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7149": {
   "name": "Demonic gorilla",
@@ -36315,7 +36315,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7150": {
   "name": "Tortured gorilla",
@@ -36375,7 +36375,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7153": {
   "name": "Tortured gorilla",
@@ -36571,7 +36571,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7243": {
   "name": "Black demon",
@@ -36587,7 +36587,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7244": {
   "name": "Greater demon",
@@ -36603,7 +36603,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7245": {
   "name": "Greater demon",
@@ -36619,7 +36619,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7246": {
   "name": "Greater demon",
@@ -36635,7 +36635,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7247": {
   "name": "Lesser demon",
@@ -36651,7 +36651,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7248": {
   "name": "Lesser demon",
@@ -36667,7 +36667,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7249": {
   "name": "Dust devil",
@@ -36715,7 +36715,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7252": {
   "name": "Fire giant",
@@ -36739,7 +36739,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7253": {
   "name": "Bronze dragon",
@@ -36762,7 +36762,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "7254": {
   "name": "Iron dragon",
@@ -36785,7 +36785,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "7255": {
   "name": "Steel dragon",
@@ -36808,7 +36808,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "7256": {
   "name": "Hellhound",
@@ -36823,7 +36823,7 @@
   "size": 2,
   "respawn": 89,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7257": {
   "name": "Ankou",
@@ -36907,7 +36907,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7263": {
   "name": "Ghost",
@@ -36930,7 +36930,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "7264": {
   "name": "Ghost",
@@ -36953,7 +36953,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "7265": {
   "name": "Skeleton",
@@ -37092,7 +37092,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7274": {
   "name": "Brutal red dragon",
@@ -37114,7 +37114,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7275": {
   "name": "Brutal black dragon",
@@ -37137,7 +37137,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7276": {
   "name": "Mutated Bloodveld",
@@ -38008,7 +38008,7 @@
   "dheavy": 60,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7533": {
   "name": "Abyssal portal",
@@ -38025,7 +38025,7 @@
   "dheavy": 110,
   "size": 4,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7538": {
   "name": "Vespine soldier",
@@ -38218,7 +38218,7 @@
   "dstandard": 40,
   "dheavy": 30,
   "size": 5,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "7568": {
   "name": "Glowing crystal",
@@ -38286,7 +38286,7 @@
   "dheavy": 140,
   "size": 2,
   "elementalweaknesspercent": 150,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7604": {
   "name": "Skeletal Mystic",
@@ -38310,7 +38310,7 @@
   "dstandard": 115,
   "dheavy": 75,
   "size": 2,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "7620": {
   "name": "Temple Guardian",
@@ -38370,7 +38370,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7657": {
   "name": "Lesser demon",
@@ -38386,7 +38386,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7658": {
   "name": "Mummy",
@@ -38487,7 +38487,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7679": {
   "name": "TzHaar-Ket",
@@ -38843,7 +38843,7 @@
   "combat": 150,
   "size": 3,
   "respawn": 27,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "7745": {
   "name": "Lizardman shaman",
@@ -38865,7 +38865,7 @@
   "combat": 150,
   "size": 3,
   "respawn": 27,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "7750": {
   "name": "Armoured Foe",
@@ -39065,7 +39065,7 @@
   "range": 1,
   "size": 2,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7851": {
   "name": "Dusk",
@@ -39201,7 +39201,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7862": {
   "name": "Black dragon",
@@ -39224,7 +39224,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7863": {
   "name": "Black dragon",
@@ -39247,7 +39247,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7864": {
   "name": "Ankou",
@@ -39277,7 +39277,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7866": {
   "name": "Lesser demon",
@@ -39293,7 +39293,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7867": {
   "name": "Lesser demon",
@@ -39309,7 +39309,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7868": {
   "name": "Green dragon",
@@ -39332,7 +39332,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7869": {
   "name": "Green dragon",
@@ -39355,7 +39355,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7870": {
   "name": "Green dragon",
@@ -39378,7 +39378,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7871": {
   "name": "Greater demon",
@@ -39394,7 +39394,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7872": {
   "name": "Greater demon",
@@ -39410,7 +39410,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7873": {
   "name": "Greater demon",
@@ -39426,7 +39426,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7874": {
   "name": "Black demon",
@@ -39442,7 +39442,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7875": {
   "name": "Black demon",
@@ -39458,7 +39458,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7876": {
   "name": "Black demon",
@@ -39474,7 +39474,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7877": {
   "name": "Hellhound",
@@ -39489,7 +39489,7 @@
   "size": 2,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7878": {
   "name": "Ice giant",
@@ -39507,7 +39507,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7879": {
   "name": "Ice giant",
@@ -39525,7 +39525,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7880": {
   "name": "Ice giant",
@@ -39543,7 +39543,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "7881": {
   "name": "Revenant imp",
@@ -40012,7 +40012,7 @@
   "combat": 83,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "7964": {
   "name": "Ithoi the Navigator",
@@ -40163,7 +40163,7 @@
   "combat": 380,
   "size": 4,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8030": {
   "name": "Adamant dragon",
@@ -40186,7 +40186,7 @@
   "size": 5,
   "respawn": 22,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8031": {
   "name": "Rune dragon",
@@ -40211,7 +40211,7 @@
   "size": 5,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8033": {
   "name": "Elvarg",
@@ -40578,7 +40578,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8075": {
   "name": "Red dragon",
@@ -40601,7 +40601,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8076": {
   "name": "Green dragon",
@@ -40624,7 +40624,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8078": {
   "name": "Red dragon",
@@ -40647,7 +40647,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8079": {
   "name": "Red dragon",
@@ -40670,7 +40670,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8080": {
   "name": "Iron dragon",
@@ -40693,7 +40693,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8082": {
   "name": "Green dragon",
@@ -40716,7 +40716,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8084": {
   "name": "Black dragon",
@@ -40739,7 +40739,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8085": {
   "name": "Black dragon",
@@ -40762,7 +40762,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8087": {
   "name": "Brutal red dragon",
@@ -40784,7 +40784,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8088": {
   "name": "Mithril dragon",
@@ -40807,7 +40807,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8089": {
   "name": "Mithril dragon",
@@ -40830,7 +40830,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8090": {
   "name": "Adamant dragon",
@@ -40853,7 +40853,7 @@
   "size": 5,
   "respawn": 22,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8091": {
   "name": "Rune dragon",
@@ -40878,7 +40878,7 @@
   "size": 5,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8092": {
   "name": "Brutal black dragon",
@@ -40901,7 +40901,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8093": {
   "name": "Brutal black dragon",
@@ -40924,7 +40924,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8094": {
   "name": "Galvek",
@@ -42140,7 +42140,7 @@
   "combat": 62,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "8564": {
   "name": "Lizardman brute",
@@ -42161,7 +42161,7 @@
   "combat": 75,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "8565": {
   "name": "Lizardman shaman",
@@ -42183,7 +42183,7 @@
   "combat": 150,
   "size": 2,
   "respawn": 27,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "8578": {
   "name": "Swamp frog",
@@ -42215,7 +42215,7 @@
   "combat": 284,
   "size": 3,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "8584": {
   "name": "Flower",
@@ -42265,7 +42265,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8611": {
   "name": "Wyrm",
@@ -42289,7 +42289,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "8612": {
   "name": "Drake",
@@ -42315,7 +42315,7 @@
   "size": 5,
   "respawn": 20,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8613": {
   "name": "Drake",
@@ -42341,7 +42341,7 @@
   "size": 5,
   "respawn": 20,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "8614": {
   "name": "Sulphur Lizard",
@@ -42756,7 +42756,7 @@
   "size": 2,
   "respawn": 10,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "8741": {
   "name": "Crystal impling",
@@ -44276,7 +44276,7 @@
   "combat": 204,
   "size": 3,
   "respawn": 50,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "9295": {
   "name": "Typhor",
@@ -44689,7 +44689,7 @@
   "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "9436": {
   "name": "Totem",
@@ -44709,7 +44709,7 @@
   "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "9439": {
   "name": "Totem",
@@ -44729,7 +44729,7 @@
   "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "9442": {
   "name": "Totem",
@@ -44749,7 +44749,7 @@
   "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "9445": {
   "name": "Totem",
@@ -45636,7 +45636,7 @@
   "combat": 267,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "10399": {
   "name": "Shadow Wyrm",
@@ -45657,7 +45657,7 @@
   "combat": 267,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "10400": {
   "name": "Guardian Drake",
@@ -45678,7 +45678,7 @@
   "combat": 386,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "10402": {
   "name": "Colossal Hydra",
@@ -46240,7 +46240,8 @@
   "dmagic": 2,
   "drange": 10,
   "combat": 50,
-  "size": 2
+  "size": 2,
+  "respawn": 14
  },
  "10692": {
   "name": "Rubble",
@@ -46719,7 +46720,6 @@
  "10820": {
   "name": "Nylocas Matomenos",
   "isTobEntryMode": true,
-  "hitpoints": 64,
   "att": 100,
   "str": 100,
   "def": 100,
@@ -47061,7 +47061,7 @@
   "combat": 75,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "10953": {
   "name": "Xamphur",
@@ -48194,7 +48194,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11176": {
   "name": "Araxyte",
@@ -48213,7 +48213,7 @@
   "size": 2,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11192": {
   "name": "Hespori",
@@ -48580,7 +48580,7 @@
   "dheavy": 150,
   "combat": 1001,
   "size": 3,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11279": {
   "name": "Nex",
@@ -48605,7 +48605,7 @@
   "dheavy": 150,
   "combat": 1001,
   "size": 3,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11280": {
   "name": "Nex",
@@ -48630,7 +48630,7 @@
   "dheavy": 150,
   "combat": 1001,
   "size": 3,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11281": {
   "name": "Nex",
@@ -48655,7 +48655,7 @@
   "dheavy": 150,
   "combat": 1001,
   "size": 3,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11282": {
   "name": "Nex",
@@ -48680,7 +48680,7 @@
   "dheavy": 150,
   "combat": 1001,
   "size": 3,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11283": {
   "name": "Fumus",
@@ -48770,7 +48770,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11291": {
   "name": "Spiritual Ranger",
@@ -48791,7 +48791,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11292": {
   "name": "Spiritual Mage",
@@ -48812,7 +48812,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11293": {
   "name": "Blood Reaver",
@@ -49107,7 +49107,7 @@
   "combat": 119,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11529": {
   "name": "Head Menaphite Guard",
@@ -49438,7 +49438,7 @@
   "combat": 341,
   "size": 5,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11721": {
   "name": "Kephri",
@@ -49458,7 +49458,7 @@
   "combat": 341,
   "size": 5,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11723": {
   "name": "Scarab Swarm",
@@ -49499,7 +49499,7 @@
   "combat": 89,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11725": {
   "name": "Spitting Scarab",
@@ -49524,7 +49524,7 @@
   "combat": 89,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11726": {
   "name": "Arcane Scarab",
@@ -49549,7 +49549,7 @@
   "combat": 89,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "11727": {
   "name": "Agile Scarab",
@@ -49848,7 +49848,7 @@
   "dheavy": 120,
   "combat": 359,
   "size": 5,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11779": {
   "name": "Ba-Ba",
@@ -49867,7 +49867,7 @@
   "dheavy": 120,
   "combat": 359,
   "size": 5,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11780": {
   "name": "Ba-Ba",
@@ -49886,7 +49886,7 @@
   "dheavy": 120,
   "combat": 359,
   "size": 5,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "11781": {
   "name": "Baboon",
@@ -51764,7 +51764,7 @@
   "combat": 758,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12167": {
   "name": "Duke Sucellus",
@@ -51788,7 +51788,7 @@
   "combat": 758,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12191": {
   "name": "Duke Sucellus",
@@ -51812,7 +51812,7 @@
   "combat": 758,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12192": {
   "name": "Duke Sucellus",
@@ -51836,7 +51836,7 @@
   "combat": 758,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12193": {
   "name": "Duke Sucellus (Quest)",
@@ -51860,7 +51860,7 @@
   "combat": 538,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12194": {
   "name": "Duke Sucellus (Quest)",
@@ -51884,7 +51884,7 @@
   "combat": 538,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12195": {
   "name": "Duke Sucellus (Quest)",
@@ -51908,7 +51908,7 @@
   "combat": 538,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12204": {
   "name": "The Whisperer",
@@ -52025,7 +52025,7 @@
   "dheavy": 25,
   "combat": 798,
   "size": 7,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12215": {
   "name": "The Leviathan (Quest)",
@@ -52050,7 +52050,7 @@
   "dheavy": 25,
   "combat": 593,
   "size": 7,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12219": {
   "name": "The Leviathan (Quest)",
@@ -52075,7 +52075,7 @@
   "dheavy": 25,
   "combat": 593,
   "size": 7,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12223": {
   "name": "Vardorvis",
@@ -54226,7 +54226,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "12845": {
   "name": "Moss giant",
@@ -54242,7 +54242,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "12846": {
   "name": "Moss giant",
@@ -54258,7 +54258,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "12847": {
   "name": "Moss giant",
@@ -54274,7 +54274,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "12848": {
   "name": "Hill Giant",
@@ -54491,6 +54491,19 @@
   "combat": 67,
   "size": 2
  },
+ "12979": {
+  "name": "White jaguar",
+  "hitpoints": 80,
+  "att": 55,
+  "str": 50,
+  "def": 55,
+  "mage": 1,
+  "range": 1,
+  "combat": 67,
+  "size": 2,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
  "13001": {
   "name": "Scorpion",
   "hitpoints": 17,
@@ -54654,7 +54667,7 @@
   "combat": 55,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "13032": {
   "name": "Wyrmling",
@@ -54675,7 +54688,7 @@
   "combat": 55,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth"
+  "elementalweaknesstype": "earth"
  },
  "13033": {
   "name": "Sulphur Nagua",
@@ -55380,7 +55393,7 @@
   "combat": 132,
   "size": 1,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "13477": {
   "name": "Skeleton",
@@ -55402,7 +55415,7 @@
   "combat": 132,
   "size": 1,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "13478": {
   "name": "Skeleton",
@@ -55424,7 +55437,7 @@
   "combat": 132,
   "size": 1,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "13479": {
   "name": "Skeleton",
@@ -55446,7 +55459,7 @@
   "combat": 132,
   "size": 1,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air"
+  "elementalweaknesstype": "air"
  },
  "13480": {
   "name": "Elite Black Knight",
@@ -56078,7 +56091,7 @@
   "combat": 473,
   "size": 5,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water"
+  "elementalweaknesstype": "water"
  },
  "13658": {
   "name": "Bee Swarm",
@@ -56095,7 +56108,7 @@
   "combat": 670,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "13659": {
   "name": "Thermonuclear smoke devil",
@@ -56218,7 +56231,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "13667": {
   "name": "Araxyte",
@@ -56237,7 +56250,7 @@
   "size": 2,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "13668": {
   "name": "Araxxor",
@@ -56262,6 +56275,7 @@
   "dheavy": 218,
   "combat": 890,
   "size": 7,
+  "respawn": 15,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
@@ -56290,7 +56304,7 @@
  },
  "13673": {
   "name": "Ruptura Araxyte",
-  "hitpoints": 60,
+  "hitpoints": 58,
   "att": 150,
   "str": 120,
   "def": 50,
@@ -56309,7 +56323,7 @@
   "combat": 114,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "13675": {
   "name": "Acidic Araxyte",
@@ -56332,7 +56346,7 @@
   "combat": 114,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
  },
  "13680": {
   "name": "Dreadborn Araxyte",
@@ -56351,7 +56365,764 @@
   "combat": 281,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire"
+  "elementalweaknesstype": "fire"
+ },
+ "13685": {
+  "name": "Amoxliatl",
+  "isSpectral": true,
+  "hitpoints": 520,
+  "def": 80,
+  "mage": 170,
+  "amagic": 160,
+  "mbns": 15,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 263,
+  "size": 3,
+  "respawn": 29,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "fire"
+ },
+ "13728": {
+  "name": "Frost Nagua",
+  "isSpectral": true,
+  "hitpoints": 120,
+  "att": 1,
+  "str": 1,
+  "def": 40,
+  "mage": 90,
+  "range": 1,
+  "amagic": 70,
+  "mbns": 15,
+  "dstab": 50,
+  "dslash": 50,
+  "dcrush": 10,
+  "dmagic": 60,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 104,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13732": {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13733": {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13734": {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13735": {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13736": {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13737": {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13738": {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13739": {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13740": {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13741": {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13742": {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13743": {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13744": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13747": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13749": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none"
+ },
+ "13784": {
+  "name": "Prince Itzla Arkan",
+  "hitpoints": 250,
+  "att": 150,
+  "str": 110,
+  "def": 75,
+  "mage": 55,
+  "range": 1,
+  "attbns": 150,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 10,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 167,
+  "size": 1
+ },
+ "13785": {
+  "name": "Prince Itzla Arkan",
+  "hitpoints": 250,
+  "att": 150,
+  "str": 110,
+  "def": 75,
+  "mage": 55,
+  "range": 1,
+  "attbns": 150,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 10,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 167,
+  "size": 1
+ },
+ "13787": {
+  "name": "Frost Nagua",
+  "isSpectral": true,
+  "hitpoints": 120,
+  "att": 1,
+  "str": 1,
+  "def": 40,
+  "mage": 90,
+  "range": 1,
+  "amagic": 70,
+  "mbns": 15,
+  "dstab": 50,
+  "dslash": 50,
+  "dcrush": 10,
+  "dmagic": 60,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 104,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13788": {
+  "name": "Frost Nagua",
+  "isSpectral": true,
+  "hitpoints": 120,
+  "att": 1,
+  "str": 1,
+  "def": 40,
+  "mage": 90,
+  "range": 1,
+  "amagic": 70,
+  "mbns": 15,
+  "dstab": 50,
+  "dslash": 50,
+  "dcrush": 10,
+  "dmagic": 60,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 104,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13789": {
+  "name": "Frost crab",
+  "hitpoints": 60,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dmagic": -50,
+  "combat": 15,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "13791": {
+  "name": "Frost crab",
+  "hitpoints": 60,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dmagic": -50,
+  "combat": 15,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "13799": {
+  "name": "Chilled jelly",
+  "isFire": true,
+  "hitpoints": 140,
+  "att": 95,
+  "str": 90,
+  "def": 70,
+  "mage": 95,
+  "range": 1,
+  "combat": 112,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13812": {
+  "name": "Dire Wolf Alpha",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 100,
+  "att": 120,
+  "str": 110,
+  "def": 80,
+  "mage": 40,
+  "range": 1,
+  "combat": 113,
+  "size": 3,
+  "elementalweaknesstype": "none"
+ },
+ "13813": {
+  "name": "Dire Wolf",
+  "hitpoints": 10,
+  "att": 75,
+  "str": 75,
+  "def": 70,
+  "mage": 1,
+  "range": 20,
+  "arange": 500,
+  "combat": 72,
+  "size": 2
+ },
+ "13814": {
+  "name": "Minotaur",
+  "hitpoints": 240,
+  "att": 140,
+  "str": 110,
+  "def": 100,
+  "mage": 100,
+  "attbns": 60,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 50,
+  "dmagic": 80,
+  "dlight": 140,
+  "dstandard": 140,
+  "dheavy": 140,
+  "combat": 193,
+  "size": 2
+ },
+ "13815": {
+  "name": "Minotaur",
+  "hitpoints": 240,
+  "att": 140,
+  "str": 110,
+  "def": 100,
+  "mage": 100,
+  "attbns": 60,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 50,
+  "dmagic": 80,
+  "dlight": 140,
+  "dstandard": 140,
+  "dheavy": 140,
+  "combat": 193,
+  "size": 2
+ },
+ "13968": {
+  "name": "Porcupine",
+  "hitpoints": 5,
+  "att": 4,
+  "str": 5,
+  "def": 2,
+  "mage": 1,
+  "range": 1,
+  "combat": 4,
+  "size": 1
+ },
+ "14009": {
+  "name": "The Hueycoatl",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 7,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14010": {
+  "name": "The Hueycoatl",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 7,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14011": {
+  "name": "The Hueycoatl",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 7,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14012": {
+  "name": "The Hueycoatl",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 7,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14013": {
+  "name": "The Hueycoatl",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 7,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14014": {
+  "name": "Hueycoatl tail",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 5,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14015": {
+  "name": "Hueycoatl tail (broken)",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 5,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
+ },
+ "14017": {
+  "name": "Hueycoatl body",
+  "isDragon": true,
+  "hitpoints": 250,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 1,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth"
  },
  "8367_2": {
   "name": "Blood spawn",
@@ -56385,7 +57156,7 @@
   "combat": 1099,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12167_1": {
   "name": "Duke Sucellus (Awakened)",
@@ -56409,7 +57180,7 @@
   "combat": 1099,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12191_1": {
   "name": "Duke Sucellus (Awakened)",
@@ -56433,7 +57204,7 @@
   "combat": 1099,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12192_1": {
   "name": "Duke Sucellus (Awakened)",
@@ -56457,7 +57228,7 @@
   "combat": 1099,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12204_1": {
   "name": "The Whisperer (Awakened)",
@@ -56528,7 +57299,7 @@
   "dheavy": 25,
   "combat": 1157,
   "size": 7,
-  "elementalweaknesstype": "No"
+  "elementalweaknesstype": "no"
  },
  "12223_1": {
   "name": "Vardorvis (Awakened)",

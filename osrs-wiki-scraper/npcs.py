@@ -79,7 +79,7 @@ def run():
 
                 for key in npc_trait_keys_str:
                     try:
-                        util.copy(key, doc, version, lambda x: str(x))
+                        util.copy(key, doc, version, lambda x: str(x).lower())
                     except ValueError:
                         pass
 

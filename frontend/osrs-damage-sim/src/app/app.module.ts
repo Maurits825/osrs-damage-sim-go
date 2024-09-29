@@ -49,6 +49,7 @@ import { UnitTestModalComponent } from './shared/modals/unit-test-modal/unit-tes
 import { HitDistGraphComponent } from './core/dps-results/hit-dist-graph/hit-dist-graph.component';
 import { DpsGraphComponent } from './core/dps-results/dps-graph/dps-graph.component';
 import { CalcDetailsComponent } from './core/dps-results/calc-details/calc-details.component';
+import { ChangelogModalComponent } from './shared/modals/changelog-modal/changelog-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +94,7 @@ import { CalcDetailsComponent } from './core/dps-results/calc-details/calc-detai
     HitDistGraphComponent,
     DpsGraphComponent,
     CalcDetailsComponent,
+    ChangelogModalComponent,
   ],
   imports: [
     NgSelectModule,

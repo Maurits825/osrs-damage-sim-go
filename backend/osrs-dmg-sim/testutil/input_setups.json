@@ -3733,5 +3733,254 @@
       ],
       "enableDebugTrack": false
     }
+  },
+  "Max dual mach verzik p1": {
+    "expectedDps": 3.4730573,
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "Verzik Vitur (p1)",
+          "isTobNormalMode": true,
+          "hitpoints": 2000,
+          "att": 400,
+          "str": 400,
+          "def": 20,
+          "mage": 400,
+          "range": 400,
+          "amagic": 80,
+          "mbns": 150,
+          "arange": 80,
+          "rngbns": 80,
+          "dstab": 20,
+          "dslash": 20,
+          "dcrush": 20,
+          "dmagic": 20,
+          "drange": 20,
+          "combat": 1040,
+          "size": 5,
+          "id": "8369"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": [
+              "super_combat"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "gearSetup": {
+            "setupName": "Dual macuahuitl",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Tzkal slayer helmet (i)",
+                "id": 25912
+              },
+              "1": {
+                "name": "Infernal max cape",
+                "id": 21285
+              },
+              "2": {
+                "name": "Amulet of rancour",
+                "id": 29801
+              },
+              "3": {
+                "name": "Dual macuahuitl",
+                "id": 28997
+              },
+              "4": {
+                "name": "Torva platebody",
+                "id": 26384
+              },
+              "5": null,
+              "7": {
+                "name": "Torva platelegs",
+                "id": 26386
+              },
+              "9": {
+                "name": "Ferocious gloves",
+                "id": 22981
+              },
+              "10": {
+                "name": "Primordial boots",
+                "id": 13239
+              },
+              "12": {
+                "name": "Ultor ring",
+                "id": 28307
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Pummel (Crush/Aggressive)",
+            "spell": null,
+            "isSpecial": false,
+            "prayers": [
+              "piety"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true
+          }
+        }
+      ],
+      "enableDebugTrack": false
+    }
+  },
+  "Max DHWand mith dragon slayer": {
+    "expectedDps": 7.32308,
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "Mithril dragon",
+          "isDragon": true,
+          "isFiery": true,
+          "hitpoints": 254,
+          "att": 268,
+          "str": 268,
+          "def": 268,
+          "mage": 168,
+          "range": 168,
+          "dstab": 20,
+          "dslash": 100,
+          "dcrush": 70,
+          "dmagic": 30,
+          "dlight": 90,
+          "dstandard": 90,
+          "dheavy": 65,
+          "combat": 304,
+          "size": 4,
+          "respawn": 30,
+          "elementalweaknesspercent": 50,
+          "elementalweaknesstype": "earth",
+          "id": "2919"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": [
+              "saturated_heart"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "gearSetup": {
+            "setupName": "Dragon hunter wand",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Tzkal slayer helmet (i)",
+                "id": 25912
+              },
+              "1": {
+                "name": "Imbued zamorak max cape",
+                "id": 21780
+              },
+              "2": {
+                "name": "Occult necklace",
+                "id": 12002
+              },
+              "3": {
+                "name": "Dragon hunter wand",
+                "id": 30070
+              },
+              "4": {
+                "name": "Twisted ancestral robe top",
+                "id": 24666
+              },
+              "5": {
+                "name": "Elidinis' ward (or)",
+                "id": 27253
+              },
+              "7": {
+                "name": "Twisted ancestral robe bottom",
+                "id": 24668
+              },
+              "9": {
+                "name": "Tormented bracelet",
+                "id": 19544
+              },
+              "10": {
+                "name": "Eternal boots",
+                "id": 13235
+              },
+              "12": {
+                "name": "Magus ring",
+                "id": 28313
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Spell (Magic/Autocast)",
+            "spell": "Earth Surge",
+            "isSpecial": false,
+            "prayers": [
+              "augury"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true
+          }
+        }
+      ],
+      "enableDebugTrack": false
+    }
   }
 }

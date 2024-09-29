@@ -121,7 +121,7 @@ func GetWikiData(p DataTypeProvider) any {
 	case BisGraphProvider:
 		data, err = getJsonData[BisGraphs]("json-data/bis_graph.json")
 	case IdAliasProvider:
-		data, err = getJsonData[map[string]int]("json-data/id_aliases.json")
+		data, err = getJsonData[map[int]int]("json-data/id_aliases.json")
 	}
 
 	if err != nil {

@@ -3,11 +3,13 @@ package attackdist
 import (
 	"reflect"
 	"testing"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
-func checkProbabilities(t *testing.T, flat []float64, probs map[int]float64) {
+func checkProbabilities(t *testing.T, flat []float32, probs map[int]float32) {
 	for index, prob := range probs {
-		if !isFloatEqual(flat[index], prob, tolerance) {
+		if !testutil.IsFloatEqual32(flat[index], prob, tolerance) {
 			t.Errorf("Expected %v probability %f, got %f", index, prob, flat[index])
 		}
 	}
@@ -31,8 +33,8 @@ func TestCappedReroll1(t *testing.T) {
 
 	flat := hitDistribution.flatten()
 
-	rerollProb := 1 / float64(rollmax+1)
-	probs := map[int]float64{
+	rerollProb := 1 / float32(rollmax+1)
+	probs := map[int]float32{
 		0:  0.0,
 		5:  0.2,
 		10: 0.2 * rerollProb,
@@ -61,8 +63,8 @@ func TestCappedReroll2(t *testing.T) {
 
 	flat := hitDistribution.flatten()
 
-	rerollProb := 1 / float64(rollmax+1)
-	probs := map[int]float64{
+	rerollProb := 1 / float32(rollmax+1)
+	probs := map[int]float32{
 		0:  0.0,
 		5:  0.4,
 		10: 0.2 * rerollProb,

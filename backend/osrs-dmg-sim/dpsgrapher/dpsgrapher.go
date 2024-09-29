@@ -3,6 +3,7 @@ package dpsgrapher
 import (
 	"slices"
 	"strconv"
+	"sync"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
@@ -12,14 +13,17 @@ type DpsGrapherResults struct {
 }
 
 type DpsGrapherResult struct {
-	GraphType string         `json:"graphType"`
-	XValues   []string       `json:"xValues"`
-	DpsData   []DpsGraphData `json:"dpsData"`
+	GraphType string      `json:"graphType"`
+	XValues   []int       `json:"xValues"`
+	GraphData []GraphData `json:"graphData"`
 }
 
-type DpsGraphData struct {
-	Label string    `json:"label"`
-	Dps   []float32 `json:"dps"`
+type GraphData struct {
+	Label       string    `json:"label"`
+	Dps         []float32 `json:"dps"`
+	ExpectedHit []float32 `json:"expectedHit"`
+	MaxHit      []int     `json:"maxHit"`
+	Accuracy    []float32 `json:"accuracy"`
 }
 
 type GraphType string
@@ -56,42 +60,74 @@ const (
 )
 
 func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
-	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
 	npcId, _ := strconv.Atoi(inputSetup.GlobalSettings.Npc.Id)
 
-	dpsGrapherResult := getNpcHitpointsDpsGrapher(inputSetup, NpcHitpoints)
-	dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
-
-	for _, graphType := range levelGraphTypes {
-		dpsGrapherResult := getLevelDpsGrapher(inputSetup, graphType)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	dpsResults := make(chan DpsGrapherResult, len(allGraphTypes))
+	var wg sync.WaitGroup
+	runGrapher := func(f func() DpsGrapherResult) {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			dpsResults <- f()
+		}()
 	}
 
-	dpsData := getDefenceDpsResults(inputSetup)
-	for _, graphType := range statDrainGraphTypes {
-		dpsGrapherResult := getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+	dpsDataCh := make(chan []GraphData)
+	go func() {
+		dpsDataCh <- getDefenceDpsResults(inputSetup)
+	}()
+
+	runGrapher(func() DpsGrapherResult { return getNpcHitpointsDpsGrapher(inputSetup, NpcHitpoints) })
+
+	for _, graphType := range levelGraphTypes {
+		runGrapher(func() DpsGrapherResult { return getLevelDpsGrapher(inputSetup, graphType) })
 	}
 
 	if dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id).IsXerician {
-		dpsGrapherResult := getTeamSizeDpsGrapher(inputSetup, TeamSize)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+		runGrapher(func() DpsGrapherResult { return getTeamSizeDpsGrapher(inputSetup, TeamSize) })
 	}
+
 	if slices.Contains(dpscalc.ToaIds, npcId) {
-		dpsGrapherResult := getToaRaidLevelDpsGrapher(inputSetup, ToaRaidLevel)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, dpsGrapherResult)
+		runGrapher(func() DpsGrapherResult { return getToaRaidLevelDpsGrapher(inputSetup, ToaRaidLevel) })
+	}
+
+	wg.Wait()
+
+	close(dpsResults)
+
+	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
+	dpsData := <-dpsDataCh
+	for _, graphType := range statDrainGraphTypes {
+		statDrainResults := getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, statDrainResults)
+	}
+
+	for result := range dpsResults {
+		dpsGrapherResults.Results = append(dpsGrapherResults.Results, result)
 	}
 
 	return &dpsGrapherResults
 }
 
-func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *dpscalc.GlobalSettings, inputGearSetup *dpscalc.InputGearSetup) DpsGraphData {
-	dps := make([]float32, (maxValue-startValue)+1)
+func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *dpscalc.GlobalSettings, inputGearSetup *dpscalc.InputGearSetup) GraphData {
+	dataSize := (maxValue - startValue) + 1
+	graphData := GraphData{
+		Label:       inputGearSetup.GearSetup.Name,
+		Dps:         make([]float32, dataSize),
+		ExpectedHit: make([]float32, dataSize),
+		MaxHit:      make([]int, dataSize),
+		Accuracy:    make([]float32, dataSize),
+	}
 
 	calcDps := func(v int) {
 		*value = v
 		dpsCalcResult := dpscalc.DpsCalcGearSetup(globalSettings, inputGearSetup, nil)
-		dps[v-startValue] = dpsCalcResult.TheoreticalDps
+
+		index := v - startValue
+		graphData.Dps[index] = dpsCalcResult.TheoreticalDps
+		graphData.ExpectedHit[index] = float32(dpsCalcResult.ExpectedHit)
+		graphData.MaxHit[index] = len(dpsCalcResult.HitDist)
+		graphData.Accuracy[index] = dpsCalcResult.Accuracy
 	}
 
 	for _, v := range []int{startValue, maxValue} {
@@ -99,30 +135,34 @@ func getDpsGraphData(value *int, startValue int, maxValue int, globalSettings *d
 	}
 
 	//if the first and last dps are the same, just assume they all will be to avoid unnecessary calcs
-	if dps[0] == dps[len(dps)-1] {
-		for i := 0; i < len(dps); i++ {
-			dps[i] = dps[0]
+	if graphData.Dps[0] == graphData.Dps[dataSize-1] {
+		for i := 0; i < dataSize; i++ {
+			graphData.Dps[i] = graphData.Dps[0]
+			graphData.ExpectedHit[i] = graphData.ExpectedHit[0]
+			graphData.MaxHit[i] = graphData.MaxHit[0]
+			graphData.Accuracy[i] = graphData.Accuracy[0]
 		}
-		return DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+		return graphData
 	}
 
 	for v := startValue; v <= maxValue; v++ {
 		calcDps(v)
 	}
-	return DpsGraphData{Label: inputGearSetup.GearSetup.Name, Dps: dps}
+
+	return graphData
 }
 
-func getXValues(startValue int, maxValue int) []string {
-	xValues := make([]string, (maxValue-startValue)+1)
+func getXValues(startValue int, maxValue int) []int {
+	xValues := make([]int, (maxValue-startValue)+1)
 	for value := startValue; value <= maxValue; value++ {
-		xValues[value-startValue] = strconv.Itoa(value)
+		xValues[value-startValue] = value
 	}
 	return xValues
 }
 
 func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
 	xValues := getXValues(1, maxLevel)
-	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+	dpsGraphDatas := make([]GraphData, len(inputSetup.InputGearSetups))
 
 	var statChange *int
 	//loop here creates a copy of the slice
@@ -146,7 +186,7 @@ func getLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) Dps
 func getTeamSizeDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
 	maxTeamSize := 10 //TODO get this based on npc id?
 	xValues := getXValues(1, maxTeamSize)
-	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+	dpsGraphDatas := make([]GraphData, len(inputSetup.InputGearSetups))
 
 	//create a copy
 	globalSettings := inputSetup.GlobalSettings
@@ -158,12 +198,12 @@ func getTeamSizeDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) 
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
 
-func getDefenceDpsResults(inputSetup *dpscalc.InputSetup) []DpsGraphData {
+func getDefenceDpsResults(inputSetup *dpscalc.InputSetup) []GraphData {
 	npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
 	npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
 	maxValue := npc.BaseCombatStats.Defence
 
-	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+	dpsGraphDatas := make([]GraphData, len(inputSetup.InputGearSetups))
 
 	//loop here creates a copy of the slice
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
@@ -175,7 +215,7 @@ func getDefenceDpsResults(inputSetup *dpscalc.InputSetup) []DpsGraphData {
 	return dpsGraphDatas
 }
 
-func getStatDrainDpsGrapher(dpsData []DpsGraphData, graphType GraphType, settings dpscalc.GlobalSettings) DpsGrapherResult {
+func getStatDrainDpsGrapher(statDrainData []GraphData, graphType GraphType, settings dpscalc.GlobalSettings) DpsGrapherResult {
 	var statDrainName dpscalc.StatDrainWeapon
 	maxValue := 10
 	switch graphType {
@@ -189,7 +229,7 @@ func getStatDrainDpsGrapher(dpsData []DpsGraphData, graphType GraphType, setting
 		statDrainName = dpscalc.Arclight
 	case BandosGodsword:
 		statDrainName = dpscalc.BandosGodsword
-		maxValue = len(dpsData[0].Dps)
+		maxValue = len(statDrainData[0].Dps)
 	case AccursedSceptre:
 		statDrainName = dpscalc.AccursedSceptre
 		maxValue = 1
@@ -198,31 +238,44 @@ func getStatDrainDpsGrapher(dpsData []DpsGraphData, graphType GraphType, setting
 	}
 
 	xValues := getXValues(0, maxValue)
-	dpsGraphDatas := make([]DpsGraphData, len(dpsData))
+	graphData := make([]GraphData, len(statDrainData))
+	dataSize := maxValue + 1
+	for i := range statDrainData {
+		data := GraphData{Label: statDrainData[i].Label,
+			Dps:         make([]float32, dataSize),
+			ExpectedHit: make([]float32, dataSize),
+			MaxHit:      make([]int, dataSize),
+			Accuracy:    make([]float32, dataSize),
+		}
 
-	for i := range dpsData {
-		dps := make([]float32, maxValue+1)
 		for value := 0; value <= maxValue; value++ {
 			npc := dpscalc.GetNpc(settings.Npc.Id)
 			npc.ApplyNpcScaling(&settings)
 			npc.ApplyStatDrain(&settings, []dpscalc.StatDrain{{Name: statDrainName, Value: value}})
-			dps[value] = dpsData[i].Dps[npc.BaseCombatStats.Defence-npc.CombatStats.Defence]
+
+			defIndex := npc.BaseCombatStats.Defence - npc.CombatStats.Defence
+			data.Dps[value] = statDrainData[i].Dps[defIndex]
+			data.ExpectedHit[value] = statDrainData[i].ExpectedHit[defIndex]
+			data.MaxHit[value] = statDrainData[i].MaxHit[defIndex]
+			data.Accuracy[value] = statDrainData[i].Accuracy[defIndex]
 		}
-		dpsGraphDatas[i] = DpsGraphData{Label: dpsData[i].Label, Dps: dps}
+
+		graphData[i] = data
 	}
-	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
+
+	return DpsGrapherResult{string(graphType), xValues, graphData}
 }
 
 func getToaRaidLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {
 	xValues := getXValues(0, maxToaRaidLevel)
-	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+	dpsGraphDatas := make([]GraphData, len(inputSetup.InputGearSetups))
 
 	//create a copy
 	globalSettings := inputSetup.GlobalSettings
 	raidLevel := &globalSettings.RaidLevel
 
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		dpsGraphDatas[i] = getDpsGraphData(raidLevel, 1, maxToaRaidLevel, &globalSettings, &inputGearSetup)
+		dpsGraphDatas[i] = getDpsGraphData(raidLevel, 0, maxToaRaidLevel, &globalSettings, &inputGearSetup)
 	}
 	return DpsGrapherResult{string(graphType), xValues, dpsGraphDatas}
 }
@@ -232,7 +285,7 @@ func getNpcHitpointsDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphTy
 	npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
 	maxHitpoints := npc.BaseCombatStats.Hitpoints
 	xValues := getXValues(1, maxHitpoints)
-	dpsGraphDatas := make([]DpsGraphData, len(inputSetup.InputGearSetups))
+	dpsGraphDatas := make([]GraphData, len(inputSetup.InputGearSetups))
 
 	//create a copy
 	globalSettings := inputSetup.GlobalSettings

@@ -38,11 +38,14 @@ const (
 	sangStaff        = 22323
 	dawnbringer      = 22516
 	warpedSceptre    = 28583
+	dragonHunterWand = 30070
 
 	brimstoneRing = 22975
 	osmumtenFang  = 26219
 
 	scythe = 22325
+
+	dualMachiato = 28997
 
 	tomeOfFire = 20714
 

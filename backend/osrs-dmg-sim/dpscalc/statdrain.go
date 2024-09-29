@@ -3,7 +3,7 @@ package dpscalc
 import "slices"
 
 func getMinDefence(npc *npc) int {
-	if npc.name == "Verzik Vitur" || npc.name == "Vardorvis" {
+	if slices.Contains(verzikIds, npc.id) || npc.name == "Vardorvis" {
 		return npc.CombatStats.Defence
 	}
 	if npc.name == "Sotetseg" {

@@ -1,13 +1,19 @@
 package attackdist
 
-//hit distribution of one roll, for scythe this would be one of the 3 hitsplats
+import (
+	"errors"
+	"math"
+	"slices"
+)
+
+// hit distribution of one roll, for scythe this would be one of the 3 hitsplats
 type HitDistribution struct {
 	Hits []WeightedHit
 }
 
-func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDistribution {
+func GetLinearHitDistribution(accuracy float32, minimum int, maximum int) *HitDistribution {
 	dist := &HitDistribution{make([]WeightedHit, 2+maximum-minimum)}
-	hitProbability := accuracy / (float64(maximum - minimum + 1))
+	hitProbability := accuracy / (float32(maximum - minimum + 1))
 
 	for i := minimum; i <= maximum; i++ {
 		dist.Hits[1+i-minimum] = WeightedHit{Probability: hitProbability, Hitsplats: []int{(max(1, i))}}
@@ -19,7 +25,7 @@ func GetLinearHitDistribution(accuracy float64, minimum int, maximum int) *HitDi
 	return dist
 }
 
-func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum int, hitsplatCount int) *HitDistribution {
+func GetMultiHitOneRollHitDistribution(accuracy float32, minimum int, maximum int, hitsplatCount int) *HitDistribution {
 	hits := make([]int, maximum-minimum+1)
 	for i := minimum; i <= maximum; i++ {
 		hits[i] = i
@@ -33,7 +39,7 @@ func GetMultiHitOneRollHitDistribution(accuracy float64, minimum int, maximum in
 	product := cross(hitsplats) //TODO we modify cross to get 0->1 roll?
 
 	dist := &HitDistribution{make([]WeightedHit, len(product))}
-	probability := accuracy / float64(len(product))
+	probability := accuracy / float32(len(product))
 	for i, expandedHitsplat := range product {
 		//TODO otherwise we have to go through the hitsplats and max(1, hit) on them?
 		dist.Hits[i] = WeightedHit{Probability: probability, Hitsplats: expandedHitsplat}
@@ -55,20 +61,20 @@ func (dist *HitDistribution) Clone() HitDistribution {
 	return newDist
 }
 
-func (dist *HitDistribution) AddWeightedHit(probability float64, hitsplats []int) {
+func (dist *HitDistribution) AddWeightedHit(probability float32, hitsplats []int) {
 	dist.Hits = append(dist.Hits, WeightedHit{Probability: probability, Hitsplats: hitsplats})
 }
 
-func (dist *HitDistribution) ScaleProbability(factor float64) {
+func (dist *HitDistribution) ScaleProbability(factor float32) {
 	for i := range dist.Hits {
 		dist.Hits[i].scale(factor)
 	}
 }
 
-func (dist *HitDistribution) ScaleDamage(factor float64, divisor float64) {
+func (dist *HitDistribution) ScaleDamage(factor float32, divisor float32) {
 	for i := range dist.Hits {
 		for j, hitsplat := range dist.Hits[i].Hitsplats {
-			dist.Hits[i].Hitsplats[j] = int(float64(hitsplat) * factor / divisor)
+			dist.Hits[i].Hitsplats[j] = int(float32(hitsplat) * factor / divisor)
 		}
 	}
 }
@@ -81,8 +87,8 @@ func (dist *HitDistribution) MinMaxCap(minHit, maxHit int) {
 	}
 }
 
-func (dist *HitDistribution) getExpectedHit() float64 {
-	expectedHit := 0.0
+func (dist *HitDistribution) getExpectedHit() float32 {
+	expectedHit := float32(0.0)
 	for i := range dist.Hits {
 		expectedHit += dist.Hits[i].getExpectedHit()
 	}
@@ -100,9 +106,9 @@ func (dist *HitDistribution) getMaxHit() int {
 	return maxHit
 }
 
-//index is the hitspat sum
-func (dist *HitDistribution) flatten() []float64 {
-	flat := make([]float64, dist.getMaxHit()+1)
+// index is the hitspat sum
+func (dist *HitDistribution) flatten() []float32 {
+	flat := make([]float32, dist.getMaxHit()+1)
 	for i := range dist.Hits {
 		hit := &dist.Hits[i]
 		flat[hit.getSum()] += hit.Probability
@@ -125,7 +131,7 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 		}
 
 		product := cross(expandedHitsplats)
-		probability := weightedHit.Probability / float64(len(product))
+		probability := weightedHit.Probability / float32(len(product))
 		for _, expandedHitsplat := range product {
 			newHits = append(newHits, WeightedHit{Probability: probability, Hitsplats: expandedHitsplat})
 		}
@@ -134,33 +140,65 @@ func (dist *HitDistribution) cappedReroll(limit int, rollmax int, offset int) {
 }
 
 func (dist *HitDistribution) linearMin(maximum, offset int) {
-	newHits := make([]WeightedHit, 0)
-	for _, weightedHit := range dist.Hits {
-		expandedHitsplats := make([][]int, 0)
-		for _, hitsplat := range weightedHit.Hitsplats {
-			minHitsplats := getMinHitsplats(hitsplat, maximum, offset)
-			expandedHitsplats = append(expandedHitsplats, minHitsplats)
-		}
+	rolls := len(dist.Hits[0].Hitsplats) //TODO assume all hits will have same num of rolls
+	sumProbs := make([]float32, (maximum+1)*rolls)
+	probCache := make(map[int][]float32)
 
-		//TODO this is a very big array on dclaw spec verzik
-		//0-10 hits -> 11hitsplats, 11^4=14k
-		//times ~200 for each hitsplats -> 2.8m size array
-		product := cross(expandedHitsplats)
-		probability := weightedHit.Probability / float64(len(product))
-		for _, expandedHitsplat := range product {
-			newHits = append(newHits, WeightedHit{Probability: probability, Hitsplats: expandedHitsplat})
-		}
-	}
-	dist.Hits = newHits
-}
+	expandedHitsplats := make([][]int, rolls)
+	totalProducts := float32(math.Pow(float64(maximum+1), float64(rolls)))
 
-func getMinHitsplats(hit, maximum, offset int) []int {
-	hitsplats := make([]int, maximum+1)
-	for i := 0; i <= maximum; i++ {
-		hitsplats[i] = min(hit, i+offset)
+	for i := range expandedHitsplats {
+		expandedHitsplats[i] = make([]int, maximum+1)
 	}
 
-	return hitsplats
+	for i := range dist.Hits {
+		hitsplats := dist.Hits[i].Hitsplats
+
+		//32bit/4max rolls = 8 bits for each hit, max 255
+		slices.Sort(hitsplats)
+		hash := 0
+		for _, hit := range hitsplats {
+			hash |= hit
+			hash <<= 8
+		}
+
+		if cachedProb, ok := probCache[hash]; ok {
+			for i := range cachedProb {
+				sumProbs[i] += cachedProb[i]
+			}
+			continue
+		}
+
+		for i, hit := range hitsplats {
+			for j := 0; j <= maximum; j++ {
+				expandedHitsplats[i][j] = min(hit, j+offset)
+			}
+		}
+
+		crossIter := crossIterator(expandedHitsplats)
+		probability := dist.Hits[i].Probability / totalProducts
+		product, err := crossIter()
+
+		cachedProb := make([]float32, (maximum+1)*rolls)
+		for ; err == nil; product, err = crossIter() {
+			sumHit := 0
+			for _, hit := range product {
+				sumHit += hit
+			}
+			sumProbs[sumHit] += probability
+			cachedProb[sumHit] += probability
+		}
+		probCache[hash] = cachedProb
+	}
+
+	newH := make([]WeightedHit, 0, len(sumProbs))
+	for i := range sumProbs {
+		if sumProbs[i] != 0 {
+			newH = append(newH, WeightedHit{Probability: sumProbs[i], Hitsplats: []int{i}})
+		}
+	}
+
+	dist.Hits = newH
 }
 
 func getRerollHitsplats(rollmax, offset int) []int {
@@ -212,5 +250,50 @@ func cross(values [][]int) [][]int {
 			i -= 1
 			indices[i] += 1
 		}
+	}
+}
+
+var errIterEmpty = errors.New("iterator is empty")
+
+func crossIterator(values [][]int) func() ([]int, error) {
+	isEmpty := false
+	totalValues := len(values)
+	lastValueIndex := totalValues - 1
+
+	lengths := make([]int, totalValues)
+	indices := make([]int, totalValues)
+
+	for i := range values {
+		lengths[i] = len(values[i])
+	}
+
+	element := make([]int, totalValues)
+	return func() ([]int, error) {
+		if isEmpty {
+			return nil, errIterEmpty
+		}
+
+		//add the element based on the indices
+		for i, v := range indices {
+			element[i] = values[i][v]
+		}
+
+		//increment last index and handle roll over
+		i := lastValueIndex
+		indices[i] += 1
+		for indices[i] == lengths[i] {
+			//i==0 mean all indices have rolled over, cross is done
+			if i == 0 {
+				isEmpty = true
+				return element, nil
+			}
+
+			//index needs to roll over
+			indices[i] = 0
+			i -= 1
+			indices[i] += 1
+		}
+
+		return element, nil
 	}
 }

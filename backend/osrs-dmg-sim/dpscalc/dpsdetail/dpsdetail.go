@@ -140,7 +140,10 @@ func (entries *detailEntries) TrackValue(detailKey DetailKey, value interface{})
 
 func (entries *detailEntries) TrackAdd(detailKey DetailKey, base int, add int) int {
 	result := base + add
-	operation := fmt.Sprintf("%d+%d", base, add)
+	operation := ""
+	if entries.enableTrack {
+		operation = fmt.Sprintf("%d+%d", base, add)
+	}
 
 	entries.track(detailKey, result, operation)
 	return result
@@ -148,7 +151,10 @@ func (entries *detailEntries) TrackAdd(detailKey DetailKey, base int, add int) i
 
 func (entries *detailEntries) TrackFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
 	result := int(float32(base*numerator) / float32(denominator))
-	operation := fmt.Sprintf("%d * %d/%d", base, numerator, denominator)
+	operation := ""
+	if entries.enableTrack {
+		operation = fmt.Sprintf("%d * %d/%d", base, numerator, denominator)
+	}
 
 	entries.track(detailKey, result, operation)
 	return result
@@ -156,7 +162,10 @@ func (entries *detailEntries) TrackFactor(detailKey DetailKey, base int, numerat
 
 func (entries *detailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
 	result := int(float32(effectiveLevel*gearBonus+320) / 640.0)
-	operation := fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
+	operation := ""
+	if entries.enableTrack {
+		operation = fmt.Sprintf("(%d * %d + 320) / 640", effectiveLevel, gearBonus)
+	}
 	entries.track(detailKey, result, operation)
 	return result
 }

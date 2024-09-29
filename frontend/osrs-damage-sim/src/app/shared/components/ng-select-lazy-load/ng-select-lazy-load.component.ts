@@ -29,6 +29,9 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
   selectedValue: T;
 
   @Input()
+  searchable = true;
+
+  @Input()
   searchProperty: string;
 
   @Input()

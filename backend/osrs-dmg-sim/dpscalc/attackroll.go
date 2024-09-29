@@ -100,12 +100,11 @@ func getMeleeAttackRoll(player *player) int {
 				inqCount++
 			}
 		}
-		if inqCount == 3 {
-			inqCount = 5
-		}
 		if inqCount > 0 {
 			if player.equippedGear.isEquipped(inqMace) {
-				inqCount *= 3
+				inqCount *= 5
+			} else if inqCount == 3 {
+				inqCount = 5
 			}
 			attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyInq, attackRoll, 200+inqCount, 200)
 		}
@@ -214,6 +213,8 @@ func getMagicAttackRoll(player *player) int {
 
 	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
+	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.npc.IsDragon {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 15, 10)
 	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 23, 20)
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {

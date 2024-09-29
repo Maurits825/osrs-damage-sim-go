@@ -3,6 +3,7 @@ package dpscalc
 import (
 	"slices"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -90,16 +91,19 @@ func getGearSetupSettingsLabel(settings *GearSetupSettings) string {
 		getAttackCycleLabel(settings.AttackCycle),
 	}
 
-	finalLabel := ""
+	var builder strings.Builder
 	for _, label := range labels {
 		if label != "" {
-			finalLabel += label + " | "
+			builder.WriteString(label)
+			builder.WriteString(" | ")
 		}
 	}
 
-	if finalLabel != "" {
-		return finalLabel[:len(finalLabel)-2]
+	if builder.Len() > 0 {
+		label := builder.String()
+		return label[:len(label)-2]
 	}
+
 	return ""
 }
 
@@ -126,13 +130,18 @@ func getCombatStatsLabel(combatStats *CombatStats) string {
 }
 
 func getPotionBoostLabel(potionBoosts []PotionBoost) string {
-	label := ""
+	var builder strings.Builder
+
 	for _, potionBoost := range potionBoosts {
-		label += potionLabels[potionBoost] + ", "
+		builder.WriteString(potionLabels[potionBoost])
+		builder.WriteString(", ")
 	}
-	if label != "" {
+
+	if builder.Len() > 0 {
+		label := builder.String()
 		return "Potions: " + label[:len(label)-2]
 	}
+
 	return ""
 }
 

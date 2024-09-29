@@ -18,8 +18,8 @@ func (attackDist *AttackDistribution) SetSingleAttackDistribution(dist *HitDistr
 	attackDist.Distributions = []*HitDistribution{dist}
 }
 
-func (attackDist *AttackDistribution) GetExpectedHit() float64 {
-	expectedHit := 0.0
+func (attackDist *AttackDistribution) GetExpectedHit() float32 {
+	expectedHit := float32(0.0)
 	for i := range attackDist.Distributions {
 		expectedHit += attackDist.Distributions[i].getExpectedHit()
 	}
@@ -34,19 +34,19 @@ func (attackDist *AttackDistribution) GetMaxHitsplats() []int {
 	return maxHits
 }
 
-func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
+func (attackDist *AttackDistribution) GetFlatHitDistribution() []float32 {
 	//first get max hit of all distributions, to know the range of dist list
 	maxHit := 0
 	for i := range attackDist.Distributions {
 		maxHit += attackDist.Distributions[i].getMaxHit()
 	}
 
-	flatHitDist := make([]float64, maxHit+1)
+	flatHitDist := make([]float32, maxHit+1)
 	flatHitDist[0] = 1.0
 
 	for i := range attackDist.Distributions {
 		dist := attackDist.Distributions[i]
-		distCombined := make([]float64, maxHit+1)
+		distCombined := make([]float32, maxHit+1)
 
 		flat := dist.flatten()
 		//iterate over current hit dist
@@ -71,13 +71,13 @@ func (attackDist *AttackDistribution) GetFlatHitDistribution() []float64 {
 	return flatHitDist
 }
 
-func (attackDist *AttackDistribution) ScaleDamage(factor float64, divisor float64) {
+func (attackDist *AttackDistribution) ScaleDamage(factor float32, divisor float32) {
 	for i := range attackDist.Distributions {
 		attackDist.Distributions[i].ScaleDamage(factor, divisor)
 	}
 }
 
-func (attackDist *AttackDistribution) ScaleProbability(factor float64) {
+func (attackDist *AttackDistribution) ScaleProbability(factor float32) {
 	for i := range attackDist.Distributions {
 		attackDist.Distributions[i].ScaleProbability(factor)
 	}

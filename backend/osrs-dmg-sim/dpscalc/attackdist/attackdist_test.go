@@ -1,35 +1,24 @@
 package attackdist
 
 import (
-	"math"
 	"testing"
+
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/testutil"
 )
 
-// TODO common test utils?
-var tolerance = float64(0.0000001)
+var tolerance = float32(0.00001)
 
-func isFloatEqual(a, b, t float64) bool {
-	if a == b {
-		return true
-	}
-	if d := math.Abs(float64(a - b)); d < float64(t) {
-		return true
-	}
-	return false
-}
-
-func isProbabilityEqual(actual, expected float64, t *testing.T) {
-
-	if !isFloatEqual(actual, expected, tolerance) {
+func isProbabilityEqual(actual, expected float32, t *testing.T) {
+	if !testutil.IsFloatEqual32(actual, expected, tolerance) {
 		t.Fatalf("Expected probability to be %f, got %f", expected, actual)
 	}
 }
 
 func TestSingleGetHitDistribution(t *testing.T) {
-	accuracy := 0.7
+	accuracy := float32(0.7)
 	minimum := 0
 	maximum := 10
-	hitProbability := accuracy / (float64(maximum - minimum + 1))
+	hitProbability := accuracy / (float32(maximum - minimum + 1))
 
 	hitDist := GetLinearHitDistribution(accuracy, minimum, maximum)
 	attackDist := NewSingleAttackDistribution(hitDist)
@@ -41,14 +30,14 @@ func TestSingleGetHitDistribution(t *testing.T) {
 }
 
 func TestMultiGetHitDistribution(t *testing.T) {
-	accuracy := 0.7
+	accuracy := float32(0.7)
 	minimum := 0
 	maximum := []int{20, 10}
-	hitProbability := make([]float64, len(maximum))
+	hitProbability := make([]float32, len(maximum))
 	hitDists := make([]*HitDistribution, len(maximum))
 
 	for i, m := range maximum {
-		hitProbability[i] = accuracy / (float64(m - minimum + 1))
+		hitProbability[i] = accuracy / (float32(m - minimum + 1))
 		hitDists[i] = GetLinearHitDistribution(accuracy, minimum, m)
 	}
 
