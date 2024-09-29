@@ -240,7 +240,7 @@
   "dheavy": 110,
   "size": 4,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "7533"
  },
  {
@@ -320,7 +320,7 @@
   "combat": 114,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "13675"
  },
  {
@@ -361,7 +361,7 @@
   "size": 5,
   "respawn": 22,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "8030"
  },
  {
@@ -527,7 +527,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1672"
  },
  {
@@ -717,6 +717,28 @@
   "size": 2,
   "respawn": 50,
   "id": "7799"
+ },
+ {
+  "name": "Amoxliatl",
+  "isSpectral": true,
+  "hitpoints": 520,
+  "def": 80,
+  "mage": 170,
+  "amagic": 160,
+  "mbns": 15,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 263,
+  "size": 3,
+  "respawn": 29,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "fire",
+  "id": "13685"
  },
  {
   "name": "Ancient Guardian",
@@ -1291,6 +1313,7 @@
   "dheavy": 218,
   "combat": 890,
   "size": 7,
+  "respawn": 15,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire",
   "id": "13668"
@@ -1312,7 +1335,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11175"
  },
  {
@@ -1332,7 +1355,7 @@
   "size": 2,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11176"
  },
  {
@@ -1358,7 +1381,7 @@
   "combat": 89,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11726"
  },
  {
@@ -1441,7 +1464,7 @@
   "combat": 97,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "6587"
  },
  {
@@ -1820,7 +1843,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3169"
  },
  {
@@ -1836,7 +1859,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3170"
  },
  {
@@ -1852,7 +1875,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3171"
  },
  {
@@ -1868,7 +1891,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3172"
  },
  {
@@ -1884,7 +1907,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3173"
  },
  {
@@ -1900,7 +1923,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3174"
  },
  {
@@ -1916,7 +1939,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3175"
  },
  {
@@ -1932,7 +1955,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3176"
  },
  {
@@ -1948,7 +1971,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3177"
  },
  {
@@ -1964,7 +1987,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3178"
  },
  {
@@ -1980,7 +2003,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3179"
  },
  {
@@ -1996,7 +2019,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3180"
  },
  {
@@ -2012,7 +2035,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3181"
  },
  {
@@ -2028,7 +2051,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3182"
  },
  {
@@ -2044,7 +2067,7 @@
   "size": 2,
   "respawn": 25,
   "elementalweaknesspercent": 45,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3183"
  },
  {
@@ -2075,7 +2098,7 @@
   "dheavy": 120,
   "combat": 359,
   "size": 5,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "11778"
  },
  {
@@ -2282,7 +2305,7 @@
   "combat": 83,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "1871"
  },
  {
@@ -2305,7 +2328,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "241"
  },
  {
@@ -2364,7 +2387,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "244"
  },
  {
@@ -2809,7 +2832,7 @@
   "combat": 204,
   "size": 3,
   "respawn": 50,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "9293"
  },
  {
@@ -3240,7 +3263,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "240"
  },
  {
@@ -3257,7 +3280,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7242"
  },
  {
@@ -3274,7 +3297,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7243"
  },
  {
@@ -3291,7 +3314,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7874"
  },
  {
@@ -3331,7 +3354,7 @@
   "size": 4,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "252"
  },
  {
@@ -3355,7 +3378,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7861"
  },
  {
@@ -3753,7 +3776,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "265"
  },
  {
@@ -3798,6 +3821,7 @@
   "drange": 10,
   "combat": 50,
   "size": 2,
+  "respawn": 14,
   "id": "10691"
  },
  {
@@ -4021,7 +4045,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "270"
  },
  {
@@ -4045,7 +4069,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "7253"
  },
  {
@@ -4119,7 +4143,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7275"
  },
  {
@@ -4142,7 +4166,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7273"
  },
  {
@@ -4165,7 +4189,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "2918"
  },
  {
@@ -4188,7 +4212,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7274"
  },
  {
@@ -4630,7 +4654,7 @@
   "size": 5,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "5862"
  },
  {
@@ -4824,6 +4848,21 @@
   "id": "3316"
  },
  {
+  "name": "Chilled jelly",
+  "isFire": true,
+  "hitpoints": 140,
+  "att": 95,
+  "str": 90,
+  "def": 70,
+  "mage": 95,
+  "range": 1,
+  "combat": 112,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
+  "id": "13799"
+ },
+ {
   "name": "Chinchompa",
   "hitpoints": 1,
   "att": 1,
@@ -5006,7 +5045,7 @@
   "combat": 596,
   "size": 2,
   "respawn": 150,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "2205"
  },
  {
@@ -5072,7 +5111,7 @@
   "combat": 785,
   "size": 5,
   "respawn": 50,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "319"
  },
  {
@@ -6621,7 +6660,7 @@
   "size": 2,
   "respawn": 100,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7144"
  },
  {
@@ -6804,7 +6843,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1673"
  },
  {
@@ -6831,6 +6870,34 @@
   "combat": 72,
   "size": 2,
   "id": "9181"
+ },
+ {
+  "name": "Dire Wolf",
+  "hitpoints": 10,
+  "att": 75,
+  "str": 75,
+  "def": 70,
+  "mage": 1,
+  "range": 20,
+  "arange": 500,
+  "combat": 72,
+  "size": 2,
+  "id": "13813"
+ },
+ {
+  "name": "Dire Wolf Alpha",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 100,
+  "att": 120,
+  "str": 110,
+  "def": 80,
+  "mage": 40,
+  "range": 1,
+  "combat": 113,
+  "size": 3,
+  "elementalweaknesstype": "none",
+  "id": "13812"
  },
  {
   "name": "Disciple of Iban",
@@ -6965,7 +7032,7 @@
   "size": 5,
   "respawn": 20,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "8612"
  },
  {
@@ -6985,7 +7052,7 @@
   "combat": 281,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "13680"
  },
  {
@@ -7094,7 +7161,7 @@
   "combat": 758,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "12166"
  },
  {
@@ -7119,7 +7186,7 @@
   "combat": 1099,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "12166_1"
  },
  {
@@ -7144,7 +7211,7 @@
   "combat": 538,
   "size": 7,
   "respawn": 20,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "12193"
  },
  {
@@ -7721,6 +7788,69 @@
   "id": "13139"
  },
  {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none",
+  "id": "13744"
+ },
+ {
+  "name": "Emissary acolyte",
+  "hitpoints": 25,
+  "att": 30,
+  "str": 35,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
+  "dlight": 20,
+  "dstandard": 20,
+  "dheavy": 20,
+  "combat": 34,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none",
+  "id": "13732"
+ },
+ {
+  "name": "Emissary chosen",
+  "hitpoints": 50,
+  "att": 80,
+  "str": 70,
+  "def": 60,
+  "mage": 20,
+  "range": 1,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 15,
+  "dlight": 25,
+  "dstandard": 25,
+  "dheavy": 25,
+  "combat": 76,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesstype": "none",
+  "id": "13738"
+ },
+ {
   "name": "Enclave guard",
   "hitpoints": 80,
   "att": 70,
@@ -8261,7 +8391,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "2075"
  },
  {
@@ -8281,7 +8411,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7251"
  },
  {
@@ -8306,7 +8436,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7252"
  },
  {
@@ -8486,7 +8616,7 @@
   "combat": 159,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3165"
  },
  {
@@ -8502,7 +8632,7 @@
   "combat": 149,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3164"
  },
  {
@@ -8821,6 +8951,45 @@
   "id": "3600"
  },
  {
+  "name": "Frost Nagua",
+  "isSpectral": true,
+  "hitpoints": 120,
+  "att": 1,
+  "str": 1,
+  "def": 40,
+  "mage": 90,
+  "range": 1,
+  "amagic": 70,
+  "mbns": 15,
+  "dstab": 50,
+  "dslash": 50,
+  "dcrush": 10,
+  "dmagic": 60,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 104,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
+  "id": "13728"
+ },
+ {
+  "name": "Frost crab",
+  "hitpoints": 60,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dmagic": -50,
+  "combat": 15,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire",
+  "id": "13789"
+ },
+ {
   "name": "Fumus",
   "hitpoints": 500,
   "att": 1,
@@ -8999,7 +9168,7 @@
   "combat": 111,
   "size": 3,
   "respawn": 15,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "412"
  },
  {
@@ -9150,7 +9319,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "85"
  },
  {
@@ -9173,7 +9342,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "2527"
  },
  {
@@ -9196,7 +9365,7 @@
   "size": 1,
   "respawn": 40,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "2531"
  },
  {
@@ -9219,7 +9388,7 @@
   "combat": 29,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3625"
  },
  {
@@ -9341,7 +9510,7 @@
   "size": 3,
   "respawn": 16,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "5779"
  },
  {
@@ -9755,7 +9924,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2477"
  },
  {
@@ -9779,7 +9948,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "3017"
  },
  {
@@ -9794,7 +9963,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "3018"
  },
  {
@@ -10580,7 +10749,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "2025"
  },
  {
@@ -10597,7 +10766,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7244"
  },
  {
@@ -10614,7 +10783,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7245"
  },
  {
@@ -10631,7 +10800,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7246"
  },
  {
@@ -10648,7 +10817,7 @@
   "size": 3,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7871"
  },
  {
@@ -10672,7 +10841,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "260"
  },
  {
@@ -10696,7 +10865,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7868"
  },
  {
@@ -11238,7 +11407,7 @@
   "combat": 386,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "10400"
  },
  {
@@ -11323,7 +11492,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1674"
  },
  {
@@ -11563,7 +11732,7 @@
   "size": 2,
   "respawn": 89,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "104"
  },
  {
@@ -11593,7 +11762,7 @@
   "size": 2,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7877"
  },
  {
@@ -11652,7 +11821,7 @@
   "combat": 284,
   "size": 3,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "8583"
  },
  {
@@ -11859,6 +12028,87 @@
   "id": "4695"
  },
  {
+  "name": "Hueycoatl body",
+  "isDragon": true,
+  "hitpoints": 250,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 1,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
+  "id": "14017"
+ },
+ {
+  "name": "Hueycoatl tail",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 5,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
+  "id": "14014"
+ },
+ {
+  "name": "Hueycoatl tail (broken)",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 5,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
+  "id": "14015"
+ },
+ {
   "name": "Huge spider",
   "hitpoints": 90,
   "att": 59,
@@ -11998,7 +12248,7 @@
   "dheavy": 140,
   "size": 2,
   "elementalweaknesspercent": 150,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "7584"
  },
  {
@@ -12017,7 +12267,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2085"
  },
  {
@@ -12036,7 +12286,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "7878"
  },
  {
@@ -12074,7 +12324,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "648"
  },
  {
@@ -12094,7 +12344,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "649"
  },
  {
@@ -12114,7 +12364,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "650"
  },
  {
@@ -12134,7 +12384,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "651"
  },
  {
@@ -12153,7 +12403,7 @@
   "combat": 82,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "1876"
  },
  {
@@ -12173,7 +12423,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "1877"
  },
  {
@@ -12192,7 +12442,7 @@
   "combat": 82,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "1875"
  },
  {
@@ -12212,7 +12462,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "1874"
  },
  {
@@ -12234,7 +12484,7 @@
   "size": 1,
   "respawn": 30,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2841"
  },
  {
@@ -12276,7 +12526,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "3140"
  },
  {
@@ -12292,7 +12542,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "4813"
  },
  {
@@ -12526,7 +12776,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "272"
  },
  {
@@ -12550,7 +12800,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "7254"
  },
  {
@@ -13193,7 +13443,7 @@
   "size": 5,
   "respawn": 150,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "3129"
  },
  {
@@ -13399,7 +13649,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1675"
  },
  {
@@ -13490,7 +13740,7 @@
   "combat": 341,
   "size": 5,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11719"
  },
  {
@@ -13511,7 +13761,7 @@
   "combat": 341,
   "size": 5,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11721"
  },
  {
@@ -13707,7 +13957,7 @@
   "size": 5,
   "respawn": 16,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "239"
  },
  {
@@ -14109,7 +14359,7 @@
   "size": 5,
   "respawn": 150,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3162"
  },
  {
@@ -14239,7 +14489,7 @@
   "size": 4,
   "respawn": 14,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "6593"
  },
  {
@@ -14308,7 +14558,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "2005"
  },
  {
@@ -14325,7 +14575,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7247"
  },
  {
@@ -14342,7 +14592,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7248"
  },
  {
@@ -14359,7 +14609,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "7865"
  },
  {
@@ -14475,7 +14725,7 @@
   "combat": 53,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "6914"
  },
  {
@@ -14497,7 +14747,7 @@
   "combat": 62,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "6916"
  },
  {
@@ -14519,7 +14769,7 @@
   "combat": 75,
   "size": 1,
   "respawn": 12,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "6918"
  },
  {
@@ -14542,7 +14792,7 @@
   "combat": 150,
   "size": 3,
   "respawn": 27,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "6766"
  },
  {
@@ -14585,7 +14835,7 @@
   "combat": 150,
   "size": 2,
   "respawn": 27,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "8565"
  },
  {
@@ -15265,6 +15515,28 @@
   "id": "12812"
  },
  {
+  "name": "Minotaur",
+  "hitpoints": 240,
+  "att": 140,
+  "str": 110,
+  "def": 100,
+  "mage": 100,
+  "attbns": 60,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 50,
+  "dmagic": 80,
+  "dlight": 140,
+  "dstandard": 140,
+  "dheavy": 140,
+  "combat": 193,
+  "size": 2,
+  "id": "13814"
+ },
+ {
   "name": "Mirrorback Araxyte",
   "hitpoints": 58,
   "att": 150,
@@ -15309,7 +15581,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "2919"
  },
  {
@@ -15621,7 +15893,7 @@
   "size": 2,
   "respawn": 10,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "8736"
  },
  {
@@ -15667,7 +15939,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2090"
  },
  {
@@ -15684,7 +15956,7 @@
   "size": 2,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "3851"
  },
  {
@@ -15740,7 +16012,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "936"
  },
  {
@@ -15760,7 +16032,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "4143"
  },
  {
@@ -16413,7 +16685,7 @@
   "dheavy": 150,
   "combat": 1001,
   "size": 3,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "11278"
  },
  {
@@ -16709,19 +16981,6 @@
   "combat": 115,
   "size": 2,
   "id": "8385"
- },
- {
-  "name": "Nylocas Matomenos",
-  "isTobEntryMode": true,
-  "hitpoints": 64,
-  "att": 100,
-  "str": 100,
-  "def": 100,
-  "mage": 100,
-  "range": 100,
-  "combat": 68,
-  "size": 2,
-  "id": "10820"
  },
  {
   "name": "Nylocas Matomenos",
@@ -18298,6 +18557,18 @@
   "id": "7515"
  },
  {
+  "name": "Porcupine",
+  "hitpoints": 5,
+  "att": 4,
+  "str": 5,
+  "def": 2,
+  "mage": 1,
+  "range": 1,
+  "combat": 4,
+  "size": 1,
+  "id": "13968"
+ },
+ {
   "name": "Portal",
   "hitpoints": 250,
   "def": 120,
@@ -18393,6 +18664,26 @@
   "id": "6595"
  },
  {
+  "name": "Prince Itzla Arkan",
+  "hitpoints": 250,
+  "att": 150,
+  "str": 110,
+  "def": 75,
+  "mage": 55,
+  "range": 1,
+  "attbns": 150,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 10,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 167,
+  "size": 1,
+  "id": "13784"
+ },
+ {
   "name": "Pyrefiend",
   "isFiery": true,
   "isDemon": true,
@@ -18412,7 +18703,7 @@
   "size": 1,
   "respawn": 15,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "433"
  },
  {
@@ -18435,7 +18726,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "3139"
  },
  {
@@ -19098,7 +19389,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Water",
+  "elementalweaknesstype": "water",
   "id": "247"
  },
  {
@@ -19949,7 +20240,7 @@
   "combat": 380,
   "size": 4,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "8027"
  },
  {
@@ -19975,7 +20266,7 @@
   "size": 5,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "8031"
  },
  {
@@ -19994,7 +20285,7 @@
  },
  {
   "name": "Ruptura Araxyte",
-  "hitpoints": 60,
+  "hitpoints": 58,
   "att": 150,
   "str": 120,
   "def": 50,
@@ -20013,7 +20304,7 @@
   "combat": 114,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "13673"
  },
  {
@@ -20218,7 +20509,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "794"
  },
  {
@@ -20239,7 +20530,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "799"
  },
  {
@@ -20259,7 +20550,7 @@
   "combat": 119,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11508"
  },
  {
@@ -20281,7 +20572,7 @@
   "combat": 98,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "1782"
  },
  {
@@ -21006,7 +21297,7 @@
   "combat": 267,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "10398"
  },
  {
@@ -21439,7 +21730,7 @@
   "dstandard": 115,
   "dheavy": 75,
   "size": 2,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "7604"
  },
  {
@@ -21499,7 +21790,7 @@
   "size": 1,
   "respawn": 70,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "70"
  },
  {
@@ -21521,7 +21812,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "74"
  },
  {
@@ -21546,7 +21837,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "77"
  },
  {
@@ -21571,7 +21862,7 @@
   "size": 1,
   "respawn": 60,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "82"
  },
  {
@@ -22102,7 +22393,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1538"
  },
  {
@@ -22745,7 +23036,7 @@
   "combat": 89,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11724"
  },
  {
@@ -22973,7 +23264,7 @@
   "size": 1,
   "respawn": 27,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2478"
  },
  {
@@ -22995,7 +23286,7 @@
   "size": 1,
   "respawn": 35,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "3019"
  },
  {
@@ -23181,7 +23472,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11292"
  },
  {
@@ -23203,7 +23494,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11291"
  },
  {
@@ -23226,7 +23517,7 @@
   "size": 1,
   "respawn": 25,
   "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11290"
  },
  {
@@ -23248,7 +23539,7 @@
   "combat": 120,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "2212"
  },
  {
@@ -23270,7 +23561,7 @@
   "combat": 121,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "2244"
  },
  {
@@ -23285,7 +23576,7 @@
   "combat": 121,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "3161"
  },
  {
@@ -23307,7 +23598,7 @@
   "combat": 123,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "3168"
  },
  {
@@ -23329,7 +23620,7 @@
   "combat": 122,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "2211"
  },
  {
@@ -23351,7 +23642,7 @@
   "combat": 115,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "2242"
  },
  {
@@ -23366,7 +23657,7 @@
   "combat": 118,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "3160"
  },
  {
@@ -23388,7 +23679,7 @@
   "combat": 127,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "3167"
  },
  {
@@ -23413,7 +23704,7 @@
   "combat": 125,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "2210"
  },
  {
@@ -23438,7 +23729,7 @@
   "combat": 134,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "2243"
  },
  {
@@ -23454,7 +23745,7 @@
   "combat": 115,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "3159"
  },
  {
@@ -23477,7 +23768,7 @@
   "combat": 123,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "None",
+  "elementalweaknesstype": "none",
   "id": "3166"
  },
  {
@@ -23503,7 +23794,7 @@
   "combat": 89,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "11725"
  },
  {
@@ -23630,7 +23921,7 @@
   "combat": 246,
   "size": 3,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "139"
  },
  {
@@ -23654,7 +23945,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "274"
  },
  {
@@ -23678,7 +23969,7 @@
   "size": 4,
   "respawn": 30,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "7255"
  },
  {
@@ -24484,6 +24775,33 @@
   "id": "12328"
  },
  {
+  "name": "The Hueycoatl",
+  "isDragon": true,
+  "hitpoints": 2500,
+  "att": 150,
+  "str": 50,
+  "def": 125,
+  "mage": 50,
+  "range": 50,
+  "attbns": 100,
+  "strbns": 50,
+  "amagic": 200,
+  "mbns": 50,
+  "arange": 250,
+  "rngbns": 50,
+  "dstab": 100,
+  "dslash": 100,
+  "dmagic": 200,
+  "dlight": 350,
+  "dstandard": 350,
+  "dheavy": 350,
+  "combat": 642,
+  "size": 7,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
+  "id": "14009"
+ },
+ {
   "name": "The Illusive",
   "hitpoints": 144,
   "att": 72,
@@ -24593,7 +24911,7 @@
   "dheavy": 25,
   "combat": 798,
   "size": 7,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "12214"
  },
  {
@@ -24619,7 +24937,7 @@
   "dheavy": 25,
   "combat": 1157,
   "size": 7,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "12214_1"
  },
  {
@@ -24645,7 +24963,7 @@
   "dheavy": 25,
   "combat": 593,
   "size": 7,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "12215"
  },
  {
@@ -25156,7 +25474,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1676"
  },
  {
@@ -25350,7 +25668,7 @@
   "range": 1,
   "size": 3,
   "elementalweaknesspercent": 70,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "9435"
  },
  {
@@ -26743,7 +27061,7 @@
   "dstandard": 40,
   "dheavy": 30,
   "size": 5,
-  "elementalweaknesstype": "No",
+  "elementalweaknesstype": "no",
   "id": "7566"
  },
  {
@@ -26831,7 +27149,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "1677"
  },
  {
@@ -27070,7 +27388,7 @@
   "dheavy": 60,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "7530"
  },
  {
@@ -27513,7 +27831,7 @@
   "combat": 115,
   "size": 1,
   "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "2916"
  },
  {
@@ -27721,6 +28039,20 @@
   "id": "4743"
  },
  {
+  "name": "White jaguar",
+  "hitpoints": 80,
+  "att": 55,
+  "str": 50,
+  "def": 55,
+  "mage": 1,
+  "range": 1,
+  "combat": 67,
+  "size": 2,
+  "respawn": 50,
+  "elementalweaknesstype": "none",
+  "id": "12979"
+ },
+ {
   "name": "White wolf",
   "hitpoints": 34,
   "att": 20,
@@ -27797,7 +28129,7 @@
   "combat": 143,
   "size": 2,
   "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "Air",
+  "elementalweaknesstype": "air",
   "id": "3163"
  },
  {
@@ -28102,7 +28434,7 @@
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "8610"
  },
  {
@@ -28124,7 +28456,7 @@
   "combat": 55,
   "size": 2,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Earth",
+  "elementalweaknesstype": "earth",
   "id": "13031"
  },
  {
@@ -29259,7 +29591,7 @@
   "combat": 725,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2043"
  },
  {
@@ -29281,7 +29613,7 @@
   "combat": 725,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2042"
  },
  {
@@ -29300,7 +29632,7 @@
   "combat": 725,
   "size": 5,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "Fire",
+  "elementalweaknesstype": "fire",
   "id": "2044"
  },
  {
