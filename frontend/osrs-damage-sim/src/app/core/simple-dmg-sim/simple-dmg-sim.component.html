@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center mb-4">
+    <div>
+      <img style="width: 70px" class="img-fluid" src="assets/img/menu/dps-detail.png" />
+    </div>
+    <div class="ms-2"><h1 class="display-1">Simple Damage Sim</h1></div>
+  </div>
+
+  <div class="mb-2">
+    <!-- <app-dps-results [dpsResults]="dpsResults"></app-dps-results> -->
+  </div>
+
+  <hr class="row mb-4" />
+
+  <div class="d-flex justify-content-between mb-5 flex-wrap">
+    <div class="flex-fill mb-1">
+      <app-example-setups></app-example-setups>
+    </div>
+    <div class="flex-grow-1"></div>
+
+    <div class="flex-shrink-1 d-flex ms-1">
+      <app-share-input-setup></app-share-input-setup>
+      <div class="ms-1 flex-fill">
+        <app-wiki-dps-shortlink></app-wiki-dps-shortlink>
+      </div>
+    </div>
+  </div>
+
+  <app-global-settings></app-global-settings>
+
+  <div class="mb-4">
+    <div class="d-flex mb-1">
+      <div class="flex-fill btn-group btn-group-lg" role="group">
+        <ng-container *ngIf="loading">
+          <button class="btn btn-primary" type="button" [disabled]="loading">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only"> Loading...</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+          <button class="btn btn-primary" type="button" (click)="runSimpleDmgSimCalc()">
+            <span class="sr-only">Run Damage Simulator</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div *ngIf="loading">&nbsp;</div>
+
+    <ng-container *ngIf="!loading">
+      <div class="text-success" *ngIf="simpleDmgSimResults && !simpleDmgSimResults?.error">
+        Damage sim done, results above!
+      </div>
+      <div class="text-danger" *ngIf="simpleDmgSimResults?.error">{{ simpleDmgSimResults.error }}</div>
+    </ng-container>
+  </div>
+
+  <!-- TODO new component then for different ui and stuff? -->
+  <app-gear-setup-tabs></app-gear-setup-tabs>
+</div>

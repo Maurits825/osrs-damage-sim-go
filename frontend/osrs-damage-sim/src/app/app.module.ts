@@ -50,6 +50,7 @@ import { HitDistGraphComponent } from './core/dps-results/hit-dist-graph/hit-dis
 import { DpsGraphComponent } from './core/dps-results/dps-graph/dps-graph.component';
 import { CalcDetailsComponent } from './core/dps-results/calc-details/calc-details.component';
 import { ChangelogModalComponent } from './shared/modals/changelog-modal/changelog-modal.component';
+import { SimpleDmgSimComponent } from './core/simple-dmg-sim/simple-dmg-sim.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +96,7 @@ import { ChangelogModalComponent } from './shared/modals/changelog-modal/changel
     DpsGraphComponent,
     CalcDetailsComponent,
     ChangelogModalComponent,
+    SimpleDmgSimComponent,
   ],
   imports: [
     NgSelectModule,
