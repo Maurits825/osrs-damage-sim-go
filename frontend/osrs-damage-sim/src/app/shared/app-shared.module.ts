@@ -29,6 +29,8 @@ import { TickToTimePipe } from './pipes/tick-to-time.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChangelogModalComponent } from './modals/changelog-modal/changelog-modal.component';
+import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     LoadRlSetupGuideModalComponent,
     MaxHitPipe,
     GearSetupLabelComponent,
+    ChangelogModalComponent,
+    UnitTestModalComponent,
   ],
   exports: [
     NpcInputComponent,
@@ -86,6 +90,8 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     LoadRlSetupGuideModalComponent,
     MaxHitPipe,
     GearSetupLabelComponent,
+    ChangelogModalComponent,
+    UnitTestModalComponent,
   ],
   imports: [CommonModule, FormsModule, NgSelectModule, NgbPopoverModule],
 })
