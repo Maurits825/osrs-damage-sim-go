@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { GlobalSettingsComponent } from '../core/global-settings/global-settings.component';
 import {
   GearSetup,
   GearSetupSettings,
@@ -17,6 +16,8 @@ import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
 import { UserSettings } from '../model/damage-sim/user-settings.model';
+//TODO this import is not good
+import { GlobalSettingsComponent } from '../features/dps-calc/global-settings/global-settings.component';
 
 @Injectable({
   providedIn: 'root',

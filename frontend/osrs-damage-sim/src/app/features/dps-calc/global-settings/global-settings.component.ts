@@ -1,7 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Boost } from '../../model/osrs/boost.model';
-import { GlobalSettings, InputSetup } from '../../model/damage-sim/input-setup.model';
-import { Npc } from '../../model/osrs/npc.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
@@ -13,6 +10,9 @@ import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { GlobalSettings, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { Boost } from 'src/app/model/osrs/boost.model';
+import { Npc } from 'src/app/model/osrs/npc.model';
 
 @Component({
   selector: 'app-global-settings',

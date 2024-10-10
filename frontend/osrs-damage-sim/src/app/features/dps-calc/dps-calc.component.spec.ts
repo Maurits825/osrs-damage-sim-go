@@ -8,8 +8,9 @@ describe('DpsCalcComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DpsCalcComponent],
-    }).compileComponents();
+      declarations: [ DpsCalcComponent ]
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(DpsCalcComponent);
     component = fixture.componentInstance;
