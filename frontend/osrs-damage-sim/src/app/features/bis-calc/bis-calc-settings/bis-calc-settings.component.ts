@@ -4,16 +4,16 @@ import { StatDrain } from 'src/app/model/shared/stat-drain.model';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
-import { Npc } from 'src/app/model/osrs/npc.model';
+import { NpcInfo } from 'src/app/model/osrs/npc.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { TOA_PATH_LVL_NPCS, TOA_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { DEFAULT_BIS_INPUT_SETUP } from './default-settings.const';
 import { PartialDeep } from 'type-fest';
 import { merge } from 'lodash-es';
 import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
+import { mapGlobalSettingsToNpcInfo, mapNpcInfoToGlobalSettings } from 'src/app/helpers/data-mapping.helper';
 
 @Component({
   selector: 'app-bis-calc-settings',
@@ -39,6 +39,9 @@ export class BisCalcSettingsComponent implements OnInit {
 
   loading = false;
 
+  //todo kinda scuffed having to do this here
+  npcInfo: NpcInfo = mapGlobalSettingsToNpcInfo(DEFAULT_BIS_INPUT_SETUP.globalSettings);
+
   userSettingsWatch$: Observable<UserSettings>;
 
   constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
@@ -59,25 +62,10 @@ export class BisCalcSettingsComponent implements OnInit {
     this.bisCalcInputSetup$.next(setup);
   }
 
-  npcChanged(npc: Npc): void {
-    this.updateBisCalcInputSetup({ globalSettings: { npc: npc } });
-
-    if (!npc) return;
-
-    const npcName = npc.name;
-    this.showPathLevel = false;
-    this.showRaidLevel = false;
-    this.showIsChallengeMode = npc.isXerician;
-
-    if (TOA_PATH_LVL_NPCS.includes(npcName)) {
-      this.showPathLevel = true;
-      this.showRaidLevel = true;
-    } else if (TOA_NPCS.includes(npcName)) {
-      this.showRaidLevel = true;
-      this.updateBisCalcInputSetup({ globalSettings: { pathLevel: 0 } });
-    } else {
-      this.updateBisCalcInputSetup({ globalSettings: { pathLevel: 0, raidLevel: 0 } });
-    }
+  npcInfoChanged(npcInfo: NpcInfo): void {
+    this.updateBisCalcInputSetup({
+      globalSettings: mapNpcInfoToGlobalSettings(npcInfo),
+    });
   }
 
   toggleBoost(boost: Boost): void {

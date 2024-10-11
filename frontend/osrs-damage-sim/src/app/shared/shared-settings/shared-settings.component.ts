@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
@@ -58,6 +58,7 @@ export class SharedSettingsComponent implements OnInit {
     this.sharedSettingsService.trailblazerRelics$.next(this.trailblazerRelics);
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
+
   toggleBoost(boost: Boost): void {
     this.sharedSettingsService.toggleBoost(boost, this.selectedBoosts);
     this.sharedSettingsService.boosts$.next(this.selectedBoosts);

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { Subject, takeUntil } from 'rxjs';
 import { GlobalSettings, InputSetup } from 'src/app/model/dps-calc/input-setup.model';
-import { Npc } from 'src/app/model/osrs/npc.model';
+import { NpcInfo } from 'src/app/model/osrs/npc.model';
+import { mapGlobalSettingsToNpcInfo, mapNpcInfoToGlobalSettings } from 'src/app/helpers/data-mapping.helper';
+import { merge } from 'lodash-es';
 
 @Component({
   selector: 'app-global-settings',
@@ -24,11 +25,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     },
   };
 
-  showPathLevel = false;
-  showRaidLevel = false;
-  showIsChallengeMode = false;
-
-  loading = false;
+  npcInfo: NpcInfo = mapGlobalSettingsToNpcInfo(this.globalSettings);
 
   private destroyed$ = new Subject();
 
@@ -49,28 +46,10 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   setGlobalSettings(globalSettings: GlobalSettings): void {
     this.globalSettings = globalSettings;
-    this.npcChanged(this.globalSettings.npc);
+    this.npcInfo = mapGlobalSettingsToNpcInfo(globalSettings);
   }
 
-  npcChanged(npc: Npc): void {
-    this.globalSettings.npc = npc;
-
-    if (!npc) return;
-
-    const npcName = npc.name;
-    this.showPathLevel = false;
-    this.showRaidLevel = false;
-    this.showIsChallengeMode = npc.isXerician;
-
-    if (TOA_PATH_LVL_NPCS.includes(npcName)) {
-      this.showPathLevel = true;
-      this.showRaidLevel = true;
-    } else if (TOA_NPCS.includes(npcName)) {
-      this.showRaidLevel = true;
-      this.globalSettings.pathLevel = 0;
-    } else {
-      this.globalSettings.raidLevel = 0;
-      this.globalSettings.pathLevel = 0;
-    }
+  npcInfoChanged(npcInfo: NpcInfo): void {
+    this.globalSettings = merge(this.globalSettings, mapNpcInfoToGlobalSettings(npcInfo));
   }
 }

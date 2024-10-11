@@ -1,3 +1,11 @@
+export interface NpcInfo {
+  npc: Npc;
+  raidLevel: number;
+  pathLevel: number;
+  overlyDraining: boolean;
+  isChallengeMode: boolean;
+}
+
 export interface Npc {
   name: string;
   id: number;
