@@ -31,6 +31,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChangelogModalComponent } from './modals/changelog-modal/changelog-modal.component';
 import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal.component';
+import { SharedSettingsComponent } from './shared-settings/shared-settings.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal
     GearSetupLabelComponent,
     ChangelogModalComponent,
     UnitTestModalComponent,
+    SharedSettingsComponent,
   ],
   exports: [
     NpcInputComponent,
@@ -92,6 +94,7 @@ import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal
     GearSetupLabelComponent,
     ChangelogModalComponent,
     UnitTestModalComponent,
+    SharedSettingsComponent,
   ],
   imports: [CommonModule, FormsModule, NgSelectModule, NgbPopoverModule],
 })

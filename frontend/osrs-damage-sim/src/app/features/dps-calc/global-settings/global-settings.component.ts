@@ -1,17 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Prayer } from 'src/app/model/osrs/prayer.model';
-import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
-import { CombatStats } from 'src/app/model/osrs/skill.type';
-import { StatDrain } from 'src/app/model/shared/stat-drain.model';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
-import { Observable, Subject, takeUntil } from 'rxjs';
-import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
-import { SharedSettingsService } from 'src/app/services/shared-settings.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { UserSettings } from 'src/app/model/shared/user-settings.model';
+import { Subject, takeUntil } from 'rxjs';
 import { GlobalSettings, InputSetup } from 'src/app/model/dps-calc/input-setup.model';
-import { Boost } from 'src/app/model/osrs/boost.model';
 import { Npc } from 'src/app/model/osrs/npc.model';
 
 @Component({
@@ -37,63 +28,18 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   showRaidLevel = false;
   showIsChallengeMode = false;
 
-  selectedBoosts: Set<Boost> = new Set();
-
-  allAttackTypes = allAttackTypes;
-
-  selectedPrayers: Record<AttackType, Set<Prayer>> = {
-    magic: new Set(['augury']),
-    melee: new Set(['piety']),
-    ranged: new Set(['rigour']),
-  };
-
-  quickPrayers: Record<AttackType, Set<Prayer>> = {
-    magic: new Set(['augury']),
-    melee: new Set(['piety']),
-    ranged: new Set(['rigour']),
-  };
-
-  combatStats: CombatStats = {
-    attack: 99,
-    strength: 99,
-    ranged: 99,
-    magic: 99,
-    hitpoints: 99,
-    defence: 99,
-  };
-
-  statDrains: StatDrain[] = [];
-
-  attackCycle = 0;
-
-  trailblazerRelics: Set<TrailblazerRelic> = new Set();
-
   loading = false;
-
-  userSettingsWatch$: Observable<UserSettings>;
 
   private destroyed$ = new Subject();
 
-  constructor(
-    private globalSettingsService: SharedSettingsService,
-    private inputSetupService: DpsCalcInputService,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private inputSetupService: DpsCalcInputService) {}
 
   ngOnInit(): void {
-    this.globalSettingsService.prayers$.next(this.selectedPrayers);
-    this.globalSettingsService.statDrain$.next(this.statDrains);
-    this.globalSettingsService.combatStats$.next(this.combatStats);
-    this.globalSettingsService.boosts$.next(this.selectedBoosts);
-    this.globalSettingsService.trailblazerRelics$.next(this.trailblazerRelics);
-
     this.inputSetupService.loadInputSetup$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((inputSetup: InputSetup) => this.setGlobalSettings(inputSetup.globalSettings));
 
     this.inputSetupService.globalSettingsComponent$.next(this);
-
-    this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
 
   ngOnDestroy(): void {
@@ -126,36 +72,5 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
       this.globalSettings.raidLevel = 0;
       this.globalSettings.pathLevel = 0;
     }
-  }
-
-  toggleBoost(boost: Boost): void {
-    this.globalSettingsService.toggleBoost(boost, this.selectedBoosts);
-    this.globalSettingsService.boosts$.next(this.selectedBoosts);
-  }
-
-  toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
-    this.globalSettingsService.togglePrayer(prayer, this.selectedPrayers[attackType]);
-    this.globalSettingsService.prayers$.next(this.selectedPrayers);
-  }
-
-  combatStatsChanged(combatStats: CombatStats): void {
-    this.globalSettingsService.combatStats$.next(combatStats);
-  }
-
-  loadCombatStats(combatStats: CombatStats): void {
-    this.combatStats = combatStats;
-    this.globalSettingsService.combatStats$.next(combatStats);
-  }
-
-  statDrainChanged(statDrains: StatDrain[]): void {
-    this.globalSettingsService.statDrain$.next(statDrains);
-  }
-
-  trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
-    this.globalSettingsService.trailblazerRelics$.next(relics);
-  }
-
-  attackCycleChanged(attackCycle: number): void {
-    this.globalSettingsService.attackCycle$.next(attackCycle);
   }
 }
