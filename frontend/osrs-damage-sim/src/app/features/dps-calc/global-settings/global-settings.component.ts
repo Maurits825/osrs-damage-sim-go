@@ -7,7 +7,7 @@ import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { GlobalSettings, InputSetup } from 'src/app/model/dps-calc/input-setup.model';
@@ -75,17 +75,17 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject();
 
   constructor(
-    private globalSettingsService: GlobalSettingsService,
+    private globalSettingsService: SharedSettingsService,
     private inputSetupService: DpsCalcInputService,
     private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
-    this.globalSettingsService.globalPrayers$.next(this.selectedPrayers);
-    this.globalSettingsService.globalStatDrain$.next(this.statDrains);
-    this.globalSettingsService.globalCombatStats$.next(this.combatStats);
-    this.globalSettingsService.globalBoosts$.next(this.selectedBoosts);
-    this.globalSettingsService.globalTrailblazerRelics$.next(this.trailblazerRelics);
+    this.globalSettingsService.prayers$.next(this.selectedPrayers);
+    this.globalSettingsService.statDrain$.next(this.statDrains);
+    this.globalSettingsService.combatStats$.next(this.combatStats);
+    this.globalSettingsService.boosts$.next(this.selectedBoosts);
+    this.globalSettingsService.trailblazerRelics$.next(this.trailblazerRelics);
 
     this.inputSetupService.loadInputSetup$
       .pipe(takeUntil(this.destroyed$))
@@ -130,32 +130,32 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   toggleBoost(boost: Boost): void {
     this.globalSettingsService.toggleBoost(boost, this.selectedBoosts);
-    this.globalSettingsService.globalBoosts$.next(this.selectedBoosts);
+    this.globalSettingsService.boosts$.next(this.selectedBoosts);
   }
 
   toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
     this.globalSettingsService.togglePrayer(prayer, this.selectedPrayers[attackType]);
-    this.globalSettingsService.globalPrayers$.next(this.selectedPrayers);
+    this.globalSettingsService.prayers$.next(this.selectedPrayers);
   }
 
   combatStatsChanged(combatStats: CombatStats): void {
-    this.globalSettingsService.globalCombatStats$.next(combatStats);
+    this.globalSettingsService.combatStats$.next(combatStats);
   }
 
   loadCombatStats(combatStats: CombatStats): void {
     this.combatStats = combatStats;
-    this.globalSettingsService.globalCombatStats$.next(combatStats);
+    this.globalSettingsService.combatStats$.next(combatStats);
   }
 
   statDrainChanged(statDrains: StatDrain[]): void {
-    this.globalSettingsService.globalStatDrain$.next(statDrains);
+    this.globalSettingsService.statDrain$.next(statDrains);
   }
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
-    this.globalSettingsService.globalTrailblazerRelics$.next(relics);
+    this.globalSettingsService.trailblazerRelics$.next(relics);
   }
 
   attackCycleChanged(attackCycle: number): void {
-    this.globalSettingsService.globalAttackCycle$.next(attackCycle);
+    this.globalSettingsService.attackCycle$.next(attackCycle);
   }
 }

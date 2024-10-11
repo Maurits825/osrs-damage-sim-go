@@ -7,7 +7,7 @@ import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { Npc } from 'src/app/model/osrs/npc.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TOA_PATH_LVL_NPCS, TOA_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { DEFAULT_BIS_INPUT_SETUP } from './default-settings.const';
@@ -41,7 +41,7 @@ export class BisCalcSettingsComponent implements OnInit {
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(private globalSettingsService: GlobalSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(private globalSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;

@@ -12,10 +12,10 @@ import { replacePrayers } from '../model/osrs/prayer-replace.const';
 @Injectable({
   providedIn: 'root',
 })
-export class GlobalSettingsService {
-  globalBoosts$: BehaviorSubject<Set<Boost>> = new BehaviorSubject(new Set());
+export class SharedSettingsService {
+  boosts$: BehaviorSubject<Set<Boost>> = new BehaviorSubject(new Set());
 
-  globalCombatStats$: BehaviorSubject<CombatStats> = new BehaviorSubject({
+  combatStats$: BehaviorSubject<CombatStats> = new BehaviorSubject({
     attack: 99,
     strength: 99,
     ranged: 99,
@@ -24,13 +24,13 @@ export class GlobalSettingsService {
     defence: 99,
   });
 
-  globalPrayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(null);
+  prayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(null);
 
-  globalStatDrain$: BehaviorSubject<StatDrain[]> = new BehaviorSubject([]);
+  statDrain$: BehaviorSubject<StatDrain[]> = new BehaviorSubject([]);
 
-  globalAttackCycle$: BehaviorSubject<number> = new BehaviorSubject(0);
+  attackCycle$: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  globalTrailblazerRelics$: BehaviorSubject<Set<TrailblazerRelic>> = new BehaviorSubject(new Set());
+  trailblazerRelics$: BehaviorSubject<Set<TrailblazerRelic>> = new BehaviorSubject(new Set());
 
   public togglePrayer(prayer: Prayer, selectedPrayers: Set<Prayer>): void {
     if (selectedPrayers.has(prayer)) {

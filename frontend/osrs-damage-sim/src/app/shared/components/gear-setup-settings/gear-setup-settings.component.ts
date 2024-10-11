@@ -6,7 +6,7 @@ import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new Subject();
 
-  constructor(private globalSettingsService: GlobalSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(private globalSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -37,23 +37,23 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.globalSettingsService.globalBoosts$
+    this.globalSettingsService.boosts$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts)));
 
-    this.globalSettingsService.globalStatDrain$
+    this.globalSettingsService.statDrain$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains]));
 
-    this.globalSettingsService.globalCombatStats$
+    this.globalSettingsService.combatStats$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats }));
 
-    this.globalSettingsService.globalTrailblazerRelics$
+    this.globalSettingsService.trailblazerRelics$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((relics: Set<TrailblazerRelic>) => (this.gearSetupSettings.trailblazerRelics = new Set(relics)));
 
-    this.globalSettingsService.globalAttackCycle$
+    this.globalSettingsService.attackCycle$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((attackCycle: number) => (this.gearSetupSettings.attackCycle = attackCycle));
 

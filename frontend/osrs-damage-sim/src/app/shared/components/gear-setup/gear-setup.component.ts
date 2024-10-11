@@ -22,7 +22,7 @@ import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { ConditionComponent } from '../condition/condition.component';
 import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { ItemService } from 'src/app/services/item.service';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
@@ -81,7 +81,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private damageSimservice: DamageSimService,
     private staticDataService: StaticDataService,
     private itemService: ItemService,
-    private globalSettingsService: GlobalSettingsService,
+    private globalSettingsService: SharedSettingsService,
     private specialGearService: SpecialGearService,
     private localStorageService: LocalStorageService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
@@ -118,11 +118,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
         this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
 
-        this.gearSetup.prayers = new Set(this.globalSettingsService.globalPrayers$.getValue()['melee']);
+        this.gearSetup.prayers = new Set(this.globalSettingsService.prayers$.getValue()['melee']);
         this.attackStyles = this.itemService.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.globalSettingsService.globalPrayers$
+      this.globalSettingsService.prayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
         .subscribe(
           (prayers: Record<AttackType, Set<Prayer>>) =>
@@ -195,7 +195,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.currentAttackType = item.attackType;
       }
 
-      this.gearSetup.prayers = new Set(this.globalSettingsService.globalPrayers$.getValue()[this.currentAttackType]);
+      this.gearSetup.prayers = new Set(this.globalSettingsService.prayers$.getValue()[this.currentAttackType]);
 
       this.updateAttackStyle(itemId);
     }
