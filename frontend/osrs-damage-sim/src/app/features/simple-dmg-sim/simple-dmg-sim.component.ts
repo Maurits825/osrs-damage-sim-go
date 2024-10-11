@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-simple-dmg-sim',
   templateUrl: './simple-dmg-sim.component.html',
-  styleUrls: ['./simple-dmg-sim.component.css'],
 })
 export class SimpleDmgSimComponent {
   loading = false;

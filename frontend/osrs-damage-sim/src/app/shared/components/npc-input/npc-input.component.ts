@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Npc } from 'src/app/model/osrs/npc.model';
-import { DamageSimService } from 'src/app/services/damage-sim.service';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-npc-input',
@@ -19,14 +19,14 @@ export class NpcInputComponent implements OnInit {
 
   private abbreviations: Record<string, string[]>;
 
-  constructor(private damageSimService: DamageSimService) {}
+  constructor(private staticDataService: StaticDataService) {}
 
   ngOnInit(): void {
-    this.damageSimService.allNpcs$.subscribe((allNpcs: Npc[]) => {
+    this.staticDataService.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
     });
 
-    this.damageSimService.abbreviations$.subscribe((abbreviations) => (this.abbreviations = abbreviations));
+    this.staticDataService.abbreviations$.subscribe((abbreviations) => (this.abbreviations = abbreviations));
   }
 
   selectedNpcChange(npc: Npc): void {

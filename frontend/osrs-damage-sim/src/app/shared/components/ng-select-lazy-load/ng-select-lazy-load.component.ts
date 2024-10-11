@@ -11,12 +11,11 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { DamageSimService } from 'src/app/services/damage-sim.service';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-ng-select-lazy-load',
   templateUrl: './ng-select-lazy-load.component.html',
-  styleUrls: ['./ng-select-lazy-load.component.css'],
 })
 export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChanges {
   @Input()
@@ -59,11 +58,11 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
 
   private destroyed$ = new Subject();
 
-  constructor(private damageSimService: DamageSimService) {}
+  constructor(private staticDataService: StaticDataService) {}
 
   ngOnInit(): void {
     this.valuesBuffer = this.allValues.slice(0, this.bufferSize);
-    this.damageSimService.abbreviations$.subscribe((abbreviations) => (this.abbreviations = abbreviations));
+    this.staticDataService.abbreviations$.subscribe((abbreviations) => (this.abbreviations = abbreviations));
     this.onSearch();
   }
 

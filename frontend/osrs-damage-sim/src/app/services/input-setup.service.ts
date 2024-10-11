@@ -11,13 +11,13 @@ import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-setup-tab.component';
-import { DamageSimService } from './damage-sim.service';
 import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
 import { UserSettings } from '../model/damage-sim/user-settings.model';
 //TODO this import is not good
 import { GlobalSettingsComponent } from '../features/dps-calc/global-settings/global-settings.component';
+import { StaticDataService } from './static-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -33,11 +33,11 @@ export class InputSetupService {
   userSettingsWatch$: Observable<UserSettings>;
 
   constructor(
-    private damageSimservice: DamageSimService,
+    private staticDataService: StaticDataService,
     private itemService: ItemService,
     private localStorageService: LocalStorageService
   ) {
-    this.damageSimservice.allNpcs$.subscribe((allNpcs: Npc[]) => {
+    this.staticDataService.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
     });
   }

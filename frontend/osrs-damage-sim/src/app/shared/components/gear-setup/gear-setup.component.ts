@@ -26,6 +26,7 @@ import { GlobalSettingsService } from 'src/app/services/global-settings.service'
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-gear-setup',
@@ -78,6 +79,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   constructor(
     private damageSimservice: DamageSimService,
+    private staticDataService: StaticDataService,
     private itemService: ItemService,
     private globalSettingsService: GlobalSettingsService,
     private specialGearService: SpecialGearService,
@@ -92,10 +94,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     forkJoin({
-      allGearSlotItems: this.damageSimservice.allGearSlotItems$,
-      gearSetupPresets: this.damageSimservice.gearSetupPresets$,
-      allSpells: this.damageSimservice.allSpells$,
-      allDarts: this.damageSimservice.allDarts$,
+      allGearSlotItems: this.staticDataService.allGearSlotItems$,
+      gearSetupPresets: this.staticDataService.gearSetupPresets$,
+      allSpells: this.staticDataService.allSpells$,
+      allDarts: this.staticDataService.allDarts$,
     }).subscribe(({ allGearSlotItems, gearSetupPresets, allSpells, allDarts }) => {
       this.allGearSlotItems = allGearSlotItems;
       this.gearSetupPresets = gearSetupPresets;

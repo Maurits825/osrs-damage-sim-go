@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
-import { DamageSimService } from './damage-sim.service';
+import { StaticDataService } from './static-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,8 @@ import { DamageSimService } from './damage-sim.service';
 export class ItemService {
   allGearSlotItems: Record<GearSlot, Item[]>;
 
-  constructor(private damageSimservice: DamageSimService) {
-    this.damageSimservice.allGearSlotItems$.subscribe((allGearSlotItems: Record<GearSlot, Item[]>) => {
+  constructor(private staticDataService: StaticDataService) {
+    this.staticDataService.allGearSlotItems$.subscribe((allGearSlotItems: Record<GearSlot, Item[]>) => {
       this.allGearSlotItems = allGearSlotItems;
     });
   }
