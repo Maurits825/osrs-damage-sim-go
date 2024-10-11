@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges }
 import { DpsResults } from 'src/app/model/damage-sim/dps-results.model';
 import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Observable, map, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
@@ -39,7 +39,7 @@ export class DpsResultsComponent implements OnInit, OnChanges {
 
   constructor(
     private cd: ChangeDetectorRef,
-    private inputSetupService: InputSetupService,
+    private inputSetupService: DpsCalcInputService,
     private localStorageService: LocalStorageService
   ) {}
 

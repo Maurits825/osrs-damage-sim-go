@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UnitTest } from './unit-test.model';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
 export class UnitTestModalComponent {
   unitTests: Record<string, UnitTest>;
 
-  constructor(public activeModal: NgbActiveModal, private inputSetupService: InputSetupService) {}
+  constructor(public activeModal: NgbActiveModal, private inputSetupService: DpsCalcInputService) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

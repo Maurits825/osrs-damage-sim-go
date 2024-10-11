@@ -22,7 +22,7 @@ import { StaticDataService } from './static-data.service';
 @Injectable({
   providedIn: 'root',
 })
-export class InputSetupService {
+export class DpsCalcInputService {
   allNpcs: Npc[];
 
   loadInputSetup$: Subject<InputSetup> = new Subject();

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardService } from 'ngx-clipboard';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { ShareInputSetupModalComponent } from 'src/app/shared/modals/share-input-setup-modal/share-input-setup-modal.component';
 
 @Component({
@@ -13,7 +13,7 @@ export class ShareInputSetupComponent {
 
   constructor(
     private modalService: NgbModal,
-    private inputSetupService: InputSetupService,
+    private inputSetupService: DpsCalcInputService,
     private clipboardService: ClipboardService
   ) {}
 

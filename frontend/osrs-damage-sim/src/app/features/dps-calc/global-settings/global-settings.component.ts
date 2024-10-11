@@ -4,7 +4,7 @@ import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
@@ -76,7 +76,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private globalSettingsService: GlobalSettingsService,
-    private inputSetupService: InputSetupService,
+    private inputSetupService: DpsCalcInputService,
     private localStorageService: LocalStorageService
   ) {}
 

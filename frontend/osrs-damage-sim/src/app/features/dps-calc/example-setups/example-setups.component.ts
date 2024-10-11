@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { ExampleSetup } from 'src/app/model/damage-sim/example-setup.model';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ExampleSetupsComponent implements OnInit {
 
   ExampleSetup: ExampleSetup;
 
-  constructor(private staticDataService: StaticDataService, private inputSetupService: InputSetupService) {}
+  constructor(private staticDataService: StaticDataService, private inputSetupService: DpsCalcInputService) {}
 
   ngOnInit(): void {
     this.staticDataService.dmgSimExampleSetups$.pipe(take(1)).subscribe((dmgSimExampleSetups) => {

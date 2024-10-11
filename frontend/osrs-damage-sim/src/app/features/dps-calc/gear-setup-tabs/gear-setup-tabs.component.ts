@@ -12,7 +12,7 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
 import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/gear-setup-tab.component';
 
 @Component({
@@ -28,7 +28,7 @@ export class GearSetupTabsComponent implements OnInit, OnDestroy, AfterViewInit 
 
   private destroyed$ = new Subject();
 
-  constructor(private changeDetector: ChangeDetectorRef, private inputSetupService: InputSetupService) {}
+  constructor(private changeDetector: ChangeDetectorRef, private inputSetupService: DpsCalcInputService) {}
 
   ngOnInit(): void {
     this.inputSetupService.loadInputSetup$

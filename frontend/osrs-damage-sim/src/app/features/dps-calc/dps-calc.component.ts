@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DpsResults } from 'src/app/model/damage-sim/dps-results.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 
 @Component({
   selector: 'app-dps-calc',
@@ -12,7 +12,7 @@ export class DpsCalcComponent {
 
   dpsResults: DpsResults;
 
-  constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
+  constructor(private damageSimservice: DamageSimService, private inputSetupService: DpsCalcInputService) {}
 
   runDpsCalc(): void {
     this.loading = true;

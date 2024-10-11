@@ -3,7 +3,7 @@ import { cloneDeep } from 'lodash-es';
 import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
 import { BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
-import { InputSetupService } from 'src/app/services/input-setup.service';
+import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 
 @Component({
   selector: 'app-bis-calc',
@@ -16,7 +16,7 @@ export class BisCalcComponent {
   currentBisCalcInputSetup: BisCalcInputSetup;
   bisResults: BisCalcResults;
 
-  constructor(private damageSimservice: DamageSimService, private inputSetupService: InputSetupService) {}
+  constructor(private damageSimservice: DamageSimService, private inputSetupService: DpsCalcInputService) {}
 
   onBisCalcInputSetupChanged(bisCalcInputSetup: BisCalcInputSetup): void {
     this.currentBisCalcInputSetup = bisCalcInputSetup;
