@@ -41,7 +41,7 @@ export class BisCalcSettingsComponent implements OnInit {
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(private globalSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
@@ -82,13 +82,13 @@ export class BisCalcSettingsComponent implements OnInit {
 
   toggleBoost(boost: Boost): void {
     const boosts = this.bisCalcInputSetup$.getValue().gearSetupSettings.boosts;
-    this.globalSettingsService.toggleBoost(boost, boosts);
+    this.sharedSettingsService.toggleBoost(boost, boosts);
     this.updateBisCalcInputSetup({ gearSetupSettings: { boosts: boosts } });
   }
 
   toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
     const prayers = this.bisCalcInputSetup$.getValue().prayers[attackType];
-    this.globalSettingsService.togglePrayer(prayer, prayers);
+    this.sharedSettingsService.togglePrayer(prayer, prayers);
     this.updateBisCalcInputSetupFn((setup: BisCalcInputSetup) => (setup.prayers[attackType] = prayers));
   }
 

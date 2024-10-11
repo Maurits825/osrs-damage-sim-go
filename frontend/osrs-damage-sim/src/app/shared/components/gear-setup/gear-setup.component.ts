@@ -81,7 +81,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private damageSimservice: DamageSimService,
     private staticDataService: StaticDataService,
     private itemService: ItemService,
-    private globalSettingsService: SharedSettingsService,
+    private sharedSettingsService: SharedSettingsService,
     private specialGearService: SpecialGearService,
     private localStorageService: LocalStorageService,
     @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
@@ -118,11 +118,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
         this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
 
-        this.gearSetup.prayers = new Set(this.globalSettingsService.prayers$.getValue()['melee']);
+        this.gearSetup.prayers = new Set(this.sharedSettingsService.prayers$.getValue()['melee']);
         this.attackStyles = this.itemService.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
       }
 
-      this.globalSettingsService.prayers$
+      this.sharedSettingsService.prayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
         .subscribe(
           (prayers: Record<AttackType, Set<Prayer>>) =>
@@ -195,7 +195,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.currentAttackType = item.attackType;
       }
 
-      this.gearSetup.prayers = new Set(this.globalSettingsService.prayers$.getValue()[this.currentAttackType]);
+      this.gearSetup.prayers = new Set(this.sharedSettingsService.prayers$.getValue()[this.currentAttackType]);
 
       this.updateAttackStyle(itemId);
     }
@@ -214,7 +214,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   togglePrayer(prayer: Prayer): void {
-    this.globalSettingsService.togglePrayer(prayer, this.gearSetup.prayers);
+    this.sharedSettingsService.togglePrayer(prayer, this.gearSetup.prayers);
   }
 
   removeGearSetup(): void {

@@ -29,7 +29,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new Subject();
 
-  constructor(private globalSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -37,23 +37,23 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.globalSettingsService.boosts$
+    this.sharedSettingsService.boosts$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts)));
 
-    this.globalSettingsService.statDrain$
+    this.sharedSettingsService.statDrain$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains]));
 
-    this.globalSettingsService.combatStats$
+    this.sharedSettingsService.combatStats$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats }));
 
-    this.globalSettingsService.trailblazerRelics$
+    this.sharedSettingsService.trailblazerRelics$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((relics: Set<TrailblazerRelic>) => (this.gearSetupSettings.trailblazerRelics = new Set(relics)));
 
-    this.globalSettingsService.attackCycle$
+    this.sharedSettingsService.attackCycle$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((attackCycle: number) => (this.gearSetupSettings.attackCycle = attackCycle));
 
@@ -61,7 +61,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   }
 
   toggleBoost(boost: Boost): void {
-    this.globalSettingsService.toggleBoost(boost, this.gearSetupSettings.boosts);
+    this.sharedSettingsService.toggleBoost(boost, this.gearSetupSettings.boosts);
   }
 
   statDrainsChanged(statDrains: StatDrain[]): void {

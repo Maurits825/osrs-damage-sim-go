@@ -48,44 +48,44 @@ export class SharedSettingsComponent implements OnInit {
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(private globalSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
-    this.globalSettingsService.prayers$.next(this.selectedPrayers);
-    this.globalSettingsService.statDrain$.next(this.statDrains);
-    this.globalSettingsService.combatStats$.next(this.combatStats);
-    this.globalSettingsService.boosts$.next(this.selectedBoosts);
-    this.globalSettingsService.trailblazerRelics$.next(this.trailblazerRelics);
+    this.sharedSettingsService.prayers$.next(this.selectedPrayers);
+    this.sharedSettingsService.statDrain$.next(this.statDrains);
+    this.sharedSettingsService.combatStats$.next(this.combatStats);
+    this.sharedSettingsService.boosts$.next(this.selectedBoosts);
+    this.sharedSettingsService.trailblazerRelics$.next(this.trailblazerRelics);
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
   toggleBoost(boost: Boost): void {
-    this.globalSettingsService.toggleBoost(boost, this.selectedBoosts);
-    this.globalSettingsService.boosts$.next(this.selectedBoosts);
+    this.sharedSettingsService.toggleBoost(boost, this.selectedBoosts);
+    this.sharedSettingsService.boosts$.next(this.selectedBoosts);
   }
 
   toggleAttackTypePrayer(prayer: Prayer, attackType: AttackType): void {
-    this.globalSettingsService.togglePrayer(prayer, this.selectedPrayers[attackType]);
-    this.globalSettingsService.prayers$.next(this.selectedPrayers);
+    this.sharedSettingsService.togglePrayer(prayer, this.selectedPrayers[attackType]);
+    this.sharedSettingsService.prayers$.next(this.selectedPrayers);
   }
 
   combatStatsChanged(combatStats: CombatStats): void {
-    this.globalSettingsService.combatStats$.next(combatStats);
+    this.sharedSettingsService.combatStats$.next(combatStats);
   }
 
   loadCombatStats(combatStats: CombatStats): void {
     this.combatStats = combatStats;
-    this.globalSettingsService.combatStats$.next(combatStats);
+    this.sharedSettingsService.combatStats$.next(combatStats);
   }
 
   statDrainChanged(statDrains: StatDrain[]): void {
-    this.globalSettingsService.statDrain$.next(statDrains);
+    this.sharedSettingsService.statDrain$.next(statDrains);
   }
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
-    this.globalSettingsService.trailblazerRelics$.next(relics);
+    this.sharedSettingsService.trailblazerRelics$.next(relics);
   }
 
   attackCycleChanged(attackCycle: number): void {
-    this.globalSettingsService.attackCycle$.next(attackCycle);
+    this.sharedSettingsService.attackCycle$.next(attackCycle);
   }
 }
