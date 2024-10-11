@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { DpsCalcResult, DpsCalcResults } from 'src/app/model/damage-sim/dps-results.model';
-import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { DpsCalcResult, DpsCalcResults } from 'src/app/model/dps-calc/dps-results.model';
+import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 
 @Component({
   selector: 'app-hit-dist-graph',

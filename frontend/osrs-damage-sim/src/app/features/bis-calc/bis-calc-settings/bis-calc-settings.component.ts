@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
-import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { StatDrain } from 'src/app/model/shared/stat-drain.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { Npc } from 'src/app/model/osrs/npc.model';
@@ -14,6 +13,7 @@ import { TOA_PATH_LVL_NPCS, TOA_NPCS } from 'src/app/shared/components/npc-input
 import { DEFAULT_BIS_INPUT_SETUP } from './default-settings.const';
 import { PartialDeep } from 'type-fest';
 import { merge } from 'lodash-es';
+import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
 
 @Component({
   selector: 'app-bis-calc-settings',

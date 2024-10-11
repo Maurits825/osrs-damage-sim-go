@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { DpsResults } from 'src/app/model/damage-sim/dps-results.model';
-import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/damage-sim/sort.model';
-import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { DpsResults } from 'src/app/model/dps-calc/dps-results.model';
+import { SortConfigs, SortOrder, dpsSortFields, sortLabels, DpsSortField } from 'src/app/model/shared/sort.model';
+import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Observable, map, shareReplay } from 'rxjs';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { cloneDeep } from 'lodash-es';
 import { CALC_DETAILS_TAB, RESULT_TABS, ResultTab, ResultType } from './result-tab.model';
 

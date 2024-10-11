@@ -1,5 +1,5 @@
 import { Item } from '../osrs/item.model';
-import { InputGearSetupLabels } from './dps-results.model';
+import { InputGearSetupLabels } from '../dps-calc/dps-results.model';
 
 export interface SimStats {
   average: string | number;

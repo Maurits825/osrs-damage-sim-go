@@ -2,15 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
-import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
+import { StatDrain } from 'src/app/model/shared/stat-drain.model';
 import { TOA_NPCS, TOA_PATH_LVL_NPCS } from 'src/app/shared/components/npc-input/npc.const';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
-import { GlobalSettings, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
+import { GlobalSettings, InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { Npc } from 'src/app/model/osrs/npc.model';
 

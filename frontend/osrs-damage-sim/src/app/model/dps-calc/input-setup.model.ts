@@ -3,7 +3,7 @@ import { GearSlot } from '../osrs/gear-slot.enum';
 import { Item } from '../osrs/item.model';
 import { CombatStats } from '../osrs/skill.type';
 import { Prayer } from '../osrs/prayer.model';
-import { StatDrain } from './stat-drain.model';
+import { StatDrain } from '../shared/stat-drain.model';
 import { Npc } from '../osrs/npc.model';
 import { TrailblazerRelic } from '../osrs/leagues/trailblazer-relics.model';
 

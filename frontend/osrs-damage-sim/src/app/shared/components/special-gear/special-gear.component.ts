@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
-import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
+import { GearSetup } from 'src/app/model/dps-calc/input-setup.model';
+import { SpecialGear } from 'src/app/model/shared/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item } from 'src/app/model/osrs/item.model';
 

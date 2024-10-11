@@ -11,11 +11,11 @@ import {
 } from './gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
-import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
-import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
-import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
-import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
+import { GEAR_SETUP_TOKEN } from 'src/app/model/shared/injection-token.const';
+import { GearSet } from 'src/app/model/shared/gear-set.model';
+import { GearSetupPreset } from 'src/app/model/shared/gear-preset.model';
+import { GearSetup } from 'src/app/model/dps-calc/input-setup.model';
+import { SpecialGear } from 'src/app/model/shared/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item, AttackType, allAttackTypes } from 'src/app/model/osrs/item.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
@@ -25,7 +25,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { GlobalSettingsService } from 'src/app/services/global-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({

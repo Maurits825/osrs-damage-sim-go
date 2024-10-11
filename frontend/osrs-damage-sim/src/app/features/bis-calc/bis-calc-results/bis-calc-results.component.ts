@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
-import { BisCalcResult, BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
+import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
+import { BisCalcResult, BisCalcResults } from 'src/app/model/bis-calc/bis-calc-result.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item } from 'src/app/model/osrs/item.model';
 import { ItemService } from 'src/app/services/item.service';

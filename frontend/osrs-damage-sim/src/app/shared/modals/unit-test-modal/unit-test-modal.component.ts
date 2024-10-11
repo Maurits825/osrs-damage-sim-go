@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UnitTest } from './unit-test.model';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
-import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 
 @Component({
   selector: 'app-unit-test-modal',

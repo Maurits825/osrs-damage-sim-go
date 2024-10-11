@@ -6,8 +6,8 @@ import {
   DpsGrapherResults,
   GraphYValue,
   GraphYValues,
-} from 'src/app/model/damage-sim/dps-grapher-results.model';
-import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+} from 'src/app/model/dps-calc/dps-grapher-results.model';
+import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { graphTypeOrder, graphYLabel } from './dps-graph.const';
 
 @Component({

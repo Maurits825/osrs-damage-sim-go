@@ -12,8 +12,8 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { GearSetup, GearSetupSettings, InputGearSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/shared/injection-token.const';
+import { GearSetup, GearSetupSettings, InputGearSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { GearSetupSettingsComponent } from '../gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from '../gear-setup/gear-setup.component';
 

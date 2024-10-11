@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { GearSetup } from '../model/damage-sim/input-setup.model';
-import { SpecialGear } from '../model/damage-sim/special-gear.model';
+import { GearSetup } from '../model/dps-calc/input-setup.model';
+import { SpecialGear } from '../model/shared/special-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { SPECIAL_BOLTS, BLOWPIPE_ID, WILDY_WEAPONS } from '../shared/components/gear-setup/gear-setup.const';
 

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ClipboardModule } from 'ngx-clipboard';
-import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from './model/damage-sim/injection-token.const';
+import { GEAR_SETUP_TOKEN, INPUT_GEAR_SETUP_TOKEN } from './model/shared/injection-token.const';
 import { AppRoutingModule } from './app-routing.module';
 import { DpsCalcModule } from './features/dps-calc/dps-calc.module';
 import { LayoutModule } from './features/layout/layout.module';

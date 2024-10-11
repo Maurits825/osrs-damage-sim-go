@@ -1,4 +1,4 @@
-import { allStatDrains } from './stat-drain.model';
+import { allStatDrains } from '../shared/stat-drain.model';
 
 export const GraphTypes = [
   ...(allStatDrains as unknown as string[]),

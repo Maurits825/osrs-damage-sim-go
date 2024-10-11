@@ -10,8 +10,8 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { InputGearSetup, InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { INPUT_GEAR_SETUP_TOKEN } from 'src/app/model/shared/injection-token.const';
+import { InputGearSetup, InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { GearSetupTabComponent } from 'src/app/shared/components/gear-setup-tab/gear-setup-tab.component';
 

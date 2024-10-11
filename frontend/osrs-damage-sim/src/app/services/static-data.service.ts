@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map, shareReplay } from 'rxjs';
-import { GearSetupPreset } from '../model/damage-sim/gear-preset.model';
-import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/damage-sim/quick-gear.model';
+import { GearSetupPreset } from '../model/shared/gear-preset.model';
+import { QuickGear, QuickGearJson, QuickGearSlots } from '../model/shared/quick-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { HttpClient } from '@angular/common/http';
-import { ExampleSetup } from '../model/damage-sim/example-setup.model';
+import { ExampleSetup } from '../model/dps-calc/example-setup.model';
 
 @Injectable({
   providedIn: 'root',

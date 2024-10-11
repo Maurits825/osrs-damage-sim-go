@@ -1,4 +1,4 @@
-import { InputSetup } from 'src/app/model/damage-sim/input-setup.model';
+import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 
 export interface UnitTest {
   expectedDps: number;

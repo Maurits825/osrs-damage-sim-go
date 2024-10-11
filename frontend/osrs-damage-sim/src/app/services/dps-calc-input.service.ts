@@ -6,7 +6,7 @@ import {
   GlobalSettings,
   InputGearSetup,
   InputSetup,
-} from '../model/damage-sim/input-setup.model';
+} from '../model/dps-calc/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
@@ -14,7 +14,7 @@ import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-
 import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
-import { UserSettings } from '../model/damage-sim/user-settings.model';
+import { UserSettings } from '../model/shared/user-settings.model';
 //TODO this import is not good
 import { GlobalSettingsComponent } from '../features/dps-calc/global-settings/global-settings.component';
 import { StaticDataService } from './static-data.service';

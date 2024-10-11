@@ -1,4 +1,4 @@
-import { GraphType } from 'src/app/model/damage-sim/dps-grapher-results.model';
+import { GraphType } from 'src/app/model/dps-calc/dps-grapher-results.model';
 
 export const graphTypeOrder: { [key: GraphType]: number } = {
   'Elder maul': 1,

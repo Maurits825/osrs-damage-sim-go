@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { ExampleSetup } from 'src/app/model/damage-sim/example-setup.model';
+import { ExampleSetup } from 'src/app/model/dps-calc/example-setup.model';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { StaticDataService } from 'src/app/services/static-data.service';
 

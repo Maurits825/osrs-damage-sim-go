@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil, Subject, Observable } from 'rxjs';
-import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
-import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { GearSetupSettings } from 'src/app/model/dps-calc/input-setup.model';
+import { StatDrain } from 'src/app/model/shared/stat-drain.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { AttackType, Item } from 'src/app/model/osrs/item.model';
-import { QuickGearSlots } from 'src/app/model/damage-sim/quick-gear.model';
+import { QuickGearSlots } from 'src/app/model/shared/quick-gear.model';
 import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({

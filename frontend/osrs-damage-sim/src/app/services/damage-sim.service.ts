@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DpsResults } from '../model/damage-sim/dps-results.model';
+import { DpsResults } from '../model/dps-calc/dps-results.model';
 import { CombatStats, Skill } from '../model/osrs/skill.type';
-import { RuneliteGear } from '../model/damage-sim/runelite-gear.model';
+import { RuneliteGear } from '../model/shared/runelite-gear.model';
 import { Highscore, HighScoreSkill } from '../model/osrs/highscore.model';
-import { BisCalcResults } from '../model/damage-sim/bis-calc-result.model';
+import { BisCalcResults } from '../model/bis-calc/bis-calc-result.model';
 
 @Injectable({
   providedIn: 'root',

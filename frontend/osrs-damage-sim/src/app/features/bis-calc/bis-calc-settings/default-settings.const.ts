@@ -1,4 +1,4 @@
-import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
+import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
 
 export const DEFAULT_BIS_INPUT_SETUP: BisCalcInputSetup = {
   globalSettings: {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TrailblazerRelic } from '../model/osrs/leagues/trailblazer-relics.model';
-import { StatDrain } from '../model/damage-sim/stat-drain.model';
+import { StatDrain } from '../model/shared/stat-drain.model';
 import { Boost } from '../model/osrs/boost.model';
 import { AttackType } from '../model/osrs/item.model';
 import { Prayer } from '../model/osrs/prayer.model';

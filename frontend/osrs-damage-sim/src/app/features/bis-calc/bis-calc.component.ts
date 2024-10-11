@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { BisCalcInputSetup } from 'src/app/model/damage-sim/bis-calc-input.model';
-import { BisCalcResults } from 'src/app/model/damage-sim/bis-calc-result.model';
+import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
+import { BisCalcResults } from 'src/app/model/bis-calc/bis-calc-result.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 

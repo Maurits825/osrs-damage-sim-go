@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DpsResults } from 'src/app/model/damage-sim/dps-results.model';
+import { DpsResults } from 'src/app/model/dps-calc/dps-results.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 
