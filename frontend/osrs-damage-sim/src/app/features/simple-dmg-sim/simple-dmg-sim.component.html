@@ -52,6 +52,48 @@
     </ng-container>
   </div>
 
-  <!-- TODO new component then for different ui and stuff? -->
-  <!-- <app-gear-setup-tabs></app-gear-setup-tabs> -->
+  <div class="row">
+    <div class="col-3">
+      <app-gear-presets></app-gear-presets>
+    </div>
+    <div class="col-auto">
+      <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+        <div class="container-fluid px-2">
+          <ul class="navbar-nav nav-tabs flex-wrap">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                role="button"
+                [ngClass]="{
+                  active: activeTab === 'preset-editor'
+                }"
+                (click)="activeTab = 'preset-editor'"
+              >
+                <div class="text-center">Preset Editor</div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                role="button"
+                [ngClass]="{
+                  active: activeTab === 'gear-setup-tabs'
+                }"
+                (click)="activeTab = 'gear-setup-tabs'"
+              >
+                <div class="text-center">Gear Setups</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div *ngIf="activeTab === 'preset-editor'">
+        <app-preset-editor></app-preset-editor>
+      </div>
+      <div *ngIf="activeTab === 'gear-setup-tabs'">
+        <app-gear-setup-tabs></app-gear-setup-tabs>
+      </div>
+    </div>
+  </div>
 </div>

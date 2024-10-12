@@ -9,6 +9,8 @@ export class SimpleDmgSimComponent {
 
   simpleDmgSimResults: any = null;
 
+  activeTab: 'preset-editor' | 'gear-setup-tabs' = 'preset-editor';
+
   runSimpleDmgSimCalc(): void {
     console.log('run dmg sim');
   }

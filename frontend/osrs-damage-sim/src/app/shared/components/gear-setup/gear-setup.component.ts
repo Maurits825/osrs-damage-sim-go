@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import {
   DEFAULT_GEAR_SETUP,
   AUTOCAST_STLYE as AUTOCAST_STYLE,
   QUICK_GEAR_SETS,
-} from './gear-setup.const';
+} from '../../../model/shared/gear-setup.const';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GEAR_SETUP_TOKEN } from 'src/app/model/shared/injection-token.const';

@@ -1,0 +1,32 @@
+<div>
+  <p>Some title</p>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    *ngIf="gearPresets.length < maxGearPresets"
+    (click)="addNewGearPreset()"
+  >
+    <i class="bi bi-plus"></i> Add preset
+  </button>
+  {{ gearPresets }}
+  <ng-container *ngFor="let preset of gearPresets">
+    <div>
+      <div>
+        {{ preset.setupName }}
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="flex-shrink-1">
+          <button type="button" class="btn btn-sm btn-danger" (click)="removeGearPreset(preset)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+        <div class="btn-group flex-fill ms-2">
+          <button type="button" class="btn btn-primary flex-fill" (click)="editGearPreset(preset)">
+            <i class="bi bi-pencil-fill"></i> Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

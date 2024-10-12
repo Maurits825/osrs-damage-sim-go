@@ -6,9 +6,12 @@ import { SimpleDmgSimComponent } from './simple-dmg-sim.component';
 import { FormsModule } from '@angular/forms';
 import { AppSharedModule } from 'src/app/shared/app-shared.module';
 import { SimpleSimSettingsComponent } from './simple-sim-settings/simple-sim-settings.component';
+import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
+import { GearPresetsComponent } from './gear-presets/gear-presets.component';
+import { PresetEditorComponent } from './preset-editor/preset-editor.component';
 
 @NgModule({
-  declarations: [SimpleDmgSimComponent, SimpleSimSettingsComponent],
+  declarations: [SimpleDmgSimComponent, SimpleSimSettingsComponent, GearSetupTabsComponent, GearPresetsComponent, PresetEditorComponent],
   imports: [CommonModule, FormsModule, SimpleDmgSimRoutingModule, AppSharedModule],
 })
 export class SimpleDmgSimModule {}

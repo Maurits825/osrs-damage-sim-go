@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GearSetup } from '../model/dps-calc/input-setup.model';
 import { SpecialGear } from '../model/shared/special-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { SPECIAL_BOLTS, BLOWPIPE_ID, WILDY_WEAPONS } from '../shared/components/gear-setup/gear-setup.const';
+import { SPECIAL_BOLTS, BLOWPIPE_ID, WILDY_WEAPONS } from '../model/shared/gear-setup.const';
 
 @Injectable({
   providedIn: 'root',
