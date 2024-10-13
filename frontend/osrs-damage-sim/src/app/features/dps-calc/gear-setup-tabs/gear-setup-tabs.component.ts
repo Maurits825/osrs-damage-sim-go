@@ -50,6 +50,7 @@ export class GearSetupTabsComponent implements OnInit, OnDestroy {
     }
 
     this.selectTab(this.inputGearSetups.length - 1);
+    this.changeDetector.detectChanges();
   }
 
   selectTab(index: number): void {
