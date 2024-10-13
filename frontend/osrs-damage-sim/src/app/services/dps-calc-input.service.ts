@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { GearSetup, GlobalSettings, InputGearSetup, InputSetup } from '../model/dps-calc/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
@@ -8,13 +8,15 @@ import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
 import { UserSettings } from '../model/shared/user-settings.model';
-//TODO this import is not good
-import { GlobalSettingsComponent } from '../features/dps-calc/global-settings/global-settings.component';
 import { StaticDataService } from './static-data.service';
 import { GearSetupSettings } from '../model/shared/gear-setup-settings.model';
 
 export interface InputGearSetupProvider {
   getInputGearSetup(): InputGearSetup[];
+}
+
+export interface GlobalSettingsProvider {
+  getGlobalSettings(): GlobalSettings;
 }
 
 @Injectable({
@@ -25,9 +27,8 @@ export class DpsCalcInputService {
 
   loadInputSetup$: Subject<InputSetup> = new Subject();
 
-  globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
-
   inputGearSetupProvider: InputGearSetupProvider;
+  globalSettingProvider: GlobalSettingsProvider;
 
   userSettingsWatch$: Observable<UserSettings>;
 
@@ -47,9 +48,9 @@ export class DpsCalcInputService {
   }
 
   getInputSetup(): InputSetup {
-    const globalSettings = this.globalSettingsComponent$.getValue().globalSettings;
+    //TODO check if providers are not null??
     const inputSetup: InputSetup = {
-      globalSettings: globalSettings,
+      globalSettings: this.globalSettingProvider.getGlobalSettings(),
       inputGearSetups: this.inputGearSetupProvider.getInputGearSetup(),
       enableDebugTrack: this.localStorageService.userSettings$.getValue().enableDebugTracking,
     };

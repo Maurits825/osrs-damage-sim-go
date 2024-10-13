@@ -36,7 +36,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((inputSetup: InputSetup) => this.setGlobalSettings(inputSetup.globalSettings));
 
-    this.inputSetupService.globalSettingsComponent$.next(this);
+    //TODO this is scuffed?
+    this.inputSetupService.globalSettingProvider = { getGlobalSettings: () => this.globalSettings };
   }
 
   ngOnDestroy(): void {
