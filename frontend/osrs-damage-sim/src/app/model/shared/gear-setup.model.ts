@@ -1,5 +1,29 @@
-import { GearSetup } from 'src/app/model/dps-calc/input-setup.model';
-import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
+import { GearSlot } from '../osrs/gear-slot.enum';
+import { Item } from '../osrs/item.model';
+import { Prayer } from '../osrs/prayer.model';
+
+export interface GearSetup {
+  setupName: string;
+  presetName: string;
+
+  gear: Record<GearSlot, Item>;
+  blowpipeDarts: Item;
+
+  attackStyle: string;
+  spell: string;
+
+  isSpecial: boolean;
+  prayers: Set<Prayer>;
+
+  isOnSlayerTask: boolean;
+  isInWilderness: boolean;
+
+  currentHp: number;
+
+  miningLvl: number;
+
+  isKandarinDiary: boolean;
+}
 
 export const SPECIAL_BOLTS = [9242, 21944, 9243, 21946];
 export const DRAGON_DARTS_ID = 11230;

@@ -54,9 +54,9 @@
 
   <div class="row">
     <div class="col-3">
-      <app-gear-presets></app-gear-presets>
+      <app-gear-presets (selectGearSetup)="onSelectGearSetup($event)"></app-gear-presets>
     </div>
-    <div class="col-auto">
+    <div class="col">
       <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
         <div class="container-fluid px-2">
           <ul class="navbar-nav nav-tabs flex-wrap">
@@ -89,7 +89,7 @@
       </nav>
 
       <div *ngIf="activeTab === 'preset-editor'">
-        <app-preset-editor></app-preset-editor>
+        <app-gear-setup [gearSetup]="gearSetupEditor" (gearSetupChange)="onGearSetupChange($event)"></app-gear-setup>
       </div>
       <div *ngIf="activeTab === 'gear-setup-tabs'">
         <app-gear-setup-tabs></app-gear-setup-tabs>

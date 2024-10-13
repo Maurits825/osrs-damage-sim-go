@@ -8,10 +8,9 @@ import { AppSharedModule } from 'src/app/shared/app-shared.module';
 import { SimpleSimSettingsComponent } from './simple-sim-settings/simple-sim-settings.component';
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearPresetsComponent } from './gear-presets/gear-presets.component';
-import { PresetEditorComponent } from './preset-editor/preset-editor.component';
 
 @NgModule({
-  declarations: [SimpleDmgSimComponent, SimpleSimSettingsComponent, GearSetupTabsComponent, GearPresetsComponent, PresetEditorComponent],
+  declarations: [SimpleDmgSimComponent, SimpleSimSettingsComponent, GearSetupTabsComponent, GearPresetsComponent],
   imports: [CommonModule, FormsModule, SimpleDmgSimRoutingModule, AppSharedModule],
 })
 export class SimpleDmgSimModule {}

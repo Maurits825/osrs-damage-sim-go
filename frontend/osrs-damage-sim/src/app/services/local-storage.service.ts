@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { BehaviorSubject, Observable, iif, map, mergeMap, of, shareReplay, switchMap, tap } from 'rxjs';
 import { GearSetupPreset } from '../model/shared/gear-preset.model';
-import { GearSetup } from '../model/dps-calc/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { DEFAULT_USER_SETTINGS, UserSettings } from '../model/shared/user-settings.model';
+import { GearSetup } from '../model/shared/gear-setup.model';
 
 @Injectable({
   providedIn: 'root',

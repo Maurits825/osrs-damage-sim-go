@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 
 @Component({
   selector: 'app-simple-dmg-sim',
@@ -11,7 +12,17 @@ export class SimpleDmgSimComponent {
 
   activeTab: 'preset-editor' | 'gear-setup-tabs' = 'preset-editor';
 
+  gearSetupEditor: GearSetup;
+
   runSimpleDmgSimCalc(): void {
     console.log('run dmg sim');
+  }
+
+  onSelectGearSetup(gearSetup: GearSetup) {
+    this.gearSetupEditor = gearSetup;
+  }
+
+  onGearSetupChange(gearSetup: GearSetup) {
+    // this.gearSetupEditor = gearSetup;
   }
 }

@@ -8,12 +8,11 @@ import {
   DEFAULT_GEAR_SETUP,
   AUTOCAST_STLYE as AUTOCAST_STYLE,
   QUICK_GEAR_SETS,
-} from '../../../model/shared/gear-setup.const';
+} from '../../../model/shared/gear-setup.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
 import { GearSet } from 'src/app/model/shared/gear-set.model';
 import { GearSetupPreset } from 'src/app/model/shared/gear-preset.model';
-import { GearSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { SpecialGear } from 'src/app/model/shared/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item, AttackType, allAttackTypes } from 'src/app/model/osrs/item.model';
@@ -24,6 +23,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { StaticDataService } from 'src/app/services/static-data.service';
+import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 
 @Component({
   selector: 'app-gear-setup',
@@ -33,10 +33,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   @Input()
   gearSetup: GearSetup;
 
-  setupId = uniqueId();
-
   @Output()
   gearSetupChange = new EventEmitter<GearSetup>();
+
+  setupId = uniqueId();
 
   GearSlot = GearSlot;
 

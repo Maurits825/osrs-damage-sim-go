@@ -1,8 +1,6 @@
-import { GearSlot } from '../osrs/gear-slot.enum';
-import { Item } from '../osrs/item.model';
-import { Prayer } from '../osrs/prayer.model';
 import { Npc } from '../osrs/npc.model';
 import { GearSetupSettings } from '../shared/gear-setup-settings.model';
+import { GearSetup } from '../shared/gear-setup.model';
 
 export interface InputSetup {
   globalSettings: GlobalSettings;
@@ -38,27 +36,4 @@ export interface ContinuousSimSettings {
 export interface InputGearSetup {
   gearSetupSettings: GearSetupSettings;
   gearSetup: GearSetup;
-}
-
-export interface GearSetup {
-  setupName: string;
-  presetName: string;
-
-  gear: Record<GearSlot, Item>;
-  blowpipeDarts: Item;
-
-  attackStyle: string;
-  spell: string;
-
-  isSpecial: boolean;
-  prayers: Set<Prayer>;
-
-  isOnSlayerTask: boolean;
-  isInWilderness: boolean;
-
-  currentHp: number;
-
-  miningLvl: number;
-
-  isKandarinDiary: boolean;
 }

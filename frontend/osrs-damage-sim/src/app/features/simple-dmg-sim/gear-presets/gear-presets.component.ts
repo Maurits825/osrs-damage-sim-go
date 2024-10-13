@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-//TODO have this in a shared model?
-import { GearSetup } from 'src/app/model/dps-calc/input-setup.model';
-import { DEFAULT_GEAR_SETUP } from 'src/app/model/shared/gear-setup.const';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { DEFAULT_GEAR_SETUP } from 'src/app/model/shared/gear-setup.model';
+import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 
 @Component({
   selector: 'app-gear-presets',
   templateUrl: './gear-presets.component.html',
 })
 export class GearPresetsComponent {
+  @Output()
+  selectGearSetup = new EventEmitter<GearSetup>();
+
   maxGearPresets = 50;
   gearPresets: GearSetup[] = [];
 
@@ -16,14 +18,14 @@ export class GearPresetsComponent {
     console.log(this.gearPresets);
   }
 
-  removeGearPreset(preset: GearSetup): void {
-    const index = this.gearPresets.indexOf(preset);
+  removeGearPreset(gearSetup: GearSetup): void {
+    const index = this.gearPresets.indexOf(gearSetup);
     if (index >= 0) {
       this.gearPresets.splice(index, 1);
     }
   }
 
-  editGearPreset(preset: GearSetup): void {
-    console.log('edit');
+  editGearPreset(gearSetup: GearSetup): void {
+    this.selectGearSetup.emit(gearSetup);
   }
 }
