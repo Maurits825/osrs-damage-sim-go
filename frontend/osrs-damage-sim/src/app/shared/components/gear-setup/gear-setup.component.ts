@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep, uniqueId } from 'lodash-es';
 import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import {
@@ -33,10 +33,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   @Input()
   gearSetup: GearSetup;
 
+  setupId = uniqueId();
+
   @Output()
   gearSetupChange = new EventEmitter<GearSetup>();
-
-  setupCount: number;
 
   GearSlot = GearSlot;
 

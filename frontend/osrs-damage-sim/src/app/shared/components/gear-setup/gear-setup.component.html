@@ -100,17 +100,18 @@
   </div>
 
   <div class="mb-3 d-flex flex-wrap align-items-center">
-    <div class="btn-group me-2" role="group" style="height: '45px'">
+    <div class="btn-group me-2" role="group" style="height: 45px">
       <ng-container *ngFor="let attackType of allAttackTypes">
         <input
           type="radio"
           class="btn-check"
-          style="width: '50px'"
+          style="width: 50px"
           [title]="attackType"
+          id="{{ attackType + setupId }}"
           (click)="setAttackType(attackType)"
           [checked]="attackType === currentAttackType"
         />
-        <label class="btn btn-outline-secondary">
+        <label class="btn btn-outline-secondary" for="{{ attackType + setupId }}">
           <img src="assets/img/skills/{{ attackType }}.png" />
         </label>
       </ng-container>
