@@ -107,11 +107,10 @@
           class="btn-check"
           style="width: '50px'"
           [title]="attackType"
-          id="{{ attackType + setupCount + gearSetupTabRef.id }}"
           (click)="setAttackType(attackType)"
           [checked]="attackType === currentAttackType"
         />
-        <label class="btn btn-outline-secondary" for="{{ attackType + setupCount + gearSetupTabRef.id }}">
+        <label class="btn btn-outline-secondary">
           <img src="assets/img/skills/{{ attackType }}.png" />
         </label>
       </ng-container>

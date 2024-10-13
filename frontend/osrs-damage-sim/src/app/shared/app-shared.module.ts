@@ -8,7 +8,6 @@ import { ConditionComponent } from './components/condition/condition.component';
 import { GearSetSelectComponent } from './components/gear-set-select/gear-set-select.component';
 import { GearSetupLabelComponent } from './components/gear-setup-label/gear-setup-label.component';
 import { GearSetupSettingsComponent } from './components/gear-setup-settings/gear-setup-settings.component';
-import { GearSetupTabComponent } from './components/gear-setup-tab/gear-setup-tab.component';
 import { GearSetupComponent } from './components/gear-setup/gear-setup.component';
 import { HighscoreLookupComponent } from './components/highscore-lookup/highscore-lookup.component';
 import { TrailblazerRelicsComponent } from './components/leagues/trailblazer-relics/trailblazer-relics.component';
@@ -37,7 +36,6 @@ import { SharedSettingsComponent } from './shared-settings/shared-settings.compo
   declarations: [
     NpcInputComponent,
     GearSetupComponent,
-    GearSetupTabComponent,
     ConditionComponent,
     Base64ImagePipe,
     BoostSelectionComponent,
@@ -68,7 +66,6 @@ import { SharedSettingsComponent } from './shared-settings/shared-settings.compo
   exports: [
     NpcInputComponent,
     GearSetupComponent,
-    GearSetupTabComponent,
     ConditionComponent,
     Base64ImagePipe,
     BoostSelectionComponent,

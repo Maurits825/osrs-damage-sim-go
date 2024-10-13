@@ -1,16 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import {
-  GearSetup,
-  GearSetupSettings,
-  GlobalSettings,
-  InputGearSetup,
-  InputSetup,
-} from '../model/dps-calc/input-setup.model';
+import { GearSetup, GlobalSettings, InputGearSetup, InputSetup } from '../model/dps-calc/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
-import { GearSetupTabComponent } from '../shared/components/gear-setup-tab/gear-setup-tab.component';
 import { FILTER_PATHS } from './filter-fields.const';
 import { ItemService } from './item.service';
 import { LocalStorageService } from './local-storage.service';
@@ -18,6 +11,11 @@ import { UserSettings } from '../model/shared/user-settings.model';
 //TODO this import is not good
 import { GlobalSettingsComponent } from '../features/dps-calc/global-settings/global-settings.component';
 import { StaticDataService } from './static-data.service';
+import { GearSetupSettings } from '../model/shared/gear-setup-settings.model';
+
+export interface InputGearSetupProvider {
+  getInputGearSetup(): InputGearSetup[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +26,8 @@ export class DpsCalcInputService {
   loadInputSetup$: Subject<InputSetup> = new Subject();
 
   globalSettingsComponent$: BehaviorSubject<GlobalSettingsComponent> = new BehaviorSubject(null);
-  gearSetupTabs$: BehaviorSubject<GearSetupTabComponent[]> = new BehaviorSubject(null);
+
+  inputGearSetupProvider: InputGearSetupProvider;
 
   userSettingsWatch$: Observable<UserSettings>;
 
@@ -49,31 +48,12 @@ export class DpsCalcInputService {
 
   getInputSetup(): InputSetup {
     const globalSettings = this.globalSettingsComponent$.getValue().globalSettings;
-    const gearSetupTabs = this.gearSetupTabs$.getValue();
     const inputSetup: InputSetup = {
       globalSettings: globalSettings,
-      inputGearSetups: [],
+      inputGearSetups: this.inputGearSetupProvider.getInputGearSetup(),
       enableDebugTrack: this.localStorageService.userSettings$.getValue().enableDebugTracking,
     };
-
-    gearSetupTabs.forEach((gearSetupTab: GearSetupTabComponent) => {
-      const inputGearSetup: InputGearSetup = this.getGearInputSetup(gearSetupTab);
-      inputSetup.inputGearSetups.push(inputGearSetup);
-    });
-
     return inputSetup;
-  }
-
-  getGearInputSetup(gearSetupTab: GearSetupTabComponent): InputGearSetup {
-    const inputGearSetup: InputGearSetup = {
-      gearSetupSettings: gearSetupTab.getGearSetupSettings(),
-      gearSetup: null,
-    };
-
-    //TODO should do refactor and give up the list in the tabs
-    inputGearSetup.gearSetup = gearSetupTab.gearSetups[0].instance.getGearSetup();
-
-    return inputGearSetup;
   }
 
   parseInputSetupFromEncodedString(encodedString: string): InputSetup {

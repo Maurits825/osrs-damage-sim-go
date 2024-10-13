@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { takeUntil, Subject, Observable } from 'rxjs';
-import { GearSetupSettings } from 'src/app/model/dps-calc/input-setup.model';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { takeUntil, Subject, Observable, skip } from 'rxjs';
 import { StatDrain } from 'src/app/model/shared/stat-drain.model';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
@@ -8,22 +7,19 @@ import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.
 import { CombatStats } from 'src/app/model/osrs/skill.type';
 import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { DEFAULT_GEAR_SETUP_SETTINGS, GearSetupSettings } from 'src/app/model/shared/gear-setup-settings.model';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-gear-setup-settings',
   templateUrl: './gear-setup-settings.component.html',
-  styleUrls: ['./gear-setup-settings.component.css'],
 })
 export class GearSetupSettingsComponent implements OnInit, OnDestroy {
-  public gearSetupSettings: GearSetupSettings = {
-    statDrains: null,
-    boosts: null,
-    combatStats: null,
+  @Input()
+  gearSetupSettings: GearSetupSettings | null;
 
-    attackCycle: 0,
-
-    trailblazerRelics: null,
-  };
+  @Output()
+  gearSetupSettingsChange = new EventEmitter<GearSetupSettings>();
 
   userSettingsWatch$: Observable<UserSettings>;
 
@@ -37,24 +33,30 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    const skipCount = this.gearSetupSettings === null ? 0 : 1;
+    if (this.gearSetupSettings === null) {
+      this.gearSetupSettings = cloneDeep(DEFAULT_GEAR_SETUP_SETTINGS);
+      this.gearSetupSettingsChange.emit(this.gearSetupSettings);
+    }
+
     this.sharedSettingsService.boosts$
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts)));
 
     this.sharedSettingsService.statDrain$
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains]));
 
     this.sharedSettingsService.combatStats$
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats }));
 
     this.sharedSettingsService.trailblazerRelics$
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((relics: Set<TrailblazerRelic>) => (this.gearSetupSettings.trailblazerRelics = new Set(relics)));
 
     this.sharedSettingsService.attackCycle$
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((attackCycle: number) => (this.gearSetupSettings.attackCycle = attackCycle));
 
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
