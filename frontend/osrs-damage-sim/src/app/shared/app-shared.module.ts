@@ -6,7 +6,7 @@ import { BoostSelectionComponent } from './components/boost-selection/boost-sele
 import { CombatStatSelectionComponent } from './components/combat-stat-selection/combat-stat-selection.component';
 import { ConditionComponent } from './components/condition/condition.component';
 import { GearSetSelectComponent } from './components/gear-set-select/gear-set-select.component';
-import { GearSetupLabelComponent } from './components/gear-setup-label/gear-setup-label.component';
+import { InputSetupLabelComponent } from './components/input-setup-label/input-setup-label.component';
 import { GearSetupSettingsComponent } from './components/gear-setup-settings/gear-setup-settings.component';
 import { GearSetupComponent } from './components/gear-setup/gear-setup.component';
 import { HighscoreLookupComponent } from './components/highscore-lookup/highscore-lookup.component';
@@ -31,6 +31,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChangelogModalComponent } from './modals/changelog-modal/changelog-modal.component';
 import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal.component';
 import { SharedSettingsComponent } from './shared-settings/shared-settings.component';
+import { GearSetupLabelComponent } from './components/gear-setup-label/gear-setup-label.component';
 
 @NgModule({
   declarations: [
@@ -58,10 +59,11 @@ import { SharedSettingsComponent } from './shared-settings/shared-settings.compo
     SettingsModalComponent,
     LoadRlSetupGuideModalComponent,
     MaxHitPipe,
-    GearSetupLabelComponent,
+    InputSetupLabelComponent,
     ChangelogModalComponent,
     UnitTestModalComponent,
     SharedSettingsComponent,
+    GearSetupLabelComponent,
   ],
   exports: [
     NpcInputComponent,
@@ -88,10 +90,11 @@ import { SharedSettingsComponent } from './shared-settings/shared-settings.compo
     SettingsModalComponent,
     LoadRlSetupGuideModalComponent,
     MaxHitPipe,
-    GearSetupLabelComponent,
+    InputSetupLabelComponent,
     ChangelogModalComponent,
     UnitTestModalComponent,
     SharedSettingsComponent,
+    GearSetupLabelComponent,
   ],
   imports: [CommonModule, FormsModule, NgSelectModule, NgbPopoverModule],
 })

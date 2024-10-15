@@ -11,18 +11,18 @@
         (valueChanged)="selectedDpsResultChange($event)"
       >
         <ng-template #dropdownLabel>
-          <app-gear-setup-label
+          <app-input-setup-label
             [showTextLabel]="showResultTextLabel"
             [dpsCalcResult]="selectedDpsCalcResult"
             [inputGearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex]"
-          ></app-gear-setup-label>
+          ></app-input-setup-label>
         </ng-template>
         <ng-template #dropdownOptions let-index="index" let-item="item">
-          <app-gear-setup-label
+          <app-input-setup-label
             [showTextLabel]="showResultTextLabel"
             [dpsCalcResult]="item"
             [inputGearSetup]="inputSetup.inputGearSetups[index]"
-          ></app-gear-setup-label>
+          ></app-input-setup-label>
         </ng-template>
       </app-ng-select-lazy-load>
     </div>

@@ -12,17 +12,14 @@ export class SimpleDmgSimComponent {
 
   activeTab: 'preset-editor' | 'gear-setup-tabs' = 'preset-editor';
 
-  gearSetupEditor: GearSetup;
+  selectedGearSetup: GearSetup | null = null;
 
   runSimpleDmgSimCalc(): void {
     console.log('run dmg sim');
   }
 
   onSelectGearSetup(gearSetup: GearSetup) {
-    this.gearSetupEditor = gearSetup;
-  }
-
-  onGearSetupChange(gearSetup: GearSetup) {
-    // this.gearSetupEditor = gearSetup;
+    this.selectedGearSetup = gearSetup;
+    this.activeTab = 'preset-editor';
   }
 }

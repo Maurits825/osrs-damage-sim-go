@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { cloneDeep } from 'lodash-es';
 import { DEFAULT_GEAR_SETUP } from 'src/app/model/shared/gear-setup.model';
 import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 
@@ -8,14 +9,18 @@ import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 })
 export class GearPresetsComponent {
   @Output()
-  selectGearSetup = new EventEmitter<GearSetup>();
+  selectGearSetup = new EventEmitter<GearSetup | null>();
 
   maxGearPresets = 50;
   gearPresets: GearSetup[] = [];
 
-  addNewGearPreset(): void {
-    this.gearPresets.push({ ...DEFAULT_GEAR_SETUP, setupName: 'gear-preset' });
-    console.log(this.gearPresets);
+  activeIndex: number | null = null;
+
+  addNewGearPreset(gearSetup?: GearSetup): void {
+    this.gearPresets.push(cloneDeep(gearSetup) ?? { ...cloneDeep(DEFAULT_GEAR_SETUP), setupName: 'Preset' });
+
+    this.activeIndex = this.gearPresets.length - 1;
+    this.editGearPreset(this.activeIndex);
   }
 
   removeGearPreset(gearSetup: GearSetup): void {
@@ -23,9 +28,13 @@ export class GearPresetsComponent {
     if (index >= 0) {
       this.gearPresets.splice(index, 1);
     }
+
+    this.selectGearSetup.emit(null);
+    this.activeIndex = null;
   }
 
-  editGearPreset(gearSetup: GearSetup): void {
-    this.selectGearSetup.emit(gearSetup);
+  editGearPreset(index: number): void {
+    this.activeIndex = index;
+    this.selectGearSetup.emit(this.gearPresets[index]);
   }
 }

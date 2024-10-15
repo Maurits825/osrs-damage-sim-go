@@ -24,6 +24,7 @@
   </div>
 
   <app-simple-sim-settings></app-simple-sim-settings>
+  <app-shared-settings></app-shared-settings>
 
   <div class="mb-4">
     <div class="d-flex mb-1">
@@ -89,7 +90,10 @@
       </nav>
 
       <div *ngIf="activeTab === 'preset-editor'">
-        <app-gear-setup [gearSetup]="gearSetupEditor" (gearSetupChange)="onGearSetupChange($event)"></app-gear-setup>
+        <ng-container *ngIf="selectedGearSetup; else emptySetup">
+          <app-gear-setup [gearSetup]="selectedGearSetup"></app-gear-setup>
+        </ng-container>
+        <ng-template #emptySetup> Select or add a new setup </ng-template>
       </div>
       <div *ngIf="activeTab === 'gear-setup-tabs'">
         <app-gear-setup-tabs></app-gear-setup-tabs>
