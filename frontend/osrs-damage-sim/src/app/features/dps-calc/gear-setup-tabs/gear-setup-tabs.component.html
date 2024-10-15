@@ -43,10 +43,12 @@
       </ul>
     </div>
   </nav>
-  <div class="" *ngFor="let inputSetup of inputGearSetups; index as i">
+  <ng-container *ngFor="let inputSetup of inputGearSetups; index as i">
     <div [hidden]="activeTab !== i">
-      <div class="mb-2">
-        <app-gear-setup-settings [(gearSetupSettings)]="inputSetup.gearSetupSettings"></app-gear-setup-settings>
+      <div class="row justify-content-center">
+        <div class="mb-2 col-12 col-lg-10 col-xl-8 col-xxl-7">
+          <app-gear-setup-settings [(gearSetupSettings)]="inputSetup.gearSetupSettings"></app-gear-setup-settings>
+        </div>
       </div>
 
       <div class="row justify-content-center">
@@ -55,5 +57,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>

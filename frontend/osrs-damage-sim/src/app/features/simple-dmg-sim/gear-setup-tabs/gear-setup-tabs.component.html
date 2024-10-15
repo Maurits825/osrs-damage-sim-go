@@ -45,8 +45,10 @@
   </nav>
   <ng-container *ngFor="let inputSetup of inputGearSetups; index as i">
     <div [hidden]="activeTab !== i">
-      <div class="mb-2">
-        <app-gear-setup-settings [(gearSetupSettings)]="inputSetup.gearSetupSettings"></app-gear-setup-settings>
+      <div class="row justify-content-center">
+        <div class="mb-2 col-12 col-xl-10">
+          <app-gear-setup-settings [(gearSetupSettings)]="inputSetup.gearSetupSettings"></app-gear-setup-settings>
+        </div>
       </div>
       <div>
         <app-gear-sim-setups [gearSimSetups]="inputSetup.gearSimSetups"></app-gear-sim-setups>
