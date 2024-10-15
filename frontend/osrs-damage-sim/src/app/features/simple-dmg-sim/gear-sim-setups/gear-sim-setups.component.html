@@ -1,8 +1,8 @@
 <div>
   <h5 class="text-center">Sim Setup</h5>
   <ng-container *ngFor="let simSetup of gearSimSetups; index as i">
-    <div class="d-flex align-items-center mb-2">
-      <div class="d-flex align-items-center">
+    <div class="mb-4">
+      <div class="d-flex align-items-center mb-2">
         <div class="me-2">Select preset:</div>
         <div class="flex-fill">
           <app-ng-select-lazy-load
@@ -20,12 +20,19 @@
             </ng-template>
           </app-ng-select-lazy-load>
         </div>
+
+        <div class="flex-shrink-1 ms-2">
+          <button type="button" class="btn btn-sm btn-danger" (click)="removeSimSetup(i)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="flex-shrink-1 ms-2">
-        <button type="button" class="btn btn-sm btn-danger" (click)="removeSimSetup(i)">
-          <i class="bi bi-trash"></i>
-        </button>
+      <div class="d-flex">
+        <div class="me-3">
+          <app-gear-setup-label [gearSetup]="selectedGearPresets[i]"></app-gear-setup-label>
+        </div>
+        <div class="flex-fill"><app-condition></app-condition></div>
       </div>
     </div>
   </ng-container>

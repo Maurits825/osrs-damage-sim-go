@@ -1,42 +1,26 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Condition } from '../../../model/shared/condition.model';
+import {
+  booleanOperators,
+  comparisonOperators,
+  Condition,
+  conditionVariables,
+} from '../../../model/shared/condition.model';
 
 @Component({
   selector: 'app-condition',
   templateUrl: './condition.component.html',
-  styleUrls: ['./condition.component.css'],
 })
-export class ConditionComponent implements OnInit {
+export class ConditionComponent {
   @Input()
-  initialConditions: Condition[];
-
-  conditionVariables = {
-    NPC_HITPOINTS: 'Npc hitpoints',
-    DMG_DEALT: 'Damage dealt',
-    ATTACK_COUNT: 'Attack count',
-  };
-
-  conditionComparisons1 = {
-    AND: 'and',
-    OR: 'or',
-  };
-
-  conditionComparisons2 = {
-    EQUAL: '==',
-    GRT_THAN: '>',
-    LESS_THAN: '<',
-    GRT_EQ_THAN: '>=',
-    LESS_EQ_THAN: '<=',
-  };
-
-  @Output() conditionsChanged = new EventEmitter<Condition[]>();
   conditions: Condition[] = [];
 
-  maxConditions = 5;
+  booleanOperators = booleanOperators;
+  comparisonOperators = comparisonOperators;
+  conditionVariables = conditionVariables;
 
-  ngOnInit(): void {
-    this.conditions = this.initialConditions;
-  }
+  @Output() conditionsChanged = new EventEmitter<Condition[]>();
+
+  maxConditions = 5;
 
   addCondition(): void {
     this.conditions.push({

@@ -7,10 +7,16 @@ import { InputGearSetup } from '../model/simple-dmg-sim/input-setup.model';
   providedIn: 'root',
 })
 export class SimpleDmgSimInputService {
+  //TODO default values, clean up mock data
   private inputGearSetups: InputGearSetup[] = [
     {
       gearSetupSettings: null,
-      gearSimSetups: [],
+      gearSimSetups: [
+        { gearPresetIndex: 0 },
+        {
+          gearPresetIndex: 1,
+        },
+      ],
     },
   ];
   private gearSetupPresets: GearSetup[] = GEAR_SETUPS_MOCK;

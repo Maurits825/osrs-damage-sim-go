@@ -31,8 +31,9 @@ export class GearSimSetupsComponent implements OnInit {
   }
 
   addNewSimSetup(gearSimSetup?: GearSimSetup): void {
-    this.gearSimSetups.push(cloneDeep(gearSimSetup) ?? { gearPresetIndex: 0 });
-    this.selectedGearPresets.push(null);
+    const defaultIndex = 0;
+    this.gearSimSetups.push(cloneDeep(gearSimSetup) ?? { gearPresetIndex: defaultIndex });
+    this.selectedGearPresets.push(this.allGearPresets[defaultIndex]);
   }
 
   removeSimSetup(index: number): void {
