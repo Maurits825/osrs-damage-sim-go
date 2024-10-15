@@ -1,2 +1,57 @@
-<p>gear-setup-tabs works!</p>
-<!-- TODO tabs like in dps calc -> component????? -->
+<div>
+  <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+    <div class="container-fluid">
+      <ul class="navbar-nav nav-tabs flex-wrap">
+        <li class="nav-item" *ngFor="let inputSetup of inputGearSetups; index as i">
+          <div class="d-flex align-items-center justify-content-between px-3 pb-2">
+            <button
+              type="button"
+              class="btn btn-primary me-2"
+              [disabled]="inputGearSetups.length >= maxSetupTabs"
+              (click)="openNewSetupTab(inputSetup)"
+            >
+              <i class="bi bi-clipboard-plus"></i>
+            </button>
+            <div>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteTab(i)">
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
+          </div>
+
+          <a
+            class="nav-link"
+            role="button"
+            [ngClass]="{
+              active: activeTab === i
+            }"
+            (click)="selectTab(i)"
+          >
+            <div class="text-center fs-5">Setup - {{ i + 1 }}</div>
+          </a>
+        </li>
+        <div class="me-auto">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg ms-3 my-2"
+            *ngIf="inputGearSetups.length < maxSetupTabs"
+            (click)="openNewSetupTab()"
+          >
+            <i class="bi bi-plus"></i> Add setup
+          </button>
+        </div>
+      </ul>
+    </div>
+  </nav>
+  <div class="" *ngFor="let inputSetup of inputGearSetups; index as i">
+    <div [hidden]="activeTab !== i">
+      <div class="mb-2">
+        <app-gear-setup-settings [(gearSetupSettings)]="inputSetup.gearSetupSettings"></app-gear-setup-settings>
+      </div>
+      <div>
+        setups here todo
+        {{ inputSetup.gearSimSetups }}
+      </div>
+    </div>
+  </div>
+</div>

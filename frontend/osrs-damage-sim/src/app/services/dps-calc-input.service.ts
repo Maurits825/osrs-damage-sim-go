@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { GlobalSettings, InputGearSetup, InputSetup } from '../model/dps-calc/input-setup.model';
+import { InputGearSetup, InputSetup } from '../model/dps-calc/input-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
@@ -11,6 +11,7 @@ import { UserSettings } from '../model/shared/user-settings.model';
 import { StaticDataService } from './static-data.service';
 import { GearSetupSettings } from '../model/shared/gear-setup-settings.model';
 import { GearSetup } from '../model/shared/gear-setup.model';
+import { GlobalSettings } from '../model/shared/global-settings.model';
 
 export interface InputGearSetupProvider {
   getInputGearSetup(): InputGearSetup[];

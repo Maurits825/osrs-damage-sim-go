@@ -4,11 +4,15 @@ import { GlobalSettings } from '../shared/global-settings.model';
 
 export interface InputSetup {
   globalSettings: GlobalSettings;
+  gearPresets: GearSetup[];
   inputGearSetups: InputGearSetup[];
-  enableDebugTrack: boolean;
 }
 
 export interface InputGearSetup {
   gearSetupSettings: GearSetupSettings;
-  gearSetup: GearSetup;
+  gearSimSetups: GearSimSetup[];
+}
+
+export interface GearSimSetup {
+  gearPresetIndex: number;
 }

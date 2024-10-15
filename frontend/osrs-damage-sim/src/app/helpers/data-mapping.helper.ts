@@ -1,6 +1,6 @@
 import { PartialDeep } from 'type-fest';
-import { GlobalSettings } from '../model/dps-calc/input-setup.model';
 import { NpcInfo } from '../model/osrs/npc.model';
+import { GlobalSettings } from '../model/shared/global-settings.model';
 
 export function mapNpcInfoToGlobalSettings(npcInfo: NpcInfo): PartialDeep<GlobalSettings> {
   return {

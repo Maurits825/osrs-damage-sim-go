@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { Subject, takeUntil } from 'rxjs';
-import { GlobalSettings, InputSetup } from 'src/app/model/dps-calc/input-setup.model';
+import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { NpcInfo } from 'src/app/model/osrs/npc.model';
 import { mapGlobalSettingsToNpcInfo, mapNpcInfoToGlobalSettings } from 'src/app/helpers/data-mapping.helper';
 import { merge } from 'lodash-es';
+import { GlobalSettings } from 'src/app/model/shared/global-settings.model';
 
 @Component({
   selector: 'app-global-settings',
