@@ -3,7 +3,6 @@ import { cloneDeep } from 'lodash-es';
 import { DEFAULT_GEAR_SETUP } from 'src/app/model/shared/gear-setup.model';
 import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 import { SimpleDmgSimInputService } from 'src/app/services/simple-dmg-sim-input.service';
-import { GEAR_SETUPS_MOCK } from './gear-presets.mock';
 
 @Component({
   selector: 'app-gear-presets',
@@ -14,15 +13,14 @@ export class GearPresetsComponent implements OnInit {
   selectGearSetup = new EventEmitter<GearSetup | null>();
 
   maxGearPresets = 50;
-  //TODO remove this later, make actual mock setups???
-  gearPresets: GearSetup[] = GEAR_SETUPS_MOCK;
+  gearPresets: GearSetup[];
 
   activeIndex: number | null = null;
 
   constructor(private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
-    this.inputService.setGearSetupsProvider(() => this.gearPresets);
+    this.gearPresets = this.inputService.getGearSetupPresets();
   }
 
   addNewGearPreset(gearSetup?: GearSetup): void {
@@ -30,7 +28,6 @@ export class GearPresetsComponent implements OnInit {
 
     this.activeIndex = this.gearPresets.length - 1;
     this.editGearPreset(this.activeIndex);
-    console.log(this.gearPresets);
   }
 
   removeGearPreset(index: number): void {

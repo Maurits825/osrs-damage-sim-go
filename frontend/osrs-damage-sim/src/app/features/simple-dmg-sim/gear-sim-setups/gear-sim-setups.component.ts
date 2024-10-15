@@ -23,7 +23,8 @@ export class GearSimSetupsComponent implements OnInit {
   constructor(private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
-    this.allGearPresets = this.inputService.getGearSetups();
+    this.allGearPresets = this.inputService.getGearSetupPresets();
+
     this.gearSimSetups.forEach((setup: GearSimSetup) =>
       this.selectedGearPresets.push(this.allGearPresets[setup.gearPresetIndex])
     );
@@ -41,5 +42,6 @@ export class GearSimSetupsComponent implements OnInit {
 
   selectedGearPresetChange(gearSetup: GearSetup, index: number): void {
     this.selectedGearPresets[index] = gearSetup;
+    this.gearSimSetups[index].gearPresetIndex = this.allGearPresets.findIndex((s) => s === gearSetup);
   }
 }

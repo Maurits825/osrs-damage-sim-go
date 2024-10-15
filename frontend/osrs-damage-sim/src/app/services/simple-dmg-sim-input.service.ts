@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { GearSetup } from '../model/shared/gear-setup.model';
-
-export type GearSetupsProvider = () => GearSetup[];
+import { GEAR_SETUPS_MOCK } from './gear-presets.mock';
+import { InputGearSetup } from '../model/simple-dmg-sim/input-setup.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SimpleDmgSimInputService {
-  public gearSetupsProvider: GearSetupsProvider;
+  private inputGearSetups: InputGearSetup[] = [
+    {
+      gearSetupSettings: null,
+      gearSimSetups: [],
+    },
+  ];
+  private gearSetupPresets: GearSetup[] = GEAR_SETUPS_MOCK;
 
-  public setGearSetupsProvider(gearSetupsProvider: GearSetupsProvider) {
-    this.gearSetupsProvider = gearSetupsProvider;
+  public getInputGearSetups(): InputGearSetup[] {
+    return this.inputGearSetups;
   }
 
-  public getGearSetups(): GearSetup[] {
-    return this.gearSetupsProvider();
+  public getGearSetupPresets(): GearSetup[] {
+    return this.gearSetupPresets;
   }
 }
