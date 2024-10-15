@@ -16,7 +16,6 @@ export class GearSetupTabsComponent implements OnInit {
   ];
   activeTab = 0;
 
-  @Input()
   maxSetupTabs = 5;
 
   private destroyed$ = new Subject();
@@ -31,7 +30,6 @@ export class GearSetupTabsComponent implements OnInit {
     //TODO this is scuffed?
     // this.inputSetupService.inputGearSetupProvider = { getInputGearSetup: () => this.inputGearSetups };
     this.changeDetector.detectChanges();
-    console.log('init');
   }
 
   ngOnDestroy(): void {

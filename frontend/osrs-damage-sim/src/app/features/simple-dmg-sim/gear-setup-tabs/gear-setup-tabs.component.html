@@ -43,15 +43,14 @@
       </ul>
     </div>
   </nav>
-  <div class="" *ngFor="let inputSetup of inputGearSetups; index as i">
+  <ng-container *ngFor="let inputSetup of inputGearSetups; index as i">
     <div [hidden]="activeTab !== i">
       <div class="mb-2">
         <app-gear-setup-settings [(gearSetupSettings)]="inputSetup.gearSetupSettings"></app-gear-setup-settings>
       </div>
       <div>
-        setups here todo
-        {{ inputSetup.gearSimSetups }}
+        <app-gear-sim-setups [gearSimSetups]="inputSetup.gearSimSetups"></app-gear-sim-setups>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>
