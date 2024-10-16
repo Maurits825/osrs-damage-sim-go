@@ -16,7 +16,8 @@ export class DpsCalcComponent {
 
   runDpsCalc(): void {
     this.loading = true;
-    this.clearResults();
+    this.dpsResults = null;
+
     const inputSetupJson = this.inputSetupService.getInputSetupAsJson();
 
     this.damageSimservice.runDpsCalc(inputSetupJson).subscribe({
@@ -30,9 +31,5 @@ export class DpsCalcComponent {
         this.dpsResults = { ...this.dpsResults, error: errorMessage };
       },
     });
-  }
-
-  clearResults(): void {
-    this.dpsResults = null;
   }
 }

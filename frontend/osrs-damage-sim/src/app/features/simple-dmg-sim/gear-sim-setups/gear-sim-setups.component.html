@@ -1,5 +1,37 @@
 <div>
   <h5 class="text-center">Sim Setup</h5>
+  <h6>Main Setup</h6>
+  <div class="mb-5">
+    <!-- //TODO can we use some angular stuff to not ahve dupe code -->
+    <div class="d-flex align-items-center mb-2">
+      <div class="me-2">Select preset:</div>
+      <div class="flex-fill">
+        <app-ng-select-lazy-load
+          [valueType]="GearSetup"
+          [allValues]="allGearPresets"
+          [selectedValue]="selectedMainGearSetup"
+          searchProperty="setupName"
+          placeholder="Select preset"
+          [clearable]="false"
+          (valueChanged)="selectedMainGearChange($event)"
+        >
+          <ng-template #dropdownLabel #dropdownOptions let-item="item">
+            <div class="d-flex align-items-center">
+              {{ item.setupName }}
+            </div>
+          </ng-template>
+        </app-ng-select-lazy-load>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="me-3">
+        <app-gear-setup-label [gearSetup]="selectedMainGearSetup"></app-gear-setup-label>
+      </div>
+    </div>
+  </div>
+
+  <h6>Fill Setups</h6>
   <ng-container *ngFor="let simSetup of gearSimSetups; index as i">
     <div class="mb-4">
       <div class="d-flex align-items-center mb-2">
@@ -11,6 +43,7 @@
             [selectedValue]="selectedGearPresets[i]"
             searchProperty="setupName"
             placeholder="Select preset"
+            [clearable]="false"
             (valueChanged)="selectedGearPresetChange($event, i)"
           >
             <ng-template #dropdownLabel #dropdownOptions let-item="item">
@@ -32,7 +65,7 @@
         <div class="me-3">
           <app-gear-setup-label [gearSetup]="selectedGearPresets[i]"></app-gear-setup-label>
         </div>
-        <div class="flex-fill"><app-condition></app-condition></div>
+        <div class="flex-fill"><app-condition [conditions]="simSetup.conditions"></app-condition></div>
       </div>
     </div>
   </ng-container>

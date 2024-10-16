@@ -10,6 +10,7 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/biscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpsgrapher"
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/simpledmgsim"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikishortlink"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -62,6 +63,7 @@ func getGinEngine() *gin.Engine {
 	router.GET("/lookup-highscore", highscoreLookup)
 
 	router.POST("/run-dps-calc", dpsCalc)
+	router.POST("/run-simple-dmg-sim", simpledmgSim)
 	router.POST("/run-bis-calc", bisCalc)
 
 	router.POST("/wiki-dps-shortlink", wikiDpsShortlink)
@@ -88,6 +90,23 @@ func dpsCalc(c *gin.Context) {
 	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
 	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
 	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
+}
+
+func simpledmgSim(c *gin.Context) {
+	var inputSetup simpledmgsim.InputSetup
+
+	if err := c.ShouldBindJSON(&inputSetup); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// if err := inputSetup.Validate(); err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	// 	return
+	// }
+
+	simpleSimresults := simpledmgsim.RunSimpleDmgSim(&inputSetup)
+	c.JSON(http.StatusOK, simpleSimresults)
 }
 
 func bisCalc(c *gin.Context) {

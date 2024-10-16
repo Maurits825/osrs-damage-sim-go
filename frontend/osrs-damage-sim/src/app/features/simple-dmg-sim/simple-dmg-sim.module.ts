@@ -9,6 +9,7 @@ import { SimpleSimSettingsComponent } from './simple-sim-settings/simple-sim-set
 import { GearSetupTabsComponent } from './gear-setup-tabs/gear-setup-tabs.component';
 import { GearPresetsComponent } from './gear-presets/gear-presets.component';
 import { GearSimSetupsComponent } from './gear-sim-setups/gear-sim-setups.component';
+import { SimpleSimResultsComponent } from './simple-sim-results/simple-sim-results.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { GearSimSetupsComponent } from './gear-sim-setups/gear-sim-setups.compon
     GearSetupTabsComponent,
     GearPresetsComponent,
     GearSimSetupsComponent,
+    SimpleSimResultsComponent,
   ],
   imports: [CommonModule, FormsModule, SimpleDmgSimRoutingModule, AppSharedModule],
 })

@@ -7,7 +7,7 @@
   </div>
 
   <div class="mb-2">
-    <!-- <app-dps-results [dpsResults]="dpsResults"></app-dps-results> -->
+    <app-simple-sim-results [results]="simpleSimResults"></app-simple-sim-results>
   </div>
 
   <hr class="row mb-4" />
@@ -46,10 +46,10 @@
     <div *ngIf="loading">&nbsp;</div>
 
     <ng-container *ngIf="!loading">
-      <div class="text-success" *ngIf="simpleDmgSimResults && !simpleDmgSimResults?.error">
+      <div class="text-success" *ngIf="simpleSimResults && !simpleSimResults?.error">
         Damage sim done, results above!
       </div>
-      <div class="text-danger" *ngIf="simpleDmgSimResults?.error">{{ simpleDmgSimResults.error }}</div>
+      <div class="text-danger" *ngIf="simpleSimResults?.error">{{ simpleSimResults.error }}</div>
     </ng-container>
   </div>
 

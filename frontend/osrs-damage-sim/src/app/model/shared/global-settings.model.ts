@@ -17,3 +17,17 @@ export interface CoxScaling {
   partyMaxHpLevel: number;
   isChallengeMode: boolean;
 }
+
+export const DEFAULT_GLOBAL_SETTIJNGS: GlobalSettings = {
+  npc: null,
+  teamSize: 1,
+  raidLevel: 0,
+  pathLevel: 0,
+  overlyDraining: false,
+  coxScaling: {
+    partyMaxCombatLevel: 126,
+    partyAvgMiningLevel: 99,
+    partyMaxHpLevel: 99,
+    isChallengeMode: false,
+  },
+};

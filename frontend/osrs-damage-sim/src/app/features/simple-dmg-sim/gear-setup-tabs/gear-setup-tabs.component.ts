@@ -14,8 +14,6 @@ export class GearSetupTabsComponent implements OnInit {
   activeTab = 0;
   maxSetupTabs = 5;
 
-  private destroyed$ = new Subject();
-
   constructor(private changeDetector: ChangeDetectorRef, private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
@@ -23,17 +21,14 @@ export class GearSetupTabsComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next(true);
-    this.destroyed$.complete();
-  }
-
   openNewSetupTab(inputGearSetupToCopy?: InputGearSetup): void {
+    //TODO should we call the input service and add there? that technically "owns" the data
     if (inputGearSetupToCopy) {
       this.inputGearSetups.push(cloneDeep(inputGearSetupToCopy));
     } else {
       this.inputGearSetups.push({
         gearSetupSettings: null,
+        mainGearSimSetup: { gearPresetIndex: 0, conditions: [] },
         gearSimSetups: [],
       });
     }

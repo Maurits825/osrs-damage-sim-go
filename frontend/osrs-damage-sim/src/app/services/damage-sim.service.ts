@@ -7,6 +7,7 @@ import { CombatStats, Skill } from '../model/osrs/skill.type';
 import { RuneliteGear } from '../model/shared/runelite-gear.model';
 import { Highscore, HighScoreSkill } from '../model/osrs/highscore.model';
 import { BisCalcResults } from '../model/bis-calc/bis-calc-result.model';
+import { SimpleSimResults } from '../model/simple-dmg-sim/simple-sim-results.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,11 @@ export class DamageSimService {
   public runDpsCalc(inputSetupJson: string): Observable<DpsResults> {
     const options = { headers: { 'Content-Type': 'application/json' } };
     return this.http.post<DpsResults>(this.damageSimServiceUrl + '/run-dps-calc', inputSetupJson, options);
+  }
+
+  public runSimpleSim(inputSetupJson: string): Observable<SimpleSimResults> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<SimpleSimResults>(this.damageSimServiceUrl + '/run-simple-dmg-sim', inputSetupJson, options);
   }
 
   public runBisCalc(inputSetupJson: string): Observable<BisCalcResults> {
