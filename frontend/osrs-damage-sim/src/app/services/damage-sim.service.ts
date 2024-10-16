@@ -22,23 +22,19 @@ export class DamageSimService {
   }
 
   public runDpsCalc(inputSetupJson: string): Observable<DpsResults> {
-    const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<DpsResults>(this.damageSimServiceUrl + '/run-dps-calc', inputSetupJson, options);
+    return this.postDamageService(inputSetupJson, '/run-dps-calc');
   }
 
   public runSimpleSim(inputSetupJson: string): Observable<SimpleSimResults> {
-    const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<SimpleSimResults>(this.damageSimServiceUrl + '/run-simple-dmg-sim', inputSetupJson, options);
+    return this.postDamageService(inputSetupJson, '/run-simple-dmg-sim');
   }
 
   public runBisCalc(inputSetupJson: string): Observable<BisCalcResults> {
-    const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<BisCalcResults>(this.damageSimServiceUrl + '/run-bis-calc', inputSetupJson, options);
+    return this.postDamageService(inputSetupJson, '/run-bis-calc');
   }
 
   public getWikiDpsShortlink(inputSetupJson: string): Observable<string> {
-    const options = { headers: { 'Content-Type': 'application/json' } };
-    return this.http.post<string>(this.damageSimServiceUrl + '/wiki-dps-shortlink', inputSetupJson, options);
+    return this.postDamageService(inputSetupJson, '/wiki-dps-shortlink');
   }
 
   public lookupHighscore(rsn: string): Observable<CombatStats> {
@@ -60,5 +56,10 @@ export class DamageSimService {
         equipment.filter((item: RuneliteGear) => item.id !== -1).map((item: RuneliteGear) => item.id)
       )
     );
+  }
+
+  private postDamageService<T>(inputJson: string, endpoint: string): Observable<T> {
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    return this.http.post<T>(this.damageSimServiceUrl + endpoint, inputJson, options);
   }
 }
