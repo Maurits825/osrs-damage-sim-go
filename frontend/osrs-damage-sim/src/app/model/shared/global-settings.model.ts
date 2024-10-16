@@ -18,7 +18,7 @@ export interface CoxScaling {
   isChallengeMode: boolean;
 }
 
-export const DEFAULT_GLOBAL_SETTIJNGS: GlobalSettings = {
+export const DEFAULT_GLOBAL_SETTINGS: GlobalSettings = {
   npc: null,
   teamSize: 1,
   raidLevel: 0,

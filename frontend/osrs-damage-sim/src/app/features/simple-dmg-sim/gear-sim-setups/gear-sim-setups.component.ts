@@ -55,5 +55,6 @@ export class GearSimSetupsComponent implements OnInit {
 
   selectedMainGearChange(gearSetup: GearSetup): void {
     this.selectedMainGearSetup = gearSetup;
+    this.mainGearSimSetup.gearPresetIndex = this.allGearPresets.findIndex((s) => s === gearSetup);
   }
 }

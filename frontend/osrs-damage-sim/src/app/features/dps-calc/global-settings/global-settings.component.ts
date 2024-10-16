@@ -5,14 +5,14 @@ import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { NpcInfo } from 'src/app/model/osrs/npc.model';
 import { mapGlobalSettingsToNpcInfo, mapNpcInfoToGlobalSettings } from 'src/app/helpers/data-mapping.helper';
 import { merge } from 'lodash-es';
-import { DEFAULT_GLOBAL_SETTIJNGS, GlobalSettings } from 'src/app/model/shared/global-settings.model';
+import { DEFAULT_GLOBAL_SETTINGS, GlobalSettings } from 'src/app/model/shared/global-settings.model';
 
 @Component({
   selector: 'app-global-settings',
   templateUrl: './global-settings.component.html',
 })
 export class GlobalSettingsComponent implements OnInit, OnDestroy {
-  globalSettings: GlobalSettings = DEFAULT_GLOBAL_SETTIJNGS;
+  globalSettings: GlobalSettings = DEFAULT_GLOBAL_SETTINGS;
 
   npcInfo: NpcInfo = mapGlobalSettingsToNpcInfo(this.globalSettings);
 
