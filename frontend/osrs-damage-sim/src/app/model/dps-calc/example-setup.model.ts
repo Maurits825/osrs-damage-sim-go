@@ -1,4 +1,4 @@
-export interface ExampleSetup {
+export interface ExampleSetup<T> {
   setupName: string;
-  setupString: string;
+  inputSetup: T;
 }

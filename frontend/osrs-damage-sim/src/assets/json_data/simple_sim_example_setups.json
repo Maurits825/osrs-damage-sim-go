@@ -1,0 +1,322 @@
+[
+  {
+    "setupName": "Zebak",
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "Zebak",
+          "hitpoints": 580,
+          "att": 250,
+          "str": 140,
+          "def": 70,
+          "mage": 100,
+          "range": 120,
+          "attbns": 160,
+          "strbns": 100,
+          "amagic": 215,
+          "mbns": 30,
+          "arange": 220,
+          "rngbns": 16,
+          "dstab": 160,
+          "dslash": 160,
+          "dcrush": 260,
+          "dmagic": 200,
+          "drange": 110,
+          "combat": 371,
+          "size": 9,
+          "id": "11730"
+        },
+        "teamSize": 1,
+        "raidLevel": 300,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "gearPresets": [
+        {
+          "setupName": "Max Tbow",
+          "presetName": "Max Tbow",
+          "gear": {
+            "0": {
+              "name": "Masori mask (f)",
+              "id": 27235
+            },
+            "1": {
+              "name": "Blessed dizana's quiver",
+              "id": 28955
+            },
+            "2": {
+              "name": "Necklace of anguish",
+              "id": 19547
+            },
+            "3": {
+              "name": "Twisted bow",
+              "id": 20997,
+              "attackStyles": ["Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)", "Longrange (Ranged/Longrange)"],
+              "attackType": "ranged"
+            },
+            "4": {
+              "name": "Masori body (f)",
+              "id": 27238
+            },
+            "5": null,
+            "7": {
+              "name": "Masori chaps (f)",
+              "id": 27241
+            },
+            "9": {
+              "name": "Zaryte vambraces",
+              "id": 26235
+            },
+            "10": {
+              "name": "Pegasian boots",
+              "id": 13237
+            },
+            "12": {
+              "name": "Venator ring",
+              "id": 28310
+            },
+            "13": {
+              "name": "Dragon arrow",
+              "id": 11212
+            }
+          },
+          "blowpipeDarts": null,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": ["rigour"],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        {
+          "setupName": "Max ZCB",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "name": "Masori mask (f)",
+              "id": 27235
+            },
+            "1": {
+              "name": "Blessed dizana's quiver",
+              "id": 28955
+            },
+            "2": {
+              "name": "Necklace of anguish",
+              "id": 19547
+            },
+            "3": {
+              "name": "Zaryte crossbow",
+              "id": 26374,
+              "attackStyles": ["Accurate (Ranged/Accurate)", "Rapid (Ranged/Rapid)", "Longrange (Ranged/Longrange)"],
+              "attackType": "ranged",
+              "specialAttackCost": 75
+            },
+            "4": {
+              "name": "Masori body (f)",
+              "id": 27238
+            },
+            "5": {
+              "name": "Twisted buckler",
+              "id": 21000
+            },
+            "7": {
+              "name": "Masori chaps (f)",
+              "id": 27241
+            },
+            "9": {
+              "name": "Zaryte vambraces",
+              "id": 26235
+            },
+            "10": {
+              "name": "Pegasian boots",
+              "id": 13237
+            },
+            "12": {
+              "name": "Venator ring",
+              "id": 28310
+            },
+            "13": {
+              "name": "Ruby dragon bolts (e)",
+              "id": 21944
+            }
+          },
+          "blowpipeDarts": null,
+          "attackStyle": "Rapid (Ranged/Rapid)",
+          "spell": null,
+          "isSpecial": true,
+          "prayers": ["rigour"],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        },
+        {
+          "setupName": "Max BGS",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "name": "Torva full helm",
+              "id": 26382
+            },
+            "1": {
+              "name": "Infernal max cape",
+              "id": 21285
+            },
+            "2": {
+              "name": "Amulet of rancour",
+              "id": 29801
+            },
+            "3": {
+              "name": "Bandos godsword",
+              "id": 11804,
+              "attackStyles": [
+                "Chop (Slash/Accurate)",
+                "Slash (Slash/Aggressive)",
+                "Smash (Crush/Aggressive)",
+                "Block (Slash/Defensive)"
+              ],
+              "attackType": "melee",
+              "specialAttackCost": 50
+            },
+            "4": {
+              "name": "Torva platebody",
+              "id": 26384
+            },
+            "5": null,
+            "7": {
+              "name": "Torva platelegs",
+              "id": 26386
+            },
+            "9": {
+              "name": "Ferocious gloves",
+              "id": 22981
+            },
+            "10": {
+              "name": "Primordial boots",
+              "id": 13239
+            },
+            "12": {
+              "name": "Ultor ring",
+              "id": 28307
+            },
+            "13": {
+              "name": "Rada's blessing 4",
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": null,
+          "attackStyle": "Slash (Slash/Aggressive)",
+          "spell": null,
+          "isSpecial": true,
+          "prayers": ["piety"],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true
+        }
+      ],
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": ["smelling_salts", "liquid_adrenaline"],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "mainGearSimSetup": {
+            "gearPresetIndex": 0,
+            "conditions": []
+          },
+          "gearSimSetups": [
+            {
+              "gearPresetIndex": 1,
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": ["smelling_salts", "liquid_adrenaline"],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "mainGearSimSetup": {
+            "gearPresetIndex": 0,
+            "conditions": []
+          },
+          "gearSimSetups": [
+            {
+              "gearPresetIndex": 2,
+              "conditions": [
+                {
+                  "variable": "DMG_DEALT",
+                  "comparison": "LESS_EQ_THAN",
+                  "value": 15,
+                  "nextComparison": "AND"
+                }
+              ]
+            },
+            {
+              "gearPresetIndex": 1,
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": ["smelling_salts", "liquid_adrenaline"],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": []
+          },
+          "mainGearSimSetup": {
+            "gearPresetIndex": 0,
+            "conditions": []
+          },
+          "gearSimSetups": [
+            {
+              "gearPresetIndex": 2,
+              "conditions": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

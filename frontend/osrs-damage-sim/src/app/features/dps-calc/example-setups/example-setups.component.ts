@@ -9,28 +9,23 @@ import { StaticDataService } from 'src/app/services/static-data.service';
   templateUrl: './example-setups.component.html',
 })
 export class ExampleSetupsComponent implements OnInit {
-  exampleSetups: ExampleSetup[];
+  exampleSetups: ExampleSetup<string>[];
+  selectedSetup: ExampleSetup<string>;
 
-  dmgSimExampleSetups: ExampleSetup[];
-  dpsGrapherExampleSetups: ExampleSetup[];
-  selectedSetup: ExampleSetup;
-
-  ExampleSetup: ExampleSetup;
+  ExampleSetup: ExampleSetup<string>;
 
   constructor(private staticDataService: StaticDataService, private inputSetupService: DpsCalcInputService) {}
 
   ngOnInit(): void {
-    this.staticDataService.dmgSimExampleSetups$.pipe(take(1)).subscribe((dmgSimExampleSetups) => {
-      this.dmgSimExampleSetups = dmgSimExampleSetups;
-
-      this.exampleSetups = this.dmgSimExampleSetups;
+    this.staticDataService.DpsCalcExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
+      this.exampleSetups = exampleSetups;
     });
   }
 
-  selectedSetupChange(exampleSetup: ExampleSetup): void {
+  selectedSetupChange(exampleSetup: ExampleSetup<string>): void {
     if (!exampleSetup) return;
 
-    const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.setupString);
+    const inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(exampleSetup.inputSetup);
     this.inputSetupService.loadInputSetup$.next(inputSetup);
   }
 }

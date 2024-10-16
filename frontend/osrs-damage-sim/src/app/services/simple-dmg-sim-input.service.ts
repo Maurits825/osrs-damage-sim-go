@@ -3,8 +3,9 @@ import { GearSetup } from '../model/shared/gear-setup.model';
 import { GEAR_SETUPS_MOCK } from './gear-presets.mock';
 import { InputGearSetup, InputSetup } from '../model/simple-dmg-sim/input-setup.model';
 import { DEFAULT_GLOBAL_SETTINGS, GlobalSettings } from '../model/shared/global-settings.model';
-import { omit, omitBy } from 'lodash-es';
 import { FILTER_PATHS } from './filter-fields.const';
+import { StaticDataService } from './static-data.service';
+import { Npc } from '../model/osrs/npc.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,9 @@ export class SimpleDmgSimInputService {
   //TODO default values, clean up mock data
   private inputSetup: InputSetup;
 
-  constructor() {
+  allNpcs: Npc[];
+
+  constructor(private staticDataService: StaticDataService) {
     const gearSetups: InputGearSetup[] = [
       {
         gearSetupSettings: null,
@@ -36,6 +39,10 @@ export class SimpleDmgSimInputService {
       gearPresets: GEAR_SETUPS_MOCK,
       inputGearSetups: gearSetups,
     };
+
+    this.staticDataService.allNpcs$.subscribe((allNpcs: Npc[]) => {
+      this.allNpcs = allNpcs;
+    });
   }
 
   public getInputGearSetups(): InputGearSetup[] {
@@ -48,6 +55,27 @@ export class SimpleDmgSimInputService {
 
   public getGlobalSettings(): GlobalSettings {
     return this.inputSetup.globalSettings;
+  }
+
+  public getInputGearSetupFromJson(inputSetupJson: InputSetup): InputSetup {
+    const npc = this.allNpcs.find((npc: Npc) => npc.id === inputSetupJson.globalSettings.npc?.id);
+    return {
+      globalSettings: { ...inputSetupJson.globalSettings, npc: npc },
+      gearPresets: inputSetupJson.gearPresets,
+      inputGearSetups: inputSetupJson.inputGearSetups.map((inputGearSetup) => ({
+        gearSetupSettings: {
+          statDrains: inputGearSetup.gearSetupSettings.statDrains,
+          combatStats: inputGearSetup.gearSetupSettings.combatStats,
+          boosts: new Set(Array.from(inputGearSetup.gearSetupSettings.boosts)),
+          attackCycle: inputGearSetup.gearSetupSettings.attackCycle ?? 0,
+          trailblazerRelics: inputGearSetup.gearSetupSettings.trailblazerRelics
+            ? new Set(Array.from(inputGearSetup.gearSetupSettings.trailblazerRelics))
+            : new Set(),
+        },
+        mainGearSimSetup: inputGearSetup.mainGearSimSetup,
+        gearSimSetups: inputGearSetup.gearSimSetups,
+      })),
+    };
   }
 
   //TODO find a better way???

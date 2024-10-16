@@ -7,6 +7,7 @@ import { allAttackTypes, AttackType, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { HttpClient } from '@angular/common/http';
 import { ExampleSetup } from '../model/dps-calc/example-setup.model';
+import { InputSetup as SimpleSimInputSetup } from '../model/simple-dmg-sim/input-setup.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class StaticDataService {
   public gearSetupPresets$: Observable<GearSetupPreset[]>;
   public quickGearSlots$: Observable<QuickGearSlots>;
 
-  public dmgSimExampleSetups$: Observable<ExampleSetup[]>;
+  public DpsCalcExampleSetups$: Observable<ExampleSetup<string>[]>;
+  public SimplSimExampleSetups$: Observable<ExampleSetup<SimpleSimInputSetup>[]>;
   public abbreviations$: Observable<Record<string, string[]>>;
 
   public allSpells$: Observable<string[]>;
@@ -58,7 +60,10 @@ export class StaticDataService {
       shareReplay(1)
     );
 
-    this.dmgSimExampleSetups$ = this.getDmgSimExampleSetups().pipe(shareReplay(1));
+    this.DpsCalcExampleSetups$ = this.getExampleSetups<string>('dps_calc_example_setups.json').pipe(shareReplay(1));
+    this.SimplSimExampleSetups$ = this.getExampleSetups<SimpleSimInputSetup>('simple_sim_example_setups.json').pipe(
+      shareReplay(1)
+    );
     this.abbreviations$ = this.getAbbreviations().pipe(shareReplay(1));
 
     this.allSpells$ = this.getSpells().pipe(shareReplay(1));
@@ -89,8 +94,8 @@ export class StaticDataService {
     return this.http.get<QuickGearJson>('assets/json_data/quick_gear.json');
   }
 
-  private getDmgSimExampleSetups(): Observable<ExampleSetup[]> {
-    return this.http.get<ExampleSetup[]>('assets/json_data/dmg_sim_example_setups.json');
+  private getExampleSetups<T>(jsonName: string): Observable<ExampleSetup<T>[]> {
+    return this.http.get<ExampleSetup<T>[]>('assets/json_data/' + jsonName);
   }
 
   private getAbbreviations(): Observable<Record<string, string[]>> {
