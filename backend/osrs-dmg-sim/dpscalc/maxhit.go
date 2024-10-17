@@ -63,41 +63,41 @@ func getMeleeMaxHit(player *player) int {
 
 	//TODO avarice amulet
 	maxHit := baseMaxHit
-	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.IsUndead {
+	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.Npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 6, 5)
-	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.IsUndead {
+	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.Npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 7, 6)
 	} else if player.equippedGear.isWearingBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitBlackMask, maxHit, 7, 6)
 	}
 
 	//TODO tzhaar weapon, barronite, blister wood, flail, ef aid, rat bone
-	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
-	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.IsDragon {
+	if player.equippedGear.isEquipped(dragonHunterLance) && player.Npc.IsDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 6, 5)
 	}
-	if player.equippedGear.isAnyEquipped(kerisWeapons) && player.npc.isKalphite {
+	if player.equippedGear.isAnyEquipped(kerisWeapons) && player.Npc.isKalphite {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitKeris, maxHit, 133, 100)
 	}
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
-	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.npc.isDemon {
+	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 5)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
-	if player.equippedGear.isEquipped(burningClaws) && player.npc.isDemon {
+	if player.equippedGear.isEquipped(burningClaws) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
 	}
-	if player.equippedGear.isEquipped(leafBladedAxe) && player.npc.isLeafy {
+	if player.equippedGear.isEquipped(leafBladedAxe) && player.Npc.isLeafy {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitLeafy, maxHit, 47, 40)
 	}
 	if player.equippedGear.isEquipped(colossalBlade) {
-		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitColossalblade, maxHit, min(0, player.npc.size), 10)
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitColossalblade, maxHit, min(0, player.Npc.size), 10)
 	}
 
 	if player.combatStyle.CombatStyleType == Crush {
@@ -166,9 +166,9 @@ func getRangedMaxHit(player *player) int {
 		maxHit = int(maxHit * (40 + crystalPieces) / 40)
 	}
 
-	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.IsUndead {
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.Npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 6, 5)
-	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.Npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 7, 6)
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitBlackMask, maxHit, 23, 20)
@@ -176,20 +176,20 @@ func getRangedMaxHit(player *player) int {
 
 	if player.equippedGear.isEquipped(twistedBow) {
 		cap := 250
-		if player.npc.IsXerician {
+		if player.Npc.IsXerician {
 			cap = 350
 		}
-		tbowMagic := min(cap, max(player.npc.CombatStats.Magic, player.npc.aggressiveStats.magic))
+		tbowMagic := min(cap, max(player.Npc.CombatStats.Magic, player.Npc.aggressiveStats.magic))
 		maxHit = twistedbowScaling(maxHit, tbowMagic, false)
 	}
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
-	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.IsDragon {
+	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.Npc.IsDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 5, 4)
 	}
 
-	if player.equippedGear.isEquipped(scorchingBow) && player.npc.isDemon {
+	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
 	}
@@ -254,11 +254,11 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 	}
 
 	blackMaskBonus := false
-	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.IsUndead {
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.Npc.IsUndead {
 		gearMagicBonus += 200
-	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.Npc.IsUndead {
 		gearMagicBonus += 150
-	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.npc.IsDragon {
+	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.Npc.IsDragon {
 		gearMagicBonus += 200
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		blackMaskBonus = true
@@ -286,9 +286,9 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
 
-	if player.npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
-		if player.npc.elementalWeaknessType == player.spell.elementalType {
-			maxHit += int(float32(baseMaxhit) * float32(player.npc.elementalWeaknessPercent) / 100.0)
+	if player.Npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
+		if player.Npc.elementalWeaknessType == player.spell.elementalType {
+			maxHit += int(float32(baseMaxhit) * float32(player.Npc.elementalWeaknessPercent) / 100.0)
 		}
 	}
 

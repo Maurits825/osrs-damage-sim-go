@@ -1,9 +1,17 @@
 package simpledmgsim
 
 type SimpleDmgSimResults struct {
-	Results string `json:"results"`
+	Results []SimpleDmgSimResult `json:"results"`
+}
+
+type SimpleDmgSimResult struct {
+	TicksToKill int `json:"ticksToKill"`
 }
 
 func RunSimpleDmgSim(inputSetup *InputSetup) *SimpleDmgSimResults {
-	return &SimpleDmgSimResults{Results: "run some sim zog"}
+	//TODO
+	//prob need to get player from dpscalc, have to expose the structs and fn and stuff
+	//dps calc can have alot of shared stuff, dpsgrapher/dmgsim then depend on it
+	results := RunSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
+	return &SimpleDmgSimResults{Results: []SimpleDmgSimResult{{TicksToKill: results.ticksToKill}}}
 }

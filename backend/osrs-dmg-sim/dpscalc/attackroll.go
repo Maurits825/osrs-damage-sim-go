@@ -64,9 +64,9 @@ func getMeleeAttackRoll(player *player) int {
 
 	//TODO avarice amulet
 	attackRoll := baseRoll
-	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.IsUndead {
+	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
-	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.IsUndead {
+	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 7, 6)
 	} else if player.equippedGear.isWearingBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 7, 6)
@@ -76,18 +76,18 @@ func getMeleeAttackRoll(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
-	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
-	if player.equippedGear.isEquipped(burningClaws) && player.npc.isDemon {
+	if player.equippedGear.isEquipped(burningClaws) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
-	if player.equippedGear.isEquipped(dragonHunterLance) && player.npc.IsDragon {
+	if player.equippedGear.isEquipped(dragonHunterLance) && player.Npc.IsDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 6, 5)
 	}
-	if player.equippedGear.isEquipped(kerisBreaching) && player.npc.isKalphite {
+	if player.equippedGear.isEquipped(kerisBreaching) && player.Npc.isKalphite {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyKeris, attackRoll, 133, 100)
 	}
 
@@ -152,9 +152,9 @@ func getRangedAttackRoll(player *player) int {
 	}
 
 	//TODO avarice amulet
-	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.npc.IsUndead {
+	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
-	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.npc.IsUndead {
+	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 7, 6)
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
@@ -162,20 +162,20 @@ func getRangedAttackRoll(player *player) int {
 
 	if player.equippedGear.isEquipped(twistedBow) {
 		cap := 250
-		if player.npc.IsXerician {
+		if player.Npc.IsXerician {
 			cap = 350
 		}
-		tbowMagic := min(cap, max(player.npc.CombatStats.Magic, player.npc.aggressiveStats.magic))
+		tbowMagic := min(cap, max(player.Npc.CombatStats.Magic, player.Npc.aggressiveStats.magic))
 		attackRoll = twistedbowScaling(attackRoll, tbowMagic, true)
 	}
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
-	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.npc.IsDragon {
+	if player.equippedGear.isEquipped(dragonHunterCrossbow) && player.Npc.IsDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 13, 10)
 	}
 
-	if player.equippedGear.isEquipped(scorchingBow) && player.npc.isDemon {
+	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.isDemon {
 		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
 	}
@@ -211,11 +211,11 @@ func getMagicAttackRoll(player *player) int {
 
 	//TODO avarice
 
-	if player.equippedGear.isEquipped(salveAmuletEI) && player.npc.IsUndead {
+	if player.equippedGear.isEquipped(salveAmuletEI) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
-	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.npc.IsDragon {
+	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.Npc.IsDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 15, 10)
-	} else if player.equippedGear.isEquipped(salveAmuletI) && player.npc.IsUndead {
+	} else if player.equippedGear.isEquipped(salveAmuletI) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 23, 20)
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
@@ -230,9 +230,9 @@ func getMagicAttackRoll(player *player) int {
 	}
 	//TODO water tome w/ water spell
 
-	if player.npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
-		if player.npc.elementalWeaknessType == player.spell.elementalType {
-			attackRoll += int(player.npc.elementalWeaknessPercent * baseRoll / 100)
+	if player.Npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
+		if player.Npc.elementalWeaknessType == player.spell.elementalType {
+			attackRoll += int(player.Npc.elementalWeaknessPercent * baseRoll / 100)
 		}
 	}
 

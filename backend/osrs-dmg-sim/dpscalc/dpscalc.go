@@ -86,12 +86,12 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		GearSetupName:          getGearSetupLabel(&inputGearSetup.GearSetup),
 	}
 
-	player := getPlayer(globalSettings, inputGearSetup)
+	player := GetPlayer(globalSettings, inputGearSetup)
 	dpsDetails := calculateDps(player)
 
 	ttk := float32(0.0)
 	if opt.CalcHtk {
-		htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
+		htk := getHtk(dpsDetails.hitDist, player.Npc.CombatStats.Hitpoints)
 		ttk = htk * float32(dpsDetails.attackSpeed)
 	}
 
@@ -134,7 +134,7 @@ func getIdAlias(itemId int) int {
 	return itemId
 }
 
-func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
+func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
 	equippedGear := equippedGear{ids: make([]int, 0, maxGearSlots)}
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
@@ -252,7 +252,7 @@ func getAttackSpeed(player *player) int {
 func getAccuracy(player *player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
-	if (slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
+	if (slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
 		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
 		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) {
 		accuracy := float32(1)
@@ -276,7 +276,7 @@ func getAccuracy(player *player) (float32, int) {
 	}
 
 	if player.equippedGear.isEquipped(osmumtenFang) && player.combatStyle.CombatStyleType == Stab {
-		if slices.Contains(ToaIds, player.npc.id) {
+		if slices.Contains(ToaIds, player.Npc.id) {
 			accuracy = 1 - float32(math.Pow(float64(1-accuracy), 2))
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFangTOA, accuracy)
 		} else {

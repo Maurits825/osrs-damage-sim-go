@@ -132,7 +132,7 @@ type prayerBoost struct {
 type player struct {
 	globalSettings  *GlobalSettings
 	inputGearSetup  *InputGearSetup
-	npc             npc
+	Npc             npc
 	combatStatBoost CombatStats
 	equipmentStats  equipmentStats
 	combatStyle     combatStyle
