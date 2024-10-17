@@ -100,10 +100,10 @@ func simpledmgSim(c *gin.Context) {
 		return
 	}
 
-	// if err := inputSetup.Validate(); err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	// 	return
-	// }
+	if err := inputSetup.Validate(); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
 	simpleSimresults := simpledmgsim.RunSimpleDmgSim(&inputSetup)
 	c.JSON(http.StatusOK, simpleSimresults)

@@ -185,7 +185,7 @@ type InputSetup struct {
 }
 
 func (inputSetup *InputSetup) Validate() error {
-	if err := inputSetup.GlobalSettings.validate(); err != nil {
+	if err := inputSetup.GlobalSettings.Validate(); err != nil {
 		return err
 	}
 
@@ -202,26 +202,26 @@ func (inputSetup *InputSetup) Validate() error {
 	return nil
 }
 
-func (globalSettings *GlobalSettings) validate() error {
+func (globalSettings *GlobalSettings) Validate() error {
 	return runValidators(globalSettings, globalSettingsValidators)
 }
 
-func (inputGearSetup *InputGearSetup) validate() error {
-	if err := inputGearSetup.GearSetupSettings.validate(); err != nil {
-		return err
-	}
-	if err := inputGearSetup.GearSetup.validate(); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (gearSetupSettings *GearSetupSettings) validate() error {
+func (gearSetupSettings *GearSetupSettings) Validate() error {
 	return runValidators(gearSetupSettings, gearSetupSettingsValidators)
 }
 
-func (gearSetup *GearSetup) validate() error {
+func (gearSetup *GearSetup) Validate() error {
 	return runValidators(gearSetup, gearSetupValidators)
+}
+
+func (inputGearSetup *InputGearSetup) validate() error {
+	if err := inputGearSetup.GearSetupSettings.Validate(); err != nil {
+		return err
+	}
+	if err := inputGearSetup.GearSetup.Validate(); err != nil {
+		return err
+	}
+	return nil
 }
 
 var globalSettingsValidators = []func(gs *GlobalSettings) error{
