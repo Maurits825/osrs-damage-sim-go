@@ -20,11 +20,11 @@ export class GearPresetsComponent implements OnInit {
   constructor(private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
-    this.gearPresets = this.inputService.getGearSetupPresets();
+    this.inputService.gearSetupPresetsWatch().subscribe((presets: GearSetup[]) => (this.gearPresets = presets));
   }
 
   addNewGearPreset(gearSetup?: GearSetup): void {
-    this.gearPresets.push(cloneDeep(gearSetup) ?? { ...cloneDeep(DEFAULT_GEAR_SETUP), setupName: 'Preset' });
+    this.gearPresets.push(cloneDeep(gearSetup) ?? { ...cloneDeep(DEFAULT_GEAR_SETUP), setupName: 'Preset Name' });
 
     this.activeIndex = this.gearPresets.length - 1;
     this.editGearPreset(this.activeIndex);

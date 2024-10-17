@@ -15,18 +15,18 @@ export class ExampleSetupsComponent implements OnInit {
   selectedSetup: ExampleSetup<InputSetup>;
   ExampleSetup: ExampleSetup<InputSetup>;
 
-  constructor(private staticDataService: StaticDataService, private inputSetupService: SimpleDmgSimInputService) {}
+  constructor(private staticDataService: StaticDataService, private inputService: SimpleDmgSimInputService) {}
+
   ngOnInit(): void {
     this.staticDataService.SimplSimExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
       this.exampleSetups = exampleSetups;
     });
   }
+
   selectedSetupChange(exampleSetup: ExampleSetup<InputSetup>): void {
     if (!exampleSetup) return;
 
-    const inputSetup = this.inputSetupService.getInputGearSetupFromJson(exampleSetup.inputSetup);
-    console.log(inputSetup);
-    //TODO!!!
-    // this.inputSetupService.loadInputSetup$.next(inputSetup);
+    const inputSetup = this.inputService.getInputGearSetupFromJson(exampleSetup.inputSetup);
+    this.inputService.loadInputSetup(inputSetup);
   }
 }

@@ -23,7 +23,7 @@ export class SimpleSimSettingsComponent implements OnInit {
   constructor(private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
-    this.globalSettings = this.inputService.getGlobalSettings();
+    this.inputService.globalSettingsWatch().subscribe((settings: GlobalSettings) => (this.globalSettings = settings));
     this.npcInfo = mapGlobalSettingsToNpcInfo(this.globalSettings);
   }
 

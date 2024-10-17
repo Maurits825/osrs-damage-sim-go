@@ -29,7 +29,7 @@ export class GearSimSetupsComponent implements OnInit {
   constructor(private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
-    this.allGearPresets = this.inputService.getGearSetupPresets();
+    this.inputService.gearSetupPresetsWatch().subscribe((presets: GearSetup[]) => (this.allGearPresets = presets));
 
     this.gearSimSetups.forEach((setup: GearSimSetup) =>
       this.selectedGearPresets.push(this.allGearPresets[setup.gearPresetIndex])

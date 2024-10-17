@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { Subject } from 'rxjs';
 import { InputGearSetup } from 'src/app/model/simple-dmg-sim/input-setup.model';
 import { SimpleDmgSimInputService } from 'src/app/services/simple-dmg-sim-input.service';
 
@@ -17,7 +16,7 @@ export class GearSetupTabsComponent implements OnInit {
   constructor(private changeDetector: ChangeDetectorRef, private inputService: SimpleDmgSimInputService) {}
 
   ngOnInit(): void {
-    this.inputGearSetups = this.inputService.getInputGearSetups();
+    this.inputService.inputGearSetupsWatch().subscribe((setups: InputGearSetup[]) => (this.inputGearSetups = setups));
     this.changeDetector.detectChanges();
   }
 
