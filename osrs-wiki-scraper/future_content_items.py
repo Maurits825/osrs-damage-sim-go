@@ -5,16 +5,16 @@ import mwparserfromhell as mw
 
 import api
 import util
-from constants import CACHE_DATA_FOLDER, SLOT_IDS
-from future_content_items import get_future_items
+from constants import SLOT_IDS
 
 
-def run():
+def get_future_items():
     stats = {}
+    item_id = 1_000_000  # todo get highest id of normal items?
 
-    item_pages = api.query_category("Items")
+    item_pages = api.query_category("Raging Echoes League")
     for name, page in item_pages.items():
-        if name.startswith("Category:"):
+        if name.startswith("Category:") or "Areas" in name:
             continue
 
         try:
@@ -62,9 +62,11 @@ def run():
                 if not equipable or equipVid is None:
                     continue
 
-                doc = util.get_doc_for_id_string(name + str(vid), version, stats)
-                if doc == None:
-                    continue
+                # refactor this
+                doc = dict()
+                doc["__source__"] = name + str(vid)
+                stats[item_id] = doc
+                item_id += 1
 
                 util.copy("name", doc, version)
                 if not "name" in doc:
@@ -99,6 +101,7 @@ def run():
                 for (vid, version) in util.each_version("CombatStyles", code):
                     doc['weaponCategory'] = version[''].upper().replace(' ', '_').replace('2H_SWORD',
                                                                                           'TWO_HANDED_SWORD')
+                doc['futureContent'] = True
 
         except (KeyboardInterrupt, SystemExit):
             raise
@@ -106,6 +109,4 @@ def run():
             print("Item {} failed:".format(name))
             traceback.print_exc()
 
-    future_items = get_future_items()
-    stats.update(future_items)
-    util.write_json(CACHE_DATA_FOLDER / "items-dmg-sim.json", CACHE_DATA_FOLDER / "items-dmg-sim.min.json", stats)
+    return stats

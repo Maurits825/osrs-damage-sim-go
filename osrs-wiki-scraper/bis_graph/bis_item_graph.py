@@ -54,6 +54,9 @@ class GenerateBisItems:
             if self.is_bis_filtered_item(item, item_id):
                 continue
 
+            if item.get("futureContent", False):
+                continue
+
             seen_item_names.append(item["name"])
 
             styles = self.get_item_style(item)

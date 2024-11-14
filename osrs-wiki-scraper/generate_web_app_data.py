@@ -138,6 +138,9 @@ class GenerateWebAppData:
                         "id": int(item_id),
                     }
 
+                    if "futureContent" in item:
+                        item_dict["futureContent"] = True
+
                     attack_styles, attack_type, _ = get_attack_style_and_type(item)
                     if attack_styles:
                         item_dict["attackStyles"] = attack_styles
