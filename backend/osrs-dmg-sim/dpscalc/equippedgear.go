@@ -93,6 +93,7 @@ const (
 	drygoreBlowpipe = 1000000
 	devilElement    = 1000004
 	crystalBlessing = 1000005
+	glovesDamned    = 1000001
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -109,7 +110,8 @@ var dharokSet = []int{4716, 4718, 4720, 4722}
 var enchantedRubyBolts = []int{9242, 21944}
 var enchantedDiamondBolts = []int{9243, 21946}
 
-var karilDamnedSet = []int{4734, 4732, 4736, 4738, 12851}
+var amuletDamned = 12851
+var karilSet = []int{4734, 4732, 4736, 4738}
 var veracSet = []int{4755, 4753, 4757, 4759}
 
 var corpBaneWeapons = []int{

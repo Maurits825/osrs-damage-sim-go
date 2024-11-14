@@ -63,7 +63,12 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	if player.equippedGear.isAllEquipped(dharokSet) && style.IsMeleeStyle() {
 		maxHp := player.inputGearSetup.GearSetupSettings.CombatStats.Hitpoints
 		currentHp := player.inputGearSetup.GearSetup.CurrentHp
-		attackDistribution.ScaleDamage(float32(10000+(maxHp-currentHp)*maxHp), 10000)
+
+		factor := float32(10000 + (maxHp-currentHp)*maxHp)
+		if player.equippedGear.isEquipped(glovesDamned) {
+			factor *= 2
+		}
+		attackDistribution.ScaleDamage(factor, 10000)
 	}
 
 	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.IsMeleeStyle() && player.Npc.isKalphite {
@@ -77,21 +82,31 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	}
 
 	if player.equippedGear.isAllEquipped(veracSet) && style.IsMeleeStyle() {
-		baseHitDist.ScaleProbability(0.75)
+		effect := float32(0.25)
+		if player.equippedGear.isEquipped(glovesDamned) {
+			effect *= 2
+		}
+
+		baseHitDist.ScaleProbability(1 - effect)
 		effectHits := attackdist.GetLinearHitDistribution(1.0, 1, maxHit+1)
-		effectHits.ScaleProbability(0.25)
+		effectHits.ScaleProbability(effect)
 		baseHitDist.Hits = append(baseHitDist.Hits, effectHits.Hits...)
 		attackDistribution.SetSingleAttackDistribution(baseHitDist)
 	}
 
-	if player.equippedGear.isAllEquipped(karilDamnedSet) && style == Ranged {
+	if style == Ranged && player.equippedGear.isAllEquipped(karilSet) && player.equippedGear.isAnyEquipped([]int{amuletDamned, glovesDamned}) {
+		effect := float32(0.25)
+		if player.equippedGear.isEquipped(glovesDamned) {
+			effect *= 2
+		}
+
 		secondHitsplats := baseHitDist.Clone()
-		secondHitsplats.ScaleProbability(0.25)
+		secondHitsplats.ScaleProbability(effect)
 		for i := range secondHitsplats.Hits {
 			secondHitsplats.Hits[i].Hitsplats = []int{secondHitsplats.Hits[i].Hitsplats[0], int(secondHitsplats.Hits[i].Hitsplats[0] / 2)}
 		}
 
-		baseHitDist.ScaleProbability(0.75)
+		baseHitDist.ScaleProbability(1 - effect)
 		baseHitDist.Hits = append(baseHitDist.Hits, secondHitsplats.Hits...)
 		attackDistribution.SetSingleAttackDistribution(baseHitDist)
 	}
