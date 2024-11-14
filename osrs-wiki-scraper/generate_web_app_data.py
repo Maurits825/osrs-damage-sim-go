@@ -5,7 +5,7 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-from bis_graph.bis_graph import GenerateBisItems
+from bis_graph.bis_item_graph import GenerateBisItems
 from constants import CACHE_DATA_FOLDER, JSON_INDENT
 from util import is_filtered_item, get_attack_style_and_type
 

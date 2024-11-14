@@ -5,7 +5,6 @@ from typing import List
 
 from bis_graph.bis_constants import Style, STYLE_STATS, ALL_STYLES, STYLE_TYPE_MAP
 from bis_graph.bis_item import BisItem, BisItemWalker
-from bis_graph.bis_visual_graph import BisVisualGraph
 from bis_graph.wiki_data import WikiData
 from constants import CACHE_DATA_FOLDER, JSON_INDENT
 from util import get_attack_style_and_type, is_filtered_item
@@ -30,7 +29,11 @@ class GenerateBisItems:
     def __init__(self):
         WikiData.load_all()
 
-    def create_bis_items(self, create_visuals=False):
+    def create_bis_items(self):
+        leaves, roots = self.create_bis_item_graph()
+        self.save_graph_to_json(leaves, roots)
+
+    def create_bis_item_graph(self) -> (BisItemsGraph, BisItemsGraph):
         print("Creating bis graph json ...")
         seen_item_names = []
         root = dict()
@@ -69,12 +72,7 @@ class GenerateBisItems:
                     bis_item_root.items[style][slot], bis_item_leaf.items[style][slot], style, item_id
                 )
 
-        if create_visuals:
-            print("Creating visual graphs ...")
-            visual = BisVisualGraph()
-            visual.create_graph_image(bis_item_root)
-
-        self.save_graph_to_json(bis_item_leaf, bis_item_root)
+        return bis_item_leaf, bis_item_root
 
     def save_graph_to_json(self, bis_item_leaf, bis_item_root):
         flat_graph = dict()
