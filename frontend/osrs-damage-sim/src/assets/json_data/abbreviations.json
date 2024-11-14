@@ -1595,6 +1595,9 @@
   "Rush",
   "Rusher"
  ],
+ "The Hueycoatl": [
+  "Huey"
+ ],
  "Hallowed Sepulchre": [
   "HS",
   "Sep",
@@ -1831,6 +1834,9 @@
  ],
  "Vulnerability": [
   "Vuln"
+ ],
+ "Vile Vigour": [
+  "VV"
  ],
  "Voidwaker": [
   "VW",
@@ -2566,6 +2572,9 @@
   "Lumb",
   "Lumby",
   "Lummy"
+ ],
+ "Lumbridge Teleport": [
+  "Lumby Teleport"
  ],
  "blackjack": [
   "(o)"

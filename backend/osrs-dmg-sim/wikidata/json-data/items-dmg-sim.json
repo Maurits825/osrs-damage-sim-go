@@ -6181,7 +6181,7 @@
   "slot": 2
  },
  "3327": {
-  "name": "Myre snelm (round)",
+  "name": "Myre snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6194,7 +6194,7 @@
   "drange": 7
  },
  "3329": {
-  "name": "Blood'n'tar snelm (round)",
+  "name": "Blood'n'tar snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6207,7 +6207,7 @@
   "drange": 7
  },
  "3331": {
-  "name": "Ochre snelm (round)",
+  "name": "Ochre snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6220,7 +6220,7 @@
   "drange": 7
  },
  "3333": {
-  "name": "Bruise blue snelm (round)",
+  "name": "Bruise blue snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6246,7 +6246,7 @@
   "drange": 7
  },
  "3337": {
-  "name": "Myre snelm (pointed)",
+  "name": "Pointed myre snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6259,7 +6259,7 @@
   "drange": 7
  },
  "3339": {
-  "name": "Blood'n'tar snelm (pointed)",
+  "name": "Pointed blood'n'tar snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6272,7 +6272,7 @@
   "drange": 7
  },
  "3341": {
-  "name": "Ochre snelm (pointed)",
+  "name": "Pointed ochre snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -6285,7 +6285,7 @@
   "drange": 7
  },
  "3343": {
-  "name": "Bruise blue snelm (pointed)",
+  "name": "Pointed bruise blue snelm",
   "weight": 2.0,
   "equipable": true,
   "slot": 0,
@@ -28550,6 +28550,19 @@
   "aspeed": 4,
   "weaponCategory": "WHIP"
  },
+ "20406": {
+  "name": "Dragon scimitar (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 8,
+  "aslash": 67,
+  "acrush": -2,
+  "dslash": 1,
+  "str": 66,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
  "20407": {
   "name": "Dragon dagger (Last Man Standing)",
   "weight": 0.453,
@@ -28600,6 +28613,19 @@
   "dmagic": 45,
   "drange": 50
  },
+ "20424": {
+  "name": "Black d'hide chaps (Last Man Standing)",
+  "weight": 5.443,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 18,
+  "dslash": 20,
+  "dcrush": 26,
+  "dmagic": 23,
+  "drange": 26
+ },
  "20425": {
   "name": "Mystic robe top (Last Man Standing)",
   "weight": 2.721,
@@ -28615,6 +28641,24 @@
   "slot": 7,
   "amagic": 15,
   "dmagic": 15
+ },
+ "20431": {
+  "name": "Ancient staff (Last Man Standing)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": -1,
+  "acrush": 40,
+  "amagic": 15,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "str": 50,
+  "prayer": -1,
+  "aspeed": 4,
+  "weaponCategory": "STAFF"
  },
  "20433": {
   "name": "Evil chicken feet",
@@ -28669,6 +28713,24 @@
   "aspeed": 7,
   "weaponCategory": "BLUNT"
  },
+ "20576": {
+  "name": "3rd age robe top (Last Man Standing)",
+  "weight": 2.7,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 24,
+  "dmagic": 24,
+  "mdmg": 1.0
+ },
+ "20577": {
+  "name": "3rd age robe (Last Man Standing)",
+  "weight": 1.8,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 19,
+  "dmagic": 19,
+  "mdmg": 1.0
+ },
  "20578": {
   "name": "Climbing boots (Last Man Standing)",
   "weight": 0.34,
@@ -28677,6 +28739,23 @@
   "dslash": 2,
   "dcrush": 2,
   "str": 2
+ },
+ "20581": {
+  "name": "Mithril gloves (Last Man Standing)",
+  "weight": 0.226,
+  "equipable": true,
+  "slot": 9,
+  "astab": 6,
+  "aslash": 6,
+  "acrush": 6,
+  "amagic": 3,
+  "arange": 6,
+  "dstab": 6,
+  "dslash": 6,
+  "dcrush": 6,
+  "dmagic": 3,
+  "drange": 6,
+  "str": 6
  },
  "20582": {
   "name": "Adamant gloves (Last Man Standing)",
@@ -42228,6 +42307,325 @@
   "equipable": true,
   "slot": 0
  },
+ "27157": {
+  "name": "Dragon knife (Last Man Standing)",
+  "equipable": true,
+  "slot": 3,
+  "arange": 28,
+  "rstr": 30,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
+ },
+ "27158": {
+  "name": "Mystic robe top (dark) (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 20,
+  "dmagic": 20
+ },
+ "27159": {
+  "name": "Mystic robe bottom (dark) (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 15,
+  "dmagic": 15
+ },
+ "27160": {
+  "name": "Mystic robe top (light) (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 20,
+  "dmagic": 20
+ },
+ "27161": {
+  "name": "Mystic robe bottom (light) (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 15,
+  "dmagic": 15
+ },
+ "27162": {
+  "name": "Wizard boots (Last Man Standing)",
+  "weight": 0.283,
+  "equipable": true,
+  "slot": 10,
+  "amagic": 4,
+  "dmagic": 4
+ },
+ "27163": {
+  "name": "Guthix halo (Last Man Standing)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 0,
+  "dstab": 11,
+  "dslash": 12,
+  "dcrush": 10,
+  "dmagic": 11,
+  "drange": -1,
+  "prayer": 3
+ },
+ "27164": {
+  "name": "Zamorak halo (Last Man Standing)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 0,
+  "dstab": 11,
+  "dslash": 12,
+  "dcrush": 10,
+  "dmagic": 11,
+  "drange": -1,
+  "prayer": 3
+ },
+ "27165": {
+  "name": "Saradomin halo (Last Man Standing)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 0,
+  "dstab": 11,
+  "dslash": 12,
+  "dcrush": 10,
+  "dmagic": 11,
+  "drange": -1,
+  "prayer": 3
+ },
+ "27166": {
+  "name": "Ghostly hood (Last Man Standing)",
+  "weight": 0.001,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "dmagic": 3
+ },
+ "27167": {
+  "name": "Ghostly robe (top) (Last Man Standing)",
+  "weight": 0.001,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 5,
+  "dmagic": 5
+ },
+ "27168": {
+  "name": "Ghostly robe (bottom) (Last Man Standing)",
+  "weight": 0.001,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 4,
+  "dmagic": 4
+ },
+ "27169": {
+  "name": "Berserker helm (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -5,
+  "arange": -5,
+  "dstab": 31,
+  "dslash": 29,
+  "dcrush": 33,
+  "drange": 30,
+  "str": 3
+ },
+ "27170": {
+  "name": "Infinity boots (Last Man Standing)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 10,
+  "amagic": 5,
+  "dmagic": 5
+ },
+ "27171": {
+  "name": "Tormented bracelet (Last Man Standing)",
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 9,
+  "amagic": 10,
+  "prayer": 2,
+  "mdmg": 5.0
+ },
+ "27172": {
+  "name": "Necklace of anguish (Last Man Standing)",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2,
+  "arange": 15,
+  "rstr": 5,
+  "prayer": 2
+ },
+ "27173": {
+  "name": "Amulet of torture (Last Man Standing)",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2,
+  "astab": 15,
+  "aslash": 15,
+  "acrush": 15,
+  "str": 10,
+  "prayer": 2
+ },
+ "27174": {
+  "name": "Elder chaos top (Last Man Standing)",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 10,
+  "dmagic": 8,
+  "mdmg": 1.0
+ },
+ "27175": {
+  "name": "Elder chaos robe (Last Man Standing)",
+  "weight": 0.18,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 6,
+  "dmagic": 6,
+  "mdmg": 1.0
+ },
+ "27176": {
+  "name": "Elder chaos hood (Last Man Standing)",
+  "weight": 0.18,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 5,
+  "dmagic": 4,
+  "mdmg": 1.0
+ },
+ "27177": {
+  "name": "Fremennik kilt (Last Man Standing)",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -21,
+  "arange": -7,
+  "dstab": 11,
+  "dslash": 10,
+  "dcrush": 10,
+  "dmagic": -4,
+  "drange": 10,
+  "str": 1
+ },
+ "27178": {
+  "name": "Spiked manacles (Last Man Standing)",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 10,
+  "amagic": -3,
+  "arange": -1,
+  "dmagic": -4,
+  "str": 4
+ },
+ "27179": {
+  "name": "Rangers' tunic (Last Man Standing)",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -15,
+  "arange": 15,
+  "dstab": 6,
+  "dslash": 9,
+  "dcrush": 12,
+  "dmagic": 6,
+  "drange": 6
+ },
+ "27180": {
+  "name": "Guthix chaps (Last Man Standing)",
+  "weight": 5.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 31,
+  "dslash": 25,
+  "dcrush": 33,
+  "dmagic": 28,
+  "drange": 31,
+  "prayer": 1
+ },
+ "27181": {
+  "name": "Zamorak chaps (Last Man Standing)",
+  "weight": 5.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 31,
+  "dslash": 25,
+  "dcrush": 33,
+  "dmagic": 28,
+  "drange": 31,
+  "prayer": 1
+ },
+ "27182": {
+  "name": "Saradomin chaps (Last Man Standing)",
+  "weight": 5.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 31,
+  "dslash": 25,
+  "dcrush": 33,
+  "dmagic": 28,
+  "drange": 31,
+  "prayer": 1
+ },
+ "27183": {
+  "name": "3rd age mage hat (Last Man Standing)",
+  "weight": 0.4,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 8,
+  "dmagic": 8,
+  "mdmg": 1.0
+ },
+ "27184": {
+  "name": "Ancient godsword (Last Man Standing)",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "aslash": 132,
+  "acrush": 80,
+  "str": 132,
+  "prayer": 8,
+  "aspeed": 6,
+  "weaponCategory": "TWO_HANDED_SWORD"
+ },
+ "27185": {
+  "name": "Rune defender (Last Man Standing)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 5,
+  "astab": 20,
+  "aslash": 19,
+  "acrush": 18,
+  "amagic": -3,
+  "arange": -2,
+  "dstab": 20,
+  "dslash": 19,
+  "dcrush": 18,
+  "dmagic": -3,
+  "drange": -2,
+  "str": 5
+ },
+ "27186": {
+  "name": "Zaryte crossbow (Last Man Standing)",
+  "weight": 6.001,
+  "equipable": true,
+  "slot": 3,
+  "arange": 110,
+  "dstab": 14,
+  "dslash": 14,
+  "dcrush": 12,
+  "dmagic": 15,
+  "drange": 16,
+  "prayer": 1,
+  "aspeed": 6,
+  "weaponCategory": "CROSSBOW"
+ },
  "27188": {
   "name": "Light ballista (Last Man Standing)",
   "weight": 3.0,
@@ -42252,9 +42650,40 @@
   "aspeed": 5,
   "weaponCategory": "SPIKED"
  },
+ "27191": {
+  "name": "Unholy book (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "astab": 8,
+  "aslash": 8,
+  "acrush": 8,
+  "amagic": 8,
+  "arange": 8,
+  "prayer": 5
+ },
+ "27192": {
+  "name": "Opal dragon bolts (e) (Last Man Standing)",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 122
+ },
+ "27193": {
+  "name": "Ancestral robe top (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 35,
+  "arange": -8,
+  "dstab": 42,
+  "dslash": 31,
+  "dcrush": 51,
+  "dmagic": 28,
+  "mdmg": 3.0
+ },
  "27194": {
   "name": "Ancestral robe bottom (Last Man Standing)",
-  "weight": 18.14,
+  "weight": 1.814,
   "equipable": true,
   "slot": 7,
   "amagic": 26,
@@ -42263,7 +42692,110 @@
   "dslash": 24,
   "dcrush": 30,
   "dmagic": 20,
-  "mdmg": 4.0
+  "mdmg": 3.0
+ },
+ "27195": {
+  "name": "Inquisitor's great helm (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "astab": -2,
+  "aslash": -2,
+  "acrush": 8,
+  "amagic": -5,
+  "arange": -5,
+  "dstab": 19,
+  "dslash": 10,
+  "dcrush": 21,
+  "drange": 12,
+  "str": 4,
+  "prayer": 1
+ },
+ "27196": {
+  "name": "Inquisitor's hauberk (Last Man Standing)",
+  "weight": 9.979,
+  "equipable": true,
+  "slot": 4,
+  "astab": -3,
+  "aslash": -3,
+  "acrush": 12,
+  "amagic": -11,
+  "arange": -10,
+  "dstab": 67,
+  "dslash": 55,
+  "dcrush": 71,
+  "drange": 35,
+  "str": 4,
+  "prayer": 2
+ },
+ "27197": {
+  "name": "Inquisitor's plateskirt (Last Man Standing)",
+  "weight": 9.071,
+  "equipable": true,
+  "slot": 7,
+  "astab": -3,
+  "aslash": -3,
+  "acrush": 12,
+  "amagic": -9,
+  "arange": -5,
+  "dstab": 42,
+  "dslash": 30,
+  "dcrush": 49,
+  "drange": 22,
+  "str": 2,
+  "prayer": 2
+ },
+ "27198": {
+  "name": "Inquisitor's mace (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 52,
+  "aslash": -4,
+  "acrush": 95,
+  "str": 89,
+  "prayer": 2,
+  "aspeed": 4,
+  "weaponCategory": "SPIKED"
+ },
+ "27199": {
+  "name": "3rd age range top (Last Man Standing)",
+  "weight": 4.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -15,
+  "arange": 30,
+  "dstab": 55,
+  "dslash": 47,
+  "dcrush": 60,
+  "dmagic": 60,
+  "drange": 55
+ },
+ "27200": {
+  "name": "3rd age range legs (Last Man Standing)",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 31,
+  "dslash": 25,
+  "dcrush": 33,
+  "dmagic": 30,
+  "drange": 31
+ },
+ "27201": {
+  "name": "3rd age range coif (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -2,
+  "arange": 9,
+  "dstab": 4,
+  "dslash": 7,
+  "dcrush": 10,
+  "dmagic": 5,
+  "drange": 8
  },
  "27226": {
   "name": "Masori mask",
@@ -42466,6 +42998,14 @@
   "prayer": 3,
   "aspeed": 4,
   "weaponCategory": "PARTISAN"
+ },
+ "27358": {
+  "name": "Tome of fire (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 8,
+  "dmagic": 8
  },
  "27363": {
   "name": "Masori assembler max cape",
@@ -47275,6 +47815,13 @@
   "aspeed": 4,
   "weaponCategory": "THROWN"
  },
+ "29868": {
+  "name": "Emissary hood",
+  "quest": true,
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 0
+ },
  "29870": {
   "name": "Emissary robe top",
   "quest": true,
@@ -47314,6 +47861,7 @@
   "weight": 0.06,
   "equipable": true,
   "slot": 2,
+  "amagic": 2,
   "dmagic": 3,
   "prayer": 2
  },
@@ -47322,24 +47870,112 @@
   "weight": 0.06,
   "equipable": true,
   "slot": 2,
+  "amagic": 2,
   "dmagic": 3,
   "prayer": 2
  },
+ "29911": {
+  "name": "Prop sword (Death on the Isle)",
+  "quest": true,
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
  "29912": {
   "name": "Butler's tray",
+  "quest": true,
   "weight": 0.05,
   "equipable": true,
   "slot": 3,
+  "is2h": true,
   "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "29913": {
   "name": "Butler's tray",
+  "quest": true,
   "weight": 0.05,
   "equipable": true,
   "slot": 3,
+  "is2h": true,
   "aspeed": 4,
   "weaponCategory": "UNARMED"
+ },
+ "29914": {
+  "name": "Butler's uniform (top)",
+  "quest": true,
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 4
+ },
+ "29915": {
+  "name": "Butler's uniform (bottom)",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 7
+ },
+ "29916": {
+  "name": "Butler's uniform (top)",
+  "quest": true,
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 4
+ },
+ "29918": {
+  "name": "Butler's uniform (bottom)",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 7
+ },
+ "29978": {
+  "name": "Alchemist labcoat",
+  "weight": 0.62,
+  "equipable": true,
+  "slot": 4
+ },
+ "29980": {
+  "name": "Alchemist labcoat",
+  "weight": 0.62,
+  "equipable": true,
+  "slot": 4
+ },
+ "29982": {
+  "name": "Alchemist pants",
+  "weight": 0.71,
+  "equipable": true,
+  "slot": 7
+ },
+ "29984": {
+  "name": "Alchemist pants",
+  "weight": 0.71,
+  "equipable": true,
+  "slot": 7
+ },
+ "29986": {
+  "name": "Alchemist gloves",
+  "weight": 0.09,
+  "equipable": true,
+  "slot": 9
+ },
+ "29988": {
+  "name": "Alchemist's amulet",
+  "weight": 0.007,
+  "equipable": true,
+  "slot": 2
+ },
+ "29990": {
+  "name": "Alchemist's amulet",
+  "weight": 0.007,
+  "equipable": true,
+  "slot": 2
+ },
+ "29992": {
+  "name": "Alchemist's amulet",
+  "weight": 0.007,
+  "equipable": true,
+  "slot": 2
  },
  "30048": {
   "name": "Graceful cape (Varlamore)",
@@ -47483,20 +48119,90 @@
   "dmagic": 8,
   "prayer": 1
  },
+ "30111": {
+  "name": "Helmet of the moon",
+  "weight": 0.35,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "dstab": 6,
+  "dslash": 7,
+  "dcrush": 5,
+  "dmagic": 3,
+  "drange": 6,
+  "prayer": 3
+ },
  "30156": {
   "name": "Butler's tray",
+  "quest": true,
   "weight": 0.05,
   "equipable": true,
   "slot": 3,
+  "is2h": true,
   "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "30157": {
   "name": "Butler's tray",
+  "quest": true,
   "weight": 0.05,
   "equipable": true,
   "slot": 3,
+  "is2h": true,
   "aspeed": 4,
   "weaponCategory": "UNARMED"
+ },
+ "30232": {
+  "name": "Scarecrow shirt",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 4
+ },
+ "30302": {
+  "name": "Torva full helm (unobtainable item)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0
+ },
+ "30303": {
+  "name": "Torva platebody (unobtainable item)",
+  "weight": 9.979,
+  "equipable": true,
+  "slot": 4
+ },
+ "30304": {
+  "name": "Torva platelegs (unobtainable item)",
+  "weight": 9.071,
+  "equipable": true,
+  "slot": 7
+ },
+ "30305": {
+  "name": "Arclight",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": 16,
+  "acrush": -2,
+  "dslash": 3,
+  "dcrush": 2,
+  "dmagic": 2,
+  "str": 13,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "30321": {
+  "name": "Zombie helmet",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "acrush": 8,
+  "amagic": -4,
+  "arange": -2,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 38,
+  "drange": 30,
+  "str": 2
  }
 }

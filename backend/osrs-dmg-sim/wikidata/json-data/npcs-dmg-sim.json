@@ -3024,8 +3024,7 @@
   "dheavy": 100,
   "combat": 785,
   "size": 5,
-  "respawn": 50,
-  "elementalweaknesstype": "no"
+  "respawn": 50
  },
  "320": {
   "name": "Dark energy core",
@@ -3259,8 +3258,7 @@
   "dheavy": -20,
   "combat": 111,
   "size": 3,
-  "respawn": 15,
-  "elementalweaknesstype": "no"
+  "respawn": 15
  },
  "413": {
   "name": "Gargoyle",
@@ -3279,8 +3277,7 @@
   "dheavy": -20,
   "combat": 111,
   "size": 3,
-  "respawn": 15,
-  "elementalweaknesstype": "no"
+  "respawn": 15
  },
  "414": {
   "name": "Banshee",
@@ -8918,6 +8915,7 @@
  "1213": {},
  "1224": {
   "name": "Bouncer",
+  "isDemon": true,
   "hitpoints": 116,
   "att": 120,
   "str": 120,
@@ -10162,8 +10160,7 @@
   "dheavy": -20,
   "combat": 111,
   "size": 3,
-  "respawn": 15,
-  "elementalweaknesstype": "no"
+  "respawn": 15
  },
  "1545": {
   "name": "Black knight",
@@ -13716,8 +13713,7 @@
   "dheavy": 75,
   "combat": 596,
   "size": 2,
-  "respawn": 150,
-  "elementalweaknesstype": "no"
+  "respawn": 150
  },
  "2206": {
   "name": "Starlight",
@@ -15333,12 +15329,13 @@
   "def": 68,
   "mage": 1,
   "range": 1,
-  "dstab": 45,
+  "dstab": 55,
   "dslash": 55,
   "dcrush": 5,
   "dmagic": 55,
   "dlight": 55,
   "dstandard": 55,
+  "dheavy": 55,
   "combat": 77,
   "size": 1,
   "respawn": 40,
@@ -15355,12 +15352,13 @@
   "def": 68,
   "mage": 1,
   "range": 1,
-  "dstab": 45,
+  "dstab": 55,
   "dslash": 55,
   "dcrush": 5,
   "dmagic": 55,
   "dlight": 55,
   "dstandard": 55,
+  "dheavy": 55,
   "combat": 77,
   "size": 1,
   "respawn": 40,
@@ -15377,12 +15375,13 @@
   "def": 68,
   "mage": 1,
   "range": 1,
-  "dstab": 45,
+  "dstab": 55,
   "dslash": 55,
   "dcrush": 5,
   "dmagic": 55,
   "dlight": 55,
   "dstandard": 55,
+  "dheavy": 55,
   "combat": 77,
   "size": 1,
   "respawn": 40,
@@ -15399,12 +15398,13 @@
   "def": 68,
   "mage": 1,
   "range": 1,
-  "dstab": 45,
+  "dstab": 55,
   "dslash": 55,
   "dcrush": 5,
   "dmagic": 55,
   "dlight": 55,
   "dstandard": 55,
+  "dheavy": 55,
   "combat": 77,
   "size": 1,
   "respawn": 40,
@@ -15421,6 +15421,7 @@
   "def": 68,
   "mage": 1,
   "range": 1,
+  "dstab": 45,
   "dslash": 45,
   "dcrush": 5,
   "dmagic": -5,
@@ -15443,6 +15444,7 @@
   "def": 68,
   "mage": 1,
   "range": 1,
+  "dstab": 45,
   "dslash": 45,
   "dcrush": 5,
   "dmagic": -5,
@@ -15465,6 +15467,7 @@
   "def": 68,
   "mage": 1,
   "range": 1,
+  "dstab": 45,
   "dslash": 45,
   "dcrush": 5,
   "dmagic": -5,
@@ -15487,6 +15490,7 @@
   "def": 68,
   "mage": 1,
   "range": 1,
+  "dstab": 45,
   "dslash": 45,
   "dcrush": 5,
   "dmagic": -5,
@@ -16783,10 +16787,14 @@
   "dslash": 40,
   "dcrush": 20,
   "dmagic": 10,
-  "drange": 30,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
   "combat": 57,
   "size": 1,
-  "respawn": 30
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
  },
  "2853": {
   "name": "Shadow warrior",
@@ -17498,7 +17506,9 @@
   "drange": 13,
   "combat": 61,
   "size": 1,
-  "respawn": 30
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
  },
  "3023": {
   "name": "Poison spider",
@@ -20979,7 +20989,7 @@
   "name": "Ghost",
   "isUndead": true,
   "isSpectral": true,
-  "hitpoints": 27,
+  "hitpoints": 30,
   "att": 23,
   "str": 23,
   "def": 28,
@@ -26530,6 +26540,7 @@
  },
  "5054": {
   "name": "Skeleton Hellhound",
+  "isDemon": true,
   "hitpoints": 55,
   "att": 70,
   "str": 110,
@@ -27194,27 +27205,8 @@
   "size": 1,
   "respawn": 35
  },
- "5211": {
-  "name": "Weaponsmaster",
-  "hitpoints": 20,
-  "att": 21,
-  "str": 21,
-  "def": 21,
-  "mage": 1,
-  "range": 1,
-  "attbns": 8,
-  "strbns": 10,
-  "dstab": 21,
-  "dslash": 23,
-  "dcrush": 21,
-  "dmagic": -6,
-  "drange": 20,
-  "combat": 23,
-  "size": 1,
-  "respawn": 350
- },
  "5213": {
-  "name": "Jonny the beard",
+  "name": "Jonny the Beard",
   "hitpoints": 8,
   "att": 1,
   "str": 1,
@@ -31633,6 +31625,7 @@
  },
  "6293": {
   "name": "Bouncer (hard)",
+  "isNo": true,
   "hitpoints": 232,
   "att": 240,
   "str": 240,
@@ -32050,7 +32043,7 @@
  },
  "6321": {
   "name": "Jungle Demon (hard)",
-  "isDemon": true,
+  "isNo": true,
   "hitpoints": 255,
   "att": 340,
   "str": 340,
@@ -32124,6 +32117,7 @@
  },
  "6326": {
   "name": "Skeleton Hellhound (hard)",
+  "isNo": true,
   "hitpoints": 132,
   "att": 168,
   "str": 264,
@@ -32501,6 +32495,7 @@
  },
  "6355": {
   "name": "Bouncer",
+  "isNo": true,
   "hitpoints": 116,
   "att": 120,
   "str": 120,
@@ -32562,6 +32557,7 @@
  "6359": {
   "name": "Treus Dayth",
   "isSpectral": true,
+  "isUndead": true,
   "hitpoints": 100,
   "att": 70,
   "str": 70,
@@ -32920,7 +32916,7 @@
  },
  "6382": {
   "name": "Jungle Demon",
-  "isDemon": true,
+  "isNo": true,
   "hitpoints": 170,
   "att": 170,
   "str": 170,
@@ -32994,6 +32990,7 @@
  },
  "6387": {
   "name": "Skeleton Hellhound",
+  "isDemon": true,
   "hitpoints": 55,
   "att": 70,
   "str": 110,
@@ -35064,8 +35061,7 @@
   "dlight": -10,
   "combat": 150,
   "size": 3,
-  "respawn": 27,
-  "elementalweaknesstype": "no"
+  "respawn": 27
  },
  "6767": {
   "name": "Lizardman shaman",
@@ -35086,8 +35082,7 @@
   "dlight": -10,
   "combat": 150,
   "size": 3,
-  "respawn": 27,
-  "elementalweaknesstype": "no"
+  "respawn": 27
  },
  "6795": {
   "name": "Pyrelord",
@@ -35451,8 +35446,7 @@
   "dlight": -10,
   "combat": 53,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "6915": {
   "name": "Lizardman",
@@ -35471,8 +35465,7 @@
   "dlight": -10,
   "combat": 53,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "6916": {
   "name": "Lizardman",
@@ -35492,8 +35485,7 @@
   "dlight": -10,
   "combat": 62,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "6917": {
   "name": "Lizardman",
@@ -35513,8 +35505,7 @@
   "dlight": -10,
   "combat": 62,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "6918": {
   "name": "Lizardman brute",
@@ -35534,8 +35525,7 @@
   "dlight": -10,
   "combat": 75,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "6919": {
   "name": "Lizardman brute",
@@ -35555,8 +35545,7 @@
   "dlight": -10,
   "combat": 75,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "6956": {
   "name": "Monk",
@@ -37372,17 +37361,17 @@
  },
  "7389": {
   "name": "Chasm Crawler",
-  "hitpoints": 64,
-  "att": 22,
-  "str": 18,
-  "def": 18,
+  "hitpoints": 60,
+  "att": 64,
+  "str": 59,
+  "def": 55,
   "mage": 1,
   "range": 1,
-  "dstab": 10,
-  "dslash": 10,
-  "dcrush": 5,
-  "dmagic": 5,
-  "drange": 10,
+  "dstab": 41,
+  "dslash": 43,
+  "dcrush": 23,
+  "dmagic": 24,
+  "drange": 40,
   "combat": 68,
   "size": 3
  },
@@ -38217,8 +38206,7 @@
   "dlight": 40,
   "dstandard": 40,
   "dheavy": 30,
-  "size": 5,
-  "elementalweaknesstype": "no"
+  "size": 5
  },
  "7568": {
   "name": "Glowing crystal",
@@ -38309,8 +38297,7 @@
   "dlight": 115,
   "dstandard": 115,
   "dheavy": 75,
-  "size": 2,
-  "elementalweaknesstype": "no"
+  "size": 2
  },
  "7620": {
   "name": "Temple Guardian",
@@ -38842,8 +38829,7 @@
   "dlight": -10,
   "combat": 150,
   "size": 3,
-  "respawn": 27,
-  "elementalweaknesstype": "no"
+  "respawn": 27
  },
  "7745": {
   "name": "Lizardman shaman",
@@ -38864,8 +38850,7 @@
   "dlight": -10,
   "combat": 150,
   "size": 3,
-  "respawn": 27,
-  "elementalweaknesstype": "no"
+  "respawn": 27
  },
  "7750": {
   "name": "Armoured Foe",
@@ -42139,8 +42124,7 @@
   "dlight": -10,
   "combat": 62,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "8564": {
   "name": "Lizardman brute",
@@ -42160,8 +42144,7 @@
   "dlight": -10,
   "combat": 75,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "8565": {
   "name": "Lizardman shaman",
@@ -42182,8 +42165,7 @@
   "dlight": -10,
   "combat": 150,
   "size": 2,
-  "respawn": 27,
-  "elementalweaknesstype": "no"
+  "respawn": 27
  },
  "8578": {
   "name": "Swamp frog",
@@ -44275,8 +44257,7 @@
   "dheavy": -15,
   "combat": 204,
   "size": 3,
-  "respawn": 50,
-  "elementalweaknesstype": "no"
+  "respawn": 50
  },
  "9295": {
   "name": "Typhor",
@@ -46444,7 +46425,9 @@
   "drange": 13,
   "combat": 61,
   "size": 1,
-  "respawn": 30
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
  },
  "10728": {
   "name": "Woman",
@@ -47060,8 +47043,7 @@
   "dlight": -10,
   "combat": 75,
   "size": 1,
-  "respawn": 12,
-  "elementalweaknesstype": "no"
+  "respawn": 12
  },
  "10953": {
   "name": "Xamphur",
@@ -48579,8 +48561,7 @@
   "dstandard": 190,
   "dheavy": 150,
   "combat": 1001,
-  "size": 3,
-  "elementalweaknesstype": "no"
+  "size": 3
  },
  "11279": {
   "name": "Nex",
@@ -48604,8 +48585,7 @@
   "dstandard": 190,
   "dheavy": 150,
   "combat": 1001,
-  "size": 3,
-  "elementalweaknesstype": "no"
+  "size": 3
  },
  "11280": {
   "name": "Nex",
@@ -48629,8 +48609,7 @@
   "dstandard": 190,
   "dheavy": 150,
   "combat": 1001,
-  "size": 3,
-  "elementalweaknesstype": "no"
+  "size": 3
  },
  "11281": {
   "name": "Nex",
@@ -48654,8 +48633,7 @@
   "dstandard": 190,
   "dheavy": 150,
   "combat": 1001,
-  "size": 3,
-  "elementalweaknesstype": "no"
+  "size": 3
  },
  "11282": {
   "name": "Nex",
@@ -48679,8 +48657,7 @@
   "dstandard": 190,
   "dheavy": 150,
   "combat": 1001,
-  "size": 3,
-  "elementalweaknesstype": "no"
+  "size": 3
  },
  "11283": {
   "name": "Fumus",
@@ -49847,8 +49824,7 @@
   "dstandard": 200,
   "dheavy": 120,
   "combat": 359,
-  "size": 5,
-  "elementalweaknesstype": "no"
+  "size": 5
  },
  "11779": {
   "name": "Ba-Ba",
@@ -49866,8 +49842,7 @@
   "dstandard": 200,
   "dheavy": 120,
   "combat": 359,
-  "size": 5,
-  "elementalweaknesstype": "no"
+  "size": 5
  },
  "11780": {
   "name": "Ba-Ba",
@@ -49885,8 +49860,7 @@
   "dstandard": 200,
   "dheavy": 120,
   "combat": 359,
-  "size": 5,
-  "elementalweaknesstype": "no"
+  "size": 5
  },
  "11781": {
   "name": "Baboon",
@@ -51260,22 +51234,6 @@
  "12025": {},
  "12026": {},
  "12027": {},
- "12046": {
-  "name": "Evelot",
-  "hitpoints": 160,
-  "att": 160,
-  "str": 150,
-  "def": 120,
-  "mage": 80,
-  "attbns": 30,
-  "strbns": 10,
-  "dstab": 70,
-  "dslash": 60,
-  "dcrush": 40,
-  "drange": 40,
-  "combat": 148,
-  "size": 1
- },
  "12047": {
   "name": "Evelot",
   "hitpoints": 160,
@@ -51763,8 +51721,7 @@
   "dheavy": 320,
   "combat": 758,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12167": {
   "name": "Duke Sucellus",
@@ -51787,8 +51744,7 @@
   "dheavy": 320,
   "combat": 758,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12191": {
   "name": "Duke Sucellus",
@@ -51811,8 +51767,7 @@
   "dheavy": 320,
   "combat": 758,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12192": {
   "name": "Duke Sucellus",
@@ -51835,8 +51790,7 @@
   "dheavy": 320,
   "combat": 758,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12193": {
   "name": "Duke Sucellus (Quest)",
@@ -51859,8 +51813,7 @@
   "dheavy": 300,
   "combat": 538,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12194": {
   "name": "Duke Sucellus (Quest)",
@@ -51883,8 +51836,7 @@
   "dheavy": 300,
   "combat": 538,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12195": {
   "name": "Duke Sucellus (Quest)",
@@ -51907,8 +51859,7 @@
   "dheavy": 300,
   "combat": 538,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12204": {
   "name": "The Whisperer",
@@ -52024,8 +51975,7 @@
   "dstandard": 50,
   "dheavy": 25,
   "combat": 798,
-  "size": 7,
-  "elementalweaknesstype": "no"
+  "size": 7
  },
  "12215": {
   "name": "The Leviathan (Quest)",
@@ -52049,8 +51999,7 @@
   "dstandard": 50,
   "dheavy": 25,
   "combat": 593,
-  "size": 7,
-  "elementalweaknesstype": "no"
+  "size": 7
  },
  "12219": {
   "name": "The Leviathan (Quest)",
@@ -52074,8 +52023,7 @@
   "dstandard": 50,
   "dheavy": 25,
   "combat": 593,
-  "size": 7,
-  "elementalweaknesstype": "no"
+  "size": 7
  },
  "12223": {
   "name": "Vardorvis",
@@ -52740,7 +52688,7 @@
   "mage": 1,
   "range": 1,
   "combat": 39,
-  "size": 2
+  "size": 1
  },
  "12377": {
   "name": "Scarred imp",
@@ -55015,6 +54963,18 @@
   "combat": 2,
   "respawn": 7
  },
+ "13282": {
+  "name": "Mugger",
+  "hitpoints": 8,
+  "att": 5,
+  "str": 5,
+  "def": 5,
+  "mage": 1,
+  "range": 1,
+  "strbns": -21,
+  "combat": 6,
+  "size": 1
+ },
  "13283": {
   "name": "Bandit",
   "hitpoints": 27,
@@ -55793,7 +55753,8 @@
   "dmagic": -40,
   "dlight": 5,
   "dheavy": -40,
-  "combat": 524
+  "combat": 524,
+  "size": 3
  },
  "13529": {
   "name": "Balance Elemental",
@@ -55811,7 +55772,8 @@
   "dmagic": -40,
   "dlight": 5,
   "dheavy": -40,
-  "combat": 524
+  "combat": 524,
+  "size": 3
  },
  "13530": {
   "name": "Balance Elemental",
@@ -55829,7 +55791,8 @@
   "dmagic": -40,
   "dlight": 5,
   "dheavy": -40,
-  "combat": 524
+  "combat": 524,
+  "size": 3
  },
  "13531": {
   "name": "Elite Khazard Guard",
@@ -56147,8 +56110,6 @@
  },
  "13661": {
   "name": "TzTok-Jad",
-  "is<!-- if no monster attributes apply": true,
-  "isRemove this parameter -->": true,
   "hitpoints": 5000,
   "att": 350,
   "str": 350,
@@ -56408,11 +56369,12 @@
   "dheavy": 200,
   "combat": 104,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
  "13732": {
-  "name": "Emissary acolyte",
+  "name": "Emissary Acolyte",
   "hitpoints": 25,
   "att": 30,
   "str": 35,
@@ -56427,12 +56389,10 @@
   "dstandard": 20,
   "dheavy": 20,
   "combat": 34,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "size": 1
  },
  "13733": {
-  "name": "Emissary acolyte",
+  "name": "Emissary Acolyte",
   "hitpoints": 25,
   "att": 30,
   "str": 35,
@@ -56447,12 +56407,10 @@
   "dstandard": 20,
   "dheavy": 20,
   "combat": 34,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "size": 1
  },
  "13734": {
-  "name": "Emissary acolyte",
+  "name": "Emissary Acolyte",
   "hitpoints": 25,
   "att": 30,
   "str": 35,
@@ -56467,12 +56425,10 @@
   "dstandard": 20,
   "dheavy": 20,
   "combat": 34,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "size": 1
  },
  "13735": {
-  "name": "Emissary acolyte",
+  "name": "Emissary Acolyte",
   "hitpoints": 25,
   "att": 30,
   "str": 35,
@@ -56487,12 +56443,10 @@
   "dstandard": 20,
   "dheavy": 20,
   "combat": 34,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "size": 1
  },
  "13736": {
-  "name": "Emissary acolyte",
+  "name": "Emissary Acolyte",
   "hitpoints": 25,
   "att": 30,
   "str": 35,
@@ -56507,12 +56461,10 @@
   "dstandard": 20,
   "dheavy": 20,
   "combat": 34,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "size": 1
  },
  "13737": {
-  "name": "Emissary acolyte",
+  "name": "Emissary Acolyte",
   "hitpoints": 25,
   "att": 30,
   "str": 35,
@@ -56527,12 +56479,10 @@
   "dstandard": 20,
   "dheavy": 20,
   "combat": 34,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "size": 1
  },
  "13738": {
-  "name": "Emissary chosen",
+  "name": "Emissary Chosen",
   "hitpoints": 50,
   "att": 80,
   "str": 70,
@@ -56548,11 +56498,10 @@
   "dheavy": 25,
   "combat": 76,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
  },
  "13739": {
-  "name": "Emissary chosen",
+  "name": "Emissary Chosen",
   "hitpoints": 50,
   "att": 80,
   "str": 70,
@@ -56568,11 +56517,10 @@
   "dheavy": 25,
   "combat": 76,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
  },
  "13740": {
-  "name": "Emissary chosen",
+  "name": "Emissary Chosen",
   "hitpoints": 50,
   "att": 80,
   "str": 70,
@@ -56588,11 +56536,10 @@
   "dheavy": 25,
   "combat": 76,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
  },
  "13741": {
-  "name": "Emissary chosen",
+  "name": "Emissary Chosen",
   "hitpoints": 50,
   "att": 80,
   "str": 70,
@@ -56608,11 +56555,10 @@
   "dheavy": 25,
   "combat": 76,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
  },
  "13742": {
-  "name": "Emissary chosen",
+  "name": "Emissary Chosen",
   "hitpoints": 50,
   "att": 80,
   "str": 70,
@@ -56628,11 +56574,10 @@
   "dheavy": 25,
   "combat": 76,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
  },
  "13743": {
-  "name": "Emissary chosen",
+  "name": "Emissary Chosen",
   "hitpoints": 50,
   "att": 80,
   "str": 70,
@@ -56648,8 +56593,7 @@
   "dheavy": 25,
   "combat": 76,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
  },
  "13744": {
   "name": "Emissary Ascended",
@@ -56668,8 +56612,45 @@
   "dheavy": 30,
   "combat": 117,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
+ },
+ "13745": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50
+ },
+ "13746": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50
  },
  "13747": {
   "name": "Emissary Ascended",
@@ -56688,8 +56669,26 @@
   "dheavy": 30,
   "combat": 117,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
+ },
+ "13748": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50
  },
  "13749": {
   "name": "Emissary Ascended",
@@ -56708,8 +56707,177 @@
   "dheavy": 30,
   "combat": 117,
   "size": 1,
-  "respawn": 50,
-  "elementalweaknesstype": "none"
+  "respawn": 50
+ },
+ "13750": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50
+ },
+ "13751": {
+  "name": "Emissary Ascended",
+  "hitpoints": 80,
+  "att": 120,
+  "str": 110,
+  "def": 90,
+  "mage": 40,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 50,
+  "dmagic": 20,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 117,
+  "size": 1,
+  "respawn": 50
+ },
+ "13752": {
+  "name": "Emissary Forebearer",
+  "combat": 131,
+  "size": 1
+ },
+ "13753": {
+  "name": "Emissary Forebearer",
+  "combat": 131,
+  "size": 1
+ },
+ "13754": {
+  "name": "Emissary Forebearer",
+  "combat": 131,
+  "size": 1
+ },
+ "13755": {
+  "name": "Emissary Forebearer",
+  "combat": 131,
+  "size": 1
+ },
+ "13756": {
+  "name": "Emissary Forebearer",
+  "combat": 131,
+  "size": 1
+ },
+ "13757": {
+  "name": "Emissary Forebearer",
+  "combat": 131,
+  "size": 1
+ },
+ "13773": {
+  "name": "Emissary Brawler",
+  "hitpoints": 35,
+  "att": 90,
+  "str": 50,
+  "def": 70,
+  "mage": 15,
+  "range": 1,
+  "attbns": 40,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 5,
+  "drange": 30,
+  "combat": 74,
+  "size": 1
+ },
+ "13774": {
+  "name": "Emissary Brawler",
+  "hitpoints": 35,
+  "att": 90,
+  "str": 50,
+  "def": 70,
+  "mage": 15,
+  "range": 1,
+  "attbns": 40,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 5,
+  "drange": 30,
+  "combat": 74,
+  "size": 1
+ },
+ "13775": {
+  "name": "Emissary Brawler",
+  "hitpoints": 55,
+  "att": 90,
+  "str": 70,
+  "def": 70,
+  "mage": 15,
+  "range": 1,
+  "attbns": 40,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 5,
+  "drange": 30,
+  "combat": 86,
+  "size": 1
+ },
+ "13776": {
+  "name": "Emissary Brawler",
+  "hitpoints": 55,
+  "att": 90,
+  "str": 70,
+  "def": 70,
+  "mage": 15,
+  "range": 1,
+  "attbns": 40,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 20,
+  "dmagic": 5,
+  "drange": 30,
+  "combat": 86,
+  "size": 1
+ },
+ "13777": {
+  "name": "Emissary Conjurer",
+  "hitpoints": 40,
+  "att": 60,
+  "str": 40,
+  "def": 70,
+  "mage": 70,
+  "range": 1,
+  "mbns": 40,
+  "dstab": 15,
+  "dslash": 15,
+  "dcrush": 10,
+  "dmagic": 15,
+  "drange": 5,
+  "combat": 71,
+  "size": 1
+ },
+ "13778": {
+  "name": "Emissary Conjurer",
+  "hitpoints": 40,
+  "att": 60,
+  "str": 40,
+  "def": 70,
+  "mage": 70,
+  "range": 1,
+  "mbns": 40,
+  "dstab": 15,
+  "dslash": 15,
+  "dcrush": 10,
+  "dmagic": 15,
+  "drange": 5,
+  "combat": 71,
+  "size": 1
  },
  "13784": {
   "name": "Prince Itzla Arkan",
@@ -56769,6 +56937,7 @@
   "dheavy": 200,
   "combat": 104,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
@@ -56792,11 +56961,26 @@
   "dheavy": 200,
   "combat": 104,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
  "13789": {
   "name": "Frost crab",
+  "hitpoints": 60,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dmagic": -50,
+  "combat": 15,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "13790": {
+  "name": "Ice block",
   "hitpoints": 60,
   "att": 1,
   "str": 1,
@@ -56823,9 +57007,99 @@
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
+ "13792": {
+  "name": "Ice block",
+  "hitpoints": 60,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dmagic": -50,
+  "combat": 15,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "13795": {
+  "name": "Brutal blue dragon",
+  "isDragon": true,
+  "isFiery": true,
+  "hitpoints": 245,
+  "att": 298,
+  "str": 198,
+  "def": 198,
+  "mage": 198,
+  "dstab": 10,
+  "dslash": 70,
+  "dcrush": 70,
+  "dmagic": 60,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 15,
+  "combat": 271,
+  "size": 4,
+  "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13796": {
+  "name": "Ice giant",
+  "hitpoints": 70,
+  "att": 40,
+  "str": 40,
+  "def": 40,
+  "mage": 1,
+  "range": 1,
+  "attbns": 29,
+  "strbns": 31,
+  "dslash": 3,
+  "dcrush": 2,
+  "combat": 53,
+  "size": 2,
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "13797": {
+  "name": "Ice giant",
+  "hitpoints": 70,
+  "att": 40,
+  "str": 40,
+  "def": 40,
+  "mage": 1,
+  "range": 1,
+  "attbns": 29,
+  "strbns": 31,
+  "dslash": 3,
+  "dcrush": 2,
+  "combat": 53,
+  "size": 2,
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "13798": {
+  "name": "Ice spider",
+  "hitpoints": 65,
+  "att": 50,
+  "str": 55,
+  "def": 43,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 17,
+  "dcrush": 12,
+  "dmagic": 13,
+  "drange": 13,
+  "combat": 61,
+  "size": 1,
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
  "13799": {
   "name": "Chilled jelly",
-  "isFire": true,
   "hitpoints": 140,
   "att": 95,
   "str": 90,
@@ -56834,7 +57108,67 @@
   "range": 1,
   "combat": 112,
   "size": 1,
+  "respawn": 15,
   "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13800": {
+  "name": "Cave crawler",
+  "hitpoints": 22,
+  "att": 22,
+  "str": 18,
+  "def": 18,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 5,
+  "dmagic": 5,
+  "drange": 10,
+  "combat": 23,
+  "size": 2,
+  "respawn": 15,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13801": {
+  "name": "Cave crawler",
+  "hitpoints": 22,
+  "att": 22,
+  "str": 18,
+  "def": 18,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 5,
+  "dmagic": 5,
+  "drange": 10,
+  "combat": 23,
+  "size": 2,
+  "respawn": 15,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "13802": {
+  "name": "Ice warrior",
+  "hitpoints": 59,
+  "att": 47,
+  "str": 47,
+  "def": 47,
+  "mage": 1,
+  "range": 1,
+  "dstab": 30,
+  "dslash": 40,
+  "dcrush": 20,
+  "dmagic": 10,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 30,
+  "combat": 57,
+  "size": 1,
+  "respawn": 30,
+  "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
  "13812": {
@@ -56905,6 +57239,17 @@
   "combat": 193,
   "size": 2
  },
+ "13824": {
+  "name": "Adala",
+  "hitpoints": 60,
+  "att": 50,
+  "str": 30,
+  "def": 10,
+  "mage": 5,
+  "range": 1,
+  "combat": 49,
+  "size": 1
+ },
  "13968": {
   "name": "Porcupine",
   "hitpoints": 5,
@@ -56914,6 +57259,186 @@
   "mage": 1,
   "range": 1,
   "combat": 4,
+  "size": 1
+ },
+ "13986": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13987": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13988": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13989": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13990": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13991": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13992": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13993": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13994": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
+  "size": 1
+ },
+ "13995": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "str": 18,
+  "def": 14,
+  "mage": 1,
+  "range": 1,
+  "attbns": 4,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "drange": 20,
+  "combat": 21,
   "size": 1
  },
  "14009": {
@@ -57049,7 +57574,7 @@
  "14014": {
   "name": "Hueycoatl tail",
   "isDragon": true,
-  "hitpoints": 2500,
+  "hitpoints": 400,
   "att": 150,
   "str": 50,
   "def": 125,
@@ -57075,7 +57600,7 @@
  "14015": {
   "name": "Hueycoatl tail (broken)",
   "isDragon": true,
-  "hitpoints": 2500,
+  "hitpoints": 400,
   "att": 150,
   "str": 50,
   "def": 125,
@@ -57124,6 +57649,421 @@
   "elementalweaknesspercent": 60,
   "elementalweaknesstype": "earth"
  },
+ "14031": {
+  "name": "Chasm Crawler",
+  "hitpoints": 60,
+  "att": 64,
+  "str": 59,
+  "def": 55,
+  "mage": 1,
+  "range": 1,
+  "dstab": 41,
+  "dslash": 43,
+  "dcrush": 23,
+  "dmagic": 24,
+  "drange": 40,
+  "combat": 68,
+  "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "14042": {
+  "name": "Bat",
+  "hitpoints": 8,
+  "att": 5,
+  "str": 5,
+  "def": 5,
+  "mage": 1,
+  "range": 1,
+  "dstab": 2,
+  "dslash": 2,
+  "dcrush": 5,
+  "dmagic": 2,
+  "combat": 6,
+  "size": 1,
+  "respawn": 35
+ },
+ "14043": {
+  "name": "Unicorn",
+  "hitpoints": 19,
+  "att": 11,
+  "str": 13,
+  "def": 13,
+  "mage": 1,
+  "range": 1,
+  "combat": 15,
+  "size": 2,
+  "respawn": 90
+ },
+ "14103": {
+  "name": "Blue dragon",
+  "isDragon": true,
+  "isFiery": true,
+  "hitpoints": 105,
+  "att": 95,
+  "str": 95,
+  "def": 95,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 70,
+  "dcrush": 70,
+  "dmagic": 60,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 15,
+  "combat": 111,
+  "size": 4,
+  "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "14104": {
+  "name": "Blue dragon",
+  "isDragon": true,
+  "isFiery": true,
+  "hitpoints": 105,
+  "att": 95,
+  "str": 95,
+  "def": 95,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 70,
+  "dcrush": 70,
+  "dmagic": 60,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 15,
+  "combat": 111,
+  "size": 4,
+  "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "14105": {
+  "name": "Baby blue dragon",
+  "isDragon": true,
+  "hitpoints": 50,
+  "att": 40,
+  "str": 40,
+  "def": 40,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 50,
+  "dcrush": 50,
+  "dmagic": 40,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 15,
+  "combat": 48,
+  "size": 2,
+  "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "14106": {
+  "name": "Baby blue dragon",
+  "isDragon": true,
+  "hitpoints": 50,
+  "att": 40,
+  "str": 40,
+  "def": 40,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 50,
+  "dcrush": 50,
+  "dmagic": 40,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 15,
+  "combat": 48,
+  "size": 2,
+  "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "14113": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1
+ },
+ "14114": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1
+ },
+ "14115": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1
+ },
+ "14116": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1
+ },
+ "14117": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1
+ },
+ "14118": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 94,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1,
+  "respawn": 40
+ },
+ "14119": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 94,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1,
+  "respawn": 40
+ },
+ "14120": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 94,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1,
+  "respawn": 40
+ },
+ "14121": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 94,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1,
+  "respawn": 40
+ },
+ "14122": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 110,
+  "att": 106,
+  "str": 94,
+  "def": 68,
+  "mage": 1,
+  "range": 94,
+  "dstab": 20,
+  "dslash": 20,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 109,
+  "size": 1,
+  "respawn": 40
+ },
+ "14125": {
+  "name": "Golem guard",
+  "isGolem": true,
+  "hitpoints": 150,
+  "att": 170,
+  "str": 170,
+  "def": 100,
+  "mage": 170,
+  "dstab": 180,
+  "dslash": 200,
+  "dcrush": 20,
+  "dmagic": 40,
+  "combat": 141,
+  "size": 2
+ },
+ "14126": {
+  "name": "Small scarab",
+  "isKalphite": true,
+  "hitpoints": 40,
+  "att": 55,
+  "str": 1,
+  "def": 55,
+  "mage": 1,
+  "range": 1,
+  "combat": 41,
+  "size": 1,
+  "respawn": 50
+ },
+ "14132": {
+  "name": "Arrav",
+  "hitpoints": 600,
+  "att": 220,
+  "str": 220,
+  "def": 150,
+  "mage": 150,
+  "attbns": 100,
+  "strbns": 20,
+  "dstab": 80,
+  "dslash": 80,
+  "dcrush": 40,
+  "dmagic": 160,
+  "dlight": 80,
+  "dstandard": 80,
+  "dheavy": 80,
+  "combat": 339,
+  "size": 1
+ },
+ "14135": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 10,
+  "att": 106,
+  "str": 94,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": -50,
+  "dlight": -100,
+  "dstandard": -100,
+  "dheavy": -100,
+  "combat": 70,
+  "size": 1
+ },
+ "14136": {
+  "name": "Armoured zombie",
+  "isUndead": true,
+  "hitpoints": 10,
+  "att": 106,
+  "str": 94,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": -50,
+  "dlight": -100,
+  "dstandard": -100,
+  "dheavy": -100,
+  "combat": 70,
+  "size": 1
+ },
+ "14137": {
+  "name": "Weaponsmaster",
+  "hitpoints": 20,
+  "att": 21,
+  "str": 21,
+  "def": 21,
+  "mage": 1,
+  "range": 1,
+  "attbns": 8,
+  "strbns": 10,
+  "dstab": 21,
+  "dslash": 23,
+  "dcrush": 21,
+  "dmagic": -6,
+  "drange": 20,
+  "combat": 23,
+  "size": 1,
+  "respawn": 350
+ },
  "8367_2": {
   "name": "Blood spawn",
   "isTobNormalMode": true,
@@ -57155,8 +58095,7 @@
   "dheavy": 320,
   "combat": 1099,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12167_1": {
   "name": "Duke Sucellus (Awakened)",
@@ -57179,8 +58118,7 @@
   "dheavy": 320,
   "combat": 1099,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12191_1": {
   "name": "Duke Sucellus (Awakened)",
@@ -57203,8 +58141,7 @@
   "dheavy": 320,
   "combat": 1099,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12192_1": {
   "name": "Duke Sucellus (Awakened)",
@@ -57227,8 +58164,7 @@
   "dheavy": 320,
   "combat": 1099,
   "size": 7,
-  "respawn": 20,
-  "elementalweaknesstype": "no"
+  "respawn": 20
  },
  "12204_1": {
   "name": "The Whisperer (Awakened)",
@@ -57298,8 +58234,7 @@
   "dstandard": 50,
   "dheavy": 25,
   "combat": 1157,
-  "size": 7,
-  "elementalweaknesstype": "no"
+  "size": 7
  },
  "12223_1": {
   "name": "Vardorvis (Awakened)",
