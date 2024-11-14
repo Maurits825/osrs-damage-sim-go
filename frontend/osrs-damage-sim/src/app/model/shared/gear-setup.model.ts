@@ -28,6 +28,7 @@ export interface GearSetup {
 export const SPECIAL_BOLTS = [9242, 21944, 9243, 21946];
 export const DRAGON_DARTS_ID = 11230;
 export const BLOWPIPE_ID = 12926;
+export const DRYGORE_BLOWPIPE_ID = 1000000;
 export const UNARMED_EQUIVALENT_ID = 3689;
 export const AUTOCAST_STLYE = 'Spell (Magic/Autocast)';
 export const WILDY_WEAPONS = [22547, 27652, 22552, 27785, 27662, 27676, 22542, 27657];

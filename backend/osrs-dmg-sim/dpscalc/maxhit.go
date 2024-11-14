@@ -288,7 +288,11 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 
 	if player.Npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
 		if player.Npc.elementalWeaknessType == player.spell.elementalType {
-			maxHit += int(float32(baseMaxhit) * float32(player.Npc.elementalWeaknessPercent) / 100.0)
+			percent := player.Npc.elementalWeaknessPercent
+			if player.equippedGear.isEquipped(devilElement) {
+				percent = percent * 2
+			}
+			maxHit += int(float32(baseMaxhit) * float32(percent) / 100.0)
 		}
 	}
 

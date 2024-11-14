@@ -166,7 +166,7 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		cmbStyle = combatStyle{Magic, Autocast}
 	}
 
-	if equippedGear.isEquipped(blowpipe) {
+	if equippedGear.isEquipped(blowpipe) || equippedGear.isEquipped(drygoreBlowpipe) {
 		darts := allItems[inputGearSetup.GearSetup.BlowpipeDarts.Id].equipmentStats
 		equipmentStats.addStats(&darts)
 	}
@@ -280,9 +280,13 @@ func getAccuracy(player *player) (float32, int) {
 			accuracy = 1 - float32(math.Pow(float64(1-accuracy), 2))
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFangTOA, accuracy)
 		} else {
-			accuracy = getFangAccuracy(attackRoll, defenceRoll)
+			accuracy = getFangEffectAccuracy(attackRoll, defenceRoll)
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFang, accuracy)
 		}
+	}
+
+	if player.equippedGear.isEquipped(drygoreBlowpipe) && player.combatStyle.CombatStyleType == Ranged {
+		accuracy = getFangEffectAccuracy(attackRoll, defenceRoll)
 	}
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
@@ -296,7 +300,7 @@ func getNormalAccuracy(attackRoll int, defenceRoll int) float32 {
 	return float32(attackRoll) / float32(2*(defenceRoll+1))
 }
 
-func getFangAccuracy(attackRoll int, defenceRoll int) float32 {
+func getFangEffectAccuracy(attackRoll int, defenceRoll int) float32 {
 	a := float32(attackRoll)
 	d := float32(defenceRoll)
 	if attackRoll > defenceRoll {

@@ -232,7 +232,11 @@ func getMagicAttackRoll(player *player) int {
 
 	if player.Npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
 		if player.Npc.elementalWeaknessType == player.spell.elementalType {
-			attackRoll += int(player.Npc.elementalWeaknessPercent * baseRoll / 100)
+			percent := player.Npc.elementalWeaknessPercent
+			if player.equippedGear.isEquipped(devilElement) {
+				percent = percent * 2
+			}
+			attackRoll += int(percent * baseRoll / 100)
 		}
 	}
 

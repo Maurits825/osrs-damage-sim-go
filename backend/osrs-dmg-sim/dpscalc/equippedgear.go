@@ -89,6 +89,11 @@ const (
 	ralos = 28919
 )
 
+const (
+	drygoreBlowpipe = 1000000
+	devilElement    = 1000004
+)
+
 var virtusSet = []int{26241, 26243, 26245}
 var voidRobes = []int{8839, 8840, 8842}
 var eliteVoidRobes = []int{13072, 13073, 8842}
@@ -217,7 +222,7 @@ func (gear *equippedGear) getWearingPickaxe() (int, bool) {
 // TODO proper check for bolts/arrows? this will give bonus if throwing darts with quiver
 func (gear *equippedGear) isBlessedQuiverBonus() bool {
 	if gear.isEquipped(blessedQuiver) {
-		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) || gear.isEquipped(ralos) {
+		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) || gear.isEquipped(ralos) || gear.isEquipped(drygoreBlowpipe) {
 			return false
 		}
 		return true
