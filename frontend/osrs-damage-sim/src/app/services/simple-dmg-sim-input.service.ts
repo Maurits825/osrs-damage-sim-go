@@ -3,8 +3,6 @@ import { GearSetup } from '../model/shared/gear-setup.model';
 import { InputGearSetup, InputSetup } from '../model/simple-dmg-sim/input-setup.model';
 import { DEFAULT_GLOBAL_SETTINGS, GlobalSettings } from '../model/shared/global-settings.model';
 import { FILTER_PATHS } from './filter-fields.const';
-import { StaticDataService } from './static-data.service';
-import { Npc } from '../model/osrs/npc.model';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { JsonParseService } from './json-parse.service';
 
@@ -15,9 +13,7 @@ export class SimpleDmgSimInputService {
   //TODO default values, clean up mock data
   private inputSetup$: BehaviorSubject<InputSetup>;
 
-  private allNpcs: Npc[];
-
-  constructor(private staticDataService: StaticDataService, private jsonParseService: JsonParseService) {
+  constructor(private jsonParseService: JsonParseService) {
     const gearSetups: InputGearSetup[] = [
       {
         gearSetupSettings: null,
@@ -30,10 +26,6 @@ export class SimpleDmgSimInputService {
       globalSettings: DEFAULT_GLOBAL_SETTINGS,
       gearPresets: [],
       inputGearSetups: gearSetups,
-    });
-
-    this.staticDataService.allNpcs$.subscribe((allNpcs: Npc[]) => {
-      this.allNpcs = allNpcs;
     });
   }
 

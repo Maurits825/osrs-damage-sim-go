@@ -4,8 +4,8 @@ import { TrailblazerRelic } from '../model/osrs/leagues/trailblazer-relics.model
 import { StatDrain } from '../model/shared/stat-drain.model';
 import { Boost } from '../model/osrs/boost.model';
 import { AttackType } from '../model/osrs/item.model';
-import { Prayer } from '../model/osrs/prayer.model';
-import { CombatStats } from '../model/osrs/skill.type';
+import { DEFAULT_PRAYERS, Prayer } from '../model/osrs/prayer.model';
+import { CombatStats, DEFAULT_COMBAT_STATS } from '../model/osrs/skill.type';
 import { replaceBoosts } from '../model/osrs/boost-replace.const';
 import { replacePrayers } from '../model/osrs/prayer-replace.const';
 
@@ -15,16 +15,9 @@ import { replacePrayers } from '../model/osrs/prayer-replace.const';
 export class SharedSettingsService {
   boosts$: BehaviorSubject<Set<Boost>> = new BehaviorSubject(new Set());
 
-  combatStats$: BehaviorSubject<CombatStats> = new BehaviorSubject({
-    attack: 99,
-    strength: 99,
-    ranged: 99,
-    magic: 99,
-    hitpoints: 99,
-    defence: 99,
-  });
+  combatStats$: BehaviorSubject<CombatStats> = new BehaviorSubject(DEFAULT_COMBAT_STATS);
 
-  prayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(null);
+  prayers$: BehaviorSubject<Record<AttackType, Set<Prayer>>> = new BehaviorSubject(DEFAULT_PRAYERS);
 
   statDrain$: BehaviorSubject<StatDrain[]> = new BehaviorSubject([]);
 

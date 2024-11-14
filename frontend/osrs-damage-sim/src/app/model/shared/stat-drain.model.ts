@@ -32,3 +32,8 @@ export const statDrainLabels: StatDrainLabel = {
   'Barrelchest anchor': 'Damage',
   Ralos: 'Hits',
 };
+
+export const DEFAULT_STAT_DRAIN: StatDrain = {
+  name: 'Elder maul',
+  value: 1,
+};

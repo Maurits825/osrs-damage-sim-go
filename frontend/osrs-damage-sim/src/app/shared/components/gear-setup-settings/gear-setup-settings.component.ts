@@ -45,7 +45,7 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
     this.sharedSettingsService.statDrain$
       .pipe(takeUntil(this.destroyed$), skip(skipCount))
-      .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains]));
+      .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = cloneDeep(statDrains)));
 
     this.sharedSettingsService.combatStats$
       .pipe(takeUntil(this.destroyed$), skip(skipCount))

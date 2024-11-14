@@ -7,6 +7,7 @@
         bindValue="name"
         [searchable]="false"
         [clearable]="false"
+        (change)="onStatDrainsChanged()"
       >
         <ng-template ng-label-tmp ng-option-tmp let-item="item">
           <div class="d-flex align-items-center">
@@ -23,7 +24,13 @@
       <div class="ms-2 pe-1">{{ statDrainLabels[statDrain.name] }}</div>
 
       <div class="flex-shrink-1 px-1">
-        <input type="number" [(ngModel)]="statDrain.value" class="form-control" min="1" />
+        <input
+          type="number"
+          [(ngModel)]="statDrain.value"
+          (change)="onStatDrainsChanged()"
+          class="form-control"
+          min="1"
+        />
       </div>
 
       <div class="ps-1">

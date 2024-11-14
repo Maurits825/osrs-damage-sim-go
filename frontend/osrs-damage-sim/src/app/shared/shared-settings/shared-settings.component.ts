@@ -15,15 +15,11 @@ import { SharedSettingsService } from 'src/app/services/shared-settings.service'
   templateUrl: './shared-settings.component.html',
 })
 export class SharedSettingsComponent implements OnInit {
-  selectedBoosts: Set<Boost> = new Set();
-
   allAttackTypes = allAttackTypes;
 
-  selectedPrayers: Record<AttackType, Set<Prayer>> = {
-    magic: new Set(['augury']),
-    melee: new Set(['piety']),
-    ranged: new Set(['rigour']),
-  };
+  selectedBoosts: Set<Boost>;
+
+  selectedPrayers: Record<AttackType, Set<Prayer>>;
 
   quickPrayers: Record<AttackType, Set<Prayer>> = {
     magic: new Set(['augury']),
@@ -31,16 +27,9 @@ export class SharedSettingsComponent implements OnInit {
     ranged: new Set(['rigour']),
   };
 
-  combatStats: CombatStats = {
-    attack: 99,
-    strength: 99,
-    ranged: 99,
-    magic: 99,
-    hitpoints: 99,
-    defence: 99,
-  };
+  combatStats: CombatStats;
 
-  statDrains: StatDrain[] = [];
+  statDrains: StatDrain[];
 
   attackCycle = 0;
 
@@ -51,11 +40,12 @@ export class SharedSettingsComponent implements OnInit {
   constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
-    this.sharedSettingsService.prayers$.next(this.selectedPrayers);
-    this.sharedSettingsService.statDrain$.next(this.statDrains);
-    this.sharedSettingsService.combatStats$.next(this.combatStats);
-    this.sharedSettingsService.boosts$.next(this.selectedBoosts);
-    this.sharedSettingsService.trailblazerRelics$.next(this.trailblazerRelics);
+    this.selectedPrayers = this.sharedSettingsService.prayers$.getValue();
+    this.combatStats = this.sharedSettingsService.combatStats$.getValue();
+    this.selectedBoosts = this.sharedSettingsService.boosts$.getValue();
+    this.statDrains = this.sharedSettingsService.statDrain$.getValue();
+    this.trailblazerRelics = this.sharedSettingsService.trailblazerRelics$.getValue();
+
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
 
