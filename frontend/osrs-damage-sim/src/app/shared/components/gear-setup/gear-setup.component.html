@@ -147,13 +147,21 @@
         searchProperty="name"
         (valueChanged)="gearSlotChange($event, slot)"
       >
-        <ng-template #dropdownLabel let-item="item">{{ item.name }}</ng-template>
+        <ng-template #dropdownLabel let-item="item">
+          <div>
+            {{ item.name }}
+            <span *ngIf="item.futureContent" class="ms-2 badge rounded-pill bg-secondary">future content</span>
+          </div>
+        </ng-template>
         <ng-template #dropdownOptions let-item="item">
           <div class="d-flex align-items-center">
             <div class="text-center" style="flex: 0 0 35px">
               <img src="data:image/png;base64,{{ item.icon }}" />
             </div>
             <div class="ps-2">{{ item.name }}</div>
+            <div class="ms-2">
+              <span *ngIf="item.futureContent" class="badge rounded-pill bg-secondary">future content</span>
+            </div>
           </div>
         </ng-template>
       </app-ng-select-lazy-load>

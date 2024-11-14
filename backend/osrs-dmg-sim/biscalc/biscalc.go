@@ -110,9 +110,6 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 				dpsCalcResult := dpscalc.DpsCalcGearSetup(&setup.GlobalSettings, inputGearSetup, nil)
 
 				calcCount++
-				if calcCount%10000 == 0 {
-					fmt.Println(calcCount)
-				}
 
 				if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
 					updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
