@@ -64,6 +64,12 @@ func getMeleeAttackRoll(player *player) int {
 
 	//TODO avarice amulet
 	attackRoll := baseRoll
+
+	if player.equippedGear.isEquipped(crystalBlessing) {
+		crystalPieces := player.equippedGear.getCrystalArmourCount()
+		attackRoll = int(attackRoll * (20 + crystalPieces) / 20)
+	}
+
 	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
 	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.Npc.IsUndead {

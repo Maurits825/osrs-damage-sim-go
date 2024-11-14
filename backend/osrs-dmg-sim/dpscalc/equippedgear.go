@@ -92,6 +92,7 @@ const (
 const (
 	drygoreBlowpipe = 1000000
 	devilElement    = 1000004
+	crystalBlessing = 1000005
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -228,4 +229,18 @@ func (gear *equippedGear) isBlessedQuiverBonus() bool {
 		return true
 	}
 	return false
+}
+
+func (gear *equippedGear) getCrystalArmourCount() int {
+	crystalPieces := 0
+	if gear.isEquipped(crystalHelm) {
+		crystalPieces += 1
+	}
+	if gear.isEquipped(crystalLegs) {
+		crystalPieces += 2
+	}
+	if gear.isEquipped(crystalBody) {
+		crystalPieces += 3
+	}
+	return crystalPieces
 }

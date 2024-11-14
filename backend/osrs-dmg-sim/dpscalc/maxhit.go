@@ -63,6 +63,12 @@ func getMeleeMaxHit(player *player) int {
 
 	//TODO avarice amulet
 	maxHit := baseMaxHit
+
+	if player.equippedGear.isEquipped(crystalBlessing) {
+		crystalPieces := player.equippedGear.getCrystalArmourCount()
+		maxHit = int(maxHit * (40 + crystalPieces) / 40)
+	}
+
 	if player.equippedGear.isAnyEquipped([]int{salveAmuletE, salveAmuletEI}) && player.Npc.IsUndead {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitSalve, maxHit, 6, 5)
 	} else if player.equippedGear.isAnyEquipped([]int{salveAmulet, salveAmuletI}) && player.Npc.IsUndead {
@@ -153,16 +159,7 @@ func getRangedMaxHit(player *player) int {
 
 	maxHit := baseMaxHit
 	if player.equippedGear.isAnyEquipped([]int{bowfa, crystalBow}) {
-		crystalPieces := 0
-		if player.equippedGear.isEquipped(crystalHelm) {
-			crystalPieces += 1
-		}
-		if player.equippedGear.isEquipped(crystalLegs) {
-			crystalPieces += 2
-		}
-		if player.equippedGear.isEquipped(crystalBody) {
-			crystalPieces += 3
-		}
+		crystalPieces := player.equippedGear.getCrystalArmourCount()
 		maxHit = int(maxHit * (40 + crystalPieces) / 40)
 	}
 
