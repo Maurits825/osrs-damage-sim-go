@@ -8,6 +8,7 @@ import { DEFAULT_PRAYERS, Prayer } from '../model/osrs/prayer.model';
 import { CombatStats, DEFAULT_COMBAT_STATS } from '../model/osrs/skill.type';
 import { replaceBoosts } from '../model/osrs/boost-replace.const';
 import { replacePrayers } from '../model/osrs/prayer-replace.const';
+import { DEFAULT_RAGING_ECHOES_SETTINGS, RagingEchoesSettings } from '../model/osrs/leagues/raging-echoes.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class SharedSettingsService {
   attackCycle$: BehaviorSubject<number> = new BehaviorSubject(0);
 
   trailblazerRelics$: BehaviorSubject<Set<TrailblazerRelic>> = new BehaviorSubject(new Set());
+  ragingEchoesSettings$: BehaviorSubject<RagingEchoesSettings> = new BehaviorSubject(DEFAULT_RAGING_ECHOES_SETTINGS);
 
   public togglePrayer(prayer: Prayer, selectedPrayers: Set<Prayer>): void {
     if (selectedPrayers.has(prayer)) {

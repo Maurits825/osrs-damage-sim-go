@@ -9,6 +9,7 @@ import { SharedSettingsService } from 'src/app/services/shared-settings.service'
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { DEFAULT_GEAR_SETUP_SETTINGS, GearSetupSettings } from 'src/app/model/shared/gear-setup-settings.model';
 import { cloneDeep } from 'lodash-es';
+import { RagingEchoesSettings } from 'src/app/model/osrs/leagues/raging-echoes.model';
 
 @Component({
   selector: 'app-gear-setup-settings',
@@ -55,6 +56,12 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((relics: Set<TrailblazerRelic>) => (this.gearSetupSettings.trailblazerRelics = new Set(relics)));
 
+    this.sharedSettingsService.ragingEchoesSettings$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
+      .subscribe(
+        (settings: RagingEchoesSettings) => (this.gearSetupSettings.ragingEchoesSettings = cloneDeep(settings))
+      );
+
     this.sharedSettingsService.attackCycle$
       .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((attackCycle: number) => (this.gearSetupSettings.attackCycle = attackCycle));
@@ -76,6 +83,10 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
     this.gearSetupSettings.trailblazerRelics = relics;
+  }
+
+  ragingEchoesSettingsChanged(settings: RagingEchoesSettings): void {
+    this.gearSetupSettings.ragingEchoesSettings = settings;
   }
 
   attackCycleChanged(attackCycle: number): void {

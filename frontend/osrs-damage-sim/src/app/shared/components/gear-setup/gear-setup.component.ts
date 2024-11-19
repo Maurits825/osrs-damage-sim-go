@@ -33,6 +33,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   @Input()
   gearSetup: GearSetup;
 
+  //TODO is this output event needed? if we give ref to gearsetup
+  //we modify that values refed so it stays in sync...
   @Output()
   gearSetupChange = new EventEmitter<GearSetup>();
 
@@ -110,19 +112,25 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
 
       //TODO improve this a bit?
+      let weaponId = UNARMED_EQUIVALENT_ID;
       if (this.gearSetup) {
-        const itemId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
-        const weapon = this.itemService.getItem(GearSlot.Weapon, itemId);
+        weaponId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
+        const weapon = this.itemService.getItem(GearSlot.Weapon, weaponId);
         this.currentAttackType = weapon.attackType;
       } else {
         this.gearSetup = cloneDeep(DEFAULT_GEAR_SETUP);
 
         this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
+        //TODO this in not working in simple sim, since we have one instance of this component and then only the select setup is updated, not all presets
+        //TODO should this be here? who is responsible for starting/default prayers
         this.gearSetup.prayers = new Set(this.sharedSettingsService.prayers$.getValue()['melee']);
-        this.attackStyles = this.itemService.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
 
         this.gearSetupChange.emit(this.gearSetup);
       }
+
+      this.attackStyles = this.itemService.getItem(GearSlot.Weapon, weaponId).attackStyles;
+
+      this.updateSpecialGear();
 
       this.sharedSettingsService.prayers$
         .pipe(takeUntil(this.destroyed$), skip(1))

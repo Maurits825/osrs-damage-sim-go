@@ -32,6 +32,7 @@ import { ChangelogModalComponent } from './modals/changelog-modal/changelog-moda
 import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal.component';
 import { SharedSettingsComponent } from './shared-settings/shared-settings.component';
 import { GearSetupLabelComponent } from './components/gear-setup-label/gear-setup-label.component';
+import { RagingEchoesComponent } from './components/leagues/raging-echoes/raging-echoes.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { GearSetupLabelComponent } from './components/gear-setup-label/gear-setu
     UnitTestModalComponent,
     SharedSettingsComponent,
     GearSetupLabelComponent,
+    RagingEchoesComponent,
   ],
   exports: [
     NpcInputComponent,

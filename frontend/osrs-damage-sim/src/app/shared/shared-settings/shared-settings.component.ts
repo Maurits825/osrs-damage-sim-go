@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
+import { RagingEchoesSettings } from 'src/app/model/osrs/leagues/raging-echoes.model';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
@@ -34,6 +35,7 @@ export class SharedSettingsComponent implements OnInit {
   attackCycle = 0;
 
   trailblazerRelics: Set<TrailblazerRelic> = new Set();
+  ragingEchoesSettings: RagingEchoesSettings;
 
   userSettingsWatch$: Observable<UserSettings>;
 
@@ -45,6 +47,7 @@ export class SharedSettingsComponent implements OnInit {
     this.selectedBoosts = this.sharedSettingsService.boosts$.getValue();
     this.statDrains = this.sharedSettingsService.statDrain$.getValue();
     this.trailblazerRelics = this.sharedSettingsService.trailblazerRelics$.getValue();
+    this.ragingEchoesSettings = this.sharedSettingsService.ragingEchoesSettings$.getValue();
 
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
@@ -74,6 +77,10 @@ export class SharedSettingsComponent implements OnInit {
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
     this.sharedSettingsService.trailblazerRelics$.next(relics);
+  }
+
+  ragingEchoesSettingsChanged(settings: RagingEchoesSettings): void {
+    this.sharedSettingsService.ragingEchoesSettings$.next(settings);
   }
 
   attackCycleChanged(attackCycle: number): void {

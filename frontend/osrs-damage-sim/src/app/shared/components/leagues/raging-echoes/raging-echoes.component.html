@@ -1,0 +1,28 @@
+<div>
+  <div class="d-flex align-items-center mb-2">
+    <div class="me-2">Melee Tier:</div>
+    <div class="flex-shrink-1">
+      <input
+        class="form-control"
+        type="number"
+        [(ngModel)]="ragingEchoesSettings.combatMasteries.meleeTier"
+        (change)="settingsChange()"
+        min="0"
+        max="6"
+      />
+    </div>
+  </div>
+  <div class="d-flex align-items-center mb-2">
+    <div class="me-2">Range Tier:</div>
+    <div class="flex-shrink-1">
+      <input
+        class="form-control"
+        type="number"
+        [(ngModel)]="ragingEchoesSettings.combatMasteries.rangeTier"
+        (change)="settingsChange()"
+        min="0"
+        max="6"
+      />
+    </div>
+  </div>
+</div>

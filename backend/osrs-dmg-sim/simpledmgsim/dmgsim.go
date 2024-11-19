@@ -19,7 +19,7 @@ func RunSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup Input
 	}
 
 	mainPlayer := dpscalc.GetPlayer(gs, dpsCalcSetup)
-	//TODO make player stuff public so we can get this data?
+	//TODO make player stuff public so we can get this data? - this next?
 	weapon := weapon{
 		maxAttackRoll:  10,
 		maxDefenceRoll: 10,
