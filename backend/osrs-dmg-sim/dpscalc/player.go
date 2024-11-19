@@ -130,13 +130,21 @@ type prayerBoost struct {
 }
 
 type player struct {
-	globalSettings  *GlobalSettings
-	inputGearSetup  *InputGearSetup
-	Npc             npc
-	combatStatBoost CombatStats
-	equipmentStats  equipmentStats
-	combatStyle     combatStyle
-	equippedGear    equippedGear
-	weaponStyle     string
-	spell           spell
+	globalSettings        *GlobalSettings
+	inputGearSetup        *InputGearSetup
+	Npc                   npc
+	combatStatBoost       CombatStats
+	equipmentStats        equipmentStats
+	combatStyle           combatStyle
+	equippedGear          equippedGear
+	weaponStyle           string
+	spell                 spell
+	ragingEchoesMasteries ragingEchoesMasteries
+}
+
+type ragingEchoesMasteries struct {
+	melee      int
+	ranged     int
+	mage       int
+	maxMastery int
 }

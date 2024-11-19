@@ -23,6 +23,10 @@ func getAttackRoll(player *player) int {
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerSpecialAccuracyFinal, attackRoll)
 	}
 
+	if player.ragingEchoesMasteries.maxMastery >= 3 {
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyREPassive, attackRoll, 2, 1)
+	}
+
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyRollFinal, attackRoll)
 	return attackRoll
 }

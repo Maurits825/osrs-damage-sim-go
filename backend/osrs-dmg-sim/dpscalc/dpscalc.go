@@ -206,7 +206,17 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	combatStatBoost := GetPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
-	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell}
+	echoMasteries := ragingEchoesMasteries{0, 0, 0, 0}
+	if cmbStyle.CombatStyleType.IsMeleeStyle() {
+		echoMasteries.melee = inputGearSetup.GearSetupSettings.RagingEchoesSettings.CombatMasteries.MeleeTier
+	} else if cmbStyle.CombatStyleType == Ranged {
+		echoMasteries.ranged = inputGearSetup.GearSetupSettings.RagingEchoesSettings.CombatMasteries.RangeTier
+	} else {
+		echoMasteries.mage = inputGearSetup.GearSetupSettings.RagingEchoesSettings.CombatMasteries.MageTier
+	}
+	echoMasteries.maxMastery = max(echoMasteries.melee, max(echoMasteries.ranged, echoMasteries.mage))
+
+	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell, echoMasteries}
 }
 
 func calculateDps(player *player) dpsDetails {
@@ -242,6 +252,20 @@ func getAttackSpeed(player *player) int {
 
 	//TODO scurrius 1t weapons
 
+	if player.ragingEchoesMasteries.melee >= 5 ||
+		player.ragingEchoesMasteries.ranged >= 5 ||
+		player.ragingEchoesMasteries.mage >= 5 {
+		if attackSpeed >= 5 {
+			attackSpeed = int(attackSpeed / 2)
+		} else {
+			attackSpeed = int(math.Ceil(float64(attackSpeed) / 2))
+		}
+	} else if player.ragingEchoesMasteries.melee >= 3 ||
+		player.ragingEchoesMasteries.ranged >= 3 ||
+		player.ragingEchoesMasteries.mage >= 3 {
+		attackSpeed = int(attackSpeed * 4 / 5)
+	}
+
 	//if we have zero here its because unarmed
 	if attackSpeed == 0 {
 		attackSpeed = 4
@@ -254,9 +278,9 @@ func getAccuracy(player *player) (float32, int) {
 
 	if (slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
 		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
-		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) {
+		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
+		player.ragingEchoesMasteries.ranged == 6 {
 		accuracy := float32(1)
-		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyDawnbringer, accuracy)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
 		return accuracy, attackRoll
 	}

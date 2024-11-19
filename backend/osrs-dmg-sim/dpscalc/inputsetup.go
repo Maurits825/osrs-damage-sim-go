@@ -167,10 +167,21 @@ const (
 )
 
 type GearSetupSettings struct {
-	CombatStats  CombatStats   `json:"combatStats"`
-	AttackCycle  int           `json:"attackCycle"`
-	PotionBoosts []PotionBoost `json:"boosts"`
-	StatDrain    []StatDrain   `json:"statDrains"`
+	CombatStats          CombatStats          `json:"combatStats"`
+	AttackCycle          int                  `json:"attackCycle"`
+	PotionBoosts         []PotionBoost        `json:"boosts"`
+	StatDrain            []StatDrain          `json:"statDrains"`
+	RagingEchoesSettings RagingEchoesSettings `json:"ragingEchoesSettings"`
+}
+
+type RagingEchoesSettings struct {
+	CombatMasteries CombatMasteries `json:"combatMasteries"`
+}
+
+type CombatMasteries struct {
+	MeleeTier int `json:"meleeTier"`
+	RangeTier int `json:"rangeTier"`
+	MageTier  int `json:"mageTier"`
 }
 
 type InputGearSetup struct {

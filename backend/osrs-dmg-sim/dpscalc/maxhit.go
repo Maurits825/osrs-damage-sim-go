@@ -195,6 +195,11 @@ func getRangedMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRalos, maxHit, 3, 4)
 	}
 
+	if player.ragingEchoesMasteries.ranged >= 2 {
+		factor := 0 //todo
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerMaxHitREMultiHit, maxHit, 20+factor, 20)
+	}
+
 	return maxHit
 }
 

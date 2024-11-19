@@ -18,6 +18,19 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
+	if player.ragingEchoesMasteries.ranged >= 1 {
+		for i := range baseHitDist.Hits {
+			if i == 0 {
+				continue //skip miss hit, TODO scuffed
+			}
+			floor := int(maxHit * 3 / 10)
+			if baseHitDist.Hits[i].Hitsplats[0] < floor {
+				baseHitDist.Hits[i].Hitsplats[0] = floor
+			}
+		}
+
+	}
+
 	if player.equippedGear.isEquipped(scythe) && style.IsMeleeStyle() {
 		totalHits := min(max(player.Npc.size, 1), 3)
 		hitDists := make([]*attackdist.HitDistribution, totalHits)
@@ -102,6 +115,8 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 
 		secondHitsplats := baseHitDist.Clone()
 		secondHitsplats.ScaleProbability(effect)
+		//TODO tracking innacurate hit matters here?
+		//the first hit is miss 0 here, that cant have a second hitsplat, though doesnt change dps here?
 		for i := range secondHitsplats.Hits {
 			secondHitsplats.Hits[i].Hitsplats = []int{secondHitsplats.Hits[i].Hitsplats[0], int(secondHitsplats.Hits[i].Hitsplats[0] / 2)}
 		}
