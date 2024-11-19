@@ -37430,6 +37430,12 @@
   "equipable": true,
   "slot": 10
  },
+ "25102": {
+  "name": "Fairy mushroom",
+  "weight": 0.002,
+  "equipable": true,
+  "slot": 5
+ },
  "25106": {
   "name": "Extradimensional bag",
   "weight": 0.5,
@@ -48059,7 +48065,6 @@
   "equipable": true,
   "slot": 3,
   "amagic": 16,
-  "dmagic": 16,
   "aspeed": 5,
   "mdmg": 10.0,
   "weaponCategory": "STAFF"
@@ -48211,6 +48216,7 @@
   "slot": 3,
   "is2h": true,
   "arange": 50,
+  "rstr": 10,
   "aspeed": 3,
   "weaponCategory": "THROWN",
   "futureContent": true
@@ -48289,6 +48295,72 @@
   "futureContent": true
  },
  "1000006": {
+  "name": "Arcane grimoire",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 6,
+  "prayer": 3,
+  "futureContent": true
+ },
+ "1000007": {
+  "name": "Echo axe",
+  "equipable": true,
+  "slot": 3,
+  "astab": -2,
+  "aslash": 38,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "AXE",
+  "futureContent": true
+ },
+ "1000008": {
+  "name": "Echo pickaxe",
+  "equipable": true,
+  "slot": 3,
+  "astab": 38,
+  "aslash": -2,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "PICKAXE",
+  "futureContent": true
+ },
+ "1000009": {
+  "name": "Echo harpoon",
+  "equipable": true,
+  "slot": 3,
+  "astab": 38,
+  "aslash": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "STAB_SWORD",
+  "futureContent": true
+ },
+ "1000010": {
+  "name": "Banker's briefcase",
+  "equipable": true,
+  "slot": 5,
+  "futureContent": true
+ },
+ "1000011": {
+  "name": "Clue compass (item)",
+  "equipable": true,
+  "slot": 5,
+  "futureContent": true
+ },
+ "1000012": {
+  "name": "Fairy mushroom",
+  "weight": 0.002,
+  "equipable": true,
+  "slot": 5,
+  "futureContent": true
+ },
+ "1000013": {
   "name": "Nature's reprisal",
   "equipable": true,
   "slot": 3,
@@ -48300,10 +48372,10 @@
   "rstr": 92,
   "aspeed": 5,
   "mdmg": 12.0,
-  "weaponCategory": "SALAMANDER",
+  "weaponCategory": "MULTI-STYLE",
   "futureContent": true
  },
- "1000007": {
+ "1000014": {
   "name": "The dogsword",
   "equipable": true,
   "slot": 3,
@@ -48316,7 +48388,7 @@
   "weaponCategory": "TWO_HANDED_SWORD",
   "futureContent": true
  },
- "1000008": {
+ "1000015": {
   "name": "Thunder khopesh",
   "equipable": true,
   "slot": 3,
@@ -48327,7 +48399,7 @@
   "weaponCategory": "SLASH_SWORD",
   "futureContent": true
  },
- "1000009": {
+ "1000016": {
   "name": "Thousand-dragon ward",
   "equipable": true,
   "slot": 5,
@@ -48345,7 +48417,7 @@
   "prayer": 6,
   "futureContent": true
  },
- "1000010": {
+ "1000017": {
   "name": "Sunlight spear",
   "equipable": true,
   "slot": 3,
@@ -48362,7 +48434,7 @@
   "weaponCategory": "SPEAR",
   "futureContent": true
  },
- "1000011": {
+ "1000018": {
   "name": "Sunlit bracers",
   "equipable": true,
   "slot": 9,

@@ -14712,6 +14712,8 @@
   "range": 1,
   "combat": 162,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3357"
  },
  {
@@ -22448,6 +22450,8 @@
   "range": 36,
   "combat": 40,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "3358"
  },
  {

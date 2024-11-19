@@ -8326,20 +8326,47 @@
    "icon": "iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAACqUlEQVR42tXX72sScRwH8BwxJqJ4nHKJGzN04rbDKTKdynRe50Td+SMTndswCytoxHpURD2JIAr6ARXBIKInsR70sL/v3X2+oMdxDfbFOJjwfuAJ3xfv7y+5K7N/HJhxAD4sJAbwH1EHKOf9FvUHDdAID24dMOxbpEEsyXkXWOLueQhX5yAnglgKifAKTl7YAOVASEeXWYsdNQZFdEJZtqY92ESltYGkHEH0ehABSYc9Ll7UgUQwjKKwgGY3iXjOx7IbcppCzwb38qiV0ihuxbG5EcVqZIlQfnDX50Td78LDJ2U2cKLgZ2lEXJTp96evG+g3d7CnZlDKJZBJxlhTyee96No60JDYoDh5XjWBKUVCuiyh0vNDveWD0hZx+nOE2/0y+u0ddLRtdJtFDDoKEkFakgAWvSIEpzHFFuzmimsSC6gjJmwC3hlUCGFgo5JFu56DuhqbxjNvBRm2v+o2xQAZ8E/w29ldjA+rOOqq1I6BtRtpAkwxQRNsq3oN+b3ANJ+/H+LD6T7yNQFFjQETzJSz32M8Grdwf1in6TUBllbp5SiKkTiO1t0mjIB3X/t486lrATtDCa0DP4umN67rzygX2iCFxTjUWNIE0qAEZHcFvHrfwdsvPaiaaAnnLWOgWjiLkexhqR/4TeALfdu/1HN8UkJvsIlsPswDnI8Spg1py5vBVNGDnOJFKudBIuOGR5ibCTOmthmkdgTSWjFQ1VPQ0YyOyimXtdnsoNGuoqOlmsDarW24LNDM4Mcfw2k72nHULrrOdfvzN/z155jdHHVN5oH4sZUCWzvaJBzTNwMYVSSaSrZe/Bg/SFcataOdaAtI7ei82YOFMiK7K9dsakd/qNSOjoA9IB1yOeO2AZs0VLwIUzu7wMfPKijX1u0DRw+2ubBL9ULyF9wB81UC3sGMAAAAAElFTkSuQmCC"
   },
   {
-   "name": "Nature's reprisal",
-   "id": 1000006,
+   "name": "Echo axe",
+   "id": 1000007,
    "futureContent": true,
    "attackStyles": [
-    "Scorch (Slash/Aggressive)",
-    "Flare (Ranged/Accurate)",
-    "Blaze (Magic/Defensive)"
+    "Chop (Slash/Accurate)",
+    "Hack (Slash/Aggressive)",
+    "Smash (Crush/Aggressive)",
+    "Block (Slash/Defensive)"
    ],
-   "attackType": "magic",
-   "icon": "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAcCAMAAABBJv+bAAAA8FBMVEUAAAAAAAJKQDYxKyRGPjM5MipGRjM1LiYZFxM3MChgswlkugkICAYAAQNKSTZ0dFVEQzEpQgJdrwl/zgtWoQhbqwkNCwhNjwhnZ0tMTDdlZElYV0CQ6A2M4Q2I2ws1YwQuVgQuSwIrRgI6bwZnwQmC0QsvLyMAAQRKSTd3wQpMTDhvswlyuglOTjlRUDpGhQaE1QtZqQmG2At9ygsvLyFdXERpW01iVUcpKR1aWkI9NSsQDgtYpQlYpQhMQjcmIRtaT0JgU0VdUUQ/Ny4pJB0rJiAgHBcvKSFEOzFYTUBBOTBRRjpVSz9ORDlTST0AAAGQBJT5AAAAAXRSTlMAQObYZgAAAQZJREFUeNp9z+dSg0AUhmF6AqQXjRqwG3vvNQETYCnf/d+NLJPB0bPk/XN+PFvmSEWytGwykWjy+9Kbx0dNyvjoFy6fnPJJ+e4W+bDPLyAJ/foKEqyzSzHfHLo7QG/EVeQ91wGGm1Vsuc42LIOz0G1n3LDFjLzBcLx/wJlad28XWB/0741n/NeOYbTyNrqtzoOugt7mtUdb7RcvLJkeyrxZzGrchQHZ7JE1Sidh+pR+l0xD5AWrOJmaa0AlZ9GrOq98H3EUKkq4QAWnGYDEr6OIcgq+oWnqNTWYgzwegw/mM00L2Rfx7K1w/zMBIrYgm6UBAD1F8QnoaqlSVxX2C9Q1lEr6s9EPe946PTHlsaAAAAAASUVORK5CYII="
+   "attackType": "melee",
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
+  },
+  {
+   "name": "Echo pickaxe",
+   "id": 1000008,
+   "futureContent": true,
+   "attackStyles": [
+    "Spike (Stab/Accurate)",
+    "Impale (Stab/Aggressive)",
+    "Smash (Crush/Aggressive)",
+    "Block (Stab/Defensive)"
+   ],
+   "attackType": "melee",
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
+  },
+  {
+   "name": "Echo harpoon",
+   "id": 1000009,
+   "futureContent": true,
+   "attackStyles": [
+    "Stab (Stab/Accurate)",
+    "Lunge (Stab/Aggressive)",
+    "Slash (Slash/Aggressive)",
+    "Block (Stab/Defensive)"
+   ],
+   "attackType": "melee",
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
   },
   {
    "name": "The dogsword",
-   "id": 1000007,
+   "id": 1000014,
    "futureContent": true,
    "attackStyles": [
     "Chop (Slash/Accurate)",
@@ -8352,7 +8379,7 @@
   },
   {
    "name": "Thunder khopesh",
-   "id": 1000008,
+   "id": 1000015,
    "futureContent": true,
    "attackStyles": [
     "Chop (Slash/Accurate)",
@@ -8365,7 +8392,7 @@
   },
   {
    "name": "Sunlight spear",
-   "id": 1000010,
+   "id": 1000017,
    "futureContent": true,
    "attackStyles": [
     "Lunge (Stab/Controlled)",
@@ -18629,7 +18656,7 @@
   },
   {
    "name": "Sunlit bracers",
-   "id": 1000011,
+   "id": 1000018,
    "futureContent": true,
    "icon": "iVBORw0KGgoAAAANSUhEUgAAAB0AAAAXCAMAAADA1rRbAAABgFBMVEUAAADMojLYqzW7lS69li+0jyyviivDmzClhCmriSqcfCaWdyWgfyaMcCOTdCSHayB9Yx+DaCByWxxUQxSQciOJbiEzKQuZeSWigShpUxmAZh9jThhNPhNfSxc/MQ4vJQtCNRBXRRV5YR0LCQJtHxkcQXIgSoMkU5MfSYBvamRybmiTjIVmJRhUHxRZVVBdWVRXU05iXVhAPjp2IRyDJSB3cWyQKSOBe3SalIyel5B9d3B5c22XkIlpZF1kYFp/eXJ7dW+VjoeRioONh3+Jg3tpJhmALx99Lh+TNiSgOiaWNyWgo6umoZqln5igmZKrpqCqpJ6hm5ScLCYlVJYmWqArVq+jnZaoopyvqqO1saulqbFST0uzr6resDfiu1QbP3AcQnYYOWYjUZA6O0C4kizBmS8VMVdOS0ZGNxERKUo6Lw4RKEYQJUIECRUfGAbJoDHPpDLSpzPbrjbfsz4hTokTK012XRwXNl8UL1QVM1uyjSuphinHnjFRQBPVqjUAAAGsUJ9QAAAAAXRSTlMAQObYZgAAAVpJREFUeNptkudWwkAQhQlFwIQkhN6xKxbEBth7b1gAexcFuwhS59XdE9YUTubX7Hxzd3fuGZVCAB8q5YCbYun35xlk7WJ6fcWwjzlJATXj2+C+micZlstlsQC6aJu78BYI1kAFugfiNk+airnsUw142u2k3aXXgJ/XEuqd3Vh0JuOFBqz3OFHzix3wM9uJhbnZO3xSXx4d5nv7MvD/i1RycT6CoYa4OE4n+0NnAt1PLI2HQZz9JDU9NSzQvfhyaAjEaU/TscmwQLc2V1cGpWacx6OREQFvrK8NgNS9g4mx0U7AB85i7wCZuazPH8D/JE0Iy7Stbo83CDinbZxFRimzy9fm5c2qUKSVkWFwMu2cy8NTowGJzZyUGmiTmeVcgNwpVyiHlWELGGMBiTiiWl2LgXKQVhE2aogzAFW9VqMrG+UT1Qk96gCUwefHexWaV+37q96oKe6cQu0PrjhlNV8ytGUAAAAASUVORK5CYII="
   }
@@ -20318,6 +20345,11 @@
    "icon": "iVBORw0KGgoAAAANSUhEUgAAABcAAAAfCAYAAAAMeVbNAAABs0lEQVR4XtWWwUrDQBCGN8c95JBDoRQCEkrooUgpDaVgUVqEWmqhIgoWpKAPIOLBFyiCFER8AK++gicvvoQ332RkdjvpZNO0SRuE/vBDd7P9/mSXmUQIJQu0syjVeguGJz3otNvzgHQue15sLuo5vDk6g+B0GLreH8RM13CtV2/AnuvCqC2hF0g4qAoIKgL2PQG+K8AtCArQ8O/Pacwf7/eh+TzCS8WiApERzJ0IxzF6FbzgOOoOTVPYUjj+vnl9U+YBfM0qODmE414SAKG/P1/KFMAD0ZngdIcmnALINN4azrfGnNsafv08g/H0Sc2ZT5IZzg+TQJPZS2S/aX5juHl4eNh8jNc3gvOAVV4Hn4N1+VNp80JBJxWR32wlwhmYpJuNGbAMXvH9GHANnKRDkuDYCakxmab/msQl0gv5PmMXxLnbvlQdcAFLDTVlAkx4rvoHOOvXeWrX4exNk6d2GX5xJNeVeVbpApp0i3Bcc6BRllAuyW0DFlD0sOko+GHVhlbFViG0JmOQBY9XNjxc2nB3ro37Pe7K2JdWio5oyoJBS0PQnZoIYean2wZwFH/kNI7qD76k727gdrtiAAAAAElFTkSuQmCC"
   },
   {
+   "name": "Fairy mushroom",
+   "id": 25102,
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
+  },
+  {
    "name": "Tome of water",
    "id": 25574,
    "icon": "iVBORw0KGgoAAAANSUhEUgAAAB8AAAAaCAYAAABPY4eKAAAC4klEQVR4Xr2V7UtacRTHuy994QtfCEMQQkRERC6ihGEkicMkh41NYY1RScF62BpubS5chXOrXLWxx4htDbcWq9lo+//O7vdnv+u9Px+ujtyBL0HQ/XzOuefc+vq6Konq+a8lkb0/Snb7MNlsIY1Ez0XOwedwbyJLcmqO/fTEJnopIlG/I87C4YHrSzQ4tUahm48pmMmR/+oi+ZKz5I1PXrRIHY4AFLpVoET+gEYffqL4g326nNuj6N03FF18RSPzO+pU9CJdy0jkcI6pARzdAszDBWL33qkCkdtlGp7doKGZUm1Ciiz+rksRPXzgxrIOrBVA91wA3WsFwtmiuh8m07iSuJGARE5nShcRqg0fv3YCWgm+E+6RjDHY5brGgPiJiDBtLNayOoFmEhDge2Ay2TqD87jdmQagFszhPKIEvwir1UcOr5elhYBElksfGJBHBIpgES5KYFfkcJhcstwOjJJ0YGyr+NBO4TwYucXiNoLXwB7PBAs2VXyQCDWCY+SDowkGRlqCOZQHJyI+TIS2g+O2seVYsjZglERe76QanIf4sG7g+LDgMxxLp427ttqqKhj32azrboJx47T8w5F2YJTStS/LgttE1+0WbWyl0jbYbn5aHXT9R3nHERbx+4wJ8IcmC4eGgTTGja8ZX7QWYBQWLaJsee0Oi5WvVPp+RJvHJw0iydUjw6BrLJnZ7DACo/Tw0rdDlsL+R1r/UlFFXlRPVZEr68eUKv5siLZrvmgGcFTt3xwkAEKeH/1gwSTy7/dYIIPfcZHx0qkaTAanZbbcV55lZ4vWAVhbtcWT/XPkDywyyNZJlQVCa58PaPn1W8rtvtTJbP86U85th8zWpwr8ESWnpjvtWqzaFJiIcnY+eZaJBIJLDAIhvAq8FkgsPNtQZe5sbtF0foWGksl/AYtVF9FOBSK7Z7+ZCH8tS+VtmnmySun5BfIEghcBF6v5VIIDOfZK0DkEegAWSz8VfTqrv4OhEIh7YX4uAAAAAElFTkSuQmCC"
@@ -20524,10 +20556,28 @@
    "icon": "iVBORw0KGgoAAAANSUhEUgAAABwAAAAZCAIAAACtotlwAAABcWlDQ1BpY2MAAHjaldE7SEJRHMfxr9qLSoJqiGi4QzUlREU0hkUSJIgaaDV0H77Ae5V7lRbHoFVo6LFkNbQ019rQGgRBD4jmhqailpDbPUgpgUH/6cP/nP/hnN8BdyWr6lbLOOhGwQwH/FIsviK1P9OFl17ctMmqlQ9GFqI0rY9bXAA3PnEW/yuvlrBUcEnArJo3C47XgemNQl54F+hX07Lm+BQYM50LOr4XfaXmF+GUMG6EzWh4znE/IKUarDRYTZu64ylgWNMNzXGsZk24JKxniyq1cgHdCWM5IvrAEAEWCRJCQqFIhiwFfGQwkLAIE8DfZH4QMR+iiEKWDCoS8+TQkRHziD/4na2VnJwAwNXth9Yn234bgfZtqJZt+/PQtqtH4HmEC6M+n6vAzDt4yvXe8AH0bMLZZb2n7MD5Fgw85GVTBsADuJNJeD0Bbxz6rqFzVeT2s87xHURLsHQFe/swmoKetSbv7mjM7a893/l9ARGocoB3SvYGAAAABnRSTlMAAAAAAABupgeRAAADJklEQVR42q2V/09SYRTGu1tzupbLmYOmTRrqQByiDNJYEqA0UAxRjPllOPDLSBPQoSahs0jDLHU61Gwu18pcW7XV+vv62LvZDwoF8+7Z3Xnfe8/zPuc5Z/deynBJf3FBl1RlCdW0hisaPSUKfSbeXE+VdN6UtiupskeJMyH1Mh6eHPb2uHLgFXDbqrrt1b52Neh1qIjZsZsUPNrdWd1cf/5k9nFOFkmxYeOErzrkrRrtVgbdt4Y6FcDv1sDusig/H707fL/9dm8tB6URvz46qILLY6vwt8j6TWWAJRjxavs7a6HOzdPxPh0C54JqNHrtN7sMpa7GUmKhGpxSC97/1XiSbJOvjSkH2hUOk9ysLoZdSH7YXCbYOTvgqRPU2RinAgYhsOf2dYFEX+UDS3l95ZW2JplTV2LXllg11zgDCMfh/Qfpq5l7vOpzVCKQtoiS2YGRHatRxgEEbMaG1EuP6niEXhIzDtCoS/lmzhIfqV0Y0wACQGZyQnuUal4J1+MDJmAoPmACdYT7aijuLKnkiarc4ZrWIYXJU7E5b0UCDkx1VITabgQtcpJp1M9tM8cgUzRNmHCnphj346Gm85UGVup98dpor2o7YYORV0kmMxXR7SYMsKOUmGBrvArJHMDZyOS+MN6cyVMJxHzqvWd2ShbzRNUwMgMUG3GWp+f1PCJGPlMBO86cvBa5m6VRUnywdj95HxUo5b4RUpLPDKEa6v1FIxqpnSWewM6SY5ajLalpc0axS4G6g2WHeBUtpNEKWDZiDWI8CZDGMOHM6+kGlDIt9Db7p1I6TDnB1lyjyGEwocAH0R/22TRriwk4mwaAP2oK0tHChL8g6Lx8Pu+ntY4Pq+1AUJOMOriIsZglzSGGjgYIdQezhR+fFnJ/MVyQ0Ycvm53H6y7YYYGaqjGUmF4JsenFVgoS+dx/pYrAt2TR8WJRtqbtThu+brkFu9AOC47TSQQKxjx+P9L+jPHHjud7uuuUHRAAdvL4fUmOcnmLrExfWqIuvgq7QDqq35hsSIV0gjFn0gl1NfDdqrTKZSzPIJ9LSjZqF3SaqEY1oFTkwXLxv/7ftApDP8E6Z3IAAAAASUVORK5CYII="
   },
   {
-   "name": "Thousand-dragon ward",
-   "id": 1000009,
+   "name": "Arcane grimoire",
+   "id": 1000006,
    "futureContent": true,
-   "icon": "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAA51BMVEUAAABVUU1DQD1FQj45NzNiXVgqKSY3NTFvamS9li+4kiy0jywsKSlFPz6el5C7lS6viiuyjStpKCSphimigSiriSqgfyalhCnBmS/DmzBHQUCcfCaZeSXHnjHJoDHMojLSpzPPpDLVqjWQciOTdCTbrjZMRERDPT1AOjqalIw+ODhKQkJVTU2jnZaWdyWMcCOgmZKhm5RQSUl3cWx9d3BtaGJ0cGo1Mi9wbGY+OzhpZF0yMCxrZmBnYlxAPjpkYFpgW1ZHREBXU05bV1JQTUlOS0ZKRkJMSURST0tZVVA7OTZdWVQAAAEnWsCmAAAAAXRSTlMAQObYZgAAAeJJREFUeNpt0+l6mkAUBuAC0qiAsogrGpMmNd33NosKDMwmc//X029ATXzM90t5z5k5DM+8OYnSOfw5p13LJDulXkPL3D4wUaSZ+aTOlD9KwQwiK2mUrKXUqdLCMPqdzngyX1wVhG+fXhaokgvxo9vt9lGwuFxmxOQtdVSDlqXz3UFQMJlfXl3fpkwdlAhKfacHdVHQGcOXZPtWNfq3/cgjcK8Xhq7rwrFBxi/A0KptZwOw03N1PK+e4JpYaNdc0SE4cBzgsWBR8FbDgoPR7TWI6AlsgXbNZV6zp7P6uFqBkaVkLc0FTcABbDqVjN3dYQmMOa/WcqfALBmOfAf6yZbcpF7DX27v7bo7Twax4+Lp+8/Zb1LgRxg6Tr9DLjT/krNR3Iw9/ZkWXj0hZpP0n+Z7lmDrmrHAFKy1P5Zm3b0ub4aRv+e9YumJ2EHhxPo6wGuHoXavdn3w+Z5T9m4WBRjoeCjYeTIvH8Day+3NEMPho2gMgkCzlNs9V/k3vBsUJQHigwkpTXDtfIflP4ADH+iDDcEtaMPStpg+dj+KYl+zoHkOPbht0Hw2GI2Gg1EUxz5ljEGf/U9WUJbMkhkK4qzgHPrS1SYrCLFyRo2qvaHq/Jqk2XpTpRkugoCeRdU5vYX/AYM3X+3TWbeWAAAAAElFTkSuQmCC"
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
+  },
+  {
+   "name": "Banker's briefcase",
+   "id": 1000010,
+   "futureContent": true,
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
+  },
+  {
+   "name": "Clue compass (item)",
+   "id": 1000011,
+   "futureContent": true,
+   "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
+  },
+  {
+   "name": "Thousand-dragon ward",
+   "id": 1000016,
+   "futureContent": true,
+   "icon": "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAA7VBMVEVGPTJIPjNJQDQAAAFKRkJMSUROS0ZXU05ZVVBST0tFPz5QTUlDQD1VUU1HREBbV1JdWVRgW1ZiXViviiuyjSu0jyxFQj6riSpkYFqZeSUsKSlpKCSphilrZmBvamQ7OTacfCael5CgfyaigSilhClHQUBAPjpDPT05NzO4kiy7lS69li/BmS/DmzDHnjHJoDHSpzNnYlw+OzhAOjppZF03NTFwbGaTdCTMojLPpDIyMCzVqjXbrjZMRER9d3AqKSaMcCOQciNVTU2WdyU+ODialIxQSUltaGI1Mi+gmZKhm5RKQkKjnZZ0cGp3cWxZVu6OAAAAA3RSTlMAAAD6dsTeAAAB70lEQVR4Xl3S1ZLjMBQE0CRCM2OYmYZ5meH/P2f72qnUzvRTKufKaslutFqtZh38YpTmfwFTTtRf2KrP2FsmTO3ZBTe8PLAf2Ftm4kob3FHa147FF4y9YiY9x1mt15vtbn/vKTF7YKx1ZmYJw/i5XC5XGNjfHQJliwWjzo0m1JGWlfxIEAxsd3f3j085B7fATaYMKaNkCC0xsN7AD2r2jrzRZH96V6IDHg7b7bIs4dggENcVM78XBmNwMiwpplk1eFQplhP7cgSOkwR4Hth7VI7YEGCsNmtEqEFoYDmx5VZsUuaf53MwctB8QezJAhzDplPN+eUlCqDmzu/qPgPzYjSJEuivUAtbmjX/froJq9VuMc6SEv8+fwxelAdut5NktVbXxH/1YJLVtadfc8+sGqKblt+Jb3iBrcGU5ymYdLXRdrW6a92OULzmWunRW6NP524wlX4a49i4UcSsnC7ePXHOPww6MQqdLwU7b3fWBTHcmt2OUA4vhTCOY2KtZyf23fc4GxQjMRKBlbJsYnLRx+O/gOMIGIEdQ6TQmnWYcrr2qNPJImJDui6UmDx0pDsYTyaj8aSTZZHknJMSV9/Tt8CTvBgUAwxkgScElAKjMHYMPKVSl0vH7x0l9MyUBmN50D36eeBrx4C+ZoSdAz3lHypKP6Xs5Jk7AAAAAElFTkSuQmCC"
   }
  ]
 }
