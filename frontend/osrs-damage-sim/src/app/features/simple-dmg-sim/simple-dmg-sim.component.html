@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center mb-4">
+    <div>
+      <img style="width: 70px" class="img-fluid" src="assets/img/menu/dps-detail.png" />
+    </div>
+    <div class="ms-2"><h1 class="display-1">Simple Damage Sim</h1></div>
+  </div>
+
+  <div class="mb-2">
+    <app-simple-sim-results [results]="simpleSimResults"></app-simple-sim-results>
+  </div>
+
+  <hr class="row mb-4" />
+
+  <div class="d-flex justify-content-between mb-5 flex-wrap">
+    <div class="flex-fill mb-1">
+      <app-example-setups></app-example-setups>
+    </div>
+    <div class="flex-grow-1"></div>
+
+    <div class="flex-shrink-1 d-flex ms-1">
+      <!-- <app-share-input-setup></app-share-input-setup> -->
+    </div>
+  </div>
+
+  <app-simple-sim-settings></app-simple-sim-settings>
+  <app-shared-settings></app-shared-settings>
+
+  <div class="mb-4">
+    <div class="d-flex mb-1">
+      <div class="flex-fill btn-group btn-group-lg" role="group">
+        <ng-container *ngIf="loading">
+          <button class="btn btn-primary" type="button" [disabled]="loading">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only"> Loading...</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+          <button class="btn btn-primary" type="button" (click)="runSimpleDmgSimCalc()">
+            <span class="sr-only">Run Damage Simulator</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div *ngIf="loading">&nbsp;</div>
+
+    <ng-container *ngIf="!loading">
+      <div class="text-success" *ngIf="simpleSimResults && !simpleSimResults?.error">
+        Damage sim done, results above!
+      </div>
+      <div class="text-danger" *ngIf="simpleSimResults?.error">{{ simpleSimResults.error }}</div>
+    </ng-container>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <app-gear-presets (selectGearSetup)="onSelectGearSetup($event)"></app-gear-presets>
+    </div>
+    <div class="col">
+      <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+        <div class="container-fluid px-2">
+          <ul class="navbar-nav nav-tabs flex-wrap">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                role="button"
+                [ngClass]="{
+                  active: activeTab === 'preset-editor'
+                }"
+                (click)="activeTab = 'preset-editor'"
+              >
+                <div class="text-center">Preset Editor</div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                role="button"
+                [ngClass]="{
+                  active: activeTab === 'gear-setup-tabs'
+                }"
+                (click)="activeTab = 'gear-setup-tabs'"
+              >
+                <div class="text-center">Gear Setups</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div *ngIf="activeTab === 'preset-editor'">
+        <ng-container *ngIf="selectedGearSetup; else emptySetup">
+          <app-gear-setup [gearSetup]="selectedGearSetup"></app-gear-setup>
+        </ng-container>
+        <ng-template #emptySetup> Select or add a new setup </ng-template>
+      </div>
+      <div *ngIf="activeTab === 'gear-setup-tabs'">
+        <app-gear-setup-tabs></app-gear-setup-tabs>
+      </div>
+    </div>
+  </div>
+</div>

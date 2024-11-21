@@ -37,6 +37,10 @@ functions:
         method: POST
         cors: ${self:custom.corsConfig}
     - http:
+        path: /run-simple-dmg-sim
+        method: POST
+        cors: ${self:custom.corsConfig}
+    - http:
         path: /run-bis-calc
         method: POST
         cors: ${self:custom.corsConfig}

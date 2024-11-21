@@ -1,4 +1,4 @@
-import { GearSetSetups } from 'src/app/model/damage-sim/gear-set.model';
+import { GearSetSetups } from 'src/app/model/shared/gear-set.model';
 
 export const gearSetSetups: GearSetSetups = {
   melee: [

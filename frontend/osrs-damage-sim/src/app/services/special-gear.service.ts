@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { GearSetup } from '../model/damage-sim/input-setup.model';
-import { SpecialGear } from '../model/damage-sim/special-gear.model';
+import { SpecialGear } from '../model/shared/special-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { SPECIAL_BOLTS, BLOWPIPE_ID, WILDY_WEAPONS } from '../shared/components/gear-setup/gear-setup.const';
+import { SPECIAL_BOLTS, BLOWPIPE_ID, WILDY_WEAPONS, DRYGORE_BLOWPIPE_ID } from '../model/shared/gear-setup.model';
+import { GearSetup } from '../model/shared/gear-setup.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +52,8 @@ export class SpecialGearService {
   }
 
   private getIsBlowpipe(gearInputSetup: GearSetup): boolean {
-    return gearInputSetup.gear[GearSlot.Weapon]?.id === BLOWPIPE_ID;
+    const weaponId = gearInputSetup.gear[GearSlot.Weapon]?.id;
+    return weaponId === BLOWPIPE_ID || weaponId === DRYGORE_BLOWPIPE_ID;
   }
 
   private getIsPickaxe(gearInputSetup: GearSetup): boolean {

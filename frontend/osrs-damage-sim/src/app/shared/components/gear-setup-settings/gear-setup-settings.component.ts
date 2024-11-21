@@ -1,35 +1,32 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { takeUntil, Subject, Observable } from 'rxjs';
-import { GearSetupSettings } from 'src/app/model/damage-sim/input-setup.model';
-import { StatDrain } from 'src/app/model/damage-sim/stat-drain.model';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { takeUntil, Subject, Observable, skip } from 'rxjs';
+import { StatDrain } from 'src/app/model/shared/stat-drain.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
 import { TrailblazerRelic } from 'src/app/model/osrs/leagues/trailblazer-relics.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { DEFAULT_GEAR_SETUP_SETTINGS, GearSetupSettings } from 'src/app/model/shared/gear-setup-settings.model';
+import { cloneDeep } from 'lodash-es';
+import { RagingEchoesSettings } from 'src/app/model/osrs/leagues/raging-echoes.model';
 
 @Component({
   selector: 'app-gear-setup-settings',
   templateUrl: './gear-setup-settings.component.html',
-  styleUrls: ['./gear-setup-settings.component.css'],
 })
 export class GearSetupSettingsComponent implements OnInit, OnDestroy {
-  public gearSetupSettings: GearSetupSettings = {
-    statDrains: null,
-    boosts: null,
-    combatStats: null,
+  @Input()
+  gearSetupSettings: GearSetupSettings | null;
 
-    attackCycle: 0,
-
-    trailblazerRelics: null,
-  };
+  @Output()
+  gearSetupSettingsChange = new EventEmitter<GearSetupSettings>();
 
   userSettingsWatch$: Observable<UserSettings>;
 
   private destroyed$ = new Subject();
 
-  constructor(private globalSettingsService: GlobalSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -37,31 +34,43 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.globalSettingsService.globalBoosts$
-      .pipe(takeUntil(this.destroyed$))
+    const skipCount = this.gearSetupSettings === null ? 0 : 1;
+    if (this.gearSetupSettings === null) {
+      this.gearSetupSettings = cloneDeep(DEFAULT_GEAR_SETUP_SETTINGS);
+      this.gearSetupSettingsChange.emit(this.gearSetupSettings);
+    }
+
+    this.sharedSettingsService.boosts$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((boosts: Set<Boost>) => (this.gearSetupSettings.boosts = new Set(boosts)));
 
-    this.globalSettingsService.globalStatDrain$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = [...statDrains]));
+    this.sharedSettingsService.statDrain$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
+      .subscribe((statDrains: StatDrain[]) => (this.gearSetupSettings.statDrains = cloneDeep(statDrains)));
 
-    this.globalSettingsService.globalCombatStats$
-      .pipe(takeUntil(this.destroyed$))
+    this.sharedSettingsService.combatStats$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((combatStats: CombatStats) => (this.gearSetupSettings.combatStats = { ...combatStats }));
 
-    this.globalSettingsService.globalTrailblazerRelics$
-      .pipe(takeUntil(this.destroyed$))
+    this.sharedSettingsService.trailblazerRelics$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((relics: Set<TrailblazerRelic>) => (this.gearSetupSettings.trailblazerRelics = new Set(relics)));
 
-    this.globalSettingsService.globalAttackCycle$
-      .pipe(takeUntil(this.destroyed$))
+    this.sharedSettingsService.ragingEchoesSettings$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
+      .subscribe(
+        (settings: RagingEchoesSettings) => (this.gearSetupSettings.ragingEchoesSettings = cloneDeep(settings))
+      );
+
+    this.sharedSettingsService.attackCycle$
+      .pipe(takeUntil(this.destroyed$), skip(skipCount))
       .subscribe((attackCycle: number) => (this.gearSetupSettings.attackCycle = attackCycle));
 
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
   }
 
   toggleBoost(boost: Boost): void {
-    this.globalSettingsService.toggleBoost(boost, this.gearSetupSettings.boosts);
+    this.sharedSettingsService.toggleBoost(boost, this.gearSetupSettings.boosts);
   }
 
   statDrainsChanged(statDrains: StatDrain[]): void {
@@ -74,6 +83,10 @@ export class GearSetupSettingsComponent implements OnInit, OnDestroy {
 
   trailblazerRelicsChanged(relics: Set<TrailblazerRelic>): void {
     this.gearSetupSettings.trailblazerRelics = relics;
+  }
+
+  ragingEchoesSettingsChanged(settings: RagingEchoesSettings): void {
+    this.gearSetupSettings.ragingEchoesSettings = settings;
   }
 
   attackCycleChanged(attackCycle: number): void {

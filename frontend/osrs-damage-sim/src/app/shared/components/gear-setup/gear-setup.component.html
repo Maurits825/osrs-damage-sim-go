@@ -100,18 +100,18 @@
   </div>
 
   <div class="mb-3 d-flex flex-wrap align-items-center">
-    <div class="btn-group me-2" role="group" style="height: '45px'">
+    <div class="btn-group me-2" role="group" style="height: 45px">
       <ng-container *ngFor="let attackType of allAttackTypes">
         <input
           type="radio"
           class="btn-check"
-          style="width: '50px'"
+          style="width: 50px"
           [title]="attackType"
-          id="{{ attackType + setupCount + gearSetupTabRef.id }}"
+          id="{{ attackType + setupId }}"
           (click)="setAttackType(attackType)"
           [checked]="attackType === currentAttackType"
         />
-        <label class="btn btn-outline-secondary" for="{{ attackType + setupCount + gearSetupTabRef.id }}">
+        <label class="btn btn-outline-secondary" for="{{ attackType + setupId }}">
           <img src="assets/img/skills/{{ attackType }}.png" />
         </label>
       </ng-container>
@@ -147,13 +147,21 @@
         searchProperty="name"
         (valueChanged)="gearSlotChange($event, slot)"
       >
-        <ng-template #dropdownLabel let-item="item">{{ item.name }}</ng-template>
+        <ng-template #dropdownLabel let-item="item">
+          <div>
+            {{ item.name }}
+            <span *ngIf="item.futureContent" class="ms-2 badge rounded-pill bg-secondary">future content</span>
+          </div>
+        </ng-template>
         <ng-template #dropdownOptions let-item="item">
           <div class="d-flex align-items-center">
             <div class="text-center" style="flex: 0 0 35px">
               <img src="data:image/png;base64,{{ item.icon }}" />
             </div>
             <div class="ps-2">{{ item.name }}</div>
+            <div class="ms-2">
+              <span *ngIf="item.futureContent" class="badge rounded-pill bg-secondary">future content</span>
+            </div>
           </div>
         </ng-template>
       </app-ng-select-lazy-load>

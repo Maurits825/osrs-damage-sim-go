@@ -5,6 +5,7 @@ export interface Item {
   attackStyles?: string[];
   attackType?: AttackType;
   specialAttackCost?: number;
+  futureContent?: boolean;
 }
 
 export const allAttackTypes = ['melee', 'ranged', 'magic'] as const;

@@ -21,7 +21,7 @@ func getAttackDistProbabilitySums(attackDist *attackdist.AttackDistribution) []f
 
 func testGetAttackDist(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
-		player := getPlayer(&testInputSetup.InputSetup.GlobalSettings, &testInputSetup.InputSetup.InputGearSetups[0])
+		player := GetPlayer(&testInputSetup.InputSetup.GlobalSettings, &testInputSetup.InputSetup.InputGearSetups[0])
 		//todo could also do with a range of acc and max hits
 		//try some fuzz testing???
 		accuracy := float32(0.543)

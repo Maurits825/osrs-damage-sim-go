@@ -89,6 +89,13 @@ const (
 	ralos = 28919
 )
 
+const (
+	drygoreBlowpipe = 1000000
+	devilElement    = 1000004
+	crystalBlessing = 1000005
+	glovesDamned    = 1000001
+)
+
 var virtusSet = []int{26241, 26243, 26245}
 var voidRobes = []int{8839, 8840, 8842}
 var eliteVoidRobes = []int{13072, 13073, 8842}
@@ -103,7 +110,8 @@ var dharokSet = []int{4716, 4718, 4720, 4722}
 var enchantedRubyBolts = []int{9242, 21944}
 var enchantedDiamondBolts = []int{9243, 21946}
 
-var karilDamnedSet = []int{4734, 4732, 4736, 4738, 12851}
+var amuletDamned = 12851
+var karilSet = []int{4734, 4732, 4736, 4738}
 var veracSet = []int{4755, 4753, 4757, 4759}
 
 var corpBaneWeapons = []int{
@@ -217,10 +225,24 @@ func (gear *equippedGear) getWearingPickaxe() (int, bool) {
 // TODO proper check for bolts/arrows? this will give bonus if throwing darts with quiver
 func (gear *equippedGear) isBlessedQuiverBonus() bool {
 	if gear.isEquipped(blessedQuiver) {
-		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) || gear.isEquipped(ralos) {
+		if gear.isEquipped(blowpipe) || gear.isEquipped(bowfa) || gear.isEquipped(crystalBow) || gear.isEquipped(ralos) || gear.isEquipped(drygoreBlowpipe) {
 			return false
 		}
 		return true
 	}
 	return false
+}
+
+func (gear *equippedGear) getCrystalArmourCount() int {
+	crystalPieces := 0
+	if gear.isEquipped(crystalHelm) {
+		crystalPieces += 1
+	}
+	if gear.isEquipped(crystalLegs) {
+		crystalPieces += 2
+	}
+	if gear.isEquipped(crystalBody) {
+		crystalPieces += 3
+	}
+	return crystalPieces
 }

@@ -18,8 +18,21 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
+	if player.ragingEchoesMasteries.ranged >= 1 {
+		for i := range baseHitDist.Hits {
+			if i == 0 {
+				continue //skip miss hit, TODO scuffed
+			}
+			floor := int(maxHit * 3 / 10)
+			if baseHitDist.Hits[i].Hitsplats[0] < floor {
+				baseHitDist.Hits[i].Hitsplats[0] = floor
+			}
+		}
+
+	}
+
 	if player.equippedGear.isEquipped(scythe) && style.IsMeleeStyle() {
-		totalHits := min(max(player.npc.size, 1), 3)
+		totalHits := min(max(player.Npc.size, 1), 3)
 		hitDists := make([]*attackdist.HitDistribution, totalHits)
 		for i := 0; i < totalHits; i++ {
 			hitDists[i] = attackdist.GetLinearHitDistribution(accuracy, 0, int(scytheHitReduction[i]*float32(maxHit)))
@@ -63,10 +76,15 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	if player.equippedGear.isAllEquipped(dharokSet) && style.IsMeleeStyle() {
 		maxHp := player.inputGearSetup.GearSetupSettings.CombatStats.Hitpoints
 		currentHp := player.inputGearSetup.GearSetup.CurrentHp
-		attackDistribution.ScaleDamage(float32(10000+(maxHp-currentHp)*maxHp), 10000)
+
+		factor := float32(10000 + (maxHp-currentHp)*maxHp)
+		if player.equippedGear.isEquipped(glovesDamned) {
+			factor *= 2
+		}
+		attackDistribution.ScaleDamage(factor, 10000)
 	}
 
-	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.IsMeleeStyle() && player.npc.isKalphite {
+	if player.equippedGear.isAnyEquipped(kerisWeapons) && style.IsMeleeStyle() && player.Npc.isKalphite {
 		critDist := baseHitDist.Clone()
 		critDist.ScaleProbability(1.0 / 51.0)
 		critDist.ScaleDamage(3, 1)
@@ -77,27 +95,39 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	}
 
 	if player.equippedGear.isAllEquipped(veracSet) && style.IsMeleeStyle() {
-		baseHitDist.ScaleProbability(0.75)
+		effect := float32(0.25)
+		if player.equippedGear.isEquipped(glovesDamned) {
+			effect *= 2
+		}
+
+		baseHitDist.ScaleProbability(1 - effect)
 		effectHits := attackdist.GetLinearHitDistribution(1.0, 1, maxHit+1)
-		effectHits.ScaleProbability(0.25)
+		effectHits.ScaleProbability(effect)
 		baseHitDist.Hits = append(baseHitDist.Hits, effectHits.Hits...)
 		attackDistribution.SetSingleAttackDistribution(baseHitDist)
 	}
 
-	if player.equippedGear.isAllEquipped(karilDamnedSet) && style == Ranged {
+	if style == Ranged && player.equippedGear.isAllEquipped(karilSet) && player.equippedGear.isAnyEquipped([]int{amuletDamned, glovesDamned}) {
+		effect := float32(0.25)
+		if player.equippedGear.isEquipped(glovesDamned) {
+			effect *= 2
+		}
+
 		secondHitsplats := baseHitDist.Clone()
-		secondHitsplats.ScaleProbability(0.25)
+		secondHitsplats.ScaleProbability(effect)
+		//TODO tracking innacurate hit matters here?
+		//the first hit is miss 0 here, that cant have a second hitsplat, though doesnt change dps here?
 		for i := range secondHitsplats.Hits {
 			secondHitsplats.Hits[i].Hitsplats = []int{secondHitsplats.Hits[i].Hitsplats[0], int(secondHitsplats.Hits[i].Hitsplats[0] / 2)}
 		}
 
-		baseHitDist.ScaleProbability(0.75)
+		baseHitDist.ScaleProbability(1 - effect)
 		baseHitDist.Hits = append(baseHitDist.Hits, secondHitsplats.Hits...)
 		attackDistribution.SetSingleAttackDistribution(baseHitDist)
 	}
 
 	pickId, isPickEquipped := player.equippedGear.getWearingPickaxe()
-	if slices.Contains(guardianIds, player.npc.id) && style.IsMeleeStyle() && isPickEquipped {
+	if slices.Contains(guardianIds, player.Npc.id) && style.IsMeleeStyle() && isPickEquipped {
 		pickBonus := pickaxes[pickId]
 		factor := float32(50 + player.inputGearSetup.GearSetup.MiningLevel + pickBonus)
 		divisor := float32(150.0)
@@ -117,7 +147,7 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 
 	if player.equippedGear.isEquipped(crystalHalberd) && style.IsMeleeStyle() && isSpecial {
 		dists := []*attackdist.HitDistribution{baseHitDist}
-		if player.npc.size > 1 {
+		if player.Npc.size > 1 {
 			reducedRoll := int(float32(getAttackRoll(player)) * 0.75)
 			defenceRoll := getNpcDefenceRoll(player)
 			reducedAccuracy := float32(getNormalAccuracy(reducedRoll, defenceRoll))
@@ -186,7 +216,7 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 
 	applyNonRubyBoltEffects(player, baseHitDist, attackDistribution, accuracy, maxHit)
 
-	if player.npc.id == corporealBeast && !player.equippedGear.isWearingCorpbaneWeapon(player) {
+	if player.Npc.id == corporealBeast && !player.equippedGear.isWearingCorpbaneWeapon(player) {
 		attackDistribution.ScaleDamage(1, 2)
 	}
 
@@ -195,9 +225,9 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 		if player.inputGearSetup.GearSetup.IsKandarinDiary {
 			effectChance *= 1.1
 		}
-		effectDmg := min(100, int(player.npc.CombatStats.Hitpoints/5))
+		effectDmg := min(100, int(player.Npc.CombatStats.Hitpoints/5))
 		if player.equippedGear.isEquipped(zaryteCrossbow) {
-			effectDmg = min(110, int(player.npc.CombatStats.Hitpoints*22/100))
+			effectDmg = min(110, int(player.Npc.CombatStats.Hitpoints*22/100))
 		}
 		attackDistribution.ScaleProbability(1 - effectChance)
 		attackDistribution.Distributions[0].AddWeightedHit(effectChance, []int{effectDmg})
@@ -263,15 +293,15 @@ func getZcbSpecEffectChance(accuracy, effectChance float32) float32 {
 }
 
 func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribution) {
-	if player.npc.id == iceDemon && player.spell.elementalType != FireElement {
+	if player.Npc.id == iceDemon && player.spell.elementalType != FireElement {
 		attackDistribution.ScaleDamage(1, 3)
 	}
 
-	if slices.Contains(zulrahs, player.npc.id) {
+	if slices.Contains(zulrahs, player.Npc.id) {
 		attackDistribution.CappedReroll(50, 5, 45)
 	}
 
-	if slices.Contains(verzikP1Ids, player.npc.id) && !player.equippedGear.isEquipped(dawnbringer) {
+	if slices.Contains(verzikP1Ids, player.Npc.id) && !player.equippedGear.isEquipped(dawnbringer) {
 		limit := 3
 		if player.combatStyle.CombatStyleType.IsMeleeStyle() {
 			limit = 10

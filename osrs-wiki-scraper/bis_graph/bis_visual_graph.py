@@ -3,15 +3,24 @@ import io
 import os
 from typing import List
 
+# TODO these are not in req.txt so that the github actions doesnt get them, not needed for just wiki scraping
+# maybe have a dev_req.txt?
 from PIL import Image
 from graphviz import Digraph
 
-from bis_graph.bis_constants import Style, ALL_STYLES
-from bis_graph.wiki_data import WikiData
+from bis_graph.bis_constants import ALL_STYLES
+from bis_graph.bis_item_graph import GenerateBisItems
 from bis_graph.bis_item import BisItem
+from bis_graph.wiki_data import WikiData
 
 
 class BisVisualGraph:
+    def create_graphs(self):
+        print("Creating visual graphs ...")
+        bis_items = GenerateBisItems()
+        _, roots = bis_items.create_bis_item_graph()
+        self.create_graph_image(roots)
+
     def create_graph_image(self, bis_graph):
         width = 5000
         height = 5000
@@ -22,7 +31,7 @@ class BisVisualGraph:
             for slot in bis_graph.items[style]:
                 print("Slot: " + str(slot))
                 self.create_spring_graph_image(bis_graph.items[style][slot],
-                                               "bis_graph/graphs/" + str(style.name) + "_slot_" + str(slot))
+                                               "graphs/" + str(style.name) + "_slot_" + str(slot))
         return final_image
 
     def create_spring_graph_image(self, items: List[BisItem], output_path: str):
@@ -57,7 +66,7 @@ class BisVisualGraph:
 
                 icon_path = os.path.join(img_dir, f'{item_id}.png')
                 icon_paths.append(icon_path)
-                icon_image.save(os.path.join("bis_graph", "graphs", icon_path))
+                icon_image.save(os.path.join("graphs", icon_path))
 
                 label_html += '<td>' + WikiData.items[item_id]["name"] + "(" + str(item_id) + ")" + '</td>'
                 icons_html += '<td><img src="' + icon_path + '"/></td>'
@@ -91,3 +100,8 @@ class BisVisualGraph:
         except KeyError:
             pass
         return icon
+
+
+if __name__ == '__main__':
+    viz = BisVisualGraph()
+    viz.create_graphs()

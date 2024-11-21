@@ -5,6 +5,10 @@ interface logData {
 
 export const changeLogData: logData[] = [
   {
+    title: '21 November 2024',
+    body: ['WIP Raging Echoes leagues items & masteries'],
+  },
+  {
     title: '19 September 2024',
     body: ['Add Y axis options in dps graphs', 'Added Dual macuahuitl & Dragon hunter wand'],
   },

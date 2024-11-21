@@ -1,5 +1,5 @@
-import { Component, Inject, OnDestroy, OnInit, Optional, SkipSelf, ViewChild } from '@angular/core';
-import { cloneDeep } from 'lodash-es';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { cloneDeep, uniqueId } from 'lodash-es';
 import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import {
@@ -8,35 +8,37 @@ import {
   DEFAULT_GEAR_SETUP,
   AUTOCAST_STLYE as AUTOCAST_STYLE,
   QUICK_GEAR_SETS,
-} from './gear-setup.const';
+} from '../../../model/shared/gear-setup.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { SpecialGearService } from 'src/app/services/special-gear.service';
-import { GEAR_SETUP_TOKEN } from 'src/app/model/damage-sim/injection-token.const';
-import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
-import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
-import { GearSetup } from 'src/app/model/damage-sim/input-setup.model';
-import { SpecialGear } from 'src/app/model/damage-sim/special-gear.model';
+import { GearSet } from 'src/app/model/shared/gear-set.model';
+import { GearSetupPreset } from 'src/app/model/shared/gear-preset.model';
+import { SpecialGear } from 'src/app/model/shared/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item, AttackType, allAttackTypes } from 'src/app/model/osrs/item.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
-import { ConditionComponent } from '../condition/condition.component';
-import { GearSetupTabComponent } from '../gear-setup-tab/gear-setup-tab.component';
 import { ItemService } from 'src/app/services/item.service';
-import { GlobalSettingsService } from 'src/app/services/global-settings.service';
+import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
+import { StaticDataService } from 'src/app/services/static-data.service';
+import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 
 @Component({
   selector: 'app-gear-setup',
   templateUrl: './gear-setup.component.html',
-  styleUrls: ['./gear-setup.component.css'],
 })
 export class GearSetupComponent implements OnInit, OnDestroy {
-  @ViewChild(ConditionComponent) conditionComponent: ConditionComponent;
+  @Input()
+  gearSetup: GearSetup;
 
-  setupCount: number;
-  gearSetupTabRef: GearSetupTabComponent;
+  //TODO is this output event needed? if we give ref to gearsetup
+  //we modify that values refed so it stays in sync...
+  @Output()
+  gearSetupChange = new EventEmitter<GearSetup>();
+
+  setupId = uniqueId();
 
   GearSlot = GearSlot;
 
@@ -78,11 +80,11 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   constructor(
     private damageSimservice: DamageSimService,
+    private staticDataService: StaticDataService,
     private itemService: ItemService,
-    private globalSettingsService: GlobalSettingsService,
+    private sharedSettingsService: SharedSettingsService,
     private specialGearService: SpecialGearService,
-    private localStorageService: LocalStorageService,
-    @SkipSelf() @Optional() @Inject(GEAR_SETUP_TOKEN) public gearSetup: GearSetup
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnDestroy(): void {
@@ -92,10 +94,10 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     forkJoin({
-      allGearSlotItems: this.damageSimservice.allGearSlotItems$,
-      gearSetupPresets: this.damageSimservice.gearSetupPresets$,
-      allSpells: this.damageSimservice.allSpells$,
-      allDarts: this.damageSimservice.allDarts$,
+      allGearSlotItems: this.staticDataService.allGearSlotItems$,
+      gearSetupPresets: this.staticDataService.gearSetupPresets$,
+      allSpells: this.staticDataService.allSpells$,
+      allDarts: this.staticDataService.allDarts$,
     }).subscribe(({ allGearSlotItems, gearSetupPresets, allSpells, allDarts }) => {
       this.allGearSlotItems = allGearSlotItems;
       this.gearSetupPresets = gearSetupPresets;
@@ -109,18 +111,28 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
       this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
 
+      //TODO improve this a bit?
+      let weaponId = UNARMED_EQUIVALENT_ID;
       if (this.gearSetup) {
-        this.setGearSetup(this.gearSetup);
+        weaponId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
+        const weapon = this.itemService.getItem(GearSlot.Weapon, weaponId);
+        this.currentAttackType = weapon.attackType;
       } else {
         this.gearSetup = cloneDeep(DEFAULT_GEAR_SETUP);
 
         this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === DRAGON_DARTS_ID);
+        //TODO this in not working in simple sim, since we have one instance of this component and then only the select setup is updated, not all presets
+        //TODO should this be here? who is responsible for starting/default prayers
+        this.gearSetup.prayers = new Set(this.sharedSettingsService.prayers$.getValue()['melee']);
 
-        this.gearSetup.prayers = new Set(this.globalSettingsService.globalPrayers$.getValue()['melee']);
-        this.attackStyles = this.itemService.getItem(GearSlot.Weapon, UNARMED_EQUIVALENT_ID).attackStyles;
+        this.gearSetupChange.emit(this.gearSetup);
       }
 
-      this.globalSettingsService.globalPrayers$
+      this.attackStyles = this.itemService.getItem(GearSlot.Weapon, weaponId).attackStyles;
+
+      this.updateSpecialGear();
+
+      this.sharedSettingsService.prayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
         .subscribe(
           (prayers: Record<AttackType, Set<Prayer>>) =>
@@ -193,13 +205,14 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.currentAttackType = item.attackType;
       }
 
-      this.gearSetup.prayers = new Set(this.globalSettingsService.globalPrayers$.getValue()[this.currentAttackType]);
+      this.gearSetup.prayers = new Set(this.sharedSettingsService.prayers$.getValue()[this.currentAttackType]);
 
       this.updateAttackStyle(itemId);
     }
 
     this.updateSpecialGear();
     this.updateQuickEquipSet();
+    this.gearSetupChange.emit(this.gearSetup);
   }
 
   updateAttackStyle(itemId: number): void {
@@ -212,26 +225,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   togglePrayer(prayer: Prayer): void {
-    this.globalSettingsService.togglePrayer(prayer, this.gearSetup.prayers);
-  }
-
-  removeGearSetup(): void {
-    this.gearSetupTabRef.removeGearSetup(this.setupCount);
-  }
-
-  setGearSetup(gearSetup: GearSetup): void {
-    this.gearSetup = cloneDeep(gearSetup);
-
-    const itemId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
-
-    const weapon = this.itemService.getItem(GearSlot.Weapon, itemId);
-    this.attackStyles = weapon.attackStyles;
-    this.currentAttackType = weapon.attackType;
-    this.updateSpecialGear();
-  }
-
-  duplicateGearSetup(): void {
-    this.gearSetupTabRef.addNewGearSetup(this.gearSetup);
+    this.sharedSettingsService.togglePrayer(prayer, this.gearSetup.prayers);
+    this.gearSetupChange.emit(this.gearSetup);
   }
 
   updateSpecialGear(): void {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { GearSet } from 'src/app/model/damage-sim/gear-set.model';
+import { GearSet } from 'src/app/model/shared/gear-set.model';
 import { AttackType } from 'src/app/model/osrs/item.model';
 import { gearSetSetups } from './gear-set.const';
 

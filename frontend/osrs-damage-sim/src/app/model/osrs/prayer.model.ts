@@ -1,3 +1,5 @@
+import { AttackType } from './item.model';
+
 export const allPrayers = [
   'thick_skin',
   'burst_of_strength',
@@ -30,8 +32,14 @@ export const allPrayers = [
   'augury',
 ] as const;
 
-export type Prayer = typeof allPrayers[number];
+export type Prayer = (typeof allPrayers)[number];
 
 export type ReplacePrayer = {
   [name in Prayer]: Set<Prayer>;
+};
+
+export const DEFAULT_PRAYERS: Record<AttackType, Set<Prayer>> = {
+  magic: new Set(['augury']),
+  melee: new Set(['piety']),
+  ranged: new Set(['rigour']),
 };

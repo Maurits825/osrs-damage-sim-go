@@ -1,0 +1,50 @@
+<div>
+  <div class="mb-2 d-flex align-items-center">
+    <div class="flex-grow-1">
+      <app-ng-select-lazy-load
+        [valueType]="DpsCalcResult"
+        [allValues]="dpsCalcResults.results"
+        [selectedValue]="selectedDpsCalcResult"
+        [clearable]="false"
+        [valueFilter]="dpsCalcFilter"
+        placeholder="Select input value"
+        (valueChanged)="selectedDpsResultChange($event)"
+      >
+        <ng-template #dropdownLabel>
+          <app-input-setup-label
+            [showTextLabel]="showResultTextLabel"
+            [dpsCalcResult]="selectedDpsCalcResult"
+            [inputGearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex]"
+          ></app-input-setup-label>
+        </ng-template>
+        <ng-template #dropdownOptions let-index="index" let-item="item">
+          <app-input-setup-label
+            [showTextLabel]="showResultTextLabel"
+            [dpsCalcResult]="item"
+            [inputGearSetup]="inputSetup.inputGearSetups[index]"
+          ></app-input-setup-label>
+        </ng-template>
+      </app-ng-select-lazy-load>
+    </div>
+  </div>
+  <div>
+    <table class="table table-bordered border-dark w-auto">
+      <thead>
+        <tr>
+          <th>Key Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detail of selectedDpsCalcResult.calcDetails">
+          <td>
+            {{ detail.split(":")[0] }}
+          </td>
+          <td>
+            {{ detail.split(":")[1] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

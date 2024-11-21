@@ -1,0 +1,129 @@
+<ng-container *ngIf="bisCalcInputSetup$ | async as setup">
+  <div class="mb-4">
+    <div class="row mb-1 align-items-center">
+      <div class="col-2">Npc Settings</div>
+      <app-npc-input
+        class="col-10 col-xxl-6"
+        [npcInfo]="npcInfo"
+        (npcInfoChanged)="npcInfoChanged($event)"
+      ></app-npc-input>
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-2">General Settings</div>
+
+    <div class="col col-sm-3">
+      <div class="row align-items-center">
+        <div class="col-auto pe-0"><label for="teamSize">Team size</label></div>
+        <div class="col">
+          <input
+            id="teamSize"
+            class="form-control"
+            type="number"
+            [(ngModel)]="setup.globalSettings.teamSize"
+            min="1"
+            max="100"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-2">Prayers</div>
+    <div class="col">
+      <div class="row">
+        <div class="col-auto" *ngFor="let attackType of allAttackTypes">
+          <div class="row align-items-center">
+            <div class="col-auto"><img src="assets/img/skills/{{ attackType }}.png" /></div>
+            <div class="col-auto me-4">
+              <app-prayer-selection
+                [quickPrayers]="quickPrayers[attackType]"
+                [selectedPrayers]="setup.prayers[attackType]"
+                (prayerToggle)="toggleAttackTypePrayer($event, attackType)"
+              ></app-prayer-selection>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-2">Boost</div>
+    <div class="col-auto">
+      <app-boost-selection
+        [selectedBoosts]="setup.gearSetupSettings.boosts"
+        (boostToggle)="toggleBoost($event)"
+      ></app-boost-selection>
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-2">Combat Stats</div>
+    <div class="col col-lg-6 col-xl-6">
+      <app-combat-stat-selection
+        [combatStats]="setup.gearSetupSettings.combatStats"
+        (combatStatsChanged)="combatStatsChanged($event)"
+      ></app-combat-stat-selection>
+    </div>
+    <div class="col ms-3">
+      <app-highscore-lookup (loadCombatStats)="loadCombatStats($event)"></app-highscore-lookup>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-2">Other</div>
+    <div class="col col-lg-6 col-xl-6">
+      <div class="row">
+        <div class="col-auto pe-0"><label for="isOnSlayerTask">Slayer task</label></div>
+        <div class="col">
+          <input
+            #isOnSlayerTask
+            id="isOnSlayerTask"
+            class="form-check-input"
+            type="checkbox"
+            [ngModel]="setup.isOnSlayerTask"
+            (change)="updateBisCalcInputSetup({ isOnSlayerTask: isOnSlayerTask.checked })"
+          />
+        </div>
+        <div class="col-auto pe-0"><label for="isSpecialAttack">Special attack</label></div>
+        <div class="col">
+          <input
+            #isSpecialAttack
+            id="isSpecialAttack"
+            class="form-check-input"
+            type="checkbox"
+            [ngModel]="setup.isSpecialAttack"
+            (change)="updateBisCalcInputSetup({ isSpecialAttack: isSpecialAttack.checked })"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="userSettingsWatch$ | async as userSettingsWatch">
+    <ng-container *ngIf="userSettingsWatch.showAdvancedOptions">
+      <div class="row mb-3 align-items-center">
+        <div class="col-2">Attack cycle</div>
+        <div class="col col-lg-6 col-xl-6">
+          <app-attack-cycle
+            [attackCycle]="setup.gearSetupSettings.attackCycle"
+            (attackCycleChanged)="attackCycleChanged($event)"
+          ></app-attack-cycle>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="row mb-4">
+    <div class="col-2">Stat Drain</div>
+    <div class="col-10 col-lg-8 col-xl-6">
+      <app-stat-drain-selection
+        [statDrains]="setup.gearSetupSettings.statDrains"
+        (statDrainsChanged)="statDrainChanged($event)"
+      ></app-stat-drain-selection>
+    </div>
+  </div>
+</ng-container>

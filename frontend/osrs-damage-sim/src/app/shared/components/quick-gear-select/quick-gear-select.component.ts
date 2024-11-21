@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { AttackType, Item } from 'src/app/model/osrs/item.model';
-import { DamageSimService } from 'src/app/services/damage-sim.service';
-import { QuickGearSlots } from 'src/app/model/damage-sim/quick-gear.model';
+import { QuickGearSlots } from 'src/app/model/shared/quick-gear.model';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-quick-gear-select',
@@ -23,8 +23,8 @@ export class QuickGearSelectComponent {
 
   quickGearSlots: QuickGearSlots;
 
-  constructor(private damageSimservice: DamageSimService) {
-    this.damageSimservice.quickGearSlots$.subscribe((quickGearSlots: QuickGearSlots) => {
+  constructor(private staticDataService: StaticDataService) {
+    this.staticDataService.quickGearSlots$.subscribe((quickGearSlots: QuickGearSlots) => {
       this.quickGearSlots = quickGearSlots;
     });
   }

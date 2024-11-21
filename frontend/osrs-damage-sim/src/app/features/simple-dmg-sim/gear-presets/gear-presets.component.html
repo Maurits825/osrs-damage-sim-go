@@ -1,0 +1,48 @@
+<div>
+  <div class="mb-2">
+    <h5>Gear Presets</h5>
+
+    <button
+      type="button"
+      class="btn btn-primary text-center"
+      *ngIf="gearPresets.length < maxGearPresets"
+      (click)="addNewGearPreset()"
+    >
+      <i class="bi bi-plus"></i> Add preset
+    </button>
+  </div>
+  <ng-container *ngFor="let preset of gearPresets; index as i">
+    <div
+      class="mb-2 p-1 border border-2 rounded"
+      [ngClass]="{
+        'border-primary': activeIndex === i,
+        'border-secondary': activeIndex !== i
+      }"
+    >
+      <app-gear-setup-label [gearSetup]="preset"></app-gear-setup-label>
+
+      <div class="d-flex align-items-center">
+        <div class="btn-group flex-fill">
+          <button type="button" class="btn btn-primary flex-fill" (click)="editGearPreset(i)">
+            <i class="bi bi-pencil-fill"></i> Edit
+          </button>
+        </div>
+        <div class="ms-2">
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="gearPresets.length >= maxGearPresets"
+            (click)="addNewGearPreset(preset)"
+          >
+            <i class="bi bi-clipboard-plus"></i>
+          </button>
+        </div>
+        <div class="flex-shrink-1 ms-2">
+          <button type="button" class="btn btn-sm btn-danger" (click)="removeGearPreset(i)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

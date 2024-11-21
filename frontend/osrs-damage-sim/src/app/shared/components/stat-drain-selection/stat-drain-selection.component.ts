@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { allStatDrains, StatDrain, statDrainLabels } from 'src/app/model/damage-sim/stat-drain.model';
+import { cloneDeep } from 'lodash-es';
+import { allStatDrains, DEFAULT_STAT_DRAIN, StatDrain, statDrainLabels } from 'src/app/model/shared/stat-drain.model';
 
 @Component({
   selector: 'app-stat-drain-selection',
   templateUrl: './stat-drain-selection.component.html',
-  styleUrls: ['./stat-drain-selection.component.css'],
 })
 export class StatDrainSelectionComponent {
   @Input()
@@ -20,11 +20,7 @@ export class StatDrainSelectionComponent {
   maxStatDrains = 5;
 
   addStatDrain(): void {
-    this.statDrains.push({
-      name: 'Dragon warhammer',
-      value: 1,
-    });
-
+    this.statDrains.push(cloneDeep(DEFAULT_STAT_DRAIN));
     this.statDrainsChanged.emit(this.statDrains);
   }
 
@@ -34,6 +30,10 @@ export class StatDrainSelectionComponent {
       this.statDrains.splice(index, 1);
     }
 
+    this.statDrainsChanged.emit(this.statDrains);
+  }
+
+  onStatDrainsChanged(): void {
     this.statDrainsChanged.emit(this.statDrains);
   }
 }

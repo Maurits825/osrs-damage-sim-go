@@ -64,7 +64,6 @@ const (
 	MaxHitRalos                       DetailKey = "Max hit ralos"
 	MaxHitFinal                       DetailKey = "Max hit"
 	SpecialMaxHitFinal                DetailKey = "Spec Max hit"
-	PlayerAccuracyDawnbringer         DetailKey = "Player accuracy override dawnbringer"
 	PlayerAccuracyScurriusRat         DetailKey = "Player accuracy override giant rat"
 	PlayerAccuracyBase                DetailKey = "Player accuracy base"
 	PlayerAccuracyBrimstone           DetailKey = "Player accuracy brimstone ring"
@@ -85,6 +84,8 @@ const (
 	NPCAccuracyRollBonus              DetailKey = "NPC accuracy bonus"
 	NPCAccuracyRollFinal              DetailKey = "NPC accuracy roll"
 	PlayerDpsFinal                    DetailKey = "Player dps"
+	PlayerAccuracyREPassive           DetailKey = "Player accuracy RE passive"
+	PlayerMaxHitREMultiHit            DetailKey = "Player max hit RE multi hit"
 )
 
 type detailEntries struct {
@@ -184,6 +185,7 @@ func (entries *detailEntries) SprintFinal() string {
 	return final
 }
 
+// TODO include operation?
 func (entries *detailEntries) GetAllEntries() []string {
 	final := make([]string, len(entries.entriesList))
 	for i, entry := range entries.entriesList {

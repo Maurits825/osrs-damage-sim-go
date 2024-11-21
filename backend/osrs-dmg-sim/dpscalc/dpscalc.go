@@ -86,12 +86,12 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 		GearSetupName:          getGearSetupLabel(&inputGearSetup.GearSetup),
 	}
 
-	player := getPlayer(globalSettings, inputGearSetup)
+	player := GetPlayer(globalSettings, inputGearSetup)
 	dpsDetails := calculateDps(player)
 
 	ttk := float32(0.0)
 	if opt.CalcHtk {
-		htk := getHtk(dpsDetails.hitDist, player.npc.CombatStats.Hitpoints)
+		htk := getHtk(dpsDetails.hitDist, player.Npc.CombatStats.Hitpoints)
 		ttk = htk * float32(dpsDetails.attackSpeed)
 	}
 
@@ -134,7 +134,7 @@ func getIdAlias(itemId int) int {
 	return itemId
 }
 
-func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
+func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
 	equippedGear := equippedGear{ids: make([]int, 0, maxGearSlots)}
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
@@ -166,7 +166,7 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		cmbStyle = combatStyle{Magic, Autocast}
 	}
 
-	if equippedGear.isEquipped(blowpipe) {
+	if equippedGear.isEquipped(blowpipe) || equippedGear.isEquipped(drygoreBlowpipe) {
 		darts := allItems[inputGearSetup.GearSetup.BlowpipeDarts.Id].equipmentStats
 		equipmentStats.addStats(&darts)
 	}
@@ -206,7 +206,17 @@ func getPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	combatStatBoost := GetPotionBoostStats(inputGearSetup.GearSetupSettings.CombatStats, inputGearSetup.GearSetupSettings.PotionBoosts)
 
-	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell}
+	echoMasteries := ragingEchoesMasteries{0, 0, 0, 0}
+	if cmbStyle.CombatStyleType.IsMeleeStyle() {
+		echoMasteries.melee = inputGearSetup.GearSetupSettings.RagingEchoesSettings.CombatMasteries.MeleeTier
+	} else if cmbStyle.CombatStyleType == Ranged {
+		echoMasteries.ranged = inputGearSetup.GearSetupSettings.RagingEchoesSettings.CombatMasteries.RangeTier
+	} else {
+		echoMasteries.mage = inputGearSetup.GearSetupSettings.RagingEchoesSettings.CombatMasteries.MageTier
+	}
+	echoMasteries.maxMastery = max(echoMasteries.melee, max(echoMasteries.ranged, echoMasteries.mage))
+
+	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell, echoMasteries}
 }
 
 func calculateDps(player *player) dpsDetails {
@@ -242,6 +252,20 @@ func getAttackSpeed(player *player) int {
 
 	//TODO scurrius 1t weapons
 
+	if player.ragingEchoesMasteries.melee >= 5 ||
+		player.ragingEchoesMasteries.ranged >= 5 ||
+		player.ragingEchoesMasteries.mage >= 5 {
+		if attackSpeed >= 5 {
+			attackSpeed = int(attackSpeed / 2)
+		} else {
+			attackSpeed = int(math.Ceil(float64(attackSpeed) / 2))
+		}
+	} else if player.ragingEchoesMasteries.melee >= 3 ||
+		player.ragingEchoesMasteries.ranged >= 3 ||
+		player.ragingEchoesMasteries.mage >= 3 {
+		attackSpeed = int(attackSpeed * 4 / 5)
+	}
+
 	//if we have zero here its because unarmed
 	if attackSpeed == 0 {
 		attackSpeed = 4
@@ -252,11 +276,11 @@ func getAttackSpeed(player *player) int {
 func getAccuracy(player *player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
-	if (slices.Contains(verzikIds, player.npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
+	if (slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
 		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
-		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) {
+		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
+		player.ragingEchoesMasteries.ranged == 6 {
 		accuracy := float32(1)
-		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyDawnbringer, accuracy)
 		dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
 		return accuracy, attackRoll
 	}
@@ -276,13 +300,17 @@ func getAccuracy(player *player) (float32, int) {
 	}
 
 	if player.equippedGear.isEquipped(osmumtenFang) && player.combatStyle.CombatStyleType == Stab {
-		if slices.Contains(ToaIds, player.npc.id) {
+		if slices.Contains(ToaIds, player.Npc.id) {
 			accuracy = 1 - float32(math.Pow(float64(1-accuracy), 2))
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFangTOA, accuracy)
 		} else {
-			accuracy = getFangAccuracy(attackRoll, defenceRoll)
+			accuracy = getFangEffectAccuracy(attackRoll, defenceRoll)
 			dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFang, accuracy)
 		}
+	}
+
+	if player.equippedGear.isEquipped(drygoreBlowpipe) && player.combatStyle.CombatStyleType == Ranged {
+		accuracy = getFangEffectAccuracy(attackRoll, defenceRoll)
 	}
 
 	dpsDetailEntries.TrackValue(dpsdetail.PlayerAccuracyFinal, accuracy)
@@ -296,7 +324,7 @@ func getNormalAccuracy(attackRoll int, defenceRoll int) float32 {
 	return float32(attackRoll) / float32(2*(defenceRoll+1))
 }
 
-func getFangAccuracy(attackRoll int, defenceRoll int) float32 {
+func getFangEffectAccuracy(attackRoll int, defenceRoll int) float32 {
 	a := float32(attackRoll)
 	d := float32(defenceRoll)
 	if attackRoll > defenceRoll {

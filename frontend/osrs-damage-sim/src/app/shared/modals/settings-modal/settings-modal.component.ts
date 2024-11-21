@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, map, shareReplay } from 'rxjs';
-import { UserSettings } from 'src/app/model/damage-sim/user-settings.model';
+import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LoadRlSetupGuideModalComponent } from '../load-rl-setup-guide-modal/load-rl-setup-guide-modal.component';
-import { GearSetupPreset } from 'src/app/model/damage-sim/gear-preset.model';
+import { GearSetupPreset } from 'src/app/model/shared/gear-preset.model';
 
 @Component({
   selector: 'app-settings-modal',

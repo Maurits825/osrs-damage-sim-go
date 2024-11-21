@@ -5,7 +5,7 @@
       <app-ng-select-lazy-load
         [valueType]="Npc"
         [allValues]="allNpcs"
-        [selectedValue]="selectedNpc"
+        [selectedValue]="npcInfo.npc"
         [valueFilter]="npcFilter"
         placeholder="Select npc"
         (valueChanged)="selectedNpcChange($event)"
@@ -48,5 +48,73 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </ng-template>
+  </div>
+  <div class="row align-items-center mt-1" *ngIf="showRaidLevel || showPathLevel || showIsChallengeMode">
+    <div class="col-4" *ngIf="showRaidLevel">
+      <div class="row align-items-center">
+        <div class="col-auto pe-0"><label for="raidLevel">Raid Level</label></div>
+        <div class="col">
+          <input
+            id="raidLevel"
+            class="form-control"
+            type="number"
+            [(ngModel)]="npcInfo.raidLevel"
+            (change)="onNpcInfoChanged()"
+            min="0"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4" *ngIf="showPathLevel">
+      <div class="row align-items-center">
+        <div class="col-auto pe-0"><label for="pathLevel">Path Level</label></div>
+        <div class="col">
+          <input
+            id="pathLevel"
+            class="form-control"
+            type="number"
+            [(ngModel)]="npcInfo.pathLevel"
+            (change)="onNpcInfoChanged()"
+            min="0"
+            max="6"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col" *ngIf="showRaidLevel">
+      <div class="row align-items-center">
+        <div class="col-auto pe-0">
+          <label for="overlyDraining">
+            <img src="assets/img/other/overly_draining.png" title="Overly Draining" />
+          </label>
+        </div>
+        <div class="col">
+          <input
+            id="overlyDraining"
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="npcInfo.overlyDraining"
+            (change)="onNpcInfoChanged()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-5" *ngIf="showIsChallengeMode">
+      <div class="row align-items-center">
+        <div class="col-auto pe-0"><label for="isCm">Challenge Mode</label></div>
+        <div class="col">
+          <input
+            id="isCm"
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="npcInfo.isChallengeMode"
+            (change)="onNpcInfoChanged()"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,28 +1,12 @@
 import re
 import traceback
-from typing import *
 
 import mwparserfromhell as mw
 
 import api
 import util
-from constants import CACHE_DATA_FOLDER
-
-"this isn't quite right, because 2h, but the format isn't smart enough for that"
-slotIDs: Dict[str, int] = {
-    "weapon": 3,
-    "2h": 3,
-    "body": 4,
-    "head": 0,
-    "ammo": 13,
-    "legs": 7,
-    "feet": 10,
-    "hands": 9,
-    "cape": 1,
-    "neck": 2,
-    "ring": 12,
-    "shield": 5
-}
+from constants import CACHE_DATA_FOLDER, SLOT_IDS
+from future_content_items import get_future_items
 
 
 def run():
@@ -45,8 +29,8 @@ def run():
                     continue
 
                 slotID = str(version["slot"]).strip().lower()
-                if slotID in slotIDs:
-                    doc["slot"] = slotIDs[slotID]
+                if slotID in SLOT_IDS:
+                    doc["slot"] = SLOT_IDS[slotID]
                     if slotID == "2h":
                         doc["is2h"] = True
                 else:
@@ -122,4 +106,7 @@ def run():
             print("Item {} failed:".format(name))
             traceback.print_exc()
 
+    # TODO comment for out for now, need a better/generic way to handle this
+    # future_items = get_future_items()
+    # stats.update(future_items)
     util.write_json(CACHE_DATA_FOLDER / "items-dmg-sim.json", CACHE_DATA_FOLDER / "items-dmg-sim.min.json", stats)

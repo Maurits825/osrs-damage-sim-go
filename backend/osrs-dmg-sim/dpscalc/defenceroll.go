@@ -28,11 +28,11 @@ var stabOverrideSpecWeapons = []int{
 }
 
 func getNpcDefenceRoll(player *player) int {
-	npcId := player.npc.id
+	npcId := player.Npc.id
 
-	level := player.npc.CombatStats.Defence
+	level := player.Npc.CombatStats.Defence
 	if player.combatStyle.CombatStyleType == Magic && !slices.Contains(useDefLevelForMagicDefNpcs, npcId) {
-		level = player.npc.CombatStats.Magic
+		level = player.Npc.CombatStats.Magic
 	}
 
 	dpsDetailEntries.TrackValue(dpsdetail.NPCDefenceRollBase, level)
@@ -41,22 +41,22 @@ func getNpcDefenceRoll(player *player) int {
 	defence := 0
 	switch player.combatStyle.CombatStyleType {
 	case Stab:
-		defence = player.npc.defensiveStats.stab
+		defence = player.Npc.defensiveStats.stab
 	case Slash:
-		defence = player.npc.defensiveStats.slash
+		defence = player.Npc.defensiveStats.slash
 	case Crush:
-		defence = player.npc.defensiveStats.crush
+		defence = player.Npc.defensiveStats.crush
 	case Magic:
-		defence = player.npc.defensiveStats.magic
+		defence = player.Npc.defensiveStats.magic
 	case Ranged:
-		defence = getRangedDefence(player.weaponStyle, player.npc.defensiveStats)
+		defence = getRangedDefence(player.weaponStyle, player.Npc.defensiveStats)
 	}
 
 	if player.equippedGear.isAnyEquipped(slashOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
-		defence = player.npc.defensiveStats.slash
+		defence = player.Npc.defensiveStats.slash
 	}
 	if player.equippedGear.isAnyEquipped(stabOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
-		defence = player.npc.defensiveStats.stab
+		defence = player.Npc.defensiveStats.stab
 	}
 
 	statBonus := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceStatBonus, defence, 64)
