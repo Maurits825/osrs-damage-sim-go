@@ -106,6 +106,7 @@ def run():
             print("Item {} failed:".format(name))
             traceback.print_exc()
 
-    future_items = get_future_items()
-    stats.update(future_items)
+    # TODO comment for out for now, need a better/generic way to handle this
+    # future_items = get_future_items()
+    # stats.update(future_items)
     util.write_json(CACHE_DATA_FOLDER / "items-dmg-sim.json", CACHE_DATA_FOLDER / "items-dmg-sim.min.json", stats)
