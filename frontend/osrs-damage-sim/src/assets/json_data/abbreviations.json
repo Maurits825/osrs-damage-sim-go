@@ -81,7 +81,8 @@
  "account": [
   "AFK(ing)",
   "Alt",
-  "Alt"
+  "Alt",
+  "Toon"
  ],
  "Aggressiveness": [
   "Aggro"
@@ -1150,6 +1151,10 @@
   "DS1/DS",
   "DS2"
  ],
+ "Dragon scimitar": [
+  "Dscim",
+  "Dscimmy"
+ ],
  "Dragon plateskirt": [
   "Dskirt"
  ],
@@ -1930,6 +1935,9 @@
   "Tome",
   "ToF"
  ],
+ "player character": [
+  "Toon"
+ ],
  "Tormented bracelet": [
   "Torm",
   "Tor"
@@ -2008,6 +2016,10 @@
   "Scim",
   "Skim",
   "Skimmy"
+ ],
+ "Scorching Bow": [
+  "Scobo",
+  "Scobow"
  ],
  "Scythe (weapon)": [
   "Scy"

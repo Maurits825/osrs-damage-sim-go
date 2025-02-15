@@ -261,49 +261,7 @@
   "size": 1,
   "respawn": 35
  },
- "33": {
-  "name": "Zombie",
-  "isUndead": true,
-  "hitpoints": 22,
-  "att": 8,
-  "str": 9,
-  "def": 10,
-  "mage": 1,
-  "range": 1,
-  "attbns": 5,
-  "combat": 13,
-  "size": 1,
-  "respawn": 35
- },
  "34": {
-  "name": "Zombie",
-  "isUndead": true,
-  "hitpoints": 22,
-  "att": 8,
-  "str": 9,
-  "def": 10,
-  "mage": 1,
-  "range": 1,
-  "attbns": 5,
-  "combat": 13,
-  "size": 1,
-  "respawn": 35
- },
- "35": {
-  "name": "Zombie",
-  "isUndead": true,
-  "hitpoints": 22,
-  "att": 8,
-  "str": 9,
-  "def": 10,
-  "mage": 1,
-  "range": 1,
-  "attbns": 5,
-  "combat": 13,
-  "size": 1,
-  "respawn": 35
- },
- "36": {
   "name": "Zombie",
   "isUndead": true,
   "hitpoints": 22,
@@ -546,26 +504,6 @@
   "respawn": 35
  },
  "52": {
-  "name": "Zombie",
-  "isUndead": true,
-  "hitpoints": 30,
-  "att": 19,
-  "str": 21,
-  "def": 16,
-  "mage": 1,
-  "range": 1,
-  "attbns": 5,
-  "strbns": 7,
-  "dstab": 9,
-  "dslash": 8,
-  "dcrush": 12,
-  "dmagic": 10,
-  "drange": 11,
-  "combat": 24,
-  "size": 1,
-  "respawn": 35
- },
- "53": {
   "name": "Zombie",
   "isUndead": true,
   "hitpoints": 30,
@@ -3426,20 +3364,6 @@
   "size": 1,
   "respawn": 15
  },
- "426": {
-  "name": "Turoth",
-  "isLeafy": true,
-  "hitpoints": 78,
-  "att": 55,
-  "str": 85,
-  "def": 85,
-  "mage": 1,
-  "range": 1,
-  "dslash": 20,
-  "dcrush": 20,
-  "combat": 86,
-  "size": 1
- },
  "427": {
   "name": "Turoth",
   "isLeafy": true,
@@ -3499,34 +3423,6 @@
   "combat": 83,
   "size": 1,
   "respawn": 15
- },
- "431": {
-  "name": "Turoth",
-  "isLeafy": true,
-  "hitpoints": 80,
-  "att": 57,
-  "str": 87,
-  "def": 87,
-  "mage": 1,
-  "range": 1,
-  "dslash": 20,
-  "dcrush": 20,
-  "combat": 88,
-  "size": 2
- },
- "432": {
-  "name": "Turoth",
-  "isLeafy": true,
-  "hitpoints": 80,
-  "att": 57,
-  "str": 87,
-  "def": 87,
-  "mage": 1,
-  "range": 1,
-  "dslash": 20,
-  "dcrush": 20,
-  "combat": 88,
-  "size": 2
  },
  "433": {
   "name": "Pyrefiend",
@@ -6780,7 +6676,9 @@
   "dmagic": 159,
   "drange": 149,
   "combat": 191,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "798": {
   "name": "Giant Scarab",
@@ -6797,7 +6695,9 @@
   "dmagic": 159,
   "drange": 149,
   "combat": 191,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "799": {
   "name": "Scarab Mage",
@@ -8583,7 +8483,9 @@
   "dmagic": 159,
   "drange": 149,
   "combat": 316,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "1128": {
   "name": "Dessous (hard)",
@@ -10104,7 +10006,9 @@
   "drange": 2,
   "combat": 132,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "1540": {
   "name": "Skeleton heavy",
@@ -10141,7 +10045,9 @@
   "drange": 2,
   "combat": 132,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "1543": {
   "name": "Gargoyle",
@@ -10964,7 +10870,9 @@
   "dcrush": -5,
   "drange": 5,
   "combat": 77,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "1686": {
   "name": "Skeleton",
@@ -10980,7 +10888,9 @@
   "dcrush": -5,
   "drange": 5,
   "combat": 77,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "1687": {
   "name": "Skeleton",
@@ -10996,7 +10906,9 @@
   "dcrush": -5,
   "drange": 5,
   "combat": 77,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "1688": {
   "name": "Skeleton",
@@ -11012,7 +10924,9 @@
   "dcrush": -5,
   "drange": 5,
   "combat": 77,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "1689": {
   "name": "Splatter",
@@ -15207,7 +15121,9 @@
   "drange": 35,
   "combat": 68,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2521": {
   "name": "Skeleton",
@@ -15224,7 +15140,9 @@
   "drange": 35,
   "combat": 60,
   "size": 1,
-  "respawn": 70
+  "respawn": 70,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2522": {
   "name": "Skeleton",
@@ -15240,7 +15158,9 @@
   "dcrush": -5,
   "drange": 35,
   "combat": 60,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2523": {
   "name": "Skeleton",
@@ -15257,7 +15177,9 @@
   "drange": 35,
   "combat": 60,
   "size": 1,
-  "respawn": 70
+  "respawn": 70,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2524": {
   "name": "Skeleton",
@@ -15277,7 +15199,9 @@
   "drange": 70,
   "combat": 85,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2525": {
   "name": "Skeleton",
@@ -15297,7 +15221,9 @@
   "drange": 70,
   "combat": 85,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2526": {
   "name": "Skeleton",
@@ -15317,7 +15243,9 @@
   "drange": 70,
   "combat": 85,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "2527": {
   "name": "Ghost",
@@ -16492,7 +16420,7 @@
   "dmagic": -26,
   "drange": -26,
   "combat": 2,
-  "size": 2,
+  "size": 1,
   "respawn": 45
  },
  "2804": {
@@ -17942,13 +17870,6 @@
   "combat": 13,
   "size": 1,
   "respawn": 35
- },
- "3047": {
-  "name": "Goblin",
-  "is<!-- if no monster attributes apply": true,
-  "isRemove this parameter -->": true,
-  "combat": 5,
-  "size": 1
  },
  "3049": {
   "name": "Hobgoblin",
@@ -24784,7 +24705,9 @@
   "drange": 15,
   "combat": 40,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4492": {
   "name": "Skeleton fremennik",
@@ -24804,7 +24727,9 @@
   "drange": 15,
   "combat": 40,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4493": {
   "name": "Skeleton fremennik",
@@ -24824,7 +24749,9 @@
   "drange": 15,
   "combat": 40,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4494": {
   "name": "Skeleton fremennik",
@@ -24844,7 +24771,9 @@
   "drange": 15,
   "combat": 50,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4495": {
   "name": "Skeleton fremennik",
@@ -24864,7 +24793,9 @@
   "drange": 15,
   "combat": 50,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4496": {
   "name": "Skeleton fremennik",
@@ -24884,7 +24815,9 @@
   "drange": 15,
   "combat": 50,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4497": {
   "name": "Skeleton fremennik",
@@ -24904,7 +24837,9 @@
   "drange": 15,
   "combat": 60,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4498": {
   "name": "Skeleton fremennik",
@@ -24924,7 +24859,9 @@
   "drange": 15,
   "combat": 60,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4499": {
   "name": "Skeleton fremennik",
@@ -24944,7 +24881,9 @@
   "drange": 15,
   "combat": 60,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "4500": {
   "name": "Ulfric",
@@ -26325,6 +26264,11 @@
   "def": 25,
   "mage": 1,
   "range": 1,
+  "strbns": 16,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 72,
   "size": 1
  },
  "4933": {
@@ -26335,6 +26279,11 @@
   "def": 25,
   "mage": 1,
   "range": 1,
+  "strbns": 16,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 72,
   "size": 1
  },
  "4934": {
@@ -26399,6 +26348,11 @@
   "def": 25,
   "mage": 1,
   "range": 1,
+  "strbns": 16,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 72,
   "size": 1
  },
  "4969": {
@@ -29952,7 +29906,7 @@
   "combat": 74,
   "size": 1,
   "respawn": 50,
-  "elementalweaknesspercent": 50,
+  "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
  "5829": {
@@ -32339,7 +32293,9 @@
   "dmagic": 159,
   "drange": 149,
   "combat": 191,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6344": {
   "name": "Dessous",
@@ -32699,8 +32655,7 @@
   "mage": 200,
   "range": 1,
   "combat": 159,
-  "size": 1,
-  "respawn": 50
+  "size": 1
  },
  "6368": {
   "name": "Culinaromancer",
@@ -33407,7 +33362,9 @@
   "drange": 40,
   "combat": 94,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6442": {
   "name": "Skeleton",
@@ -33424,7 +33381,9 @@
   "drange": 40,
   "combat": 77,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6443": {
   "name": "Skeleton",
@@ -33440,7 +33399,9 @@
   "drange": 40,
   "combat": 81,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6444": {
   "name": "Skeleton",
@@ -33456,7 +33417,9 @@
   "drange": 40,
   "combat": 42,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6445": {
   "name": "Skeleton",
@@ -33472,7 +33435,9 @@
   "drange": 40,
   "combat": 59,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6446": {
   "name": "Skeleton",
@@ -33488,7 +33453,9 @@
   "drange": 40,
   "combat": 42,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6447": {
   "name": "Skeleton",
@@ -33504,7 +33471,9 @@
   "drange": 40,
   "combat": 63,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6448": {
   "name": "Skeleton",
@@ -33520,7 +33489,9 @@
   "drange": 40,
   "combat": 40,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6449": {
   "name": "Zombie",
@@ -33839,7 +33810,9 @@
   "dslash": 40,
   "drange": 40,
   "combat": 72,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6468": {
   "name": "Skeleton",
@@ -33855,7 +33828,9 @@
   "dslash": 40,
   "drange": 40,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "6469": {
   "name": "Possessed pickaxe",
@@ -34462,7 +34437,7 @@
   "range": 1,
   "combat": 178,
   "size": 1,
-  "respawn": 200
+  "respawn": 500
  },
  "6603": {
   "name": "Rogue",
@@ -35195,8 +35170,8 @@
   "def": 50,
   "mage": 1,
   "range": 1,
-  "attbns": 20,
-  "strbns": 30,
+  "attbns": 25,
+  "strbns": 20,
   "dcrush": 10,
   "combat": 45,
   "size": 1
@@ -35217,7 +35192,7 @@
  },
  "6898": {
   "name": "Gangster",
-  "hitpoints": 50,
+  "hitpoints": 45,
   "att": 50,
   "str": 40,
   "def": 40,
@@ -35231,14 +35206,12 @@
  },
  "6899": {
   "name": "Gangster",
-  "hitpoints": 50,
-  "att": 50,
-  "str": 40,
-  "def": 40,
+  "hitpoints": 30,
+  "att": 40,
+  "str": 70,
+  "def": 30,
   "mage": 1,
   "range": 1,
-  "attbns": 35,
-  "strbns": 15,
   "dcrush": 10,
   "combat": 50,
   "size": 1
@@ -35246,12 +35219,13 @@
  "6900": {
   "name": "Gang boss",
   "hitpoints": 80,
-  "att": 1,
-  "str": 1,
+  "att": 70,
+  "str": 70,
   "def": 70,
   "mage": 1,
-  "range": 80,
-  "arange": 50,
+  "range": 1,
+  "attbns": 50,
+  "strbns": 30,
   "dcrush": 10,
   "combat": 83,
   "size": 1
@@ -35259,12 +35233,13 @@
  "6901": {
   "name": "Gang boss",
   "hitpoints": 80,
-  "att": 1,
-  "str": 1,
+  "att": 70,
+  "str": 70,
   "def": 70,
   "mage": 1,
-  "range": 80,
-  "arange": 50,
+  "range": 1,
+  "attbns": 50,
+  "strbns": 30,
   "dcrush": 10,
   "combat": 83,
   "size": 1
@@ -35278,6 +35253,7 @@
   "mage": 1,
   "range": 80,
   "arange": 50,
+  "rngbns": 30,
   "dcrush": 10,
   "combat": 76,
   "size": 1
@@ -35291,6 +35267,7 @@
   "mage": 1,
   "range": 80,
   "arange": 50,
+  "rngbns": 30,
   "dcrush": 10,
   "combat": 76,
   "size": 1
@@ -36963,7 +36940,9 @@
   "drange": 5,
   "combat": 22,
   "size": 1,
-  "respawn": 70
+  "respawn": 70,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air"
  },
  "7266": {
   "name": "King Sand Crab",
@@ -38139,7 +38118,7 @@
   "range": 210,
   "arange": 120,
   "rngbns": 70,
-  "size": 5
+  "size": 1
  },
  "7560": {
   "name": "Deathly mage",
@@ -44188,6 +44167,62 @@
   "combat": 57,
   "size": 1
  },
+ "9283": {
+  "name": "Basilisk",
+  "hitpoints": 75,
+  "att": 30,
+  "str": 45,
+  "def": 75,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dmagic": 20,
+  "combat": 61,
+  "size": 2
+ },
+ "9284": {
+  "name": "Basilisk",
+  "hitpoints": 75,
+  "att": 30,
+  "str": 45,
+  "def": 75,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dmagic": 20,
+  "combat": 61,
+  "size": 2
+ },
+ "9285": {
+  "name": "Basilisk",
+  "hitpoints": 75,
+  "att": 30,
+  "str": 45,
+  "def": 75,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dmagic": 20,
+  "combat": 61,
+  "size": 2
+ },
+ "9286": {
+  "name": "Basilisk",
+  "hitpoints": 75,
+  "att": 30,
+  "str": 45,
+  "def": 75,
+  "mage": 1,
+  "range": 1,
+  "dstab": 20,
+  "dslash": 20,
+  "dmagic": 20,
+  "combat": 61,
+  "size": 2
+ },
  "9287": {
   "name": "Monstrous Basilisk",
   "hitpoints": 170,
@@ -48288,7 +48323,8 @@
   "dcrush": 20,
   "drange": 20,
   "combat": 124,
-  "size": 1
+  "size": 1,
+  "respawn": 5
  },
  "11240": {
   "name": "Greater Nechryael",
@@ -52143,120 +52179,280 @@
  "12268": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12269": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12270": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12271": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12272": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12273": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12274": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12275": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12276": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12277": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12278": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12279": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12280": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12281": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12282": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12283": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12284": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12285": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12286": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12287": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
@@ -52267,6 +52463,10 @@
   "str": 70,
   "def": 40,
   "mage": 60,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 197,
   "size": 3,
   "respawn": 60
@@ -52278,6 +52478,10 @@
   "str": 70,
   "def": 40,
   "mage": 60,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 166,
   "size": 1,
   "respawn": 60
@@ -52289,6 +52493,10 @@
   "str": 70,
   "def": 40,
   "mage": 60,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 182,
   "size": 2,
   "respawn": 60
@@ -52849,6 +53057,7 @@
   "def": 20,
   "mage": 1,
   "range": 1,
+  "strbns": 10,
   "dstab": 75,
   "dslash": 75,
   "dcrush": 10,
@@ -52893,42 +53102,98 @@
  "12429": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12430": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12431": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12432": {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1
  },
  "12433": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12434": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
  "12435": {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1
  },
@@ -53651,6 +53916,30 @@
   "range": 1,
   "combat": 335,
   "size": 3
+ },
+ "12596": {
+  "name": "Branda the Fire Queen",
+  "isFiery": true,
+  "hitpoints": 600,
+  "att": 300,
+  "str": 250,
+  "def": 100,
+  "mage": 100,
+  "range": 150,
+  "attbns": 150,
+  "amagic": 100,
+  "mbns": 100,
+  "arange": 100,
+  "rngbns": 100,
+  "dstab": 12,
+  "dslash": 12,
+  "dmagic": 700,
+  "dlight": 700,
+  "dstandard": 700,
+  "dheavy": 700,
+  "combat": 350,
+  "size": 3,
+  "respawn": 30
  },
  "12720": {
   "name": "Armoured zombie",
@@ -55135,7 +55424,7 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "combat": 23,
+  "combat": 16,
   "size": 1
  },
  "13292": {
@@ -55146,7 +55435,7 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "combat": 23,
+  "combat": 16,
   "size": 1
  },
  "13293": {
@@ -55157,7 +55446,7 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "combat": 23,
+  "combat": 16,
   "size": 1
  },
  "13294": {
@@ -55168,7 +55457,7 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "combat": 23,
+  "combat": 16,
   "size": 1
  },
  "13295": {
@@ -55179,7 +55468,7 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "combat": 23,
+  "combat": 16,
   "size": 1
  },
  "13296": {
@@ -55190,7 +55479,7 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "combat": 23,
+  "combat": 16,
   "size": 1
  },
  "13463": {
@@ -56023,10 +56312,34 @@
   "size": 3,
   "respawn": 21
  },
+ "13602": {
+  "name": "Tormented Demon",
+  "isDemon": true,
+  "hitpoints": 600,
+  "att": 255,
+  "str": 255,
+  "def": 150,
+  "mage": 255,
+  "range": 255,
+  "attbns": 400,
+  "strbns": 10,
+  "amagic": 300,
+  "mbns": 5,
+  "arange": 300,
+  "rngbns": 5,
+  "dstab": 75,
+  "dslash": 175,
+  "dcrush": 68,
+  "dmagic": 5,
+  "dlight": 140,
+  "dstandard": 150,
+  "dheavy": 90,
+  "combat": 450,
+  "size": 3,
+  "respawn": 21
+ },
  "13656": {
   "name": "Vardorvis",
-  "is<!-- if no monster attributes apply": true,
-  "isRemove this parameter -->": true,
   "hitpoints": 1500,
   "att": 200,
   "str": 250,
@@ -56984,6 +57297,7 @@
   "dmagic": -50,
   "combat": 15,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
@@ -56998,6 +57312,7 @@
   "dmagic": -50,
   "combat": 15,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
@@ -57012,6 +57327,7 @@
   "dmagic": -50,
   "combat": 15,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
@@ -57026,6 +57342,7 @@
   "dmagic": -50,
   "combat": 15,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire"
  },
@@ -58071,6 +58388,55 @@
   "combat": 23,
   "size": 1,
   "respawn": 350
+ },
+ "14147": {
+  "name": "Eldric the Ice King",
+  "hitpoints": 600,
+  "att": 300,
+  "str": 250,
+  "def": 100,
+  "mage": 100,
+  "range": 150,
+  "attbns": 150,
+  "amagic": 100,
+  "mbns": 100,
+  "arange": 100,
+  "rngbns": 100,
+  "dstab": 12,
+  "dslash": 12,
+  "dmagic": 700,
+  "dlight": 700,
+  "dstandard": 700,
+  "dheavy": 700,
+  "combat": 350,
+  "size": 3,
+  "respawn": 30
+ },
+ "14150": {
+  "name": "Fire elemental",
+  "hitpoints": 40,
+  "att": 35,
+  "str": 35,
+  "def": 20,
+  "mage": 20,
+  "range": 20,
+  "combat": 37,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "water"
+ },
+ "14151": {
+  "name": "Ice elemental",
+  "hitpoints": 40,
+  "att": 30,
+  "str": 30,
+  "def": 30,
+  "mage": 30,
+  "range": 30,
+  "combat": 37,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
  },
  "8367_2": {
   "name": "Blood spawn",
