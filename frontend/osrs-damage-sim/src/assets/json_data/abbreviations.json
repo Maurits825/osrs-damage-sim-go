@@ -81,7 +81,8 @@
  "account": [
   "AFK(ing)",
   "Alt",
-  "Alt"
+  "Alt",
+  "Toon"
  ],
  "Aggressiveness": [
   "Aggro"
@@ -533,6 +534,7 @@
   "Safer",
   "NH",
   "NHer",
+  "NHing",
   "PK",
   "PKer",
   "PKing"
@@ -543,6 +545,7 @@
   "Safer",
   "NH",
   "NHer",
+  "NHing",
   "PK",
   "PKer",
   "PKing"
@@ -553,6 +556,7 @@
   "Safer",
   "NH",
   "NHer",
+  "NHing",
   "PK",
   "PKer",
   "PKing"
@@ -1149,6 +1153,10 @@
  "Dragon Slayer II": [
   "DS1/DS",
   "DS2"
+ ],
+ "Dragon scimitar": [
+  "Dscim",
+  "Dscimmy"
  ],
  "Dragon plateskirt": [
   "Dskirt"
@@ -1930,6 +1938,9 @@
   "Tome",
   "ToF"
  ],
+ "player character": [
+  "Toon"
+ ],
  "Tormented bracelet": [
   "Torm",
   "Tor"
@@ -2008,6 +2019,10 @@
   "Scim",
   "Skim",
   "Skimmy"
+ ],
+ "Scorching Bow": [
+  "Scobo",
+  "Scobow"
  ],
  "Scythe (weapon)": [
   "Scy"
@@ -2209,7 +2224,8 @@
   "Sup str)"
  ],
  "Soul Wars": [
-  "SW"
+  "SW",
+  "sw"
  ],
  "Trident of the swamp": [
   "Swamp"
@@ -2336,6 +2352,16 @@
   "Nez",
   "Neit",
   "Neitz"
+ ],
+ "Player killing#No-Honour Fights (NH)": [
+  "NH",
+  "NHer",
+  "NHing"
+ ],
+ "No Honour, or NH": [
+  "NH",
+  "NHer",
+  "NHing"
  ],
  "Jal-Nib": [
   "Nibbler(s)"
