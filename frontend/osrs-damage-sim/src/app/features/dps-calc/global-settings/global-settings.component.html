@@ -1,11 +1,17 @@
 <div class="mb-4">
   <div class="row mb-1 align-items-center">
     <div class="col-2">Npc Settings</div>
-    <app-npc-input
-      class="col-10 col-xxl-6"
-      [npcInfo]="npcInfo"
-      (npcInfoChanged)="npcInfoChanged($event)"
-    ></app-npc-input>
+    <div class="col-10 col-xxl-6">
+      <div class="form-check form-switch mb-1">
+        <label for="multi-npc">Multi Npc mode</label>
+        <input class="form-check-input" type="checkbox" id="multi-npc" />
+      </div>
+
+      @if(npcInfo) {
+      <div>hello</div>
+      }
+      <app-npc-input [npcInfo]="npcInfo" (npcInfoChanged)="npcInfoChanged($event)"></app-npc-input>
+    </div>
   </div>
 </div>
 
