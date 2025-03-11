@@ -3741,7 +3741,7 @@
   "weaponCategory": "STAFF"
  },
  "1419": {
-  "name": "Scythe",
+  "name": "Scythe (Halloween event)",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -32251,6 +32251,12 @@
   "equipable": true,
   "slot": 10
  },
+ "22711": {
+  "name": "Collection log",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
  "22713": {
   "name": "Star-face",
   "weight": 0.113,
@@ -36368,7 +36374,7 @@
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "SPIKED"
  },
  "24397": {
@@ -37198,7 +37204,7 @@
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "SPIKED"
  },
  "25016": {
@@ -37429,12 +37435,6 @@
   "weight": -4.0,
   "equipable": true,
   "slot": 10
- },
- "25102": {
-  "name": "Fairy mushroom",
-  "weight": 0.002,
-  "equipable": true,
-  "slot": 5
  },
  "25106": {
   "name": "Extradimensional bag",
@@ -39538,7 +39538,7 @@
   "amagic": 35,
   "arange": -11,
   "dstab": 47,
-  "dslash": 38,
+  "dslash": 36,
   "dcrush": 56,
   "dmagic": 31,
   "prayer": 2,
@@ -44377,11 +44377,11 @@
   "acrush": 4,
   "amagic": -32,
   "arange": -15,
-  "dstab": 74,
-  "dslash": 81,
-  "dcrush": 89,
+  "dstab": 55,
+  "dslash": 59,
+  "dcrush": 62,
   "dmagic": -18,
-  "drange": 95,
+  "drange": 85,
   "str": 6
  },
  "27832": {
@@ -44394,11 +44394,11 @@
   "acrush": 3,
   "amagic": -30,
   "arange": -12,
-  "dstab": 55,
-  "dslash": 64,
-  "dcrush": 67,
+  "dstab": 39,
+  "dslash": 42,
+  "dcrush": 45,
   "dmagic": -15,
-  "drange": 71,
+  "drange": 59,
   "str": 3
  },
  "27833": {
@@ -44475,11 +44475,11 @@
   "slot": 4,
   "amagic": -15,
   "arange": 36,
-  "dstab": 61,
-  "dslash": 53,
-  "dcrush": 66,
+  "dstab": 35,
+  "dslash": 30,
+  "dcrush": 40,
   "dmagic": 75,
-  "drange": 62,
+  "drange": 37,
   "rstr": 6
  },
  "27838": {
@@ -44489,11 +44489,11 @@
   "slot": 7,
   "amagic": -10,
   "arange": 23,
-  "dstab": 35,
-  "dslash": 29,
-  "dcrush": 37,
+  "dstab": 18,
+  "dslash": 15,
+  "dcrush": 20,
   "dmagic": 46,
-  "drange": 35,
+  "drange": 22,
   "rstr": 6
  },
  "27839": {
@@ -44501,7 +44501,7 @@
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
-  "amagic": 8,
+  "amagic": 18,
   "arange": -2,
   "dstab": 20,
   "dslash": 16,
@@ -44514,7 +44514,7 @@
   "weight": 4.535,
   "equipable": true,
   "slot": 4,
-  "amagic": 35,
+  "amagic": 58,
   "arange": -10,
   "dstab": 63,
   "dslash": 45,
@@ -44527,7 +44527,7 @@
   "weight": 5.443,
   "equipable": true,
   "slot": 7,
-  "amagic": 25,
+  "amagic": 46,
   "arange": -7,
   "dstab": 38,
   "dslash": 35,
@@ -44545,11 +44545,11 @@
   "acrush": 4,
   "amagic": -28,
   "arange": -14,
-  "dstab": 25,
-  "dslash": 32,
-  "dcrush": 34,
+  "dstab": 18,
+  "dslash": 21,
+  "dcrush": 23,
   "dmagic": -10,
-  "drange": 30,
+  "drange": 21,
   "str": 5
  },
  "27843": {
@@ -44562,11 +44562,11 @@
   "acrush": 3,
   "amagic": -24,
   "arange": -12,
-  "dstab": 22,
-  "dslash": 20,
-  "dcrush": 18,
+  "dstab": 14,
+  "dslash": 11,
+  "dcrush": 16,
   "dmagic": -9,
-  "drange": 22,
+  "drange": 15,
   "str": 2
  },
  "27844": {
@@ -44579,11 +44579,11 @@
   "acrush": 6,
   "amagic": -6,
   "arange": -2,
-  "dstab": 17,
-  "dslash": 20,
-  "dcrush": 14,
+  "dstab": 10,
+  "dslash": 13,
+  "dcrush": 8,
   "dmagic": -1,
-  "drange": 18,
+  "drange": 11,
   "str": 2
  },
  "27845": {
@@ -44596,11 +44596,11 @@
   "acrush": 14,
   "amagic": -30,
   "arange": -15,
-  "dstab": 50,
-  "dslash": 46,
-  "dcrush": 44,
+  "dstab": 35,
+  "dslash": 31,
+  "dcrush": 29,
   "dmagic": -12,
-  "drange": 45,
+  "drange": 33,
   "str": 4
  },
  "27846": {
@@ -44641,11 +44641,11 @@
   "slot": 4,
   "amagic": -13,
   "arange": 36,
-  "dstab": 27,
-  "dslash": 20,
-  "dcrush": 24,
+  "dstab": 14,
+  "dslash": 10,
+  "dcrush": 12,
   "dmagic": 30,
-  "drange": 28,
+  "drange": 15,
   "rstr": 4
  },
  "27849": {
@@ -44655,11 +44655,11 @@
   "slot": 7,
   "amagic": -8,
   "arange": 23,
-  "dstab": 18,
-  "dslash": 15,
-  "dcrush": 16,
+  "dstab": 9,
+  "dslash": 7,
+  "dcrush": 8,
   "dmagic": 20,
-  "drange": 19,
+  "drange": 11,
   "rstr": 4
  },
  "27850": {
@@ -44667,7 +44667,7 @@
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
-  "amagic": 5,
+  "amagic": 12,
   "arange": -1,
   "dstab": 13,
   "dslash": 11,
@@ -44680,7 +44680,7 @@
   "weight": 4.535,
   "equipable": true,
   "slot": 4,
-  "amagic": 25,
+  "amagic": 46,
   "arange": -8,
   "dstab": 43,
   "dslash": 39,
@@ -44693,7 +44693,7 @@
   "weight": 5.443,
   "equipable": true,
   "slot": 7,
-  "amagic": 18,
+  "amagic": 32,
   "arange": -6,
   "dstab": 21,
   "dslash": 20,
@@ -45493,12 +45493,12 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": -2,
-  "aslash": 4,
-  "acrush": 2,
+  "astab": -3,
+  "aslash": 6,
+  "acrush": 3,
   "dslash": 1,
-  "str": 5,
-  "aspeed": 5,
+  "str": 8,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28199": {
@@ -45507,12 +45507,12 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": -2,
-  "aslash": 5,
-  "acrush": 3,
+  "astab": -3,
+  "aslash": 8,
+  "acrush": 4,
   "dslash": 1,
-  "str": 7,
-  "aspeed": 5,
+  "str": 11,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28202": {
@@ -45521,12 +45521,12 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": -2,
-  "aslash": 8,
-  "acrush": 6,
+  "astab": -3,
+  "aslash": 12,
+  "acrush": 9,
   "dslash": 1,
-  "str": 9,
-  "aspeed": 5,
+  "str": 14,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28205": {
@@ -45549,12 +45549,12 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": -2,
-  "aslash": 12,
-  "acrush": 10,
+  "astab": -3,
+  "aslash": 19,
+  "acrush": 16,
   "dslash": 1,
-  "str": 13,
-  "aspeed": 5,
+  "str": 20,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28211": {
@@ -45563,12 +45563,12 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": -2,
-  "aslash": 17,
-  "acrush": 15,
+  "astab": -3,
+  "aslash": 27,
+  "acrush": 24,
   "dslash": 1,
-  "str": 19,
-  "aspeed": 5,
+  "str": 30,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28214": {
@@ -45577,12 +45577,12 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": -2,
-  "aslash": 26,
-  "acrush": 24,
+  "astab": -3,
+  "aslash": 41,
+  "acrush": 38,
   "dslash": 1,
-  "str": 29,
-  "aspeed": 5,
+  "str": 46,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28217": {
@@ -46691,7 +46691,7 @@
   "arange": 87,
   "str": 40,
   "aspeed": 4,
-  "weaponCategory": "THROWN"
+  "weaponCategory": "BOW"
  },
  "29004": {
   "name": "Eclipse moon chestplate",
@@ -47181,6 +47181,30 @@
   "equipable": true,
   "slot": 0
  },
+ "29472": {
+  "name": "Prospector helmet",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0
+ },
+ "29474": {
+  "name": "Prospector jacket",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 4
+ },
+ "29476": {
+  "name": "Prospector legs",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "29478": {
+  "name": "Prospector boots",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 10
+ },
  "29486": {
   "name": "Cursed amulet of magic",
   "weight": 0.01,
@@ -47392,6 +47416,7 @@
   "astab": 63,
   "aslash": 70,
   "dslash": 3,
+  "dcrush": 2,
   "dmagic": 5,
   "str": 13,
   "aspeed": 4,
@@ -47814,12 +47839,7 @@
   "name": "Atlatl dart (Last Man Standing)",
   "weight": 3.628,
   "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 87,
-  "str": 40,
-  "aspeed": 4,
-  "weaponCategory": "THROWN"
+  "slot": 13
  },
  "29868": {
   "name": "Emissary hood",
@@ -48065,6 +48085,7 @@
   "equipable": true,
   "slot": 3,
   "amagic": 16,
+  "dmagic": 16,
   "aspeed": 5,
   "mdmg": 10.0,
   "weaponCategory": "STAFF"
@@ -48193,7 +48214,7 @@
   "dcrush": 2,
   "dmagic": 2,
   "str": 13,
-  "aspeed": 4,
+  "aspeed": 5,
   "weaponCategory": "SLASH_SWORD"
  },
  "30321": {
@@ -48210,114 +48231,33 @@
   "drange": 30,
   "str": 2
  },
- "1000000": {
-  "name": "Drygore blowpipe",
+ "30342": {
+  "name": "Infernal harpoon (or) (Trailblazer Reloaded)",
+  "weight": 2.267,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
-  "arange": 50,
-  "rstr": 10,
-  "aspeed": 3,
-  "weaponCategory": "THROWN",
-  "futureContent": true
- },
- "1000001": {
-  "name": "Gloves of the damned",
-  "equipable": true,
-  "slot": 9,
-  "astab": 12,
-  "aslash": 12,
-  "acrush": 12,
-  "amagic": 6,
-  "arange": 12,
-  "dstab": 12,
-  "dslash": 12,
-  "dcrush": 12,
-  "dmagic": 6,
-  "drange": 12,
-  "str": 12,
-  "futureContent": true
- },
- "1000002": {
-  "name": "Amulet of the monarchs",
-  "equipable": true,
-  "slot": 2,
-  "astab": 30,
-  "aslash": 30,
-  "acrush": 30,
-  "amagic": 30,
-  "arange": 30,
-  "dstab": 30,
-  "dslash": 30,
-  "dcrush": 30,
-  "dmagic": 30,
-  "drange": 30,
-  "str": 15,
-  "rstr": 15,
-  "prayer": 10,
-  "mdmg": 10.0,
-  "futureContent": true
- },
- "1000003": {
-  "name": "Emperor ring",
-  "equipable": true,
-  "slot": 12,
-  "astab": 30,
-  "aslash": 30,
-  "acrush": 30,
-  "amagic": 30,
-  "arange": 30,
-  "dstab": 30,
-  "dslash": 30,
-  "dcrush": 30,
-  "dmagic": 30,
-  "drange": 30,
-  "str": 15,
-  "rstr": 15,
-  "prayer": 10,
-  "mdmg": 5.0,
-  "futureContent": true
- },
- "1000004": {
-  "name": "Devil's element",
-  "equipable": true,
-  "slot": 5,
-  "amagic": 20,
-  "prayer": 3,
-  "mdmg": 6.0,
-  "futureContent": true
- },
- "1000005": {
-  "name": "Crystal blessing",
-  "equipable": true,
-  "slot": 13,
-  "prayer": 5,
-  "futureContent": true
- },
- "1000006": {
-  "name": "Arcane grimoire",
-  "weight": 0.3,
-  "equipable": true,
-  "slot": 5,
-  "amagic": 6,
-  "prayer": 3,
-  "futureContent": true
- },
- "1000007": {
-  "name": "Echo axe",
-  "equipable": true,
-  "slot": 3,
-  "astab": -2,
-  "aslash": 38,
-  "acrush": 32,
+  "astab": 38,
+  "aslash": 32,
   "dslash": 1,
   "str": 42,
   "aspeed": 5,
-  "weaponCategory": "AXE",
-  "futureContent": true
+  "weaponCategory": "STAB_SWORD"
  },
- "1000008": {
-  "name": "Echo pickaxe",
+ "30343": {
+  "name": "Infernal harpoon (or) (Trailblazer Reloaded)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 38,
+  "aslash": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "STAB_SWORD"
+ },
+ "30345": {
+  "name": "Infernal pickaxe (or) (Trailblazer Reloaded)",
+  "weight": 2.4,
   "equipable": true,
   "slot": 3,
   "astab": 38,
@@ -48326,11 +48266,50 @@
   "dslash": 1,
   "str": 42,
   "aspeed": 5,
-  "weaponCategory": "PICKAXE",
-  "futureContent": true
+  "weaponCategory": "PICKAXE"
  },
- "1000009": {
-  "name": "Echo harpoon",
+ "30346": {
+  "name": "Infernal pickaxe (or) (Trailblazer Reloaded)",
+  "weight": 2.4,
+  "equipable": true,
+  "slot": 3,
+  "astab": 38,
+  "aslash": -2,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "PICKAXE"
+ },
+ "30347": {
+  "name": "Infernal axe (or) (Trailblazer Reloaded)",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "astab": -2,
+  "aslash": 38,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "AXE"
+ },
+ "30348": {
+  "name": "Infernal axe (or) (Trailblazer Reloaded)",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "astab": -2,
+  "aslash": 38,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "AXE"
+ },
+ "30349": {
+  "name": "Dragon harpoon (or)",
+  "weight": 2.267,
   "equipable": true,
   "slot": 3,
   "astab": 38,
@@ -48338,118 +48317,716 @@
   "dslash": 1,
   "str": 42,
   "aspeed": 5,
-  "weaponCategory": "STAB_SWORD",
-  "futureContent": true
+  "weaponCategory": "STAB_SWORD"
  },
- "1000010": {
-  "name": "Banker's briefcase",
-  "equipable": true,
-  "slot": 5,
-  "futureContent": true
- },
- "1000011": {
-  "name": "Clue compass (item)",
-  "equipable": true,
-  "slot": 5,
-  "futureContent": true
- },
- "1000012": {
-  "name": "Fairy mushroom",
-  "weight": 0.002,
-  "equipable": true,
-  "slot": 5,
-  "futureContent": true
- },
- "1000013": {
-  "name": "Nature's reprisal",
+ "30351": {
+  "name": "Dragon pickaxe (or) (Trailblazer)",
+  "weight": 2.4,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
-  "astab": 95,
-  "amagic": 45,
-  "arange": 155,
-  "str": 103,
-  "rstr": 92,
+  "astab": 38,
+  "aslash": -2,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
   "aspeed": 5,
-  "mdmg": 12.0,
-  "weaponCategory": "MULTI-STYLE",
-  "futureContent": true
+  "weaponCategory": "PICKAXE"
  },
- "1000014": {
-  "name": "The dogsword",
+ "30352": {
+  "name": "Dragon axe (or)",
+  "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
-  "aslash": 132,
-  "acrush": 80,
-  "str": 132,
-  "prayer": 8,
-  "aspeed": 6,
-  "weaponCategory": "TWO_HANDED_SWORD",
-  "futureContent": true
+  "astab": -2,
+  "aslash": 38,
+  "acrush": 32,
+  "dslash": 1,
+  "str": 42,
+  "aspeed": 5,
+  "weaponCategory": "AXE"
  },
- "1000015": {
-  "name": "Thunder khopesh",
+ "30404": {
+  "name": "Raging echoes hat (t1)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "30406": {
+  "name": "Raging echoes top (t1)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "30408": {
+  "name": "Raging echoes robeskirt (t1)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "30410": {
+  "name": "Raging echoes boots (t1)",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "30412": {
+  "name": "Raging echoes hat (t2)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "30414": {
+  "name": "Raging echoes top (t2)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "30416": {
+  "name": "Raging echoes robeskirt (t2)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "30418": {
+  "name": "Raging echoes boots (t2)",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "30420": {
+  "name": "Raging echoes hat (t3)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "30422": {
+  "name": "Raging echoes top (t3)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "30424": {
+  "name": "Raging echoes robeskirt (t3)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "30426": {
+  "name": "Raging echoes boots (t3)",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "30428": {
+  "name": "Raging echoes cane",
+  "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "astab": 65,
-  "aslash": 110,
-  "str": 100,
   "aspeed": 4,
-  "weaponCategory": "SLASH_SWORD",
-  "futureContent": true
+  "weaponCategory": "SPIKED"
  },
- "1000016": {
-  "name": "Thousand-dragon ward",
+ "30430": {
+  "name": "Raging echoes banner",
+  "weight": 2.267,
   "equipable": true,
-  "slot": 5,
-  "astab": 35,
-  "aslash": 35,
-  "acrush": 35,
-  "amagic": 15,
-  "arange": 25,
-  "dstab": 50,
-  "dslash": 55,
-  "dcrush": 53,
-  "dmagic": 40,
-  "drange": 52,
-  "str": 12,
-  "prayer": 6,
-  "futureContent": true
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BANNER"
  },
- "1000017": {
-  "name": "Sunlight spear",
+ "30434": {
+  "name": "Echo venator bow",
+  "weight": 4.5,
   "equipable": true,
   "slot": 3,
   "is2h": true,
-  "astab": 125,
-  "aslash": 75,
-  "dstab": 70,
-  "dslash": 70,
-  "dcrush": 70,
-  "dmagic": 28,
-  "drange": 70,
-  "str": 113,
+  "arange": 90,
+  "rstr": 25,
   "aspeed": 5,
-  "weaponCategory": "SPEAR",
-  "futureContent": true
+  "weaponCategory": "BOW"
  },
- "1000018": {
-  "name": "Sunlit bracers",
+ "30439": {
+  "name": "Echo virtus robe top",
+  "weight": 2.895,
   "equipable": true,
-  "slot": 9,
-  "astab": 10,
-  "aslash": 10,
-  "acrush": 10,
+  "slot": 4,
+  "amagic": 35,
+  "arange": -11,
+  "dstab": 47,
+  "dslash": 36,
+  "dcrush": 56,
+  "dmagic": 31,
+  "prayer": 2,
+  "mdmg": 2.0
+ },
+ "30441": {
+  "name": "Echo virtus robe bottom",
+  "weight": 3.79,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 26,
+  "arange": -9,
+  "dstab": 31,
+  "dslash": 28,
+  "dcrush": 34,
+  "dmagic": 22,
+  "prayer": 1,
+  "mdmg": 2.0
+ },
+ "30445": {
+  "name": "Echo ahrim's hood",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0,
   "amagic": 6,
-  "arange": 18,
-  "dstab": 12,
-  "dslash": 12,
-  "dcrush": 12,
+  "arange": -2,
+  "dstab": 15,
+  "dslash": 13,
+  "dcrush": 16,
   "dmagic": 6,
-  "drange": 12,
-  "str": 8,
-  "rstr": 4,
-  "futureContent": true
+  "mdmg": 1.0
+ },
+ "30447": {
+  "name": "Echo ahrim's robetop",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 30,
+  "arange": -10,
+  "dstab": 52,
+  "dslash": 37,
+  "dcrush": 63,
+  "dmagic": 30,
+  "mdmg": 1.0
+ },
+ "30449": {
+  "name": "Echo ahrim's robeskirt",
+  "weight": 11.339,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 22,
+  "arange": -7,
+  "dstab": 33,
+  "dslash": 30,
+  "dcrush": 36,
+  "dmagic": 22,
+  "mdmg": 1.0
+ },
+ "30465": {
+  "name": "Raging echoes dragon trophy",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30467": {
+  "name": "Raging echoes rune trophy",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30469": {
+  "name": "Raging echoes adamant trophy",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30471": {
+  "name": "Raging echoes mithril trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "30473": {
+  "name": "Raging echoes steel trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "30475": {
+  "name": "Raging echoes iron trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "30477": {
+  "name": "Raging echoes bronze trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "30489": {
+  "name": "Festive scarf",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2
+ },
+ "30491": {
+  "name": "Dog boots",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 10
+ },
+ "30519": {
+  "name": "Echo ahrim's hood",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 6,
+  "arange": -2,
+  "dstab": 15,
+  "dslash": 13,
+  "dcrush": 16,
+  "dmagic": 6,
+  "mdmg": 1.0
+ },
+ "30521": {
+  "name": "Echo ahrim's robetop",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 30,
+  "arange": -10,
+  "dstab": 52,
+  "dslash": 37,
+  "dcrush": 63,
+  "dmagic": 30,
+  "mdmg": 1.0
+ },
+ "30523": {
+  "name": "Echo ahrim's robeskirt",
+  "weight": 11.339,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 22,
+  "arange": -7,
+  "dstab": 33,
+  "dslash": 30,
+  "dcrush": 36,
+  "dmagic": 22,
+  "mdmg": 1.0
+ },
+ "30525": {
+  "name": "Echo ahrim's hood",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 6,
+  "arange": -2,
+  "dstab": 15,
+  "dslash": 13,
+  "dcrush": 16,
+  "dmagic": 6,
+  "mdmg": 1.0
+ },
+ "30527": {
+  "name": "Echo ahrim's robetop",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 30,
+  "arange": -10,
+  "dstab": 52,
+  "dslash": 37,
+  "dcrush": 63,
+  "dmagic": 30,
+  "mdmg": 1.0
+ },
+ "30529": {
+  "name": "Echo ahrim's robeskirt",
+  "weight": 11.339,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 22,
+  "arange": -7,
+  "dstab": 33,
+  "dslash": 30,
+  "dcrush": 36,
+  "dmagic": 22,
+  "mdmg": 1.0
+ },
+ "30531": {
+  "name": "Echo ahrim's hood",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 6,
+  "arange": -2,
+  "dstab": 15,
+  "dslash": 13,
+  "dcrush": 16,
+  "dmagic": 6,
+  "mdmg": 1.0
+ },
+ "30533": {
+  "name": "Echo ahrim's robetop",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 30,
+  "arange": -10,
+  "dstab": 52,
+  "dslash": 37,
+  "dcrush": 63,
+  "dmagic": 30,
+  "mdmg": 1.0
+ },
+ "30535": {
+  "name": "Echo ahrim's robeskirt",
+  "weight": 11.339,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 22,
+  "arange": -7,
+  "dstab": 33,
+  "dslash": 30,
+  "dcrush": 36,
+  "dmagic": 22,
+  "mdmg": 1.0
+ },
+ "30537": {
+  "name": "Echo ahrim's hood",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 6,
+  "arange": -2,
+  "dstab": 15,
+  "dslash": 13,
+  "dcrush": 16,
+  "dmagic": 6,
+  "mdmg": 1.0
+ },
+ "30539": {
+  "name": "Echo ahrim's robetop",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 30,
+  "arange": -10,
+  "dstab": 52,
+  "dslash": 37,
+  "dcrush": 63,
+  "dmagic": 30,
+  "mdmg": 1.0
+ },
+ "30541": {
+  "name": "Echo ahrim's robeskirt",
+  "weight": 11.339,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 22,
+  "arange": -7,
+  "dstab": 33,
+  "dslash": 30,
+  "dcrush": 36,
+  "dmagic": 22,
+  "mdmg": 1.0
+ },
+ "30543": {
+  "name": "Echo ahrim's hood",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 0
+ },
+ "30545": {
+  "name": "Echo ahrim's robetop",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 4
+ },
+ "30547": {
+  "name": "Echo ahrim's robeskirt",
+  "weight": 11.339,
+  "equipable": true,
+  "slot": 7
+ },
+ "30568": {
+  "name": "Echo ahrim's staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 12,
+  "aslash": -1,
+  "acrush": 65,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 5,
+  "dcrush": 2,
+  "dmagic": 15,
+  "str": 68,
+  "aspeed": 6,
+  "mdmg": 5.0,
+  "weaponCategory": "STAFF"
+ },
+ "30570": {
+  "name": "Echo ahrim's staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 12,
+  "aslash": -1,
+  "acrush": 65,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 5,
+  "dcrush": 2,
+  "dmagic": 15,
+  "str": 68,
+  "aspeed": 6,
+  "mdmg": 5.0,
+  "weaponCategory": "STAFF"
+ },
+ "30571": {
+  "name": "Echo ahrim's staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 12,
+  "aslash": -1,
+  "acrush": 65,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 5,
+  "dcrush": 2,
+  "dmagic": 15,
+  "str": 68,
+  "aspeed": 6,
+  "mdmg": 5.0,
+  "weaponCategory": "STAFF"
+ },
+ "30572": {
+  "name": "Echo ahrim's staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 12,
+  "aslash": -1,
+  "acrush": 65,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 5,
+  "dcrush": 2,
+  "dmagic": 15,
+  "str": 68,
+  "aspeed": 6,
+  "mdmg": 5.0,
+  "weaponCategory": "STAFF"
+ },
+ "30573": {
+  "name": "Echo ahrim's staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 12,
+  "aslash": -1,
+  "acrush": 65,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 5,
+  "dcrush": 2,
+  "dmagic": 15,
+  "str": 68,
+  "aspeed": 6,
+  "mdmg": 5.0,
+  "weaponCategory": "STAFF"
+ },
+ "30574": {
+  "name": "Echo ahrim's staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 6,
+  "weaponCategory": "STAFF"
+ },
+ "30579": {
+  "name": "Collection log (bronze)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30581": {
+  "name": "Collection log (iron)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30583": {
+  "name": "Collection log (steel)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30585": {
+  "name": "Collection log (black)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30587": {
+  "name": "Collection log (mithril)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30589": {
+  "name": "Collection log (adamant)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30591": {
+  "name": "Collection log (rune)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30593": {
+  "name": "Collection log (dragon)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30595": {
+  "name": "Collection log (gilded)",
+  "weight": 0.51,
+  "equipable": true,
+  "slot": 5
+ },
+ "30597": {
+  "name": "Bronze staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30599": {
+  "name": "Iron staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30601": {
+  "name": "Steel staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30603": {
+  "name": "Black staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30605": {
+  "name": "Mithril staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30607": {
+  "name": "Adamant staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30609": {
+  "name": "Rune staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30611": {
+  "name": "Dragon staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30613": {
+  "name": "Gilded staff of collection",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "30634": {
+  "name": "Twinflame staff",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 7,
+  "aslash": -1,
+  "acrush": 28,
+  "amagic": 12,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 12,
+  "str": 22,
+  "aspeed": 6,
+  "weaponCategory": "STAFF"
+ },
+ "30637": {
+  "name": "Giantsoul amulet",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2
+ },
+ "30638": {
+  "name": "Giantsoul amulet",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2
+ },
+ "30646": {
+  "name": "Classic imp tail",
+  "weight": 0.05,
+  "equipable": true,
+  "slot": 1
+ },
+ "30648": {
+  "name": "Classic imp hood",
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 0
  }
 }
