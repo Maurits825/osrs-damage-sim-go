@@ -290,6 +290,7 @@
   "def": 20,
   "mage": 1,
   "range": 1,
+  "strbns": 10,
   "dstab": 75,
   "dslash": 75,
   "dcrush": 10,
@@ -3984,6 +3985,31 @@
   "id": "6293"
  },
  {
+  "name": "Branda the Fire Queen",
+  "isFiery": true,
+  "hitpoints": 600,
+  "att": 300,
+  "str": 250,
+  "def": 100,
+  "mage": 100,
+  "range": 150,
+  "attbns": 150,
+  "amagic": 100,
+  "mbns": 100,
+  "arange": 100,
+  "rngbns": 100,
+  "dstab": 12,
+  "dslash": 12,
+  "dmagic": 700,
+  "dlight": 700,
+  "dstandard": 700,
+  "dheavy": 700,
+  "combat": 350,
+  "size": 3,
+  "respawn": 30,
+  "id": "12596"
+ },
+ {
   "name": "Brassican Mage",
   "hitpoints": 150,
   "att": 80,
@@ -5485,6 +5511,26 @@
   "id": "2792"
  },
  {
+  "name": "Cow calf",
+  "hitpoints": 6,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "attbns": -20,
+  "strbns": -20,
+  "dstab": -26,
+  "dslash": -26,
+  "dcrush": -26,
+  "dmagic": -26,
+  "drange": -26,
+  "combat": 2,
+  "size": 1,
+  "respawn": 45,
+  "id": "2801"
+ },
+ {
   "name": "Crab",
   "hitpoints": 19,
   "att": 19,
@@ -6646,7 +6692,7 @@
   "range": 210,
   "arange": 120,
   "rngbns": 70,
-  "size": 5,
+  "size": 1,
   "id": "7559"
  },
  {
@@ -7626,6 +7672,30 @@
   "id": "6607"
  },
  {
+  "name": "Eldric the Ice King",
+  "hitpoints": 600,
+  "att": 300,
+  "str": 250,
+  "def": 100,
+  "mage": 100,
+  "range": 150,
+  "attbns": 150,
+  "amagic": 100,
+  "mbns": 100,
+  "arange": 100,
+  "rngbns": 100,
+  "dstab": 12,
+  "dslash": 12,
+  "dmagic": 700,
+  "dlight": 700,
+  "dstandard": 700,
+  "dheavy": 700,
+  "combat": 350,
+  "size": 3,
+  "respawn": 30,
+  "id": "14147"
+ },
+ {
   "name": "Elf Archer",
   "hitpoints": 105,
   "att": 10,
@@ -8510,6 +8580,20 @@
   "id": "1365"
  },
  {
+  "name": "Fire elemental",
+  "hitpoints": 40,
+  "att": 35,
+  "str": 35,
+  "def": 20,
+  "mage": 20,
+  "range": 20,
+  "combat": 37,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "water",
+  "id": "14150"
+ },
+ {
   "name": "Fire giant",
   "isFiery": true,
   "hitpoints": 111,
@@ -9121,6 +9205,7 @@
   "dmagic": -50,
   "combat": 15,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire",
   "id": "13789"
@@ -9205,12 +9290,13 @@
  {
   "name": "Gang boss",
   "hitpoints": 80,
-  "att": 1,
-  "str": 1,
+  "att": 70,
+  "str": 70,
   "def": 70,
   "mage": 1,
-  "range": 80,
-  "arange": 50,
+  "range": 1,
+  "attbns": 50,
+  "strbns": 30,
   "dcrush": 10,
   "combat": 83,
   "size": 1,
@@ -9225,10 +9311,26 @@
   "mage": 1,
   "range": 80,
   "arange": 50,
+  "rngbns": 30,
   "dcrush": 10,
   "combat": 76,
   "size": 1,
   "id": "6902"
+ },
+ {
+  "name": "Gangster",
+  "hitpoints": 40,
+  "att": 40,
+  "str": 30,
+  "def": 50,
+  "mage": 1,
+  "range": 1,
+  "attbns": 25,
+  "strbns": 20,
+  "dcrush": 10,
+  "combat": 45,
+  "size": 1,
+  "id": "6896"
  },
  {
   "name": "Gangster",
@@ -9243,11 +9345,11 @@
   "dcrush": 10,
   "combat": 45,
   "size": 1,
-  "id": "6896"
+  "id": "6897"
  },
  {
   "name": "Gangster",
-  "hitpoints": 50,
+  "hitpoints": 45,
   "att": 50,
   "str": 40,
   "def": 40,
@@ -9259,6 +9361,19 @@
   "combat": 50,
   "size": 1,
   "id": "6898"
+ },
+ {
+  "name": "Gangster",
+  "hitpoints": 30,
+  "att": 40,
+  "str": 70,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "dcrush": 10,
+  "combat": 50,
+  "size": 1,
+  "id": "6899"
  },
  {
   "name": "Gardener",
@@ -9728,6 +9843,8 @@
   "drange": 149,
   "combat": 191,
   "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "797"
  },
  {
@@ -9746,6 +9863,8 @@
   "drange": 149,
   "combat": 316,
   "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "1127"
  },
  {
@@ -12393,6 +12512,7 @@
   "dmagic": -50,
   "combat": 15,
   "size": 1,
+  "respawn": 50,
   "elementalweaknesspercent": 100,
   "elementalweaknesstype": "fire",
   "id": "13790"
@@ -12418,6 +12538,20 @@
   "elementalweaknesspercent": 150,
   "elementalweaknesstype": "fire",
   "id": "7584"
+ },
+ {
+  "name": "Ice elemental",
+  "hitpoints": 40,
+  "att": 30,
+  "str": 30,
+  "def": 30,
+  "mage": 30,
+  "range": 30,
+  "combat": 37,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire",
+  "id": "14151"
  },
  {
   "name": "Ice giant",
@@ -14798,6 +14932,8 @@
   "arange": 100,
   "combat": 94,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "12361"
  },
  {
@@ -14811,21 +14947,9 @@
   "range": 1,
   "combat": 39,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "12376"
- },
- {
-  "name": "Lesser demon",
-  "isDemon": true,
-  "hitpoints": 79,
-  "att": 68,
-  "str": 70,
-  "def": 71,
-  "mage": 1,
-  "range": 1,
-  "arange": 100,
-  "combat": 82,
-  "size": 2,
-  "id": "12389"
  },
  {
   "name": "Lev",
@@ -19307,6 +19431,7 @@
  },
  {
   "name": "Reanimated demon spawn",
+  "isDemon": true,
   "hitpoints": 85,
   "att": 80,
   "str": 70,
@@ -20446,7 +20571,7 @@
   "range": 1,
   "combat": 178,
   "size": 1,
-  "respawn": 200,
+  "respawn": 500,
   "id": "6600"
  },
  {
@@ -20804,6 +20929,8 @@
   "dmagic": -10,
   "combat": 176,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "12386"
  },
  {
@@ -20818,6 +20945,8 @@
   "dmagic": -10,
   "combat": 113,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "12373"
  },
  {
@@ -20832,6 +20961,8 @@
   "dmagic": -10,
   "combat": 95,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "12388"
  },
  {
@@ -20845,6 +20976,8 @@
   "range": 1,
   "combat": 101,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water",
   "id": "12374"
  },
  {
@@ -20900,8 +21033,11 @@
   "def": 71,
   "mage": 1,
   "range": 1,
+  "dmagic": -10,
   "combat": 85,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "12390"
  },
  {
@@ -22079,6 +22215,8 @@
   "drange": 5,
   "combat": 77,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "1685"
  },
  {
@@ -22097,6 +22235,8 @@
   "combat": 68,
   "size": 1,
   "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "2520"
  },
  {
@@ -22115,6 +22255,8 @@
   "combat": 60,
   "size": 1,
   "respawn": 70,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "2521"
  },
  {
@@ -22136,6 +22278,8 @@
   "combat": 85,
   "size": 1,
   "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "2524"
  },
  {
@@ -22202,6 +22346,8 @@
   "combat": 94,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6441"
  },
  {
@@ -22220,6 +22366,8 @@
   "combat": 77,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6442"
  },
  {
@@ -22237,6 +22385,8 @@
   "combat": 81,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6443"
  },
  {
@@ -22254,6 +22404,8 @@
   "combat": 42,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6444"
  },
  {
@@ -22271,6 +22423,8 @@
   "combat": 59,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6445"
  },
  {
@@ -22288,6 +22442,8 @@
   "combat": 42,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6446"
  },
  {
@@ -22305,6 +22461,8 @@
   "combat": 63,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6447"
  },
  {
@@ -22322,6 +22480,8 @@
   "combat": 40,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6448"
  },
  {
@@ -22339,6 +22499,8 @@
   "drange": 40,
   "combat": 72,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6467"
  },
  {
@@ -22356,6 +22518,8 @@
   "drange": 40,
   "combat": 87,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6468"
  },
  {
@@ -22584,6 +22748,8 @@
   "combat": 40,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "4491"
  },
  {
@@ -22605,6 +22771,8 @@
   "combat": 50,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "4494"
  },
  {
@@ -22626,6 +22794,8 @@
   "combat": 60,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "4497"
  },
  {
@@ -22683,6 +22853,8 @@
   "combat": 132,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "1541"
  },
  {
@@ -22703,6 +22875,8 @@
   "combat": 132,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "1539"
  },
  {
@@ -22753,9 +22927,13 @@
   "dslash": 80,
   "dcrush": 80,
   "dmagic": 130,
-  "drange": 130,
+  "dlight": 130,
+  "dstandard": 130,
+  "dheavy": 130,
   "combat": 321,
   "size": 5,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "7286"
  },
  {
@@ -23230,6 +23408,11 @@
   "def": 25,
   "mage": 1,
   "range": 1,
+  "strbns": 16,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 72,
   "size": 1,
   "id": "4930"
  },
@@ -24344,6 +24527,14 @@
  {
   "name": "Strangled",
   "hitpoints": 40,
+  "att": 110,
+  "str": 50,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 138,
   "size": 1,
   "id": "12268"
@@ -24351,6 +24542,14 @@
  {
   "name": "Strangled",
   "hitpoints": 50,
+  "att": 150,
+  "str": 60,
+  "def": 30,
+  "mage": 50,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 149,
   "size": 1,
   "id": "12272"
@@ -24362,6 +24561,10 @@
   "str": 70,
   "def": 40,
   "mage": 60,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 197,
   "size": 3,
   "respawn": 60,
@@ -24374,6 +24577,10 @@
   "str": 70,
   "def": 40,
   "mage": 60,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 166,
   "size": 1,
   "respawn": 60,
@@ -24386,6 +24593,10 @@
   "str": 70,
   "def": 40,
   "mage": 60,
+  "dstab": 30,
+  "dslash": 20,
+  "dcrush": 30,
+  "dmagic": 10,
   "combat": 182,
   "size": 2,
   "respawn": 60,
@@ -25427,18 +25638,6 @@
   "id": "7914"
  },
  {
-  "name": "Thief",
-  "hitpoints": 17,
-  "att": 14,
-  "str": 13,
-  "def": 12,
-  "mage": 1,
-  "range": 1,
-  "combat": 23,
-  "size": 1,
-  "id": "13291"
- },
- {
   "name": "Thing under the bed",
   "hitpoints": 25,
   "att": 1,
@@ -26059,7 +26258,6 @@
  },
  {
   "name": "Tree spirit (hard)",
-  "isUndead": true,
   "isSpectral": true,
   "hitpoints": 187,
   "att": 200,
@@ -26280,21 +26478,6 @@
  {
   "name": "Turoth",
   "isLeafy": true,
-  "hitpoints": 78,
-  "att": 55,
-  "str": 85,
-  "def": 85,
-  "mage": 1,
-  "range": 1,
-  "dslash": 20,
-  "dcrush": 20,
-  "combat": 86,
-  "size": 1,
-  "id": "426"
- },
- {
-  "name": "Turoth",
-  "isLeafy": true,
   "hitpoints": 81,
   "att": 58,
   "str": 88,
@@ -26355,21 +26538,6 @@
   "size": 1,
   "respawn": 15,
   "id": "430"
- },
- {
-  "name": "Turoth",
-  "isLeafy": true,
-  "hitpoints": 80,
-  "att": 57,
-  "str": 87,
-  "def": 87,
-  "mage": 1,
-  "range": 1,
-  "dslash": 20,
-  "dcrush": 20,
-  "combat": 88,
-  "size": 2,
-  "id": "431"
  },
  {
   "name": "Twig",
