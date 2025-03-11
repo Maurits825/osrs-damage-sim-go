@@ -1,0 +1,30 @@
+<div>
+  {{ npc.name }}
+  <span *ngIf="npc.isTobEntryMode">(Entry Mode) </span>
+  <span *ngIf="npc.isTobNormalMode">(Normal Mode) </span>
+  <span *ngIf="npc.isTobHardMode">(Hard Mode) </span>
+  -&nbsp;
+  <img src="assets/img/skills/combat.png" /> {{ npc.combat ? npc.combat : "N/A" }}&nbsp;
+  <img src="assets/img/skills/hitpoints.png" /> {{ npc.hitpoints }}&nbsp;
+  <ng-container *ngIf="npc?.isKalphite">
+    <img class="me-2" src="assets/img/npc_race/kalphite.png" title="Kalphite" />
+  </ng-container>
+  <ng-container *ngIf="npc?.isDemon">
+    <img class="me-2" src="assets/img/npc_race/demon.png" title="Demon" />
+  </ng-container>
+  <ng-container *ngIf="npc?.isDragon">
+    <img class="me-2" src="assets/img/npc_race/dragon.png" title="Dragon" />
+  </ng-container>
+  <ng-container *ngIf="npc?.isUndead">
+    <img class="me-2" src="assets/img/npc_race/undead.png" title="Undead" />
+  </ng-container>
+  <ng-container *ngIf="npc?.isLeafy">
+    <img class="me-2" src="assets/img/npc_race/leafy.png" title="Leafy" />
+  </ng-container>
+  <ng-container *ngIf="npc?.isXerician">
+    <img class="me-2" src="assets/img/npc_race/xerician.png" title="Xerician" />
+  </ng-container>
+  <ng-container *ngIf="npc?.isShade">
+    <img class="me-2" src="assets/img/npc_race/shade.png" title="Shade" />
+  </ng-container>
+</div>

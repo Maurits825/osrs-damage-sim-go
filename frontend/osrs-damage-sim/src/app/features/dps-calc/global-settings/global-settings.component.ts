@@ -15,6 +15,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   globalSettings: GlobalSettings = DEFAULT_GLOBAL_SETTINGS;
 
   npcInfo: NpcInfo = mapGlobalSettingsToNpcInfo(this.globalSettings);
+  isMultiNpc = true;
 
   private destroyed$ = new Subject();
 

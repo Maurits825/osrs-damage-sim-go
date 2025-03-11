@@ -1,1 +1,29 @@
-<p>multi-npc-input works!</p>
+<div>
+  <div class="d-flex mb-2">
+    <div class="flex-grow-1 me-2">
+      <app-npc-input [npcInfo]="emptyNpcInfo" (npcInfoChanged)="onNpcInfoChanged($event)"></app-npc-input>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addNpc()"
+        [disabled]="npcs.length >= 10 || !selectedNpcInfo?.npc || npcs.includes(selectedNpcInfo?.npc)"
+      >
+        <i class="bi bi-plus"></i> Add Npc
+      </button>
+    </div>
+  </div>
+  <div>
+    @for(npc of npcs; track npc.id){
+    <div class="d-flex mb-1">
+      <div class="flex-grow-1">
+        <app-npc-label [npc]="npc"></app-npc-label>
+      </div>
+      <div>
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeNpc(npc)">X</button>
+      </div>
+    </div>
+    }
+  </div>
+</div>
