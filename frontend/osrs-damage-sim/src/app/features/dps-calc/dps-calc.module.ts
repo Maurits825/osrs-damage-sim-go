@@ -15,6 +15,8 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalSettingsComponent } from './global-settings/global-settings.component';
 import { AppSharedModule } from 'src/app/shared/app-shared.module';
 import { FormsModule } from '@angular/forms';
+import { DpsTableComponent } from './dps-results/dps-table/dps-table.component';
+import { DpsGraphTabsComponent } from './dps-results/dps-graph-tabs/dps-graph-tabs.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FormsModule } from '@angular/forms';
     ShareInputSetupComponent,
     WikiDpsShortlinkComponent,
     GlobalSettingsComponent,
+    DpsTableComponent,
+    DpsGraphTabsComponent,
   ],
   imports: [CommonModule, FormsModule, DpsCalcRoutingModule, NgbPopoverModule, AppSharedModule],
 })

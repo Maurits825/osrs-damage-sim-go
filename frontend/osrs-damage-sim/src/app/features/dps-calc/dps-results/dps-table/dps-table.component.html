@@ -1,0 +1,52 @@
+<div>
+  <table class="table table-bordered border-dark mb-3">
+    <thead>
+      <tr class="text-end">
+        <th scope="col" style="width: 30%" class="text-start">
+          <div class="d-flex">
+            <div class="flex-fill">Setup Name</div>
+          </div>
+        </th>
+        <ng-container *ngFor="let dpsSortField of dpsSortFields">
+          <th scope="col" style="width: 10%" (click)="sortDpsResults(dpsSortField)">
+            <button type="button" class="btn w-100 fw-bold p-0 text-end">
+              {{ sortLabels[dpsSortField] }}
+              <ng-container *ngIf="sortConfigs[dpsSortField].isSorted; else notSorted">
+                <ng-container *ngIf="sortConfigs[dpsSortField].sortOrder === SortOrder.Ascending">
+                  <i class="bi bi-sort-up text-primary"></i>
+                </ng-container>
+                <ng-container *ngIf="sortConfigs[dpsSortField].sortOrder === SortOrder.Descending">
+                  <i class="bi bi-sort-down-alt text-primary"></i>
+                </ng-container>
+              </ng-container>
+              <ng-template #notSorted>
+                <i class="bi bi-filter text-secondary"></i>
+              </ng-template>
+            </button>
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let i of sortIndexOrder">
+        <ng-container *ngIf="dpsCalcResults.results[i]; let result">
+          <tr class="align-middle text-end">
+            <th scope="row" class="text-start">
+              <app-input-setup-label
+                [showTextLabel]="showResultTextLabel$ | async"
+                [dpsCalcResult]="result"
+                [inputGearSetup]="inputSetup.inputGearSetups[i]"
+              ></app-input-setup-label>
+            </th>
+            <td>{{ result.theoreticalDps | number : "1.3-3" }}</td>
+            <td>{{ result.ticksToKill | tickToTime }}</td>
+            <td>{{ result.maxHit | maxHit }}</td>
+            <td>{{ result.accuracy | number : "1.2-2" }}%</td>
+            <td>{{ result.expectedHit | number : "1.1-1" }}</td>
+            <td>{{ result.attackRoll }}</td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

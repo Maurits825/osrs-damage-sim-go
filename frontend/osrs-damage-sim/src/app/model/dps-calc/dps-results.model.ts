@@ -27,6 +27,6 @@ export interface DpsCalcResults {
 export interface DpsResults {
   error?: string | null;
 
-  dpsCalcResults: DpsCalcResults;
-  dpsGrapherResults: DpsGrapherResults;
+  dpsCalcResults: DpsCalcResults[];
+  dpsGrapherResults: DpsGrapherResults[];
 }
