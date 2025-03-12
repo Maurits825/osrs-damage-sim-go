@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { take } from 'rxjs';
 import { mapGlobalSettingsToNpcInfo } from 'src/app/helpers/data-mapping.helper';
 import { npcFuzzySearch } from 'src/app/helpers/npc-filter.helper';
@@ -11,6 +11,9 @@ import { StaticDataService } from 'src/app/services/static-data.service';
   templateUrl: './multi-npc-input.component.html',
 })
 export class MultiNpcInputComponent {
+  @Input()
+  multiNpcs: Npc[] = [];
+
   @Output()
   npcInfoChanged = new EventEmitter<NpcInfo>();
 
@@ -18,7 +21,6 @@ export class MultiNpcInputComponent {
   multiNpcsChanged = new EventEmitter<Npc[]>();
 
   npcInfo: NpcInfo = mapGlobalSettingsToNpcInfo(DEFAULT_GLOBAL_SETTINGS);
-  npcs: Npc[] = [];
 
   Npc: Npc;
 
@@ -42,16 +44,16 @@ export class MultiNpcInputComponent {
   }
 
   addNpc(): void {
-    this.npcs.push(this.npcInfo.npc);
-    this.multiNpcsChanged.emit(this.npcs);
+    this.multiNpcs.push(this.npcInfo.npc);
+    this.multiNpcsChanged.emit(this.multiNpcs);
   }
 
   removeNpc(npc: Npc): void {
-    const index = this.npcs.indexOf(npc);
+    const index = this.multiNpcs.indexOf(npc);
     if (index >= 0) {
-      this.npcs.splice(index, 1);
+      this.multiNpcs.splice(index, 1);
     }
-    this.multiNpcsChanged.emit(this.npcs);
+    this.multiNpcsChanged.emit(this.multiNpcs);
   }
 
   npcFilter(npc: Npc, searchTerm: string): boolean {

@@ -24,8 +24,8 @@ type status struct {
 }
 
 type DpsResults struct {
-	DpsCalcResults    dpscalc.DpsCalcResults       `json:"dpsCalcResults"`
-	DpsGrapherResults dpsgrapher.DpsGrapherResults `json:"dpsGrapherResults"`
+	DpsCalcResults    []*dpscalc.DpsCalcResults       `json:"dpsCalcResults"`
+	DpsGrapherResults []*dpsgrapher.DpsGrapherResults `json:"dpsGrapherResults"`
 }
 
 var ginLambda *ginadapter.GinLambda
@@ -47,7 +47,6 @@ func main() {
 }
 
 func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	// If no name is provided in the HTTP request body, throw an error
 	return ginLambda.ProxyWithContext(ctx, req)
 }
 
@@ -88,8 +87,8 @@ func dpsCalc(c *gin.Context) {
 	}
 
 	dpsCalcResults := dpscalc.RunDpsCalc(&inputSetup)
-	dpsGrapherResults := dpsgrapher.RunDpsGrapher(&inputSetup)
-	c.JSON(http.StatusOK, DpsResults{*dpsCalcResults, *dpsGrapherResults})
+	dpsGrapherResults := dpsgrapher.RunDpsGrapher(inputSetup)
+	c.JSON(http.StatusOK, DpsResults{dpsCalcResults, dpsGrapherResults})
 }
 
 func simpledmgSim(c *gin.Context) {
@@ -132,6 +131,12 @@ func wikiDpsShortlink(c *gin.Context) {
 
 	if err := inputSetup.Validate(); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	//todo better place to put this
+	if inputSetup.GlobalSettings.Npc.Id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "multi npc not support with wiki shortlink"})
 		return
 	}
 

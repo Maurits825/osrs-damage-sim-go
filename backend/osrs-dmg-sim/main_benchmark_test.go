@@ -20,7 +20,7 @@ func BenchmarkMainDpsCalc(b *testing.B) {
 		b.Run(setupName, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				dpscalc.RunDpsCalc(&testSetup.InputSetup)
-				dpsgrapher.RunDpsGrapher(&testSetup.InputSetup)
+				dpsgrapher.RunDpsGrapher(testSetup.InputSetup)
 			}
 		})
 	}

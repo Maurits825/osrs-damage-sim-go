@@ -32,14 +32,14 @@
         type="button"
         class="btn btn-primary"
         (click)="addNpc()"
-        [disabled]="npcs.length >= 10 || !npcInfo?.npc || npcs.includes(npcInfo?.npc)"
+        [disabled]="multiNpcs.length >= 10 || !npcInfo?.npc || multiNpcs.includes(npcInfo?.npc)"
       >
         <i class="bi bi-plus"></i> Add Npc
       </button>
     </div>
   </div>
   <div>
-    @for(npc of npcs; track npc.id){
+    @for(npc of multiNpcs; track npc.id){
     <div class="d-flex mb-1">
       <div class="flex-grow-1"><app-npc-label [npc]="npc"></app-npc-label></div>
       <div>

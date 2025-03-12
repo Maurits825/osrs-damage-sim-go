@@ -26,7 +26,7 @@ export class JsonParseService {
   }
 
   public parseGlobalSettings(globalSettings: GlobalSettings): GlobalSettings {
-    const npc = this.parseNpc(globalSettings.npc);
+    const npc = globalSettings.npc?.id ? this.parseNpc(globalSettings.npc) : null;
 
     return {
       npc: npc,

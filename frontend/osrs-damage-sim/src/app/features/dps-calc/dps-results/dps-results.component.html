@@ -1,15 +1,46 @@
-<div *ngIf="dpsResults?.dpsCalcResults && !dpsResults?.error">
-  <h3 class="mb-3 fw-light text-center">{{ dpsResults.dpsCalcResults[0].title }}</h3>
+@if(dpsResults?.dpsCalcResults && dpsResults.dpsGrapherResults && !dpsResults?.error){
+
+<div>
+  @if(dpsResults.dpsCalcResults.length == 1) {
+  <ng-container *ngTemplateOutlet="singleResult; context: { npcIndex: 0 }"></ng-container>
+
+  }@else {
+  <div class="mb-2 d-flex align-items-center">
+    <div class="me-2">Select Npc</div>
+    <div class="flex-grow-1">
+      <app-ng-select-lazy-load
+        [valueType]="Npc"
+        [allValues]="inputSetup.multiNpcs"
+        [selectedValue]="selectedMultiNpc"
+        [clearable]="false"
+        placeholder="Select npc"
+        (valueChanged)="selectedNpcChange($event)"
+      >
+        <ng-template #dropdownLabel #dropdownOptions let-item="item">
+          <app-npc-label [npc]="item"></app-npc-label>
+        </ng-template>
+      </app-ng-select-lazy-load>
+    </div>
+  </div>
+  <div>
+    <ng-container *ngTemplateOutlet="singleResult; context: { npcIndex: selectedMultiNpcIndex }"></ng-container>
+  </div>
+  }
+</div>
+}
+
+<ng-template #singleResult let-npcIndex="npcIndex">
+  <h3 class="mb-3 fw-light text-center">{{ dpsResults.dpsCalcResults[npcIndex].title }}</h3>
 
   <div class="mb-1">
-    <app-dps-table [dpsCalcResults]="dpsResults.dpsCalcResults[0]" [inputSetup]="inputSetup"></app-dps-table>
+    <app-dps-table [dpsCalcResults]="dpsResults.dpsCalcResults[npcIndex]" [inputSetup]="inputSetup"></app-dps-table>
   </div>
 
   <div class="mb-1">
     <app-dps-graph-tabs
-      [dpsCalcResults]="dpsResults.dpsCalcResults[0]"
-      [dpsGrapherResults]="dpsResults.dpsGrapherResults[0]"
+      [dpsCalcResults]="dpsResults.dpsCalcResults[npcIndex]"
+      [dpsGrapherResults]="dpsResults.dpsGrapherResults[npcIndex]"
       [inputSetup]="inputSetup"
     ></app-dps-graph-tabs>
   </div>
-</div>
+</ng-template>

@@ -23,9 +23,10 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
   constructor(private inputSetupService: DpsCalcInputService) {}
 
   ngOnInit(): void {
-    this.inputSetupService.loadInputSetup$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((inputSetup: InputSetup) => this.setGlobalSettings(inputSetup.globalSettings));
+    this.inputSetupService.loadInputSetup$.pipe(takeUntil(this.destroyed$)).subscribe((inputSetup: InputSetup) => {
+      this.setGlobalSettings(inputSetup.globalSettings);
+      this.multiNpcs = inputSetup.multiNpcs;
+    });
 
     //TODO this is scuffed?
     this.inputSetupService.globalSettingProvider = { getGlobalSettings: () => this.globalSettings };
