@@ -11,34 +11,7 @@
         (valueChanged)="selectedNpcChange($event)"
       >
         <ng-template #dropdownLabel #dropdownOptions let-item="item">
-          {{ item.name }}
-          <span *ngIf="item.isTobEntryMode">(Entry Mode) </span>
-          <span *ngIf="item.isTobNormalMode">(Normal Mode) </span>
-          <span *ngIf="item.isTobHardMode">(Hard Mode) </span>
-          -&nbsp;
-          <img src="assets/img/skills/combat.png" /> {{ item.combat ? item.combat : "N/A" }}&nbsp;
-          <img src="assets/img/skills/hitpoints.png" /> {{ item.hitpoints }}&nbsp;
-          <ng-container *ngIf="item?.isKalphite">
-            <img class="me-2" src="assets/img/npc_race/kalphite.png" title="Kalphite" />
-          </ng-container>
-          <ng-container *ngIf="item?.isDemon">
-            <img class="me-2" src="assets/img/npc_race/demon.png" title="Demon" />
-          </ng-container>
-          <ng-container *ngIf="item?.isDragon">
-            <img class="me-2" src="assets/img/npc_race/dragon.png" title="Dragon" />
-          </ng-container>
-          <ng-container *ngIf="item?.isUndead">
-            <img class="me-2" src="assets/img/npc_race/undead.png" title="Undead" />
-          </ng-container>
-          <ng-container *ngIf="item?.isLeafy">
-            <img class="me-2" src="assets/img/npc_race/leafy.png" title="Leafy" />
-          </ng-container>
-          <ng-container *ngIf="item?.isXerician">
-            <img class="me-2" src="assets/img/npc_race/xerician.png" title="Xerician" />
-          </ng-container>
-          <ng-container *ngIf="item?.isShade">
-            <img class="me-2" src="assets/img/npc_race/shade.png" title="Shade" />
-          </ng-container>
+          <app-npc-label [npc]="item"></app-npc-label>
         </ng-template>
       </app-ng-select-lazy-load>
     </ng-container>

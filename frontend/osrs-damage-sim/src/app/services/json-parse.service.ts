@@ -21,8 +21,12 @@ export class JsonParseService {
     });
   }
 
+  public parseNpc(npc: Npc): Npc {
+    return this.allNpcs.find((n: Npc) => n.id === npc.id);
+  }
+
   public parseGlobalSettings(globalSettings: GlobalSettings): GlobalSettings {
-    const npc = this.allNpcs.find((npc: Npc) => npc.id === globalSettings.npc?.id);
+    const npc = this.parseNpc(globalSettings.npc);
 
     return {
       npc: npc,
