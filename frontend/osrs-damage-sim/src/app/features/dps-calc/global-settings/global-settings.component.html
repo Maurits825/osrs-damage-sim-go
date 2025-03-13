@@ -13,14 +13,14 @@
         />
       </div>
 
-      @if(isMultiNpc) {
-      <app-multi-npc-input
-        [multiNpcs]="multiNpcs"
-        (npcInfoChanged)="npcInfoChanged($event)"
-        (multiNpcsChanged)="multiNpcsChanged($event)"
-      ></app-multi-npc-input>
+      @if (isMultiNpc) {
+        <app-multi-npc-input
+          [multiNpcs]="multiNpcs"
+          (npcInfoChanged)="npcInfoChanged($event)"
+          (multiNpcsChanged)="multiNpcsChanged($event)"
+        ></app-multi-npc-input>
       } @else {
-      <app-npc-input [npcInfo]="npcInfo" (npcInfoChanged)="npcInfoChanged($event)"></app-npc-input>
+        <app-npc-input [npcInfo]="npcInfo" (npcInfoChanged)="npcInfoChanged($event)"></app-npc-input>
       }
     </div>
   </div>

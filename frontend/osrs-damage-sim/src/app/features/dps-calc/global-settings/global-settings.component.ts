@@ -26,6 +26,7 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
     this.inputSetupService.loadInputSetup$.pipe(takeUntil(this.destroyed$)).subscribe((inputSetup: InputSetup) => {
       this.setGlobalSettings(inputSetup.globalSettings);
       this.multiNpcs = inputSetup.multiNpcs;
+      this.isMultiNpc = this.multiNpcs.length > 1;
     });
 
     //TODO this is scuffed?

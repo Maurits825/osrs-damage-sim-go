@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { RESULT_TABS, ResultType, ResultTab, CALC_DETAILS_TAB } from '../result-tab.model';
+import { RESULT_TABS, ResultType, ResultTab, CALC_DETAILS_TAB } from './dps-graph-tabs.model';
 import { DpsGrapherResults } from 'src/app/model/dps-calc/dps-grapher-results.model';
 import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { DpsCalcResults } from 'src/app/model/dps-calc/dps-results.model';

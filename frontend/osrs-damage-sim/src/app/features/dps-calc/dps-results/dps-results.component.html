@@ -1,32 +1,101 @@
-@if(dpsResults?.dpsCalcResults && dpsResults.dpsGrapherResults && !dpsResults?.error){
-
-<div>
-  @if(dpsResults.dpsCalcResults.length == 1) {
-  <ng-container *ngTemplateOutlet="singleResult; context: { npcIndex: 0 }"></ng-container>
-
-  }@else {
-  <div class="mb-2 d-flex align-items-center">
-    <div class="me-2">Select Npc</div>
-    <div class="flex-grow-1">
-      <app-ng-select-lazy-load
-        [valueType]="Npc"
-        [allValues]="inputSetup.multiNpcs"
-        [selectedValue]="selectedMultiNpc"
-        [clearable]="false"
-        placeholder="Select npc"
-        (valueChanged)="selectedNpcChange($event)"
-      >
-        <ng-template #dropdownLabel #dropdownOptions let-item="item">
-          <app-npc-label [npc]="item"></app-npc-label>
-        </ng-template>
-      </app-ng-select-lazy-load>
-    </div>
-  </div>
+@if (dpsResults?.dpsCalcResults && dpsResults.dpsGrapherResults && !dpsResults?.error) {
   <div>
-    <ng-container *ngTemplateOutlet="singleResult; context: { npcIndex: selectedMultiNpcIndex }"></ng-container>
+    @if (dpsResults.dpsCalcResults.length == 1) {
+      <ng-container *ngTemplateOutlet="singleResult; context: { npcIndex: 0 }"></ng-container>
+    } @else {
+      <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+        <div class="container-fluid px-2">
+          <ul class="navbar-nav nav-tabs flex-wrap">
+            <ng-container *ngFor="let resultTab of resultTabs">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  role="button"
+                  [ngClass]="{
+                    active: activeResultTab.tabType === resultTab.tabType,
+                  }"
+                  (click)="activeResultTab = resultTab"
+                >
+                  <div class="text-center">{{ resultTab.label }}</div>
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </nav>
+
+      @switch (activeResultTab.tabType) {
+        @case (TabType.Overview) {
+          <div>
+            <table class="table table-bordered border-dark mb-3">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 30%" class="text-start">
+                    <div class="d-flex">
+                      <div class="flex-fill">Setup Name</div>
+                    </div>
+                  </th>
+                  @for (npc of inputSetup.multiNpcs; track npc.id) {
+                    <th scope="col" style="width: 10%">{{ npc.name }}</th>
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                @for (setup of inputSetup.inputGearSetups; track setup; let inputSetupIndex = $index) {
+                  <tr class="align-middle">
+                    <th scope="row" class="text-start">
+                      <app-input-setup-label
+                        [showTextLabel]="showResultTextLabel$ | async"
+                        [dpsCalcResult]="dpsResults.dpsCalcResults[0].results[inputSetupIndex]"
+                        [inputGearSetup]="setup"
+                      ></app-input-setup-label>
+                    </th>
+                    @for (results of dpsResults.dpsCalcResults; track results; let resultIndex = $index) {
+                      <td>
+                        <div class="d-flex flex-column justify-content-center">
+                          <div [class.best-result]="bestResultsIndices[resultIndex].dps === inputSetupIndex">
+                            Dps: {{ results.results[inputSetupIndex].theoreticalDps | number: "1.3-3" }}
+                          </div>
+                          <div [class.best-result]="bestResultsIndices[resultIndex].maxHit === inputSetupIndex">
+                            Max hit: {{ results.results[inputSetupIndex].maxHit | maxHit }}
+                          </div>
+                          <div [class.best-result]="bestResultsIndices[resultIndex].accuracy === inputSetupIndex">
+                            Accuracy: {{ results.results[inputSetupIndex].accuracy | number: "1.2-2" }}%
+                          </div>
+                        </div>
+                      </td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+        @case (TabType.IndividualNpc) {
+          <div class="mb-2 d-flex align-items-center">
+            <div class="me-2">Select Npc</div>
+            <div class="flex-grow-1">
+              <app-ng-select-lazy-load
+                [valueType]="Npc"
+                [allValues]="inputSetup.multiNpcs"
+                [selectedValue]="selectedMultiNpc"
+                [clearable]="false"
+                placeholder="Select npc"
+                (valueChanged)="selectedNpcChange($event)"
+              >
+                <ng-template #dropdownLabel #dropdownOptions let-item="item">
+                  <app-npc-label [npc]="item"></app-npc-label>
+                </ng-template>
+              </app-ng-select-lazy-load>
+            </div>
+          </div>
+          <div>
+            <ng-container *ngTemplateOutlet="singleResult; context: { npcIndex: selectedMultiNpcIndex }"></ng-container>
+          </div>
+        }
+      }
+    }
   </div>
-  }
-</div>
 }
 
 <ng-template #singleResult let-npcIndex="npcIndex">
