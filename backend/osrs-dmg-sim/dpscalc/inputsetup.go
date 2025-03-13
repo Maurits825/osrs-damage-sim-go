@@ -197,7 +197,7 @@ type InputSetup struct {
 }
 
 func (inputSetup *InputSetup) Validate() error {
-	multiNpcErr := isValidRange(len(inputSetup.MultiNpcs), 2, 10, "Multi npcs count")
+	multiNpcErr := isValidRange(len(inputSetup.MultiNpcs), 2, 20, "Multi npcs count")
 	npcErr := inputSetup.GlobalSettings.Npc.Id == "0" || len(inputSetup.GlobalSettings.Npc.Id) == 0
 	if multiNpcErr != nil && npcErr {
 		return errors.New("no npc selected")

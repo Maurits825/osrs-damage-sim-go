@@ -30,13 +30,13 @@
             <table class="table table-bordered border-dark mb-3">
               <thead>
                 <tr>
-                  <th scope="col" style="width: 30%" class="text-start">
+                  <th scope="col" class="text-start">
                     <div class="d-flex">
                       <div class="flex-fill">Setup Name</div>
                     </div>
                   </th>
                   @for (npc of inputSetup.multiNpcs; track npc.id) {
-                    <th scope="col" style="width: 10%">{{ npc.name }}</th>
+                    <th scope="col">{{ npc.name }}</th>
                   }
                 </tr>
               </thead>
