@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { DpsCalcResults, DpsResults } from 'src/app/model/dps-calc/dps-results.model';
 import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
@@ -14,7 +14,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   templateUrl: './dps-results.component.html',
   styleUrls: ['./dps-results.component.css'],
 })
-export class DpsResultsComponent implements OnChanges {
+export class DpsResultsComponent implements OnInit, OnChanges {
   @Input()
   dpsResults: DpsResults;
 
@@ -22,7 +22,7 @@ export class DpsResultsComponent implements OnChanges {
 
   Npc: Npc;
   selectedMultiNpc: Npc;
-  selectedMultiNpcIndex: number = 0;
+  selectedMultiNpcIndex = 0;
 
   resultTabs = RESULT_TABS;
   TabType = TabType;
@@ -67,7 +67,7 @@ export class DpsResultsComponent implements OnChanges {
     const bestIndices: BestResultsIndex[] = [];
     for (let i = 0; i < dpsCalcResults.length; i++) {
       bestIndices.push({ dps: 0, accuracy: 0, maxHit: 0 });
-      let bestValues: BestResultsIndex = { dps: 0, accuracy: 0, maxHit: 0 };
+      const bestValues: BestResultsIndex = { dps: 0, accuracy: 0, maxHit: 0 };
 
       for (let j = 0; j < dpsCalcResults[i].results.length; j++) {
         const dpsResults = dpsCalcResults[i].results[j];
@@ -80,7 +80,7 @@ export class DpsResultsComponent implements OnChanges {
           bestIndices[i].accuracy = j;
         }
 
-        let maxHit = dpsResults.maxHit.reduce((a, b) => a + b, 0);
+        const maxHit = dpsResults.maxHit.reduce((a, b) => a + b, 0);
         if (maxHit > bestValues.maxHit) {
           bestValues.maxHit = maxHit;
           bestIndices[i].maxHit = j;

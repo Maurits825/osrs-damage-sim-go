@@ -11,7 +11,7 @@ import { DpsCalcResults } from 'src/app/model/dps-calc/dps-results.model';
   selector: 'app-dps-graph-tabs',
   templateUrl: './dps-graph-tabs.component.html',
 })
-export class DpsGraphTabsComponent {
+export class DpsGraphTabsComponent implements OnInit {
   @Input()
   dpsGrapherResults: DpsGrapherResults;
 
@@ -32,7 +32,7 @@ export class DpsGraphTabsComponent {
   ngOnInit(): void {
     this.showResultTextLabel$ = this.localStorageService.userSettingsWatch$.pipe(
       map((userSettings: UserSettings) => userSettings.showTextLabels),
-      shareReplay(1)
+      shareReplay(1),
     );
 
     this.localStorageService.userSettingsWatch$

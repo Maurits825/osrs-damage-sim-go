@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs';
 import { mapGlobalSettingsToNpcInfo } from 'src/app/helpers/data-mapping.helper';
 import { npcFuzzySearch } from 'src/app/helpers/npc-filter.helper';
@@ -12,7 +12,7 @@ import { TOA_NPCS, TOA_PATH_LVL_NPCS } from '../npc-input/npc.const';
   selector: 'app-multi-npc-input',
   templateUrl: './multi-npc-input.component.html',
 })
-export class MultiNpcInputComponent {
+export class MultiNpcInputComponent implements OnInit {
   @Input()
   multiNpcs: Npc[] = [];
 

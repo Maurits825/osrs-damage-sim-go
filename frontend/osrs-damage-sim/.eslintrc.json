@@ -4,7 +4,7 @@
   "overrides": [
     {
       "files": ["*.ts"],
-      "parser": "parser:@typescript-eslint/parser",
+      "parser": "@typescript-eslint/parser",
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
