@@ -89,11 +89,18 @@ const (
 	ralos = 28919
 )
 
+// echo leagues stuff
 const (
 	drygoreBlowpipe = 1000000
 	devilElement    = 1000004
 	crystalBlessing = 1000005
 	glovesDamned    = 1000001
+)
+
+// future content
+const (
+	eyeOfAyak            = 2000005
+	conflictionGauntlets = 2000006
 )
 
 var virtusSet = []int{26241, 26243, 26245}

@@ -328,6 +328,12 @@ func getAccuracy(player *player) (float32, int) {
 		}
 	}
 
+	if player.equippedGear.isEquipped(conflictionGauntlets) && player.combatStyle.CombatStyleType == Magic {
+		//TODO is math right?
+		effectAccuracy := 1 - float32(math.Pow(float64(1-accuracy), 2))
+		accuracy = accuracy*accuracy + (1-accuracy)*effectAccuracy
+	}
+
 	if player.equippedGear.isEquipped(drygoreBlowpipe) && player.combatStyle.CombatStyleType == Ranged {
 		accuracy = getFangEffectAccuracy(attackRoll, defenceRoll)
 	}

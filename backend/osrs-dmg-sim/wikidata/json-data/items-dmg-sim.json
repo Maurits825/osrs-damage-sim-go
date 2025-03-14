@@ -49081,5 +49081,14 @@
   "amagic": 30,
   "aspeed": 3,
   "weaponCategory": "POWERED_STAFF"
+ },
+ "2000006": {
+  "name": "Confliction Gauntlets",
+  "futureContent": true,
+  "equipable": true,
+  "slot": 9,
+  "amagic": 20,
+  "arange": -4,
+  "mdmg": 7.0
  }
 }
