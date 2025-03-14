@@ -11,12 +11,15 @@ from tob_npcs import TobNpcs
 
 # Modification here to include many more attributes
 npc_trait_keys_int = ["hitpoints", "att", "str", "def", "mage", "range",
-                  "attbns", "strbns", "defbns", "amagic", "mbns", "arange", "rngbns",
-                  "dstab", "dslash", "dcrush", "dmagic", "drange", "dlight", "dstandard", "dheavy",
-                  "combat", "size", "respawn", "elementalweaknesspercent"]
+                      "attbns", "strbns", "defbns", "amagic", "mbns", "arange", "rngbns",
+                      "dstab", "dslash", "dcrush", "dmagic", "drange", "dlight", "dstandard", "dheavy",
+                      "combat", "size", "respawn", "elementalweaknesspercent"]
 npc_trait_keys_str = ["elementalweaknesstype"]
 
-FILTER_NPCS = ["4303", "4304", "6500", "6501"]
+FILTER_NPCS = [
+    "4303", "4304", "6500", "6501",
+    "11755", "11758", "11763", "11764",  # warden when core is up and damaged?
+]
 
 
 def run():

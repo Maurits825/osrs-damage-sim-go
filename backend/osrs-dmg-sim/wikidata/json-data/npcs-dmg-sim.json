@@ -38043,7 +38043,7 @@
   "size": 2
  },
  "7550": {
-  "name": "Great Olm Right claw",
+  "name": "Great Olm Right claw (mage)",
   "isDragon": true,
   "isXerician": true,
   "hitpoints": 600,
@@ -38077,7 +38077,7 @@
   "size": 5
  },
  "7552": {
-  "name": "Great Olm Left claw",
+  "name": "Great Olm Left claw (melee)",
   "isDragon": true,
   "isXerician": true,
   "hitpoints": 600,
@@ -49635,7 +49635,7 @@
   "size": 3
  },
  "11753": {
-  "name": "Elidinis' Warden",
+  "name": "Elidinis' Warden (core phase)",
   "hitpoints": 140,
   "att": 300,
   "str": 150,
@@ -49654,7 +49654,7 @@
   "size": 5
  },
  "11754": {
-  "name": "Elidinis' Warden",
+  "name": "Elidinis' Warden (core phase)",
   "hitpoints": 140,
   "att": 300,
   "str": 150,
@@ -49672,27 +49672,8 @@
   "combat": 489,
   "size": 5
  },
- "11755": {
-  "name": "Elidinis' Warden",
-  "hitpoints": 4500,
-  "att": 300,
-  "str": 150,
-  "def": 100,
-  "mage": 190,
-  "range": 190,
-  "strbns": 10,
-  "amagic": 225,
-  "arange": 225,
-  "dstab": 70,
-  "dslash": 70,
-  "dcrush": 70,
-  "dmagic": -30,
-  "drange": 70,
-  "combat": 489,
-  "size": 5
- },
  "11756": {
-  "name": "Tumeken's Warden",
+  "name": "Tumeken's Warden (core phase)",
   "hitpoints": 140,
   "att": 300,
   "str": 150,
@@ -49713,7 +49694,7 @@
   "size": 5
  },
  "11757": {
-  "name": "Tumeken's Warden",
+  "name": "Tumeken's Warden (core phase)",
   "hitpoints": 140,
   "att": 300,
   "str": 150,
@@ -49733,29 +49714,8 @@
   "combat": 489,
   "size": 5
  },
- "11758": {
-  "name": "Tumeken's Warden",
-  "hitpoints": 4500,
-  "att": 300,
-  "str": 150,
-  "def": 100,
-  "mage": 190,
-  "range": 190,
-  "strbns": 25,
-  "amagic": 225,
-  "mbns": 12,
-  "arange": 225,
-  "rngbns": 12,
-  "dstab": 70,
-  "dslash": 70,
-  "dcrush": 70,
-  "dmagic": -30,
-  "drange": 70,
-  "combat": 489,
-  "size": 5
- },
  "11761": {
-  "name": "Elidinis' Warden",
+  "name": "Elidinis' Warden (final phase)",
   "hitpoints": 880,
   "att": 150,
   "str": 150,
@@ -49776,49 +49736,7 @@
   "size": 5
  },
  "11762": {
-  "name": "Tumeken's Warden",
-  "hitpoints": 880,
-  "att": 150,
-  "str": 150,
-  "def": 150,
-  "mage": 150,
-  "range": 150,
-  "strbns": 40,
-  "amagic": 230,
-  "mbns": 40,
-  "arange": 300,
-  "rngbns": 40,
-  "dstab": 40,
-  "dslash": 40,
-  "dcrush": 20,
-  "dmagic": 20,
-  "drange": 20,
-  "combat": 544,
-  "size": 5
- },
- "11763": {
-  "name": "Elidinis' Warden",
-  "hitpoints": 880,
-  "att": 150,
-  "str": 150,
-  "def": 150,
-  "mage": 150,
-  "range": 150,
-  "strbns": 40,
-  "amagic": 230,
-  "mbns": 40,
-  "arange": 300,
-  "rngbns": 40,
-  "dstab": 40,
-  "dslash": 40,
-  "dcrush": 20,
-  "dmagic": 20,
-  "drange": 20,
-  "combat": 544,
-  "size": 5
- },
- "11764": {
-  "name": "Tumeken's Warden",
+  "name": "Tumeken's Warden (final phase)",
   "hitpoints": 880,
   "att": 150,
   "str": 150,

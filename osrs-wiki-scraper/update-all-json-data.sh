@@ -1,8 +1,12 @@
 #!/bin/sh
 export PYTHONUNBUFFERED=1
 
-echo "Running osrs wiki scraper ..."
-python osrs_wiki_scraper.py
+if [ "$1" != "--skip-scraper" ]; then
+    echo "Running OSRS wiki scraper ..."
+    python osrs_wiki_scraper.py
+else
+    echo "Skipping OSRS wiki scraper ..."
+fi
 
 echo ""
 echo "Generating web app data ..."

@@ -40,6 +40,12 @@ CUSTOM_NAME_MAP = {
     "12192_1": "Duke Sucellus (Awakened)",
 
     "5908": "Abyssal Sire (post portal)",
+
+    "11753": "Elidinis' Warden (core phase)",
+    "11761": "Elidinis' Warden (final phase)",
+
+    "11756": "Tumeken's Warden (core phase)",
+    "11762": "Tumeken's Warden (final phase)",
 }
 
 
