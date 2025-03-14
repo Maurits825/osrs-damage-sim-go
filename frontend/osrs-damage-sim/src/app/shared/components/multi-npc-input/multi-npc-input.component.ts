@@ -94,7 +94,7 @@ export class MultiNpcInputComponent implements OnInit {
     if (index >= 0) {
       this.multiNpcs.splice(index, 1);
     }
-    this.multiNpcsChanged.emit(this.multiNpcs);
+    this.onNpcChanges();
   }
 
   onNpcInfoChanged(): void {
