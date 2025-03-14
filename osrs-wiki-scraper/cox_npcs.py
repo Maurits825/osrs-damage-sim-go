@@ -39,4 +39,9 @@ class CoxNpcs:
 
         name = name.replace('(', '').replace(')', '').strip()
 
+        if npc_id == "7550":
+            name = "Great Olm Right claw (mage)"
+        elif npc_id == "7552":
+            name = "Great Olm Left claw (melee)"
+
         return doc, name

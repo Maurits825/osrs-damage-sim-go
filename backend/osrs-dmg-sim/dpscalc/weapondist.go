@@ -248,7 +248,6 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 		}
 	}
 
-	//TODO dists limiters (dmg cap, ice demon...)
 	applyLimiters(player, attackDistribution)
 
 	return attackDistribution

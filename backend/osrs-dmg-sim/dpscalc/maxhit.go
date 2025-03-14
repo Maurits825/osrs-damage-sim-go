@@ -232,7 +232,10 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 		baseMaxhit = int(magicLevel/3 + 1)
 	} else if player.equippedGear.isEquipped(warpedSceptre) {
 		baseMaxhit = int((8*magicLevel + 96) / 37)
+	} else if player.equippedGear.isEquipped(eyeOfAyak) {
+		baseMaxhit = int(magicLevel/3 - 6)
 	}
+	baseMaxhit = max(0, baseMaxhit)
 	//TODO other mics bone staff, cg staff, salamander...
 
 	dpsDetailEntries.TrackValue(dpsdetail.MaxHitBase, baseMaxhit)

@@ -22,6 +22,10 @@ export const gearSetSetups: GearSetSetups = {
       label: 'Justiciar',
       itemIds: [22326, 22327, 22328],
     },
+    {
+      label: 'Soul',
+      itemIds: [2000001, 2000002, 2000003], //TODO update with actual ids
+    },
   ],
 
   ranged: [

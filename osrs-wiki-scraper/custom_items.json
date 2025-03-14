@@ -1,0 +1,64 @@
+{
+  "2000001": {
+    "name": "Soul Helm",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 0,
+    "aslash": 10,
+    "amagic": -2,
+    "arange": -7,
+    "str": 6
+  },
+  "2000002": {
+    "name": "Soul Chestplate",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 4,
+    "aslash": 16,
+    "amagic": -16,
+    "arange": -18,
+    "str": 4
+  },
+  "2000003": {
+    "name": "Soul Platelegs",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 7,
+    "aslash": 12,
+    "amagic": -12,
+    "arange": -14,
+    "str": 2
+  },
+  "2000004": {
+    "name": "Avernic Treads (Maxed)",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 10,
+    "astab": 5,
+    "aslash": 5,
+    "acrush": 5,
+    "amagic": 11,
+    "arange": 15,
+    "str": 6,
+    "rstr": 3,
+    "mdmg": 2.0
+  },
+  "2000005": {
+    "name": "The Eye of Ayak",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 3,
+    "amagic": 30,
+    "aspeed": 3,
+    "weaponCategory": "POWERED_STAFF"
+  },
+  "2000006": {
+    "name": "Confliction Gauntlets",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 9,
+    "amagic": 20,
+    "arange": -4,
+    "mdmg": 7.0
+  }
+}

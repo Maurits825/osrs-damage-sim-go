@@ -88,7 +88,6 @@ export class DpsResultsComponent implements OnInit, OnChanges {
       }
     }
 
-    console.log(bestIndices);
     return bestIndices;
   }
 }

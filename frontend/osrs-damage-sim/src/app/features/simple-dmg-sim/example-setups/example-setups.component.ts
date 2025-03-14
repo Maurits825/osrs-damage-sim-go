@@ -15,10 +15,13 @@ export class ExampleSetupsComponent implements OnInit {
   selectedSetup: ExampleSetup<InputSetup>;
   ExampleSetup: ExampleSetup<InputSetup>;
 
-  constructor(private staticDataService: StaticDataService, private inputService: SimpleDmgSimInputService) {}
+  constructor(
+    private staticDataService: StaticDataService,
+    private inputService: SimpleDmgSimInputService,
+  ) {}
 
   ngOnInit(): void {
-    this.staticDataService.SimplSimExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
+    this.staticDataService.SimpleSimExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
       this.exampleSetups = exampleSetups;
     });
   }

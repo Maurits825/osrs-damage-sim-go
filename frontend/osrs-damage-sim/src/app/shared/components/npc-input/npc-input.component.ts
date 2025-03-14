@@ -55,6 +55,7 @@ export class NpcInputComponent implements OnInit, OnChanges {
     this.showPathLevel = false;
     this.showRaidLevel = false;
     this.showIsChallengeMode = npc.isXerician;
+    this.npcInfo.isChallengeMode = this.showIsChallengeMode ? this.npcInfo.isChallengeMode : false;
 
     if (TOA_PATH_LVL_NPCS.includes(npcName)) {
       this.showPathLevel = true;

@@ -7732,7 +7732,7 @@
   "id": "5293"
  },
  {
-  "name": "Elidinis' Warden",
+  "name": "Elidinis' Warden (core phase)",
   "hitpoints": 140,
   "att": 300,
   "str": 150,
@@ -7752,27 +7752,7 @@
   "id": "11753"
  },
  {
-  "name": "Elidinis' Warden",
-  "hitpoints": 4500,
-  "att": 300,
-  "str": 150,
-  "def": 100,
-  "mage": 190,
-  "range": 190,
-  "strbns": 10,
-  "amagic": 225,
-  "arange": 225,
-  "dstab": 70,
-  "dslash": 70,
-  "dcrush": 70,
-  "dmagic": -30,
-  "drange": 70,
-  "combat": 489,
-  "size": 5,
-  "id": "11755"
- },
- {
-  "name": "Elidinis' Warden",
+  "name": "Elidinis' Warden (final phase)",
   "hitpoints": 880,
   "att": 150,
   "str": 150,
@@ -10903,7 +10883,7 @@
   "id": "7551"
  },
  {
-  "name": "Great Olm Left claw",
+  "name": "Great Olm Left claw (melee)",
   "isDragon": true,
   "isXerician": true,
   "hitpoints": 600,
@@ -10921,7 +10901,7 @@
   "id": "7552"
  },
  {
-  "name": "Great Olm Right claw",
+  "name": "Great Olm Right claw (mage)",
   "isDragon": true,
   "isXerician": true,
   "hitpoints": 600,
@@ -26410,7 +26390,7 @@
   "id": "3130"
  },
  {
-  "name": "Tumeken's Warden",
+  "name": "Tumeken's Warden (core phase)",
   "hitpoints": 140,
   "att": 300,
   "str": 150,
@@ -26432,29 +26412,7 @@
   "id": "11756"
  },
  {
-  "name": "Tumeken's Warden",
-  "hitpoints": 4500,
-  "att": 300,
-  "str": 150,
-  "def": 100,
-  "mage": 190,
-  "range": 190,
-  "strbns": 25,
-  "amagic": 225,
-  "mbns": 12,
-  "arange": 225,
-  "rngbns": 12,
-  "dstab": 70,
-  "dslash": 70,
-  "dcrush": 70,
-  "dmagic": -30,
-  "drange": 70,
-  "combat": 489,
-  "size": 5,
-  "id": "11758"
- },
- {
-  "name": "Tumeken's Warden",
+  "name": "Tumeken's Warden (final phase)",
   "hitpoints": 880,
   "att": 150,
   "str": 150,

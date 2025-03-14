@@ -1,12 +1,15 @@
+import json
 import re
 import traceback
+from pathlib import Path
 
 import mwparserfromhell as mw
 
 import api
 import util
 from constants import CACHE_DATA_FOLDER, SLOT_IDS
-from future_content_items import get_future_items
+
+CUSTOM_ITEM_JSON = Path(__file__).parent / "custom_items.json"
 
 
 def run():
@@ -109,4 +112,9 @@ def run():
     # TODO comment for out for now, need a better/generic way to handle this
     # future_items = get_future_items()
     # stats.update(future_items)
+
+    with open(CUSTOM_ITEM_JSON, 'r') as items_json:
+        custom_items = json.load(items_json)
+        stats.update(custom_items)
+
     util.write_json(CACHE_DATA_FOLDER / "items-dmg-sim.json", CACHE_DATA_FOLDER / "items-dmg-sim.min.json", stats)
