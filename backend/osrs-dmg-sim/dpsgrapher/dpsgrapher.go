@@ -59,7 +59,25 @@ const (
 	maxToaRaidLevel = 600
 )
 
-func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
+func RunDpsGrapher(inputSetup dpscalc.InputSetup) []*DpsGrapherResults {
+	var results []*DpsGrapherResults
+	if len(inputSetup.MultiNpcs) > 0 {
+		results = make([]*DpsGrapherResults, len(inputSetup.MultiNpcs))
+		for i := range inputSetup.MultiNpcs {
+			inputSetup.GlobalSettings.Npc = inputSetup.MultiNpcs[i]
+			calcResult := RunOneDpsGrapher(inputSetup)
+			results[i] = calcResult
+		}
+	} else {
+		results = make([]*DpsGrapherResults, 1)
+		calcResult := RunOneDpsGrapher(inputSetup)
+		results[0] = calcResult
+	}
+
+	return results
+}
+
+func RunOneDpsGrapher(inputSetup dpscalc.InputSetup) *DpsGrapherResults {
 	npcId, _ := strconv.Atoi(inputSetup.GlobalSettings.Npc.Id)
 
 	dpsResults := make(chan DpsGrapherResult, len(allGraphTypes))
@@ -74,21 +92,21 @@ func RunDpsGrapher(inputSetup *dpscalc.InputSetup) *DpsGrapherResults {
 
 	dpsDataCh := make(chan []GraphData)
 	go func() {
-		dpsDataCh <- getDefenceDpsResults(inputSetup)
+		dpsDataCh <- getDefenceDpsResults(&inputSetup)
 	}()
 
-	runGrapher(func() DpsGrapherResult { return getNpcHitpointsDpsGrapher(inputSetup, NpcHitpoints) })
+	runGrapher(func() DpsGrapherResult { return getNpcHitpointsDpsGrapher(&inputSetup, NpcHitpoints) })
 
 	for _, graphType := range levelGraphTypes {
-		runGrapher(func() DpsGrapherResult { return getLevelDpsGrapher(inputSetup, graphType) })
+		runGrapher(func() DpsGrapherResult { return getLevelDpsGrapher(&inputSetup, graphType) })
 	}
 
 	if dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id).IsXerician {
-		runGrapher(func() DpsGrapherResult { return getTeamSizeDpsGrapher(inputSetup, TeamSize) })
+		runGrapher(func() DpsGrapherResult { return getTeamSizeDpsGrapher(&inputSetup, TeamSize) })
 	}
 
 	if slices.Contains(dpscalc.ToaIds, npcId) {
-		runGrapher(func() DpsGrapherResult { return getToaRaidLevelDpsGrapher(inputSetup, ToaRaidLevel) })
+		runGrapher(func() DpsGrapherResult { return getToaRaidLevelDpsGrapher(&inputSetup, ToaRaidLevel) })
 	}
 
 	wg.Wait()

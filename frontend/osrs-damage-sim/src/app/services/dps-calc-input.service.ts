@@ -6,6 +6,7 @@ import { LocalStorageService } from './local-storage.service';
 import { UserSettings } from '../model/shared/user-settings.model';
 import { GlobalSettings } from '../model/shared/global-settings.model';
 import { JsonParseService } from './json-parse.service';
+import { Npc } from '../model/osrs/npc.model';
 
 export interface InputGearSetupProvider {
   getInputGearSetup(): InputGearSetup[];
@@ -13,6 +14,10 @@ export interface InputGearSetupProvider {
 
 export interface GlobalSettingsProvider {
   getGlobalSettings(): GlobalSettings;
+}
+
+export interface MultiNpcsProvider {
+  getMultiNpcs(): Npc[];
 }
 
 @Injectable({
@@ -23,6 +28,7 @@ export class DpsCalcInputService {
 
   inputGearSetupProvider: InputGearSetupProvider;
   globalSettingProvider: GlobalSettingsProvider;
+  multiNpcsProvider: MultiNpcsProvider;
 
   userSettingsWatch$: Observable<UserSettings>;
 
@@ -36,6 +42,7 @@ export class DpsCalcInputService {
   getInputSetup(): InputSetup {
     //TODO check if providers are not null??
     const inputSetup: InputSetup = {
+      multiNpcs: this.multiNpcsProvider.getMultiNpcs(),
       globalSettings: this.globalSettingProvider.getGlobalSettings(),
       inputGearSetups: this.inputGearSetupProvider.getInputGearSetup(),
       enableDebugTrack: this.localStorageService.userSettings$.getValue().enableDebugTracking,
@@ -57,6 +64,7 @@ export class DpsCalcInputService {
     return {
       globalSettings: this.jsonParseService.parseGlobalSettings(inputSetupJson.globalSettings),
       inputGearSetups,
+      multiNpcs: (inputSetupJson.multiNpcs ?? []).map((npc: Npc) => this.jsonParseService.parseNpc(npc)),
       enableDebugTrack: false,
     };
   }

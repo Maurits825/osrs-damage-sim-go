@@ -5,6 +5,10 @@ interface logData {
 
 export const changeLogData: logData[] = [
   {
+    title: '14 March 2025',
+    body: ['Added multi npc mode'],
+  },
+  {
     title: '21 November 2024',
     body: ['WIP Raging Echoes leagues items & masteries'],
   },

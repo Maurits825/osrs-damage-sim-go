@@ -33,6 +33,8 @@ import { UnitTestModalComponent } from './modals/unit-test-modal/unit-test-modal
 import { SharedSettingsComponent } from './shared-settings/shared-settings.component';
 import { GearSetupLabelComponent } from './components/gear-setup-label/gear-setup-label.component';
 import { RagingEchoesComponent } from './components/leagues/raging-echoes/raging-echoes.component';
+import { MultiNpcInputComponent } from './components/multi-npc-input/multi-npc-input.component';
+import { NpcLabelComponent } from './components/npc-label/npc-label.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { RagingEchoesComponent } from './components/leagues/raging-echoes/raging
     SharedSettingsComponent,
     GearSetupLabelComponent,
     RagingEchoesComponent,
+    MultiNpcInputComponent,
+    NpcLabelComponent,
   ],
   exports: [
     NpcInputComponent,
@@ -97,6 +101,8 @@ import { RagingEchoesComponent } from './components/leagues/raging-echoes/raging
     UnitTestModalComponent,
     SharedSettingsComponent,
     GearSetupLabelComponent,
+    MultiNpcInputComponent,
+    NpcLabelComponent,
   ],
   imports: [CommonModule, FormsModule, NgSelectModule, NgbPopoverModule],
 })

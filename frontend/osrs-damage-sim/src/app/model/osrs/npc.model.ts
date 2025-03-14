@@ -8,7 +8,7 @@ export interface NpcInfo {
 
 export interface Npc {
   name: string;
-  id: number;
+  id: string;
   combat: number;
   hitpoints: number;
   isKalphite: boolean;

@@ -16,8 +16,8 @@ type testInputSetup struct {
 
 func testDpsGrapher(t *testing.T, testInputSetups testInputSetups) {
 	for setupName, testInputSetup := range testInputSetups {
-		dpsCalcResults := RunDpsGrapher(&testInputSetup.InputSetup)
-		if len(dpsCalcResults.Results) == 0 {
+		dpsCalcResults := RunDpsGrapher(testInputSetup.InputSetup)
+		if len(dpsCalcResults[0].Results) == 0 {
 			t.Errorf("Empty dps grapher results: " + setupName)
 		}
 	}

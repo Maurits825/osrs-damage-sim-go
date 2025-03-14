@@ -11,7 +11,7 @@ func BenchmarkDpsGrapher(b *testing.B) {
 	for setupName, testSetup := range inputSetups {
 		b.Run(setupName, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				RunDpsGrapher(&testSetup.InputSetup)
+				RunDpsGrapher(testSetup.InputSetup)
 			}
 		})
 	}

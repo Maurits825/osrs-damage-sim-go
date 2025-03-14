@@ -193,9 +193,16 @@ type InputSetup struct {
 	GlobalSettings   GlobalSettings   `json:"globalSettings"`
 	InputGearSetups  []InputGearSetup `json:"inputGearSetups"`
 	EnableDebugTrack bool             `json:"enableDebugTrack"`
+	MultiNpcs        []Npc            `json:"multiNpcs"`
 }
 
 func (inputSetup *InputSetup) Validate() error {
+	multiNpcErr := isValidRange(len(inputSetup.MultiNpcs), 2, 20, "Multi npcs count")
+	npcErr := inputSetup.GlobalSettings.Npc.Id == "0" || len(inputSetup.GlobalSettings.Npc.Id) == 0
+	if multiNpcErr != nil && npcErr {
+		return errors.New("no npc selected")
+	}
+
 	if err := inputSetup.GlobalSettings.Validate(); err != nil {
 		return err
 	}
@@ -236,12 +243,6 @@ func (inputGearSetup *InputGearSetup) validate() error {
 }
 
 var globalSettingsValidators = []func(gs *GlobalSettings) error{
-	func(gs *GlobalSettings) error {
-		if gs.Npc.Id == "0" || len(gs.Npc.Id) == 0 {
-			return errors.New("invalid npc")
-		}
-		return nil
-	},
 	func(gs *GlobalSettings) error {
 		return isValidRange(gs.TeamSize, MinTeamSize, MaxTeamSize, "Team size")
 	},

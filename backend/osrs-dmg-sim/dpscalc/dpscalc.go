@@ -65,7 +65,26 @@ func init() {
 	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[int]int)
 }
 
-func RunDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
+func RunDpsCalc(inputSetup *InputSetup) []*DpsCalcResults {
+	var results []*DpsCalcResults
+	if len(inputSetup.MultiNpcs) > 0 {
+		results = make([]*DpsCalcResults, len(inputSetup.MultiNpcs))
+		for i := range inputSetup.MultiNpcs {
+			//TODO if we want to go routine, this wont work? we need to pass a copy
+			inputSetup.GlobalSettings.Npc = inputSetup.MultiNpcs[i]
+			calcResult := RunOneDpsCalc(inputSetup)
+			results[i] = calcResult
+		}
+	} else {
+		results = make([]*DpsCalcResults, 1)
+		calcResult := RunOneDpsCalc(inputSetup)
+		results[0] = calcResult
+	}
+
+	return results
+}
+
+func RunOneDpsCalc(inputSetup *InputSetup) *DpsCalcResults {
 	dpsCalcResult := make([]DpsCalcResult, len(inputSetup.InputGearSetups))
 	opts := &DpsCalcOptions{EnableTrack: inputSetup.EnableDebugTrack, CalcHtk: true}
 	for i, inputGearSetup := range inputSetup.InputGearSetups {

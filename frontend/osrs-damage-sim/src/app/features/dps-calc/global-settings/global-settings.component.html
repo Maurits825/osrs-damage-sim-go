@@ -1,11 +1,28 @@
 <div class="mb-4">
-  <div class="row mb-1 align-items-center">
+  <div class="row mb-1">
     <div class="col-2">Npc Settings</div>
-    <app-npc-input
-      class="col-10 col-xxl-6"
-      [npcInfo]="npcInfo"
-      (npcInfoChanged)="npcInfoChanged($event)"
-    ></app-npc-input>
+    <div class="col-10 col-xxl-8">
+      <div class="form-check form-switch mb-1">
+        <label for="multi-npc">Multi Npc mode</label>
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="multi-npc"
+          [(ngModel)]="isMultiNpc"
+          (change)="multiNpcs = []"
+        />
+      </div>
+
+      @if (isMultiNpc) {
+        <app-multi-npc-input
+          [multiNpcs]="multiNpcs"
+          (npcInfoChanged)="npcInfoChanged($event)"
+          (multiNpcsChanged)="multiNpcsChanged($event)"
+        ></app-multi-npc-input>
+      } @else {
+        <app-npc-input [npcInfo]="npcInfo" (npcInfoChanged)="npcInfoChanged($event)"></app-npc-input>
+      }
+    </div>
   </div>
 </div>
 

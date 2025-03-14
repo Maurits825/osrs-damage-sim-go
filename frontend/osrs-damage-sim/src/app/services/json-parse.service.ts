@@ -7,6 +7,7 @@ import { GearSetupSettings } from '../model/shared/gear-setup-settings.model';
 import { DRAGON_DARTS_ID, GearSetup } from '../model/shared/gear-setup.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
 import { Item } from '../model/osrs/item.model';
+import { DEFAULT_RAGING_ECHOES_SETTINGS } from '../model/osrs/leagues/raging-echoes.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,12 @@ export class JsonParseService {
     });
   }
 
+  public parseNpc(npc: Npc): Npc {
+    return this.allNpcs.find((n: Npc) => n.id === npc.id);
+  }
+
   public parseGlobalSettings(globalSettings: GlobalSettings): GlobalSettings {
-    const npc = this.allNpcs.find((npc: Npc) => npc.id === globalSettings.npc?.id);
+    const npc = globalSettings.npc?.id ? this.parseNpc(globalSettings.npc) : null;
 
     return {
       npc: npc,
@@ -42,6 +47,7 @@ export class JsonParseService {
       trailblazerRelics: gearSetupSettings.trailblazerRelics
         ? new Set(Array.from(gearSetupSettings.trailblazerRelics))
         : new Set(),
+      ragingEchoesSettings: gearSetupSettings.ragingEchoesSettings ?? DEFAULT_RAGING_ECHOES_SETTINGS,
     };
   }
 
