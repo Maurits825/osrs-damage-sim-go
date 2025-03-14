@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { allAttackTypes, AttackType, Item } from 'src/app/model/osrs/item.model';
 import { QuickGear, QuickGearSlots } from 'src/app/model/shared/quick-gear.model';
-import { StaticDataService } from 'src/app/services/static-data.service';
 import { quickGearSetups } from './quick-gear.const';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -34,11 +33,11 @@ export class QuickGearSelectComponent implements OnInit {
       for (const attackIdx in allAttackTypes) {
         const items: Item[] = [];
         const attackType = allAttackTypes[attackIdx];
-        for (const itemId of (quickGearSetups as any)[slot][attackType]) {
+        for (const itemId of quickGearSetups[slot][attackType]) {
           const item = this.itemService.getItem(slot, itemId);
           items.push(item);
         }
-        (this.quickGearSlots as any)[slot][attackType] = items;
+        this.quickGearSlots[slot][attackType] = items;
       }
     }
   }
