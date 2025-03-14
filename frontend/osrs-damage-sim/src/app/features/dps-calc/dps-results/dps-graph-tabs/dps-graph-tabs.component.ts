@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
