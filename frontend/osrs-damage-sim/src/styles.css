@@ -16,3 +16,7 @@ body {
 .modal-body {
   background-color: rgb(141, 122, 95);
 }
+
+.table {
+  --bs-table-bg: transparent;
+}
