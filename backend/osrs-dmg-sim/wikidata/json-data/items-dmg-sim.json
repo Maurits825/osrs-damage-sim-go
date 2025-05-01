@@ -745,7 +745,7 @@
   "name": "Adamant javelin",
   "equipable": true,
   "slot": 13,
-  "rstr": 107
+  "rstr": 102
  },
  "830": {
   "name": "Rune javelin",
@@ -781,7 +781,7 @@
   "name": "Adamant javelin",
   "equipable": true,
   "slot": 13,
-  "rstr": 107
+  "rstr": 102
  },
  "836": {
   "name": "Rune javelin",
@@ -1192,7 +1192,6 @@
  },
  "1013": {
   "name": "Pink skirt",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7
@@ -4812,7 +4811,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 17,
   "dslash": 19,
   "dcrush": 18,
@@ -4864,7 +4863,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 17,
   "dslash": 19,
   "dcrush": 18,
@@ -4903,7 +4902,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 27,
   "dslash": 31,
   "dcrush": 29,
@@ -4955,7 +4954,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 27,
   "dslash": 31,
   "dcrush": 29,
@@ -7077,13 +7076,13 @@
   "weaponCategory": "BANNER"
  },
  "4041": {
-  "name": "Hooded cloak",
+  "name": "Saradomin cloak (Castle Wars)",
   "weight": 0.001,
   "equipable": true,
   "slot": 1
  },
  "4042": {
-  "name": "Hooded cloak",
+  "name": "Zamorak cloak (Castle Wars)",
   "weight": 0.001,
   "equipable": true,
   "slot": 1
@@ -10778,7 +10777,7 @@
   "name": "Adamant javelin",
   "equipable": true,
   "slot": 13,
-  "rstr": 107
+  "rstr": 102
  },
  "5647": {
   "name": "Rune javelin",
@@ -10814,7 +10813,7 @@
   "name": "Adamant javelin",
   "equipable": true,
   "slot": 13,
-  "rstr": 107
+  "rstr": 102
  },
  "5653": {
   "name": "Rune javelin",
@@ -18388,7 +18387,7 @@
   "dstab": 4,
   "dslash": 5,
   "dcrush": 3,
-  "drange": 1
+  "drange": 4
  },
  "10047": {
   "name": "Graahk legs",
@@ -22754,7 +22753,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 5,
   "dslash": 7,
   "dcrush": 6,
@@ -22819,7 +22818,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 5,
   "dslash": 7,
   "dcrush": 6,
@@ -22884,7 +22883,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 8,
   "dslash": 10,
   "dcrush": 9,
@@ -22949,7 +22948,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 8,
   "dslash": 10,
   "dcrush": 9,
@@ -23146,7 +23145,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 18,
   "dslash": 22,
   "dcrush": 20,
@@ -23211,7 +23210,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 18,
   "dslash": 22,
   "dcrush": 20,
@@ -28173,7 +28172,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 13,
   "dslash": 15,
   "dcrush": 14,
@@ -28238,7 +28237,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 13,
   "dslash": 15,
   "dcrush": 14,
@@ -29302,7 +29301,6 @@
   "slot": 3,
   "is2h": true,
   "acrush": 135,
-  "amagic": -4,
   "str": 147,
   "aspeed": 6,
   "weaponCategory": "BLUNT"
@@ -31261,7 +31259,7 @@
   "equipable": true,
   "slot": 5,
   "amagic": -8,
-  "arange": -3,
+  "arange": -2,
   "dstab": 56,
   "dslash": 60,
   "dcrush": 58,
@@ -42161,7 +42159,6 @@
   "slot": 3,
   "is2h": true,
   "acrush": 135,
-  "amagic": -4,
   "str": 147,
   "aspeed": 6,
   "weaponCategory": "BLUNT"
@@ -47887,7 +47884,6 @@
   "weight": 0.06,
   "equipable": true,
   "slot": 2,
-  "amagic": 2,
   "dmagic": 3,
   "prayer": 2
  },
@@ -47896,7 +47892,6 @@
   "weight": 0.06,
   "equipable": true,
   "slot": 2,
-  "amagic": 2,
   "dmagic": 3,
   "prayer": 2
  },
@@ -49028,6 +49023,38 @@
   "weight": 0.25,
   "equipable": true,
   "slot": 0
+ },
+ "30694": {
+  "name": "Castle wars arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "rstr": 60
+ },
+ "30696": {
+  "name": "Castle wars bolts",
+  "weight": 0.018,
+  "equipable": true,
+  "slot": 13,
+  "rstr": 122
+ },
+ "30722": {
+  "name": "Carrot costume body",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "30724": {
+  "name": "Carrot costume tights",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "30726": {
+  "name": "Carrot costume gloves",
+  "weight": 0.113,
+  "equipable": true,
+  "slot": 9
  },
  "2000001": {
   "name": "Soul Helm",
