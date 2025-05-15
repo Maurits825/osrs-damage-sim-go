@@ -27,7 +27,7 @@ var stabOverrideSpecWeapons = []int{
 	emberlight,
 }
 
-func getNpcDefenceRoll(player *player) int {
+func getNpcDefenceRoll(player *Player) int {
 	npcId := player.Npc.id
 
 	level := player.Npc.CombatStats.Defence

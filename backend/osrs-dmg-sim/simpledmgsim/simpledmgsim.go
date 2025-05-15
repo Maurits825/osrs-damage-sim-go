@@ -12,6 +12,7 @@ func RunSimpleDmgSim(inputSetup *InputSetup) *SimpleDmgSimResults {
 	//TODO
 	//prob need to get player from dpscalc, have to expose the structs and fn and stuff
 	//dps calc can have alot of shared stuff, dpsgrapher/dmgsim then depend on it
-	results := RunSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
+	// results := RunSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
+	results := runDistSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
 	return &SimpleDmgSimResults{Results: []SimpleDmgSimResult{{TicksToKill: results.ticksToKill}}}
 }

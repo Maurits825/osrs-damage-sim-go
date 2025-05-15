@@ -129,7 +129,7 @@ type prayerBoost struct {
 	defenceMagic   factor
 }
 
-type player struct {
+type Player struct {
 	globalSettings        *GlobalSettings
 	inputGearSetup        *InputGearSetup
 	Npc                   npc

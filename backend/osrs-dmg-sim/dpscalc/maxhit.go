@@ -6,7 +6,7 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
-func getMaxHit(player *player) int {
+func getMaxHit(player *Player) int {
 	style := player.combatStyle.CombatStyleType
 	maxHit := 0
 
@@ -27,7 +27,7 @@ func getMaxHit(player *player) int {
 	return maxHit
 }
 
-func getMeleeMaxHit(player *player) int {
+func getMeleeMaxHit(player *Player) int {
 	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Strength, player.combatStatBoost.Strength)
 	effectiveLevel := baseLevel
 
@@ -127,7 +127,7 @@ func getMeleeMaxHit(player *player) int {
 	return maxHit
 }
 
-func getRangedMaxHit(player *player) int {
+func getRangedMaxHit(player *Player) int {
 	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
 	effectiveLevel := baseLevel
 
@@ -203,7 +203,7 @@ func getRangedMaxHit(player *player) int {
 	return maxHit
 }
 
-func getMagicMaxHit(player *player) int { //TODO maybe look over again and have same order with wiki dps
+func getMagicMaxHit(player *Player) int { //TODO maybe look over again and have same order with wiki dps
 	baseMaxhit := 0
 	magicLevel := player.inputGearSetup.GearSetupSettings.CombatStats.Magic + player.combatStatBoost.Magic
 	spell := player.spell
@@ -309,7 +309,7 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 	return maxHit
 }
 
-func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
+func getSpecialAttackMaxHit(baseMaxHit int, player *Player) int {
 	baseMax := float64(baseMaxHit)
 	if player.equippedGear.isEquipped(bandosGodsword) {
 		return int(math.Floor(baseMax*1.1) * 1.1)

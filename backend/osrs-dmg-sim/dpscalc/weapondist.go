@@ -11,7 +11,7 @@ import (
 
 var scytheHitReduction = []float32{1, 0.5, 0.25}
 
-func getAttackDistribution(player *player, accuracy float32, maxHit int) *attackdist.AttackDistribution {
+func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attackdist.AttackDistribution {
 	//default linear dist
 	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit)
 	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
@@ -263,7 +263,7 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 	return attackDistribution
 }
 
-func applyNonRubyBoltEffects(player *player, baseHitDist *attackdist.HitDistribution, attackDistribution *attackdist.AttackDistribution, accuracy float32, maxHit int) {
+func applyNonRubyBoltEffects(player *Player, baseHitDist *attackdist.HitDistribution, attackDistribution *attackdist.AttackDistribution, accuracy float32, maxHit int) {
 	//TODO bolt effects
 	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
@@ -301,7 +301,7 @@ func getZcbSpecEffectChance(accuracy, effectChance float32) float32 {
 	return accuracy + (1-accuracy)*effectChance
 }
 
-func applyLimiters(player *player, attackDistribution *attackdist.AttackDistribution) {
+func applyLimiters(player *Player, attackDistribution *attackdist.AttackDistribution) {
 	if player.Npc.id == iceDemon && player.spell.elementalType != FireElement {
 		attackDistribution.ScaleDamage(1, 3)
 	}

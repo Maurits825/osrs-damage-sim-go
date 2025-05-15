@@ -198,7 +198,7 @@ func (gear *equippedGear) isWearingBlackMask() bool {
 	return gear.isWearingImbuedBlackMask() || gear.isEquipped(blackMask) || gear.isEquipped(slayerHelm)
 }
 
-func (gear *equippedGear) isWearingCorpbaneWeapon(player *player) bool {
+func (gear *equippedGear) isWearingCorpbaneWeapon(player *Player) bool {
 	style := player.combatStyle.CombatStyleType
 	isStab := style == Stab
 
