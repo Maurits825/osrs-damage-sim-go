@@ -735,6 +735,9 @@
  "toxic blowpipe": [
   "Chargescape"
  ],
+ "Red-X": [
+  "Cheese"
+ ],
  "Fire cape": [
   "Cheese cape",
   "FCape",
@@ -743,12 +746,6 @@
  "Chestplate": [
   "Chest",
   "CP"
- ],
- "Chilli potato": [
-  "Chillpo"
- ],
- "Chili potato": [
-  "Chillpo"
  ],
  "Chinchompas": [
   "Chins",
@@ -773,6 +770,7 @@
  "Chambers of Xeric": [
   "CM",
   "Challenge Mode",
+  "CMies",
   "CoX",
   "Chambers",
   "Mass(ing)",
@@ -785,6 +783,7 @@
  "Chambers_of_Xeric/Challenge_Mode": [
   "CM",
   "Challenge Mode",
+  "CMies",
   "CoX",
   "Chambers",
   "Mass(ing)",
@@ -797,6 +796,7 @@
  "Challenge Mode": [
   "CM",
   "Challenge Mode",
+  "CMies",
   "CoX",
   "Chambers",
   "Mass(ing)",
@@ -2366,6 +2366,9 @@
  "Jal-Nib": [
   "Nibbler(s)"
  ],
+ "Noxious halberd": [
+  "Nhally"
+ ],
  "Nitroglycerin": [
   "Nitro"
  ],
@@ -3063,6 +3066,12 @@
  ],
  "bossed": [
   "EHB"
+ ],
+ "collection log": [
+  "EHC"
+ ],
+ "New Official Client": [
+  "EHC"
  ],
  "Experience rate": [
   "EHP"

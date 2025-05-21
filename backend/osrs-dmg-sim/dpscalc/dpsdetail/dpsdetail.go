@@ -86,6 +86,7 @@ const (
 	PlayerDpsFinal                    DetailKey = "Player dps"
 	PlayerAccuracyREPassive           DetailKey = "Player accuracy RE passive"
 	PlayerMaxHitREMultiHit            DetailKey = "Player max hit RE multi hit"
+	PlayerDemonbaneFactor             DetailKey = "Player demonbane factor"
 )
 
 type detailEntries struct {
@@ -125,11 +126,6 @@ func (entries *detailEntries) track(detailKey DetailKey, value interface{}, oper
 		return
 	}
 
-	if _, exists := entries.entriesMap[detailKey]; exists {
-		fmt.Println("Key exists, should this happen?????: " + detailKey)
-		return
-	}
-
 	entry := detailEntry{detailKey, fmt.Sprintf("%v", value), operation}
 	entries.entriesMap[detailKey] = entry
 	entries.entriesList = append(entries.entriesList, entry)
@@ -161,6 +157,18 @@ func (entries *detailEntries) TrackFactor(detailKey DetailKey, base int, numerat
 	return result
 }
 
+func (entries *detailEntries) TrackAddFactor(detailKey DetailKey, base int, numerator int, denominator int) int {
+	addend := int(base * numerator / denominator)
+	result := base + addend
+	operation := ""
+	if entries.enableTrack {
+		operation = fmt.Sprintf("%d*(1+%d/%d)", base, numerator, denominator)
+	}
+
+	entries.track(detailKey, result, operation)
+	return result
+}
+
 func (entries *detailEntries) TrackMaxHitFromEffective(detailKey DetailKey, effectiveLevel int, gearBonus int) int {
 	result := int(float32(effectiveLevel*gearBonus+320) / 640.0)
 	operation := ""
@@ -185,11 +193,10 @@ func (entries *detailEntries) SprintFinal() string {
 	return final
 }
 
-// TODO include operation?
 func (entries *detailEntries) GetAllEntries() []string {
 	final := make([]string, len(entries.entriesList))
 	for i, entry := range entries.entriesList {
-		final[i] = fmt.Sprintf("%s: %s", entry.detailKey, entry.value)
+		final[i] = fmt.Sprintf("%s,%s,%s", entry.detailKey, entry.value, entry.operation) //could just return as json struct
 	}
 	return final
 }

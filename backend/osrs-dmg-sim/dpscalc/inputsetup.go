@@ -97,18 +97,19 @@ const (
 )
 
 type GearSetup struct {
-	Name            string                `json:"setupName"`
-	AttackStyle     string                `json:"attackStyle"`
-	Gear            map[GearSlot]GearItem `json:"gear"`
-	BlowpipeDarts   GearItem              `json:"blowpipeDarts"`
-	CurrentHp       int                   `json:"currentHp"`
-	IsInWilderness  bool                  `json:"isInWilderness"`
-	IsKandarinDiary bool                  `json:"isKandarinDiary"`
-	IsOnSlayerTask  bool                  `json:"isOnSlayerTask"`
-	IsSpecialAttack bool                  `json:"isSpecial"`
-	MiningLevel     int                   `json:"miningLvl"`
-	Prayers         []Prayer              `json:"prayers"`
-	Spell           string                `json:"spell"`
+	Name             string                `json:"setupName"`
+	AttackStyle      string                `json:"attackStyle"`
+	Gear             map[GearSlot]GearItem `json:"gear"`
+	BlowpipeDarts    GearItem              `json:"blowpipeDarts"`
+	CurrentHp        int                   `json:"currentHp"`
+	IsInWilderness   bool                  `json:"isInWilderness"`
+	IsKandarinDiary  bool                  `json:"isKandarinDiary"`
+	IsMarkOfDarkness bool                  `json:"isMarkOfDarkness"`
+	IsOnSlayerTask   bool                  `json:"isOnSlayerTask"`
+	IsSpecialAttack  bool                  `json:"isSpecial"`
+	MiningLevel      int                   `json:"miningLvl"`
+	Prayers          []Prayer              `json:"prayers"`
+	Spell            string                `json:"spell"`
 }
 
 type CombatStats struct {

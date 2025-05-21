@@ -1,34 +1,4 @@
 {
-  "2000001": {
-    "name": "Soul Helm",
-    "futureContent": true,
-    "equipable": true,
-    "slot": 0,
-    "aslash": 10,
-    "amagic": -2,
-    "arange": -7,
-    "str": 6
-  },
-  "2000002": {
-    "name": "Soul Chestplate",
-    "futureContent": true,
-    "equipable": true,
-    "slot": 4,
-    "aslash": 16,
-    "amagic": -16,
-    "arange": -18,
-    "str": 4
-  },
-  "2000003": {
-    "name": "Soul Platelegs",
-    "futureContent": true,
-    "equipable": true,
-    "slot": 7,
-    "aslash": 12,
-    "amagic": -12,
-    "arange": -14,
-    "str": 2
-  },
   "2000004": {
     "name": "Avernic Treads (Maxed)",
     "futureContent": true,

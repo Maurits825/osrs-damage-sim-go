@@ -192,12 +192,12 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 
 	equipmentStats.damageStats.magicStrength *= 10
 	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.CombatStyleStance != Autocast {
-		factor := 3
+		shadowFactor := 3
 		if slices.Contains(ToaIds, npc.id) {
-			factor = 4
+			shadowFactor = 4
 		}
-		equipmentStats.damageStats.magicStrength *= float32(factor)
-		equipmentStats.offensiveStats.magic *= factor
+		equipmentStats.damageStats.magicStrength *= float32(shadowFactor)
+		equipmentStats.offensiveStats.magic *= shadowFactor
 	}
 
 	if spell.spellbook == ancientSpellBook {

@@ -40,7 +40,8 @@
     "Smoke Barrage": 27,
     "Shadow Barrage": 28,
     "Blood Barrage": 29,
-    "Ice Barrage": 30
+    "Ice Barrage": 30,
+    "Dark Demonbane": 30
   },
   "standard_spells": [
     "Wind Strike",

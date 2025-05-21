@@ -85,6 +85,7 @@ const (
 
 	scorchingBow = 29591
 	emberlight   = 29589
+	purgingStaff = 29594
 
 	ralos = 28919
 )

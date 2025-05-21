@@ -3,6 +3,7 @@ package dpscalc
 import (
 	"slices"
 
+	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/wikidata"
 )
 
@@ -14,6 +15,7 @@ const (
 var dukeSucellus = []string{"12166", "12166_1", "12193"}
 var zulrahs = []int{2043, 2042, 2044}
 var araxxor = []int{13668}
+var yama = "14176"
 
 type aggressiveStats struct {
 	attack int
@@ -49,6 +51,8 @@ type npc struct {
 	isTobNormalMode bool
 	isTobHardMode   bool
 
+	demonbaneVulnerability float32
+
 	respawn int
 }
 
@@ -75,6 +79,11 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 
 		n.elementalWeaknessPercent = npcData.ElementalWeaknessPercent
 		n.elementalWeaknessType = elementalType(npcData.ElementalWeaknessType)
+
+		n.demonbaneVulnerability = 0
+		if npcData.IsDemon {
+			n.demonbaneVulnerability = getDemonbaneVulnerability(id)
+		}
 
 		n.CombatStats = CombatStats{
 			Attack:    npcData.Attack,
@@ -133,12 +142,17 @@ func (npc *npc) ApplyNpcScaling(globalSettings *GlobalSettings) {
 	npc.CombatStats = npc.BaseCombatStats
 }
 
-func getDemonbaneFactor(npcId string, numerator int, denominator int) (int, int) {
+func getDemonbaneFactor(vuln float32, weaponDemonbane int) factor {
+	percent := dpsDetailEntries.TrackFactor(dpsdetail.PlayerDemonbaneFactor, weaponDemonbane, int(vuln), 100)
+	return factor{percent, 100}
+}
+
+func getDemonbaneVulnerability(npcId string) float32 {
 	if slices.Contains(dukeSucellus, npcId) {
-		numerator *= 7
-		denominator *= 10
+		return 70
+	} else if npcId == yama {
+		return 120
 	}
 
-	numerator += denominator
-	return numerator, denominator
+	return 100
 }

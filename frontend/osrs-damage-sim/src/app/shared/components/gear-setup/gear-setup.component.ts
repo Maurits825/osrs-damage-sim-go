@@ -76,6 +76,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   quickGearSetLabel: string = null;
   quickGearSet: number[];
 
+  showMarkOfDarkness = false;
+
   private destroyed$ = new Subject();
 
   constructor(
@@ -84,7 +86,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     private itemService: ItemService,
     private sharedSettingsService: SharedSettingsService,
     private specialGearService: SpecialGearService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnDestroy(): void {
@@ -106,7 +108,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
       this.localStorageService.gearSetupWatch$.subscribe(
         (userGearSetups: GearSetupPreset[]) =>
-          (this.allGearSetupPresets = [...this.gearSetupPresets, ...userGearSetups])
+          (this.allGearSetupPresets = [...this.gearSetupPresets, ...userGearSetups]),
       );
 
       this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
@@ -131,12 +133,13 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.attackStyles = this.itemService.getItem(GearSlot.Weapon, weaponId).attackStyles;
 
       this.updateSpecialGear();
+      this.showMarkOfDarkness = this.gearSetup.spell?.includes('Demonbane');
 
       this.sharedSettingsService.prayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
         .subscribe(
           (prayers: Record<AttackType, Set<Prayer>>) =>
-            (this.gearSetup.prayers = new Set(prayers[this.currentAttackType]))
+            (this.gearSetup.prayers = new Set(prayers[this.currentAttackType])),
         );
     });
   }
@@ -242,6 +245,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     } else {
       this.gearSetup.attackStyle = null;
     }
+
+    this.showMarkOfDarkness = this.gearSetup.spell?.includes('Demonbane');
   }
 
   selectGearSetSetup(gearSet: GearSet): void {

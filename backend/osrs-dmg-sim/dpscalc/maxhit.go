@@ -79,8 +79,8 @@ func getMeleeMaxHit(player *player) int {
 
 	//TODO tzhaar weapon, barronite, blister wood, flail, ef aid, rat bone
 	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
-		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 70)
+		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
 	if player.equippedGear.isEquipped(dragonHunterLance) && player.Npc.IsDragon {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 6, 5)
@@ -92,12 +92,12 @@ func getMeleeMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
 	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 5)
-		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 60)
+		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
 	if player.equippedGear.isEquipped(burningClaws) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
-		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDemonbane, maxHit, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 5)
+		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
 	if player.equippedGear.isEquipped(leafBladedAxe) && player.Npc.isLeafy {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitLeafy, maxHit, 47, 40)
@@ -187,8 +187,8 @@ func getRangedMaxHit(player *player) int {
 	}
 
 	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
-		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, maxHit, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 60)
+		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
 
 	if player.equippedGear.isEquipped(ralos) {

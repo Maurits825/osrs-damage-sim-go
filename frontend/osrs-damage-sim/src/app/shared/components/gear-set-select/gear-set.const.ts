@@ -23,8 +23,8 @@ export const gearSetSetups: GearSetSetups = {
       itemIds: [22326, 22327, 22328],
     },
     {
-      label: 'Soul',
-      itemIds: [2000001, 2000002, 2000003], //TODO update with actual ids
+      label: 'Oathplate',
+      itemIds: [30750, 30753, 30756],
     },
   ],
 
