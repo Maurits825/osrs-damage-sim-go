@@ -232,7 +232,6 @@ func getMagicAttackRoll(player *player) int {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
 	}
 
-	//TODO demonbane spells
 	if strings.Contains(player.spell.name, "Demonbane") && player.Npc.isDemon {
 		demonbanePercent := 20
 
@@ -244,7 +243,6 @@ func getMagicAttackRoll(player *player) int {
 			demonbanePercent *= 2
 		}
 
-		//TODO is this right????
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, demonbanePercent)
 		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}

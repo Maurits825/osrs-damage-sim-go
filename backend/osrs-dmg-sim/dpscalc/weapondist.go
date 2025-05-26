@@ -3,6 +3,7 @@ package dpscalc
 import (
 	"math"
 	"slices"
+	"strings"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/attackdist"
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
@@ -246,6 +247,15 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 			}}
 			attackDistribution.SetSingleAttackDistribution(zcbHitDist)
 		}
+	}
+
+	if player.inputGearSetup.GearSetup.IsMarkOfDarkness && strings.Contains(player.spell.name, "Demonbane") && player.Npc.isDemon {
+		demonbaneFactor := 25
+		if player.equippedGear.isEquipped(purgingStaff) {
+			demonbaneFactor = 50.0
+		}
+		//TODO because of rounding this is not 100% accurate?
+		attackDistribution.ScaleDamage(10000+float32(demonbaneFactor)*player.Npc.demonbaneVulnerability, 10000)
 	}
 
 	applyLimiters(player, attackDistribution)
