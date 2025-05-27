@@ -3982,5 +3982,280 @@
       ],
       "enableDebugTrack": false
     }
+  },
+  "Max oath ember 80bgs yama": {
+    "expectedDps": 11.075665,
+    "inputSetup": {
+      "multiNpcs": [],
+      "globalSettings": {
+        "npc": {
+          "name": "Yama",
+          "isDemon": true,
+          "hitpoints": 2500,
+          "att": 320,
+          "str": 350,
+          "def": 225,
+          "mage": 250,
+          "range": 210,
+          "attbns": 50,
+          "strbns": 15,
+          "amagic": 100,
+          "mbns": 65,
+          "arange": 100,
+          "rngbns": 80,
+          "dstab": 100,
+          "dslash": 80,
+          "dcrush": 333,
+          "dmagic": -30,
+          "dlight": 333,
+          "dstandard": 220,
+          "dheavy": 333,
+          "combat": 1238,
+          "size": 5,
+          "id": "14176"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [
+              {
+                "name": "Bandos godsword",
+                "value": 50
+              }
+            ],
+            "boosts": [
+              "super_combat"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": [],
+            "ragingEchoesSettings": {
+              "combatMasteries": {
+                "meleeTier": 0,
+                "rangeTier": 0,
+                "mageTier": 0
+              }
+            }
+          },
+          "gearSetup": {
+            "setupName": "Emberlight",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Oathplate helm",
+                "id": 30750
+              },
+              "1": {
+                "name": "Infernal max cape",
+                "id": 21285
+              },
+              "2": {
+                "name": "Amulet of rancour",
+                "id": 29801
+              },
+              "3": {
+                "name": "Emberlight",
+                "id": 29589
+              },
+              "4": {
+                "name": "Oathplate chest",
+                "id": 30753
+              },
+              "5": {
+                "name": "Avernic defender",
+                "id": 22322
+              },
+              "7": {
+                "name": "Oathplate legs",
+                "id": 30756
+              },
+              "9": {
+                "name": "Ferocious gloves",
+                "id": 22981
+              },
+              "10": {
+                "name": "Primordial boots",
+                "id": 13239
+              },
+              "12": {
+                "name": "Ultor ring",
+                "id": 28307
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Slash (Slash/Aggressive)",
+            "spell": null,
+            "isSpecial": false,
+            "prayers": [
+              "piety"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true,
+            "isMarkOfDarkness": true
+          }
+        }
+      ],
+      "enableDebugTrack": false
+    }
+  },
+  "Max purging staff sire": {
+    "expectedDps": 10.567433,
+    "inputSetup": {
+      "multiNpcs": [],
+      "globalSettings": {
+        "npc": {
+          "name": "Abyssal Sire",
+          "isDemon": true,
+          "hitpoints": 425,
+          "att": 180,
+          "str": 136,
+          "def": 250,
+          "mage": 200,
+          "range": 1,
+          "attbns": 65,
+          "dstab": 40,
+          "dslash": 60,
+          "dcrush": 50,
+          "dmagic": 20,
+          "drange": 60,
+          "combat": 350,
+          "size": 6,
+          "respawn": 1,
+          "id": "5886"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": [
+              "saturated_heart"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": [],
+            "ragingEchoesSettings": {
+              "combatMasteries": {
+                "meleeTier": 0,
+                "rangeTier": 0,
+                "mageTier": 0
+              }
+            }
+          },
+          "gearSetup": {
+            "setupName": "Purging staff",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Tzkal slayer helmet (i)",
+                "id": 25912
+              },
+              "1": {
+                "name": "Imbued zamorak max cape",
+                "id": 21780
+              },
+              "2": {
+                "name": "Occult necklace",
+                "id": 12002
+              },
+              "3": {
+                "name": "Purging staff",
+                "id": 29594
+              },
+              "4": {
+                "name": "Twisted ancestral robe top",
+                "id": 24666
+              },
+              "5": {
+                "name": "Elidinis' ward (or)",
+                "id": 27253
+              },
+              "7": {
+                "name": "Twisted ancestral robe bottom",
+                "id": 24668
+              },
+              "9": {
+                "name": "Tormented bracelet",
+                "id": 19544
+              },
+              "10": {
+                "name": "Eternal boots",
+                "id": 13235
+              },
+              "12": {
+                "name": "Magus ring",
+                "id": 28313
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Spell (Magic/Autocast)",
+            "spell": "Dark Demonbane",
+            "isSpecial": false,
+            "prayers": [
+              "augury"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true,
+            "isMarkOfDarkness": true
+          }
+        }
+      ],
+      "enableDebugTrack": false
+    }
   }
 }

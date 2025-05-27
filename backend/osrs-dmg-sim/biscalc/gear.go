@@ -12,6 +12,7 @@ const (
 	saladBlade    = 23995
 	soulreaperAxe = 28338
 	noxHally      = 29796
+	emberlight    = 29589
 
 	fang       = 26219
 	rapier     = 22324
@@ -72,8 +73,8 @@ const (
 )
 
 // TODO hardcoded weapons, better way?
-var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
-var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
+var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear, emberlight}
+var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally, emberlight}
 var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}
 var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
 

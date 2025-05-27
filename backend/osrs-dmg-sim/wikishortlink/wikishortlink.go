@@ -42,10 +42,11 @@ type Skills struct {
 }
 
 type Buffs struct {
-	Potions       []int `json:"potions"`
-	InWilderness  bool  `json:"inWilderness"`
-	KandarinDiary bool  `json:"kandarinDiary"`
-	OnSlayerTask  bool  `json:"onSlayerTask"`
+	Potions             []int `json:"potions"`
+	InWilderness        bool  `json:"inWilderness"`
+	KandarinDiary       bool  `json:"kandarinDiary"`
+	OnSlayerTask        bool  `json:"onSlayerTask"`
+	MarkOfDarknessSpell bool  `json:"markOfDarknessSpell"`
 }
 
 type Style struct {
@@ -238,10 +239,11 @@ func buildLoadout(inputGearSetup dpscalc.InputGearSetup) Loadout {
 
 	potions := inputGearSetup.GearSetupSettings.PotionBoosts
 	buffs := Buffs{
-		Potions:       buildPotions(potions),
-		InWilderness:  inputGearSetup.GearSetup.IsInWilderness,
-		KandarinDiary: inputGearSetup.GearSetup.IsKandarinDiary,
-		OnSlayerTask:  inputGearSetup.GearSetup.IsOnSlayerTask,
+		Potions:             buildPotions(potions),
+		InWilderness:        inputGearSetup.GearSetup.IsInWilderness,
+		KandarinDiary:       inputGearSetup.GearSetup.IsKandarinDiary,
+		OnSlayerTask:        inputGearSetup.GearSetup.IsOnSlayerTask,
+		MarkOfDarknessSpell: inputGearSetup.GearSetup.IsMarkOfDarkness,
 	}
 
 	cmbtStyle := dpscalc.ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)

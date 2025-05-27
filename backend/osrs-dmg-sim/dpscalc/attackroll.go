@@ -2,6 +2,7 @@ package dpscalc
 
 import (
 	"math"
+	"strings"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
@@ -87,12 +88,12 @@ func getMeleeAttackRoll(player *player) int {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
 	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 7, 10)
-		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 70)
+		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}
 	if player.equippedGear.isEquipped(burningClaws) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 1, 20)
-		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 5)
+		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}
 	if player.equippedGear.isEquipped(dragonHunterLance) && player.Npc.IsDragon {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 6, 5)
@@ -186,8 +187,8 @@ func getRangedAttackRoll(player *player) int {
 	}
 
 	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.isDemon {
-		num, denom := getDemonbaneFactor(player.globalSettings.Npc.Id, 3, 10)
-		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, num, denom)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 30)
+		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}
 
 	return attackRoll
@@ -231,7 +232,21 @@ func getMagicAttackRoll(player *player) int {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
 	}
 
-	//TODO demonbane spells
+	if strings.Contains(player.spell.name, "Demonbane") && player.Npc.isDemon {
+		demonbanePercent := 20
+
+		if player.inputGearSetup.GearSetup.IsMarkOfDarkness {
+			demonbanePercent = 40
+		}
+
+		if player.equippedGear.isEquipped(purgingStaff) {
+			demonbanePercent *= 2
+		}
+
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, demonbanePercent)
+		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
+	}
+
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}

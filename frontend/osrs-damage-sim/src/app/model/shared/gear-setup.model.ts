@@ -23,6 +23,7 @@ export interface GearSetup {
   miningLvl: number;
 
   isKandarinDiary: boolean;
+  isMarkOfDarkness: boolean;
 }
 
 export const SPECIAL_BOLTS = [9242, 21944, 9243, 21946];
@@ -76,4 +77,5 @@ export const DEFAULT_GEAR_SETUP: GearSetup = {
   currentHp: 1,
   miningLvl: 99,
   isKandarinDiary: true,
+  isMarkOfDarkness: true,
 };

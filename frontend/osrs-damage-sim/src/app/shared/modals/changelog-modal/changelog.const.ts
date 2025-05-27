@@ -5,6 +5,10 @@ interface logData {
 
 export const changeLogData: logData[] = [
   {
+    title: '26 May 2025',
+    body: ['Yama update'],
+  },
+  {
     title: '14 March 2025',
     body: ['Added multi npc mode'],
   },
