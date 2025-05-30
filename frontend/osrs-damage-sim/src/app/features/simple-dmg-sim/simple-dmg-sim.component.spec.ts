@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleDmgSimComponent } from './simple-dmg-sim.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('SimpleDmgSimComponent', () => {
   let component: SimpleDmgSimComponent;
@@ -8,9 +9,9 @@ describe('SimpleDmgSimComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleDmgSimComponent ]
-    })
-    .compileComponents();
+      declarations: [SimpleDmgSimComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SimpleDmgSimComponent);
     component = fixture.componentInstance;

@@ -8,12 +8,12 @@ describe('GearSetupSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GearSetupSettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [GearSetupSettingsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GearSetupSettingsComponent);
     component = fixture.componentInstance;
+    component.gearSetupSettings = null;
     fixture.detectChanges();
   });
 

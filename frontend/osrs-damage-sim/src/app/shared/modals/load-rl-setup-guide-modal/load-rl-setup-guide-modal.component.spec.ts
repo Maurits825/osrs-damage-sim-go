@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadRlSetupGuideModalComponent } from './load-rl-setup-guide-modal.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 describe('LoadRlSetupGuideModalComponent', () => {
   let component: LoadRlSetupGuideModalComponent;
@@ -8,9 +9,9 @@ describe('LoadRlSetupGuideModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoadRlSetupGuideModalComponent ]
-    })
-    .compileComponents();
+      providers: [NgbActiveModal],
+      declarations: [LoadRlSetupGuideModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoadRlSetupGuideModalComponent);
     component = fixture.componentInstance;

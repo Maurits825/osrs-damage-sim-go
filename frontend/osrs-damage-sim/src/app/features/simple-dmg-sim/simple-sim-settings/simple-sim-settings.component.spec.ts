@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleSimSettingsComponent } from './simple-sim-settings.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('SimpleSimSettingsComponent', () => {
   let component: SimpleSimSettingsComponent;
@@ -8,9 +9,9 @@ describe('SimpleSimSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleSimSettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [SimpleSimSettingsComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SimpleSimSettingsComponent);
     component = fixture.componentInstance;

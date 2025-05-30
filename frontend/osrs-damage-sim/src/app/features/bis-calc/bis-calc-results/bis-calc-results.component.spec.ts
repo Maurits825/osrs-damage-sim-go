@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BisCalcResultsComponent } from './bis-calc-results.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('BisCalcResultsComponent', () => {
   let component: BisCalcResultsComponent;
@@ -8,9 +9,9 @@ describe('BisCalcResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BisCalcResultsComponent ]
-    })
-    .compileComponents();
+      declarations: [BisCalcResultsComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BisCalcResultsComponent);
     component = fixture.componentInstance;

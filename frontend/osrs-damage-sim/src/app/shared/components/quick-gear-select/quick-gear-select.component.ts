@@ -26,9 +26,10 @@ export class QuickGearSelectComponent implements OnInit {
 
   constructor(private itemService: ItemService) {}
 
+  //TODO why do we iter over all gearslots? we jus tneed the gearslot input?
   ngOnInit(): void {
-    for (const gearSlot in GearSlot) {
-      const slot = GearSlot[gearSlot as keyof typeof GearSlot] as keyof QuickGearSlots;
+    for (const gs in GearSlot) {
+      const slot = GearSlot[gs as keyof typeof GearSlot] as keyof QuickGearSlots;
       this.quickGearSlots[slot] = {} as QuickGear;
       for (const attackIdx in allAttackTypes) {
         const items: Item[] = [];
