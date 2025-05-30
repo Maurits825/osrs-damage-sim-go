@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DpsGraphTabsComponent } from './dps-graph-tabs.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('DpsGraphTabsComponent', () => {
   let component: DpsGraphTabsComponent;
@@ -8,10 +9,10 @@ describe('DpsGraphTabsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DpsGraphTabsComponent]
-    })
-    .compileComponents();
-    
+      declarations: [DpsGraphTabsComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DpsGraphTabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

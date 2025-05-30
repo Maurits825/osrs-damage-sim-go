@@ -56,6 +56,7 @@ export class MultiNpcInputComponent implements OnInit {
     this.showIsChallengeMode = false;
 
     for (const npc of this.multiNpcs) {
+      console.log('npc', npc);
       const npcName = npc.name;
       this.showIsChallengeMode = npc.isXerician ? true : this.showIsChallengeMode;
       if (TOA_PATH_LVL_NPCS.includes(npcName)) {

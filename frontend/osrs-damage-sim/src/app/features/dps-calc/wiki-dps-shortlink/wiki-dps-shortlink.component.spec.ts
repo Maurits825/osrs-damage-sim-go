@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WikiDpsShortlinkComponent } from './wiki-dps-shortlink.component';
+import { provideHttpClient } from '@angular/common/http';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('WikiDpsShortlinkComponent', () => {
   let component: WikiDpsShortlinkComponent;
@@ -8,9 +10,10 @@ describe('WikiDpsShortlinkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WikiDpsShortlinkComponent ]
-    })
-    .compileComponents();
+      imports: [NgbPopoverModule],
+      declarations: [WikiDpsShortlinkComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(WikiDpsShortlinkComponent);
     component = fixture.componentInstance;

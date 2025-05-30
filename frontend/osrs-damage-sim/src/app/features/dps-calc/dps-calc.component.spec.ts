@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DpsCalcComponent } from './dps-calc.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('DpsCalcComponent', () => {
   let component: DpsCalcComponent;
@@ -8,9 +9,9 @@ describe('DpsCalcComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DpsCalcComponent ]
-    })
-    .compileComponents();
+      declarations: [DpsCalcComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DpsCalcComponent);
     component = fixture.componentInstance;

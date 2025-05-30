@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GlobalSettingsComponent } from './global-settings.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('GlobalSettingsComponent', () => {
   let component: GlobalSettingsComponent;
@@ -8,9 +9,9 @@ describe('GlobalSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GlobalSettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [GlobalSettingsComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GlobalSettingsComponent);
     component = fixture.componentInstance;

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShareInputSetupComponent } from './share-input-setup.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ShareInputSetupComponent', () => {
   let component: ShareInputSetupComponent;
@@ -8,9 +9,9 @@ describe('ShareInputSetupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShareInputSetupComponent ]
-    })
-    .compileComponents();
+      declarations: [ShareInputSetupComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShareInputSetupComponent);
     component = fixture.componentInstance;

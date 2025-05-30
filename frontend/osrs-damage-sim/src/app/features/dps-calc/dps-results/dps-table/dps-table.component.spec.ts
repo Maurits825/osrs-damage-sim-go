@@ -8,10 +8,9 @@ describe('DpsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DpsTableComponent]
-    })
-    .compileComponents();
-    
+      declarations: [DpsTableComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DpsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HitDistGraphComponent } from './hit-dist-graph.component';
+import { dpsCalcResultsMock } from '../dps-results.mock.spec';
 
 describe('HitDistGraphComponent', () => {
   let component: HitDistGraphComponent;
@@ -8,12 +9,12 @@ describe('HitDistGraphComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HitDistGraphComponent ]
-    })
-    .compileComponents();
+      declarations: [HitDistGraphComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HitDistGraphComponent);
     component = fixture.componentInstance;
+    component.dpsCalcResults = dpsCalcResultsMock;
     fixture.detectChanges();
   });
 

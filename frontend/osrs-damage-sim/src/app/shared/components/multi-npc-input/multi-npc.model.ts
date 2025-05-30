@@ -25,7 +25,7 @@ export const COX_MAGE_RANGE_NPC_IDS: MultiNpcPreset = {
 
 export const TOA_NPC_IDS: MultiNpcPreset = {
   name: 'Tombs of Amascut',
-  ids: ['11778', '11719', '11730', '11789', '11797', '11753', '11755', '11761'],
+  ids: ['11778', '11719', '11730', '11789', '11797', '11755', '11753', '11761'],
 };
 
 export const INFERNO_NPC_IDS: MultiNpcPreset = {

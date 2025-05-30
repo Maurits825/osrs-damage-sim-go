@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DpsGraphComponent } from './dps-graph.component';
+import { dpsGrapherResultsMock } from '../dps-results.mock.spec';
 
 describe('DpsGraphComponent', () => {
   let component: DpsGraphComponent;
@@ -8,12 +9,12 @@ describe('DpsGraphComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DpsGraphComponent ]
-    })
-    .compileComponents();
+      declarations: [DpsGraphComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DpsGraphComponent);
     component = fixture.componentInstance;
+    component.dpsGrapherResults = dpsGrapherResultsMock;
     fixture.detectChanges();
   });
 
