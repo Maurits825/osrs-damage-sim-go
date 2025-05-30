@@ -17,13 +17,13 @@ import { SpecialGear } from 'src/app/model/shared/special-gear.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item, AttackType, allAttackTypes } from 'src/app/model/osrs/item.model';
 import { DamageSimService } from 'src/app/services/damage-sim.service';
-import { ItemService } from 'src/app/services/item.service';
 import { SharedSettingsService } from 'src/app/services/shared-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { StaticDataService } from 'src/app/services/static-data.service';
 import { GearSetup } from 'src/app/model/shared/gear-setup.model';
+import { QuickGearSlots } from 'src/app/model/shared/quick-gear.model';
 
 @Component({
   selector: 'app-gear-setup',
@@ -48,6 +48,8 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
   gearSetupPresets: GearSetupPreset[];
   allGearSetupPresets: GearSetupPreset[];
+
+  quickGearSlots: QuickGearSlots;
 
   attackStyles: string[];
   allSpells: string[];
@@ -83,7 +85,6 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   constructor(
     private damageSimservice: DamageSimService,
     private staticDataService: StaticDataService,
-    private itemService: ItemService,
     private sharedSettingsService: SharedSettingsService,
     private specialGearService: SpecialGearService,
     private localStorageService: LocalStorageService,
@@ -105,6 +106,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.gearSetupPresets = gearSetupPresets;
       this.allSpells = allSpells;
       this.allDarts = allDarts;
+      this.quickGearSlots = this.staticDataService.getQuickGearSlots();
 
       this.localStorageService.gearSetupWatch$.subscribe(
         (userGearSetups: GearSetupPreset[]) =>
@@ -117,7 +119,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       let weaponId = UNARMED_EQUIVALENT_ID;
       if (this.gearSetup) {
         weaponId = this.gearSetup.gear[GearSlot.Weapon]?.id || UNARMED_EQUIVALENT_ID;
-        const weapon = this.itemService.getItem(GearSlot.Weapon, weaponId);
+        const weapon = this.staticDataService.getItem(GearSlot.Weapon, weaponId);
         this.currentAttackType = weapon.attackType;
       } else {
         this.gearSetup = cloneDeep(DEFAULT_GEAR_SETUP);
@@ -130,7 +132,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
         this.gearSetupChange.emit(this.gearSetup);
       }
 
-      this.attackStyles = this.itemService.getItem(GearSlot.Weapon, weaponId).attackStyles;
+      this.attackStyles = this.staticDataService.getItem(GearSlot.Weapon, weaponId).attackStyles;
 
       this.updateSpecialGear();
       this.showMarkOfDarkness = this.gearSetup.spell?.includes('Demonbane');
@@ -167,7 +169,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   setCurrentGearByGearSlotAndId(gearIds: Record<GearSlot, number>): void {
     this.allGearSlots.forEach((slot: GearSlot) => {
       if (gearIds[slot]) {
-        const item = this.itemService.getItem(slot, gearIds[slot]);
+        const item = this.staticDataService.getItem(slot, gearIds[slot]);
         this.gearSlotChange(item, slot);
         this.gearSetup.gear[slot] = item;
       } else {
@@ -185,7 +187,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       }
 
       gearIds.forEach((itemId: number) => {
-        const item = this.itemService.getItem(slot, itemId);
+        const item = this.staticDataService.getItem(slot, itemId);
         if (item) {
           this.gearSlotChange(item, slot);
           this.gearSetup.gear[slot] = item;
@@ -219,7 +221,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   }
 
   updateAttackStyle(itemId: number): void {
-    this.attackStyles = this.itemService.getItem(GearSlot.Weapon, itemId).attackStyles;
+    this.attackStyles = this.staticDataService.getItem(GearSlot.Weapon, itemId).attackStyles;
     if (this.attackStyles.includes(AUTOCAST_STYLE)) {
       this.gearSetup.attackStyle = AUTOCAST_STYLE;
     } else {

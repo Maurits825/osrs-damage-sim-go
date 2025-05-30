@@ -177,8 +177,7 @@
 
     <app-quick-gear-select
       class="d-flex"
-      [gearSlot]="slot"
-      [attackType]="currentAttackType"
+      [items]="quickGearSlots[slot][currentAttackType]"
       (equipGear)="gearSlotChange($event, slot)"
     ></app-quick-gear-select>
   </div>

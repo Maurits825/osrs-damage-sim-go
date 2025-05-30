@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChangelogModalComponent } from './changelog-modal.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ChangelogComponent', () => {
   let component: ChangelogModalComponent;
@@ -8,6 +9,7 @@ describe('ChangelogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [NgbActiveModal],
       declarations: [ChangelogModalComponent],
     }).compileComponents();
 

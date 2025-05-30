@@ -8,11 +8,3 @@ export type QuickGear = {
 export type QuickGearSlots = {
   [gearSlot in GearSlot]: QuickGear;
 };
-
-export type QuickGearId = {
-  [attackType in AttackType]: number[];
-};
-
-export type QuickGearJson = {
-  [gearSlot in GearSlot]: QuickGearId;
-};

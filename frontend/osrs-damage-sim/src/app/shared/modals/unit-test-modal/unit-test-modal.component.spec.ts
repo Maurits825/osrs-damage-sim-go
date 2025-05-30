@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UnitTestModalComponent } from './unit-test-modal.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('UnitTestModalComponent', () => {
   let component: UnitTestModalComponent;
@@ -9,7 +10,7 @@ describe('UnitTestModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [NgbActiveModal],
+      providers: [NgbActiveModal, provideHttpClient()],
       declarations: [UnitTestModalComponent],
     }).compileComponents();
 

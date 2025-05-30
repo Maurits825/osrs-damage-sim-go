@@ -3,7 +3,7 @@ import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
 import { BisCalcResult, BisCalcResults } from 'src/app/model/bis-calc/bis-calc-result.model';
 import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 import { Item } from 'src/app/model/osrs/item.model';
-import { ItemService } from 'src/app/services/item.service';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-bis-calc-results',
@@ -25,7 +25,7 @@ export class BisCalcResultsComponent implements OnChanges {
     [GearSlot.Hands, GearSlot.Feet, GearSlot.Ring],
   ];
 
-  constructor(private itemService: ItemService) {}
+  constructor(private staticDataService: StaticDataService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bisResults'] && this.bisResults) {
@@ -51,7 +51,7 @@ export class BisCalcResultsComponent implements OnChanges {
       const gearSlot: GearSlot = slot as GearSlot;
       const itemId: number = gearSetup.gear[gearSlot].id;
       if (itemId == -1) continue;
-      const item: Item = this.itemService.getItem(gearSlot, itemId);
+      const item: Item = this.staticDataService.getItem(gearSlot, itemId);
       updatedGear[gearSlot] = item;
     }
     gearSetup.gear = updatedGear;

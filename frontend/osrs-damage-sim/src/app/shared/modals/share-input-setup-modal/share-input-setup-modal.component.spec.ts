@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShareInputSetupModalComponent } from './share-input-setup-modal.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ShareInputSetupModalComponent', () => {
   let component: ShareInputSetupModalComponent;
@@ -8,9 +9,9 @@ describe('ShareInputSetupModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShareInputSetupModalComponent ]
-    })
-    .compileComponents();
+      providers: [NgbActiveModal],
+      declarations: [ShareInputSetupModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShareInputSetupModalComponent);
     component = fixture.componentInstance;
