@@ -1,5 +1,7 @@
 import { SpecialProcTextPipe } from './special-proc-text.pipe';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 describe('SpecialProcTextPipe', () => {
   it('create an instance', () => {
     const pipe = new SpecialProcTextPipe();

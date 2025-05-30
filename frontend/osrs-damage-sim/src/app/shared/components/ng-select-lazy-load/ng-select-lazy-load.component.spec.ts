@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgSelectLazyLoadComponent } from './ng-select-lazy-load.component';
 import { provideHttpClient } from '@angular/common/http';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 describe('NgSelectLazyLoadComponent', () => {
   let component: NgSelectLazyLoadComponent<string>;
   let fixture: ComponentFixture<NgSelectLazyLoadComponent<string>>;
@@ -11,6 +13,7 @@ describe('NgSelectLazyLoadComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [NgSelectLazyLoadComponent],
       providers: [provideHttpClient()],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NgSelectLazyLoadComponent<string>);

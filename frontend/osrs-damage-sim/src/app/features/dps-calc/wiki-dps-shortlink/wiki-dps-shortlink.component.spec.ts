@@ -4,6 +4,8 @@ import { WikiDpsShortlinkComponent } from './wiki-dps-shortlink.component';
 import { provideHttpClient } from '@angular/common/http';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 describe('WikiDpsShortlinkComponent', () => {
   let component: WikiDpsShortlinkComponent;
   let fixture: ComponentFixture<WikiDpsShortlinkComponent>;
@@ -13,6 +15,7 @@ describe('WikiDpsShortlinkComponent', () => {
       imports: [NgbPopoverModule],
       declarations: [WikiDpsShortlinkComponent],
       providers: [provideHttpClient()],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WikiDpsShortlinkComponent);

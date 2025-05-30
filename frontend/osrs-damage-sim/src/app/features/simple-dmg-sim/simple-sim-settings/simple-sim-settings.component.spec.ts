@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SimpleSimSettingsComponent } from './simple-sim-settings.component';
 import { provideHttpClient } from '@angular/common/http';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 describe('SimpleSimSettingsComponent', () => {
   let component: SimpleSimSettingsComponent;
   let fixture: ComponentFixture<SimpleSimSettingsComponent>;
@@ -11,6 +13,7 @@ describe('SimpleSimSettingsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SimpleSimSettingsComponent],
       providers: [provideHttpClient()],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SimpleSimSettingsComponent);
