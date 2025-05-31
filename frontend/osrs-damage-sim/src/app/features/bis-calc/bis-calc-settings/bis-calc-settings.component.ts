@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { StatDrain } from 'src/app/model/shared/stat-drain.model';
 import { UserSettings } from 'src/app/model/shared/user-settings.model';
 import { Boost } from 'src/app/model/osrs/boost.model';
-import { allAttackTypes, AttackType } from 'src/app/model/osrs/item.model';
+import { allAttackTypes, AttackType, Item } from 'src/app/model/osrs/item.model';
 import { NpcInfo } from 'src/app/model/osrs/npc.model';
 import { Prayer } from 'src/app/model/osrs/prayer.model';
 import { CombatStats } from 'src/app/model/osrs/skill.type';
@@ -14,6 +14,8 @@ import { PartialDeep } from 'type-fest';
 import { merge } from 'lodash-es';
 import { BisCalcInputSetup } from 'src/app/model/bis-calc/bis-calc-input.model';
 import { mapGlobalSettingsToNpcInfo, mapNpcInfoToGlobalSettings } from 'src/app/helpers/data-mapping.helper';
+import { StaticDataService } from 'src/app/services/static-data.service';
+import { GearSlot } from 'src/app/model/osrs/gear-slot.enum';
 
 @Component({
   selector: 'app-bis-calc-settings',
@@ -24,6 +26,8 @@ export class BisCalcSettingsComponent implements OnInit {
   bisCalcInputSetupChanged = new EventEmitter<BisCalcInputSetup>();
 
   bisCalcInputSetup$: BehaviorSubject<BisCalcInputSetup> = new BehaviorSubject(DEFAULT_BIS_INPUT_SETUP);
+
+  allGearSlotItems: Record<string, Item[]>;
 
   showPathLevel = false;
   showRaidLevel = false;
@@ -37,18 +41,25 @@ export class BisCalcSettingsComponent implements OnInit {
     ranged: new Set(['rigour']),
   };
 
-  loading = false;
+  GearSlot = GearSlot;
+  Item: Item;
+  selectedExcludeWeapon: Item;
 
   //todo kinda scuffed having to do this here
   npcInfo: NpcInfo = mapGlobalSettingsToNpcInfo(DEFAULT_BIS_INPUT_SETUP.globalSettings);
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(
+    private sharedSettingsService: SharedSettingsService,
+    private localStorageService: LocalStorageService,
+    private staticDataService: StaticDataService,
+  ) {}
 
   ngOnInit(): void {
     this.userSettingsWatch$ = this.localStorageService.userSettingsWatch$;
     this.bisCalcInputSetup$.subscribe((setup) => this.bisCalcInputSetupChanged.emit(setup));
+    this.staticDataService.allGearSlotItems$.subscribe((items) => (this.allGearSlotItems = items));
   }
 
   updateBisCalcInputSetup(update: PartialDeep<BisCalcInputSetup>): void {
@@ -94,5 +105,24 @@ export class BisCalcSettingsComponent implements OnInit {
 
   attackCycleChanged(attackCycle: number): void {
     this.updateBisCalcInputSetup({ gearSetupSettings: { attackCycle: attackCycle } });
+  }
+
+  excludeWeaponChanged(excludeWeapon: Item): void {
+    this.selectedExcludeWeapon = excludeWeapon;
+  }
+
+  addExcludedWeapon(): void {
+    this.updateBisCalcInputSetupFn((setup: BisCalcInputSetup) =>
+      setup.excludedWeapons.push(this.selectedExcludeWeapon),
+    );
+  }
+
+  removeExcludedWeapon(excludeWeapon: Item): void {
+    this.updateBisCalcInputSetupFn((setup: BisCalcInputSetup) => {
+      const index = setup.excludedWeapons.indexOf(excludeWeapon);
+      if (index > -1) {
+        setup.excludedWeapons.splice(index, 1);
+      }
+    });
   }
 }

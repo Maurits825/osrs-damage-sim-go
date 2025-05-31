@@ -1,4 +1,4 @@
-<ng-container *ngIf="bisCalcInputSetup$ | async as setup">
+<ng-container *ngIf="allGearSlotItems && bisCalcInputSetup$ | async as setup">
   <div class="mb-4">
     <div class="row mb-1 align-items-center">
       <div class="col-2">Npc Settings</div>
@@ -124,6 +124,69 @@
         [statDrains]="setup.gearSetupSettings.statDrains"
         (statDrainsChanged)="statDrainChanged($event)"
       ></app-stat-drain-selection>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-2">Exclude weapons</div>
+    <div class="col-10 col-lg-8 col-xl-6">
+      <div class="d-flex mb-1">
+        <div class="flex-grow-1 me-2">
+          <app-ng-select-lazy-load
+            [selectedValue]="selectedExcludeWeapon"
+            [valueType]="Item"
+            [allValues]="allGearSlotItems[GearSlot.Weapon]"
+            searchProperty="name"
+            (valueChanged)="excludeWeaponChanged($event)"
+          >
+            <ng-template #dropdownLabel let-item="item">
+              <div>
+                {{ item.name }}
+                <span *ngIf="item.futureContent" class="ms-2 badge rounded-pill bg-secondary">future content</span>
+              </div>
+            </ng-template>
+            <ng-template #dropdownOptions let-item="item">
+              <div class="d-flex align-items-center">
+                <div class="text-center" style="flex: 0 0 35px">
+                  <img src="data:image/png;base64,{{ item.icon }}" />
+                </div>
+                <div class="ps-2">{{ item.name }}</div>
+                <div class="ms-2">
+                  <span *ngIf="item.futureContent" class="badge rounded-pill bg-secondary">future content</span>
+                </div>
+              </div>
+            </ng-template>
+          </app-ng-select-lazy-load>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addExcludedWeapon()"
+          [disabled]="
+            setup.excludedWeapons.length >= 10 ||
+            !selectedExcludeWeapon ||
+            setup.excludedWeapons.includes(selectedExcludeWeapon)
+          "
+        >
+          <i class="bi bi-plus"></i> Exclude weapon
+        </button>
+      </div>
+      <div>
+        @for (weapon of setup.excludedWeapons; track weapon.id) {
+          <div class="d-flex mb-1">
+            <div class="flex-grow-1 d-flex align-items-center">
+              <div class="text-center" style="flex: 0 0 35px">
+                <img src="data:image/png;base64,{{ weapon.icon }}" />
+              </div>
+              <div class="ps-2">{{ weapon.name }}</div>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeExcludedWeapon(weapon)">
+                X
+              </button>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   </div>
 </ng-container>

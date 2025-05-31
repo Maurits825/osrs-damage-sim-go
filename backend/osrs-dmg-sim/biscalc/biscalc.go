@@ -24,6 +24,7 @@ type BisCalcInputSetup struct {
 	Prayers           map[AttackStyle][]dpscalc.Prayer `json:"prayers"`
 	IsOnSlayerTask    bool                             `json:"isOnSlayerTask"`
 	IsSpecialAttack   bool                             `json:"isSpecialAttack"`
+	ExcludedWeapons   []dpscalc.GearItem               `json:"excludedWeapons"`
 }
 
 var defaultGearSetup = dpscalc.GearSetup{
