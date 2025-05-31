@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleSimResultsComponent } from './simple-sim-results.component';
 
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-
 describe('SimpleSimResultsComponent', () => {
   let component: SimpleSimResultsComponent;
   let fixture: ComponentFixture<SimpleSimResultsComponent>;
