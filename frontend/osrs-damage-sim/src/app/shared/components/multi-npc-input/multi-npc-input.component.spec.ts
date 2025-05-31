@@ -4,6 +4,7 @@ import { MultiNpcInputComponent } from './multi-npc-input.component';
 import { provideHttpClient } from '@angular/common/http';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ALL_MULTI_NPC_PRESETS } from './multi-npc.model';
 
 describe('MultiNpcInputComponent', () => {
   let component: MultiNpcInputComponent;
@@ -23,5 +24,12 @@ describe('MultiNpcInputComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should load multi npc presets', async () => {
+    await fixture.whenStable();
+    for (const preset of ALL_MULTI_NPC_PRESETS) {
+      component.selectedMultiNpcPresetChanged(preset);
+    }
   });
 });
