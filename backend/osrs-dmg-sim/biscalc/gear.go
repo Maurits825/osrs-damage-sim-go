@@ -73,8 +73,8 @@ const (
 )
 
 // TODO hardcoded weapons, better way?
-var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear, emberlight}
-var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally, emberlight}
+var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
+var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
 var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}
 var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
 

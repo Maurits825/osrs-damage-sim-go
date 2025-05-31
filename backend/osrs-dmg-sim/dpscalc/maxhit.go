@@ -78,7 +78,7 @@ func getMeleeMaxHit(player *player) int {
 	}
 
 	//TODO tzhaar weapon, barronite, blister wood, flail, ef aid, rat bone
-	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 70)
 		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
@@ -91,11 +91,11 @@ func getMeleeMaxHit(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
 	}
-	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.Npc.isDemon {
+	if player.equippedGear.isAnyEquipped(demonBaneWeapons) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 60)
 		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
-	if player.equippedGear.isEquipped(burningClaws) && player.Npc.isDemon {
+	if player.equippedGear.isEquipped(burningClaws) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 5)
 		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
@@ -186,7 +186,7 @@ func getRangedMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 5, 4)
 	}
 
-	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.isDemon {
+	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 60)
 		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}

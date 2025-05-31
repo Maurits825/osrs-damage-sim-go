@@ -38,7 +38,7 @@ type npc struct {
 	size int
 
 	isKalphite      bool
-	isDemon         bool
+	IsDemon         bool
 	IsDragon        bool
 	IsUndead        bool
 	isVampyre1      bool
@@ -67,7 +67,7 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 		n.respawn = npcData.Respawn
 		n.size = npcData.Size
 		n.isKalphite = npcData.IsKalphite
-		n.isDemon = npcData.IsDemon
+		n.IsDemon = npcData.IsDemon
 		n.IsDragon = npcData.IsDragon
 		n.IsUndead = npcData.IsUndead
 		n.isLeafy = npcData.IsLeafy

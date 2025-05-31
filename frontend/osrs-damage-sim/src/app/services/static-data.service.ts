@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, shareReplay, take, tap } from 'rxjs';
 import { GearSetupPreset } from '../model/shared/gear-preset.model';
 import { QuickGear, QuickGearSlots } from '../model/shared/quick-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
@@ -35,11 +35,10 @@ export class StaticDataService {
         });
         return gearSlotItems;
       }),
-      tap((gearSlotItems: Record<GearSlot, Item[]>) => {
-        this.allGearSlotItems = gearSlotItems;
-      }),
       shareReplay(1),
     );
+
+    this.allGearSlotItems$.pipe(take(1)).subscribe((items) => (this.allGearSlotItems = items));
 
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
 

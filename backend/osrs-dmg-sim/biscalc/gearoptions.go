@@ -134,6 +134,9 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	if npc.IsDragon && style != dpscalc.Magic {
 		options.addGearId(dpscalc.Weapon, dragonBaneWeapons[style])
 	}
+	if npc.IsDemon && style.IsMeleeStyle() {
+		options.addGearId(dpscalc.Weapon, emberlight)
+	}
 }
 
 func (opt gearSetupOptions) addGearId(slot dpscalc.GearSlot, id int) {
