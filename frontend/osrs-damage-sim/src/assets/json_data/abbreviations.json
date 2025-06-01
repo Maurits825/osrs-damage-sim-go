@@ -634,6 +634,12 @@
  "Combat Achievements": [
   "CA(s)"
  ],
+ "calcified rocks": [
+  "Calc"
+ ],
+ "calcified": [
+  "Calc"
+ ],
  "Camelot": [
   "Cammy",
   "Cam"
@@ -1586,6 +1592,12 @@
  "Hill giants": [
   "Hills",
   "Hillies"
+ ],
+ "Monster killing": [
+  "HLC"
+ ],
+ "PvM": [
+  "HLC"
  ],
  "Theatre of Blood/Hard Mode": [
   "HMT"
