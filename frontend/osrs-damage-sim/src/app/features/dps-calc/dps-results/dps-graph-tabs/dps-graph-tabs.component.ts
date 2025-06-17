@@ -38,7 +38,11 @@ export class DpsGraphTabsComponent implements OnInit {
     this.localStorageService.userSettingsWatch$
       .pipe(map((userSettings: UserSettings) => userSettings.enableDebugTracking))
       .subscribe((enableDebugTracking: boolean) => {
-        enableDebugTracking ? (this.resultTabs = [...RESULT_TABS, CALC_DETAILS_TAB]) : (this.resultTabs = RESULT_TABS);
+        if (enableDebugTracking) {
+          this.resultTabs = [...RESULT_TABS, CALC_DETAILS_TAB];
+        } else {
+          this.resultTabs = RESULT_TABS;
+        }
       });
   }
 }
