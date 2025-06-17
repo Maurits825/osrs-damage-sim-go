@@ -54,4 +54,4 @@ jobs:
         run: npm run lint -- --max-warnings=0
 
       - name: Unit test
-        run: ng test --no-watch --no-progress --browsers=ChromeHeadless
+        run: npm test -- --no-watch --no-progress --browsers=ChromeHeadless
