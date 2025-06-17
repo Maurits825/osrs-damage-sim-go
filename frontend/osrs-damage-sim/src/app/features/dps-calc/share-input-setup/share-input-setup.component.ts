@@ -14,7 +14,7 @@ export class ShareInputSetupComponent {
   constructor(
     private modalService: NgbModal,
     private inputSetupService: DpsCalcInputService,
-    private clipboardService: ClipboardService
+    private clipboardService: ClipboardService,
   ) {}
 
   getInputSetupString(): string {
@@ -50,7 +50,7 @@ export class ShareInputSetupComponent {
     let inputSetup;
     try {
       inputSetup = this.inputSetupService.parseInputSetupFromEncodedString(encodedString);
-    } catch (error) {
+    } catch {
       return false;
     }
 

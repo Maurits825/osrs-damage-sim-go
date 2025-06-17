@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ItemService } from './item.service';
 import { Npc } from '../model/osrs/npc.model';
 import { GlobalSettings } from '../model/shared/global-settings.model';
 import { StaticDataService } from './static-data.service';
@@ -15,7 +14,7 @@ import { DEFAULT_RAGING_ECHOES_SETTINGS } from '../model/osrs/leagues/raging-ech
 export class JsonParseService {
   allNpcs: Npc[];
 
-  constructor(private staticDataService: StaticDataService, private itemService: ItemService) {
+  constructor(private staticDataService: StaticDataService) {
     this.staticDataService.allNpcs$.subscribe((allNpcs: Npc[]) => {
       this.allNpcs = allNpcs;
     });
@@ -55,7 +54,7 @@ export class JsonParseService {
     return {
       ...gearSetup,
       gear: this.getGearFromJson(gearSetup.gear),
-      blowpipeDarts: this.itemService.getItem(GearSlot.Weapon, gearSetup.blowpipeDarts?.id ?? DRAGON_DARTS_ID),
+      blowpipeDarts: this.staticDataService.getItem(GearSlot.Weapon, gearSetup.blowpipeDarts?.id ?? DRAGON_DARTS_ID),
       prayers: new Set(Array.from(gearSetup.prayers)),
     };
   }
@@ -68,7 +67,7 @@ export class JsonParseService {
       const itemId = gearJson[slot]?.id;
 
       if (itemId) {
-        gear[slot] = this.itemService.getItem(slot, itemId);
+        gear[slot] = this.staticDataService.getItem(slot, itemId);
       } else {
         gear[slot] = null;
       }

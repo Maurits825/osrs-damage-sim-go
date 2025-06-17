@@ -134,6 +134,18 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	if npc.IsDragon && style != dpscalc.Magic {
 		options.addGearId(dpscalc.Weapon, dragonBaneWeapons[style])
 	}
+	if npc.IsDemon && style.IsMeleeStyle() {
+		options.addGearId(dpscalc.Weapon, emberlight)
+	}
+
+	for _, weapon := range setup.ExcludedWeapons {
+		for i := range options[dpscalc.Weapon] {
+			if options[dpscalc.Weapon][i] == weapon.Id {
+				options.removeGearId(dpscalc.Weapon, i)
+				break
+			}
+		}
+	}
 }
 
 func (opt gearSetupOptions) addGearId(slot dpscalc.GearSlot, id int) {
@@ -142,6 +154,11 @@ func (opt gearSetupOptions) addGearId(slot dpscalc.GearSlot, id int) {
 
 func (opt gearSetupOptions) addGearIds(slot dpscalc.GearSlot, ids []int) {
 	opt[slot] = append(opt[slot], ids...)
+}
+
+func (opt gearSetupOptions) removeGearId(slot dpscalc.GearSlot, index int) {
+	opt[slot][index] = opt[slot][len(opt[slot])-1]
+	opt[slot] = opt[slot][:len(opt[slot])-1]
 }
 
 // TODO simple func to get bis without budget consideration for now, from the bis graph

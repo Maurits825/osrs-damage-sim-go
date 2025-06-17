@@ -249,7 +249,7 @@ func getAttackDistribution(player *player, accuracy float32, maxHit int) *attack
 		}
 	}
 
-	if player.inputGearSetup.GearSetup.IsMarkOfDarkness && strings.Contains(player.spell.name, "Demonbane") && player.Npc.isDemon {
+	if player.inputGearSetup.GearSetup.IsMarkOfDarkness && strings.Contains(player.spell.name, "Demonbane") && player.Npc.IsDemon {
 		demonbaneFactor := 25
 		if player.equippedGear.isEquipped(purgingStaff) {
 			demonbaneFactor = 50.0

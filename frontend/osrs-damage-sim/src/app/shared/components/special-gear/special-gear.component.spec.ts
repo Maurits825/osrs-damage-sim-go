@@ -8,9 +8,8 @@ describe('SpecialGearComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpecialGearComponent ]
-    })
-    .compileComponents();
+      declarations: [SpecialGearComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SpecialGearComponent);
     component = fixture.componentInstance;

@@ -8931,18 +8931,18 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 200,
   "att": 10,
-  "str": 100,
+  "str": 1,
   "def": 130,
-  "mage": 150,
+  "mage": 1,
   "size": 1
  },
  "1234": {
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 100,
   "att": 10,
-  "str": 90,
-  "def": 120,
-  "mage": 120,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
   "dstab": 80,
   "dslash": 80,
   "dcrush": 80,
@@ -8955,9 +8955,9 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 70,
   "att": 10,
-  "str": 50,
-  "def": 75,
-  "mage": 75,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
   "dstab": 40,
   "dslash": 40,
   "dcrush": 40,
@@ -20908,6 +20908,24 @@
   "combat": 42,
   "size": 1
  },
+ "3616": {
+  "name": "Treus Dayth",
+  "isSpectral": true,
+  "isUndead": true,
+  "hitpoints": 100,
+  "att": 70,
+  "str": 70,
+  "def": 100,
+  "mage": 1,
+  "range": 1,
+  "dstab": 5,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": -5,
+  "drange": 5,
+  "combat": 95,
+  "size": 1
+ },
  "3625": {
   "name": "Ghost",
   "isUndead": true,
@@ -31624,9 +31642,7 @@
   "range": 1,
   "dmagic": -10,
   "combat": 292,
-  "size": 3,
-  "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "water"
+  "size": 3
  },
  "6297": {
   "name": "Glod (hard)",
@@ -31659,8 +31675,7 @@
   "dmagic": -5,
   "drange": 5,
   "combat": 194,
-  "size": 1,
-  "respawn": 4
+  "size": 1
  },
  "6299": {
   "name": "Black Knight Titan (hard)",
@@ -31966,7 +31981,7 @@
   "size": 3
  },
  "6318": {
-  "name": "Nezikchened (hard)",
+  "name": "Nezikchened",
   "isDemon": true,
   "hitpoints": 150,
   "att": 330,
@@ -32077,9 +32092,9 @@
  "6326": {
   "name": "Skeleton Hellhound (hard)",
   "isNo": true,
-  "hitpoints": 132,
-  "att": 168,
-  "str": 264,
+  "hitpoints": 55,
+  "att": 70,
+  "str": 110,
   "def": 100,
   "mage": 1,
   "range": 1,
@@ -32099,7 +32114,7 @@
   "size": 3
  },
  "6328": {
-  "name": "King Roald",
+  "name": "King Roald (hard)",
   "hitpoints": 150,
   "att": 140,
   "str": 120,
@@ -32394,8 +32409,7 @@
   "dmagic": 30,
   "drange": 20,
   "combat": 83,
-  "size": 4,
-  "respawn": 50
+  "size": 4
  },
  "6350": {
   "name": "The Inadequacy",
@@ -32451,8 +32465,7 @@
   "mage": 1,
   "range": 1,
   "combat": 170,
-  "size": 3,
-  "respawn": 30
+  "size": 3
  },
  "6355": {
   "name": "Bouncer",
@@ -32495,9 +32508,7 @@
   "range": 1,
   "dmagic": -10,
   "combat": 172,
-  "size": 3,
-  "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "water"
+  "size": 3
  },
  "6358": {
   "name": "Glod",
@@ -40194,23 +40205,6 @@
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "earth"
  },
- "8033": {
-  "name": "Elvarg",
-  "hitpoints": 80,
-  "att": 70,
-  "str": 70,
-  "def": 70,
-  "mage": 70,
-  "range": 1,
-  "dstab": 20,
-  "dslash": 40,
-  "dcrush": 40,
-  "dmagic": 30,
-  "drange": 20,
-  "combat": 83,
-  "size": 4,
-  "respawn": 50
- },
  "8056": {
   "name": "Spawn",
   "hitpoints": 80,
@@ -41338,7 +41332,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8253": {
   "name": "Vyrewatch",
@@ -41350,7 +41345,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8254": {
   "name": "Vyrewatch",
@@ -41362,7 +41358,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8255": {
   "name": "Vyrewatch",
@@ -41374,7 +41371,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8256": {
   "name": "Vyrewatch",
@@ -41386,7 +41384,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8257": {
   "name": "Vyrewatch",
@@ -41398,7 +41397,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8258": {
   "name": "Vyrewatch",
@@ -41410,7 +41410,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8259": {
   "name": "Vyrewatch",
@@ -41422,7 +41423,8 @@
   "mage": 75,
   "range": 1,
   "combat": 87,
-  "size": 1
+  "size": 1,
+  "respawn": 25
  },
  "8260": {
   "name": "Abomination",
@@ -44127,23 +44129,21 @@
   "combat": 212
  },
  "9249": {
-  "name": "Essyllt (hard)",
+  "name": "Essyllt",
   "hitpoints": 320,
-  "att": 408,
-  "str": 408,
+  "att": 268,
+  "str": 268,
   "def": 104,
   "mage": 104,
-  "range": 512,
-  "attbns": 14,
+  "range": 342,
   "strbns": 28,
-  "arange": 168,
   "rngbns": 28,
   "dstab": 40,
   "dslash": 40,
   "dcrush": 20,
   "dmagic": 30,
   "drange": 120,
-  "combat": 395,
+  "combat": 236,
   "size": 1
  },
  "9258": {
@@ -56610,7 +56610,7 @@
  },
  "13661": {
   "name": "TzTok-Jad",
-  "hitpoints": 5000,
+  "hitpoints": 1000,
   "att": 350,
   "str": 350,
   "def": 200,
@@ -56620,7 +56620,7 @@
   "mbns": 20,
   "arange": 50,
   "rngbns": 20,
-  "combat": 1527,
+  "combat": 527,
   "size": 5
  },
  "13662": {
@@ -57466,7 +57466,7 @@
   "elementalweaknesstype": "fire"
  },
  "13789": {
-  "name": "Frost crab",
+  "name": "Frost Crab",
   "hitpoints": 60,
   "att": 1,
   "str": 1,
@@ -57496,7 +57496,7 @@
   "elementalweaknesstype": "fire"
  },
  "13791": {
-  "name": "Frost crab",
+  "name": "Frost Crab",
   "hitpoints": 60,
   "att": 1,
   "str": 1,
@@ -57677,8 +57677,6 @@
  },
  "13812": {
   "name": "Dire Wolf Alpha",
-  "is<!-- if no monster attributes apply": true,
-  "isRemove this parameter -->": true,
   "hitpoints": 100,
   "att": 120,
   "str": 110,
@@ -58647,7 +58645,6 @@
   "dstab": 100,
   "dslash": 80,
   "dcrush": 333,
-  "dmagic": -30,
   "dlight": 333,
   "dstandard": 220,
   "dheavy": 333,

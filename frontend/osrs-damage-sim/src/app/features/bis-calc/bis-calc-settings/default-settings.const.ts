@@ -35,4 +35,6 @@ export const DEFAULT_BIS_INPUT_SETUP: BisCalcInputSetup = {
   },
   isOnSlayerTask: false,
   isSpecialAttack: false,
+
+  excludedWeapons: [],
 };

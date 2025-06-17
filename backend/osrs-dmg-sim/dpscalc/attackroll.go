@@ -87,11 +87,11 @@ func getMeleeAttackRoll(player *player) int {
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyRevWeapon, attackRoll, 3, 2)
 	}
-	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.isDemon {
+	if player.equippedGear.isAnyEquipped([]int{arclight, emberlight}) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 70)
 		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}
-	if player.equippedGear.isEquipped(burningClaws) && player.Npc.isDemon {
+	if player.equippedGear.isEquipped(burningClaws) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 5)
 		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}
@@ -186,7 +186,7 @@ func getRangedAttackRoll(player *player) int {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 13, 10)
 	}
 
-	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.isDemon {
+	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.IsDemon {
 		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 30)
 		attackRoll = dpsDetailEntries.TrackAddFactor(dpsdetail.PlayerAccuracyDemonbane, attackRoll, demonFactor.numerator, demonFactor.denominator)
 	}
@@ -232,7 +232,7 @@ func getMagicAttackRoll(player *player) int {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
 	}
 
-	if strings.Contains(player.spell.name, "Demonbane") && player.Npc.isDemon {
+	if strings.Contains(player.spell.name, "Demonbane") && player.Npc.IsDemon {
 		demonbanePercent := 20
 
 		if player.inputGearSetup.GearSetup.IsMarkOfDarkness {

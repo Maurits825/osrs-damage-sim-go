@@ -60,7 +60,7 @@ func (npc *npc) ApplyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 			}
 		case Arclight, Emberlight:
 			numerator := 1
-			if npc.isDemon {
+			if npc.IsDemon {
 				numerator = 2
 				if statDrain.Name == Emberlight {
 					numerator = 3

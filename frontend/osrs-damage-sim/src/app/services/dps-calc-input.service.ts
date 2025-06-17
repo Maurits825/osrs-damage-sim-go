@@ -32,7 +32,10 @@ export class DpsCalcInputService {
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(private localStorageService: LocalStorageService, private jsonParseService: JsonParseService) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private jsonParseService: JsonParseService,
+  ) {}
 
   getInputSetupAsJson(): string {
     const inputSetup: InputSetup = this.getInputSetup();
@@ -81,7 +84,7 @@ export class DpsCalcInputService {
         }
 
         return value;
-      })
+      }),
     );
   }
 

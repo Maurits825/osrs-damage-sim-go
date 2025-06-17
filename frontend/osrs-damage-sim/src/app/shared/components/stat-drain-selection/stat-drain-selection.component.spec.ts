@@ -8,9 +8,8 @@ describe('StatDrainSelectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatDrainSelectionComponent ]
-    })
-    .compileComponents();
+      declarations: [StatDrainSelectionComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StatDrainSelectionComponent);
     component = fixture.componentInstance;

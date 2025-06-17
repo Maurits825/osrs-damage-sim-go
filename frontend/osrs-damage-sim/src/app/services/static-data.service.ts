@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay, take } from 'rxjs';
 import { GearSetupPreset } from '../model/shared/gear-preset.model';
-import { QuickGearJson } from '../model/shared/quick-gear.model';
+import { QuickGear, QuickGearSlots } from '../model/shared/quick-gear.model';
 import { GearSlot } from '../model/osrs/gear-slot.enum';
-import { Item } from '../model/osrs/item.model';
+import { allAttackTypes, Item } from '../model/osrs/item.model';
 import { Npc } from '../model/osrs/npc.model';
 import { HttpClient } from '@angular/common/http';
 import { ExampleSetup } from '../model/dps-calc/example-setup.model';
 import { InputSetup as SimpleSimInputSetup } from '../model/simple-dmg-sim/input-setup.model';
+import { quickGearSetups } from './quick-gear.const';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,8 @@ export class StaticDataService {
   public allNpcs$: Observable<Npc[]>;
   public allDarts$: Observable<Item[]>;
 
+  private allGearSlotItems: Record<GearSlot, Item[]>;
+
   constructor(private http: HttpClient) {
     this.allGearSlotItems$ = this.getGearSlotItems().pipe(
       map((gearSlotItems: Record<GearSlot, Item[]>) => {
@@ -34,6 +37,8 @@ export class StaticDataService {
       }),
       shareReplay(1),
     );
+
+    this.allGearSlotItems$.pipe(take(1)).subscribe((items) => (this.allGearSlotItems = items));
 
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
 
@@ -67,10 +72,6 @@ export class StaticDataService {
     return this.http.get<GearSetupPreset[]>('assets/json_data/gear_setup_presets.json');
   }
 
-  private getQuickGearJson(): Observable<QuickGearJson> {
-    return this.http.get<QuickGearJson>('assets/json_data/quick_gear.json');
-  }
-
   private getExampleSetups<T>(jsonName: string): Observable<ExampleSetup<T>[]> {
     return this.http.get<ExampleSetup<T>[]>('assets/json_data/' + jsonName);
   }
@@ -85,5 +86,27 @@ export class StaticDataService {
         gearSlotItem[GearSlot.Weapon].filter((item: Item) => item.name.match('dart$')),
       ),
     );
+  }
+
+  public getItem(slot: GearSlot, itemId: number): Item {
+    return this.allGearSlotItems[slot].find((item: Item) => item.id === itemId);
+  }
+
+  public getQuickGearSlots(): QuickGearSlots {
+    const quickGearSlots: QuickGearSlots = {} as QuickGearSlots;
+    for (const gs in GearSlot) {
+      const slot = GearSlot[gs as keyof typeof GearSlot] as keyof QuickGearSlots;
+      quickGearSlots[slot] = {} as QuickGear;
+      for (const attackIdx in allAttackTypes) {
+        const items: Item[] = [];
+        const attackType = allAttackTypes[attackIdx];
+        for (const itemId of quickGearSetups[slot][attackType]) {
+          const item = this.getItem(slot, itemId);
+          items.push(item);
+        }
+        quickGearSlots[slot][attackType] = items;
+      }
+    }
+    return quickGearSlots;
   }
 }

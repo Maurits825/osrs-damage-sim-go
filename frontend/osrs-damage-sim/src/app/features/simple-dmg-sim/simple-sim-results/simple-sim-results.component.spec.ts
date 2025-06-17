@@ -8,9 +8,8 @@ describe('SimpleSimResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleSimResultsComponent ]
-    })
-    .compileComponents();
+      declarations: [SimpleSimResultsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SimpleSimResultsComponent);
     component = fixture.componentInstance;
