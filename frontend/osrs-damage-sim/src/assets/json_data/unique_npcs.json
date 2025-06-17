@@ -1664,9 +1664,9 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 200,
   "att": 10,
-  "str": 100,
+  "str": 1,
   "def": 130,
-  "mage": 150,
+  "mage": 1,
   "size": 1,
   "id": "1233"
  },
@@ -1674,9 +1674,9 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 100,
   "att": 10,
-  "str": 90,
-  "def": 120,
-  "mage": 120,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
   "dstab": 80,
   "dslash": 80,
   "dcrush": 80,
@@ -1690,9 +1690,9 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 70,
   "att": 10,
-  "str": 50,
-  "def": 75,
-  "mage": 75,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
   "dstab": 40,
   "dslash": 40,
   "dcrush": 40,
@@ -3421,8 +3421,6 @@
   "dmagic": -10,
   "combat": 292,
   "size": 3,
-  "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "water",
   "id": "6295"
  },
  {
@@ -6946,8 +6944,6 @@
  },
  {
   "name": "Dire Wolf Alpha",
-  "is<!-- if no monster attributes apply": true,
-  "isRemove this parameter -->": true,
   "hitpoints": 100,
   "att": 120,
   "str": 110,
@@ -9077,6 +9073,22 @@
   "id": "3600"
  },
  {
+  "name": "Frost Crab",
+  "hitpoints": 60,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dmagic": -50,
+  "combat": 15,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire",
+  "id": "13789"
+ },
+ {
   "name": "Frost Nagua",
   "isSpectral": true,
   "hitpoints": 120,
@@ -9100,22 +9112,6 @@
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire",
   "id": "13728"
- },
- {
-  "name": "Frost crab",
-  "hitpoints": 60,
-  "att": 1,
-  "str": 1,
-  "def": 1,
-  "mage": 1,
-  "range": 1,
-  "dmagic": -50,
-  "combat": 15,
-  "size": 1,
-  "respawn": 50,
-  "elementalweaknesspercent": 100,
-  "elementalweaknesstype": "fire",
-  "id": "13789"
  },
  {
   "name": "Fumus",
@@ -14221,7 +14217,7 @@
   "id": "4163"
  },
  {
-  "name": "King Roald",
+  "name": "King Roald (hard)",
   "hitpoints": 150,
   "att": 140,
   "str": 120,
@@ -16935,7 +16931,7 @@
   "id": "3962"
  },
  {
-  "name": "Nezikchened (hard)",
+  "name": "Nezikchened",
   "isDemon": true,
   "hitpoints": 150,
   "att": 330,
@@ -22623,9 +22619,9 @@
  {
   "name": "Skeleton Hellhound (hard)",
   "isNo": true,
-  "hitpoints": 132,
-  "att": 168,
-  "str": 264,
+  "hitpoints": 55,
+  "att": 70,
+  "str": 110,
   "def": 100,
   "mage": 1,
   "range": 1,
@@ -26249,7 +26245,7 @@
   "drange": 5,
   "combat": 95,
   "size": 1,
-  "id": "6359"
+  "id": "3616"
  },
  {
   "name": "Treus Dayth (hard)",
@@ -26267,7 +26263,6 @@
   "drange": 5,
   "combat": 194,
   "size": 1,
-  "respawn": 4,
   "id": "6298"
  },
  {
@@ -27895,6 +27890,7 @@
   "range": 1,
   "combat": 87,
   "size": 1,
+  "respawn": 25,
   "id": "8252"
  },
  {
@@ -28868,7 +28864,6 @@
   "dstab": 100,
   "dslash": 80,
   "dcrush": 333,
-  "dmagic": -30,
   "dlight": 333,
   "dstandard": 220,
   "dheavy": 333,

@@ -482,10 +482,12 @@
   "BRD"
  ],
  "Saradomin brew": [
-  "Brew(s)"
+  "Brew(s)",
+  "Hard food"
  ],
  "Zamorak brews": [
-  "Brew(s)"
+  "Brew(s)",
+  "Hard food"
  ],
  "player": [
   "Brid",
@@ -633,6 +635,12 @@
  ],
  "Combat Achievements": [
   "CA(s)"
+ ],
+ "calcified rocks": [
+  "Calc"
+ ],
+ "calcified": [
+  "Calc"
  ],
  "Camelot": [
   "Cammy",
@@ -1533,6 +1541,12 @@
  "Halberd": [
   "Hally"
  ],
+ "Food": [
+  "Hard food"
+ ],
+ "fish": [
+  "Hard food"
+ ],
  "Harmonised nightmare staff": [
   "Harm",
   "Harmo"
@@ -1558,6 +1572,7 @@
  ],
  "Ironman Mode": [
   "Helmet",
+  "Helmie",
   "IM",
   "Iron",
   "IM",
@@ -1567,6 +1582,7 @@
  ],
  "Ironman": [
   "Helmet",
+  "Helmie",
   "IM",
   "Iron",
   "IM",
@@ -1586,6 +1602,12 @@
  "Hill giants": [
   "Hills",
   "Hillies"
+ ],
+ "Monster killing": [
+  "HLC"
+ ],
+ "PvM": [
+  "HLC"
  ],
  "Theatre of Blood/Hard Mode": [
   "HMT"
@@ -1660,6 +1682,8 @@
   "Invoc(s)",
   "Invo",
   "ToA",
+  "Purple",
+  "Purp",
   "Raids 1",
   "Raids 2",
   "Raids 3"
@@ -1668,6 +1692,8 @@
   "Invoc(s)",
   "Invo",
   "ToA",
+  "Purple",
+  "Purp",
   "Raids 1",
   "Raids 2",
   "Raids 3"
@@ -2047,8 +2073,6 @@
  ],
  "Tumeken's shadow": [
   "Shadow",
-  "SoT",
-  "ShaT",
   "Staff"
  ],
  "Shilo Village (location)": [
@@ -2179,6 +2203,9 @@
  ],
  "Square shield": [
   "Sq"
+ ],
+ "Soulreaper axe": [
+  "SRA"
  ],
  "Saradomin sword": [
   "SS"
