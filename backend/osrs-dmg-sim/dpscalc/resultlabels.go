@@ -52,7 +52,7 @@ func GetDpsCalcTitle(globalSettings *GlobalSettings) string {
 	return title
 }
 
-func getNpcTitle(globalSettings *GlobalSettings, npc *npc) string {
+func getNpcTitle(globalSettings *GlobalSettings, npc *Npc) string {
 	npcTitle := npc.name
 
 	if globalSettings.CoxScaling.IsChallengeMode {

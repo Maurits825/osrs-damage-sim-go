@@ -13,7 +13,10 @@ export class GearSetupTabsComponent implements OnInit {
   activeTab = 0;
   maxSetupTabs = 5;
 
-  constructor(private changeDetector: ChangeDetectorRef, private inputService: SimpleDmgSimInputService) {}
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private inputService: SimpleDmgSimInputService,
+  ) {}
 
   ngOnInit(): void {
     this.inputService.inputGearSetupsWatch().subscribe((setups: InputGearSetup[]) => (this.inputGearSetups = setups));
@@ -45,9 +48,5 @@ export class GearSetupTabsComponent implements OnInit {
     if (this.activeTab >= index) {
       this.activeTab = Math.max(0, this.activeTab - 1);
     }
-  }
-
-  loadInputSetup(inputGearSetups: InputGearSetup[]): void {
-    this.inputGearSetups = inputGearSetups;
   }
 }

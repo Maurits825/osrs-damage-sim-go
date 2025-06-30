@@ -1,16 +1,28 @@
 package simpledmgsim
 
 import (
-	"fmt"
 	"math/rand/v2"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
+const specialAttackRegen = 2
+const maxSpecialAttack = 1000
+
+// TODO name of this????
 type simGearSetup struct {
-	setupPlayer *dpscalc.Player
-	hitDist     []float32
-	attackSpeed int
+	gearPresetIndex   int
+	conditions        []Condition
+	attackSpeed       int
+	specialAttackCost int
+
+	damageDealt int
+	attackCount int
+}
+
+type simPlayer struct {
+	attackTick    int
+	specialAttack int
 }
 
 // TODO for one setup?
@@ -18,55 +30,101 @@ func runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup I
 	//setup stuff
 	//TODO if def reductions, what needs to be recalced -> just getHitDist
 	simGearSetups := getSimGearSetups(presets, gs, setup)
+	simPlayer := simPlayer{0, maxSpecialAttack}
+	npc := dpscalc.GetNpc(gs.Npc.Id)
 
-	npcHp := simGearSetups[0].setupPlayer.Npc.CombatStats.Hitpoints //TODO indexing here is scuffed?
-	var currentGear *simGearSetup
+	input := &dpscalc.InputGearSetup{GearSetupSettings: setup.GearSetupSettings}
+	npc.ApplyAllNpcScaling(gs, input)
 
-	//todo main loop
-	//based on tick per tick? we need to keep track of spec also
-	ticksToKill := 0
-	for npcHp > 0 {
-		//first use conditions to get the right hitdist
-		currentGear = &simGearSetups[0]
+	iterations := 1_000_000
 
-		damage := rollHitDist(currentGear.hitDist)
-		fmt.Println("damage rolled:", damage)
-		npcHp -= damage
+	hdc := newHitDistCache(gs, &setup.GearSetupSettings, presets)
 
-		ticksToKill += currentGear.attackSpeed
+	//TODO func here for now, split in other fns in the future?
+	runOneIter := func() int {
+		//reset stuff
+		simPlayer.attackTick = 0
+		simPlayer.specialAttack = maxSpecialAttack
+
+		for i := range simGearSetups {
+			simGearSetups[i].damageDealt = 0
+			simGearSetups[i].attackCount = 0
+		}
+
+		npcHp := npc.CombatStats.Hitpoints
+		var currentGear *simGearSetup
+
+		ticksToKill := 0
+		for {
+			if npcHp < 0 {
+				break
+			}
+
+			simPlayer.attackTick -= 1
+
+			if simPlayer.attackTick <= 0 {
+				currentGear = getNextSimGear(simGearSetups, npcHp, simPlayer)
+				dist := hdc.getHitDist(npc, currentGear.gearPresetIndex)
+				damage := rollHitDist(dist)
+
+				//TODO if stat drain do something here
+
+				npcHp -= damage
+				simPlayer.attackTick = currentGear.attackSpeed
+				simPlayer.specialAttack -= currentGear.specialAttackCost
+			}
+
+			//TODO lb
+			simPlayer.specialAttack = min(simPlayer.specialAttack+specialAttackRegen, maxSpecialAttack)
+			ticksToKill += 1
+		}
+		return ticksToKill
 	}
 
-	return &SimResult{ticksToKill: ticksToKill}
+	ticksSum := 0
+	for range iterations {
+		ticks := runOneIter()
+		ticksSum += ticks
+	}
+
+	averageTicks := ticksSum / iterations
+	return &SimResult{ticksToKill: averageTicks}
+
 }
 
 func getSimGearSetups(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) []simGearSetup {
-	players := make([]simGearSetup, len(setup.GearSimSetups)+1)
+	setups := make([]simGearSetup, len(setup.GearSimSetups)+1)
 
-	mainCalcSetup := &dpscalc.InputGearSetup{
-		GearSetupSettings: setup.GearSetupSettings,
-		GearSetup:         presets[setup.MainGearSimSetup.GearPresetIndex],
-	}
-
-	p := dpscalc.GetPlayer(gs, mainCalcSetup)
-	players[0] = simGearSetup{
-		setupPlayer: p,
-		hitDist:     dpscalc.GetPlayerHitDist(p),
-		attackSpeed: dpscalc.GetAttackSpeed(p),
-	}
-
-	for i, gearSimSetup := range setup.GearSimSetups {
+	allGearSetups := append([]GearSimSetup{setup.MainGearSimSetup}, setup.GearSimSetups...)
+	for i, gearSimSetup := range allGearSetups {
 		dpsCalcSetup := &dpscalc.InputGearSetup{
 			GearSetupSettings: setup.GearSetupSettings,
 			GearSetup:         presets[gearSimSetup.GearPresetIndex],
 		}
-		p = dpscalc.GetPlayer(gs, dpsCalcSetup)
-		players[i+1] = simGearSetup{
-			setupPlayer: p,
-			hitDist:     dpscalc.GetPlayerHitDist(p),
-			attackSpeed: dpscalc.GetAttackSpeed(p),
+		p := dpscalc.GetPlayer(gs, dpsCalcSetup)
+		setups[i] = simGearSetup{
+			gearPresetIndex:   gearSimSetup.GearPresetIndex,
+			conditions:        gearSimSetup.Conditions,
+			attackSpeed:       dpscalc.GetAttackSpeed(p),
+			specialAttackCost: p.SpecialAttackCost * 10, //TODO adren pot
 		}
 	}
-	return players
+	return setups
+}
+
+func getNextSimGear(simGearSetups []simGearSetup, npcHp int, player simPlayer) *simGearSetup {
+	for i := range simGearSetups[1:] {
+		s := &simGearSetups[i+1]
+		useSetup := evaluateConditions(s.conditions, npcHp, s.damageDealt, s.attackCount)
+		if useSetup {
+			if s.specialAttackCost <= player.specialAttack {
+				return s
+			} else {
+				return &simGearSetups[0]
+			}
+		}
+	}
+	return &simGearSetups[0]
 }
 
 func rollHitDist(dist []float32) int {
@@ -80,5 +138,5 @@ func rollHitDist(dist []float32) int {
 		}
 	}
 
-	panic("rollHitDist: no hit rolled")
+	return len(dist)
 }

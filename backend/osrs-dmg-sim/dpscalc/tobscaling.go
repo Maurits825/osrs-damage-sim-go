@@ -16,6 +16,6 @@ var (
 	})
 )
 
-func (npc *npc) applyTobScaling(globalSettings *GlobalSettings) {
+func (npc *Npc) applyTobScaling(globalSettings *GlobalSettings) {
 	//TODO
 }

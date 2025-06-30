@@ -100,7 +100,7 @@ func getToaScalingValues(npcId int) (int, int) {
 	return 0, 0
 }
 
-func (npc *npc) applyToaScaling(globalSettings *GlobalSettings) {
+func (npc *Npc) applyToaScaling(globalSettings *GlobalSettings) {
 	if !slices.Contains(ToaIds, npc.id) {
 		return
 	}

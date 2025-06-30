@@ -55,6 +55,7 @@ type DpsCalcOptions struct {
 var allItems equipmentItems
 var allNpcs npcs
 var idAliases map[int]int
+var specItems map[string]int
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
@@ -64,6 +65,7 @@ func init() {
 	allItems = getEquipmentItems(wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData))
 	allNpcs = getNpcs(wikidata.GetWikiData(wikidata.NpcProvider).(map[string]wikidata.NpcData))
 	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[int]int)
+	specItems = wikidata.GetWikiData(wikidata.SpecProvider).(map[string]int)
 }
 
 func RunDpsCalc(inputSetup *InputSetup) []*DpsCalcResults {
@@ -140,7 +142,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	}
 }
 
-func GetNpc(id string) npc {
+func GetNpc(id string) Npc {
 	npcId, _ := strconv.Atoi(id)
 	npc := allNpcs[id]
 	npc.id = npcId
@@ -158,6 +160,8 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	equippedGear := equippedGear{ids: make([]int, 0, maxGearSlots)}
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
+	specialAttackCost := 0
+
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
 		if gearItem.Id == EmptyItemId {
 			continue
@@ -174,11 +178,12 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		if gearSlot == Weapon {
 			equipmentStats.attackSpeed = itemStats.attackSpeed
 			weaponStyle = item.weaponStyle
+			specialAttackCost = specItems[item.name]
 		}
 	}
 
 	npc := GetNpc(globalSettings.Npc.Id)
-	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
+	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
 
 	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
 	spell := getSpellByName(inputGearSetup.GearSetup.Spell)
@@ -236,7 +241,11 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 	echoMasteries.maxMastery = max(echoMasteries.melee, max(echoMasteries.ranged, echoMasteries.mage))
 
-	return &Player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell, echoMasteries}
+	return &Player{
+		globalSettings, inputGearSetup, npc, combatStatBoost,
+		equipmentStats, cmbStyle, equippedGear, weaponStyle, specialAttackCost,
+		spell, echoMasteries,
+	}
 }
 
 func GetPlayerHitDist(player *Player) []float32 {
