@@ -25,8 +25,24 @@ type simPlayer struct {
 	specialAttack int
 }
 
+type distSimRunner struct {
+	iterations int
+	rng        *rand.Rand
+}
+
+func newDistSimRunner(iterations int, rng *rand.Rand) *distSimRunner {
+	if rng == nil {
+		rng = rand.New(rand.NewPCG(rand.Uint64(), rand.Uint64()))
+	}
+
+	return &distSimRunner{
+		iterations: iterations,
+		rng:        rng,
+	}
+}
+
 // TODO for one setup?
-func runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) *SimResult {
+func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) *SimResult {
 	//setup stuff
 	//TODO if def reductions, what needs to be recalced -> just getHitDist
 	simGearSetups := getSimGearSetups(presets, gs, setup)
@@ -35,8 +51,6 @@ func runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup I
 
 	input := &dpscalc.InputGearSetup{GearSetupSettings: setup.GearSetupSettings}
 	npc.ApplyAllNpcScaling(gs, input)
-
-	iterations := 1_000_000
 
 	hdc := newHitDistCache(gs, &setup.GearSetupSettings, presets)
 
@@ -65,7 +79,8 @@ func runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup I
 			if simPlayer.attackTick <= 0 {
 				currentGear = getNextSimGear(simGearSetups, npcHp, simPlayer)
 				dist := hdc.getHitDist(npc, currentGear.gearPresetIndex)
-				damage := rollHitDist(dist)
+				damage := runner.rollHitDist(dist)
+				// fmt.Println(damage)
 
 				//TODO if stat drain do something here
 
@@ -82,12 +97,12 @@ func runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup I
 	}
 
 	ticksSum := 0
-	for range iterations {
+	for range runner.iterations {
 		ticks := runOneIter()
 		ticksSum += ticks
 	}
 
-	averageTicks := ticksSum / iterations
+	averageTicks := ticksSum / runner.iterations
 	return &SimResult{ticksToKill: averageTicks}
 
 }
@@ -127,13 +142,13 @@ func getNextSimGear(simGearSetups []simGearSetup, npcHp int, player simPlayer) *
 	return &simGearSetups[0]
 }
 
-func rollHitDist(dist []float32) int {
-	r := rand.Float32()
+func (r *distSimRunner) rollHitDist(dist []float32) int {
+	random := r.rng.Float32()
 
 	cumulativeProb := float32(0.0)
 	for i, prob := range dist {
 		cumulativeProb += prob
-		if r <= cumulativeProb {
+		if random <= cumulativeProb {
 			return i
 		}
 	}
