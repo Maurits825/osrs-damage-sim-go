@@ -15,15 +15,13 @@ type testInputSetup struct {
 	InputSetup          InputSetup `json:"inputSetup"`
 }
 
-const iterations = 100
-
 func TestRunDistSim(t *testing.T) {
 	testInputSetups := *testutil.LoadTestFile[testInputSetups]("sim_input_setups.json")
 
 	for setupName, testInputSetup := range testInputSetups {
 		inputSetup := testInputSetup.InputSetup
 		rng := rand.New(rand.NewPCG(420, 69))
-		runner := newDistSimRunner(iterations, rng)
+		runner := newDistSimRunner(100, rng)
 
 		results := runner.runDistSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
 		if results.ticksToKill != testInputSetup.ExpectedTicksTokill {

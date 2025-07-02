@@ -3,7 +3,8 @@ package simpledmgsim
 import "github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 
 type hitDistCache struct {
-	cache []map[uint64][]float32
+	cache   []map[uint64][]float32
+	hashers []npcHasher
 
 	globalSettings    *dpscalc.GlobalSettings
 	gearSetupSettings *dpscalc.GearSetupSettings
@@ -12,9 +13,12 @@ type hitDistCache struct {
 	inputGearSetup *dpscalc.InputGearSetup
 }
 
+type npcHasher func(npc dpscalc.Npc) uint64
+
 func newHitDistCache(gs *dpscalc.GlobalSettings, settings *dpscalc.GearSetupSettings, presets []dpscalc.GearSetup) *hitDistCache {
 	hdc := &hitDistCache{
 		cache:             make([]map[uint64][]float32, len(presets)),
+		hashers:           make([]npcHasher, len(presets)),
 		globalSettings:    gs,
 		gearSetupSettings: settings,
 		gearPresets:       presets,
@@ -23,33 +27,29 @@ func newHitDistCache(gs *dpscalc.GlobalSettings, settings *dpscalc.GearSetupSett
 		},
 	}
 
-	for i := range hdc.cache {
+	for i := range presets {
 		hdc.cache[i] = make(map[uint64][]float32)
+		hdc.hashers[i] = hashNpc
+		//todo this check for ruby is kinda scuffed but works for now
+		if presets[i].Gear[dpscalc.Ammo].Id == 9242 || presets[i].Gear[dpscalc.Ammo].Id == 21944 {
+			hdc.hashers[i] = hashNpcRuby
+		}
 	}
 
 	return hdc
 }
 
-//TODO we have to figure out how/where stat drain
-//do we use stat drain or set the def
-//where do we stat drain/ how do we hash, stat drain list? thats scuffed
-//otherwise what stats from the npc do we hash
-//just defence and magic? can hash 2 16bit in 32bit int32 then?
-//so as a hdc do we want npc stats or stat drain -> npc stats make more sense -> directly hash
-//so users have to stat drain no the npc, but we cant pass the npc.... (Npc vs npc)!!!!
-//so fix npc?
 func (c *hitDistCache) calcHitDist(npc dpscalc.Npc, presetIndex int) []float32 {
-	//TODO have one of this
 	c.inputGearSetup.GearSetup = c.gearPresets[presetIndex]
 
 	p := dpscalc.GetPlayer(c.globalSettings, c.inputGearSetup)
-	p.Npc = npc //todo this actually works???
+	p.Npc = npc
 	hitDist := dpscalc.GetPlayerHitDist(p)
 
 	return hitDist
 }
 
-//todo hashing stuff
+//could we also just use getDefRoll as the hash?
 func hashNpc(npc dpscalc.Npc) uint64 {
 	h := uint64(0)
 	h |= uint64(npc.CombatStats.Defence) << 32
@@ -57,8 +57,15 @@ func hashNpc(npc dpscalc.Npc) uint64 {
 	return h
 }
 
+func hashNpcRuby(npc dpscalc.Npc) uint64 {
+	h := uint64(0)
+	h |= uint64(npc.CombatStats.Defence) << 32
+	h |= uint64(min(500, npc.CombatStats.Hitpoints))
+	return h
+}
+
 func (c *hitDistCache) getHitDist(npc dpscalc.Npc, presetIndex int) []float32 {
-	h := hashNpc(npc)
+	h := c.hashers[presetIndex](npc)
 	dist, exists := c.cache[presetIndex][h]
 
 	if !exists {

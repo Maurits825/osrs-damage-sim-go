@@ -7,7 +7,7 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
-const specialAttackRegen = 2
+const baseSpecialAttackRegen = 2
 const maxSpecialAttack = 1000
 
 type statDrainer func(*dpscalc.Npc, int)
@@ -48,8 +48,6 @@ func newDistSimRunner(iterations int, rng *rand.Rand) *distSimRunner {
 
 // TODO for one setup?
 func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) *SimResult {
-	//setup stuff
-	//TODO if def reductions, what needs to be recalced -> just getHitDist
 	simGearSetups := getSimGearSetups(presets, gs, setup)
 	simPlayer := simPlayer{0, maxSpecialAttack}
 	npc := dpscalc.GetNpc(gs.Npc.Id)
@@ -70,8 +68,7 @@ func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc
 			simGearSetups[i].attackCount = 0
 		}
 
-		//todo have to reset npc stats
-		npc.CombatStats = npc.BaseCombatStats //todo does this work as expected?
+		npc.CombatStats = npc.BaseCombatStats
 		var currentGear *simGearSetup
 
 		ticksToKill := 0
@@ -85,6 +82,7 @@ func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc
 			if simPlayer.attackTick <= 0 {
 				currentGear = getNextSimGear(simGearSetups, npc.CombatStats.Hitpoints, simPlayer)
 				dist := hdc.getHitDist(npc, currentGear.gearPresetIndex)
+
 				damage := runner.rollHitDist(dist)
 				// fmt.Println(damage)
 
@@ -101,7 +99,7 @@ func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc
 			}
 
 			//TODO lb
-			simPlayer.specialAttack = min(simPlayer.specialAttack+specialAttackRegen, maxSpecialAttack)
+			simPlayer.specialAttack = min(simPlayer.specialAttack+baseSpecialAttackRegen, maxSpecialAttack)
 			ticksToKill += 1
 		}
 		return ticksToKill
