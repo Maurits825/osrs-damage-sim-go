@@ -1,5 +1,10 @@
 <ng-container *ngIf="results?.results && !results?.error">
-  @for (result of results.results; track result.ticksToKill) {
-    <div>results: {{ result.ticksToKill | tickToTime }}</div>
-  }
+  <div>
+    @for (result of results.results; track result.averageTtk) {
+      <div>results: {{ result.averageTtk | tickToTime }}</div>
+    }
+  </div>
+  <div>
+    <app-sim-graph-tabs [simpleSimResults]="results.results"></app-sim-graph-tabs>
+  </div>
 </ng-container>

@@ -5,5 +5,7 @@ export interface SimpleSimResults {
 }
 
 export interface SimpleSimResult {
-  ticksToKill: number;
+  averageTtk: number;
+  ttkHistogram: number[];
+  cummulativeTtk: number[];
 }

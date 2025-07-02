@@ -23,9 +23,9 @@ func TestRunDistSim(t *testing.T) {
 		rng := rand.New(rand.NewPCG(420, 69))
 		runner := newDistSimRunner(100, rng)
 
-		results := runner.runDistSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
-		if results.ticksToKill != testInputSetup.ExpectedTicksTokill {
-			t.Errorf("FAIL: " + setupName + " - Expected ticks: " + fmt.Sprintf("%v", testInputSetup.ExpectedTicksTokill) + ", Actual: " + fmt.Sprintf("%v", results.ticksToKill))
+		results := runner.runDistSim(&inputSetup, 0)
+		if results.AverageTtk != testInputSetup.ExpectedTicksTokill {
+			t.Errorf("FAIL: " + setupName + " - Expected ticks: " + fmt.Sprintf("%v", testInputSetup.ExpectedTicksTokill) + ", Actual: " + fmt.Sprintf("%v", results.AverageTtk))
 		}
 	}
 }

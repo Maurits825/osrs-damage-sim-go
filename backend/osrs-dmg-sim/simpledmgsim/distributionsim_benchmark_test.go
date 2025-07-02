@@ -17,7 +17,7 @@ func BenchmarkRunDistSim(b *testing.B) {
 
 		b.Run(setupName, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				runner.runDistSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
+				runner.runDistSim(&inputSetup, 0)
 			}
 		})
 	}

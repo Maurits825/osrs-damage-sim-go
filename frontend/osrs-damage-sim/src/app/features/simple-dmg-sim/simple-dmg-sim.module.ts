@@ -11,6 +11,8 @@ import { GearPresetsComponent } from './gear-presets/gear-presets.component';
 import { GearSimSetupsComponent } from './gear-sim-setups/gear-sim-setups.component';
 import { SimpleSimResultsComponent } from './simple-sim-results/simple-sim-results.component';
 import { ExampleSetupsComponent } from './example-setups/example-setups.component';
+import { SimGraphTabsComponent } from './simple-sim-results/sim-graph-tabs/sim-graph-tabs.component';
+import { CummulativeTtkGraphComponent } from './simple-sim-results/cummulative-ttk-graph/cummulative-ttk-graph.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ExampleSetupsComponent } from './example-setups/example-setups.componen
     GearSimSetupsComponent,
     SimpleSimResultsComponent,
     ExampleSetupsComponent,
+    SimGraphTabsComponent,
+    CummulativeTtkGraphComponent,
   ],
   imports: [CommonModule, FormsModule, SimpleDmgSimRoutingModule, AppSharedModule],
 })

@@ -1,14 +1,11 @@
 package simpledmgsim
 
+//todo remove this file?
 type SimpleDmgSimResults struct {
-	Results []SimpleDmgSimResult `json:"results"`
+	Results []*simResult `json:"results"`
 }
 
-type SimpleDmgSimResult struct {
-	TicksToKill int `json:"ticksToKill"`
-}
-
-func RunSimpleDmgSim(inputSetup *InputSetup) *SimpleDmgSimResults {
+func RunSimpleDmgSim(inputSetup *InputSetup) SimpleDmgSimResults {
 	results := RunAllDistSim(inputSetup)
 	return results
 }

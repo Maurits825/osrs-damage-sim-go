@@ -46,22 +46,22 @@ func newDistSimRunner(iterations int, rng *rand.Rand) *distSimRunner {
 	}
 }
 
-func RunAllDistSim(inputSetup *InputSetup) *SimpleDmgSimResults {
-	simResults := make([]SimpleDmgSimResult, len(inputSetup.InputGearSetups))
+func RunAllDistSim(inputSetup *InputSetup) SimpleDmgSimResults {
+	simResults := make([]*simResult, len(inputSetup.InputGearSetups))
 
 	runner := newDistSimRunner(inputSetup.SimSettings.Iterations, nil)
 	for i := range inputSetup.InputGearSetups {
 		results := runner.runDistSim(inputSetup, i)
-		simResults[i].TicksToKill = results.ticksToKill
+		simResults[i] = results
 	}
 
-	return &SimpleDmgSimResults{
+	return SimpleDmgSimResults{
 		Results: simResults,
 	}
 }
 
 // todo better/cleaner way to manage input args
-func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *SimResult {
+func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simResult {
 	presets := inputSetup.GearPresets
 	gs := &inputSetup.GlobalSettings
 	setup := inputSetup.InputGearSetups[index]
@@ -123,15 +123,18 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *SimR
 		return ticksToKill
 	}
 
-	ticksSum := 0
+	ttkMap := make(map[int]int)
+	maxTtk := 0
 	for range runner.iterations {
-		ticks := runOneIter()
-		ticksSum += ticks
+		ttk := runOneIter()
+		if ttk > maxTtk {
+			maxTtk = ttk
+		}
+		ttkMap[ttk] += 1
 	}
 
-	averageTicks := ticksSum / runner.iterations
-	return &SimResult{ticksToKill: averageTicks}
-
+	results := getSimResults(ttkMap, maxTtk+1, runner.iterations)
+	return results
 }
 
 func getSimGearSetups(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) []simGearSetup {

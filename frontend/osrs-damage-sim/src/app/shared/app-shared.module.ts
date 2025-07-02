@@ -105,5 +105,6 @@ import { NpcLabelComponent } from './components/npc-label/npc-label.component';
     NpcLabelComponent,
   ],
   imports: [CommonModule, FormsModule, NgSelectModule, NgbPopoverModule],
+  providers: [TickToTimePipe],
 })
 export class AppSharedModule {}
