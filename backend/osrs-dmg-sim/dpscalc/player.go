@@ -129,6 +129,8 @@ type prayerBoost struct {
 	defenceMagic   factor
 }
 
+// TODO kinda scuffed to have random exported members
+// when we need them?
 type Player struct {
 	globalSettings        *GlobalSettings
 	inputGearSetup        *InputGearSetup
@@ -148,4 +150,8 @@ type ragingEchoesMasteries struct {
 	ranged     int
 	mage       int
 	maxMastery int
+}
+
+func (p *Player) IsEquipped(itemId int) bool {
+	return p.equippedGear.isEquipped(itemId)
 }

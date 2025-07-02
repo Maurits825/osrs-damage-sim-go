@@ -269,7 +269,7 @@ func getStatDrainDpsGrapher(statDrainData []GraphData, graphType GraphType, sett
 		for value := 0; value <= maxValue; value++ {
 			npc := dpscalc.GetNpc(settings.Npc.Id)
 			npc.ApplyNpcScaling(&settings)
-			npc.ApplyStatDrain(&settings, []dpscalc.StatDrain{{Name: statDrainName, Value: value}})
+			npc.ApplyStatDrain([]dpscalc.StatDrain{{Name: statDrainName, Value: value}})
 
 			defIndex := npc.BaseCombatStats.Defence - npc.CombatStats.Defence
 			data.Dps[value] = statDrainData[i].Dps[defIndex]

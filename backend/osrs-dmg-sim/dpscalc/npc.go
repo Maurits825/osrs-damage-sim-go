@@ -127,7 +127,7 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 
 func (npc *Npc) ApplyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
 	npc.ApplyNpcScaling(globalSettings)
-	npc.ApplyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
+	npc.ApplyStatDrain(inputGearSetup.GearSetupSettings.StatDrain)
 
 	if globalSettings.NpcHitpoints != 0 {
 		npc.CombatStats.Hitpoints = globalSettings.NpcHitpoints

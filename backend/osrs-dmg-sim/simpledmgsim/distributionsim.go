@@ -2,12 +2,15 @@ package simpledmgsim
 
 import (
 	"math/rand/v2"
+	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
 const specialAttackRegen = 2
 const maxSpecialAttack = 1000
+
+type statDrainer func(*dpscalc.Npc, int)
 
 // TODO name of this????
 type simGearSetup struct {
@@ -18,6 +21,8 @@ type simGearSetup struct {
 
 	damageDealt int
 	attackCount int
+
+	statDrainer statDrainer
 }
 
 type simPlayer struct {
@@ -65,26 +70,32 @@ func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc
 			simGearSetups[i].attackCount = 0
 		}
 
-		npcHp := npc.CombatStats.Hitpoints
+		//todo have to reset npc stats
+		npc.CombatStats = npc.BaseCombatStats //todo does this work as expected?
 		var currentGear *simGearSetup
 
 		ticksToKill := 0
 		for {
-			if npcHp < 0 {
+			if npc.CombatStats.Hitpoints < 0 {
 				break
 			}
 
 			simPlayer.attackTick -= 1
 
 			if simPlayer.attackTick <= 0 {
-				currentGear = getNextSimGear(simGearSetups, npcHp, simPlayer)
+				currentGear = getNextSimGear(simGearSetups, npc.CombatStats.Hitpoints, simPlayer)
 				dist := hdc.getHitDist(npc, currentGear.gearPresetIndex)
 				damage := runner.rollHitDist(dist)
 				// fmt.Println(damage)
 
-				//TODO if stat drain do something here
+				if currentGear.statDrainer != nil {
+					currentGear.statDrainer(&npc, damage)
+				}
 
-				npcHp -= damage
+				npc.CombatStats.Hitpoints -= damage
+				currentGear.damageDealt += damage
+				currentGear.attackCount += 1 //TODO attack count is just that, not accurate hits? should it be?
+
 				simPlayer.attackTick = currentGear.attackSpeed
 				simPlayer.specialAttack -= currentGear.specialAttackCost
 			}
@@ -117,14 +128,61 @@ func getSimGearSetups(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, s
 			GearSetup:         presets[gearSimSetup.GearPresetIndex],
 		}
 		p := dpscalc.GetPlayer(gs, dpsCalcSetup)
+
+		specCost := p.SpecialAttackCost * 10
+		if specCost != 0 && gs.OverlyDraining {
+			specCost = maxSpecialAttack
+		}
+		if slices.Contains(setup.GearSetupSettings.PotionBoosts, dpscalc.LiquidAdrenaline) {
+			specCost /= 2
+		}
+
 		setups[i] = simGearSetup{
 			gearPresetIndex:   gearSimSetup.GearPresetIndex,
 			conditions:        gearSimSetup.Conditions,
 			attackSpeed:       dpscalc.GetAttackSpeed(p),
-			specialAttackCost: p.SpecialAttackCost * 10, //TODO adren pot
+			specialAttackCost: specCost,
+			statDrainer:       getStatDrainer(p),
 		}
 	}
 	return setups
+}
+
+var statDrainIds = map[int]dpscalc.StatDrainWeapon{
+	13576: dpscalc.DragonWarhammer,
+	21003: dpscalc.ElderMaul,
+	19675: dpscalc.Arclight,
+	29589: dpscalc.Emberlight,
+	11804: dpscalc.BandosGodsword,
+	27662: dpscalc.AccursedSceptre,
+	8872:  dpscalc.BoneDagger,
+	10887: dpscalc.BarrelChestAnchor,
+	28919: dpscalc.Ralos,
+}
+
+func getStatDrainer(player *dpscalc.Player) statDrainer {
+	var statDrainWeapon dpscalc.StatDrainWeapon
+	for itemId, d := range statDrainIds {
+		if player.IsEquipped(itemId) {
+			statDrainWeapon = d
+			break
+		}
+	}
+
+	if statDrainWeapon == "" {
+		return nil
+	}
+
+	statDrain := make([]dpscalc.StatDrain, 1)
+	statDrain[0] = dpscalc.StatDrain{
+		Name:  statDrainWeapon,
+		Value: 0,
+	}
+
+	return func(npc *dpscalc.Npc, damage int) {
+		statDrain[0].Value = damage
+		npc.ApplyStatDrain(statDrain)
+	}
 }
 
 func getNextSimGear(simGearSetups []simGearSetup, npcHp int, player simPlayer) *simGearSetup {
@@ -153,5 +211,5 @@ func (r *distSimRunner) rollHitDist(dist []float32) int {
 		}
 	}
 
-	return len(dist)
+	return len(dist) - 1
 }

@@ -38,15 +38,18 @@ func evaluateConditions(conditions []Condition, npcHitpoints, dmgDealt, attackCo
 	}
 
 	//TODO still have multi and/or groups that dont really make sense
-	result := true
-	for i := range results[:count-1] {
-		switch conditions[i].NextComparison {
-		case "AND":
-			result = result && (results[i] && results[i+1])
-		case "OR":
-			result = result && (results[i] || results[i+1])
-		default:
-			panic("invalid conditon next comparison: " + conditions[i].NextComparison)
+	result := results[0]
+	if count > 1 {
+		result = true
+		for i := range results[:count-1] {
+			switch conditions[i].NextComparison {
+			case "AND":
+				result = result && (results[i] && results[i+1])
+			case "OR":
+				result = result && (results[i] || results[i+1])
+			default:
+				panic("invalid conditon next comparison: " + conditions[i].NextComparison)
+			}
 		}
 	}
 
