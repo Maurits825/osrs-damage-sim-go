@@ -1,3 +1,5 @@
 <ng-container *ngIf="results?.results && !results?.error">
-  <div>results: {{ results.results[0].ticksToKill | tickToTime }}</div>
+  @for (result of results.results; track result.ticksToKill) {
+    <div>results: {{ result.ticksToKill | tickToTime }}</div>
+  }
 </ng-container>

@@ -8,8 +8,13 @@ import (
 
 type InputSetup struct {
 	GlobalSettings  dpscalc.GlobalSettings `json:"globalSettings"`
+	SimSettings     SimSettings            `json:"simSettings"`
 	GearPresets     []dpscalc.GearSetup    `json:"gearPresets"`
 	InputGearSetups []InputGearSetup       `json:"inputGearSetups"`
+}
+
+type SimSettings struct {
+	Iterations int `json:"iterations"`
 }
 
 type InputGearSetup struct {

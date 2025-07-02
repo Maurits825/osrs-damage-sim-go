@@ -14,9 +14,16 @@
 
   <div class="col col-sm-3">
     <div class="row align-items-center">
-      <div class="col-auto pe-0"><label for="teamSize">Something</label></div>
+      <div class="col-auto pe-0"><label for="iterations">Iterations</label></div>
       <div class="col">
-        <input id="teamSize" class="form-control" type="number" min="1" max="100" />
+        <input
+          id="iterations"
+          class="form-control"
+          type="number"
+          min="1"
+          max="500000"
+          [(ngModel)]="simSettings.iterations"
+        />
       </div>
     </div>
   </div>

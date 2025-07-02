@@ -2,6 +2,9 @@
   {
     "setupName": "Zebak",
     "inputSetup": {
+      "simSettings": {
+        "iterations": 50000
+      },
       "globalSettings": {
         "npc": {
           "name": "Zebak",

@@ -46,8 +46,26 @@ func newDistSimRunner(iterations int, rng *rand.Rand) *distSimRunner {
 	}
 }
 
-// TODO for one setup?
-func (runner *distSimRunner) runDistSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) *SimResult {
+func RunAllDistSim(inputSetup *InputSetup) *SimpleDmgSimResults {
+	simResults := make([]SimpleDmgSimResult, len(inputSetup.InputGearSetups))
+
+	runner := newDistSimRunner(inputSetup.SimSettings.Iterations, nil)
+	for i := range inputSetup.InputGearSetups {
+		results := runner.runDistSim(inputSetup, i)
+		simResults[i].TicksToKill = results.ticksToKill
+	}
+
+	return &SimpleDmgSimResults{
+		Results: simResults,
+	}
+}
+
+// todo better/cleaner way to manage input args
+func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *SimResult {
+	presets := inputSetup.GearPresets
+	gs := &inputSetup.GlobalSettings
+	setup := inputSetup.InputGearSetups[index]
+
 	simGearSetups := getSimGearSetups(presets, gs, setup)
 	simPlayer := simPlayer{0, maxSpecialAttack}
 	npc := dpscalc.GetNpc(gs.Npc.Id)

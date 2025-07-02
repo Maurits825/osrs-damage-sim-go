@@ -3,6 +3,7 @@ import { merge } from 'lodash-es';
 import { mapGlobalSettingsToNpcInfo, mapNpcInfoToGlobalSettings } from 'src/app/helpers/data-mapping.helper';
 import { NpcInfo } from 'src/app/model/osrs/npc.model';
 import { GlobalSettings } from 'src/app/model/shared/global-settings.model';
+import { SimSettings } from 'src/app/model/simple-dmg-sim/input-setup.model';
 import { SimpleDmgSimInputService } from 'src/app/services/simple-dmg-sim-input.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { SimpleDmgSimInputService } from 'src/app/services/simple-dmg-sim-input.
 export class SimpleSimSettingsComponent implements OnInit {
   //todo is this scuffed? - the whole maping stuff
   globalSettings: GlobalSettings;
+  simSettings: SimSettings;
   npcInfo: NpcInfo = {
     npc: null,
     raidLevel: 0,
@@ -26,6 +28,10 @@ export class SimpleSimSettingsComponent implements OnInit {
     this.inputService.globalSettingsWatch().subscribe((settings: GlobalSettings) => {
       this.globalSettings = settings;
       this.npcInfo = mapGlobalSettingsToNpcInfo(this.globalSettings);
+    });
+
+    this.inputService.simSettingsWatch().subscribe((settings: SimSettings) => {
+      this.simSettings = settings;
     });
   }
 
