@@ -1,6 +1,7 @@
 package simpledmgsim
 
 import (
+	"math"
 	"math/rand/v2"
 	"slices"
 
@@ -125,15 +126,19 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 
 	ttkMap := make(map[int]int)
 	maxTtk := 0
+	minTtk := math.MaxInt
 	for range runner.iterations {
 		ttk := runOneIter()
 		if ttk > maxTtk {
 			maxTtk = ttk
 		}
+		if ttk < minTtk {
+			minTtk = ttk
+		}
 		ttkMap[ttk] += 1
 	}
 
-	results := getSimResults(ttkMap, maxTtk+1, runner.iterations)
+	results := getSimResults(ttkMap, maxTtk+1, minTtk, runner.iterations)
 	return results
 }
 

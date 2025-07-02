@@ -13,6 +13,7 @@ import { SimpleSimResultsComponent } from './simple-sim-results/simple-sim-resul
 import { ExampleSetupsComponent } from './example-setups/example-setups.component';
 import { SimGraphTabsComponent } from './simple-sim-results/sim-graph-tabs/sim-graph-tabs.component';
 import { CummulativeTtkGraphComponent } from './simple-sim-results/cummulative-ttk-graph/cummulative-ttk-graph.component';
+import { TtkHistogramGraphComponent } from './simple-sim-results/ttk-histogram-graph/ttk-histogram-graph.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CummulativeTtkGraphComponent } from './simple-sim-results/cummulative-t
     ExampleSetupsComponent,
     SimGraphTabsComponent,
     CummulativeTtkGraphComponent,
+    TtkHistogramGraphComponent,
   ],
   imports: [CommonModule, FormsModule, SimpleDmgSimRoutingModule, AppSharedModule],
 })

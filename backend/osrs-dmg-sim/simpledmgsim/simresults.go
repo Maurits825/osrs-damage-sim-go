@@ -3,13 +3,17 @@ package simpledmgsim
 //todo name
 type simResult struct {
 	AverageTtk     int       `json:"averageTtk"`
+	MaxTtk         int       `json:"maxTtk"`
+	MinTtk         int       `json:"minTtk"`
 	TtkHistogram   []int     `json:"ttkHistogram"`
 	CummulativeTtk []float32 `json:"cummulativeTtk"`
 }
 
-func getSimResults(ttkMap map[int]int, maxTtk int, iterations int) *simResult {
+func getSimResults(ttkMap map[int]int, maxTtk, minTtk, iterations int) *simResult {
 	results := &simResult{
 		AverageTtk:     0,
+		MaxTtk:         maxTtk,
+		MinTtk:         minTtk,
 		TtkHistogram:   make([]int, maxTtk),
 		CummulativeTtk: make([]float32, maxTtk),
 	}

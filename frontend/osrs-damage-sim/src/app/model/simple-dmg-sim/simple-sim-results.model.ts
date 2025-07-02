@@ -6,6 +6,8 @@ export interface SimpleSimResults {
 
 export interface SimpleSimResult {
   averageTtk: number;
+  maxTtk: number;
+  minTtk: number;
   ttkHistogram: number[];
   cummulativeTtk: number[];
 }

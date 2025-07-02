@@ -4,31 +4,31 @@ import { Chart } from 'chart.js/auto';
 import { TickToTimePipe } from 'src/app/shared/pipes/tick-to-time.pipe';
 
 @Component({
-  selector: 'app-cummulative-ttk-graph',
-  templateUrl: './cummulative-ttk-graph.component.html',
+  selector: 'app-ttk-histogram-graph',
+  templateUrl: './ttk-histogram-graph.component.html',
 })
-export class CummulativeTtkGraphComponent implements OnChanges {
+export class TtkHistogramGraphComponent implements OnChanges {
   //TODO passing the inputs twice across components is annoying...
   @Input()
   simpleSimResults: SimpleSimResult[];
 
-  cumTtkChart: Chart;
+  ttkHistogramChart: Chart;
   chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
 
   constructor(private tickToTimePipe: TickToTimePipe) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['simpleSimResults']) {
-      this.updateCumTtkChart();
+      this.updatettkHistogramChart();
     }
   }
 
-  updateCumTtkChart(): void {
-    if (this.cumTtkChart) {
-      this.cumTtkChart.destroy();
+  updatettkHistogramChart(): void {
+    if (this.ttkHistogramChart) {
+      this.ttkHistogramChart.destroy();
     }
-    this.cumTtkChart = new Chart('cumTtkChart', {
-      type: 'line',
+    this.ttkHistogramChart = new Chart('ttkHistogramChart', {
+      type: 'bar',
       data: {
         datasets: [],
       },
@@ -36,12 +36,13 @@ export class CummulativeTtkGraphComponent implements OnChanges {
 
     const datasets = this.simpleSimResults.map((result: SimpleSimResult, index: number) => ({
       label: 'Input Setup ' + index + 1, //todo names
-      data: result.cummulativeTtk,
+      data: result.ttkHistogram,
       backgroundColor: this.chartColors[index % this.chartColors.length],
+      barThickness: 3,
     }));
 
     const maxLength = this.simpleSimResults.reduce(
-      (max: number, r: SimpleSimResult) => (r.cummulativeTtk.length > max ? r.cummulativeTtk.length : max),
+      (max: number, r: SimpleSimResult) => (r.ttkHistogram.length > max ? r.ttkHistogram.length : max),
       0,
     );
     const xValues = Array<string>(maxLength);
@@ -49,20 +50,21 @@ export class CummulativeTtkGraphComponent implements OnChanges {
       xValues[i] = this.tickToTimePipe.transform(i);
     }
 
-    this.cumTtkChart.data = {
+    this.ttkHistogramChart.data = {
       labels: xValues,
       datasets: datasets,
     };
 
-    this.cumTtkChart.options = {
+    this.ttkHistogramChart.options = {
       scales: {
         y: {
           title: {
             display: true,
-            text: 'Cummulative Probability',
+            text: 'Samples',
           },
         },
         x: {
+          offset: true,
           title: {
             display: true,
             text: 'Time to Kill',
@@ -78,6 +80,6 @@ export class CummulativeTtkGraphComponent implements OnChanges {
       },
     };
 
-    this.cumTtkChart.update();
+    this.ttkHistogramChart.update();
   }
 }

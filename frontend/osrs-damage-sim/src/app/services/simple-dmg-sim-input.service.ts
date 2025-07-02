@@ -35,6 +35,10 @@ export class SimpleDmgSimInputService {
     });
   }
 
+  public getInputSetup(): InputSetup {
+    return this.inputSetup$.getValue();
+  }
+
   public inputGearSetupsWatch(): Observable<InputGearSetup[]> {
     return this.inputSetup$.pipe(map((inputSetup: InputSetup) => inputSetup.inputGearSetups));
   }

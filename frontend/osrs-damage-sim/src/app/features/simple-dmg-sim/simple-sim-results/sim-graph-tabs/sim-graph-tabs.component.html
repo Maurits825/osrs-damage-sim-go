@@ -25,6 +25,8 @@
       <app-cummulative-ttk-graph [simpleSimResults]="simpleSimResults"></app-cummulative-ttk-graph>
     </div>
   } @else if (activeTab.graphType === GraphType.TtkHistogram) {
-    <div>ttk</div>
+    <div>
+      <app-ttk-histogram-graph [simpleSimResults]="simpleSimResults"></app-ttk-histogram-graph>
+    </div>
   }
 </div>
