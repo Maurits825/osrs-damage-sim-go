@@ -1,13 +1,13 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Chart } from 'chart.js/auto';
+import Chart from 'chart.js/auto';
 import { DpsCalcResult, DpsCalcResults } from 'src/app/model/dps-calc/dps-results.model';
 import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 
 @Component({
-  selector: 'app-hit-dist-graph',
-  templateUrl: './hit-dist-graph.component.html',
+  selector: 'app-hit-chance-graph',
+  templateUrl: './hit-chance-graph.component.html',
 })
-export class HitDistGraphComponent implements OnChanges {
+export class HitChanceGraphComponent implements OnChanges {
   @Input()
   dpsCalcResults: DpsCalcResults;
 
@@ -18,8 +18,7 @@ export class HitDistGraphComponent implements OnChanges {
   selectedDpsCalcResult: DpsCalcResult;
   selectedDpsCalcResultIndex: number;
 
-  hitDistChart: Chart;
-  hideZeroDist = false;
+  hitChanceChart: Chart;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsCalcResults']) {
@@ -32,14 +31,14 @@ export class HitDistGraphComponent implements OnChanges {
     this.selectedDpsCalcResultIndex = this.dpsCalcResults.results.findIndex(
       (calcResult) => calcResult === dpsCalcResult,
     );
-    this.updateHitDistChart();
+    this.updateHitChanceChart();
   }
 
-  updateHitDistChart(): void {
-    if (this.hitDistChart) {
-      this.hitDistChart.destroy();
+  updateHitChanceChart(): void {
+    if (this.hitChanceChart) {
+      this.hitChanceChart.destroy();
     }
-    this.hitDistChart = new Chart('hitDistChart', {
+    this.hitChanceChart = new Chart('hitChanceChart', {
       type: 'bar',
       data: {
         datasets: [],
@@ -51,18 +50,17 @@ export class HitDistGraphComponent implements OnChanges {
       labels[i] = i;
     }
 
-    const start = this.hideZeroDist ? 1 : 0;
-    this.hitDistChart.data = {
-      labels: labels.slice(start),
+    this.hitChanceChart.data = {
+      labels: labels,
       datasets: [
         {
           label: 'Chance',
-          data: this.selectedDpsCalcResult.hitDist.slice(start),
+          data: this.getCummulativeHitChance(this.selectedDpsCalcResult.hitDist),
         },
       ],
     };
 
-    this.hitDistChart.options = {
+    this.hitChanceChart.options = {
       scales: {
         y: {
           title: {
@@ -73,22 +71,31 @@ export class HitDistGraphComponent implements OnChanges {
         x: {
           title: {
             display: true,
-            text: 'Total damage',
+            text: 'Damage',
           },
         },
       },
       plugins: {
+        title: {
+          display: true,
+          text: 'Chance to hit damage or higher',
+        },
         legend: {
           display: false,
         },
       },
     };
 
-    this.hitDistChart.update();
+    this.hitChanceChart.update();
   }
 
-  hideZeroDistChange(isHide: boolean): void {
-    this.hideZeroDist = isHide;
-    this.updateHitDistChart();
+  getCummulativeHitChance(dist: number[]): number[] {
+    const hitChance = [];
+    let p = 100;
+    for (let index = 0; index < dist.length; index++) {
+      hitChance.push(p);
+      p -= dist[index];
+    }
+    return hitChance;
   }
 }

@@ -12,7 +12,6 @@
         >
           <ng-template #dropdownLabel let-item="item">
             <div class="d-flex align-items-center">
-              <div>Setup {{ selectedInputIndex + 1 }}</div>
               <div>
                 <app-sim-input-setup-label
                   [inputSetup]="inputSetup"
@@ -23,7 +22,6 @@
           </ng-template>
           <ng-template #dropdownOptions let-item="item" let-index="index">
             <div class="d-flex align-items-center">
-              <div>Setup {{ index + 1 }}</div>
               <div>
                 <app-sim-input-setup-label [inputSetup]="inputSetup" [inputIndex]="index"></app-sim-input-setup-label>
               </div>

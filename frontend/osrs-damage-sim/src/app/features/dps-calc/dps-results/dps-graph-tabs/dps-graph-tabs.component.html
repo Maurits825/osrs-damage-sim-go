@@ -20,13 +20,18 @@
     </div>
   </nav>
 
-  <div *ngIf="activeResultTab.resultType === ResultType.DpsGraph">
-    <app-dps-graph [dpsGrapherResults]="dpsGrapherResults" [inputSetup]="inputSetup"></app-dps-graph>
-  </div>
-  <div *ngIf="activeResultTab.resultType === ResultType.HitDist">
-    <app-hit-dist-graph [inputSetup]="inputSetup"></app-hit-dist-graph>
-  </div>
-  <div *ngIf="activeResultTab.resultType === ResultType.CalcDetails">
-    <app-calc-details [inputSetup]="inputSetup"></app-calc-details>
-  </div>
+  @switch (activeResultTab.resultType) {
+    @case (ResultType.DpsGraph) {
+      <app-dps-graph [dpsGrapherResults]="dpsGrapherResults" [inputSetup]="inputSetup"></app-dps-graph>
+    }
+    @case (ResultType.HitDist) {
+      <app-hit-dist-graph [inputSetup]="inputSetup" [dpsCalcResults]="dpsCalcResults"></app-hit-dist-graph>
+    }
+    @case (ResultType.HitChance) {
+      <app-hit-chance-graph [inputSetup]="inputSetup" [dpsCalcResults]="dpsCalcResults"></app-hit-chance-graph>
+    }
+    @case (ResultType.CalcDetails) {
+      <app-calc-details [inputSetup]="inputSetup" [dpsCalcResults]="dpsCalcResults"></app-calc-details>
+    }
+  }
 </div>

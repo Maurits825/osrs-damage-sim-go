@@ -35,7 +35,7 @@ export class CummulativeTtkGraphComponent implements OnChanges {
     });
 
     const datasets = this.simpleSimResults.map((result: SimpleSimResult, index: number) => ({
-      label: 'Input Setup ' + index + 1, //todo names
+      label: 'Setup ' + (index + 1), //todo names
       data: result.cummulativeTtk,
       backgroundColor: this.chartColors[index % this.chartColors.length],
     }));

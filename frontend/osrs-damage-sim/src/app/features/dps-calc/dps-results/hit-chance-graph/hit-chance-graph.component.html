@@ -25,22 +25,10 @@
       </app-ng-select-lazy-load>
     </div>
   </div>
+
   <div>
-    <table class="table table-bordered border-dark w-auto">
-      <thead>
-        <tr>
-          <th>Key Name</th>
-          <th>Value</th>
-          <th>Operation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let detail of selectedDpsCalcResult.calcDetails">
-          <td>{{ detail.split(",")[0] }}</td>
-          <td>{{ detail.split(",")[1] }}</td>
-          <td>{{ detail.split(",")[2] }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="chart-container">
+      <canvas id="hitChanceChart">{{ hitChanceChart }}</canvas>
+    </div>
   </div>
 </div>
