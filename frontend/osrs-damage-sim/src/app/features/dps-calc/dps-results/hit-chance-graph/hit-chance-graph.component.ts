@@ -55,7 +55,7 @@ export class HitChanceGraphComponent implements OnChanges {
       datasets: [
         {
           label: 'Chance',
-          data: this.getCummulativeHitChance(this.selectedDpsCalcResult.hitDist),
+          data: this.getCumulativeHitChance(this.selectedDpsCalcResult.hitDist),
         },
       ],
     };
@@ -89,7 +89,7 @@ export class HitChanceGraphComponent implements OnChanges {
     this.hitChanceChart.update();
   }
 
-  getCummulativeHitChance(dist: number[]): number[] {
+  getCumulativeHitChance(dist: number[]): number[] {
     const hitChance = [];
     let p = 100;
     for (let index = 0; index < dist.length; index++) {
