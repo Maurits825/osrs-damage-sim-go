@@ -1,5 +1,12 @@
 <ng-container *ngIf="results?.results && !results?.error">
   <div>
+    @if (results.results[0].detailedRuns) {
+      <h3 class="mb-3 fw-light text-center">Detailed Runs</h3>
+      <app-detailed-run-results [results]="results.results"></app-detailed-run-results>
+    }
+  </div>
+
+  <div>
     <h3 class="mb-3 fw-light text-center">Time Results</h3>
     <table class="table table-bordered border-dark mb-3">
       <thead>
@@ -18,8 +25,7 @@
         @for (result of results.results; track result.averageTtk; let i = $index) {
           <tr class="align-middle text-end">
             <th scope="row" class="text-start">
-              <!-- todo label -->
-              Setup {{ i + 1 }}
+              <app-sim-input-setup-label [inputSetup]="inputSetup" [inputIndex]="i"></app-sim-input-setup-label>
             </th>
             <td>{{ result.averageTtk | tickToTime }}</td>
             <td>{{ result.maxTtk | tickToTime }}</td>

@@ -12,16 +12,14 @@
       >
         <ng-template #dropdownLabel>
           <app-input-setup-label
-            [showTextLabel]="showResultTextLabel"
-            [dpsCalcResult]="selectedDpsCalcResult"
-            [inputGearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex]"
+            [gearSetupSettings]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex].gearSetupSettings"
+            [gearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex].gearSetup"
           ></app-input-setup-label>
         </ng-template>
         <ng-template #dropdownOptions let-index="index" let-item="item">
           <app-input-setup-label
-            [showTextLabel]="showResultTextLabel"
-            [dpsCalcResult]="item"
-            [inputGearSetup]="inputSetup.inputGearSetups[index]"
+            [gearSetupSettings]="inputSetup.inputGearSetups[index].gearSetupSettings"
+            [gearSetup]="inputSetup.inputGearSetups[index].gearSetup"
           ></app-input-setup-label>
         </ng-template>
       </app-ng-select-lazy-load>

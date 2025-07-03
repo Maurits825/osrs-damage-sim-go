@@ -8,7 +8,7 @@
               class="nav-link"
               role="button"
               [ngClass]="{
-                active: activeResultTab.resultType === resultTab.resultType
+                active: activeResultTab.resultType === resultTab.resultType,
               }"
               (click)="activeResultTab = resultTab"
             >
@@ -24,17 +24,9 @@
     <app-dps-graph [dpsGrapherResults]="dpsGrapherResults" [inputSetup]="inputSetup"></app-dps-graph>
   </div>
   <div *ngIf="activeResultTab.resultType === ResultType.HitDist">
-    <app-hit-dist-graph
-      [dpsCalcResults]="dpsCalcResults"
-      [inputSetup]="inputSetup"
-      [showResultTextLabel]="showResultTextLabel$ | async"
-    ></app-hit-dist-graph>
+    <app-hit-dist-graph [inputSetup]="inputSetup"></app-hit-dist-graph>
   </div>
   <div *ngIf="activeResultTab.resultType === ResultType.CalcDetails">
-    <app-calc-details
-      [dpsCalcResults]="dpsCalcResults"
-      [inputSetup]="inputSetup"
-      [showResultTextLabel]="showResultTextLabel$ | async"
-    ></app-calc-details>
+    <app-calc-details [inputSetup]="inputSetup"></app-calc-details>
   </div>
 </div>

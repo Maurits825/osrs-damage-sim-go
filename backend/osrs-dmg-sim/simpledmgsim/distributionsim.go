@@ -32,8 +32,9 @@ type simPlayer struct {
 }
 
 type distSimRunner struct {
-	iterations int
-	rng        *rand.Rand
+	iterations        int
+	detailedRunLogger *detailedRunLogger
+	rng               *rand.Rand
 }
 
 func newDistSimRunner(iterations int, rng *rand.Rand) *distSimRunner {
@@ -42,8 +43,9 @@ func newDistSimRunner(iterations int, rng *rand.Rand) *distSimRunner {
 	}
 
 	return &distSimRunner{
-		iterations: iterations,
-		rng:        rng,
+		iterations:        iterations,
+		detailedRunLogger: nil,
+		rng:               rng,
 	}
 }
 
@@ -52,6 +54,10 @@ func RunAllDistSim(inputSetup *InputSetup) SimpleDmgSimResults {
 
 	runner := newDistSimRunner(inputSetup.SimSettings.Iterations, nil)
 	for i := range inputSetup.InputGearSetups {
+		//todo is better way to handle? -> have like a nopLogger
+		if inputSetup.SimSettings.IsDetailedRun {
+			runner.detailedRunLogger = newDetailedRunLogger()
+		}
 		results := runner.runDistSim(inputSetup, i)
 		simResults[i] = results
 	}
@@ -103,7 +109,12 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 				dist := hdc.getHitDist(npc, currentGear.gearPresetIndex)
 
 				damage := runner.rollHitDist(dist)
-				// fmt.Println(damage)
+
+				if runner.detailedRunLogger != nil {
+					runner.detailedRunLogger.logData(
+						ticksToKill, damage, currentGear, dist, &npc, simPlayer,
+					)
+				}
 
 				if currentGear.statDrainer != nil {
 					currentGear.statDrainer(&npc, damage)
@@ -136,9 +147,13 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 			minTtk = ttk
 		}
 		ttkMap[ttk] += 1
+
+		if runner.detailedRunLogger != nil {
+			runner.detailedRunLogger.logKill(ttk)
+		}
 	}
 
-	results := getSimResults(ttkMap, maxTtk+1, minTtk, runner.iterations)
+	results := getSimResults(ttkMap, maxTtk+1, minTtk, runner)
 	return results
 }
 

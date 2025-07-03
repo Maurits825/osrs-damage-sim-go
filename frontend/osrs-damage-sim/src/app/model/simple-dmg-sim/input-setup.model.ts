@@ -12,6 +12,7 @@ export interface InputSetup {
 
 export interface SimSettings {
   iterations: number;
+  isDetailedRun: boolean;
 }
 
 export interface InputGearSetup {
@@ -27,4 +28,5 @@ export interface GearSimSetup {
 
 export const DEFAULT_SIM_SETTINGS: SimSettings = {
   iterations: 100_000,
+  isDetailedRun: false,
 };

@@ -17,8 +17,8 @@ export class StaticDataService {
   public allGearSlotItems$: Observable<Record<GearSlot, Item[]>>;
   public gearSetupPresets$: Observable<GearSetupPreset[]>;
 
-  public DpsCalcExampleSetups$: Observable<ExampleSetup<string>[]>;
-  public SimpleSimExampleSetups$: Observable<ExampleSetup<SimpleSimInputSetup>[]>;
+  public dpsCalcExampleSetups$: Observable<ExampleSetup<string>[]>;
+  public simpleSimExampleSetups$: Observable<ExampleSetup<SimpleSimInputSetup>[]>;
   public abbreviations$: Observable<Record<string, string[]>>;
 
   public allSpells$: Observable<string[]>;
@@ -42,8 +42,8 @@ export class StaticDataService {
 
     this.gearSetupPresets$ = this.getGearSetupPresets().pipe(shareReplay(1));
 
-    this.DpsCalcExampleSetups$ = this.getExampleSetups<string>('dps_calc_example_setups.json').pipe(shareReplay(1));
-    this.SimpleSimExampleSetups$ = this.getExampleSetups<SimpleSimInputSetup>('simple_sim_example_setups.json').pipe(
+    this.dpsCalcExampleSetups$ = this.getExampleSetups<string>('dps_calc_example_setups.json').pipe(shareReplay(1));
+    this.simpleSimExampleSetups$ = this.getExampleSetups<SimpleSimInputSetup>('simple_sim_example_setups.json').pipe(
       shareReplay(1),
     );
     this.abbreviations$ = this.getAbbreviations().pipe(shareReplay(1));

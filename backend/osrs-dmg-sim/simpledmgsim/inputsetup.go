@@ -14,7 +14,8 @@ type InputSetup struct {
 }
 
 type SimSettings struct {
-	Iterations int `json:"iterations"`
+	Iterations    int  `json:"iterations"`
+	IsDetailedRun bool `json:"isDetailedRun"`
 }
 
 type InputGearSetup struct {

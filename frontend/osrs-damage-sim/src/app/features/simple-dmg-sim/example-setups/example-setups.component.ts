@@ -21,7 +21,7 @@ export class ExampleSetupsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.staticDataService.SimpleSimExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
+    this.staticDataService.simpleSimExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
       this.exampleSetups = exampleSetups;
     });
   }

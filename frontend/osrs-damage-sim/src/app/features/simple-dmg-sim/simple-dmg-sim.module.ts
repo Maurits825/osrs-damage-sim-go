@@ -14,6 +14,8 @@ import { ExampleSetupsComponent } from './example-setups/example-setups.componen
 import { SimGraphTabsComponent } from './simple-sim-results/sim-graph-tabs/sim-graph-tabs.component';
 import { CummulativeTtkGraphComponent } from './simple-sim-results/cummulative-ttk-graph/cummulative-ttk-graph.component';
 import { TtkHistogramGraphComponent } from './simple-sim-results/ttk-histogram-graph/ttk-histogram-graph.component';
+import { InputSetupLabelComponent } from './simple-sim-results/input-setup-label/input-setup-label.component';
+import { DetailedRunResultsComponent } from './simple-sim-results/detailed-run-results/detailed-run-results.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { TtkHistogramGraphComponent } from './simple-sim-results/ttk-histogram-g
     SimGraphTabsComponent,
     CummulativeTtkGraphComponent,
     TtkHistogramGraphComponent,
+    InputSetupLabelComponent,
+    DetailedRunResultsComponent,
   ],
   imports: [CommonModule, FormsModule, SimpleDmgSimRoutingModule, AppSharedModule],
 })

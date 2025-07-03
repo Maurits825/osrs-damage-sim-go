@@ -13,9 +13,6 @@ export class CalcDetailsComponent implements OnChanges {
   @Input()
   inputSetup: InputSetup;
 
-  @Input()
-  showResultTextLabel: boolean;
-
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;
   selectedDpsCalcResultIndex: number;
@@ -30,7 +27,7 @@ export class CalcDetailsComponent implements OnChanges {
   selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
     this.selectedDpsCalcResult = dpsCalcResult;
     this.selectedDpsCalcResultIndex = this.dpsCalcResults.results.findIndex(
-      (calcResult) => calcResult === dpsCalcResult
+      (calcResult) => calcResult === dpsCalcResult,
     );
   }
 

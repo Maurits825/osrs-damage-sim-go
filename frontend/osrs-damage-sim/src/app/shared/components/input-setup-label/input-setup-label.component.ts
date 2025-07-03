@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { DpsCalcResult } from 'src/app/model/dps-calc/dps-results.model';
-import { InputGearSetup } from 'src/app/model/dps-calc/input-setup.model';
+import { GearSetupSettings } from 'src/app/model/shared/gear-setup-settings.model';
+import { GearSetup } from 'src/app/model/shared/gear-setup.model';
 
 @Component({
   selector: 'app-input-setup-label',
@@ -8,11 +8,8 @@ import { InputGearSetup } from 'src/app/model/dps-calc/input-setup.model';
 })
 export class InputSetupLabelComponent {
   @Input()
-  showTextLabel: boolean;
+  gearSetupSettings: GearSetupSettings;
 
   @Input()
-  dpsCalcResult: DpsCalcResult;
-
-  @Input()
-  inputGearSetup: InputGearSetup;
+  gearSetup: GearSetup;
 }

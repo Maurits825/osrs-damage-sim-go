@@ -1,0 +1,32 @@
+<div class="d-flex align-items-center">
+  @if (inputSetup?.inputGearSetups[inputIndex]; as inputGearSetup) {
+    <div class="d-flex mx-1">
+      <div class="px-1" *ngFor="let boost of inputGearSetup.gearSetupSettings.boosts">
+        <img src="assets/img/boosts/{{ boost }}.png" [title]="boost.replaceAll('_', ' ')" />
+      </div>
+    </div>
+    <div>-</div>
+    @if (inputSetup.gearPresets[inputGearSetup.mainGearSimSetup.gearPresetIndex]; as gearSetup) {
+      <ng-container *ngTemplateOutlet="gearSetupLabel; context: { gearSetup: gearSetup }"></ng-container>
+    }
+    @for (simSetup of inputGearSetup.gearSimSetups; track simSetup.gearPresetIndex) {
+      @if (inputSetup.gearPresets[simSetup.gearPresetIndex]; as gearSetup) {
+        <ng-container *ngTemplateOutlet="gearSetupLabel; context: { gearSetup: gearSetup }"></ng-container>
+      }
+    }
+  }
+</div>
+
+<ng-template #gearSetupLabel let-gearSetup="gearSetup">
+  <div class="d-flex align-items-center px-1">
+    <div>{{ gearSetup.setupName }}</div>
+    <div class="d-flex">
+      <div class="px-0" *ngFor="let prayer of gearSetup.prayers">
+        <img src="assets/img/prayer/{{ prayer }}.png" />
+      </div>
+    </div>
+    <div class="px-0" *ngIf="gearSetup.isSpecial">
+      <img src="assets/img/other/special_attack_orb.png" />
+    </div>
+  </div>
+</ng-template>
