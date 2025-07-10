@@ -55,6 +55,7 @@ func RunAllDistSim(inputSetup *InputSetup) SimpleDmgSimResults {
 	runner := newDistSimRunner(inputSetup.SimSettings.Iterations, nil)
 	for i := range inputSetup.InputGearSetups {
 		//todo is better way to handle? -> have like a nopLogger
+		//todo also is the perf affected? -> check benchmarks
 		if inputSetup.SimSettings.IsDetailedRun {
 			runner.detailedRunLogger = newDetailedRunLogger()
 		}
@@ -239,14 +240,17 @@ func getNextSimGear(simGearSetups []simGearSetup, npcHp int, player simPlayer) *
 	return &simGearSetups[0]
 }
 
+// TODO check if some binary search stuff is faster
 func (r *distSimRunner) rollHitDist(dist []float32) int {
 	random := r.rng.Float32()
 
-	cumulativeProb := float32(0.0)
-	for i, prob := range dist {
-		cumulativeProb += prob
-		if random <= cumulativeProb {
-			return i
+	start := len(dist) / 2
+	if random <= dist[start] {
+		start = 0
+	}
+	for i, prob := range dist[start:] {
+		if random <= prob {
+			return i + start
 		}
 	}
 

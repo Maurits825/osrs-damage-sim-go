@@ -30283,7 +30283,7 @@
   "dslash": 2,
   "dcrush": 2,
   "dmagic": -2,
-  "drange": 8
+  "drange": 12
  },
  "21742": {
   "name": "Granite hammer",
@@ -30306,7 +30306,7 @@
   "dslash": 4,
   "dcrush": 4,
   "dmagic": -4,
-  "drange": 16
+  "drange": 24
  },
  "21760": {
   "name": "Kharedst's memoirs",
@@ -37699,7 +37699,7 @@
   "dslash": 4,
   "dcrush": 4,
   "dmagic": -4,
-  "drange": 16
+  "drange": 24
  },
  "25195": {
   "name": "Blue cape (Soul Wars)",
@@ -40223,7 +40223,7 @@
   "dslash": 4,
   "dcrush": 4,
   "dmagic": -4,
-  "drange": 16
+  "drange": 24
  },
  "26686": {
   "name": "Maoma's med helm",
@@ -48439,6 +48439,17 @@
   "aspeed": 5,
   "weaponCategory": "BOW"
  },
+ "30436": {
+  "name": "Echo venator bow",
+  "weight": 4.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 90,
+  "rstr": 25,
+  "aspeed": 5,
+  "weaponCategory": "BOW"
+ },
  "30439": {
   "name": "Echo virtus robe top",
   "weight": 2.895,
@@ -49145,6 +49156,27 @@
   "dmagic": -3,
   "drange": 81,
   "str": 2
+ },
+ "30891": {
+  "name": "Keris partisan of amascut",
+  "weight": 3.218,
+  "equipable": true,
+  "slot": 3,
+  "aslash": -2,
+  "acrush": 57,
+  "amagic": 2,
+  "prayer": 3,
+  "aspeed": 4,
+  "weaponCategory": "PARTISAN"
+ },
+ "30895": {
+  "name": "Steel ring",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 12,
+  "dstab": 24,
+  "dslash": 24,
+  "dcrush": 24
  },
  "2000004": {
   "name": "Avernic Treads (Maxed)",

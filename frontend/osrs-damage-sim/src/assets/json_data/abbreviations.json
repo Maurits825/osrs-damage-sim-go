@@ -451,6 +451,10 @@
  "Blast Mine": [
   "BM"
  ],
+ "Dual macuahuitl": [
+  "Boppers",
+  "Dualies"
+ ],
  "Boss kill count": [
   "Boss kc"
  ],
@@ -1498,6 +1502,12 @@
  "Amulet of glory": [
   "Glory"
  ],
+ "Grandmaster Combat Achievements": [
+  "GM"
+ ],
+ "Combat Achievement": [
+  "GM"
+ ],
  "Granite maul": [
   "Gmaul",
   "Maul",
@@ -1689,6 +1699,16 @@
   "Raids 3"
  ],
  "invocations": [
+  "Invoc(s)",
+  "Invo",
+  "ToA",
+  "Purple",
+  "Purp",
+  "Raids 1",
+  "Raids 2",
+  "Raids 3"
+ ],
+ "Fortis Colosseum": [
   "Invoc(s)",
   "Invo",
   "ToA",
@@ -2555,10 +2575,12 @@
   "Mut"
  ],
  "Trouver parchment": [
-  "(l)"
+  "(l)",
+  "Parch"
  ],
  "Locked": [
-  "(l)"
+  "(l)",
+  "Parch"
  ],
  "Law rune": [
   "Law(s)"

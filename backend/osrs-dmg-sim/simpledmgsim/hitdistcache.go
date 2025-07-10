@@ -46,6 +46,13 @@ func (c *hitDistCache) calcHitDist(npc dpscalc.Npc, presetIndex int) []float32 {
 	p.Npc = npc
 	hitDist := dpscalc.GetPlayerHitDist(p)
 
+	//calc cumulative prob
+	cumulativeProb := float32(0.0)
+	for i, prob := range hitDist {
+		cumulativeProb += prob
+		hitDist[i] = cumulativeProb
+	}
+
 	return hitDist
 }
 

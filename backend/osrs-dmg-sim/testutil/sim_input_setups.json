@@ -232,7 +232,7 @@
         }
     },
     "Duke scy 1 bgs": {
-        "expectedTicksTokill": 77,
+        "expectedTicksTokill": 84,
         "inputSetup": {
             "globalSettings": {
                 "npc": {

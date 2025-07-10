@@ -302,7 +302,7 @@ func getZcbSpecEffectChance(accuracy, effectChance float32) float32 {
 }
 
 func applyLimiters(player *Player, attackDistribution *attackdist.AttackDistribution) {
-	if player.Npc.id == iceDemon && player.spell.elementalType != FireElement {
+	if player.Npc.id == iceDemon && player.spell.elementalType != FireElement && !player.isUsingDemonbane() {
 		attackDistribution.ScaleDamage(1, 3)
 	}
 

@@ -197,13 +197,25 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	equipmentStats.damageStats.magicStrength *= 10
+	inToa := slices.Contains(ToaIds, npc.id)
 	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.CombatStyleStance != Autocast {
 		shadowFactor := 3
-		if slices.Contains(ToaIds, npc.id) {
+		if inToa {
 			shadowFactor = 4
 		}
 		equipmentStats.damageStats.magicStrength *= float32(shadowFactor)
 		equipmentStats.offensiveStats.magic *= shadowFactor
+	}
+
+	//TODO the wiki scrapper doesnt get the stab/str stats, so this works for now
+	if equippedGear.isEquipped(kerisAmascut) {
+		if inToa {
+			equipmentStats.offensiveStats.stab += 108
+			equipmentStats.damageStats.meleeStrength += 67
+		} else {
+			equipmentStats.offensiveStats.stab += 58
+			equipmentStats.damageStats.meleeStrength += 45
+		}
 	}
 
 	if spell.spellbook == ancientSpellBook {

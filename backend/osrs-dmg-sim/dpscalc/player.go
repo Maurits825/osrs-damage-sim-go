@@ -2,6 +2,7 @@ package dpscalc
 
 import (
 	"regexp"
+	"strings"
 )
 
 type offensiveStats struct {
@@ -154,4 +155,16 @@ type ragingEchoesMasteries struct {
 
 func (p *Player) IsEquipped(itemId int) bool {
 	return p.equippedGear.isEquipped(itemId)
+}
+
+func (p *Player) isUsingDemonbane() bool {
+	switch p.combatStyle.CombatStyleType {
+	case Ranged:
+		return p.equippedGear.isEquipped(scorchingBow)
+	case Magic:
+		return strings.Contains(p.spell.name, "Demonbane")
+	default:
+		//TODO better way to do demon bane wepaons, maybe a map with vuln, then acn just check map
+		return p.equippedGear.isAnyEquipped(append([]int{arclight, emberlight, burningClaws}, demonBaneWeapons...))
+	}
 }

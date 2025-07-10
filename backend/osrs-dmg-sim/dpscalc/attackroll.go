@@ -225,10 +225,12 @@ func getMagicAttackRoll(player *Player) int {
 	if player.equippedGear.isEquipped(salveAmuletEI) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
 	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.Npc.IsDragon {
-		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 15, 10)
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 175, 100)
 	} else if player.equippedGear.isEquipped(salveAmuletI) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 23, 20)
-	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
+	}
+
+	if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
 	}
 

@@ -2,6 +2,7 @@ package simpledmgsim
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
@@ -37,9 +38,15 @@ type Condition struct {
 	NextComparison string `json:"nextComparison"`
 }
 
+const maxIterations = 1_000_000
+
 func (inputSetup *InputSetup) Validate() error {
 	if err := inputSetup.GlobalSettings.Validate(); err != nil {
 		return err
+	}
+
+	if inputSetup.SimSettings.Iterations > maxIterations {
+		return fmt.Errorf("max iterations: %d", maxIterations)
 	}
 
 	if len(inputSetup.InputGearSetups) == 0 {
