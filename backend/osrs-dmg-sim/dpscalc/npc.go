@@ -23,7 +23,7 @@ type aggressiveStats struct {
 	ranged int
 }
 
-type npc struct {
+type Npc struct {
 	id              int
 	name            string
 	BaseCombatStats CombatStats
@@ -56,13 +56,13 @@ type npc struct {
 	respawn int
 }
 
-type npcs map[string]npc
+type npcs map[string]Npc
 
 func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 	npcs := make(npcs)
 
 	for id, npcData := range npcsData {
-		n := npc{}
+		n := Npc{}
 		n.name = npcData.Name
 		n.respawn = npcData.Respawn
 		n.size = npcData.Size
@@ -125,16 +125,16 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 	return npcs
 }
 
-func (npc *npc) applyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
+func (npc *Npc) ApplyAllNpcScaling(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) {
 	npc.ApplyNpcScaling(globalSettings)
-	npc.ApplyStatDrain(globalSettings, inputGearSetup.GearSetupSettings.StatDrain)
+	npc.ApplyStatDrain(inputGearSetup.GearSetupSettings.StatDrain)
 
 	if globalSettings.NpcHitpoints != 0 {
 		npc.CombatStats.Hitpoints = globalSettings.NpcHitpoints
 	}
 }
 
-func (npc *npc) ApplyNpcScaling(globalSettings *GlobalSettings) {
+func (npc *Npc) ApplyNpcScaling(globalSettings *GlobalSettings) {
 	npc.applyCoxScaling(globalSettings)
 	npc.applyTobScaling(globalSettings)
 	npc.applyToaScaling(globalSettings)

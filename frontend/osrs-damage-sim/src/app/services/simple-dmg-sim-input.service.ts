@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { GearSetup } from '../model/shared/gear-setup.model';
-import { InputGearSetup, InputSetup } from '../model/simple-dmg-sim/input-setup.model';
+import {
+  DEFAULT_SIM_SETTINGS,
+  InputGearSetup,
+  InputSetup,
+  SimSettings,
+} from '../model/simple-dmg-sim/input-setup.model';
 import { DEFAULT_GLOBAL_SETTINGS, GlobalSettings } from '../model/shared/global-settings.model';
 import { FILTER_PATHS } from './filter-fields.const';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -24,9 +29,14 @@ export class SimpleDmgSimInputService {
 
     this.inputSetup$ = new BehaviorSubject<InputSetup>({
       globalSettings: DEFAULT_GLOBAL_SETTINGS,
+      simSettings: DEFAULT_SIM_SETTINGS,
       gearPresets: [],
       inputGearSetups: gearSetups,
     });
+  }
+
+  public getInputSetup(): InputSetup {
+    return this.inputSetup$.getValue();
   }
 
   public inputGearSetupsWatch(): Observable<InputGearSetup[]> {
@@ -41,17 +51,22 @@ export class SimpleDmgSimInputService {
     return this.inputSetup$.pipe(map((inputSetup: InputSetup) => inputSetup.globalSettings));
   }
 
+  public simSettingsWatch(): Observable<SimSettings> {
+    return this.inputSetup$.pipe(map((inputSetup: InputSetup) => inputSetup.simSettings));
+  }
+
   public loadInputSetup(inputSetup: InputSetup): void {
     this.inputSetup$.next(inputSetup);
   }
 
   public getInputGearSetupFromJson(inputSetupJson: InputSetup): InputSetup {
     const presets = inputSetupJson.gearPresets.map((gearSetup: GearSetup) =>
-      this.jsonParseService.parseGearSetup(gearSetup)
+      this.jsonParseService.parseGearSetup(gearSetup),
     );
 
     return {
       globalSettings: this.jsonParseService.parseGlobalSettings(inputSetupJson.globalSettings),
+      simSettings: inputSetupJson.simSettings,
       gearPresets: presets,
       inputGearSetups: inputSetupJson.inputGearSetups.map((inputGearSetup) => ({
         gearSetupSettings: this.jsonParseService.parseGearSetupSettings(inputGearSetup.gearSetupSettings),
@@ -74,7 +89,7 @@ export class SimpleDmgSimInputService {
         }
 
         return value;
-      })
+      }),
     );
   }
 

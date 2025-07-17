@@ -1,0 +1,34 @@
+<div>
+  <div class="mb-2 d-flex align-items-center">
+    <div class="flex-grow-1">
+      <app-ng-select-lazy-load
+        [valueType]="DpsCalcResult"
+        [allValues]="dpsCalcResults.results"
+        [selectedValue]="selectedDpsCalcResult"
+        [clearable]="false"
+        [searchable]="false"
+        placeholder="Select input value"
+        (valueChanged)="selectedDpsResultChange($event)"
+      >
+        <ng-template #dropdownLabel>
+          <app-input-setup-label
+            [gearSetupSettings]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex].gearSetupSettings"
+            [gearSetup]="inputSetup.inputGearSetups[selectedDpsCalcResultIndex].gearSetup"
+          ></app-input-setup-label>
+        </ng-template>
+        <ng-template #dropdownOptions let-index="index" let-item="item">
+          <app-input-setup-label
+            [gearSetupSettings]="inputSetup.inputGearSetups[index].gearSetupSettings"
+            [gearSetup]="inputSetup.inputGearSetups[index].gearSetup"
+          ></app-input-setup-label>
+        </ng-template>
+      </app-ng-select-lazy-load>
+    </div>
+  </div>
+
+  <div>
+    <div class="chart-container">
+      <canvas id="hitChanceChart">{{ hitChanceChart }}</canvas>
+    </div>
+  </div>
+</div>

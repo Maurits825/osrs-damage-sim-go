@@ -7,7 +7,7 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
-func getAttackRoll(player *player) int {
+func getAttackRoll(player *Player) int {
 	style := player.combatStyle.CombatStyleType
 	attackRoll := 0
 
@@ -32,7 +32,7 @@ func getAttackRoll(player *player) int {
 	return attackRoll
 }
 
-func getMeleeAttackRoll(player *player) int {
+func getMeleeAttackRoll(player *Player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Attack, player.combatStatBoost.Attack)
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
 		if factor := prayer.getPrayerBoost().meleeAttack; factor.denominator != 0 {
@@ -124,7 +124,7 @@ func getMeleeAttackRoll(player *player) int {
 	return attackRoll
 }
 
-func getRangedAttackRoll(player *player) int {
+func getRangedAttackRoll(player *Player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
 		if factor := prayer.getPrayerBoost().rangedAttack; factor.denominator != 0 {
@@ -194,7 +194,7 @@ func getRangedAttackRoll(player *player) int {
 	return attackRoll
 }
 
-func getMagicAttackRoll(player *player) int {
+func getMagicAttackRoll(player *Player) int {
 	effectiveLevel := dpsDetailEntries.TrackAdd(dpsdetail.PlayerAccuracyLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Magic, player.combatStatBoost.Magic)
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
 		if factor := prayer.getPrayerBoost().magicAttack; factor.denominator != 0 {
@@ -225,10 +225,12 @@ func getMagicAttackRoll(player *player) int {
 	if player.equippedGear.isEquipped(salveAmuletEI) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 6, 5)
 	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.Npc.IsDragon {
-		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 15, 10)
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyDragonhunter, attackRoll, 175, 100)
 	} else if player.equippedGear.isEquipped(salveAmuletI) && player.Npc.IsUndead {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracySalve, attackRoll, 23, 20)
-	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
+	}
+
+	if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyBlackMask, attackRoll, 23, 20)
 	}
 
@@ -268,7 +270,7 @@ func getMagicAttackRoll(player *player) int {
 	return attackRoll
 }
 
-func getSpecialAttackRoll(baseAttackRoll int, player *player) int {
+func getSpecialAttackRoll(baseAttackRoll int, player *Player) int {
 	baseRoll := float32(baseAttackRoll)
 	if player.equippedGear.isEquipped(bandosGodsword) || player.equippedGear.isEquipped(zamorakGodsword) || player.equippedGear.isEquipped(armadylGodsword) {
 		return baseAttackRoll * 2

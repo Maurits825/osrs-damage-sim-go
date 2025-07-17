@@ -2,7 +2,7 @@ package dpscalc
 
 import "slices"
 
-func getMinDefence(npc *npc) int {
+func getMinDefence(npc *Npc) int {
 	if slices.Contains(verzikIds, npc.id) || npc.name == "Vardorvis" {
 		return npc.CombatStats.Defence
 	}
@@ -41,9 +41,8 @@ func getMinDefence(npc *npc) int {
 	return 0
 }
 
-func (npc *npc) ApplyStatDrain(globalSettings *GlobalSettings, statsDrains []StatDrain) {
+func (npc *Npc) ApplyStatDrain(statsDrains []StatDrain) {
 	minDefence := getMinDefence(npc)
-	//StatsDrains set the combatStats on the npc
 	for _, statDrain := range statsDrains {
 		switch statDrain.Name {
 		case DragonWarhammer:
@@ -55,7 +54,7 @@ func (npc *npc) ApplyStatDrain(globalSettings *GlobalSettings, statsDrains []Sta
 		case ElderMaul:
 			for range statDrain.Value {
 				currentDefence := npc.CombatStats.Defence
-				defence := currentDefence - int(currentDefence*35/100) //TODO math
+				defence := currentDefence - int(currentDefence*35/100)
 				npc.CombatStats.Defence = max(minDefence, defence)
 			}
 		case Arclight, Emberlight:

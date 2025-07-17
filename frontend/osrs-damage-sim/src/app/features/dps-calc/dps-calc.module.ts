@@ -17,6 +17,7 @@ import { AppSharedModule } from 'src/app/shared/app-shared.module';
 import { FormsModule } from '@angular/forms';
 import { DpsTableComponent } from './dps-results/dps-table/dps-table.component';
 import { DpsGraphTabsComponent } from './dps-results/dps-graph-tabs/dps-graph-tabs.component';
+import { HitChanceGraphComponent } from './dps-results/hit-chance-graph/hit-chance-graph.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DpsGraphTabsComponent } from './dps-results/dps-graph-tabs/dps-graph-ta
     GlobalSettingsComponent,
     DpsTableComponent,
     DpsGraphTabsComponent,
+    HitChanceGraphComponent,
   ],
   imports: [CommonModule, FormsModule, DpsCalcRoutingModule, NgbPopoverModule, AppSharedModule],
 })

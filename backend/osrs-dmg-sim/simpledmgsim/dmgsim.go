@@ -7,12 +7,7 @@ type Attackable interface {
 	attack() int
 }
 
-//todo name
-type SimResult struct {
-	ticksToKill int
-}
-
-func RunSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) *SimResult {
+func RunSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup InputGearSetup) *simResult {
 	dpsCalcSetup := &dpscalc.InputGearSetup{
 		GearSetupSettings: setup.GearSetupSettings,
 		GearSetup:         presets[setup.MainGearSimSetup.GearPresetIndex],
@@ -38,5 +33,5 @@ func RunSim(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, setup Input
 	ticksToKill := attackCount * 4
 
 	//todo could init this once so better mem perf
-	return &SimResult{ticksToKill: ticksToKill}
+	return &simResult{AverageTtk: ticksToKill}
 }

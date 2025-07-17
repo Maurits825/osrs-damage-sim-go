@@ -18,7 +18,13 @@ describe('GearSimSetupComponent', () => {
 
     fixture = TestBed.createComponent(GearSimSetupsComponent);
     component = fixture.componentInstance;
+
+    component.mainGearSimSetup = {
+      gearPresetIndex: 0,
+      conditions: [],
+    };
     component.gearSimSetups = [];
+
     fixture.detectChanges();
   });
 

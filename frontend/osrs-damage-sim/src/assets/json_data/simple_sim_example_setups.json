@@ -1,7 +1,10 @@
 [
   {
-    "setupName": "Zebak",
+    "setupName": "Zebak tbow zcb/bgs",
     "inputSetup": {
+      "simSettings": {
+        "iterations": 50000
+      },
       "globalSettings": {
         "npc": {
           "name": "Zebak",
@@ -312,6 +315,362 @@
           "gearSimSetups": [
             {
               "gearPresetIndex": 2,
+              "conditions": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "setupName": "Duke scy claw/bgs",
+    "inputSetup": {
+      "globalSettings": {
+        "npc": {
+          "name": "Duke Sucellus",
+          "isDemon": true,
+          "hitpoints": 485,
+          "att": 300,
+          "str": 345,
+          "def": 275,
+          "mage": 310,
+          "attbns": 200,
+          "strbns": 38,
+          "amagic": 150,
+          "mbns": 32,
+          "dstab": 255,
+          "dslash": 45,
+          "dcrush": 190,
+          "dmagic": 440,
+          "dlight": 320,
+          "dstandard": 320,
+          "dheavy": 320,
+          "combat": 758,
+          "size": 7,
+          "respawn": 20,
+          "id": "12166"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "simSettings": {
+        "iterations": 100000,
+        "isDetailedRun": true
+      },
+      "gearPresets": [
+        {
+          "setupName": "Scythe",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "name": "Oathplate helm",
+              "id": 30750
+            },
+            "1": {
+              "name": "Infernal max cape",
+              "id": 21285
+            },
+            "2": {
+              "name": "Amulet of rancour",
+              "id": 29801
+            },
+            "3": {
+              "name": "Scythe of vitur",
+              "id": 22325,
+              "attackStyles": [
+                "Reap (Slash/Accurate)",
+                "Chop (Slash/Aggressive)",
+                "Jab (Crush/Aggressive)",
+                "Block (Slash/Defensive)"
+              ],
+              "attackType": "melee"
+            },
+            "4": {
+              "name": "Oathplate chest",
+              "id": 30753
+            },
+            "5": null,
+            "7": {
+              "name": "Oathplate legs",
+              "id": 30756
+            },
+            "9": {
+              "name": "Ferocious gloves",
+              "id": 22981
+            },
+            "10": {
+              "name": "Primordial boots",
+              "id": 13239
+            },
+            "12": {
+              "name": "Bellator ring",
+              "id": 28316
+            },
+            "13": {
+              "name": "Rada's blessing 4",
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": null,
+          "attackStyle": "Chop (Slash/Aggressive)",
+          "spell": null,
+          "isSpecial": false,
+          "prayers": ["piety"],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "isMarkOfDarkness": true
+        },
+        {
+          "setupName": "Dragon claws",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "name": "Oathplate helm",
+              "id": 30750
+            },
+            "1": {
+              "name": "Infernal max cape",
+              "id": 21285
+            },
+            "2": {
+              "name": "Amulet of rancour",
+              "id": 29801
+            },
+            "3": {
+              "name": "Dragon claws",
+              "id": 13652,
+              "attackStyles": [
+                "Chop (Slash/Accurate)",
+                "Slash (Slash/Aggressive)",
+                "Lunge (Stab/Controlled)",
+                "Block (Slash/Defensive)"
+              ],
+              "attackType": "melee",
+              "specialAttackCost": 50
+            },
+            "4": {
+              "name": "Oathplate chest",
+              "id": 30753
+            },
+            "5": null,
+            "7": {
+              "name": "Oathplate legs",
+              "id": 30756
+            },
+            "9": {
+              "name": "Ferocious gloves",
+              "id": 22981
+            },
+            "10": {
+              "name": "Primordial boots",
+              "id": 13239
+            },
+            "12": {
+              "name": "Bellator ring",
+              "id": 28316
+            },
+            "13": {
+              "name": "Rada's blessing 4",
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": null,
+          "attackStyle": "Slash (Slash/Aggressive)",
+          "spell": null,
+          "isSpecial": true,
+          "prayers": ["piety"],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "isMarkOfDarkness": true
+        },
+        {
+          "setupName": "Bandos godsword",
+          "presetName": null,
+          "gear": {
+            "0": {
+              "name": "Oathplate helm",
+              "id": 30750
+            },
+            "1": {
+              "name": "Infernal max cape",
+              "id": 21285
+            },
+            "2": {
+              "name": "Amulet of rancour",
+              "id": 29801
+            },
+            "3": {
+              "name": "Bandos godsword",
+              "id": 11804,
+              "attackStyles": [
+                "Chop (Slash/Accurate)",
+                "Slash (Slash/Aggressive)",
+                "Smash (Crush/Aggressive)",
+                "Block (Slash/Defensive)"
+              ],
+              "attackType": "melee",
+              "specialAttackCost": 50
+            },
+            "4": {
+              "name": "Oathplate chest",
+              "id": 30753
+            },
+            "5": null,
+            "7": {
+              "name": "Oathplate legs",
+              "id": 30756
+            },
+            "9": {
+              "name": "Ferocious gloves",
+              "id": 22981
+            },
+            "10": {
+              "name": "Primordial boots",
+              "id": 13239
+            },
+            "12": {
+              "name": "Bellator ring",
+              "id": 28316
+            },
+            "13": {
+              "name": "Rada's blessing 4",
+              "id": 22947
+            }
+          },
+          "blowpipeDarts": null,
+          "attackStyle": "Slash (Slash/Aggressive)",
+          "spell": null,
+          "isSpecial": true,
+          "prayers": ["piety"],
+          "isOnSlayerTask": true,
+          "isInWilderness": true,
+          "currentHp": 1,
+          "miningLvl": 99,
+          "isKandarinDiary": true,
+          "isMarkOfDarkness": true
+        }
+      ],
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": ["super_combat"],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": [],
+            "ragingEchoesSettings": {
+              "combatMasteries": {
+                "meleeTier": 0,
+                "rangeTier": 0,
+                "mageTier": 0
+              }
+            }
+          },
+          "mainGearSimSetup": {
+            "gearPresetIndex": 0,
+            "conditions": []
+          },
+          "gearSimSetups": [
+            {
+              "gearPresetIndex": 1,
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": ["super_combat"],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": [],
+            "ragingEchoesSettings": {
+              "combatMasteries": {
+                "meleeTier": 0,
+                "rangeTier": 0,
+                "mageTier": 0
+              }
+            }
+          },
+          "mainGearSimSetup": {
+            "gearPresetIndex": 0,
+            "conditions": []
+          },
+          "gearSimSetups": [
+            {
+              "gearPresetIndex": 2,
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": ["super_combat"],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": [],
+            "ragingEchoesSettings": {
+              "combatMasteries": {
+                "meleeTier": 0,
+                "rangeTier": 0,
+                "mageTier": 0
+              }
+            }
+          },
+          "mainGearSimSetup": {
+            "gearPresetIndex": 0,
+            "conditions": []
+          },
+          "gearSimSetups": [
+            {
+              "gearPresetIndex": 2,
+              "conditions": [
+                {
+                  "variable": "ATTACK_COUNT",
+                  "comparison": "LESS_THAN",
+                  "value": 1,
+                  "nextComparison": "AND"
+                }
+              ]
+            },
+            {
+              "gearPresetIndex": 1,
               "conditions": []
             }
           ]

@@ -6,7 +6,7 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc/dpsdetail"
 )
 
-func getMaxHit(player *player) int {
+func getMaxHit(player *Player) int {
 	style := player.combatStyle.CombatStyleType
 	maxHit := 0
 
@@ -27,7 +27,7 @@ func getMaxHit(player *player) int {
 	return maxHit
 }
 
-func getMeleeMaxHit(player *player) int {
+func getMeleeMaxHit(player *Player) int {
 	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Strength, player.combatStatBoost.Strength)
 	effectiveLevel := baseLevel
 
@@ -86,7 +86,11 @@ func getMeleeMaxHit(player *player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 6, 5)
 	}
 	if player.equippedGear.isAnyEquipped(kerisWeapons) && player.Npc.isKalphite {
-		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitKeris, maxHit, 133, 100)
+		mult := 133
+		if player.equippedGear.isEquipped(kerisAmascut) {
+			mult = 115
+		}
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitKeris, maxHit, mult, 100)
 	}
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
@@ -127,7 +131,7 @@ func getMeleeMaxHit(player *player) int {
 	return maxHit
 }
 
-func getRangedMaxHit(player *player) int {
+func getRangedMaxHit(player *Player) int {
 	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
 	effectiveLevel := baseLevel
 
@@ -203,7 +207,7 @@ func getRangedMaxHit(player *player) int {
 	return maxHit
 }
 
-func getMagicMaxHit(player *player) int { //TODO maybe look over again and have same order with wiki dps
+func getMagicMaxHit(player *Player) int { //TODO maybe look over again and have same order with wiki dps
 	baseMaxhit := 0
 	magicLevel := player.inputGearSetup.GearSetupSettings.CombatStats.Magic + player.combatStatBoost.Magic
 	spell := player.spell
@@ -263,8 +267,6 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 		gearMagicBonus += 200
 	} else if player.equippedGear.isEquipped(salveAmuletI) && player.Npc.IsUndead {
 		gearMagicBonus += 150
-	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.Npc.IsDragon {
-		gearMagicBonus += 200
 	} else if player.equippedGear.isWearingImbuedBlackMask() && player.inputGearSetup.GearSetup.IsOnSlayerTask {
 		blackMaskBonus = true
 	}
@@ -289,6 +291,8 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 	//TODO demonbane spell
 	if player.inputGearSetup.GearSetup.IsInWilderness && player.equippedGear.isAnyEquipped(wildyWeapons) {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitRevWeapon, maxHit, 3, 2)
+	} else if player.equippedGear.isEquipped(dragonHunterWand) && player.Npc.IsDragon {
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 7, 5)
 	}
 
 	if player.Npc.elementalWeaknessType != NoneElement && player.spell.elementalType != NoneElement {
@@ -301,15 +305,16 @@ func getMagicMaxHit(player *player) int { //TODO maybe look over again and have 
 		}
 	}
 
-	//todo water tome
-	if player.equippedGear.isEquipped(tomeOfFire) && player.spell.elementalType == FireElement {
+	if player.equippedGear.isEquipped(tomeOfFire) && player.spell.elementalType == FireElement ||
+		player.equippedGear.isEquipped(tomeOfWater) && player.spell.elementalType == WaterElement ||
+		player.equippedGear.isEquipped(tomeOfEarth) && player.spell.elementalType == EarthElement {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitTome, maxHit, 11, 10)
 	}
 
 	return maxHit
 }
 
-func getSpecialAttackMaxHit(baseMaxHit int, player *player) int {
+func getSpecialAttackMaxHit(baseMaxHit int, player *Player) int {
 	baseMax := float64(baseMaxHit)
 	if player.equippedGear.isEquipped(bandosGodsword) {
 		return int(math.Floor(baseMax*1.1) * 1.1)

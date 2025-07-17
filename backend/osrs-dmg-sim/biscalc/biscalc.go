@@ -1,7 +1,6 @@
 package biscalc
 
 import (
-	"fmt"
 	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
@@ -119,7 +118,6 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 		}
 	}
 
-	fmt.Println(style, "calcs:", calcCount)
 	return bisResults
 }
 

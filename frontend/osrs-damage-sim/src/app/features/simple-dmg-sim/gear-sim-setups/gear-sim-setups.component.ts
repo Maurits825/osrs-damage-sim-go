@@ -32,9 +32,9 @@ export class GearSimSetupsComponent implements OnInit {
     this.inputService.gearSetupPresetsWatch().subscribe((presets: GearSetup[]) => (this.allGearPresets = presets));
 
     this.gearSimSetups.forEach((setup: GearSimSetup) =>
-      this.selectedGearPresets.push(this.allGearPresets[setup.gearPresetIndex])
+      this.selectedGearPresets.push(this.allGearPresets[setup.gearPresetIndex]),
     );
-    this.selectedMainGearSetup = this.allGearPresets[0];
+    this.selectedMainGearSetup = this.allGearPresets[this.mainGearSimSetup.gearPresetIndex];
   }
 
   addNewSimSetup(gearSimSetup?: GearSimSetup): void {

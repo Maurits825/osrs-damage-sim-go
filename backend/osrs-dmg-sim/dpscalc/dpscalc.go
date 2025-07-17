@@ -31,6 +31,7 @@ type DpsCalcResult struct {
 	TicksToKill    float32              `json:"ticksToKill"`
 	CalcDetails    []string             `json:"calcDetails"`
 }
+
 type dpsDetails struct {
 	dps          float32
 	maxHitsplats []int
@@ -54,6 +55,7 @@ type DpsCalcOptions struct {
 var allItems equipmentItems
 var allNpcs npcs
 var idAliases map[int]int
+var specItems map[string]int
 
 // TODO where to put this??, we have to clear it now also...
 // is this scuffed? its global... but otherwise have to pass it around everywhere
@@ -63,6 +65,7 @@ func init() {
 	allItems = getEquipmentItems(wikidata.GetWikiData(wikidata.ItemProvider).(map[int]wikidata.ItemData))
 	allNpcs = getNpcs(wikidata.GetWikiData(wikidata.NpcProvider).(map[string]wikidata.NpcData))
 	idAliases = wikidata.GetWikiData(wikidata.IdAliasProvider).(map[int]int)
+	specItems = wikidata.GetWikiData(wikidata.SpecProvider).(map[string]int)
 }
 
 func RunDpsCalc(inputSetup *InputSetup) []*DpsCalcResults {
@@ -139,7 +142,7 @@ func DpsCalcGearSetup(globalSettings *GlobalSettings, inputGearSetup *InputGearS
 	}
 }
 
-func GetNpc(id string) npc {
+func GetNpc(id string) Npc {
 	npcId, _ := strconv.Atoi(id)
 	npc := allNpcs[id]
 	npc.id = npcId
@@ -153,10 +156,12 @@ func getIdAlias(itemId int) int {
 	return itemId
 }
 
-func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *player {
+func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *Player {
 	equippedGear := equippedGear{ids: make([]int, 0, maxGearSlots)}
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
+	specialAttackCost := 0
+
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
 		if gearItem.Id == EmptyItemId {
 			continue
@@ -173,11 +178,12 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		if gearSlot == Weapon {
 			equipmentStats.attackSpeed = itemStats.attackSpeed
 			weaponStyle = item.weaponStyle
+			specialAttackCost = specItems[item.name]
 		}
 	}
 
 	npc := GetNpc(globalSettings.Npc.Id)
-	npc.applyAllNpcScaling(globalSettings, inputGearSetup)
+	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
 
 	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
 	spell := getSpellByName(inputGearSetup.GearSetup.Spell)
@@ -191,13 +197,25 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 
 	equipmentStats.damageStats.magicStrength *= 10
+	inToa := slices.Contains(ToaIds, npc.id)
 	if equippedGear.isEquipped(tumekenShadow) && cmbStyle.CombatStyleStance != Autocast {
 		shadowFactor := 3
-		if slices.Contains(ToaIds, npc.id) {
+		if inToa {
 			shadowFactor = 4
 		}
 		equipmentStats.damageStats.magicStrength *= float32(shadowFactor)
 		equipmentStats.offensiveStats.magic *= shadowFactor
+	}
+
+	//TODO the wiki scrapper doesnt get the stab/str stats, so this works for now
+	if equippedGear.isEquipped(kerisAmascut) {
+		if inToa {
+			equipmentStats.offensiveStats.stab += 108
+			equipmentStats.damageStats.meleeStrength += 67
+		} else {
+			equipmentStats.offensiveStats.stab += 58
+			equipmentStats.damageStats.meleeStrength += 45
+		}
 	}
 
 	if spell.spellbook == ancientSpellBook {
@@ -235,13 +253,25 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	}
 	echoMasteries.maxMastery = max(echoMasteries.melee, max(echoMasteries.ranged, echoMasteries.mage))
 
-	return &player{globalSettings, inputGearSetup, npc, combatStatBoost, equipmentStats, cmbStyle, equippedGear, weaponStyle, spell, echoMasteries}
+	return &Player{
+		globalSettings, inputGearSetup, npc, combatStatBoost,
+		equipmentStats, cmbStyle, equippedGear, weaponStyle, specialAttackCost,
+		spell, echoMasteries,
+	}
 }
 
-func calculateDps(player *player) dpsDetails {
+func GetPlayerHitDist(player *Player) []float32 {
+	maxHit := getMaxHit(player)
+	accuracy, _ := getAccuracy(player)
+	attackDist := getAttackDistribution(player, accuracy, maxHit)
+	hitDist := attackDist.GetFlatHitDistribution()
+	return hitDist
+}
+
+func calculateDps(player *Player) dpsDetails {
 	maxHit := getMaxHit(player)
 	accuracy, attackRoll := getAccuracy(player)
-	attackSpeed := getAttackSpeed(player)
+	attackSpeed := GetAttackSpeed(player)
 
 	attackDist := getAttackDistribution(player, accuracy, maxHit)
 	expectedHit := attackDist.GetExpectedHit() + getDoTExpected(player, accuracy)
@@ -255,7 +285,7 @@ func calculateDps(player *player) dpsDetails {
 	return dpsDetails{dps, maxHitsplats, accuracy, attackRoll, hitDist, expectedHit, attackSpeed}
 }
 
-func getAttackSpeed(player *player) int {
+func GetAttackSpeed(player *Player) int {
 	attackSpeed := player.equipmentStats.attackSpeed
 
 	if player.combatStyle.CombatStyleStance == Rapid {
@@ -292,7 +322,7 @@ func getAttackSpeed(player *player) int {
 	return attackSpeed
 }
 
-func getAccuracy(player *player) (float32, int) {
+func getAccuracy(player *Player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
 	if (slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
@@ -367,7 +397,7 @@ func getAttackCycleFactor(attackSpeed int, attackCycle int) float32 {
 	return (d - 1) / d
 }
 
-func getDoTExpected(player *player, accuracy float32) float32 {
+func getDoTExpected(player *Player, accuracy float32) float32 {
 	if player.equippedGear.isEquipped(burningClaws) && player.inputGearSetup.GearSetup.IsSpecialAttack {
 		return burningClawsDoT(accuracy)
 	}

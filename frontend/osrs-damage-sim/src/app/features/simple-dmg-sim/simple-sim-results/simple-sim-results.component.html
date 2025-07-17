@@ -1,3 +1,42 @@
 <ng-container *ngIf="results?.results && !results?.error">
-  <div>results: {{ results.results[0].ticksToKill | tickToTime }}</div>
+  <div>
+    @if (results.results[0].detailedRuns) {
+      <h3 class="mb-3 fw-light text-center">Detailed Runs</h3>
+      <app-detailed-run-results [results]="results.results"></app-detailed-run-results>
+    }
+  </div>
+
+  <div>
+    <h3 class="mb-3 fw-light text-center">Time Results</h3>
+    <table class="table table-bordered border-dark mb-3">
+      <thead>
+        <tr class="text-end">
+          <th scope="col" style="width: 30%" class="text-start">
+            <div class="d-flex">
+              <div class="flex-fill">Setup Name</div>
+            </div>
+          </th>
+          <th scope="col" style="width: 10%">Average</th>
+          <th scope="col" style="width: 10%">Max</th>
+          <th scope="col" style="width: 10%">Min</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (result of results.results; track result.averageTtk; let i = $index) {
+          <tr class="align-middle text-end">
+            <th scope="row" class="text-start">
+              <app-sim-input-setup-label [inputSetup]="inputSetup" [inputIndex]="i"></app-sim-input-setup-label>
+            </th>
+            <td>{{ result.averageTtk | tickToTime }}</td>
+            <td>{{ result.maxTtk | tickToTime }}</td>
+            <td>{{ result.minTtk | tickToTime }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <app-sim-graph-tabs [simpleSimResults]="results.results"></app-sim-graph-tabs>
+  </div>
 </ng-container>

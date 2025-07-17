@@ -47,7 +47,9 @@ const (
 
 	dualMachiato = 28997
 
-	tomeOfFire = 20714
+	tomeOfFire  = 20714
+	tomeOfWater = 25574
+	tomeOfEarth = 30064
 
 	zaryteCrossbow = 26374
 
@@ -88,6 +90,8 @@ const (
 	purgingStaff = 29594
 
 	ralos = 28919
+
+	kerisAmascut = 30891
 )
 
 // echo leagues stuff
@@ -108,7 +112,7 @@ var virtusSet = []int{26241, 26243, 26245}
 var voidRobes = []int{8839, 8840, 8842}
 var eliteVoidRobes = []int{13072, 13073, 8842}
 var inquisitorSet = []int{24419, 24420, 24421}
-var kerisWeapons = []int{10581, 10582, 10583, 10584, 25979, kerisBreaching, 27291, 27287}
+var kerisWeapons = []int{10581, 10582, 10583, 10584, 25979, kerisBreaching, 27291, 27287, kerisAmascut}
 var demonBaneWeapons = []int{2402, 6746}
 
 var smokeBattleStaves = []int{11998, 12000}
@@ -198,7 +202,7 @@ func (gear *equippedGear) isWearingBlackMask() bool {
 	return gear.isWearingImbuedBlackMask() || gear.isEquipped(blackMask) || gear.isEquipped(slayerHelm)
 }
 
-func (gear *equippedGear) isWearingCorpbaneWeapon(player *player) bool {
+func (gear *equippedGear) isWearingCorpbaneWeapon(player *Player) bool {
 	style := player.combatStyle.CombatStyleType
 	isStab := style == Stab
 

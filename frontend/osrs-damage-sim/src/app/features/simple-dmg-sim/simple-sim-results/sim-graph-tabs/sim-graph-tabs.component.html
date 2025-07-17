@@ -1,0 +1,32 @@
+<div>
+  <nav class="navbar navbar-expand-sm bg-light mb-3 rounded">
+    <div class="container-fluid px-2">
+      <ul class="navbar-nav nav-tabs flex-wrap">
+        <ng-container *ngFor="let graphTab of graphTabs">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              role="button"
+              [ngClass]="{
+                active: activeTab.graphType === graphTab.graphType,
+              }"
+              (click)="activeTab = graphTab"
+            >
+              <div class="text-center">{{ graphTab.label }}</div>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </nav>
+
+  @if (activeTab.graphType === GraphType.Cummulativettk) {
+    <div>
+      <app-cummulative-ttk-graph [simpleSimResults]="simpleSimResults"></app-cummulative-ttk-graph>
+    </div>
+  } @else if (activeTab.graphType === GraphType.TtkHistogram) {
+    <div>
+      <app-ttk-histogram-graph [simpleSimResults]="simpleSimResults"></app-ttk-histogram-graph>
+    </div>
+  }
+</div>

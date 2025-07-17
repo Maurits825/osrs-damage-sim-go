@@ -33,9 +33,8 @@
           <tr class="align-middle text-end">
             <th scope="row" class="text-start">
               <app-input-setup-label
-                [showTextLabel]="showResultTextLabel$ | async"
-                [dpsCalcResult]="result"
-                [inputGearSetup]="inputSetup.inputGearSetups[i]"
+                [gearSetupSettings]="inputSetup.inputGearSetups[i].gearSetupSettings"
+                [gearSetup]="inputSetup.inputGearSetups[i].gearSetup"
               ></app-input-setup-label>
             </th>
             <td>{{ result.theoreticalDps | number: "1.3-3" }}</td>

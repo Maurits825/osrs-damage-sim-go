@@ -3857,7 +3857,7 @@
     }
   },
   "Max DHWand mith dragon slayer": {
-    "expectedDps": 7.32308,
+    "expectedDps": 9.485667,
     "inputSetup": {
       "globalSettings": {
         "npc": {

@@ -1,17 +1,11 @@
 package simpledmgsim
 
+//todo remove this file?
 type SimpleDmgSimResults struct {
-	Results []SimpleDmgSimResult `json:"results"`
+	Results []*simResult `json:"results"`
 }
 
-type SimpleDmgSimResult struct {
-	TicksToKill int `json:"ticksToKill"`
-}
-
-func RunSimpleDmgSim(inputSetup *InputSetup) *SimpleDmgSimResults {
-	//TODO
-	//prob need to get player from dpscalc, have to expose the structs and fn and stuff
-	//dps calc can have alot of shared stuff, dpsgrapher/dmgsim then depend on it
-	results := RunSim(inputSetup.GearPresets, &inputSetup.GlobalSettings, inputSetup.InputGearSetups[0])
-	return &SimpleDmgSimResults{Results: []SimpleDmgSimResult{{TicksToKill: results.ticksToKill}}}
+func RunSimpleDmgSim(inputSetup *InputSetup) SimpleDmgSimResults {
+	results := RunAllDistSim(inputSetup)
+	return results
 }

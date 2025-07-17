@@ -14,10 +14,13 @@ export class ExampleSetupsComponent implements OnInit {
 
   ExampleSetup: ExampleSetup<string>;
 
-  constructor(private staticDataService: StaticDataService, private inputSetupService: DpsCalcInputService) {}
+  constructor(
+    private staticDataService: StaticDataService,
+    private inputSetupService: DpsCalcInputService,
+  ) {}
 
   ngOnInit(): void {
-    this.staticDataService.DpsCalcExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
+    this.staticDataService.dpsCalcExampleSetups$.pipe(take(1)).subscribe((exampleSetups) => {
       this.exampleSetups = exampleSetups;
     });
   }

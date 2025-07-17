@@ -14,9 +14,6 @@ export class HitDistGraphComponent implements OnChanges {
   @Input()
   inputSetup: InputSetup;
 
-  @Input()
-  showResultTextLabel: boolean;
-
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;
   selectedDpsCalcResultIndex: number;
@@ -26,16 +23,14 @@ export class HitDistGraphComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsCalcResults']) {
-      this.selectedDpsCalcResultIndex = 0;
-      this.selectedDpsCalcResult = this.dpsCalcResults.results[this.selectedDpsCalcResultIndex];
-      this.updateHitDistChart();
+      this.selectedDpsResultChange(this.dpsCalcResults.results[0]);
     }
   }
 
   selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
     this.selectedDpsCalcResult = dpsCalcResult;
     this.selectedDpsCalcResultIndex = this.dpsCalcResults.results.findIndex(
-      (calcResult) => calcResult === dpsCalcResult
+      (calcResult) => calcResult === dpsCalcResult,
     );
     this.updateHitDistChart();
   }
@@ -61,7 +56,7 @@ export class HitDistGraphComponent implements OnChanges {
       labels: labels.slice(start),
       datasets: [
         {
-          label: 'Hit Distribution',
+          label: 'Chance',
           data: this.selectedDpsCalcResult.hitDist.slice(start),
         },
       ],
@@ -95,19 +90,5 @@ export class HitDistGraphComponent implements OnChanges {
   hideZeroDistChange(isHide: boolean): void {
     this.hideZeroDist = isHide;
     this.updateHitDistChart();
-  }
-
-  dpsCalcFilter(result: DpsCalcResult, searchTerm: string): boolean {
-    if (!searchTerm) return true;
-
-    const name = result.labels.gearSetupName;
-
-    return (
-      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      name
-        .replace(/[^0-9a-z]/gi, '')
-        .toLowerCase()
-        .includes(searchTerm.replace(/[^0-9a-z]/gi, '').toLowerCase())
-    );
   }
 }

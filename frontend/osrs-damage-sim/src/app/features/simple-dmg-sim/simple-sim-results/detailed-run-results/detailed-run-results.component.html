@@ -1,0 +1,104 @@
+<div>
+  <div class="row mb-2">
+    <div class="col-9 d-flex align-items-center">
+      <div class="flex-grow-1" style="min-width: 0">
+        <app-ng-select-lazy-load
+          [valueType]="SimpleSimResult"
+          [allValues]="results"
+          [selectedValue]="selectedResult"
+          [clearable]="false"
+          [searchable]="false"
+          (valueChanged)="selectedResultChanged($event)"
+        >
+          <ng-template #dropdownLabel let-item="item">
+            <div class="d-flex align-items-center">
+              <div>
+                <app-sim-input-setup-label
+                  [inputSetup]="inputSetup"
+                  [inputIndex]="selectedInputIndex"
+                ></app-sim-input-setup-label>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #dropdownOptions let-item="item" let-index="index">
+            <div class="d-flex align-items-center">
+              <div>
+                <app-sim-input-setup-label [inputSetup]="inputSetup" [inputIndex]="index"></app-sim-input-setup-label>
+              </div>
+            </div>
+          </ng-template>
+        </app-ng-select-lazy-load>
+      </div>
+    </div>
+
+    <div class="col-3 d-flex align-items-center">
+      <div class="me-2">Time</div>
+      <div class="flex-grow-1">
+        <app-ng-select-lazy-load
+          [valueType]="DetailedRun"
+          [allValues]="selectedResult.detailedRuns"
+          [selectedValue]="selectedDetailedRun"
+          [clearable]="false"
+          [searchable]="false"
+          (valueChanged)="selectedDetailedRunChange($event)"
+        >
+          <ng-template #dropdownLabel #dropdownOptions let-item="item">
+            {{ item.ttk | tickToTime }}
+          </ng-template>
+        </app-ng-select-lazy-load>
+        <ng-template #notSelectedDetailedRun>
+          <div class="fst-italic text-center">select setup</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-sticky-header">
+    <table class="table table-striped table-bordered border-dark mb-4" *ngIf="selectedDetailedRun">
+      <thead>
+        <tr class="text-end">
+          <th scope="col" class="text-start">Tick</th>
+          <th scope="col" class="text-start">Time</th>
+          <th scope="col" class="text-start">Weapon</th>
+          <th scope="col" class="text-start">Damage</th>
+          <th scope="col" class="text-start">Npc</th>
+          <th scope="col" class="text-start">Max hit</th>
+          <th scope="col" class="text-start">Accuracy</th>
+          <th scope="col" class="text-start">Spec</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (tickData of selectedDetailedRun.tickData; track tickData.tick) {
+          <tr class="text-end">
+            <td class="text-start">{{ tickData.tick }}</td>
+            <td class="text-start">{{ tickData.tick | tickToTime }}</td>
+            <td>
+              <app-input-setup-label
+                [gearSetupSettings]="inputSetup.inputGearSetups[selectedInputIndex].gearSetupSettings"
+                [gearSetup]="inputSetup.gearPresets[tickData.presetIndex]"
+              ></app-input-setup-label>
+            </td>
+            <td>
+              <div
+                [ngClass]="{
+                  'maxhit-hitsplat': tickData.damage === tickData.maxHit,
+                  'miss-hitsplat': tickData.damage === 0,
+                }"
+                class="hitsplat damage-hitsplat text-white fw-light"
+              >
+                {{ tickData.damage }}
+              </div>
+            </td>
+            <td>
+              <img src="assets/img/skills/hitpoints.png" title="Hitpoints" /> {{ tickData.npcHp }}&nbsp;
+              <img src="assets/img/skills/defence.png" title="Defence" /> {{ tickData.npcDef }}
+            </td>
+            <td>{{ tickData.maxHit }}</td>
+            <td>{{ tickData.accuracy * 100 | number: "1.2-2" }}%</td>
+            <td>{{ tickData.specialAttack / 10 | number: "1.2-2" }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

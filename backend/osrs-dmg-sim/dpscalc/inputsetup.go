@@ -35,7 +35,7 @@ const (
 )
 
 // nested struct kinda nice if we want manual stat input here
-type Npc struct {
+type NpcInfo struct {
 	Id        string `json:"id"`
 	Hitpoints int    `json:"hitpoints"`
 }
@@ -48,7 +48,7 @@ type CoxScaling struct {
 }
 
 type GlobalSettings struct {
-	Npc            Npc        `json:"npc"`
+	Npc            NpcInfo    `json:"npc"`
 	NpcHitpoints   int        `json:"npcHitpoints"`
 	TeamSize       int        `json:"teamSize"`
 	RaidLevel      int        `json:"raidLevel"`
@@ -194,7 +194,7 @@ type InputSetup struct {
 	GlobalSettings   GlobalSettings   `json:"globalSettings"`
 	InputGearSetups  []InputGearSetup `json:"inputGearSetups"`
 	EnableDebugTrack bool             `json:"enableDebugTrack"`
-	MultiNpcs        []Npc            `json:"multiNpcs"`
+	MultiNpcs        []NpcInfo        `json:"multiNpcs"`
 }
 
 func (inputSetup *InputSetup) Validate() error {

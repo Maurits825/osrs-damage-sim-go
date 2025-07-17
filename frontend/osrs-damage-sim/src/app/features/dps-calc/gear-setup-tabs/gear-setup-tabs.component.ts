@@ -22,7 +22,10 @@ export class GearSetupTabsComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new Subject();
 
-  constructor(private inputSetupService: DpsCalcInputService, private changeDetector: ChangeDetectorRef) {}
+  constructor(
+    private inputSetupService: DpsCalcInputService,
+    private changeDetector: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     this.inputSetupService.loadInputSetup$

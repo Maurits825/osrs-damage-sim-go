@@ -3,7 +3,7 @@
     <div>
       <img style="width: 70px" class="img-fluid" src="assets/img/menu/dps-detail.png" />
     </div>
-    <div class="ms-2"><h1 class="display-1">Simple Damage Sim</h1></div>
+    <div class="ms-2"><h1 class="display-1">Damage Sim (wip)</h1></div>
   </div>
 
   <div class="mb-2">
@@ -14,7 +14,7 @@
 
   <div class="d-flex justify-content-between mb-5 flex-wrap">
     <div class="flex-fill mb-1">
-      <app-example-setups></app-example-setups>
+      <app-example-sim-setups></app-example-sim-setups>
     </div>
     <div class="flex-grow-1"></div>
 
@@ -66,7 +66,7 @@
                 class="nav-link"
                 role="button"
                 [ngClass]="{
-                  active: activeTab === 'preset-editor'
+                  active: activeTab === 'preset-editor',
                 }"
                 (click)="activeTab = 'preset-editor'"
               >
@@ -78,7 +78,7 @@
                 class="nav-link"
                 role="button"
                 [ngClass]="{
-                  active: activeTab === 'gear-setup-tabs'
+                  active: activeTab === 'gear-setup-tabs',
                 }"
                 (click)="activeTab = 'gear-setup-tabs'"
               >
@@ -93,7 +93,7 @@
         <ng-container *ngIf="selectedGearSetup; else emptySetup">
           <app-gear-setup [gearSetup]="selectedGearSetup"></app-gear-setup>
         </ng-container>
-        <ng-template #emptySetup> Select or add a new setup </ng-template>
+        <ng-template #emptySetup>Select or add a new setup</ng-template>
       </div>
       <div *ngIf="activeTab === 'gear-setup-tabs'">
         <app-gear-setup-tabs></app-gear-setup-tabs>

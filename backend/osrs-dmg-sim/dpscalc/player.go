@@ -2,6 +2,7 @@ package dpscalc
 
 import (
 	"regexp"
+	"strings"
 )
 
 type offensiveStats struct {
@@ -129,15 +130,18 @@ type prayerBoost struct {
 	defenceMagic   factor
 }
 
-type player struct {
+// TODO kinda scuffed to have random exported members
+// when we need them?
+type Player struct {
 	globalSettings        *GlobalSettings
 	inputGearSetup        *InputGearSetup
-	Npc                   npc
+	Npc                   Npc
 	combatStatBoost       CombatStats
 	equipmentStats        equipmentStats
 	combatStyle           combatStyle
 	equippedGear          equippedGear
 	weaponStyle           string
+	SpecialAttackCost     int
 	spell                 spell
 	ragingEchoesMasteries ragingEchoesMasteries
 }
@@ -147,4 +151,20 @@ type ragingEchoesMasteries struct {
 	ranged     int
 	mage       int
 	maxMastery int
+}
+
+func (p *Player) IsEquipped(itemId int) bool {
+	return p.equippedGear.isEquipped(itemId)
+}
+
+func (p *Player) isUsingDemonbane() bool {
+	switch p.combatStyle.CombatStyleType {
+	case Ranged:
+		return p.equippedGear.isEquipped(scorchingBow)
+	case Magic:
+		return strings.Contains(p.spell.name, "Demonbane")
+	default:
+		//TODO better way to do demon bane wepaons, maybe a map with vuln, then acn just check map
+		return p.equippedGear.isAnyEquipped(append([]int{arclight, emberlight, burningClaws}, demonBaneWeapons...))
+	}
 }

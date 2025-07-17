@@ -45,9 +45,8 @@
                   <tr class="align-middle">
                     <th scope="row" class="text-start">
                       <app-input-setup-label
-                        [showTextLabel]="showResultTextLabel$ | async"
-                        [dpsCalcResult]="dpsResults.dpsCalcResults[0].results[inputSetupIndex]"
-                        [inputGearSetup]="setup"
+                        [gearSetupSettings]="setup.gearSetupSettings"
+                        [gearSetup]="setup.gearSetup"
                       ></app-input-setup-label>
                     </th>
                     @for (results of dpsResults.dpsCalcResults; track results; let resultIndex = $index) {

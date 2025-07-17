@@ -13,9 +13,6 @@ export class CalcDetailsComponent implements OnChanges {
   @Input()
   inputSetup: InputSetup;
 
-  @Input()
-  showResultTextLabel: boolean;
-
   DpsCalcResult: DpsCalcResult;
   selectedDpsCalcResult: DpsCalcResult;
   selectedDpsCalcResultIndex: number;
@@ -30,21 +27,7 @@ export class CalcDetailsComponent implements OnChanges {
   selectedDpsResultChange(dpsCalcResult: DpsCalcResult): void {
     this.selectedDpsCalcResult = dpsCalcResult;
     this.selectedDpsCalcResultIndex = this.dpsCalcResults.results.findIndex(
-      (calcResult) => calcResult === dpsCalcResult
-    );
-  }
-
-  dpsCalcFilter(result: DpsCalcResult, searchTerm: string): boolean {
-    if (!searchTerm) return true;
-
-    const name = result.labels.gearSetupName;
-
-    return (
-      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      name
-        .replace(/[^0-9a-z]/gi, '')
-        .toLowerCase()
-        .includes(searchTerm.replace(/[^0-9a-z]/gi, '').toLowerCase())
+      (calcResult) => calcResult === dpsCalcResult,
     );
   }
 }

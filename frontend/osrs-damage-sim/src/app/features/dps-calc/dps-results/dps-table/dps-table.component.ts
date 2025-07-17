@@ -1,16 +1,13 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { map, Observable, shareReplay } from 'rxjs';
+import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { SortOrder, DpsSortField, dpsSortFields, SortConfigs, sortLabels } from 'src/app/model/shared/sort.model';
-import { UserSettings } from 'src/app/model/shared/user-settings.model';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { DpsCalcResults } from 'src/app/model/dps-calc/dps-results.model';
 
 @Component({
   selector: 'app-dps-table',
   templateUrl: './dps-table.component.html',
 })
-export class DpsTableComponent implements OnInit, OnChanges {
+export class DpsTableComponent implements OnChanges {
   @Input()
   dpsCalcResults: DpsCalcResults;
 
@@ -30,16 +27,8 @@ export class DpsTableComponent implements OnInit, OnChanges {
   SortOrder = SortOrder;
   dpsSortFields = dpsSortFields;
   sortLabels = sortLabels;
-  showResultTextLabel$: Observable<boolean>;
 
-  constructor(private cd: ChangeDetectorRef, private localStorageService: LocalStorageService) {}
-
-  ngOnInit(): void {
-    this.showResultTextLabel$ = this.localStorageService.userSettingsWatch$.pipe(
-      map((userSettings: UserSettings) => userSettings.showTextLabels),
-      shareReplay(1)
-    );
-  }
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsCalcResults'] && this.dpsCalcResults) {
