@@ -10,6 +10,7 @@ type simResult struct {
 	DetailedRuns   []detailedRun `json:"detailedRuns"`
 }
 
+//todo also get some other data like dmg, hit count, dps calcs?
 func getSimResults(ttkMap map[int]int, maxTtk, minTtk int, runner *distSimRunner) *simResult {
 	var detailedRuns []detailedRun
 	if runner.detailedRunLogger != nil {

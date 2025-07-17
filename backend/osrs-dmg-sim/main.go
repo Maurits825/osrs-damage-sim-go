@@ -62,7 +62,7 @@ func getGinEngine() *gin.Engine {
 	router.GET("/lookup-highscore", highscoreLookup)
 
 	router.POST("/run-dps-calc", dpsCalc)
-	router.POST("/run-simple-dmg-sim", simpledmgSim)
+	router.POST("/run-simple-dmg-sim", simpleDmgSim)
 	router.POST("/run-bis-calc", bisCalc)
 
 	router.POST("/wiki-dps-shortlink", wikiDpsShortlink)
@@ -91,7 +91,7 @@ func dpsCalc(c *gin.Context) {
 	c.JSON(http.StatusOK, DpsResults{dpsCalcResults, dpsGrapherResults})
 }
 
-func simpledmgSim(c *gin.Context) {
+func simpleDmgSim(c *gin.Context) {
 	var inputSetup simpledmgsim.InputSetup
 
 	if err := c.ShouldBindJSON(&inputSetup); err != nil {

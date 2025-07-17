@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HitChanceGraphComponent } from './hit-chance-graph.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { dpsCalcResultsMock } from '../dps-results.mock.spec';
 
 describe('HitChanceGraphComponent', () => {
   let component: HitChanceGraphComponent;
@@ -15,6 +16,7 @@ describe('HitChanceGraphComponent', () => {
 
     fixture = TestBed.createComponent(HitChanceGraphComponent);
     component = fixture.componentInstance;
+    component.dpsCalcResults = dpsCalcResultsMock;
     fixture.detectChanges();
   });
 

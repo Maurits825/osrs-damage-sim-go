@@ -6,7 +6,7 @@ import { SimpleDmgSimInputService } from 'src/app/services/simple-dmg-sim-input.
 import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
-  selector: 'app-example-setups',
+  selector: 'app-example-sim-setups',
   templateUrl: './example-setups.component.html',
 })
 export class ExampleSetupsComponent implements OnInit {

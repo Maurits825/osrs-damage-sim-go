@@ -41,6 +41,10 @@ type Condition struct {
 const maxIterations = 1_000_000
 
 func (inputSetup *InputSetup) Validate() error {
+	if inputSetup.GlobalSettings.Npc.Id == "" {
+		return errors.New("no npc selected")
+	}
+
 	if err := inputSetup.GlobalSettings.Validate(); err != nil {
 		return err
 	}
