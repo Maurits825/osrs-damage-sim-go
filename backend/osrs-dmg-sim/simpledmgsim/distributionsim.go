@@ -8,7 +8,8 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
-const baseSpecialAttackRegen = 2
+const baseSpecialAttackRegen = 100
+const specialAttackRegenTick = 50
 const maxSpecialAttack = 1000
 
 type statDrainer func(*dpscalc.Npc, int)
@@ -27,8 +28,9 @@ type simGearSetup struct {
 }
 
 type simPlayer struct {
-	attackTick    int
-	specialAttack int
+	attackTick             int
+	specialAttack          int
+	specialAttackRegenTick int
 }
 
 type distSimRunner struct {
@@ -75,7 +77,7 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 	setup := inputSetup.InputGearSetups[index]
 
 	simGearSetups := getSimGearSetups(presets, gs, setup)
-	simPlayer := simPlayer{0, maxSpecialAttack}
+	simPlayer := simPlayer{0, maxSpecialAttack, 0}
 	npc := dpscalc.GetNpc(gs.Npc.Id)
 
 	input := &dpscalc.InputGearSetup{GearSetupSettings: setup.GearSetupSettings}
@@ -88,6 +90,7 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 		//reset stuff
 		simPlayer.attackTick = 0
 		simPlayer.specialAttack = maxSpecialAttack
+		simPlayer.specialAttackRegenTick = 0
 
 		for i := range simGearSetups {
 			simGearSetups[i].damageDealt = 0
@@ -104,6 +107,14 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 			}
 
 			simPlayer.attackTick -= 1
+			simPlayer.specialAttackRegenTick += 1
+
+			//regen spec before attacking, i think its possible to spec on the same tick as the regen happens?
+			//TODO lb
+			if simPlayer.specialAttackRegenTick > specialAttackRegenTick {
+				simPlayer.specialAttackRegenTick = 1
+				simPlayer.specialAttack = min(simPlayer.specialAttack+baseSpecialAttackRegen, maxSpecialAttack)
+			}
 
 			if simPlayer.attackTick <= 0 {
 				currentGear = getNextSimGear(simGearSetups, npc.CombatStats.Hitpoints, simPlayer)
@@ -129,8 +140,6 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 				simPlayer.specialAttack -= currentGear.specialAttackCost
 			}
 
-			//TODO lb
-			simPlayer.specialAttack = min(simPlayer.specialAttack+baseSpecialAttackRegen, maxSpecialAttack)
 			ticksToKill += 1
 		}
 		return ticksToKill
