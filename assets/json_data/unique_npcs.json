@@ -29,6 +29,8 @@
   "drange": 15,
   "combat": 96,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "2"
  },
  {
@@ -47,6 +49,8 @@
   "drange": 30,
   "combat": 253,
   "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "7402"
  },
  {
@@ -470,6 +474,8 @@
   "range": 100,
   "combat": 100,
   "size": 3,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "water",
   "id": "911"
  },
  {
@@ -483,6 +489,8 @@
   "range": 220,
   "combat": 196,
   "size": 3,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "water",
   "id": "6327"
  },
  {
@@ -496,9 +504,12 @@
   "attbns": 100,
   "dstab": 100,
   "dslash": 100,
-  "dcrush": 100,
+  "dcrush": 60,
   "dmagic": 100,
   "drange": 100,
+  "dlight": 100,
+  "dstandard": 100,
+  "dheavy": 60,
   "combat": 146,
   "size": 3,
   "id": "4880"
@@ -514,9 +525,11 @@
   "attbns": 100,
   "dstab": 100,
   "dslash": 100,
-  "dcrush": 100,
+  "dcrush": 60,
   "dmagic": 100,
-  "drange": 100,
+  "dlight": 100,
+  "dstandard": 100,
+  "dheavy": 60,
   "combat": 235,
   "size": 3,
   "id": "6308"
@@ -554,6 +567,8 @@
   "combat": 34,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "1369"
  },
  {
@@ -646,6 +661,8 @@
   "combat": 52,
   "size": 2,
   "respawn": 35,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1039"
  },
  {
@@ -669,6 +686,8 @@
   "combat": 426,
   "size": 6,
   "respawn": 43,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "8615"
  },
  {
@@ -729,6 +748,8 @@
   "combat": 25,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "7799"
  },
  {
@@ -836,14 +857,19 @@
   "def": 150,
   "mage": 90,
   "range": 90,
-  "dstab": 70,
+  "dstab": 50,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 170,
   "drange": 120,
+  "dlight": 120,
+  "dstandard": 120,
+  "dheavy": 90,
   "combat": 210,
   "size": 5,
   "respawn": 15,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "7795"
  },
  {
@@ -863,6 +889,8 @@
   "combat": 109,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "7797"
  },
  {
@@ -883,6 +911,8 @@
   "combat": 166,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "5563"
  },
  {
@@ -998,6 +1028,8 @@
   "drange": 400,
   "combat": 113,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2455"
  },
  {
@@ -1017,6 +1049,8 @@
   "drange": 400,
   "combat": 69,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2453"
  },
  {
@@ -1036,6 +1070,8 @@
   "drange": 400,
   "combat": 11,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2450"
  },
  {
@@ -1055,6 +1091,8 @@
   "drange": 400,
   "combat": 23,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2451"
  },
  {
@@ -1074,6 +1112,8 @@
   "drange": 400,
   "combat": 92,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2454"
  },
  {
@@ -1093,6 +1133,8 @@
   "drange": 400,
   "combat": 138,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2456"
  },
  {
@@ -1112,6 +1154,8 @@
   "drange": 400,
   "combat": 46,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2452"
  },
  {
@@ -1130,6 +1174,8 @@
   "combat": 50,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "6470"
  },
  {
@@ -1149,6 +1195,8 @@
   "drange": 400,
   "combat": 53,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "6438"
  },
  {
@@ -1182,6 +1230,8 @@
   "combat": 75,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "2514"
  },
  {
@@ -1196,6 +1246,8 @@
   "range": 1,
   "combat": 82,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "2515"
  },
  {
@@ -1210,6 +1262,8 @@
   "range": 1,
   "combat": 86,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "2516"
  },
  {
@@ -1225,6 +1279,8 @@
   "combat": 95,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "7257"
  },
  {
@@ -1240,6 +1296,8 @@
   "combat": 98,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "7864"
  },
  {
@@ -1252,6 +1310,8 @@
   "range": 1,
   "combat": 81,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "4195"
  },
  {
@@ -1268,6 +1328,8 @@
   "dmagic": 50,
   "combat": 75,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "4196"
  },
  {
@@ -1284,6 +1346,8 @@
   "drange": 70,
   "combat": 75,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "4197"
  },
  {
@@ -1301,6 +1365,8 @@
   "drange": 70,
   "combat": 75,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "4198"
  },
  {
@@ -1467,6 +1533,7 @@
  },
  {
   "name": "Armadylean guard",
+  "isFlying": true,
   "hitpoints": 132,
   "att": 1,
   "str": 1,
@@ -1497,7 +1564,7 @@
  {
   "name": "Armoured zombie",
   "isUndead": true,
-  "hitpoints": 85,
+  "hitpoints": 75,
   "att": 73,
   "str": 72,
   "def": 68,
@@ -1506,15 +1573,17 @@
   "dstab": 20,
   "dslash": 20,
   "drange": 10,
-  "combat": 85,
+  "combat": 82,
   "size": 1,
   "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "12720"
  },
  {
   "name": "Armoured zombie",
   "isUndead": true,
-  "hitpoints": 85,
+  "hitpoints": 75,
   "att": 73,
   "str": 72,
   "def": 68,
@@ -1523,15 +1592,17 @@
   "dstab": 20,
   "dslash": 20,
   "drange": 10,
-  "combat": 85,
+  "combat": 82,
   "size": 1,
   "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "12725"
  },
  {
   "name": "Armoured zombie",
   "isUndead": true,
-  "hitpoints": 110,
+  "hitpoints": 95,
   "att": 106,
   "str": 94,
   "def": 68,
@@ -1542,8 +1613,10 @@
   "dlight": 10,
   "dstandard": 10,
   "dheavy": 10,
-  "combat": 109,
+  "combat": 105,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "14113"
  },
  {
@@ -1563,6 +1636,8 @@
   "combat": 109,
   "size": 1,
   "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "14118"
  },
  {
@@ -1583,6 +1658,8 @@
   "dheavy": -100,
   "combat": 70,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "14135"
  },
  {
@@ -1621,6 +1698,8 @@
   "drange": 200,
   "combat": 113,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "642"
  },
  {
@@ -1639,6 +1718,8 @@
   "drange": 200,
   "combat": 210,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "6331"
  },
  {
@@ -1855,6 +1936,8 @@
   "combat": 100,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1284"
  },
  {
@@ -1868,6 +1951,8 @@
   "combat": 100,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1283"
  },
  {
@@ -1922,6 +2007,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 70,
   "att": 1,
   "str": 1,
@@ -1938,6 +2024,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 83,
   "att": 1,
   "str": 1,
@@ -1954,6 +2041,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 86,
   "att": 1,
   "str": 1,
@@ -1970,6 +2058,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 86,
   "att": 1,
   "str": 1,
@@ -1986,6 +2075,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 95,
   "att": 1,
   "str": 1,
@@ -2002,6 +2092,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 98,
   "att": 1,
   "str": 1,
@@ -2018,6 +2109,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 124,
   "att": 1,
   "str": 1,
@@ -2034,6 +2126,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 139,
   "att": 1,
   "str": 1,
@@ -2050,6 +2143,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 63,
   "att": 1,
   "str": 1,
@@ -2066,6 +2160,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 67,
   "att": 1,
   "str": 1,
@@ -2082,6 +2177,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 77,
   "att": 1,
   "str": 1,
@@ -2098,6 +2194,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 69,
   "att": 1,
   "str": 1,
@@ -2114,6 +2211,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 75,
   "att": 1,
   "str": 1,
@@ -2130,6 +2228,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 79,
   "att": 1,
   "str": 1,
@@ -2146,6 +2245,7 @@
  },
  {
   "name": "Aviansie",
+  "isFlying": true,
   "hitpoints": 115,
   "att": 1,
   "str": 1,
@@ -2162,6 +2262,7 @@
  },
  {
   "name": "Awakened Altar",
+  "isDemon": true,
   "hitpoints": 100,
   "att": 1,
   "str": 1,
@@ -2289,7 +2390,7 @@
  },
  {
   "name": "Baboon Shaman",
-  "hitpoints": 16,
+  "hitpoints": 40,
   "att": 60,
   "str": 60,
   "def": 20,
@@ -2373,6 +2474,8 @@
   "dmagic": 150,
   "combat": 75,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "762"
  },
  {
@@ -2384,13 +2487,13 @@
   "def": 70,
   "mage": 1,
   "range": 1,
-  "dstab": 10,
+  "dstab": 5,
   "dslash": 50,
   "dcrush": 50,
   "dmagic": 40,
   "dlight": 30,
   "dstandard": 30,
-  "dheavy": 15,
+  "dheavy": 5,
   "combat": 83,
   "size": 2,
   "elementalweaknesspercent": 50,
@@ -2406,13 +2509,13 @@
   "def": 40,
   "mage": 1,
   "range": 1,
-  "dstab": 10,
+  "dstab": 5,
   "dslash": 50,
   "dcrush": 50,
   "dmagic": 40,
   "dlight": 30,
   "dstandard": 30,
-  "dheavy": 15,
+  "dheavy": 5,
   "combat": 48,
   "size": 2,
   "respawn": 30,
@@ -2437,6 +2540,8 @@
   "combat": 48,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water",
   "id": "5194"
  },
  {
@@ -2468,13 +2573,13 @@
   "def": 40,
   "mage": 1,
   "range": 1,
-  "dstab": 10,
+  "dstab": 5,
   "dslash": 50,
   "dcrush": 50,
   "dmagic": 40,
   "dlight": 30,
   "dstandard": 30,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 48,
   "size": 2,
   "respawn": 30,
@@ -2492,6 +2597,8 @@
   "range": 1,
   "combat": 45,
   "size": 1,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "5853"
  },
  {
@@ -2526,6 +2633,8 @@
   "dmagic": 10,
   "combat": 151,
   "size": 3,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "water",
   "id": "3132"
  },
  {
@@ -2714,6 +2823,8 @@
   "combat": 23,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "414"
  },
  {
@@ -2861,6 +2972,8 @@
   "combat": 15,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2648"
  },
  {
@@ -2905,6 +3018,8 @@
   "combat": 61,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "417"
  },
  {
@@ -2925,6 +3040,8 @@
   "combat": 204,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "9293"
  },
  {
@@ -2944,6 +3061,8 @@
   "drange": 10,
   "combat": 358,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "9258"
  },
  {
@@ -2959,6 +3078,8 @@
   "dmagic": 20,
   "combat": 57,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "9282"
  },
  {
@@ -2976,6 +3097,8 @@
   "combat": 6,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "2827"
  },
  {
@@ -3002,6 +3125,8 @@
   "combat": 15,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "3908"
  },
  {
@@ -3015,6 +3140,8 @@
   "combat": 15,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "3909"
  },
  {
@@ -3043,6 +3170,8 @@
   "drange": 200,
   "combat": 71,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4132"
  },
  {
@@ -3063,6 +3192,8 @@
   "combat": 166,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "5565"
  },
  {
@@ -3090,6 +3221,8 @@
   "combat": 73,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "109"
  },
  {
@@ -3103,6 +3236,8 @@
   "combat": 24,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "478"
  },
  {
@@ -3116,6 +3251,8 @@
   "combat": 10,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "8701"
  },
  {
@@ -3134,6 +3271,8 @@
   "combat": 33,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "fire",
   "id": "1794"
  },
  {
@@ -3147,6 +3286,8 @@
   "combat": 11,
   "size": 1,
   "respawn": 5,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "5240"
  },
  {
@@ -3160,6 +3301,8 @@
   "combat": 5,
   "size": 1,
   "respawn": 5,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "5241"
  },
  {
@@ -3327,6 +3470,8 @@
   "combat": 19,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "fire",
   "id": "2839"
  },
  {
@@ -3421,6 +3566,8 @@
   "dmagic": -10,
   "combat": 292,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "6295"
  },
  {
@@ -3433,16 +3580,16 @@
   "def": 200,
   "mage": 100,
   "range": 1,
-  "dstab": 10,
+  "dstab": 5,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 227,
   "size": 4,
-  "respawn": 15,
+  "respawn": 30,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "water",
   "id": "252"
@@ -3457,13 +3604,13 @@
   "def": 200,
   "mage": 150,
   "range": 1,
-  "dstab": 10,
+  "dstab": 5,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 247,
   "size": 4,
   "respawn": 30,
@@ -3499,6 +3646,8 @@
   "range": 1,
   "combat": 67,
   "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "fire",
   "id": "12978"
  },
  {
@@ -3583,6 +3732,8 @@
   "combat": 39,
   "size": 1,
   "respawn": 300,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "4533"
  },
  {
@@ -3601,6 +3752,8 @@
   "combat": 20,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2645"
  },
  {
@@ -3619,6 +3772,8 @@
   "combat": 20,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "2650"
  },
  {
@@ -3778,13 +3933,13 @@
   "def": 95,
   "mage": 1,
   "range": 1,
-  "dstab": 10,
+  "dstab": 5,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 111,
   "size": 4,
   "respawn": 30,
@@ -3803,6 +3958,8 @@
   "combat": 5,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "11066"
  },
  {
@@ -3816,6 +3973,8 @@
   "combat": 7,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "11067"
  },
  {
@@ -3835,6 +3994,8 @@
   "combat": 50,
   "size": 2,
   "respawn": 14,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10691"
  },
  {
@@ -3931,6 +4092,8 @@
   "combat": 350,
   "size": 3,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water",
   "id": "12596"
  },
  {
@@ -4074,13 +4237,12 @@
   "def": 112,
   "mage": 100,
   "range": 1,
-  "dstab": 20,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 10,
   "combat": 131,
   "size": 4,
   "respawn": 30,
@@ -4098,13 +4260,12 @@
   "def": 112,
   "mage": 130,
   "range": 1,
-  "dstab": 20,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 10,
   "combat": 143,
   "size": 4,
   "respawn": 30,
@@ -4142,6 +4303,8 @@
   "combat": 20,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2647"
  },
  {
@@ -4160,6 +4323,8 @@
   "combat": 20,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2652"
  },
  {
@@ -4172,13 +4337,12 @@
   "def": 258,
   "mage": 250,
   "strbns": 20,
-  "dstab": 10,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 318,
   "size": 4,
   "respawn": 30,
@@ -4195,13 +4359,12 @@
   "str": 198,
   "def": 198,
   "mage": 198,
-  "dstab": 10,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 271,
   "size": 4,
   "respawn": 30,
@@ -4218,13 +4381,12 @@
   "str": 168,
   "def": 168,
   "mage": 168,
-  "dstab": 10,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 227,
   "size": 4,
   "respawn": 30,
@@ -4241,13 +4403,12 @@
   "str": 210,
   "def": 198,
   "mage": 250,
-  "dstab": 10,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 289,
   "size": 4,
   "respawn": 30,
@@ -4267,6 +4428,8 @@
   "strbns": 31,
   "combat": 128,
   "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "8195"
  },
  {
@@ -4353,6 +4516,8 @@
   "combat": 470,
   "size": 5,
   "respawn": 11,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "\"fire\"",
   "id": "6609"
  },
  {
@@ -4496,6 +4661,8 @@
   "combat": 6,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "481"
  },
  {
@@ -4514,6 +4681,8 @@
   "combat": 96,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "483"
  },
  {
@@ -4545,6 +4714,8 @@
   "combat": 3,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "6434"
  },
  {
@@ -4581,6 +4752,8 @@
   "combat": 24,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "5335"
  },
  {
@@ -4594,6 +4767,8 @@
   "combat": 11,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "5330"
  },
  {
@@ -4607,6 +4782,8 @@
   "combat": 80,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "fire",
   "id": "1047"
  },
  {
@@ -4621,6 +4798,8 @@
   "drange": 100,
   "combat": 127,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "492"
  },
  {
@@ -4651,6 +4830,8 @@
   "combat": 23,
   "size": 1,
   "respawn": 15,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "480"
  },
  {
@@ -4733,6 +4914,8 @@
   "combat": 305,
   "size": 3,
   "respawn": 14,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "2054"
  },
  {
@@ -4749,7 +4932,9 @@
   "dslash": 260,
   "dcrush": 250,
   "dmagic": 280,
-  "drange": 80,
+  "dlight": 80,
+  "dstandard": 50,
+  "dheavy": 80,
   "combat": 202,
   "size": 1,
   "respawn": 15,
@@ -4758,7 +4943,7 @@
  {
   "name": "Chaos Golem",
   "isGolem": true,
-  "hitpoints": 94,
+  "hitpoints": 71,
   "att": 45,
   "str": 55,
   "def": 59,
@@ -4771,6 +4956,8 @@
   "drange": 10,
   "combat": 70,
   "size": 2,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10689"
  },
  {
@@ -4961,6 +5148,8 @@
   "range": 1,
   "combat": 297,
   "size": 3,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "water",
   "id": "6292"
  },
  {
@@ -5150,6 +5339,8 @@
   "combat": 785,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "earth",
   "id": "319"
  },
  {
@@ -5362,7 +5553,7 @@
  {
   "name": "Count Draynor (hard)",
   "isVampyre1": true,
-  "hitpoints": 223,
+  "hitpoints": 210,
   "att": 198,
   "str": 165,
   "def": 30,
@@ -5465,6 +5656,8 @@
   "combat": 23,
   "size": 2,
   "respawn": 10,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4819"
  },
  {
@@ -5478,6 +5671,8 @@
   "combat": 21,
   "size": 1,
   "respawn": 5,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4822"
  },
  {
@@ -5611,6 +5806,8 @@
   "combat": 63,
   "size": 2,
   "respawn": 40,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "4184"
  },
  {
@@ -5692,6 +5889,8 @@
   "combat": 56,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "1683"
  },
  {
@@ -5896,7 +6095,7 @@
  },
  {
   "name": "Cursed Baboon",
-  "hitpoints": 10,
+  "hitpoints": 20,
   "att": 60,
   "str": 60,
   "def": 20,
@@ -6008,6 +6207,8 @@
   "drange": 200,
   "combat": 101,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "4130"
  },
  {
@@ -6025,6 +6226,8 @@
   "drange": 200,
   "combat": 201,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "6330"
  },
  {
@@ -6044,6 +6247,8 @@
   "drange": 50,
   "combat": 135,
   "size": 3,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "140"
  },
  {
@@ -6057,6 +6262,8 @@
   "combat": 74,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "970"
  },
  {
@@ -6072,6 +6279,8 @@
   "combat": 92,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "973"
  },
  {
@@ -6084,6 +6293,8 @@
   "range": 50,
   "combat": 100,
   "size": 2,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "976"
  },
  {
@@ -6102,6 +6313,8 @@
   "combat": 88,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "2259"
  },
  {
@@ -6122,6 +6335,8 @@
   "combat": 90,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "3185"
  },
  {
@@ -6139,6 +6354,8 @@
   "combat": 303,
   "size": 3,
   "respawn": 150,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "2266"
  },
  {
@@ -6156,6 +6373,8 @@
   "combat": 303,
   "size": 3,
   "respawn": 150,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "2267"
  },
  {
@@ -6174,6 +6393,8 @@
   "combat": 303,
   "size": 3,
   "respawn": 150,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "2265"
  },
  {
@@ -6187,6 +6408,8 @@
   "combat": 70,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "2264"
  },
  {
@@ -6204,6 +6427,8 @@
   "drange": 50,
   "combat": 100,
   "size": 3,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "980"
  },
  {
@@ -6221,6 +6446,8 @@
   "drange": 50,
   "combat": 201,
   "size": 3,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "6300"
  },
  {
@@ -6233,6 +6460,8 @@
   "range": 1,
   "combat": 42,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "3184"
  },
  {
@@ -6357,6 +6586,8 @@
   "combat": 182,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
   "id": "4005"
  },
  {
@@ -6533,6 +6764,7 @@
  },
  {
   "name": "Dawn",
+  "isFlying": true,
   "hitpoints": 450,
   "att": 140,
   "str": 140,
@@ -6542,6 +6774,8 @@
   "dmagic": 80,
   "combat": 228,
   "size": 4,
+  "elementalweaknesspercent": 70,
+  "elementalweaknesstype": "earth",
   "id": "7852"
  },
  {
@@ -6560,6 +6794,8 @@
   "combat": 34,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "3021"
  },
  {
@@ -6590,6 +6826,8 @@
   "combat": 83,
   "size": 2,
   "respawn": 35,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "air",
   "id": "509"
  },
  {
@@ -6873,10 +7111,14 @@
   "dstab": 80,
   "dslash": 80,
   "dcrush": 80,
-  "drange": 85,
+  "dlight": 85,
+  "dstandard": 85,
+  "dheavy": 20,
   "combat": 169,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7279"
  },
  {
@@ -7067,7 +7309,7 @@
  {
   "name": "Drake",
   "isDragon": true,
-  "hitpoints": 250,
+  "hitpoints": 225,
   "att": 140,
   "str": 118,
   "def": 120,
@@ -7076,13 +7318,12 @@
   "strbns": 12,
   "arange": 40,
   "rngbns": 40,
-  "dstab": 20,
+  "dstab": 5,
   "dslash": 60,
   "dcrush": 60,
   "dmagic": 20,
   "dlight": 100,
   "dstandard": 100,
-  "dheavy": 40,
   "combat": 192,
   "size": 5,
   "respawn": 20,
@@ -7197,7 +7438,7 @@
  {
   "name": "Duke Sucellus",
   "isDemon": true,
-  "hitpoints": 440,
+  "hitpoints": 485,
   "att": 300,
   "str": 345,
   "def": 275,
@@ -7304,6 +7545,8 @@
   "range": 140,
   "combat": 248,
   "size": 4,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "7851"
  },
  {
@@ -7316,6 +7559,8 @@
   "range": 250,
   "combat": 328,
   "size": 6,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "7887"
  },
  {
@@ -7329,6 +7574,8 @@
   "combat": 93,
   "size": 1,
   "respawn": 15,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "423"
  },
  {
@@ -7342,6 +7589,8 @@
   "combat": 110,
   "size": 1,
   "respawn": 15,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "7249"
  },
  {
@@ -7498,6 +7747,8 @@
   "combat": 35,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "1366"
  },
  {
@@ -7516,6 +7767,8 @@
   "combat": 51,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "2840"
  },
  {
@@ -7614,6 +7867,8 @@
   "combat": 350,
   "size": 3,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "14147"
  },
  {
@@ -7670,6 +7925,8 @@
   "drange": 70,
   "combat": 489,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "11753"
  },
  {
@@ -7692,6 +7949,8 @@
   "drange": 20,
   "combat": 544,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "11761"
  },
  {
@@ -7805,6 +8064,8 @@
   "combat": 83,
   "size": 4,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "water",
   "id": "817"
  },
  {
@@ -7822,6 +8083,8 @@
   "drange": 20,
   "combat": 214,
   "size": 4,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "water",
   "id": "6118"
  },
  {
@@ -8031,6 +8294,8 @@
   "combat": 166,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "air",
   "id": "5564"
  },
  {
@@ -8049,6 +8314,8 @@
   "combat": 101,
   "size": 2,
   "respawn": 51,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "6594"
  },
  {
@@ -8069,6 +8336,8 @@
   "combat": 86,
   "size": 2,
   "respawn": 51,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "7234"
  },
  {
@@ -8089,6 +8358,8 @@
   "combat": 2,
   "size": 2,
   "respawn": 35,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "water",
   "id": "4927"
  },
  {
@@ -8194,6 +8465,8 @@
   "range": 1,
   "combat": 150,
   "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "625"
  },
  {
@@ -8247,7 +8520,9 @@
   "dslash": 70,
   "dcrush": 60,
   "dmagic": 60,
-  "drange": 55,
+  "dlight": 55,
+  "dstandard": 25,
+  "dheavy": 55,
   "combat": 109,
   "size": 2,
   "respawn": 10,
@@ -8283,6 +8558,8 @@
   "dcrush": 100,
   "combat": 299,
   "size": 1,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "water",
   "id": "4115"
  },
  {
@@ -8425,9 +8702,13 @@
   "dslash": 73,
   "dcrush": 72,
   "dmagic": -3,
-  "drange": 72,
+  "dlight": 72,
+  "dstandard": 30,
+  "dheavy": 72,
   "combat": 166,
   "size": 1,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "air",
   "id": "5566"
  },
  {
@@ -8446,6 +8727,8 @@
   "combat": 49,
   "size": 2,
   "respawn": 5,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "626"
  },
  {
@@ -8478,6 +8761,8 @@
   "combat": 35,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "water",
   "id": "1365"
  },
  {
@@ -8584,6 +8869,8 @@
   "combat": 120,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1286"
  },
  {
@@ -8597,6 +8884,8 @@
   "combat": 120,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1285"
  },
  {
@@ -8630,9 +8919,13 @@
   "dslash": 50,
   "dcrush": 5,
   "dmagic": 5,
-  "drange": 50,
+  "dlight": 50,
+  "dstandard": 30,
+  "dheavy": 50,
   "combat": 238,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water",
   "id": "6309"
  },
  {
@@ -8670,6 +8963,8 @@
   "drange": 10,
   "combat": 13,
   "size": 2,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10695"
  },
  {
@@ -8688,6 +8983,8 @@
   "combat": 28,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "2498"
  },
  {
@@ -8706,6 +9003,8 @@
   "combat": 35,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "2499"
  },
  {
@@ -8724,10 +9023,13 @@
   "combat": 41,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "2500"
  },
  {
   "name": "Flight Kilisa",
+  "isFlying": true,
   "hitpoints": 133,
   "att": 124,
   "str": 118,
@@ -8743,6 +9045,7 @@
  },
  {
   "name": "Flockleader Geerin",
+  "isFlying": true,
   "hitpoints": 132,
   "att": 80,
   "str": 80,
@@ -8844,6 +9147,8 @@
   "combat": 20,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "10544"
  },
  {
@@ -8884,6 +9189,8 @@
   "combat": 19,
   "size": 1,
   "respawn": 10,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "3901"
  },
  {
@@ -8992,6 +9299,8 @@
   "dcrush": 30,
   "combat": 82,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5825"
  },
  {
@@ -9010,6 +9319,8 @@
   "combat": 102,
   "size": 1,
   "respawn": 10,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5826"
  },
  {
@@ -9027,6 +9338,8 @@
   "dcrush": 30,
   "combat": 82,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5824"
  },
  {
@@ -9045,6 +9358,8 @@
   "combat": 74,
   "size": 1,
   "respawn": 10,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5823"
  },
  {
@@ -9058,6 +9373,8 @@
   "combat": 5,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "8702"
  },
  {
@@ -9070,6 +9387,8 @@
   "range": 1,
   "combat": 103,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "3600"
  },
  {
@@ -9188,6 +9507,8 @@
   "drange": 86,
   "combat": 608,
   "size": 7,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "8094"
  },
  {
@@ -9322,6 +9643,8 @@
   "combat": 111,
   "size": 3,
   "respawn": 15,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "412"
  },
  {
@@ -9378,6 +9701,8 @@
   "combat": 624,
   "size": 4,
   "respawn": 150,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "2215"
  },
  {
@@ -9410,6 +9735,8 @@
   "combat": 30,
   "size": 2,
   "respawn": 40,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "946"
  },
  {
@@ -9423,6 +9750,8 @@
   "range": 30,
   "combat": 79,
   "size": 2,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "5625"
  },
  {
@@ -9436,6 +9765,8 @@
   "range": 30,
   "combat": 109,
   "size": 2,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "5626"
  },
  {
@@ -9449,6 +9780,8 @@
   "range": 30,
   "combat": 139,
   "size": 2,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "5627"
  },
  {
@@ -9559,6 +9892,8 @@
   "combat": 24,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "5370"
  },
  {
@@ -9679,6 +10014,8 @@
   "dmagic": 150,
   "combat": 172,
   "size": 5,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "763"
  },
  {
@@ -9692,6 +10029,8 @@
   "dmagic": 150,
   "combat": 257,
   "size": 5,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "6323"
  },
  {
@@ -9706,10 +10045,14 @@
   "dslash": 200,
   "dcrush": 175,
   "dmagic": -10,
-  "drange": 250,
+  "dlight": 250,
+  "dstandard": 250,
+  "dheavy": 80,
   "combat": 137,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "2261"
  },
  {
@@ -9724,10 +10067,14 @@
   "dslash": 200,
   "dcrush": 175,
   "dmagic": 10,
-  "drange": 250,
+  "dlight": 250,
+  "dstandard": 250,
+  "dheavy": 80,
   "combat": 137,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "5940"
  },
  {
@@ -9763,11 +10110,11 @@
   "dslash": 99,
   "dcrush": 99,
   "dmagic": 159,
-  "drange": 149,
+  "dlight": 149,
+  "dstandard": 103,
+  "dheavy": 149,
   "combat": 316,
   "size": 3,
-  "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire",
   "id": "1127"
  },
  {
@@ -9798,6 +10145,8 @@
   "combat": 27,
   "size": 2,
   "respawn": 35,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "air",
   "id": "2834"
  },
  {
@@ -9848,6 +10197,8 @@
   "combat": 79,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "1684"
  },
  {
@@ -9861,6 +10212,8 @@
   "combat": 99,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "477"
  },
  {
@@ -9874,6 +10227,8 @@
   "combat": 13,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "8700"
  },
  {
@@ -9907,6 +10262,8 @@
   "combat": 13,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "1041"
  },
  {
@@ -10006,6 +10363,8 @@
   "combat": 80,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "680"
  },
  {
@@ -10024,6 +10383,8 @@
   "combat": 100,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "6440"
  },
  {
@@ -10036,6 +10397,8 @@
   "range": 70,
   "combat": 80,
   "size": 3,
+  "elementalweaknesspercent": 45,
+  "elementalweaknesstype": "earth",
   "id": "5628"
  },
  {
@@ -10048,6 +10411,8 @@
   "range": 110,
   "combat": 109,
   "size": 3,
+  "elementalweaknesspercent": 45,
+  "elementalweaknesstype": "earth",
   "id": "5629"
  },
  {
@@ -10060,6 +10425,8 @@
   "range": 160,
   "combat": 139,
   "size": 3,
+  "elementalweaknesspercent": 45,
+  "elementalweaknesstype": "earth",
   "id": "5630"
  },
  {
@@ -10172,9 +10539,13 @@
   "dslash": 110,
   "dcrush": 130,
   "dmagic": 125,
-  "drange": 100,
+  "dlight": 100,
+  "dstandard": 80,
+  "dheavy": 100,
   "combat": 276,
   "size": 4,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "6297"
  },
  {
@@ -10785,6 +11156,8 @@
   "combat": 12,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "5372"
  },
  {
@@ -10803,6 +11176,8 @@
   "dmagic": 200,
   "drange": 50,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "7551"
  },
  {
@@ -10821,6 +11196,8 @@
   "dmagic": 200,
   "drange": 200,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "7552"
  },
  {
@@ -10839,6 +11216,8 @@
   "dmagic": 50,
   "drange": 200,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "7550"
  },
  {
@@ -10875,6 +11254,8 @@
   "drange": 275,
   "combat": 231,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "6614"
  },
  {
@@ -10892,6 +11273,8 @@
   "dmagic": 156,
   "drange": 184,
   "combat": 139,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "12108"
  },
  {
@@ -11006,13 +11389,12 @@
   "def": 68,
   "mage": 68,
   "range": 1,
-  "dstab": 10,
   "dslash": 40,
   "dcrush": 40,
   "dmagic": 30,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 79,
   "size": 4,
   "respawn": 30,
@@ -11030,13 +11412,12 @@
   "def": 68,
   "mage": 75,
   "range": 1,
-  "dstab": 10,
   "dslash": 40,
   "dcrush": 40,
   "dmagic": 30,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 88,
   "size": 4,
   "respawn": 30,
@@ -11108,6 +11489,8 @@
   "combat": 21,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "2838"
  },
  {
@@ -11121,6 +11504,8 @@
   "combat": 42,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "3423"
  },
  {
@@ -11145,6 +11530,8 @@
   "combat": 33,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "3424"
  },
  {
@@ -11158,6 +11545,8 @@
   "combat": 36,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "3425"
  },
  {
@@ -11567,7 +11956,7 @@
  {
   "name": "Guardian Drake",
   "isDragon": true,
-  "hitpoints": 630,
+  "hitpoints": 590,
   "att": 270,
   "str": 280,
   "def": 200,
@@ -11575,12 +11964,12 @@
   "range": 240,
   "strbns": 12,
   "arange": 40,
-  "dstab": 60,
+  "dstab": 20,
   "dslash": 100,
   "dcrush": 100,
   "dmagic": 20,
   "drange": 150,
-  "combat": 386,
+  "combat": 376,
   "size": 5,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "water",
@@ -11775,6 +12164,8 @@
   "combat": 46,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "464"
  },
  {
@@ -11872,7 +12263,8 @@
   "dslash": 18,
   "dcrush": 18,
   "dmagic": 6,
-  "drange": 52,
+  "dlight": 52,
+  "dstandard": 52,
   "combat": 82,
   "size": 3,
   "id": "10493"
@@ -11890,7 +12282,8 @@
   "dslash": 18,
   "dcrush": 18,
   "dmagic": 6,
-  "drange": 52,
+  "dlight": 52,
+  "dstandard": 52,
   "combat": 233,
   "size": 3,
   "id": "10492"
@@ -12068,6 +12461,8 @@
   "combat": 28,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2098"
  },
  {
@@ -12188,6 +12583,8 @@
   "range": 1,
   "combat": 40,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "1072"
  },
  {
@@ -12201,6 +12598,8 @@
   "combat": 71,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "4695"
  },
  {
@@ -12233,7 +12632,7 @@
  {
   "name": "Hueycoatl tail",
   "isDragon": true,
-  "hitpoints": 400,
+  "hitpoints": 300,
   "att": 150,
   "str": 50,
   "def": 125,
@@ -12260,7 +12659,7 @@
  {
   "name": "Hueycoatl tail (broken)",
   "isDragon": true,
-  "hitpoints": 400,
+  "hitpoints": 300,
   "att": 150,
   "str": 50,
   "def": 125,
@@ -12329,6 +12728,8 @@
   "combat": 194,
   "size": 3,
   "respawn": 25,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "8609"
  },
  {
@@ -12365,6 +12766,8 @@
   "combat": 111,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire",
   "id": "4922"
  },
  {
@@ -12384,11 +12787,13 @@
   "drange": 2000,
   "combat": 122,
   "size": 2,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "5822"
  },
  {
   "name": "Ice Troll King (hard)",
-  "hitpoints": 240,
+  "hitpoints": 255,
   "att": 200,
   "str": 200,
   "def": 80,
@@ -12403,6 +12808,8 @@
   "drange": 2000,
   "combat": 213,
   "size": 2,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "6294"
  },
  {
@@ -12630,7 +13037,7 @@
   "combat": 100,
   "size": 1,
   "respawn": 50,
-  "elementalweaknesspercent": 100,
+  "elementalweaknesspercent": 35,
   "elementalweaknesstype": "fire",
   "id": "1877"
  },
@@ -12706,6 +13113,8 @@
   "combat": 96,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "645"
  },
  {
@@ -12719,6 +13128,8 @@
   "combat": 132,
   "size": 2,
   "respawn": 10,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "647"
  },
  {
@@ -12764,6 +13175,8 @@
   "combat": 51,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "fire",
   "id": "852"
  },
  {
@@ -12806,6 +13219,8 @@
   "combat": 2,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "water",
   "id": "5007"
  },
  {
@@ -12973,13 +13388,12 @@
   "def": 165,
   "mage": 100,
   "range": 1,
-  "dstab": 20,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 10,
   "combat": 189,
   "size": 4,
   "respawn": 30,
@@ -12997,13 +13411,12 @@
   "def": 185,
   "mage": 120,
   "range": 1,
-  "dstab": 20,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 10,
   "combat": 215,
   "size": 4,
   "respawn": 30,
@@ -13053,6 +13466,8 @@
   "combat": 21,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "fire",
   "id": "4185"
  },
  {
@@ -13065,6 +13480,8 @@
   "range": 1,
   "combat": 67,
   "size": 2,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "fire",
   "id": "12976"
  },
  {
@@ -13077,6 +13494,8 @@
   "range": 1,
   "combat": 31,
   "size": 1,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "fire",
   "id": "12977"
  },
  {
@@ -13368,6 +13787,8 @@
   "combat": 78,
   "size": 1,
   "respawn": 15,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "437"
  },
  {
@@ -13415,6 +13836,8 @@
   "combat": 53,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2094"
  },
  {
@@ -13430,6 +13853,8 @@
   "combat": 58,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2234"
  },
  {
@@ -13562,6 +13987,8 @@
   "dmagic": 50,
   "combat": 327,
   "size": 3,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "6321"
  },
  {
@@ -13575,6 +14002,8 @@
   "combat": 64,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire",
   "id": "232"
  },
  {
@@ -13588,6 +14017,8 @@
   "combat": 70,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "1042"
  },
  {
@@ -13606,6 +14037,8 @@
   "combat": 44,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "3020"
  },
  {
@@ -13621,6 +14054,8 @@
   "combat": 37,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "5243"
  },
  {
@@ -13654,7 +14089,7 @@
   "range": 1,
   "attbns": 160,
   "strbns": 31,
-  "dstab": 80,
+  "dstab": 70,
   "dslash": 80,
   "dcrush": 80,
   "dmagic": 80,
@@ -13702,9 +14137,13 @@
   "dslash": 25,
   "dcrush": 5,
   "dmagic": 50,
-  "drange": 50,
+  "dlight": 50,
+  "dstandard": 30,
+  "dheavy": 50,
   "combat": 141,
   "size": 4,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "959"
  },
  {
@@ -13723,6 +14162,8 @@
   "drange": 10,
   "combat": 333,
   "size": 5,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "965"
  },
  {
@@ -13742,6 +14183,8 @@
   "combat": 333,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "963"
  },
  {
@@ -13778,6 +14221,8 @@
   "combat": 28,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "955"
  },
  {
@@ -13830,6 +14275,8 @@
   "dcrush": 35,
   "combat": 273,
   "size": 1,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "fire",
   "id": "1129"
  },
  {
@@ -13868,6 +14315,8 @@
   "drange": 150,
   "combat": 186,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "6310"
  },
  {
@@ -14018,6 +14467,8 @@
   "amagic": 60,
   "combat": 360,
   "size": 5,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3125"
  },
  {
@@ -14066,9 +14517,9 @@
   "range": 1,
   "attbns": 10,
   "strbns": 14,
-  "dstab": 44,
-  "dslash": 38,
-  "dcrush": 30,
+  "dstab": 35,
+  "dslash": 29,
+  "dcrush": 21,
   "combat": 23,
   "size": 1,
   "respawn": 50,
@@ -14125,17 +14576,36 @@
   "def": 12,
   "mage": 1,
   "range": 1,
-  "attbns": 8,
-  "strbns": 10,
+  "attbns": 9,
+  "strbns": 5,
   "dstab": 33,
   "dslash": 34,
   "dcrush": 29,
   "dmagic": -7,
-  "drange": 33,
   "combat": 19,
   "size": 1,
   "respawn": 100,
   "id": "4969"
+ },
+ {
+  "name": "Khazard trooper",
+  "hitpoints": 22,
+  "att": 17,
+  "str": 16,
+  "def": 13,
+  "mage": 1,
+  "range": 1,
+  "attbns": 8,
+  "strbns": 10,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 22,
+  "dmagic": -7,
+  "drange": -25,
+  "combat": 19,
+  "size": 1,
+  "respawn": 100,
+  "id": "4970"
  },
  {
   "name": "Khazard warlord",
@@ -14177,6 +14647,8 @@
   "drange": -10,
   "combat": 55,
   "size": 1,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "air spells",
   "id": "469"
  },
  {
@@ -14189,13 +14661,13 @@
   "def": 240,
   "mage": 240,
   "range": 1,
-  "dstab": 60,
+  "dstab": 40,
   "dslash": 90,
   "dcrush": 90,
   "dmagic": 80,
   "dlight": 70,
   "dstandard": 70,
-  "dheavy": 50,
+  "dheavy": 40,
   "combat": 276,
   "size": 5,
   "respawn": 16,
@@ -14240,6 +14712,8 @@
   "combat": 107,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "earth",
   "id": "7266"
  },
  {
@@ -14257,6 +14731,8 @@
   "combat": 32,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "3027"
  },
  {
@@ -14422,13 +14898,15 @@
   "def": 80,
   "attbns": 200,
   "strbns": 135,
-  "dstab": 85,
+  "dstab": 60,
   "dslash": 85,
   "dcrush": 90,
   "dmagic": 200,
   "drange": 200,
   "combat": 185,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "7106"
  },
  {
@@ -14562,6 +15040,8 @@
   "combat": 91,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "928"
  },
  {
@@ -14577,10 +15057,13 @@
   "drange": 300,
   "combat": 291,
   "size": 4,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "494"
  },
  {
   "name": "Kree'arra",
+  "isFlying": true,
   "hitpoints": 255,
   "att": 300,
   "str": 200,
@@ -14727,7 +15210,7 @@
   "dmagic": 80,
   "dlight": 70,
   "dstandard": 70,
-  "dheavy": 65,
+  "dheavy": 20,
   "combat": 252,
   "size": 4,
   "respawn": 14,
@@ -15080,6 +15563,8 @@
   "combat": 40,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1277"
  },
  {
@@ -15093,6 +15578,8 @@
   "combat": 40,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1276"
  },
  {
@@ -15111,6 +15598,8 @@
   "combat": 68,
   "size": 3,
   "respawn": 25,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "7796"
  },
  {
@@ -15124,6 +15613,8 @@
   "combat": 18,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "11584"
  },
  {
@@ -15142,6 +15633,8 @@
   "combat": 106,
   "size": 2,
   "respawn": 7,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "795"
  },
  {
@@ -15163,6 +15656,8 @@
   "combat": 98,
   "size": 2,
   "respawn": 10,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "796"
  },
  {
@@ -15179,6 +15674,8 @@
   "dcrush": 40,
   "combat": 68,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "800"
  },
  {
@@ -15199,6 +15696,8 @@
   "drange": 66,
   "combat": 68,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "801"
  },
  {
@@ -15214,10 +15713,14 @@
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 140,
-  "drange": 120,
+  "dlight": 120,
+  "dstandard": 120,
+  "dheavy": 70,
   "combat": 152,
   "size": 3,
   "respawn": 15,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "7792"
  },
  {
@@ -15692,6 +16195,8 @@
   "drange": 10,
   "combat": 30,
   "size": 2,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10693"
  },
  {
@@ -15800,13 +16305,12 @@
   "def": 268,
   "mage": 168,
   "range": 168,
-  "dstab": 20,
   "dslash": 100,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 20,
   "combat": 304,
   "size": 4,
   "respawn": 30,
@@ -15826,6 +16330,8 @@
   "strbns": 20,
   "combat": 60,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "2592"
  },
  {
@@ -15842,6 +16348,8 @@
   "drange": 55,
   "combat": 51,
   "size": 1,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
   "id": "1"
  },
  {
@@ -16000,6 +16508,8 @@
   "combat": 98,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5281"
  },
  {
@@ -16015,6 +16525,8 @@
   "combat": 129,
   "size": 1,
   "respawn": 12,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5282"
  },
  {
@@ -16030,6 +16542,8 @@
   "combat": 82,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5283"
  },
  {
@@ -16045,6 +16559,8 @@
   "dmagic": 35,
   "combat": 135,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "9287"
  },
  {
@@ -16060,6 +16576,8 @@
   "dmagic": 35,
   "combat": 135,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "7395"
  },
  {
@@ -16153,6 +16671,8 @@
   "strbns": 62,
   "combat": 182,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "6325"
  },
  {
@@ -16236,7 +16756,7 @@
   "dcrush": 10,
   "dmagic": 200,
   "dlight": 200,
-  "dstandard": 200,
+  "dstandard": 40,
   "dheavy": 200,
   "combat": 69,
   "size": 1,
@@ -16256,13 +16776,13 @@
   "dcrush": 10,
   "dmagic": 200,
   "dlight": 200,
-  "dstandard": 200,
+  "dstandard": 40,
   "dheavy": 200,
   "combat": 71,
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire",
+  "elementalweaknesstype": "earth",
   "id": "4143"
  },
  {
@@ -16430,6 +16950,8 @@
   "combat": 30,
   "size": 1,
   "respawn": 10,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4820"
  },
  {
@@ -16443,6 +16965,8 @@
   "combat": 31,
   "size": 2,
   "respawn": 5,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4821"
  },
  {
@@ -16487,6 +17011,8 @@
   "dcrush": 90,
   "combat": 103,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "720"
  },
  {
@@ -16641,6 +17167,8 @@
   "combat": 9,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2634"
  },
  {
@@ -16659,6 +17187,8 @@
   "combat": 10,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2649"
  },
  {
@@ -16778,6 +17308,7 @@
  },
  {
   "name": "Nazastarool (hard)",
+  "isNone": true,
   "hitpoints": 154,
   "att": 187,
   "str": 176,
@@ -16788,6 +17319,7 @@
  },
  {
   "name": "Nazastarool (hard)",
+  "isNone": true,
   "hitpoints": 180,
   "att": 150,
   "str": 140,
@@ -16812,6 +17344,8 @@
   "def": 80,
   "combat": 181,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "air",
   "id": "6339"
  },
  {
@@ -16941,6 +17475,8 @@
   "range": 320,
   "combat": 295,
   "size": 3,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "water",
   "id": "6318"
  },
  {
@@ -17427,7 +17963,9 @@
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 50,
-  "drange": 60,
+  "dlight": 60,
+  "dstandard": 20,
+  "dheavy": 60,
   "size": 3,
   "id": "11751"
  },
@@ -17450,6 +17988,8 @@
   "drange": 20,
   "combat": 106,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "7416"
  },
  {
@@ -17486,6 +18026,8 @@
   "combat": 10,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2646"
  },
  {
@@ -17504,6 +18046,8 @@
   "combat": 15,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth",
   "id": "2651"
  },
  {
@@ -17519,6 +18063,8 @@
   "combat": 53,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "136"
  },
  {
@@ -17537,6 +18083,8 @@
   "combat": 63,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "1153"
  },
  {
@@ -17552,6 +18100,8 @@
   "combat": 58,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "2233"
  },
  {
@@ -17613,6 +18163,8 @@
   "combat": 82,
   "size": 2,
   "respawn": 40,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "7991"
  },
  {
@@ -17631,6 +18183,8 @@
   "combat": 82,
   "size": 2,
   "respawn": 40,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "7989"
  },
  {
@@ -17724,6 +18278,8 @@
   "combat": 64,
   "size": 1,
   "respawn": 20,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "2843"
  },
  {
@@ -18414,6 +18970,8 @@
   "combat": 741,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 65,
+  "elementalweaknesstype": "air",
   "id": "12080"
  },
  {
@@ -18439,6 +18997,8 @@
   "combat": 741,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 65,
+  "elementalweaknesstype": "air",
   "id": "12082"
  },
  {
@@ -18464,6 +19024,8 @@
   "combat": 741,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 65,
+  "elementalweaknesstype": "air",
   "id": "12078"
  },
  {
@@ -18489,6 +19051,8 @@
   "combat": 741,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 65,
+  "elementalweaknesstype": "air",
   "id": "12077"
  },
  {
@@ -18514,6 +19078,8 @@
   "combat": 741,
   "size": 5,
   "respawn": 50,
+  "elementalweaknesspercent": 65,
+  "elementalweaknesstype": "air",
   "id": "12079"
  },
  {
@@ -18564,6 +19130,8 @@
   "combat": 60,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1280"
  },
  {
@@ -18577,6 +19145,8 @@
   "combat": 60,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1279"
  },
  {
@@ -18808,6 +19378,8 @@
   "range": 1,
   "combat": 4,
   "size": 1,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire",
   "id": "13968"
  },
  {
@@ -18998,6 +19570,8 @@
   "combat": 60,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "water",
   "id": "6762"
  },
  {
@@ -19632,13 +20206,12 @@
   "def": 130,
   "mage": 1,
   "range": 1,
-  "dstab": 10,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 60,
   "dlight": 50,
   "dstandard": 50,
-  "dheavy": 15,
+  "dheavy": 10,
   "combat": 152,
   "size": 4,
   "respawn": 30,
@@ -19722,14 +20295,19 @@
   "range": 70,
   "attbns": 53,
   "strbns": 64,
-  "dstab": 140,
+  "dstab": 110,
   "dslash": 130,
   "dcrush": 135,
   "dmagic": 10,
   "drange": 135,
+  "dlight": 135,
+  "dstandard": 135,
+  "dheavy": 95,
   "combat": 82,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7934"
  },
  {
@@ -19746,14 +20324,18 @@
   "strbns": 60,
   "arange": 45,
   "rngbns": 45,
-  "dstab": 153,
+  "dstab": 113,
   "dslash": 152,
   "dcrush": 155,
   "dmagic": 70,
   "drange": 158,
+  "dstandard": 158,
+  "dheavy": 118,
   "combat": 120,
   "size": 3,
   "respawn": 27,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7938"
  },
  {
@@ -19780,6 +20362,8 @@
   "combat": 98,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7936"
  },
  {
@@ -19798,14 +20382,17 @@
   "mbns": 35,
   "arange": 60,
   "rngbns": 51,
-  "dstab": 201,
+  "dstab": 143,
   "dslash": 206,
   "dcrush": 188,
   "dmagic": 101,
   "drange": 197,
+  "dheavy": 157,
   "combat": 135,
   "size": 5,
   "respawn": 20,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7940"
  },
  {
@@ -19832,6 +20419,8 @@
   "combat": 15,
   "size": 1,
   "respawn": 83,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7931"
  },
  {
@@ -19847,14 +20436,19 @@
   "attbns": 38,
   "strbns": 40,
   "amagic": 30,
-  "dstab": 138,
+  "dstab": 98,
   "dslash": 140,
   "dcrush": 142,
   "dmagic": 62,
   "drange": 140,
+  "dlight": 110,
+  "dstandard": 140,
+  "dheavy": 140,
   "combat": 90,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7935"
  },
  {
@@ -19879,6 +20473,8 @@
   "combat": 60,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7933"
  },
  {
@@ -19896,6 +20492,8 @@
   "combat": 7,
   "size": 1,
   "respawn": 33,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7881"
  },
  {
@@ -19914,14 +20512,19 @@
   "mbns": 30,
   "arange": 55,
   "rngbns": 45,
-  "dstab": 195,
+  "dstab": 145,
   "dslash": 200,
   "dcrush": 180,
   "dmagic": 95,
   "drange": 190,
+  "dlight": 190,
+  "dstandard": 190,
+  "dheavy": 150,
   "combat": 126,
   "size": 1,
   "respawn": 20,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7939"
  },
  {
@@ -19962,14 +20565,19 @@
   "attbns": 60,
   "strbns": 55,
   "arange": 50,
-  "dstab": 148,
+  "dstab": 118,
   "dslash": 150,
   "dcrush": 146,
   "dmagic": 50,
   "drange": 148,
+  "dlight": 148,
+  "dstandard": 148,
+  "dheavy": 118,
   "combat": 105,
   "size": 3,
   "respawn": 27,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7937"
  },
  {
@@ -19990,6 +20598,8 @@
   "combat": 52,
   "size": 1,
   "respawn": 60,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "7932"
  },
  {
@@ -20076,6 +20686,8 @@
   "combat": 80,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1282"
  },
  {
@@ -20089,6 +20701,8 @@
   "combat": 80,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "1281"
  },
  {
@@ -20167,6 +20781,8 @@
   "combat": 13,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "100"
  },
  {
@@ -20275,6 +20891,8 @@
   "combat": 13,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "101"
  },
  {
@@ -20406,7 +21024,7 @@
  },
  {
   "name": "Rubble",
-  "hitpoints": 94,
+  "hitpoints": 71,
   "att": 45,
   "str": 55,
   "def": 59,
@@ -20420,6 +21038,8 @@
   "combat": 70,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10690"
  },
  {
@@ -20438,6 +21058,8 @@
   "combat": 50,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10692"
  },
  {
@@ -20457,6 +21079,8 @@
   "combat": 30,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10694"
  },
  {
@@ -20475,6 +21099,8 @@
   "combat": 13,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "10696"
  },
  {
@@ -20519,7 +21145,7 @@
   "dmagic": 30,
   "dlight": 95,
   "dstandard": 95,
-  "dheavy": 65,
+  "dheavy": 50,
   "combat": 380,
   "size": 5,
   "respawn": 30,
@@ -20530,15 +21156,17 @@
  {
   "name": "Runite Golem",
   "isGolem": true,
-  "hitpoints": 170,
+  "hitpoints": 120,
   "att": 140,
   "str": 150,
   "def": 165,
   "mage": 1,
   "range": 1,
-  "combat": 178,
+  "combat": 165,
   "size": 1,
   "respawn": 500,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
   "id": "6600"
  },
  {
@@ -20638,6 +21266,8 @@
   "range": 1,
   "combat": 36,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "7895"
  },
  {
@@ -20650,6 +21280,8 @@
   "range": 1,
   "combat": 154,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "7894"
  },
  {
@@ -20663,6 +21295,8 @@
   "combat": 107,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "earth",
   "id": "7267"
  },
  {
@@ -21097,6 +21731,8 @@
   "combat": 59,
   "size": 2,
   "respawn": 22,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "2479"
  },
  {
@@ -21115,6 +21751,8 @@
   "combat": 37,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "2480"
  },
  {
@@ -21132,6 +21770,8 @@
   "combat": 14,
   "size": 2,
   "respawn": 25,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "3024"
  },
  {
@@ -21147,6 +21787,8 @@
   "combat": 38,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "5242"
  },
  {
@@ -21165,6 +21807,8 @@
   "drange": 13,
   "combat": 70,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "7390"
  },
  {
@@ -21183,6 +21827,8 @@
   "drange": 25,
   "combat": 144,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "7391"
  },
  {
@@ -21550,7 +22196,7 @@
  {
   "name": "Shadow Wyrm",
   "isDragon": true,
-  "hitpoints": 320,
+  "hitpoints": 290,
   "att": 300,
   "str": 180,
   "def": 125,
@@ -21563,7 +22209,7 @@
   "dcrush": 100,
   "dmagic": 50,
   "drange": 20,
-  "combat": 267,
+  "combat": 259,
   "size": 5,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "earth",
@@ -22018,6 +22664,8 @@
   "combat": 140,
   "size": 3,
   "respawn": 15,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "465"
  },
  {
@@ -22187,7 +22835,7 @@
   "combat": 77,
   "size": 1,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "air",
+  "elementalweaknesstype": "earth",
   "id": "1685"
  },
  {
@@ -22490,6 +23138,8 @@
   "combat": 132,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "8070"
  },
  {
@@ -22510,6 +23160,8 @@
   "combat": 132,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "8071"
  },
  {
@@ -22530,6 +23182,8 @@
   "combat": 132,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth",
   "id": "8072"
  },
  {
@@ -22597,6 +23251,8 @@
   "drange": 266,
   "combat": 194,
   "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "6613"
  },
  {
@@ -22614,19 +23270,23 @@
   "dmagic": 126,
   "drange": 155,
   "combat": 115,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "12107"
  },
  {
   "name": "Skeleton Hellhound (hard)",
-  "isNo": true,
-  "hitpoints": 55,
-  "att": 70,
-  "str": 110,
+  "isNone": true,
+  "hitpoints": 132,
+  "att": 168,
+  "str": 264,
   "def": 100,
   "mage": 1,
   "range": 1,
   "combat": 198,
   "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "6326"
  },
  {
@@ -22752,7 +23412,7 @@
  {
   "name": "Skeleton heavy",
   "isUndead": true,
-  "hitpoints": 124,
+  "hitpoints": 114,
   "att": 115,
   "str": 114,
   "def": 110,
@@ -22764,15 +23424,15 @@
   "dcrush": 2,
   "dmagic": -3,
   "drange": 2,
-  "combat": 132,
+  "combat": 130,
   "size": 1,
-  "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "air",
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "1540"
  },
  {
   "name": "Skeleton hero",
-  "hitpoints": 124,
+  "hitpoints": 114,
   "att": 145,
   "str": 134,
   "def": 110,
@@ -22784,16 +23444,16 @@
   "dcrush": 2,
   "dmagic": -3,
   "drange": 2,
-  "combat": 149,
+  "combat": 146,
   "size": 1,
-  "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "air",
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "1537"
  },
  {
   "name": "Skeleton thug",
   "isUndead": true,
-  "hitpoints": 124,
+  "hitpoints": 114,
   "att": 115,
   "str": 114,
   "def": 110,
@@ -22805,11 +23465,11 @@
   "dcrush": 2,
   "dmagic": -3,
   "drange": 2,
-  "combat": 132,
+  "combat": 130,
   "size": 1,
   "respawn": 50,
-  "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "air",
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "1541"
  },
  {
@@ -22831,7 +23491,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "air",
+  "elementalweaknesstype": "earth",
   "id": "1539"
  },
  {
@@ -22943,6 +23603,8 @@
   "drange": 50,
   "combat": 202,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth",
   "id": "6324"
  },
  {
@@ -23035,6 +23697,8 @@
   "combat": 160,
   "size": 1,
   "respawn": 7,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "498"
  },
  {
@@ -23345,7 +24009,7 @@
   "dstab": 15,
   "dslash": 250,
   "dcrush": 30,
-  "dmagic": 10,
+  "dmagic": -15,
   "dlight": 250,
   "dstandard": 250,
   "dheavy": 250,
@@ -23691,6 +24355,8 @@
   "combat": 302,
   "size": 4,
   "respawn": 9,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "11998"
  },
  {
@@ -23796,8 +24462,8 @@
   "combat": 182,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "fire",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "11292"
  },
  {
@@ -23818,8 +24484,8 @@
   "combat": 158,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "fire",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "11291"
  },
  {
@@ -23841,8 +24507,8 @@
   "combat": 158,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesspercent": 200,
-  "elementalweaknesstype": "fire",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "11290"
  },
  {
@@ -23864,7 +24530,8 @@
   "combat": 120,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "2212"
  },
  {
@@ -23886,7 +24553,8 @@
   "combat": 121,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "2244"
  },
  {
@@ -23901,7 +24569,8 @@
   "combat": 121,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "3161"
  },
  {
@@ -23923,7 +24592,8 @@
   "combat": 123,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "3168"
  },
  {
@@ -23945,7 +24615,8 @@
   "combat": 122,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "2211"
  },
  {
@@ -23967,7 +24638,8 @@
   "combat": 115,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "2242"
  },
  {
@@ -23982,7 +24654,8 @@
   "combat": 118,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "3160"
  },
  {
@@ -24004,7 +24677,8 @@
   "combat": 127,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "3167"
  },
  {
@@ -24029,7 +24703,8 @@
   "combat": 125,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "2210"
  },
  {
@@ -24054,7 +24729,8 @@
   "combat": 134,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "2243"
  },
  {
@@ -24070,7 +24746,8 @@
   "combat": 115,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "3159"
  },
  {
@@ -24093,7 +24770,8 @@
   "combat": 123,
   "size": 2,
   "respawn": 25,
-  "elementalweaknesstype": "none",
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "air",
   "id": "3166"
  },
  {
@@ -24131,14 +24809,19 @@
   "def": 90,
   "mage": 125,
   "range": 125,
-  "dstab": 70,
+  "dstab": 50,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 140,
   "drange": 120,
+  "dlight": 120,
+  "dstandard": 70,
+  "dheavy": 120,
   "combat": 139,
   "size": 3,
   "respawn": 15,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "7794"
  },
  {
@@ -24259,13 +24942,12 @@
   "def": 215,
   "mage": 100,
   "range": 1,
-  "dstab": 20,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 10,
   "combat": 246,
   "size": 4,
   "respawn": 30,
@@ -24283,13 +24965,12 @@
   "def": 235,
   "mage": 130,
   "range": 1,
-  "dstab": 20,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 30,
   "dlight": 90,
   "dstandard": 90,
-  "dheavy": 65,
+  "dheavy": 10,
   "combat": 274,
   "size": 4,
   "respawn": 30,
@@ -24678,6 +25359,8 @@
   "drange": 50,
   "combat": 111,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "787"
  },
  {
@@ -24836,14 +25519,19 @@
   "def": 90,
   "mage": 90,
   "range": 90,
-  "dstab": 70,
+  "dstab": 50,
   "dslash": 70,
   "dcrush": 70,
   "dmagic": 140,
   "drange": 120,
+  "dlight": 120,
+  "dstandard": 70,
+  "dheavy": 120,
   "combat": 147,
   "size": 3,
   "respawn": 15,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "air",
   "id": "7793"
  },
  {
@@ -24868,6 +25556,8 @@
   "range": 1,
   "combat": 199,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "6291"
  },
  {
@@ -24994,6 +25684,8 @@
   "combat": 75,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "8703"
  },
  {
@@ -25463,6 +26155,8 @@
   "combat": 791,
   "size": 3,
   "respawn": 30,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
   "id": "12204"
  },
  {
@@ -25487,6 +26181,8 @@
   "combat": 1146,
   "size": 3,
   "respawn": 30,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
   "id": "12204_1"
  },
  {
@@ -25511,6 +26207,8 @@
   "combat": 587,
   "size": 3,
   "respawn": 30,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "earth",
   "id": "12206"
  },
  {
@@ -25529,6 +26227,8 @@
   "combat": 301,
   "size": 4,
   "respawn": 15,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "499"
  },
  {
@@ -25729,10 +26429,14 @@
   "def": 15,
   "range": 60,
   "dmagic": 200,
-  "drange": 200,
+  "dlight": 200,
+  "dstandard": 120,
+  "dheavy": 200,
   "combat": 68,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4135"
  },
  {
@@ -25775,6 +26479,8 @@
   "range": 120,
   "combat": 90,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2193"
  },
  {
@@ -25894,6 +26600,8 @@
   "combat": 450,
   "size": 3,
   "respawn": 21,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "water",
   "id": "13599"
  },
  {
@@ -25933,6 +26641,8 @@
   "combat": 79,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "6075"
  },
  {
@@ -25946,6 +26656,8 @@
   "combat": 92,
   "size": 3,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "6076"
  },
  {
@@ -26119,7 +26831,7 @@
  {
   "name": "Trapped Soul (hard)",
   "isUndead": true,
-  "hitpoints": 100,
+  "hitpoints": 98,
   "att": 100,
   "str": 120,
   "def": 20,
@@ -26127,6 +26839,8 @@
   "range": 1,
   "combat": 101,
   "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "air",
   "id": "8529"
  },
  {
@@ -26153,6 +26867,8 @@
   "range": 1,
   "combat": 14,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "1861"
  },
  {
@@ -26165,6 +26881,8 @@
   "range": 1,
   "combat": 29,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "1862"
  },
  {
@@ -26177,6 +26895,8 @@
   "range": 1,
   "combat": 49,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "1863"
  },
  {
@@ -26189,6 +26909,8 @@
   "range": 1,
   "combat": 79,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "1864"
  },
  {
@@ -26201,6 +26923,8 @@
   "range": 1,
   "combat": 120,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "1865"
  },
  {
@@ -26213,6 +26937,8 @@
   "range": 1,
   "combat": 159,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "1866"
  },
  {
@@ -26226,6 +26952,8 @@
   "range": 1,
   "combat": 199,
   "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "id": "6319"
  },
  {
@@ -26263,6 +26991,8 @@
   "drange": 5,
   "combat": 194,
   "size": 1,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "6298"
  },
  {
@@ -26365,6 +27095,8 @@
   "dmagic": -5,
   "combat": 145,
   "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3130"
  },
  {
@@ -26387,6 +27119,8 @@
   "drange": 70,
   "combat": 489,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "11756"
  },
  {
@@ -26409,6 +27143,8 @@
   "drange": 20,
   "combat": 544,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "11762"
  },
  {
@@ -26488,6 +27224,8 @@
   "drange": 200,
   "combat": 71,
   "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "4131"
  },
  {
@@ -26507,6 +27245,8 @@
   "combat": 89,
   "size": 2,
   "respawn": 15,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air",
   "id": "7272"
  },
  {
@@ -26553,6 +27293,8 @@
   "range": 60,
   "combat": 45,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2191"
  },
  {
@@ -26565,6 +27307,8 @@
   "range": 30,
   "combat": 22,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3120"
  },
  {
@@ -26577,6 +27321,8 @@
   "range": 30,
   "combat": 22,
   "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2189"
  },
  {
@@ -26590,6 +27336,8 @@
   "combat": 74,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2161"
  },
  {
@@ -26603,6 +27351,8 @@
   "combat": 149,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2173"
  },
  {
@@ -26616,6 +27366,8 @@
   "combat": 221,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "7679"
  },
  {
@@ -26629,6 +27381,8 @@
   "combat": 103,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2154"
  },
  {
@@ -26642,6 +27396,8 @@
   "combat": 133,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "2167"
  },
  {
@@ -26674,6 +27430,8 @@
   "amagic": 60,
   "combat": 702,
   "size": 5,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3127"
  },
  {
@@ -26738,6 +27496,8 @@
   "combat": 105,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "2145"
  },
  {
@@ -26751,6 +27511,8 @@
   "range": 1,
   "combat": 30,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5648"
  },
  {
@@ -26764,6 +27526,8 @@
   "range": 1,
   "combat": 35,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5656"
  },
  {
@@ -26777,6 +27541,8 @@
   "range": 1,
   "combat": 40,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5665"
  },
  {
@@ -26790,6 +27556,8 @@
   "range": 1,
   "combat": 45,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5673"
  },
  {
@@ -26803,6 +27571,8 @@
   "range": 1,
   "combat": 50,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5681"
  },
  {
@@ -26816,6 +27586,8 @@
   "range": 1,
   "combat": 55,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5689"
  },
  {
@@ -26829,6 +27601,8 @@
   "range": 1,
   "combat": 60,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5697"
  },
  {
@@ -26842,6 +27616,8 @@
   "range": 1,
   "combat": 64,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5705"
  },
  {
@@ -26855,6 +27631,8 @@
   "range": 1,
   "combat": 70,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5713"
  },
  {
@@ -26871,6 +27649,8 @@
   "drange": 10,
   "combat": 34,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "10591"
  },
  {
@@ -26892,6 +27672,8 @@
   "combat": 1,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "2993"
  },
  {
@@ -26913,6 +27695,8 @@
   "combat": 2,
   "size": 2,
   "respawn": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "2992"
  },
  {
@@ -26925,6 +27709,8 @@
   "combat": 68,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5342"
  },
  {
@@ -26944,6 +27730,8 @@
   "combat": 61,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5344"
  },
  {
@@ -26958,6 +27746,8 @@
   "combat": 73,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "5349"
  },
  {
@@ -27049,6 +27839,8 @@
   "combat": 140,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "10589"
  },
  {
@@ -27062,6 +27854,8 @@
   "combat": 140,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air",
   "id": "6143"
  },
  {
@@ -27382,6 +28176,8 @@
   "combat": 464,
   "size": 4,
   "respawn": 10,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "6610"
  },
  {
@@ -27590,6 +28386,8 @@
   "drange": 230,
   "combat": 1520,
   "size": 7,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "8374"
  },
  {
@@ -27614,6 +28412,8 @@
   "drange": 100,
   "combat": 512,
   "size": 7,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "10835"
  },
  {
@@ -27638,6 +28438,8 @@
   "drange": 230,
   "combat": 1520,
   "size": 7,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "10852"
  },
  {
@@ -27658,6 +28460,7 @@
  {
   "name": "Vespula",
   "isXerician": true,
+  "isFlying": true,
   "hitpoints": 200,
   "att": 150,
   "str": 150,
@@ -27785,6 +28588,8 @@
   "drange": 26,
   "combat": 732,
   "size": 7,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "8059"
  },
  {
@@ -27808,6 +28613,8 @@
   "drange": 80,
   "combat": 392,
   "size": 7,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "8058"
  },
  {
@@ -27821,6 +28628,8 @@
   "combat": 31,
   "size": 2,
   "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "air",
   "id": "1267"
  },
  {
@@ -27935,6 +28744,8 @@
   "combat": 98,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "5938"
  },
  {
@@ -27953,6 +28764,8 @@
   "combat": 98,
   "size": 1,
   "respawn": 25,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "5939"
  },
  {
@@ -27966,6 +28779,8 @@
   "combat": 112,
   "size": 1,
   "respawn": 15,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth",
   "id": "7277"
  },
  {
@@ -28011,10 +28826,14 @@
   "mage": 50,
   "dstab": 50,
   "dslash": 50,
-  "drange": 60,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 20,
   "combat": 121,
   "size": 3,
   "respawn": 25,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth",
   "id": "12490"
  },
  {
@@ -28097,6 +28916,8 @@
   "combat": 34,
   "size": 1,
   "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "1370"
  },
  {
@@ -28209,6 +29030,8 @@
   "drange": 100,
   "combat": 127,
   "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "493"
  },
  {
@@ -28222,6 +29045,8 @@
   "dmagic": 130,
   "drange": 300,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth",
   "id": "496"
  },
  {
@@ -28361,6 +29186,8 @@
   "combat": 25,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "107"
  },
  {
@@ -28374,6 +29201,8 @@
   "combat": 38,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "108"
  },
  {
@@ -28416,6 +29245,7 @@
  },
  {
   "name": "Wingman Skree",
+  "isFlying": true,
   "hitpoints": 121,
   "att": 80,
   "str": 50,
@@ -28516,7 +29346,7 @@
  },
  {
   "name": "Witch's experiment (third form) (hard)",
-  "hitpoints": 103,
+  "hitpoints": 102,
   "att": 95,
   "str": 75,
   "def": 39,
@@ -28551,6 +29381,8 @@
   "combat": 64,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "106"
  },
  {
@@ -28564,6 +29396,8 @@
   "combat": 25,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "117"
  },
  {
@@ -28577,6 +29411,8 @@
   "combat": 14,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "2490"
  },
  {
@@ -28590,6 +29426,8 @@
   "combat": 11,
   "size": 2,
   "respawn": 90,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "2491"
  },
  {
@@ -28607,6 +29445,8 @@
   "drange": 10,
   "combat": 79,
   "size": 2,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
   "id": "10522"
  },
  {
@@ -28713,7 +29553,7 @@
  {
   "name": "Wyrm",
   "isDragon": true,
-  "hitpoints": 130,
+  "hitpoints": 120,
   "att": 85,
   "str": 60,
   "def": 80,
@@ -28728,7 +29568,7 @@
   "dlight": 20,
   "dstandard": 20,
   "dheavy": 10,
-  "combat": 99,
+  "combat": 97,
   "size": 3,
   "respawn": 15,
   "elementalweaknesspercent": 50,
@@ -28785,6 +29625,8 @@
   "drange": 160,
   "combat": 960,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "8340"
  },
  {
@@ -28799,6 +29641,8 @@
   "drange": 100,
   "combat": 331,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "10768"
  },
  {
@@ -28813,6 +29657,8 @@
   "drange": 160,
   "combat": 1160,
   "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air",
   "id": "10772"
  },
  {
@@ -28911,6 +29757,8 @@
   "range": 240,
   "combat": 180,
   "size": 4,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3123"
  },
  {
@@ -28945,6 +29793,8 @@
   "dmagic": -5,
   "combat": 142,
   "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water",
   "id": "3131"
  },
  {
@@ -29140,10 +29990,11 @@
   "def": 10,
   "mage": 1,
   "range": 1,
-  "attbns": 5,
   "combat": 13,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "26"
  },
  {
@@ -29159,6 +30010,8 @@
   "combat": 18,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "42"
  },
  {
@@ -29180,6 +30033,8 @@
   "combat": 24,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "49"
  },
  {
@@ -29817,6 +30672,8 @@
   "combat": 3,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "3969"
  },
  {
@@ -29832,6 +30689,8 @@
   "combat": 3,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "3971"
  },
  {
@@ -29846,6 +30705,8 @@
   "combat": 55,
   "size": 1,
   "respawn": 37,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "619"
  },
  {
@@ -29876,6 +30737,8 @@
   "drange": 3,
   "combat": 55,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "8062"
  },
  {
@@ -29894,6 +30757,8 @@
   "drange": 3,
   "combat": 64,
   "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "8063"
  },
  {
@@ -29975,6 +30840,8 @@
   "combat": 74,
   "size": 1,
   "respawn": 30,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "537"
  },
  {
@@ -29994,6 +30861,8 @@
   "combat": 86,
   "size": 2,
   "respawn": 30,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire",
   "id": "1024"
  }
 ]
