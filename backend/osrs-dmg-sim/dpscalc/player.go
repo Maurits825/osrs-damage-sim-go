@@ -34,6 +34,7 @@ type damageStats struct {
 type equipmentItem struct {
 	name           string
 	weaponStyle    string
+	is2H           bool
 	equipmentStats equipmentStats
 }
 
@@ -94,6 +95,7 @@ const (
 type combatStyle struct {
 	CombatStyleType   CombatStyleType
 	CombatStyleStance combatStyleStance
+	Is2H              bool
 }
 
 var combatStyleRegex = regexp.MustCompile(`([^\s]+) \(([^/]+)/([^)]+)\)`)

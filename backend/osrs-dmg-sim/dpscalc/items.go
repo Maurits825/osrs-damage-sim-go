@@ -32,6 +32,7 @@ func getEquipmentItems(items map[int]wikidata.ItemData) equipmentItems {
 
 		e.name = item.Name
 		e.weaponStyle = item.WeaponCategory
+		e.is2H = item.Is2h
 
 		equipmentItems[id] = e
 	}

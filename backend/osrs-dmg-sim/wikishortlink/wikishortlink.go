@@ -12,22 +12,27 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
-type itemId struct {
-	Id int `json:"id"`
+type item struct {
+	Id       int      `json:"id"`
+	ItemVars itemVars `json:"itemVars"`
+}
+
+type itemVars struct {
+	BlowpipeDartId int `json:"blowpipeDartId"`
 }
 
 type Equipment struct {
-	Ammo   itemId `json:"ammo"`
-	Body   itemId `json:"body"`
-	Cape   itemId `json:"cape"`
-	Feet   itemId `json:"feet"`
-	Hands  itemId `json:"hands"`
-	Head   itemId `json:"head"`
-	Legs   itemId `json:"legs"`
-	Neck   itemId `json:"neck"`
-	Ring   itemId `json:"ring"`
-	Shield itemId `json:"shield"`
-	Weapon itemId `json:"weapon"`
+	Ammo   item `json:"ammo"`
+	Body   item `json:"body"`
+	Cape   item `json:"cape"`
+	Feet   item `json:"feet"`
+	Hands  item `json:"hands"`
+	Head   item `json:"head"`
+	Legs   item `json:"legs"`
+	Neck   item `json:"neck"`
+	Ring   item `json:"ring"`
+	Shield item `json:"shield"`
+	Weapon item `json:"weapon"`
 }
 
 type Skills struct {
@@ -217,21 +222,30 @@ func buildDefenceReduction(statDrains []dpscalc.StatDrain) DefenceReductions {
 	return defenceReductions
 }
 
+func getItem(gearItem dpscalc.GearItem) item {
+	return item{
+		Id: gearItem.Id,
+	}
+}
+
 func buildLoadout(inputGearSetup dpscalc.InputGearSetup) Loadout {
 	gear := inputGearSetup.GearSetup.Gear
 	eq := Equipment{
-		Ammo:   itemId(gear[dpscalc.Ammo]),
-		Body:   itemId(gear[dpscalc.Body]),
-		Cape:   itemId(gear[dpscalc.Cape]),
-		Feet:   itemId(gear[dpscalc.Feet]),
-		Hands:  itemId(gear[dpscalc.Hands]),
-		Head:   itemId(gear[dpscalc.Head]),
-		Legs:   itemId(gear[dpscalc.Legs]),
-		Neck:   itemId(gear[dpscalc.Neck]),
-		Ring:   itemId(gear[dpscalc.Ring]),
-		Shield: itemId(gear[dpscalc.Shield]),
-		Weapon: itemId(gear[dpscalc.Weapon]),
+		Ammo:   getItem(gear[dpscalc.Ammo]),
+		Body:   getItem(gear[dpscalc.Body]),
+		Cape:   getItem(gear[dpscalc.Cape]),
+		Feet:   getItem(gear[dpscalc.Feet]),
+		Hands:  getItem(gear[dpscalc.Hands]),
+		Head:   getItem(gear[dpscalc.Head]),
+		Legs:   getItem(gear[dpscalc.Legs]),
+		Neck:   getItem(gear[dpscalc.Neck]),
+		Ring:   getItem(gear[dpscalc.Ring]),
+		Shield: getItem(gear[dpscalc.Shield]),
+		Weapon: getItem(gear[dpscalc.Weapon]),
 	}
+
+	//todo add if bp equipped
+	eq.Weapon.ItemVars.BlowpipeDartId = inputGearSetup.GearSetup.BlowpipeDarts.Id
 
 	s := inputGearSetup.GearSetupSettings.CombatStats
 	skills := getSkillsFromCombatStats(s)

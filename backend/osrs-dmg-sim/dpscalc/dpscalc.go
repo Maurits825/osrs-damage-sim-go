@@ -161,6 +161,7 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
 	specialAttackCost := 0
+	is2H := false
 
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
 		if gearItem.Id == EmptyItemId {
@@ -179,6 +180,7 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 			equipmentStats.attackSpeed = itemStats.attackSpeed
 			weaponStyle = item.weaponStyle
 			specialAttackCost = specItems[item.name]
+			is2H = item.is2H
 		}
 	}
 
@@ -186,9 +188,11 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
 
 	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
+	cmbStyle.Is2H = is2H
+
 	spell := getSpellByName(inputGearSetup.GearSetup.Spell)
 	if spell.name != "" {
-		cmbStyle = combatStyle{Magic, Autocast}
+		cmbStyle = combatStyle{Magic, Autocast, is2H}
 	}
 
 	if equippedGear.isEquipped(blowpipe) || equippedGear.isEquipped(drygoreBlowpipe) {
@@ -358,7 +362,7 @@ func getAccuracy(player *Player) (float32, int) {
 		}
 	}
 
-	if player.equippedGear.isEquipped(conflictionGauntlets) && player.combatStyle.CombatStyleType == Magic {
+	if player.equippedGear.isEquipped(conflictionGauntlets) && player.combatStyle.CombatStyleType == Magic && !player.combatStyle.Is2H {
 		//TODO is math right?
 		effectAccuracy := 1 - float32(math.Pow(float64(1-accuracy), 2))
 		accuracy = accuracy*accuracy + (1-accuracy)*effectAccuracy
