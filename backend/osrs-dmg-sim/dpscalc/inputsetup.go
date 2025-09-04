@@ -134,6 +134,7 @@ const (
 	BoneDagger        StatDrainWeapon = "Bone dagger"
 	BarrelChestAnchor StatDrainWeapon = "Barrelchest anchor"
 	Ralos             StatDrainWeapon = "Ralos"
+	EyeofAyak         StatDrainWeapon = "Eye of ayak"
 )
 
 type StatDrain struct {

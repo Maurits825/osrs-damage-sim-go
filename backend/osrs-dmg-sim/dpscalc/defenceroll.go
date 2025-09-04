@@ -41,22 +41,22 @@ func getNpcDefenceRoll(player *Player) int {
 	defence := 0
 	switch player.combatStyle.CombatStyleType {
 	case Stab:
-		defence = player.Npc.defensiveStats.stab
+		defence = player.Npc.DefensiveStats.stab
 	case Slash:
-		defence = player.Npc.defensiveStats.slash
+		defence = player.Npc.DefensiveStats.slash
 	case Crush:
-		defence = player.Npc.defensiveStats.crush
+		defence = player.Npc.DefensiveStats.crush
 	case Magic:
-		defence = player.Npc.defensiveStats.magic
+		defence = player.Npc.DefensiveStats.Magic
 	case Ranged:
-		defence = getRangedDefence(player.weaponStyle, player.Npc.defensiveStats)
+		defence = getRangedDefence(player.weaponStyle, player.Npc.DefensiveStats)
 	}
 
 	if player.equippedGear.isAnyEquipped(slashOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
-		defence = player.Npc.defensiveStats.slash
+		defence = player.Npc.DefensiveStats.slash
 	}
 	if player.equippedGear.isAnyEquipped(stabOverrideSpecWeapons) && player.inputGearSetup.GearSetup.IsSpecialAttack {
-		defence = player.Npc.defensiveStats.stab
+		defence = player.Npc.DefensiveStats.stab
 	}
 
 	statBonus := dpsDetailEntries.TrackAdd(dpsdetail.NPCDefenceStatBonus, defence, 64)

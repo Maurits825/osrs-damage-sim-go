@@ -18,7 +18,7 @@ type defensiveStats struct {
 	stab     int
 	slash    int
 	crush    int
-	magic    int
+	Magic    int
 	ranged   int
 	light    int
 	standard int
@@ -56,7 +56,7 @@ func (stats *equipmentStats) addStats(statsAdd *equipmentStats) {
 	stats.defensiveStats.stab += statsAdd.defensiveStats.stab
 	stats.defensiveStats.slash += statsAdd.defensiveStats.slash
 	stats.defensiveStats.crush += statsAdd.defensiveStats.crush
-	stats.defensiveStats.magic += statsAdd.defensiveStats.magic
+	stats.defensiveStats.Magic += statsAdd.defensiveStats.Magic
 	stats.defensiveStats.ranged += statsAdd.defensiveStats.ranged
 
 	stats.damageStats.meleeStrength += statsAdd.damageStats.meleeStrength
