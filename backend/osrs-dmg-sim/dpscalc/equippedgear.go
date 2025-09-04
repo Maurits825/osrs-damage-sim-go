@@ -104,8 +104,8 @@ const (
 
 // future content
 const (
-	eyeOfAyak            = 2000005
-	conflictionGauntlets = 2000006
+	eyeOfAyak            = 31113
+	conflictionGauntlets = 31106
 )
 
 var virtusSet = []int{26241, 26243, 26245}
