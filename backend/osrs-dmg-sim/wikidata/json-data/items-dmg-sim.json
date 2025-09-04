@@ -47949,6 +47949,18 @@
   "equipable": true,
   "slot": 7
  },
+ "29974": {
+  "name": "Prescription goggles",
+  "weight": 1.02,
+  "equipable": true,
+  "slot": 0
+ },
+ "29976": {
+  "name": "Prescription goggles",
+  "weight": 1.02,
+  "equipable": true,
+  "slot": 0
+ },
  "29978": {
   "name": "Alchemist labcoat",
   "weight": 0.62,
@@ -49179,6 +49191,7 @@
  },
  "30947": {
   "name": "Potato sack",
+  "quest": true,
   "weight": 0.3,
   "equipable": true,
   "slot": 0,
@@ -49190,6 +49203,7 @@
  },
  "30955": {
   "name": "Arkan blade",
+  "quest": true,
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -49292,14 +49306,14 @@
   "acrush": 15,
   "amagic": 9,
   "arange": 9,
-  "dstab": -25,
-  "dslash": -25,
-  "dcrush": -25,
-  "dmagic": -25,
-  "drange": -25,
+  "dstab": -15,
+  "dslash": -15,
+  "dcrush": -15,
+  "dmagic": -15,
+  "drange": -15,
   "str": 5,
   "rstr": 2,
-  "prayer": 4
+  "prayer": 5
  },
  "31088": {
   "name": "Avernic treads",
@@ -49468,7 +49482,7 @@
   "prayer": 2,
   "mdmg": 7.0
  },
- "31115": {
+ "31113": {
   "name": "Eye of ayak",
   "weight": 2.0,
   "equipable": true,
@@ -49488,36 +49502,27 @@
   "equipable": true,
   "slot": 0
  },
- "2000004": {
-  "name": "Avernic Treads (Maxed)",
-  "futureContent": true,
-  "equipable": true,
-  "slot": 10,
-  "astab": 5,
-  "aslash": 5,
-  "acrush": 5,
-  "amagic": 11,
-  "arange": 15,
-  "str": 6,
-  "rstr": 3,
-  "mdmg": 2.0
- },
- "2000005": {
-  "name": "The Eye of Ayak",
-  "futureContent": true,
+ "31132": {
+  "name": "Dinh's blazing bulwark (rotten)",
+  "weight": 30.0,
   "equipable": true,
   "slot": 3,
-  "amagic": 30,
-  "aspeed": 3,
-  "weaponCategory": "POWERED_STAFF"
+  "is2h": true,
+  "weaponCategory": "BOW"
  },
- "2000006": {
-  "name": "Confliction Gauntlets",
-  "futureContent": true,
+ "31133": {
+  "name": "Venator bow (rotten)",
+  "weight": 4.5,
   "equipable": true,
-  "slot": 9,
-  "amagic": 20,
-  "arange": -4,
-  "mdmg": 7.0
+  "slot": 3,
+  "is2h": true,
+  "aspeed": 5,
+  "weaponCategory": "BOW"
+ },
+ "31780": {
+  "name": "Nifty hat",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 0
  }
 }

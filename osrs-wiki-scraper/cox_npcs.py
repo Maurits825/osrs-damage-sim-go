@@ -33,7 +33,10 @@ class CoxNpcs:
         docs[npc_id] = doc
 
         npc_version = str(version.get("version", "").strip())
-        name = str(version["name"]).strip()
+        if "name" in version:
+            name = str(version["name"]).strip()
+        else:
+            name = str(version["version"]).strip()
         if not any(filter_str in npc_version for filter_str in ["Normal", "claw", "Enraged"]):
             name += " " + str(version["version"]).strip()
 
