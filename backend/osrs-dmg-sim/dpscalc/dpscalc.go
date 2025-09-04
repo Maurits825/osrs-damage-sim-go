@@ -304,6 +304,7 @@ func GetAttackSpeed(player *Player) int {
 	}
 
 	//TODO scurrius 1t weapons
+	//TODO eye of ayak spec is 5ticks? -> wiki dps calc doesnt have
 
 	if player.ragingEchoesMasteries.melee >= 5 ||
 		player.ragingEchoesMasteries.ranged >= 5 ||
