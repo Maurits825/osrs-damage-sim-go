@@ -34,21 +34,32 @@ export class TtkHistogramGraphComponent implements OnChanges {
       },
     });
 
-    const datasets = this.simpleSimResults.map((result: SimpleSimResult, index: number) => ({
-      label: 'Setup ' + (index + 1), //todo names
-      data: result.ttkHistogram,
-      backgroundColor: this.chartColors[index % this.chartColors.length],
-      barThickness: 3,
-    }));
-
-    const maxLength = this.simpleSimResults.reduce(
+    //TODO dupe code -> make service/util fn?
+    const maxTtk = this.simpleSimResults.reduce(
       (max: number, r: SimpleSimResult) => (r.ttkHistogram.length > max ? r.ttkHistogram.length : max),
       0,
     );
-    const xValues = Array<string>(maxLength);
-    for (let i = 0; i < maxLength; i++) {
-      xValues[i] = this.tickToTimePipe.transform(i);
+
+    let minTtk = this.simpleSimResults.reduce((min: number, r: SimpleSimResult) => {
+      const ttk = r.cummulativeTtk.findIndex((ttk: number) => ttk > 0);
+      if (ttk < min) {
+        return ttk;
+      }
+      return min;
+    }, maxTtk);
+    minTtk = Math.round(minTtk - minTtk * 0.4);
+
+    const xValues = Array<string>(maxTtk - minTtk);
+    for (let i = minTtk; i < maxTtk; i++) {
+      xValues[i - minTtk] = this.tickToTimePipe.transform(i);
     }
+
+    const datasets = this.simpleSimResults.map((result: SimpleSimResult, index: number) => ({
+      label: 'Setup ' + (index + 1), //todo names
+      data: result.ttkHistogram.slice(minTtk),
+      backgroundColor: this.chartColors[index % this.chartColors.length],
+      barThickness: 3,
+    }));
 
     this.ttkHistogramChart.data = {
       labels: xValues,

@@ -34,20 +34,31 @@ export class CummulativeTtkGraphComponent implements OnChanges {
       },
     });
 
-    const datasets = this.simpleSimResults.map((result: SimpleSimResult, index: number) => ({
-      label: 'Setup ' + (index + 1), //todo names
-      data: result.cummulativeTtk,
-      backgroundColor: this.chartColors[index % this.chartColors.length],
-    }));
-
-    const maxLength = this.simpleSimResults.reduce(
+    const maxTtk = this.simpleSimResults.reduce(
       (max: number, r: SimpleSimResult) => (r.cummulativeTtk.length > max ? r.cummulativeTtk.length : max),
       0,
     );
-    const xValues = Array<string>(maxLength);
-    for (let i = 0; i < maxLength; i++) {
-      xValues[i] = this.tickToTimePipe.transform(i);
+
+    let minTtk = this.simpleSimResults.reduce((min: number, r: SimpleSimResult) => {
+      const ttk = r.cummulativeTtk.findIndex((ttk: number) => ttk > 0);
+      if (ttk < min) {
+        return ttk;
+      }
+      return min;
+    }, maxTtk);
+    //TODO maybe just take diff from avg to max and get min from that
+    minTtk = Math.round(minTtk - minTtk * 0.4);
+
+    const xValues = Array<string>(maxTtk - minTtk);
+    for (let i = minTtk; i < maxTtk; i++) {
+      xValues[i - minTtk] = this.tickToTimePipe.transform(i);
     }
+
+    const datasets = this.simpleSimResults.map((result: SimpleSimResult, index: number) => ({
+      label: 'Setup ' + (index + 1), //todo names
+      data: result.cummulativeTtk.slice(minTtk),
+      backgroundColor: this.chartColors[index % this.chartColors.length],
+    }));
 
     this.cumTtkChart.data = {
       labels: xValues,

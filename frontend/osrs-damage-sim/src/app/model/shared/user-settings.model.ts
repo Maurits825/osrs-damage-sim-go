@@ -4,7 +4,6 @@ export interface UserSettings {
   showRagingEchoLeagues: boolean;
   showLoadFromRunelite: boolean;
   enableDebugTracking: boolean;
-  showTextLabels: boolean;
 }
 
 export const DEFAULT_USER_SETTINGS: UserSettings = {
@@ -13,5 +12,4 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   showRagingEchoLeagues: true,
   showLoadFromRunelite: false,
   enableDebugTracking: false,
-  showTextLabels: false,
 };
