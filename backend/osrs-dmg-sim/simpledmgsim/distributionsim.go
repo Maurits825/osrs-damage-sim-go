@@ -128,6 +128,8 @@ func (runner *distSimRunner) runDistSim(inputSetup *InputSetup, index int) *simR
 					)
 				}
 
+				//TODO for ralos we DO need to know hitspats, if 1 or 2 hit
+				//a 2 damage from the hit dist could be 2-0(1 hit) or 1-1(2 hits)
 				if currentGear.statDrainer != nil {
 					currentGear.statDrainer(&npc, damage)
 				}
@@ -178,12 +180,15 @@ func getSimGearSetups(presets []dpscalc.GearSetup, gs *dpscalc.GlobalSettings, s
 		}
 		p := dpscalc.GetPlayer(gs, dpsCalcSetup)
 
-		specCost := p.SpecialAttackCost * 10
-		if specCost != 0 && gs.OverlyDraining {
-			specCost = maxSpecialAttack
-		}
-		if slices.Contains(setup.GearSetupSettings.PotionBoosts, dpscalc.LiquidAdrenaline) {
-			specCost /= 2
+		specCost := 0
+		if dpsCalcSetup.GearSetup.IsSpecialAttack {
+			specCost = p.SpecialAttackCost * 10
+			if specCost != 0 && gs.OverlyDraining {
+				specCost = maxSpecialAttack
+			}
+			if slices.Contains(setup.GearSetupSettings.PotionBoosts, dpscalc.LiquidAdrenaline) {
+				specCost /= 2
+			}
 		}
 
 		setups[i] = simGearSetup{
