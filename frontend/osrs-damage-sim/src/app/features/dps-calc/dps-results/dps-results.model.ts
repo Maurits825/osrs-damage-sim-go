@@ -17,4 +17,5 @@ export interface BestResultsIndex {
   dps: number;
   accuracy: number;
   maxHit: number;
+  expectedHit: number;
 }
