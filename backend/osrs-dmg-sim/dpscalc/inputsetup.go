@@ -51,6 +51,7 @@ type GlobalSettings struct {
 	Npc            NpcInfo    `json:"npc"`
 	NpcHitpoints   int        `json:"npcHitpoints"`
 	TeamSize       int        `json:"teamSize"`
+	AccuracyBuff   bool       `json:"accuracyBuff"`
 	RaidLevel      int        `json:"raidLevel"`
 	PathLevel      int        `json:"pathLevel"`
 	OverlyDraining bool       `json:"overlyDraining"`

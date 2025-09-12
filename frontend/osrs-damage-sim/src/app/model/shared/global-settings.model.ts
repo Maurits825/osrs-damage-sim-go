@@ -8,6 +8,7 @@ export interface GlobalSettings {
   overlyDraining: boolean;
 
   teamSize: number;
+  accuracyBuff: boolean;
   coxScaling: CoxScaling;
 }
 
@@ -21,6 +22,7 @@ export interface CoxScaling {
 export const DEFAULT_GLOBAL_SETTINGS: GlobalSettings = {
   npc: null,
   teamSize: 1,
+  accuracyBuff: false,
   raidLevel: 0,
   pathLevel: 0,
   overlyDraining: false,

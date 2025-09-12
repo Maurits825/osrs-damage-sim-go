@@ -330,7 +330,8 @@ func GetAttackSpeed(player *Player) int {
 func getAccuracy(player *Player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
-	if (slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
+	if player.globalSettings.AccuracyBuff ||
+		(slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
 		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
 		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
 		player.ragingEchoesMasteries.ranged == 6 {
