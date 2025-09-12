@@ -18,7 +18,8 @@ type item struct {
 }
 
 type itemVars struct {
-	BlowpipeDartId int `json:"blowpipeDartId"`
+	BlowpipeDartName string `json:"blowpipeDartName"`
+	BlowpipeDartId   int    `json:"blowpipeDartId"`
 }
 
 type Equipment struct {
@@ -244,8 +245,10 @@ func buildLoadout(inputGearSetup dpscalc.InputGearSetup) Loadout {
 		Weapon: getItem(gear[dpscalc.Weapon]),
 	}
 
-	//todo add if bp equipped
-	eq.Weapon.ItemVars.BlowpipeDartId = inputGearSetup.GearSetup.BlowpipeDarts.Id
+	if gear[dpscalc.Weapon].Id == 12926 || gear[dpscalc.Weapon].Id == 28687 {
+		eq.Weapon.ItemVars.BlowpipeDartId = inputGearSetup.GearSetup.BlowpipeDarts.Id
+		eq.Weapon.ItemVars.BlowpipeDartName = inputGearSetup.GearSetup.BlowpipeDarts.Name
+	}
 
 	s := inputGearSetup.GearSetupSettings.CombatStats
 	skills := getSkillsFromCombatStats(s)

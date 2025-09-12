@@ -60,7 +60,8 @@ type GlobalSettings struct {
 
 // similar to npc, could have manual inputs in future
 type GearItem struct {
-	Id int `json:"id"`
+	Id   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 type Prayer string
