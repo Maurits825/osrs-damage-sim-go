@@ -30,7 +30,7 @@ type Npc struct {
 	CombatStats     CombatStats
 	aggressiveStats aggressiveStats
 	damageStats     damageStats
-	defensiveStats  defensiveStats
+	DefensiveStats  defensiveStats
 
 	elementalWeaknessType    elementalType
 	elementalWeaknessPercent int
@@ -108,11 +108,11 @@ func getNpcs(npcsData map[string]wikidata.NpcData) npcs {
 			magicStrength:  float32(npcData.MagicStrength),
 		}
 
-		n.defensiveStats = defensiveStats{
+		n.DefensiveStats = defensiveStats{
 			stab:     npcData.DStab,
 			slash:    npcData.DSlash,
 			crush:    npcData.DSCrush,
-			magic:    npcData.DMagic,
+			Magic:    npcData.DMagic,
 			ranged:   npcData.DRange,
 			light:    npcData.DLight,
 			standard: npcData.DStandard,

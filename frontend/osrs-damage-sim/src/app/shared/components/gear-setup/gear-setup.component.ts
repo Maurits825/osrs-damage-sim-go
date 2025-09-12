@@ -164,6 +164,9 @@ export class GearSetupComponent implements OnInit, OnDestroy {
       this.gearSetup.spell = gearSetupPreset.spell;
       this.selectedSpellChange();
     }
+    if (gearSetupPreset.blowpipeDarts) {
+      this.gearSetup.blowpipeDarts = this.allDarts.find((dart: Item) => dart.id === gearSetupPreset.blowpipeDarts);
+    }
   }
 
   setCurrentGearByGearSlotAndId(gearIds: Record<GearSlot, number>): void {

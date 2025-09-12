@@ -88,6 +88,10 @@ func (npc *Npc) ApplyStatDrain(statsDrains []StatDrain) {
 				defence := currentDefence - int(npc.CombatStats.Magic/10)
 				npc.CombatStats.Defence = max(minDefence, defence)
 			}
+		case EyeofAyak:
+			if statDrain.Value > 0 {
+				npc.DefensiveStats.Magic = max(0, npc.DefensiveStats.Magic-statDrain.Value)
+			}
 		}
 	}
 }

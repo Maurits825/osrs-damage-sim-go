@@ -316,6 +316,7 @@ func getMagicMaxHit(player *Player) int { //TODO maybe look over again and have 
 
 func getSpecialAttackMaxHit(baseMaxHit int, player *Player) int {
 	baseMax := float64(baseMaxHit)
+
 	if player.equippedGear.isEquipped(bandosGodsword) {
 		return int(math.Floor(baseMax*1.1) * 1.1)
 	}
@@ -346,6 +347,10 @@ func getSpecialAttackMaxHit(baseMaxHit int, player *Player) int {
 	}
 	if player.equippedGear.isEquipped(webweaver) {
 		return int(baseMax * 0.4)
+	}
+
+	if player.equippedGear.isEquipped(eyeOfAyak) {
+		return int(baseMax * 1.3)
 	}
 
 	return baseMaxHit

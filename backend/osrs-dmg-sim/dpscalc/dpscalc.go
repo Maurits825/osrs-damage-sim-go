@@ -161,6 +161,7 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	equipmentStats := equipmentStats{}
 	weaponStyle := "UNARMED"
 	specialAttackCost := 0
+	is2H := false
 
 	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
 		if gearItem.Id == EmptyItemId {
@@ -179,6 +180,7 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 			equipmentStats.attackSpeed = itemStats.attackSpeed
 			weaponStyle = item.weaponStyle
 			specialAttackCost = specItems[item.name]
+			is2H = item.is2H
 		}
 	}
 
@@ -186,9 +188,11 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
 
 	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
+	cmbStyle.Is2H = is2H
+
 	spell := getSpellByName(inputGearSetup.GearSetup.Spell)
 	if spell.name != "" {
-		cmbStyle = combatStyle{Magic, Autocast}
+		cmbStyle = combatStyle{Magic, Autocast, is2H}
 	}
 
 	if equippedGear.isEquipped(blowpipe) || equippedGear.isEquipped(drygoreBlowpipe) {
@@ -300,6 +304,7 @@ func GetAttackSpeed(player *Player) int {
 	}
 
 	//TODO scurrius 1t weapons
+	//TODO eye of ayak spec is 5ticks? -> wiki dps calc doesnt have
 
 	if player.ragingEchoesMasteries.melee >= 5 ||
 		player.ragingEchoesMasteries.ranged >= 5 ||
@@ -325,7 +330,8 @@ func GetAttackSpeed(player *Player) int {
 func getAccuracy(player *Player) (float32, int) {
 	attackRoll := getAttackRoll(player)
 
-	if (slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
+	if player.globalSettings.AccuracyBuff ||
+		(slices.Contains(verzikIds, player.Npc.id) && player.equippedGear.isEquipped(dawnbringer)) ||
 		(player.equippedGear.isEquipped(voidwaker) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
 		(player.equippedGear.isEquipped(boneDagger) && player.inputGearSetup.GearSetup.IsSpecialAttack) ||
 		player.ragingEchoesMasteries.ranged == 6 {
@@ -358,10 +364,10 @@ func getAccuracy(player *Player) (float32, int) {
 		}
 	}
 
-	if player.equippedGear.isEquipped(conflictionGauntlets) && player.combatStyle.CombatStyleType == Magic {
-		//TODO is math right?
-		effectAccuracy := 1 - float32(math.Pow(float64(1-accuracy), 2))
-		accuracy = accuracy*accuracy + (1-accuracy)*effectAccuracy
+	if player.equippedGear.isEquipped(conflictionGauntlets) && player.combatStyle.CombatStyleType == Magic && !player.combatStyle.Is2H {
+		singleRoll := getNormalAccuracy(attackRoll, defenceRoll)
+		doubleRoll := getFangEffectAccuracy(attackRoll, defenceRoll)
+		accuracy = doubleRoll / (1 + doubleRoll - singleRoll)
 	}
 
 	if player.equippedGear.isEquipped(drygoreBlowpipe) && player.combatStyle.CombatStyleType == Ranged {

@@ -41,6 +41,7 @@ const (
 	BandosGodsword  GraphType = "Bandos godsword"
 	AccursedSceptre GraphType = "Accursed sceptre"
 	Ralos           GraphType = "Ralos"
+	EyeofAyak       GraphType = "Eye of ayak"
 	ToaRaidLevel    GraphType = "TOA raid level"
 	NpcHitpoints    GraphType = "Npc hitpoints"
 )
@@ -48,10 +49,10 @@ const (
 // TODO make this better?
 var allGraphTypes = []GraphType{
 	AttackLevel, StrengthLevel, RangedLevel, MagicLevel, TeamSize,
-	DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, Ralos,
+	DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, Ralos, EyeofAyak,
 	ToaRaidLevel,
 }
-var statDrainGraphTypes = []GraphType{DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, Ralos}
+var statDrainGraphTypes = []GraphType{DragonWarhammer, ElderMaul, Emberlight, Arclight, BandosGodsword, AccursedSceptre, Ralos, EyeofAyak}
 var levelGraphTypes = []GraphType{AttackLevel, StrengthLevel, RangedLevel, MagicLevel}
 
 const (
@@ -116,8 +117,18 @@ func RunOneDpsGrapher(inputSetup dpscalc.InputSetup) *DpsGrapherResults {
 	dpsGrapherResults := DpsGrapherResults{make([]DpsGrapherResult, 0, len(allGraphTypes))}
 	dpsData := <-dpsDataCh
 	for _, graphType := range statDrainGraphTypes {
-		statDrainResults := getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
-		dpsGrapherResults.Results = append(dpsGrapherResults.Results, statDrainResults)
+		var statDrainResults *DpsGrapherResult
+		switch graphType {
+		case EyeofAyak:
+			statDrainResults = getEyeOfAyakResult(&inputSetup)
+		case AccursedSceptre:
+			statDrainResults = getAccursedSceptreResult(&inputSetup)
+		default:
+			statDrainResults = getStatDrainDpsGrapher(dpsData, graphType, inputSetup.GlobalSettings)
+		}
+		if statDrainResults != nil {
+			dpsGrapherResults.Results = append(dpsGrapherResults.Results, *statDrainResults)
+		}
 	}
 
 	for result := range dpsResults {
@@ -220,12 +231,34 @@ func getDefenceDpsResults(inputSetup *dpscalc.InputSetup) []GraphData {
 	npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
 	npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
 	maxValue := npc.BaseCombatStats.Defence
+	return getStatDrainResults(inputSetup, maxValue, dpscalc.BandosGodsword)
+}
 
+func getEyeOfAyakResult(inputSetup *dpscalc.InputSetup) *DpsGrapherResult {
+	npc := dpscalc.GetNpc(inputSetup.GlobalSettings.Npc.Id)
+	npc.ApplyNpcScaling(&inputSetup.GlobalSettings)
+	maxValue := npc.DefensiveStats.Magic
+	if maxValue <= 0 {
+		return nil
+	}
+	xValues := getXValues(0, maxValue)
+	graphData := getStatDrainResults(inputSetup, maxValue, dpscalc.EyeofAyak)
+	return &DpsGrapherResult{string(EyeofAyak), xValues, graphData}
+}
+
+func getAccursedSceptreResult(inputSetup *dpscalc.InputSetup) *DpsGrapherResult {
+	maxValue := 1
+	xValues := getXValues(0, maxValue)
+	graphData := getStatDrainResults(inputSetup, maxValue, dpscalc.AccursedSceptre)
+	return &DpsGrapherResult{string(AccursedSceptre), xValues, graphData}
+}
+
+func getStatDrainResults(inputSetup *dpscalc.InputSetup, maxValue int, stateDrain dpscalc.StatDrainWeapon) []GraphData {
 	dpsGraphDatas := make([]GraphData, len(inputSetup.InputGearSetups))
 
 	//loop here creates a copy of the slice
 	for i, inputGearSetup := range inputSetup.InputGearSetups {
-		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: dpscalc.BandosGodsword, Value: 0}}
+		inputGearSetup.GearSetupSettings.StatDrain = []dpscalc.StatDrain{{Name: stateDrain, Value: 0}}
 		currentValue := &inputGearSetup.GearSetupSettings.StatDrain[0].Value
 
 		dpsGraphDatas[i] = getDpsGraphData(currentValue, 0, maxValue, &inputSetup.GlobalSettings, &inputGearSetup)
@@ -233,7 +266,7 @@ func getDefenceDpsResults(inputSetup *dpscalc.InputSetup) []GraphData {
 	return dpsGraphDatas
 }
 
-func getStatDrainDpsGrapher(statDrainData []GraphData, graphType GraphType, settings dpscalc.GlobalSettings) DpsGrapherResult {
+func getStatDrainDpsGrapher(statDrainData []GraphData, graphType GraphType, settings dpscalc.GlobalSettings) *DpsGrapherResult {
 	var statDrainName dpscalc.StatDrainWeapon
 	maxValue := 10
 	switch graphType {
@@ -248,9 +281,6 @@ func getStatDrainDpsGrapher(statDrainData []GraphData, graphType GraphType, sett
 	case BandosGodsword:
 		statDrainName = dpscalc.BandosGodsword
 		maxValue = len(statDrainData[0].Dps)
-	case AccursedSceptre:
-		statDrainName = dpscalc.AccursedSceptre
-		maxValue = 1
 	case Ralos:
 		statDrainName = dpscalc.Ralos
 	}
@@ -281,7 +311,7 @@ func getStatDrainDpsGrapher(statDrainData []GraphData, graphType GraphType, sett
 		graphData[i] = data
 	}
 
-	return DpsGrapherResult{string(graphType), xValues, graphData}
+	return &DpsGrapherResult{string(graphType), xValues, graphData}
 }
 
 func getToaRaidLevelDpsGrapher(inputSetup *dpscalc.InputSetup, graphType GraphType) DpsGrapherResult {

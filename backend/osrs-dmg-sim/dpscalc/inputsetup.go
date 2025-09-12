@@ -51,6 +51,7 @@ type GlobalSettings struct {
 	Npc            NpcInfo    `json:"npc"`
 	NpcHitpoints   int        `json:"npcHitpoints"`
 	TeamSize       int        `json:"teamSize"`
+	AccuracyBuff   bool       `json:"accuracyBuff"`
 	RaidLevel      int        `json:"raidLevel"`
 	PathLevel      int        `json:"pathLevel"`
 	OverlyDraining bool       `json:"overlyDraining"`
@@ -59,7 +60,8 @@ type GlobalSettings struct {
 
 // similar to npc, could have manual inputs in future
 type GearItem struct {
-	Id int `json:"id"`
+	Id   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 type Prayer string
@@ -134,6 +136,7 @@ const (
 	BoneDagger        StatDrainWeapon = "Bone dagger"
 	BarrelChestAnchor StatDrainWeapon = "Barrelchest anchor"
 	Ralos             StatDrainWeapon = "Ralos"
+	EyeofAyak         StatDrainWeapon = "Eye of ayak"
 )
 
 type StatDrain struct {

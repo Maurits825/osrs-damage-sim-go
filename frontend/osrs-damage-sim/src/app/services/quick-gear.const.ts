@@ -9,9 +9,8 @@ export type QuickGearIds = {
   [attackType in AttackType]: number[];
 };
 
-//TODO replace
-const avernicTreads = 2000004;
-const conflictionGauntlets = 2000006;
+const avernicTreads = 31097;
+const conflictionGauntlets = 31106;
 
 export const quickGearSetups: QuickGearSetup = {
   [GearSlot.Head]: {
@@ -32,7 +31,7 @@ export const quickGearSetups: QuickGearSetup = {
   [GearSlot.Weapon]: {
     melee: [13652, 29577, 27690, 23987],
     ranged: [25865, 26374],
-    magic: [12899, 11905],
+    magic: [11905, 12899, 31113],
   },
   [GearSlot.Body]: {
     melee: [10551],

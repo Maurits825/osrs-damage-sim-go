@@ -272,6 +272,7 @@ func getMagicAttackRoll(player *Player) int {
 
 func getSpecialAttackRoll(baseAttackRoll int, player *Player) int {
 	baseRoll := float32(baseAttackRoll)
+
 	if player.equippedGear.isEquipped(bandosGodsword) || player.equippedGear.isEquipped(zamorakGodsword) || player.equippedGear.isEquipped(armadylGodsword) {
 		return baseAttackRoll * 2
 	}
@@ -310,6 +311,10 @@ func getSpecialAttackRoll(baseAttackRoll int, player *Player) int {
 
 	if player.equippedGear.isEquipped(scorchingBow) {
 		return int(baseRoll * 1.3)
+	}
+
+	if player.equippedGear.isEquipped(eyeOfAyak) {
+		return baseAttackRoll * 2
 	}
 	return baseAttackRoll
 }

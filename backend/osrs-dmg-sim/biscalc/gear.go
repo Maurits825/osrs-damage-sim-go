@@ -59,6 +59,7 @@ const (
 	sangStaff     = 22323
 	harmStaff     = 24423
 	volatileStaff = 24424
+	eyeOfAyak     = 31115
 
 	tomeOfFire = 20714
 )
@@ -83,7 +84,7 @@ var rangedWeapons = []int{tbow, blowpipe, zaryteCrossbow, bowfa}
 var rangedAmmo = []int{dragonArrows, rubyDBolts, diamondDBolts}
 var rangedSpecWeapons = []int{blowpipe, zaryteCrossbow}
 
-var magicWeapons = []int{shadowStaff, sangStaff, harmStaff}
+var magicWeapons = []int{shadowStaff, sangStaff, harmStaff, eyeOfAyak}
 var magicSpecWeapons = []int{volatileStaff}
 var surgeSpells = []string{"Earth Surge", "Water Surge", "Fire Surge", "Air Surge"}
 

@@ -21,7 +21,7 @@ func getEquipmentItems(items map[int]wikidata.ItemData) equipmentItems {
 		e.equipmentStats.defensiveStats.stab = item.DStab
 		e.equipmentStats.defensiveStats.slash = item.DSlash
 		e.equipmentStats.defensiveStats.crush = item.DCrush
-		e.equipmentStats.defensiveStats.magic = item.DMagic
+		e.equipmentStats.defensiveStats.Magic = item.DMagic
 		e.equipmentStats.defensiveStats.ranged = item.DRanged
 
 		e.equipmentStats.damageStats.meleeStrength = item.MeleeStrength
@@ -32,6 +32,7 @@ func getEquipmentItems(items map[int]wikidata.ItemData) equipmentItems {
 
 		e.name = item.Name
 		e.weaponStyle = item.WeaponCategory
+		e.is2H = item.Is2h
 
 		equipmentItems[id] = e
 	}

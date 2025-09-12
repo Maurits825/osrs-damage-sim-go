@@ -43,6 +43,11 @@ export const NEX_NPC_IDS: MultiNpcPreset = {
   ids: ['11278', '11283', '11284', '11285', '11286'],
 };
 
+export const ZULRAH_NPC_IDS: MultiNpcPreset = {
+  name: 'Zulrah',
+  ids: ['2042', '2043', '2044'],
+};
+
 export const ALL_MULTI_NPC_PRESETS: MultiNpcPreset[] = [
   TOB_NORMAL_NPC_IDS,
   TOB_HARD_NPC_IDS,
@@ -52,4 +57,5 @@ export const ALL_MULTI_NPC_PRESETS: MultiNpcPreset[] = [
   INFERNO_NPC_IDS,
   COLO_NPC_IDS,
   NEX_NPC_IDS,
+  ZULRAH_NPC_IDS,
 ];

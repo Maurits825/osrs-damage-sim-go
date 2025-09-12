@@ -4257,5 +4257,139 @@
       ],
       "enableDebugTrack": false
     }
+  },
+  "Eye ayak zulrah": {
+    "expectedDps": 10.864091,
+    "inputSetup": {
+      "multiNpcs": [],
+      "globalSettings": {
+        "npc": {
+          "name": "Zulrah (Serpentine/Ranged)",
+          "hitpoints": 500,
+          "att": 1,
+          "str": 1,
+          "def": 300,
+          "mage": 300,
+          "range": 300,
+          "amagic": 50,
+          "mbns": 20,
+          "arange": 50,
+          "rngbns": 20,
+          "dmagic": -45,
+          "dlight": 50,
+          "dstandard": 50,
+          "dheavy": 50,
+          "combat": 725,
+          "size": 5,
+          "elementalweaknesspercent": 50,
+          "elementalweaknesstype": "fire",
+          "id": "2042"
+        },
+        "teamSize": 1,
+        "raidLevel": 0,
+        "pathLevel": 0,
+        "overlyDraining": false,
+        "coxScaling": {
+          "partyMaxCombatLevel": 126,
+          "partyAvgMiningLevel": 99,
+          "partyMaxHpLevel": 99,
+          "isChallengeMode": false
+        }
+      },
+      "inputGearSetups": [
+        {
+          "gearSetupSettings": {
+            "statDrains": [],
+            "boosts": [
+              "saturated_heart"
+            ],
+            "combatStats": {
+              "attack": 99,
+              "strength": 99,
+              "ranged": 99,
+              "magic": 99,
+              "hitpoints": 99,
+              "defence": 99
+            },
+            "attackCycle": 0,
+            "trailblazerRelics": [],
+            "ragingEchoesSettings": {
+              "combatMasteries": {
+                "meleeTier": 0,
+                "rangeTier": 0,
+                "mageTier": 0
+              }
+            }
+          },
+          "gearSetup": {
+            "setupName": "Eye of ayak",
+            "presetName": null,
+            "gear": {
+              "0": {
+                "name": "Ancestral hat",
+                "id": 21018
+              },
+              "1": {
+                "name": "Imbued zamorak max cape",
+                "id": 21780
+              },
+              "2": {
+                "name": "Occult necklace",
+                "id": 12002
+              },
+              "3": {
+                "name": "Eye of ayak",
+                "id": 31113
+              },
+              "4": {
+                "name": "Twisted ancestral robe top",
+                "id": 24666
+              },
+              "5": {
+                "name": "Elidinis' ward (or)",
+                "id": 27253
+              },
+              "7": {
+                "name": "Twisted ancestral robe bottom",
+                "id": 24668
+              },
+              "9": {
+                "name": "Confliction gauntlets",
+                "id": 31106
+              },
+              "10": {
+                "name": "Avernic treads (max)",
+                "id": 31097
+              },
+              "12": {
+                "name": "Magus ring",
+                "id": 28313
+              },
+              "13": {
+                "name": "Rada's blessing 4",
+                "id": 22947
+              }
+            },
+            "blowpipeDarts": {
+              "name": "Dragon dart",
+              "id": 11230
+            },
+            "attackStyle": "Accurate (Magic/Accurate)",
+            "spell": null,
+            "isSpecial": false,
+            "prayers": [
+              "augury"
+            ],
+            "isOnSlayerTask": true,
+            "isInWilderness": true,
+            "currentHp": 1,
+            "miningLvl": 99,
+            "isKandarinDiary": true,
+            "isMarkOfDarkness": true
+          }
+        }
+      ],
+      "enableDebugTrack": true
+    }
   }
 }

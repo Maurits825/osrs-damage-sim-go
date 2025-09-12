@@ -21,13 +21,13 @@ export class LocalStorageService {
     this.gearSetupWatch$ = this.storage.watch(this.gearSetupKey).pipe(
       map((gearSetups) => gearSetups ?? []),
       map((gearSetups) => gearSetups as GearSetupPreset[]),
-      shareReplay(1)
+      shareReplay(1),
     );
 
     this.userSettingsWatch$ = this.storage.watch(this.userSettingsKey).pipe(
       map((userSettings) => (userSettings === undefined ? DEFAULT_USER_SETTINGS : (userSettings as UserSettings))),
       tap((userSettings) => this.userSettings$.next(userSettings)),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
@@ -41,9 +41,9 @@ export class LocalStorageService {
         iif(
           () => gearSetups.some((preset: GearSetupPreset) => preset.name === gearSetupPreset.name),
           of('Name already exists'),
-          this.storage.set(this.gearSetupKey, [...gearSetups, gearSetupPreset])
-        )
-      )
+          this.storage.set(this.gearSetupKey, [...gearSetups, gearSetupPreset]),
+        ),
+      ),
     );
   }
 
@@ -51,9 +51,9 @@ export class LocalStorageService {
     this.getSavedGearSetups()
       .pipe(
         map((gearSetups: GearSetupPreset[]) =>
-          gearSetups.filter((gearSetup: GearSetupPreset) => gearSetup.name !== setupName)
+          gearSetups.filter((gearSetup: GearSetupPreset) => gearSetup.name !== setupName),
         ),
-        switchMap((gearSetups: GearSetupPreset[]) => this.storage.set(this.gearSetupKey, gearSetups))
+        switchMap((gearSetups: GearSetupPreset[]) => this.storage.set(this.gearSetupKey, gearSetups)),
       )
       .subscribe();
   }
@@ -69,7 +69,7 @@ export class LocalStorageService {
   private getSavedGearSetups(): Observable<GearSetupPreset[]> {
     return this.storage.get(this.gearSetupKey).pipe(
       map((gearSetups) => gearSetups ?? []),
-      map((gearSetups) => gearSetups as GearSetupPreset[])
+      map((gearSetups) => gearSetups as GearSetupPreset[]),
     );
   }
 
@@ -96,6 +96,7 @@ export class LocalStorageService {
       attackType: gearSetup.gear[GearSlot.Weapon]?.attackType ?? 'melee',
       attackStyle: gearSetup.attackStyle,
       spell: gearSetup.spell,
+      blowpipeDarts: gearSetup.blowpipeDarts.id,
     };
   }
 }

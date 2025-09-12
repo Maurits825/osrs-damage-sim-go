@@ -33,6 +33,7 @@ export class JsonParseService {
       pathLevel: globalSettings.pathLevel,
       overlyDraining: globalSettings.overlyDraining || false,
       teamSize: globalSettings.teamSize,
+      accuracyBuff: globalSettings.accuracyBuff || false,
       coxScaling: globalSettings.coxScaling,
     };
   }

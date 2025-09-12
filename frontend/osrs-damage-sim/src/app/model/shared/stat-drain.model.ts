@@ -8,6 +8,7 @@ export const allStatDrains = [
   'Accursed sceptre',
   'Barrelchest anchor',
   'Ralos',
+  'Eye of ayak',
 ] as const;
 
 export type StatDrainItem = (typeof allStatDrains)[number];
@@ -31,6 +32,7 @@ export const statDrainLabels: StatDrainLabel = {
   'Accursed sceptre': 'Hits',
   'Barrelchest anchor': 'Damage',
   Ralos: 'Hits',
+  'Eye of ayak': 'Damage',
 };
 
 export const DEFAULT_STAT_DRAIN: StatDrain = {

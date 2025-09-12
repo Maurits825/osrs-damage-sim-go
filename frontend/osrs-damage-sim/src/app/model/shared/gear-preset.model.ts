@@ -8,4 +8,5 @@ export interface GearSetupPreset {
   attackType: AttackType;
   attackStyle?: string;
   spell?: string;
+  blowpipeDarts: number;
 }

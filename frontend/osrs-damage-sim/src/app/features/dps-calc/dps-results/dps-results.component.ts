@@ -53,8 +53,8 @@ export class DpsResultsComponent implements OnChanges {
   getBestValues(dpsCalcResults: DpsCalcResults[]): BestResultsIndex[] {
     const bestIndices: BestResultsIndex[] = [];
     for (let i = 0; i < dpsCalcResults.length; i++) {
-      bestIndices.push({ dps: 0, accuracy: 0, maxHit: 0 });
-      const bestValues: BestResultsIndex = { dps: 0, accuracy: 0, maxHit: 0 };
+      bestIndices.push({ dps: 0, accuracy: 0, maxHit: 0, expectedHit: 0 });
+      const bestValues: BestResultsIndex = { dps: 0, accuracy: 0, maxHit: 0, expectedHit: 0 };
 
       for (let j = 0; j < dpsCalcResults[i].results.length; j++) {
         const dpsResults = dpsCalcResults[i].results[j];
@@ -65,6 +65,10 @@ export class DpsResultsComponent implements OnChanges {
         if (dpsResults.accuracy > bestValues.accuracy) {
           bestValues.accuracy = dpsResults.accuracy;
           bestIndices[i].accuracy = j;
+        }
+        if (dpsResults.expectedHit > bestValues.expectedHit) {
+          bestValues.expectedHit = dpsResults.expectedHit;
+          bestIndices[i].expectedHit = j;
         }
 
         const maxHit = dpsResults.maxHit.reduce((a, b) => a + b, 0);
