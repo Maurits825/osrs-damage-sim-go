@@ -39490,30 +39490,6 @@
   "rstr": 2,
   "prayer": 1
  },
- "26237": {
-  "name": "Zaryte bow",
-  "weight": 2.0,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 100,
-  "rstr": 10,
-  "prayer": 2,
-  "aspeed": 4,
-  "weaponCategory": "BOW"
- },
- "26239": {
-  "name": "Zaryte bow",
-  "weight": 2.0,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 100,
-  "rstr": 10,
-  "prayer": 2,
-  "aspeed": 4,
-  "weaponCategory": "BOW"
- },
  "26241": {
   "name": "Virtus mask",
   "weight": 1.206,
