@@ -37434,6 +37434,12 @@
   "equipable": true,
   "slot": 10
  },
+ "25102": {
+  "name": "Fairy mushroom",
+  "weight": 0.002,
+  "equipable": true,
+  "slot": 5
+ },
  "25106": {
   "name": "Extradimensional bag",
   "weight": 0.5,
@@ -37445,6 +37451,30 @@
   "weight": 0.5,
   "equipable": true,
   "slot": 1
+ },
+ "25110": {
+  "name": "Echo axe",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 5,
+  "weaponCategory": "AXE"
+ },
+ "25112": {
+  "name": "Echo pickaxe",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 5,
+  "weaponCategory": "PICKAXE"
+ },
+ "25114": {
+  "name": "Echo harpoon",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 5,
+  "weaponCategory": "STAB_SWORD"
  },
  "25129": {
   "name": "Beekeeper's hat",
@@ -40057,6 +40087,14 @@
   "slot": 10,
   "amagic": 3,
   "dmagic": 3
+ },
+ "26551": {
+  "name": "Arcane grimoire",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 6,
+  "prayer": 3
  },
  "26649": {
   "name": "Skis",
@@ -46320,6 +46358,11 @@
   "equipable": true,
   "slot": 5
  },
+ "28771": {
+  "name": "Sage's greaves",
+  "equipable": true,
+  "slot": 10
+ },
  "28786": {
   "name": "Icy jumper",
   "weight": 0.3,
@@ -48351,6 +48394,176 @@
   "aspeed": 5,
   "weaponCategory": "AXE"
  },
+ "30361": {
+  "name": "Banker's briefcase",
+  "weight": 0.05,
+  "equipable": true,
+  "slot": 1
+ },
+ "30367": {
+  "name": "The dogsword",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "aslash": 132,
+  "acrush": 80,
+  "str": 132,
+  "prayer": 8,
+  "aspeed": 6,
+  "weaponCategory": "TWO_HANDED_SWORD"
+ },
+ "30369": {
+  "name": "Sunlight spear",
+  "weight": 4.535,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 125,
+  "aslash": 75,
+  "dstab": 70,
+  "dslash": 70,
+  "dcrush": 70,
+  "dmagic": 28,
+  "drange": 70,
+  "str": 113,
+  "aspeed": 5,
+  "weaponCategory": "STAB_SWORD"
+ },
+ "30371": {
+  "name": "Devil's element",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 20,
+  "prayer": 3,
+  "mdmg": 6.0
+ },
+ "30373": {
+  "name": "Drygore blowpipe",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 50,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
+ },
+ "30374": {
+  "name": "Drygore blowpipe",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 50,
+  "rstr": 10,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
+ },
+ "30376": {
+  "name": "Amulet of the monarchs",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2,
+  "astab": 30,
+  "aslash": 30,
+  "acrush": 30,
+  "amagic": 30,
+  "arange": 30,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 30,
+  "dmagic": 30,
+  "drange": 30,
+  "str": 15,
+  "rstr": 15,
+  "prayer": 10,
+  "mdmg": 10.0
+ },
+ "30378": {
+  "name": "Emperor ring",
+  "weight": 0.004,
+  "equipable": true,
+  "slot": 12,
+  "astab": 30,
+  "aslash": 30,
+  "acrush": 30,
+  "amagic": 30,
+  "arange": 30,
+  "dstab": 30,
+  "dslash": 30,
+  "dcrush": 30,
+  "dmagic": 30,
+  "drange": 30,
+  "str": 15,
+  "rstr": 15,
+  "prayer": 10,
+  "mdmg": 5.0
+ },
+ "30380": {
+  "name": "Gloves of the damned",
+  "weight": 0.226,
+  "equipable": true,
+  "slot": 9,
+  "astab": 12,
+  "aslash": 12,
+  "acrush": 12,
+  "amagic": 6,
+  "arange": 12,
+  "dstab": 12,
+  "dslash": 12,
+  "dcrush": 12,
+  "dmagic": 6,
+  "drange": 12,
+  "str": 12
+ },
+ "30382": {
+  "name": "Thousand-dragon ward",
+  "weight": 7.257,
+  "equipable": true,
+  "slot": 5,
+  "astab": 35,
+  "aslash": 35,
+  "acrush": 35,
+  "amagic": 15,
+  "arange": 25,
+  "dstab": 50,
+  "dslash": 55,
+  "dcrush": 53,
+  "dmagic": 40,
+  "drange": 52,
+  "str": 12,
+  "prayer": 6
+ },
+ "30386": {
+  "name": "Sunlit bracers",
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 9,
+  "astab": 10,
+  "aslash": 10,
+  "acrush": 10,
+  "amagic": 6,
+  "arange": 18,
+  "dstab": 12,
+  "dslash": 12,
+  "dcrush": 12,
+  "dmagic": 6,
+  "drange": 12,
+  "str": 8,
+  "rstr": 4
+ },
+ "30388": {
+  "name": "Thunder khopesh",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "astab": 65,
+  "aslash": 110,
+  "str": 100,
+  "aspeed": 4,
+  "weaponCategory": "SLASH_SWORD"
+ },
  "30404": {
   "name": "Raging echoes hat (t1)",
   "weight": 0.453,
@@ -49518,6 +49731,100 @@
   "is2h": true,
   "aspeed": 5,
   "weaponCategory": "BOW"
+ },
+ "31172": {
+  "name": "Battlehat",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "astab": 15,
+  "aslash": 15,
+  "acrush": 15,
+  "amagic": 15,
+  "arange": 15,
+  "dstab": 60,
+  "dslash": 60,
+  "dcrush": 60,
+  "dmagic": 60,
+  "drange": 60,
+  "str": 10,
+  "rstr": 5,
+  "prayer": 10,
+  "mdmg": 5.0
+ },
+ "31181": {
+  "name": "Grid master tabard",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 4
+ },
+ "31184": {
+  "name": "Grid master tabard (b)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 4
+ },
+ "31187": {
+  "name": "Grid master tabard (p)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 4
+ },
+ "31190": {
+  "name": "Grid master tabard (g)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 4
+ },
+ "31193": {
+  "name": "Swords and emblem",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 1
+ },
+ "31196": {
+  "name": "Swords and emblem (b)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 1
+ },
+ "31199": {
+  "name": "Swords and emblem (p)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 1
+ },
+ "31202": {
+  "name": "Swords and emblem (g)",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 1
+ },
+ "31227": {
+  "name": "Spooky pumpkin lantern",
+  "weight": 0.07,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "31229": {
+  "name": "Grim reaper top",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "31231": {
+  "name": "Grim reaper bottoms",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7
+ },
+ "31233": {
+  "name": "Grim reaper gloves",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 9
  },
  "31780": {
   "name": "Nifty hat",
