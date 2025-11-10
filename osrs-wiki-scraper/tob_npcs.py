@@ -34,6 +34,9 @@ class TobNpcs:
 
         doc = {"__source__": source}
         tob_mode = version.get("smwname") if "Verzik" in str(version["name"]).strip() else npc_version
+        if not tob_mode:
+            tob_mode = version.get("bucketname")
+
         attributes = str(version.get("attributes", "")).strip()
         if "Entry" in tob_mode:
             version["attributes"] = attributes + ",TobEntryMode"
@@ -57,6 +60,6 @@ class TobNpcs:
         elif "Big" in npc_version:
             name += " " + "(big)"
         elif "Verzik" in name:
-            name += " (" + re.sub("^.*phase ", "p", str(version.get("smwname", "").strip().lower())) + ")"
+            name += " (" + re.sub("^.*phase ", "p", str(version.get("bucketname", "").strip().lower())) + ")"
 
         return doc, name

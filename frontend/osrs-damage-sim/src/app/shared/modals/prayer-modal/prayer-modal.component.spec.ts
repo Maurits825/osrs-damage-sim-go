@@ -20,7 +20,6 @@ describe('PrayerModalComponent', () => {
     fixture = TestBed.createComponent(PrayerModalComponent);
     component = fixture.componentInstance;
     component.selectedPrayers = new Set<Prayer>();
-    component.disabledPrayers = new Set<Prayer>();
     fixture.detectChanges();
   });
 
