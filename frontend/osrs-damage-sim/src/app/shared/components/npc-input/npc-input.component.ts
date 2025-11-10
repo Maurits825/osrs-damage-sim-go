@@ -60,7 +60,7 @@ export class NpcInputComponent implements OnInit, OnChanges {
     if (TOA_PATH_LVL_NPCS.includes(npcName)) {
       this.showPathLevel = true;
       this.showRaidLevel = true;
-    } else if (TOA_NPCS.includes(npcName)) {
+    } else if (TOA_NPCS.find((n) => npcName.includes(n))) {
       this.showRaidLevel = true;
       this.npcInfo.pathLevel = 0;
     } else {
