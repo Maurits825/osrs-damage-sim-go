@@ -6,8 +6,8 @@
 <div class="modal-body">
   <div class="d-flex mb-3" *ngFor="let row of rows">
     <div class="mx-2" *ngFor="let col of cols">
-      <ng-container *ngIf="allPrayers[row * 5 + col]; let prayer">
-        <div [class.prayer-active]="selectedPrayers.has(prayer)" [class.prayer-disabled]="disabledPrayers.has(prayer)">
+      <ng-container *ngIf="allPrayers[row * 4 + col]; let prayer">
+        <div [class.prayer-active]="selectedPrayers.has(prayer)">
           <img
             class="center-img"
             src="assets/img/prayer/{{ prayer }}.png"

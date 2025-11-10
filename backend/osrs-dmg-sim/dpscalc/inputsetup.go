@@ -96,6 +96,8 @@ const (
 	PietyPrayer               Prayer = "piety"
 	RigourPrayer              Prayer = "rigour"
 	AuguryPrayer              Prayer = "augury"
+	Deadeye                   Prayer = "deadeye"
+	MysticVigour              Prayer = "mystic_vigour"
 )
 
 type GearSetup struct {
