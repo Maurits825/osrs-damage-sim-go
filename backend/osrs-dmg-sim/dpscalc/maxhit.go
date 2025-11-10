@@ -191,7 +191,7 @@ func getRangedMaxHit(player *Player) int {
 	}
 
 	if player.equippedGear.isEquipped(scorchingBow) && player.Npc.IsDemon {
-		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 60)
+		demonFactor := getDemonbaneFactor(player.Npc.demonbaneVulnerability, 30)
 		maxHit = dpsDetailEntries.TrackAddFactor(dpsdetail.MaxHitDemonbane, maxHit, demonFactor.numerator, demonFactor.denominator)
 	}
 
