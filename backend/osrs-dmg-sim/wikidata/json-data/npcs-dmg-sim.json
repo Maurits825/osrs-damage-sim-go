@@ -7342,7 +7342,9 @@
   "dcrush": -5,
   "drange": 5,
   "combat": 13,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth"
  },
  "925": {
   "name": "Rock",
@@ -7840,6 +7842,7 @@
   "dheavy": 50,
   "combat": 141,
   "size": 4,
+  "respawn": 20,
   "elementalweaknesspercent": 40,
   "elementalweaknesstype": "fire"
  },
@@ -7861,6 +7864,7 @@
   "dheavy": 50,
   "combat": 141,
   "size": 4,
+  "respawn": 20,
   "elementalweaknesspercent": 40,
   "elementalweaknesstype": "fire"
  },
@@ -7902,6 +7906,7 @@
   "dheavy": 50,
   "combat": 141,
   "size": 4,
+  "respawn": 20,
   "elementalweaknesspercent": 40,
   "elementalweaknesstype": "fire"
  },
@@ -8783,7 +8788,9 @@
   "range": 1,
   "combat": 90,
   "size": 2,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "1098": {
   "name": "Sea Snake Hatchling",
@@ -8795,7 +8802,9 @@
   "range": 1,
   "combat": 62,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "1101": {
   "name": "Giant Sea Snake",
@@ -8806,7 +8815,9 @@
   "mage": 1,
   "range": 130,
   "combat": 149,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "1118": {
   "name": "Man",
@@ -9228,7 +9239,9 @@
   "dcrush": 15,
   "drange": 5,
   "combat": 44,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire"
  },
  "1227": {
   "name": "Arzinian Avatar of Strength",
@@ -9311,18 +9324,18 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 200,
   "att": 10,
-  "str": 1,
+  "str": 100,
   "def": 130,
-  "mage": 1,
+  "mage": 150,
   "size": 1
  },
  "1234": {
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 100,
   "att": 10,
-  "str": 1,
-  "def": 1,
-  "mage": 1,
+  "str": 90,
+  "def": 120,
+  "mage": 120,
   "dstab": 80,
   "dslash": 80,
   "dcrush": 80,
@@ -9335,9 +9348,9 @@
   "name": "Arzinian Avatar of Magic",
   "hitpoints": 70,
   "att": 10,
-  "str": 1,
-  "def": 1,
-  "mage": 1,
+  "str": 50,
+  "def": 75,
+  "mage": 75,
   "dstab": 40,
   "dslash": 40,
   "dcrush": 40,
@@ -10733,7 +10746,7 @@
   "att": 85,
   "str": 98,
   "def": 105,
-  "mage": 80,
+  "mage": 400,
   "range": 1,
   "combat": 112,
   "size": 3
@@ -11680,7 +11693,7 @@
  },
  "1722": {
   "name": "Torcher",
-  "hitpoints": 71,
+  "hitpoints": 70,
   "def": 89,
   "mage": 107,
   "combat": 91,
@@ -12825,7 +12838,6 @@
   "def": 1,
   "mage": 185,
   "range": 1,
-  "attbns": 120,
   "amagic": 80,
   "mbns": -20,
   "dstab": -40,
@@ -17330,15 +17342,15 @@
   "respawn": 30
  },
  "2847": {
-  "name": "Skeleton",
-  "hitpoints": 60,
-  "att": 30,
-  "str": 24,
-  "def": 24,
+  "name": "Yeti",
+  "hitpoints": 55,
+  "att": 48,
+  "str": 60,
+  "def": 39,
   "mage": 1,
   "range": 1,
-  "combat": 35,
-  "size": 2
+  "combat": 58,
+  "size": 3
  },
  "2848": {
   "name": "Monkey",
@@ -19440,7 +19452,9 @@
   "drange": -42,
   "combat": 7,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "water"
  },
  "3135": {
   "name": "Werewolf",
@@ -21239,7 +21253,9 @@
   "dslash": 60,
   "dcrush": 35,
   "combat": 154,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "fire"
  },
  "3459": {
   "name": "Dessous",
@@ -21704,7 +21720,9 @@
   "dmagic": -5,
   "drange": 5,
   "combat": 95,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "air"
  },
  "3625": {
   "name": "Ghost",
@@ -23200,7 +23218,9 @@
   "mage": 160,
   "range": 160,
   "combat": 187,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "water"
  },
  "3963": {
   "name": "Viyeldi",
@@ -23229,7 +23249,9 @@
   "drange": 20,
   "combat": 106,
   "size": 1,
-  "respawn": 26
+  "respawn": 26,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "air"
  },
  "3965": {
   "name": "Irvig Senay",
@@ -23247,7 +23269,9 @@
   "drange": 29,
   "combat": 100,
   "size": 1,
-  "respawn": 51
+  "respawn": 51,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "air"
  },
  "3966": {
   "name": "Ranalph Devere",
@@ -23264,7 +23288,9 @@
   "drange": 38,
   "combat": 92,
   "size": 1,
-  "respawn": 51
+  "respawn": 51,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "air"
  },
  "3969": {
   "name": "Zombie rat",
@@ -23332,7 +23358,9 @@
   "drange": 4,
   "combat": 22,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth"
  },
  "3973": {
   "name": "Skeleton",
@@ -23352,7 +23380,9 @@
   "drange": 4,
   "combat": 22,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth"
  },
  "3974": {
   "name": "Skeleton",
@@ -23372,7 +23402,9 @@
   "drange": 4,
   "combat": 22,
   "size": 1,
-  "respawn": 60
+  "respawn": 60,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth"
  },
  "3975": {
   "name": "Ghost",
@@ -23391,7 +23423,9 @@
   "drange": 5,
   "combat": 19,
   "size": 1,
-  "respawn": 40
+  "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "3976": {
   "name": "Ghost",
@@ -23410,7 +23444,9 @@
   "drange": 5,
   "combat": 19,
   "size": 1,
-  "respawn": 40
+  "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "3977": {
   "name": "Ghost",
@@ -23429,7 +23465,9 @@
   "drange": 5,
   "combat": 19,
   "size": 1,
-  "respawn": 40
+  "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "3978": {
   "name": "Ghost",
@@ -23448,7 +23486,9 @@
   "drange": 5,
   "combat": 19,
   "size": 1,
-  "respawn": 40
+  "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "3979": {
   "name": "Ghost",
@@ -23467,7 +23507,9 @@
   "drange": 5,
   "combat": 19,
   "size": 1,
-  "respawn": 40
+  "respawn": 40,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "3980": {
   "name": "Zombie",
@@ -23487,7 +23529,9 @@
   "drange": 11,
   "combat": 24,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "3981": {
   "name": "Zombie",
@@ -23507,7 +23551,9 @@
   "drange": 11,
   "combat": 24,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "3982": {
   "name": "Lesser demon",
@@ -23521,7 +23567,9 @@
   "dmagic": -10,
   "combat": 82,
   "size": 2,
-  "respawn": 30
+  "respawn": 30,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "3996": {
   "name": "Witch's experiment",
@@ -24087,7 +24135,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4124": {
   "name": "Troll spectator",
@@ -24102,7 +24152,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4125": {
   "name": "Troll spectator",
@@ -24117,7 +24169,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4126": {
   "name": "Troll spectator",
@@ -24132,7 +24186,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4127": {
   "name": "Troll spectator",
@@ -24147,7 +24203,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4128": {
   "name": "Troll spectator",
@@ -24162,7 +24220,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4129": {
   "name": "Troll spectator",
@@ -24177,7 +24237,9 @@
   "drange": 200,
   "combat": 71,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
  },
  "4130": {
   "name": "Dad",
@@ -25778,8 +25840,8 @@
   "isUndead": true,
   "hitpoints": 60,
   "att": 100,
-  "str": 82,
-  "def": 100,
+  "str": 100,
+  "def": 82,
   "mage": 1,
   "range": 1,
   "combat": 100,
@@ -25813,7 +25875,9 @@
   "drange": 8,
   "combat": 27,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "air"
  },
  "4522": {
   "name": "Guard",
@@ -26670,10 +26734,14 @@
   "dslash": 30,
   "dcrush": 15,
   "dmagic": 99,
-  "drange": 70,
+  "dlight": 70,
+  "dstandard": 50,
+  "dheavy": 70,
   "combat": 45,
   "size": 2,
-  "respawn": 25
+  "respawn": 25,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth"
  },
  "4800": {
   "name": "Giant Lobster",
@@ -26687,10 +26755,14 @@
   "dslash": 30,
   "dcrush": 15,
   "dmagic": 99,
-  "drange": 70,
+  "dlight": 70,
+  "dstandard": 50,
+  "dheavy": 70,
   "combat": 45,
   "size": 2,
-  "respawn": 25
+  "respawn": 25,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth"
  },
  "4805": {
   "name": "Hobgoblin",
@@ -28850,15 +28922,19 @@
  },
  "5353": {
   "name": "Nazastarool",
+  "isUndead": true,
   "hitpoints": 70,
   "att": 85,
   "str": 80,
   "def": 80,
   "combat": 91,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire"
  },
  "5354": {
   "name": "Nazastarool",
+  "isUndead": true,
   "hitpoints": 70,
   "att": 58,
   "str": 54,
@@ -28871,17 +28947,22 @@
   "dmagic": 5,
   "drange": 5,
   "combat": 68,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "5355": {
   "name": "Nazastarool",
+  "isUndead": true,
   "isSpectral": true,
   "hitpoints": 80,
   "att": 85,
   "str": 80,
   "def": 80,
   "combat": 93,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "air"
  },
  "5369": {
   "name": "Goblin guard",
@@ -32006,7 +32087,7 @@
   "str": 1,
   "def": 1,
   "mage": 1,
-  "range": 1,
+  "range": 5,
   "attbns": -42,
   "strbns": -42,
   "rngbns": 2,
@@ -32015,7 +32096,7 @@
   "dcrush": -42,
   "dmagic": -42,
   "drange": -42,
-  "combat": 1,
+  "combat": 3,
   "size": 1,
   "respawn": 60
  },
@@ -32496,16 +32577,15 @@
   "str": 1,
   "def": 1,
   "mage": 1,
-  "range": 5,
+  "range": 1,
   "attbns": -42,
   "strbns": -42,
-  "rngbns": 2,
   "dstab": -42,
   "dslash": -42,
   "dcrush": -42,
   "dmagic": -42,
   "drange": -42,
-  "combat": 3,
+  "combat": 1,
   "size": 1,
   "respawn": 60
  },
@@ -32516,15 +32596,17 @@
   "str": 1,
   "def": 1,
   "mage": 1,
+  "range": 1,
   "attbns": -42,
   "strbns": -42,
-  "rngbns": 2,
   "dstab": -42,
   "dslash": -42,
   "dcrush": -42,
   "dmagic": -42,
   "drange": -42,
-  "size": 1
+  "combat": 1,
+  "size": 1,
+  "respawn": 60
  },
  "6096": {
   "name": "Gnome",
@@ -32533,15 +32615,17 @@
   "str": 1,
   "def": 1,
   "mage": 1,
+  "range": 1,
   "attbns": -42,
   "strbns": -42,
-  "rngbns": 2,
   "dstab": -42,
   "dslash": -42,
   "dcrush": -42,
   "dmagic": -42,
   "drange": -42,
-  "size": 1
+  "combat": 1,
+  "size": 1,
+  "respawn": 60
  },
  "6097": {
   "name": "Gnome Archer",
@@ -33198,7 +33282,7 @@
   "size": 3
  },
  "6318": {
-  "name": "Nezikchened",
+  "name": "Nezikchened (hard)",
   "isDemon": true,
   "hitpoints": 150,
   "att": 330,
@@ -34141,7 +34225,9 @@
   "mage": 160,
   "range": 160,
   "combat": 187,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 10,
+  "elementalweaknesstype": "water"
  },
  "6380": {
   "name": "Tree spirit",
@@ -34835,7 +34921,9 @@
   "drange": 10,
   "combat": 40,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6450": {
   "name": "Zombie",
@@ -34851,7 +34939,9 @@
   "dslash": 20,
   "drange": 10,
   "combat": 42,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6451": {
   "name": "Zombie",
@@ -34868,7 +34958,9 @@
   "drange": 10,
   "combat": 47,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6452": {
   "name": "Zombie",
@@ -34885,7 +34977,9 @@
   "drange": 10,
   "combat": 50,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6453": {
   "name": "Zombie",
@@ -34902,7 +34996,9 @@
   "drange": 10,
   "combat": 56,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6454": {
   "name": "Zombie",
@@ -34919,7 +35015,9 @@
   "drange": 10,
   "combat": 61,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6455": {
   "name": "Zombie",
@@ -34936,7 +35034,9 @@
   "drange": 10,
   "combat": 67,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6456": {
   "name": "Zombie",
@@ -34953,7 +35053,9 @@
   "drange": 10,
   "combat": 70,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6457": {
   "name": "Zombie",
@@ -34970,7 +35072,9 @@
   "drange": 10,
   "combat": 72,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6458": {
   "name": "Zombie",
@@ -34987,7 +35091,9 @@
   "drange": 10,
   "combat": 76,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6459": {
   "name": "Zombie",
@@ -35004,7 +35110,9 @@
   "drange": 10,
   "combat": 80,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6460": {
   "name": "Zombie",
@@ -35021,7 +35129,9 @@
   "drange": 10,
   "combat": 85,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6461": {
   "name": "Zombie",
@@ -35038,7 +35148,9 @@
   "drange": 10,
   "combat": 86,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6462": {
   "name": "Zombie",
@@ -35055,7 +35167,9 @@
   "drange": 10,
   "combat": 90,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6463": {
   "name": "Zombie",
@@ -35071,7 +35185,9 @@
   "dslash": 20,
   "drange": 10,
   "combat": 95,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6464": {
   "name": "Zombie",
@@ -35087,7 +35203,9 @@
   "dslash": 20,
   "drange": 10,
   "combat": 98,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6465": {
   "name": "Zombie",
@@ -35104,7 +35222,9 @@
   "drange": 10,
   "combat": 100,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6466": {
   "name": "Zombie",
@@ -35121,7 +35241,9 @@
   "drange": 10,
   "combat": 81,
   "size": 1,
-  "respawn": 50
+  "respawn": 50,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "6467": {
   "name": "Skeleton",
@@ -38771,7 +38893,9 @@
   "dslash": 43,
   "dcrush": 23,
   "dmagic": 24,
-  "drange": 40,
+  "dlight": 40,
+  "dstandard": 20,
+  "dheavy": 40,
   "combat": 68,
   "size": 3
  },
@@ -38870,9 +38994,7 @@
   "dslash": 35,
   "dmagic": 35,
   "combat": 135,
-  "size": 3,
-  "elementalweaknesspercent": 40,
-  "elementalweaknesstype": "earth"
+  "size": 3
  },
  "7396": {
   "name": "Malevolent Mage",
@@ -38919,10 +39041,12 @@
   "mage": 150,
   "range": 1,
   "combat": 206,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth"
  },
  "7400": {
-  "name": "Vitreous warped Jelly",
+  "name": "Vitreous Warped Jelly",
   "hitpoints": 220,
   "att": 200,
   "str": 180,
@@ -38930,7 +39054,9 @@
   "mage": 180,
   "range": 1,
   "combat": 241,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth"
  },
  "7401": {
   "name": "Cave abomination",
@@ -38956,7 +39082,9 @@
   "dstab": 40,
   "dslash": 40,
   "dcrush": 40,
-  "drange": 30,
+  "dlight": 30,
+  "dstandard": -30,
+  "dheavy": 30,
   "combat": 253,
   "size": 3,
   "elementalweaknesspercent": 50,
@@ -38966,7 +39094,7 @@
   "name": "Repugnant spectre",
   "isUndead": true,
   "isSpectral": true,
-  "hitpoints": 390,
+  "hitpoints": 380,
   "att": 1,
   "str": 1,
   "def": 220,
@@ -38977,7 +39105,9 @@
   "dcrush": 120,
   "drange": 115,
   "combat": 335,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "air"
  },
  "7404": {
   "name": "Choke devil",
@@ -38989,13 +39119,13 @@
   "range": 1,
   "combat": 264,
   "size": 2,
-  "elementalweaknesspercent": 35,
+  "elementalweaknesspercent": 25,
   "elementalweaknesstype": "air"
  },
  "7405": {
   "name": "King kurask",
   "isLeafy": true,
-  "hitpoints": 420,
+  "hitpoints": 270,
   "att": 190,
   "str": 320,
   "def": 250,
@@ -39017,7 +39147,9 @@
   "dmagic": 850,
   "drange": 80,
   "combat": 280,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "air"
  },
  "7407": {
   "name": "Marble gargoyle",
@@ -39034,7 +39166,9 @@
   "dmagic": 50,
   "drange": 50,
   "combat": 349,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "7408": {
   "name": "Marble gargoyle",
@@ -39051,7 +39185,9 @@
   "dmagic": 50,
   "drange": 50,
   "combat": 349,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "7409": {
   "name": "Night beast",
@@ -40055,7 +40191,9 @@
   "dmagic": 25,
   "drange": 25,
   "combat": 165,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7694": {
   "name": "Jal-AkRek-Mej",
@@ -40069,7 +40207,9 @@
   "mbns": 25,
   "dmagic": 25,
   "combat": 70,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7695": {
   "name": "Jal-AkRek-Xil",
@@ -40083,7 +40223,9 @@
   "rngbns": 25,
   "drange": 25,
   "combat": 70,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7696": {
   "name": "Jal-AkRek-Ket",
@@ -40098,7 +40240,9 @@
   "dslash": 25,
   "dcrush": 25,
   "combat": 70,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7697": {
   "name": "Jal-ImKot",
@@ -40115,7 +40259,9 @@
   "dmagic": 30,
   "drange": 50,
   "combat": 240,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7698": {
   "name": "Jal-Xil",
@@ -40128,7 +40274,9 @@
   "arange": 40,
   "rngbns": 50,
   "combat": 370,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7699": {
   "name": "Jal-Zek",
@@ -40140,7 +40288,9 @@
   "range": 510,
   "amagic": 80,
   "combat": 490,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7700": {
   "name": "JalTok-Jad",
@@ -40184,7 +40334,9 @@
   "arange": 40,
   "rngbns": 50,
   "combat": 370,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7703": {
   "name": "Jal-Zek",
@@ -40196,7 +40348,9 @@
   "range": 510,
   "amagic": 80,
   "combat": 490,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "water"
  },
  "7704": {
   "name": "JalTok-Jad",
@@ -42627,6 +42781,17 @@
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
+ "8139": {
+  "name": "Skeleton",
+  "hitpoints": 60,
+  "att": 30,
+  "str": 24,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "combat": 35,
+  "size": 2
+ },
  "8149": {
   "name": "White Knight",
   "hitpoints": 52,
@@ -43248,7 +43413,9 @@
   "mbns": 928,
   "rngbns": -15,
   "combat": 162,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8343": {
   "name": "Nylocas Toxobolos (small)",
@@ -43263,7 +43430,9 @@
   "mbns": 928,
   "rngbns": -15,
   "combat": 162,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8344": {
   "name": "Nylocas Hagios (small)",
@@ -43278,7 +43447,9 @@
   "mbns": 928,
   "rngbns": -15,
   "combat": 162,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8345": {
   "name": "Nylocas Ischyros (big)",
@@ -43292,7 +43463,9 @@
   "amagic": 500,
   "mbns": 500,
   "combat": 260,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8346": {
   "name": "Nylocas Toxobolos (big)",
@@ -43306,7 +43479,9 @@
   "amagic": 500,
   "mbns": 500,
   "combat": 260,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8347": {
   "name": "Nylocas Hagios (big)",
@@ -43320,7 +43495,9 @@
   "amagic": 500,
   "mbns": 500,
   "combat": 260,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8354": {
   "name": "Nylocas Vasilias",
@@ -43336,7 +43513,9 @@
   "mbns": 600,
   "rngbns": 60,
   "combat": 800,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8359": {
   "name": "Pestilent Bloat",
@@ -43383,7 +43562,9 @@
   "mage": 100,
   "range": 100,
   "combat": 115,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8367": {
   "name": "Blood spawn",
@@ -43395,73 +43576,6 @@
   "combat": 55,
   "size": 1
  },
- "8369": {
-  "name": "Verzik Vitur (p1)",
-  "isTobNormalMode": true,
-  "hitpoints": 2000,
-  "att": 400,
-  "str": 400,
-  "def": 20,
-  "mage": 400,
-  "range": 400,
-  "amagic": 80,
-  "mbns": 150,
-  "arange": 80,
-  "rngbns": 80,
-  "dstab": 20,
-  "dslash": 20,
-  "dcrush": 20,
-  "dmagic": 20,
-  "drange": 20,
-  "combat": 1040,
-  "size": 5
- },
- "8372": {
-  "name": "Verzik Vitur (p2)",
-  "isTobNormalMode": true,
-  "hitpoints": 3500,
-  "att": 400,
-  "str": 400,
-  "def": 200,
-  "mage": 400,
-  "range": 400,
-  "amagic": 80,
-  "mbns": 80,
-  "arange": 80,
-  "rngbns": 80,
-  "dstab": 100,
-  "dslash": 60,
-  "dcrush": 100,
-  "dmagic": 70,
-  "drange": 250,
-  "combat": 1265,
-  "size": 3
- },
- "8374": {
-  "name": "Verzik Vitur (p3)",
-  "isTobNormalMode": true,
-  "hitpoints": 3500,
-  "att": 400,
-  "str": 400,
-  "def": 150,
-  "mage": 300,
-  "range": 300,
-  "attbns": 80,
-  "strbns": 30,
-  "amagic": 80,
-  "mbns": 5,
-  "arange": 80,
-  "rngbns": 5,
-  "dstab": 70,
-  "dslash": 30,
-  "dcrush": 70,
-  "dmagic": 100,
-  "drange": 230,
-  "combat": 1520,
-  "size": 7,
-  "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire"
- },
  "8385": {
   "name": "Nylocas Matomenos",
   "isTobNormalMode": true,
@@ -43472,7 +43586,9 @@
   "mage": 50,
   "range": 1,
   "combat": 115,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "8387": {
   "name": "Sotetseg",
@@ -44722,23 +44838,6 @@
   "size": 1,
   "respawn": 25
  },
- "8858": {
-  "name": "Man",
-  "hitpoints": 7,
-  "att": 1,
-  "str": 1,
-  "def": 1,
-  "mage": 1,
-  "range": 1,
-  "dstab": -21,
-  "dslash": -21,
-  "dcrush": -21,
-  "dmagic": -21,
-  "drange": -21,
-  "combat": 2,
-  "size": 1,
-  "respawn": 25
- },
  "8865": {
   "name": "Arianwyn",
   "hitpoints": 300,
@@ -45861,7 +45960,9 @@
   "dslash": 20,
   "dmagic": 20,
   "combat": 61,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "9284": {
   "name": "Basilisk",
@@ -45875,7 +45976,9 @@
   "dslash": 20,
   "dmagic": 20,
   "combat": 61,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "9285": {
   "name": "Basilisk",
@@ -45889,7 +45992,9 @@
   "dslash": 20,
   "dmagic": 20,
   "combat": 61,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "9286": {
   "name": "Basilisk",
@@ -45903,7 +46008,9 @@
   "dslash": 20,
   "dmagic": 20,
   "combat": 61,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "9287": {
   "name": "Monstrous Basilisk",
@@ -45951,7 +46058,9 @@
   "dmagic": 50,
   "drange": 50,
   "combat": 363,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "9291": {
   "name": "The Jormungand",
@@ -45967,7 +46076,9 @@
   "dmagic": 50,
   "drange": 50,
   "combat": 363,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
  },
  "9293": {
   "name": "Basilisk Knight",
@@ -47608,7 +47719,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10524": {
   "name": "Forgotten Soul",
@@ -47625,7 +47738,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10525": {
   "name": "Forgotten Soul",
@@ -47642,7 +47757,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 76,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10526": {
   "name": "Forgotten Soul",
@@ -47659,7 +47776,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 76,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10531": {
   "name": "Avatar of Creation",
@@ -47728,7 +47847,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10535": {
   "name": "Forgotten Soul",
@@ -47745,7 +47866,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10536": {
   "name": "Forgotten Soul",
@@ -47762,7 +47885,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 76,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10537": {
   "name": "Forgotten Soul",
@@ -47779,7 +47904,9 @@
   "dmagic": 10,
   "drange": 10,
   "combat": 76,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "10541": {
   "name": "Bird",
@@ -47930,7 +48057,7 @@
  "10689": {
   "name": "Chaos Golem",
   "isGolem": true,
-  "hitpoints": 71,
+  "hitpoints": 94,
   "att": 45,
   "str": 55,
   "def": 59,
@@ -47948,7 +48075,7 @@
  },
  "10690": {
   "name": "Rubble",
-  "hitpoints": 71,
+  "hitpoints": 94,
   "att": 45,
   "str": 55,
   "def": 59,
@@ -48229,7 +48356,7 @@
  },
  "10768": {
   "name": "Xarpus",
-  "isTobEntryMode": true,
+  "isTobNormalMode": true,
   "hitpoints": 3400,
   "att": 1,
   "str": 1,
@@ -48244,7 +48371,7 @@
  },
  "10772": {
   "name": "Xarpus",
-  "isTobHardMode": true,
+  "isTobNormalMode": true,
   "hitpoints": 6000,
   "att": 1,
   "str": 1,
@@ -48270,7 +48397,9 @@
   "mbns": 280,
   "rngbns": -30,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10775": {
   "name": "Nylocas Toxobolos (small)",
@@ -48285,7 +48414,9 @@
   "mbns": 280,
   "rngbns": -30,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10776": {
   "name": "Nylocas Hagios (small)",
@@ -48300,7 +48431,9 @@
   "mbns": 280,
   "rngbns": -30,
   "combat": 46,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10777": {
   "name": "Nylocas Ischyros (big)",
@@ -48315,7 +48448,9 @@
   "mbns": 360,
   "rngbns": -6,
   "combat": 82,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10778": {
   "name": "Nylocas Toxobolos (big)",
@@ -48330,7 +48465,9 @@
   "mbns": 360,
   "rngbns": -6,
   "combat": 82,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10779": {
   "name": "Nylocas Hagios (big)",
@@ -48345,7 +48482,9 @@
   "mbns": 360,
   "rngbns": -6,
   "combat": 82,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10786": {
   "name": "Nylocas Vasilias",
@@ -48361,7 +48500,9 @@
   "mbns": 460,
   "rngbns": 40,
   "combat": 301,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10803": {
   "name": "Nylocas Prinkipas Melee",
@@ -48377,7 +48518,9 @@
   "mbns": 300,
   "rngbns": 30,
   "combat": 400,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10805": {
   "name": "Nylocas Prinkipas Magic",
@@ -48393,7 +48536,9 @@
   "mbns": 300,
   "rngbns": 30,
   "combat": 400,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10806": {
   "name": "Nylocas Prinkipas Ranged",
@@ -48409,7 +48554,9 @@
   "mbns": 300,
   "rngbns": 30,
   "combat": 400,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10807": {
   "name": "Nylocas Vasilias",
@@ -48425,7 +48572,9 @@
   "mbns": 600,
   "rngbns": 60,
   "combat": 800,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10812": {
   "name": "Pestilent Bloat",
@@ -48495,7 +48644,9 @@
   "mage": 100,
   "range": 100,
   "combat": 68,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10822": {
   "name": "The Maiden of Sugadinti",
@@ -48520,73 +48671,8 @@
   "mage": 100,
   "range": 100,
   "combat": 138,
-  "size": 2
- },
- "10830": {
-  "name": "Verzik Vitur (p1)",
-  "isTobEntryMode": true,
-  "hitpoints": 1200,
-  "att": 180,
-  "str": 150,
-  "def": 10,
-  "mage": 180,
-  "range": 180,
-  "amagic": 32,
-  "mbns": 140,
-  "arange": 32,
-  "rngbns": 50,
-  "dstab": 10,
-  "dslash": 10,
-  "dcrush": 10,
-  "dmagic": 10,
-  "drange": 10,
-  "combat": 425,
-  "size": 5
- },
- "10833": {
-  "name": "Verzik Vitur (p2)",
-  "isTobEntryMode": true,
-  "hitpoints": 1600,
-  "att": 200,
-  "str": 150,
-  "def": 120,
-  "mage": 180,
-  "range": 180,
-  "amagic": 32,
-  "mbns": 50,
-  "arange": 32,
-  "rngbns": 50,
-  "dstab": 40,
-  "dslash": 20,
-  "dcrush": 40,
-  "dmagic": 40,
-  "drange": 180,
-  "combat": 488,
-  "size": 3
- },
- "10835": {
-  "name": "Verzik Vitur (p3)",
-  "isTobEntryMode": true,
-  "hitpoints": 2400,
-  "att": 180,
-  "str": 200,
-  "def": 120,
-  "mage": 180,
-  "range": 180,
-  "attbns": 32,
-  "strbns": 46,
-  "amagic": 20,
-  "mbns": 5,
-  "arange": 20,
-  "rngbns": 5,
-  "dstab": 30,
-  "dslash": 10,
-  "dcrush": 30,
-  "dmagic": 60,
-  "drange": 100,
-  "combat": 512,
-  "size": 7,
-  "elementalweaknesspercent": 50,
+  "size": 2,
+  "elementalweaknesspercent": 15,
   "elementalweaknesstype": "fire"
  },
  "10844": {
@@ -48599,7 +48685,9 @@
   "mage": 40,
   "range": 1,
   "combat": 107,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10845": {
   "name": "Nylocas Matomenos",
@@ -48610,73 +48698,8 @@
   "mage": 100,
   "range": 100,
   "combat": 68,
-  "size": 2
- },
- "10847": {
-  "name": "Verzik Vitur (p1)",
-  "isTobHardMode": true,
-  "hitpoints": 2000,
-  "att": 400,
-  "str": 400,
-  "def": 20,
-  "mage": 400,
-  "range": 400,
-  "amagic": 80,
-  "mbns": 150,
-  "arange": 80,
-  "rngbns": 80,
-  "dstab": 20,
-  "dslash": 20,
-  "dcrush": 20,
-  "dmagic": 20,
-  "drange": 20,
-  "combat": 1040,
-  "size": 5
- },
- "10850": {
-  "name": "Verzik Vitur (p2)",
-  "isTobHardMode": true,
-  "hitpoints": 3500,
-  "att": 400,
-  "str": 400,
-  "def": 200,
-  "mage": 400,
-  "range": 400,
-  "amagic": 80,
-  "mbns": 80,
-  "arange": 80,
-  "rngbns": 80,
-  "dstab": 100,
-  "dslash": 60,
-  "dcrush": 100,
-  "dmagic": 70,
-  "drange": 250,
-  "combat": 1265,
-  "size": 3
- },
- "10852": {
-  "name": "Verzik Vitur (p3)",
-  "isTobHardMode": true,
-  "hitpoints": 3500,
-  "att": 400,
-  "str": 400,
-  "def": 150,
-  "mage": 300,
-  "range": 300,
-  "attbns": 80,
-  "strbns": 30,
-  "amagic": 80,
-  "mbns": 5,
-  "arange": 80,
-  "rngbns": 5,
-  "dstab": 70,
-  "dslash": 30,
-  "dcrush": 70,
-  "dmagic": 100,
-  "drange": 230,
-  "combat": 1520,
-  "size": 7,
-  "elementalweaknesspercent": 50,
+  "size": 2,
+  "elementalweaknesspercent": 15,
   "elementalweaknesstype": "fire"
  },
  "10862": {
@@ -48689,7 +48712,9 @@
   "mage": 100,
   "range": 100,
   "combat": 138,
-  "size": 2
+  "size": 2,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "fire"
  },
  "10864": {
   "name": "Sotetseg",
@@ -49087,8 +49112,7 @@
   "dmagic": -21,
   "drange": -21,
   "combat": 2,
-  "size": 1,
-  "respawn": 25
+  "size": 1
  },
  "11063": {
   "name": "Bandit",
@@ -50776,8 +50800,8 @@
   "combat": 158,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "air"
+  "elementalweaknesspercent": 200,
+  "elementalweaknesstype": "fire"
  },
  "11291": {
   "name": "Spiritual Ranger",
@@ -50797,8 +50821,8 @@
   "combat": 158,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "air"
+  "elementalweaknesspercent": 200,
+  "elementalweaknesstype": "fire"
  },
  "11292": {
   "name": "Spiritual Mage",
@@ -50818,8 +50842,8 @@
   "combat": 182,
   "size": 1,
   "respawn": 25,
-  "elementalweaknesspercent": 30,
-  "elementalweaknesstype": "air"
+  "elementalweaknesspercent": 200,
+  "elementalweaknesstype": "fire"
  },
  "11293": {
   "name": "Blood Reaver",
@@ -51015,6 +51039,7 @@
  },
  "11482": {
   "name": "Champion of Scabaras",
+  "isKalphite": true,
   "hitpoints": 600,
   "att": 160,
   "str": 160,
@@ -51030,10 +51055,13 @@
   "dmagic": 340,
   "drange": 5,
   "combat": 379,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire"
  },
  "11483": {
   "name": "Champion of Scabaras",
+  "isKalphite": true,
   "hitpoints": 600,
   "att": 160,
   "str": 160,
@@ -51049,7 +51077,9 @@
   "dmagic": 340,
   "drange": 5,
   "combat": 379,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire"
  },
  "11484": {
   "name": "Scarab Swarm",
@@ -51836,7 +51866,7 @@
  },
  "11781": {
   "name": "Baboon",
-  "hitpoints": 35,
+  "hitpoints": 10,
   "def": 50,
   "mage": 50,
   "range": 80,
@@ -52046,7 +52076,9 @@
   "dmagic": 10,
   "drange": 60,
   "combat": 108,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "air"
  },
  "11798": {
   "name": "Akkha's Shadow",
@@ -52068,7 +52100,9 @@
   "dmagic": 10,
   "drange": 60,
   "combat": 108,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "air"
  },
  "11799": {
   "name": "Akkha's Shadow",
@@ -52090,7 +52124,9 @@
   "dmagic": 10,
   "drange": 60,
   "combat": 108,
-  "size": 3
+  "size": 3,
+  "elementalweaknesspercent": 60,
+  "elementalweaknesstype": "air"
  },
  "11892": {
   "name": "White Knight",
@@ -53003,7 +53039,9 @@
   "def": 72,
   "mage": 1,
   "range": 1,
-  "combat": 83
+  "combat": 83,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "fire"
  },
  "11990": {
   "name": "Poison spider",
@@ -53020,7 +53058,9 @@
   "dcrush": 10,
   "dmagic": 14,
   "drange": 14,
-  "combat": 48
+  "combat": 48,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire"
  },
  "11992": {
   "name": "Artio",
@@ -54101,6 +54141,8 @@
   "combat": 784,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 215
  },
  "12224": {
@@ -54117,6 +54159,8 @@
   "combat": 572,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 180
  },
  "12228": {
@@ -54133,6 +54177,8 @@
   "combat": 572,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 180
  },
  "12248": {
@@ -55160,6 +55206,8 @@
   "combat": 572,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 180
  },
  "12426": {
@@ -55177,6 +55225,8 @@
   "combat": 784,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 215
  },
  "12429": {
@@ -55673,9 +55723,12 @@
   "mage": 90,
   "dstab": 50,
   "dslash": 50,
-  "drange": 60,
+  "dlight": 60,
+  "dstandard": 60,
   "combat": 247,
-  "size": 4
+  "size": 4,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "earth"
  },
  "12490": {
   "name": "Warped Tortoise",
@@ -56377,7 +56430,8 @@
   "def": 190,
   "mage": 250,
   "range": 120,
-  "strbns": 65,
+  "attbns": 15,
+  "strbns": 64,
   "drange": 12,
   "combat": 318,
   "size": 3
@@ -56390,7 +56444,8 @@
   "def": 190,
   "mage": 250,
   "range": 120,
-  "strbns": 65,
+  "attbns": 15,
+  "strbns": 64,
   "drange": 12,
   "combat": 318,
   "size": 3
@@ -56517,6 +56572,11 @@
   "drange": 825,
   "combat": 1563,
   "size": 5
+ },
+ "12825": {
+  "name": "Healing totem",
+  "hitpoints": 1,
+  "size": 1
  },
  "12833": {
   "name": "Passionate Supporter",
@@ -56651,6 +56711,7 @@
   "range": 1,
   "attbns": -47,
   "strbns": -42,
+  "dstab": -42,
   "dslash": -42,
   "dcrush": -42,
   "dmagic": -42,
@@ -56671,6 +56732,7 @@
   "range": 1,
   "attbns": -47,
   "strbns": -42,
+  "dstab": -42,
   "dslash": -42,
   "dcrush": -42,
   "dmagic": -42,
@@ -56691,6 +56753,7 @@
   "range": 1,
   "attbns": -47,
   "strbns": -42,
+  "dstab": -42,
   "dslash": -42,
   "dcrush": -42,
   "dmagic": -42,
@@ -56966,7 +57029,9 @@
   "dmagic": 500,
   "drange": 500,
   "combat": 329,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "air"
  },
  "13012": {
   "name": "Eclipse Moon",
@@ -56982,7 +57047,9 @@
   "dmagic": 500,
   "drange": 500,
   "combat": 329,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "air"
  },
  "13013": {
   "name": "Blue Moon",
@@ -56998,7 +57065,9 @@
   "dmagic": 500,
   "drange": 500,
   "combat": 329,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 15,
+  "elementalweaknesstype": "air"
  },
  "13021": {
   "name": "Blood jaguar",
@@ -58423,25 +58492,6 @@
   "combat": 112,
   "size": 1
  },
- "13566": {
-  "name": "Elite Black Knight",
-  "hitpoints": 90,
-  "att": 90,
-  "str": 120,
-  "def": 90,
-  "mage": 70,
-  "range": 20,
-  "attbns": 85,
-  "dstab": 110,
-  "dslash": 130,
-  "dcrush": 40,
-  "dmagic": -5,
-  "dlight": 140,
-  "dstandard": 135,
-  "dheavy": 60,
-  "combat": 138,
-  "size": 1
- },
  "13599": {
   "name": "Tormented Demon",
   "isDemon": true,
@@ -58897,7 +58947,6 @@
   "range": 1,
   "amagic": 70,
   "mbns": 15,
-  "dstab": 50,
   "dslash": 50,
   "dcrush": 10,
   "dmagic": 60,
@@ -59465,7 +59514,6 @@
   "range": 1,
   "amagic": 70,
   "mbns": 15,
-  "dstab": 50,
   "dslash": 50,
   "dcrush": 10,
   "dmagic": 60,
@@ -59489,7 +59537,6 @@
   "range": 1,
   "amagic": 70,
   "mbns": 15,
-  "dstab": 50,
   "dslash": 50,
   "dcrush": 10,
   "dmagic": 60,
@@ -60201,7 +60248,9 @@
   "dslash": 43,
   "dcrush": 23,
   "dmagic": 24,
-  "drange": 40,
+  "dlight": 40,
+  "dstandard": 20,
+  "dheavy": 40,
   "combat": 68,
   "size": 3,
   "elementalweaknesspercent": 50,
@@ -60550,6 +60599,7 @@
  },
  "14132": {
   "name": "Arrav",
+  "isUndead": true,
   "hitpoints": 600,
   "att": 220,
   "str": 220,
@@ -60640,6 +60690,18 @@
   "size": 1,
   "respawn": 37
  },
+ "14139": {
+  "name": "Jonny the Beard",
+  "hitpoints": 8,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "combat": 2,
+  "size": 1,
+  "respawn": 37
+ },
  "14147": {
   "name": "Eldric the Ice King",
   "hitpoints": 600,
@@ -60713,7 +60775,9 @@
   "dstandard": 220,
   "dheavy": 333,
   "combat": 1238,
-  "size": 5
+  "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water"
  },
  "14179": {
   "name": "Void Flare",
@@ -60897,6 +60961,46 @@
   "combat": 160,
   "size": 1
  },
+ "14407": {
+  "name": "Emissary Archer",
+  "hitpoints": 40,
+  "att": 60,
+  "str": 40,
+  "def": 70,
+  "mage": 15,
+  "range": 70,
+  "arange": 60,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 5,
+  "dmagic": 20,
+  "dlight": 15,
+  "dstandard": 15,
+  "dheavy": 15,
+  "combat": 71,
+  "size": 1,
+  "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
+ },
+ "14408": {
+  "name": "Emissary Archer",
+  "hitpoints": 40,
+  "att": 60,
+  "str": 40,
+  "def": 70,
+  "mage": 15,
+  "range": 70,
+  "arange": 60,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 5,
+  "dmagic": 20,
+  "dlight": 15,
+  "dstandard": 15,
+  "dheavy": 15,
+  "combat": 71,
+  "size": 1,
+  "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
+ },
  "14420": {
   "name": "Earthen Nagua",
   "isSpectral": true,
@@ -60990,7 +61094,7 @@
   "size": 1,
   "respawn": 41,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "earth"
+  "elementalweaknesstype": "air"
  },
  "14427": {
   "name": "Skeleton",
@@ -61011,7 +61115,7 @@
   "size": 1,
   "respawn": 41,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "earth"
+  "elementalweaknesstype": "air"
  },
  "14428": {
   "name": "Skeleton",
@@ -61032,7 +61136,7 @@
   "size": 1,
   "respawn": 41,
   "elementalweaknesspercent": 35,
-  "elementalweaknesstype": "earth"
+  "elementalweaknesstype": "air"
  },
  "14430": {
   "name": "Grimy Lizard",
@@ -61346,6 +61450,7 @@
   "dheavy": 30,
   "combat": 117,
   "size": 1,
+  "respawn": 10,
   "elementalweaknesspercent": 30,
   "elementalweaknesstype": "fire"
  },
@@ -61629,6 +61734,1246 @@
   "size": 5,
   "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
  },
+ "14852": {
+  "name": "Hermit crab",
+  "hitpoints": 75,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dcrush": -50,
+  "combat": 19,
+  "size": 1
+ },
+ "14857": {
+  "name": "Gryphon",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 110,
+  "att": 65,
+  "str": 75,
+  "def": 50,
+  "mage": 50,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 60,
+  "combat": 95,
+  "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
+ },
+ "14858": {
+  "name": "Gryphon",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 110,
+  "att": 65,
+  "str": 75,
+  "def": 50,
+  "mage": 50,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 60,
+  "combat": 95,
+  "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
+ },
+ "14859": {
+  "name": "Dire gryphon",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "combat": 209,
+  "size": 3,
+  "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
+ },
+ "14860": {
+  "name": "Shellbane gryphon",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 400,
+  "att": 160,
+  "str": 210,
+  "def": 120,
+  "mage": 100,
+  "range": 150,
+  "arange": 20,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 60,
+  "combat": 235,
+  "size": 4,
+  "respawn": 36,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
+ },
+ "14887": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "def": 14,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "combat": 21,
+  "size": 1
+ },
+ "14888": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "def": 14,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "combat": 21,
+  "size": 1
+ },
+ "14889": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "def": 14,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "combat": 21,
+  "size": 1
+ },
+ "14890": {
+  "name": "Guard",
+  "hitpoints": 22,
+  "att": 19,
+  "def": 14,
+  "strbns": 5,
+  "dstab": 18,
+  "dslash": 25,
+  "dcrush": 19,
+  "dmagic": -4,
+  "combat": 21,
+  "size": 1
+ },
+ "14920": {
+  "name": "Man",
+  "hitpoints": 7,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dstab": -21,
+  "dslash": -21,
+  "dcrush": -21,
+  "dmagic": -21,
+  "drange": -21,
+  "combat": 2,
+  "size": 1,
+  "respawn": 25
+ },
+ "14921": {
+  "name": "Woman",
+  "hitpoints": 7,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "dstab": -21,
+  "dslash": -21,
+  "dcrush": -21,
+  "dmagic": -21,
+  "drange": -21,
+  "combat": 2,
+  "size": 1
+ },
+ "14922": {
+  "name": "Frost dragon",
+  "isDragon": true,
+  "hitpoints": 230,
+  "att": 180,
+  "str": 150,
+  "def": 150,
+  "mage": 150,
+  "dstab": 25,
+  "dslash": 90,
+  "dcrush": 15,
+  "dmagic": 50,
+  "dlight": 70,
+  "dstandard": 50,
+  "dheavy": 30,
+  "combat": 202,
+  "size": 4,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "14933": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "str": 50,
+  "def": 35,
+  "mage": 10,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "14934": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "str": 50,
+  "def": 35,
+  "mage": 10,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "14935": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "str": 50,
+  "def": 35,
+  "mage": 10,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "14936": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "str": 50,
+  "def": 35,
+  "mage": 10,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "14937": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "str": 50,
+  "def": 35,
+  "mage": 10,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "14940": {
+  "name": "Scorpion",
+  "hitpoints": 2,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 1,
+  "range": 1,
+  "attbns": -35,
+  "strbns": -58,
+  "dstab": -53,
+  "dslash": -53,
+  "dcrush": -53,
+  "dmagic": -53,
+  "drange": -53,
+  "combat": 1,
+  "size": 1
+ },
+ "15003": {
+  "name": "Elder Hubber"
+ },
+ "15004": {
+  "name": "Elder Hubber"
+ },
+ "15005": {
+  "name": "Elder Hubber"
+ },
+ "15006": {
+  "name": "Elder Root"
+ },
+ "15007": {
+  "name": "Elder Root",
+  "combat": 71
+ },
+ "15008": {
+  "name": "Elder Root",
+  "combat": 71
+ },
+ "15009": {
+  "name": "Gryphon",
+  "hitpoints": 110,
+  "att": 65,
+  "str": 75,
+  "def": 50,
+  "mage": 50,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 60,
+  "combat": 95,
+  "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
+ },
+ "15010": {
+  "name": "Shellbane gryphon",
+  "hitpoints": 400,
+  "att": 160,
+  "str": 210,
+  "def": 120,
+  "mage": 100,
+  "range": 150,
+  "rngbns": 20,
+  "dstab": 10,
+  "dslash": 20,
+  "dcrush": 40,
+  "dmagic": 100,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 60,
+  "combat": 235,
+  "size": 4,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
+ },
+ "15021": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "def": 35,
+  "mage": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "15022": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "def": 35,
+  "mage": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "15023": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "def": 35,
+  "mage": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "15024": {
+  "name": "Pirate",
+  "hitpoints": 38,
+  "att": 54,
+  "def": 35,
+  "mage": 10,
+  "combat": 52,
+  "size": 1
+ },
+ "15025": {
+  "name": "Black Eye Bethel",
+  "hitpoints": 180,
+  "att": 170,
+  "def": 180,
+  "mage": 80,
+  "combat": 191,
+  "size": 1
+ },
+ "15034": {
+  "name": "Giant lobster",
+  "hitpoints": 100,
+  "att": 80,
+  "def": 60,
+  "mage": 20,
+  "combat": 112,
+  "size": 3
+ },
+ "15163": {
+  "name": "Snakeling",
+  "hitpoints": 1,
+  "att": 1,
+  "str": 1,
+  "def": 1,
+  "mage": 185,
+  "range": 1,
+  "amagic": 80,
+  "mbns": -20,
+  "dstab": -40,
+  "dslash": -40,
+  "dcrush": -40,
+  "dmagic": -40,
+  "dlight": -40,
+  "dstandard": -40,
+  "dheavy": -40,
+  "combat": 90,
+  "size": 1
+ },
+ "15164": {
+  "name": "Drink troll",
+  "hitpoints": 25,
+  "att": 9,
+  "str": 9,
+  "def": 9,
+  "mage": 1,
+  "range": 1,
+  "combat": 14,
+  "size": 1
+ },
+ "15165": {
+  "name": "A corpse",
+  "hitpoints": 90,
+  "att": 90,
+  "str": 90,
+  "def": 90,
+  "mage": 1,
+  "range": 1,
+  "combat": 103,
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
+ },
+ "15166": {
+  "name": "Blue dagannoth",
+  "hitpoints": 120,
+  "att": 78,
+  "str": 78,
+  "def": 81,
+  "mage": 1,
+  "range": 50,
+  "dstab": 150,
+  "dslash": 150,
+  "dcrush": 150,
+  "dmagic": 50,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 50,
+  "combat": 100,
+  "size": 1,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "earth"
+ },
+ "15167": {
+  "name": "Daddy's special water",
+  "hitpoints": 120,
+  "att": 99,
+  "str": 120,
+  "def": 99,
+  "attbns": 40,
+  "strbns": 70,
+  "dstab": 25,
+  "dslash": 25,
+  "dcrush": 40,
+  "dmagic": 200,
+  "dlight": 200,
+  "dstandard": 200,
+  "dheavy": 200,
+  "combat": 125,
+  "size": 3,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "earth"
+ },
+ "15168": {
+  "name": "The rocks",
+  "hitpoints": 130,
+  "att": 190,
+  "str": 80,
+  "def": 135,
+  "mage": 1,
+  "range": 1,
+  "attbns": 60,
+  "strbns": 100,
+  "dstab": 35,
+  "dslash": 60,
+  "dcrush": 35,
+  "combat": 154,
+  "size": 1,
+  "elementalweaknesspercent": 100,
+  "elementalweaknesstype": "fire"
+ },
+ "15169": {
+  "name": "Chuck up",
+  "hitpoints": 110,
+  "att": 30,
+  "str": 80,
+  "def": 90,
+  "range": 99,
+  "dmagic": 200,
+  "dlight": 200,
+  "dstandard": 120,
+  "dheavy": 200,
+  "combat": 98,
+  "size": 1,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
+ },
+ "15170": {
+  "name": "Angry tortugan",
+  "hitpoints": 75,
+  "att": 90,
+  "str": 65,
+  "def": 50,
+  "mage": 40,
+  "range": 1,
+  "attbns": 20,
+  "dstab": 80,
+  "dslash": 80,
+  "dcrush": 50,
+  "dmagic": 30,
+  "drange": 80,
+  "combat": 81,
+  "size": 1
+ },
+ "15171": {
+  "name": "Dinky the drink troll",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 140,
+  "att": 70,
+  "str": 140,
+  "def": 40,
+  "elementalweaknesstype": "earth"
+ },
+ "15175": {
+  "name": "Drink troll queen",
+  "hitpoints": 225,
+  "att": 1,
+  "str": 1,
+  "def": 155,
+  "mage": 205,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 100,
+  "dstandard": 50,
+  "dheavy": 100,
+  "combat": 194,
+  "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15176": {
+  "name": "Drink troll queen",
+  "hitpoints": 225,
+  "att": 1,
+  "str": 1,
+  "def": 155,
+  "mage": 205,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 100,
+  "dstandard": 50,
+  "dheavy": 100,
+  "combat": 194,
+  "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15194": {
+  "name": "Bull shark",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "hitpoints": 90,
+  "att": 80,
+  "str": 45,
+  "mage": 1,
+  "dlight": 40,
+  "dstandard": 40,
+  "dheavy": 15,
+  "combat": 63,
+  "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
+ },
+ "15196": {
+  "name": "Hammerhead shark",
+  "hitpoints": 90,
+  "att": 80,
+  "str": 65,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 25,
+  "combat": 69,
+  "size": 3
+ },
+ "15198": {
+  "name": "Tiger shark",
+  "hitpoints": 125,
+  "att": 120,
+  "str": 85,
+  "mage": 1,
+  "dlight": 60,
+  "dstandard": 60,
+  "dheavy": 35,
+  "combat": 97,
+  "size": 3
+ },
+ "15200": {
+  "name": "Great white shark",
+  "hitpoints": 175,
+  "att": 155,
+  "str": 145,
+  "range": 1,
+  "dmagic": 15,
+  "dlight": 70,
+  "dstandard": 70,
+  "dheavy": 40,
+  "combat": 141,
+  "size": 4
+ },
+ "15202": {
+  "name": "Narwhal",
+  "hitpoints": 155,
+  "att": 95,
+  "str": 65,
+  "def": 50,
+  "mage": 1,
+  "dmagic": 20,
+  "dlight": 65,
+  "dstandard": 65,
+  "dheavy": 40,
+  "combat": 103,
+  "size": 5
+ },
+ "15204": {
+  "name": "Orca",
+  "hitpoints": 265,
+  "att": 165,
+  "str": 125,
+  "def": 50,
+  "mage": 1,
+  "dlight": 85,
+  "dstandard": 85,
+  "dheavy": 60,
+  "combat": 173,
+  "size": 4
+ },
+ "15206": {
+  "name": "Pygmy kraken",
+  "hitpoints": 125,
+  "att": 1,
+  "str": 1,
+  "def": 50,
+  "mage": 90,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 50,
+  "dstandard": 25,
+  "dheavy": 50,
+  "combat": 87,
+  "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15208": {
+  "name": "Spined kraken",
+  "hitpoints": 125,
+  "att": 1,
+  "str": 1,
+  "def": 100,
+  "mage": 135,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 50,
+  "dstandard": 25,
+  "dheavy": 50,
+  "combat": 121,
+  "size": 3,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15210": {
+  "name": "Armoured kraken",
+  "hitpoints": 175,
+  "att": 1,
+  "str": 1,
+  "def": 140,
+  "mage": 175,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 100,
+  "dstandard": 50,
+  "dheavy": 100,
+  "combat": 163,
+  "size": 4,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15211": {
+  "name": "Armoured kraken",
+  "hitpoints": 175,
+  "att": 1,
+  "str": 1,
+  "def": 140,
+  "mage": 175,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 100,
+  "dstandard": 50,
+  "dheavy": 100,
+  "combat": 163,
+  "size": 4,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15212": {
+  "name": "Vampyre kraken",
+  "hitpoints": 225,
+  "att": 1,
+  "str": 1,
+  "def": 115,
+  "mage": 215,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 50,
+  "dstandard": 25,
+  "dheavy": 50,
+  "combat": 189,
+  "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15213": {
+  "name": "Vampyre kraken",
+  "hitpoints": 225,
+  "att": 1,
+  "str": 1,
+  "def": 115,
+  "mage": 215,
+  "range": 1,
+  "dmagic": -63,
+  "dlight": 50,
+  "dstandard": 25,
+  "dheavy": 50,
+  "combat": 189,
+  "size": 5,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "earth"
+ },
+ "15214": {
+  "name": "Eagle ray",
+  "hitpoints": 50,
+  "att": 70,
+  "str": 1,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 43,
+  "size": 2
+ },
+ "15215": {
+  "name": "Eagle ray",
+  "hitpoints": 50,
+  "att": 70,
+  "str": 1,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 43,
+  "size": 2
+ },
+ "15216": {
+  "name": "Butterfly ray",
+  "hitpoints": 70,
+  "att": 100,
+  "str": 35,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 61,
+  "size": 2
+ },
+ "15217": {
+  "name": "Butterfly ray",
+  "hitpoints": 70,
+  "att": 100,
+  "str": 35,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 61,
+  "size": 2
+ },
+ "15218": {
+  "name": "Stingray",
+  "hitpoints": 90,
+  "att": 130,
+  "str": 55,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 82,
+  "size": 2
+ },
+ "15220": {
+  "name": "Manta ray",
+  "hitpoints": 160,
+  "att": 155,
+  "str": 75,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 114,
+  "size": 3,
+  "respawn": 50
+ },
+ "15221": {
+  "name": "Manta ray",
+  "hitpoints": 160,
+  "att": 155,
+  "str": 75,
+  "mage": 1,
+  "dlight": 50,
+  "dstandard": 50,
+  "dheavy": 20,
+  "combat": 114,
+  "size": 3,
+  "respawn": 50
+ },
+ "15222": {
+  "name": "Osprey",
+  "hitpoints": 80,
+  "att": 60,
+  "str": 50,
+  "mage": 1,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 10,
+  "combat": 55,
+  "size": 2
+ },
+ "15224": {
+  "name": "Albatross",
+  "hitpoints": 125,
+  "att": 100,
+  "str": 90,
+  "mage": 1,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 10,
+  "combat": 93,
+  "size": 2
+ },
+ "15226": {
+  "name": "Frigatebird",
+  "hitpoints": 85,
+  "att": 80,
+  "str": 70,
+  "mage": 1,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 10,
+  "combat": 70,
+  "size": 2
+ },
+ "15228": {
+  "name": "Tern",
+  "hitpoints": 30,
+  "att": 25,
+  "str": 20,
+  "mage": 1,
+  "dlight": 30,
+  "dstandard": 30,
+  "dheavy": 10,
+  "combat": 22,
+  "size": 2
+ },
+ "15230": {
+  "name": "Mogre",
+  "hitpoints": 60,
+  "att": 40,
+  "str": 50,
+  "def": 40,
+  "mage": 1,
+  "range": 60,
+  "attbns": 22,
+  "strbns": 20,
+  "combat": 54,
+  "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
+ },
+ "15232": {
+  "name": "Mogre",
+  "hitpoints": 60,
+  "att": 40,
+  "str": 50,
+  "def": 40,
+  "mage": 1,
+  "range": 60,
+  "attbns": 22,
+  "strbns": 20,
+  "combat": 54,
+  "size": 2,
+  "elementalweaknesspercent": 20,
+  "elementalweaknesstype": "earth"
+ },
+ "15234": {
+  "name": "Dolphin",
+  "hitpoints": 50,
+  "att": 25,
+  "str": 10,
+  "def": 5,
+  "mage": 1,
+  "dlight": 15,
+  "dstandard": 15,
+  "dheavy": 5,
+  "combat": 25,
+  "size": 2
+ },
+ "15430": {
+  "name": "Praying mantis",
+  "hitpoints": 18,
+  "att": 12,
+  "str": 12,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 15,
+  "dcrush": 5,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 14,
+  "size": 1
+ },
+ "15431": {
+  "name": "Praying mantis",
+  "hitpoints": 18,
+  "att": 12,
+  "str": 12,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 15,
+  "dcrush": 5,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 14,
+  "size": 1
+ },
+ "15432": {
+  "name": "Praying mantis",
+  "hitpoints": 18,
+  "att": 12,
+  "str": 12,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "dstab": 10,
+  "dslash": 15,
+  "dcrush": 5,
+  "dlight": 10,
+  "dstandard": 10,
+  "dheavy": 10,
+  "combat": 14,
+  "size": 1
+ },
+ "15436": {
+  "name": "Giant ant",
+  "hitpoints": 20,
+  "att": 16,
+  "str": 18,
+  "def": 22,
+  "mage": 1,
+  "range": 1,
+  "dstab": 24,
+  "dslash": 20,
+  "dcrush": 12,
+  "dmagic": 5,
+  "combat": 21,
+  "size": 1
+ },
+ "15437": {
+  "name": "Giant ant",
+  "hitpoints": 30,
+  "att": 23,
+  "str": 26,
+  "def": 24,
+  "mage": 1,
+  "range": 1,
+  "dstab": 24,
+  "dslash": 20,
+  "dcrush": 12,
+  "dmagic": 7,
+  "combat": 29,
+  "size": 1
+ },
+ "15438": {
+  "name": "Giant wasp",
+  "hitpoints": 30,
+  "att": 20,
+  "str": 22,
+  "def": 28,
+  "mage": 1,
+  "range": 1,
+  "dstab": 24,
+  "dslash": 20,
+  "dcrush": 12,
+  "dmagic": 5,
+  "combat": 28,
+  "size": 1
+ },
+ "15439": {
+  "name": "Giant wasp",
+  "hitpoints": 30,
+  "att": 20,
+  "str": 22,
+  "def": 28,
+  "mage": 1,
+  "range": 1,
+  "dstab": 24,
+  "dslash": 20,
+  "dcrush": 12,
+  "dmagic": 5,
+  "combat": 28,
+  "size": 1
+ },
+ "15440": {
+  "name": "Giant mosquito",
+  "hitpoints": 3,
+  "att": 5,
+  "str": 1,
+  "def": 45,
+  "mage": 1,
+  "range": 1,
+  "dstab": 2,
+  "dslash": 2,
+  "dcrush": 5,
+  "dmagic": 2,
+  "combat": 13,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesspercent": 40,
+  "elementalweaknesstype": "fire"
+ },
+ "15441": {
+  "name": "Leech",
+  "hitpoints": 45,
+  "att": 80,
+  "str": 20,
+  "def": 35,
+  "mage": 1,
+  "range": 1,
+  "combat": 52,
+  "size": 1,
+  "respawn": 50
+ },
+ "15451": {
+  "name": "Captain Cotus",
+  "hitpoints": 100,
+  "att": 85,
+  "def": 65,
+  "mage": 60,
+  "range": 90,
+  "strbns": 43,
+  "amagic": 13,
+  "arange": 100,
+  "dstab": 35,
+  "dslash": 11,
+  "dcrush": 40,
+  "dmagic": 70,
+  "combat": 91,
+  "size": 1
+ },
+ "15457": {
+  "name": "Captain Darvald",
+  "hitpoints": 150,
+  "att": 70,
+  "def": 200,
+  "mage": 1,
+  "range": 1,
+  "strbns": 45,
+  "dstab": 120,
+  "dslash": 140,
+  "dcrush": 137,
+  "combat": 137,
+  "size": 1
+ },
+ "15458": {
+  "name": "Fremennik warrior",
+  "hitpoints": 45,
+  "att": 60,
+  "def": 30,
+  "mage": 1,
+  "range": 1,
+  "strbns": 33,
+  "dstab": 20,
+  "dslash": 21,
+  "dcrush": 1,
+  "combat": 61,
+  "size": 1
+ },
+ "15497": {
+  "name": "Aquanite",
+  "hitpoints": 180,
+  "att": 1,
+  "str": 1,
+  "def": 70,
+  "mage": 170,
+  "range": 1,
+  "amagic": 50,
+  "dstab": 60,
+  "dslash": 80,
+  "dcrush": 80,
+  "dmagic": 140,
+  "dlight": 100,
+  "dstandard": 100,
+  "dheavy": 100,
+  "combat": 145,
+  "size": 2
+ },
+ "15498": {
+  "name": "Aquanite",
+  "hitpoints": 180,
+  "att": 1,
+  "str": 1,
+  "def": 70,
+  "mage": 170,
+  "range": 1,
+  "amagic": 50,
+  "dstab": 10,
+  "dslash": 80,
+  "dcrush": 80,
+  "dmagic": 140,
+  "dlight": 100,
+  "dstandard": 100,
+  "dheavy": 100,
+  "combat": 145,
+  "size": 2
+ },
+ "15499": {
+  "name": "Reef snake",
+  "hitpoints": 160,
+  "def": 100,
+  "mage": 100,
+  "range": 170,
+  "dstab": 120,
+  "dslash": 120,
+  "dcrush": 120,
+  "dmagic": 100,
+  "combat": 147,
+  "size": 2
+ },
+ "15500": {
+  "name": "Lava Strykewyrm",
+  "isDragon": true,
+  "hitpoints": 150,
+  "att": 90,
+  "str": 90,
+  "def": 50,
+  "mage": 50,
+  "range": 110,
+  "attbns": 30,
+  "arange": 40,
+  "dstab": 30,
+  "dslash": 60,
+  "dcrush": 70,
+  "dmagic": 40,
+  "dlight": 120,
+  "dstandard": 120,
+  "dheavy": 120,
+  "combat": 116,
+  "size": 2,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water"
+ },
+ "15501": {
+  "name": "Vitreous Chilled Jelly",
+  "hitpoints": 220,
+  "att": 200,
+  "str": 180,
+  "def": 250,
+  "mage": 180,
+  "range": 1,
+  "combat": 241,
+  "size": 2,
+  "elementalweaknesspercent": 30,
+  "elementalweaknesstype": "earth"
+ },
+ "15502": {
+  "name": "Elder aquanite",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "combat": 305,
+  "size": 3,
+  "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
+ },
+ "15503": {
+  "name": "Elder aquanite",
+  "is<!-- if no monster attributes apply": true,
+  "isRemove this parameter -->": true,
+  "combat": 305,
+  "size": 3,
+  "elementalweaknesstype": "<!-- if no weakness, remove this parameter -->"
+ },
+ "15504": {
+  "name": "Magma strykewyrm",
+  "isDragon": true,
+  "hitpoints": 340,
+  "att": 210,
+  "str": 210,
+  "def": 110,
+  "mage": 110,
+  "range": 250,
+  "attbns": 30,
+  "rngbns": 40,
+  "dstab": 60,
+  "dslash": 30,
+  "dcrush": 70,
+  "dmagic": 40,
+  "dlight": 120,
+  "dstandard": 120,
+  "dheavy": 120,
+  "combat": 249,
+  "size": 3,
+  "elementalweaknesstype": "water<!-- if no weakness, remove this parameter -->"
+ },
  "8367_2": {
   "name": "Blood spawn",
   "isTobNormalMode": true,
@@ -61638,98 +62983,6 @@
   "range": 1,
   "combat": 55,
   "size": 1
- },
- "12166_1": {
-  "name": "Duke Sucellus (Awakened)",
-  "isDemon": true,
-  "hitpoints": 1540,
-  "att": 435,
-  "str": 500,
-  "def": 316,
-  "mage": 465,
-  "attbns": 200,
-  "strbns": 38,
-  "amagic": 150,
-  "mbns": 32,
-  "dstab": 255,
-  "dslash": 65,
-  "dcrush": 190,
-  "dmagic": 440,
-  "dlight": 320,
-  "dstandard": 320,
-  "dheavy": 320,
-  "combat": 1099,
-  "size": 7,
-  "respawn": 20
- },
- "12167_1": {
-  "name": "Duke Sucellus (Awakened)",
-  "isDemon": true,
-  "hitpoints": 1540,
-  "att": 435,
-  "str": 500,
-  "def": 316,
-  "mage": 465,
-  "attbns": 200,
-  "strbns": 38,
-  "amagic": 150,
-  "mbns": 32,
-  "dstab": 255,
-  "dslash": 65,
-  "dcrush": 190,
-  "dmagic": 440,
-  "dlight": 320,
-  "dstandard": 320,
-  "dheavy": 320,
-  "combat": 1099,
-  "size": 7,
-  "respawn": 20
- },
- "12191_1": {
-  "name": "Duke Sucellus (Awakened)",
-  "isDemon": true,
-  "hitpoints": 1540,
-  "att": 435,
-  "str": 500,
-  "def": 316,
-  "mage": 465,
-  "attbns": 200,
-  "strbns": 38,
-  "amagic": 150,
-  "mbns": 32,
-  "dstab": 255,
-  "dslash": 65,
-  "dcrush": 190,
-  "dmagic": 440,
-  "dlight": 320,
-  "dstandard": 320,
-  "dheavy": 320,
-  "combat": 1099,
-  "size": 7,
-  "respawn": 20
- },
- "12192_1": {
-  "name": "Duke Sucellus (Awakened)",
-  "isDemon": true,
-  "hitpoints": 1540,
-  "att": 435,
-  "str": 500,
-  "def": 316,
-  "mage": 465,
-  "attbns": 200,
-  "strbns": 38,
-  "amagic": 150,
-  "mbns": 32,
-  "dstab": 255,
-  "dslash": 65,
-  "dcrush": 190,
-  "dmagic": 440,
-  "dlight": 320,
-  "dstandard": 320,
-  "dheavy": 320,
-  "combat": 1099,
-  "size": 7,
-  "respawn": 20
  },
  "12204_1": {
   "name": "The Whisperer (Awakened)",
@@ -61820,6 +63073,8 @@
   "combat": 1136,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 268
  },
  "12426_1": {
@@ -61837,6 +63092,8 @@
   "combat": 1136,
   "size": 2,
   "respawn": 17,
+  "elementalweaknesspercent": 35,
+  "elementalweaknesstype": "fire",
   "def": 268
  }
 }
