@@ -48400,170 +48400,6 @@
   "equipable": true,
   "slot": 1
  },
- "30367": {
-  "name": "The dogsword",
-  "weight": 10.0,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "aslash": 132,
-  "acrush": 80,
-  "str": 132,
-  "prayer": 8,
-  "aspeed": 6,
-  "weaponCategory": "TWO_HANDED_SWORD"
- },
- "30369": {
-  "name": "Sunlight spear",
-  "weight": 4.535,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "astab": 125,
-  "aslash": 75,
-  "dstab": 70,
-  "dslash": 70,
-  "dcrush": 70,
-  "dmagic": 28,
-  "drange": 70,
-  "str": 113,
-  "aspeed": 5,
-  "weaponCategory": "STAB_SWORD"
- },
- "30371": {
-  "name": "Devil's element",
-  "weight": 0.2,
-  "equipable": true,
-  "slot": 5,
-  "amagic": 20,
-  "prayer": 3,
-  "mdmg": 6.0
- },
- "30373": {
-  "name": "Drygore blowpipe",
-  "weight": 0.5,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 50,
-  "aspeed": 3,
-  "weaponCategory": "THROWN"
- },
- "30374": {
-  "name": "Drygore blowpipe",
-  "weight": 0.5,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 50,
-  "rstr": 10,
-  "aspeed": 3,
-  "weaponCategory": "THROWN"
- },
- "30376": {
-  "name": "Amulet of the monarchs",
-  "weight": 0.01,
-  "equipable": true,
-  "slot": 2,
-  "astab": 30,
-  "aslash": 30,
-  "acrush": 30,
-  "amagic": 30,
-  "arange": 30,
-  "dstab": 30,
-  "dslash": 30,
-  "dcrush": 30,
-  "dmagic": 30,
-  "drange": 30,
-  "str": 15,
-  "rstr": 15,
-  "prayer": 10,
-  "mdmg": 10.0
- },
- "30378": {
-  "name": "Emperor ring",
-  "weight": 0.004,
-  "equipable": true,
-  "slot": 12,
-  "astab": 30,
-  "aslash": 30,
-  "acrush": 30,
-  "amagic": 30,
-  "arange": 30,
-  "dstab": 30,
-  "dslash": 30,
-  "dcrush": 30,
-  "dmagic": 30,
-  "drange": 30,
-  "str": 15,
-  "rstr": 15,
-  "prayer": 10,
-  "mdmg": 5.0
- },
- "30380": {
-  "name": "Gloves of the damned",
-  "weight": 0.226,
-  "equipable": true,
-  "slot": 9,
-  "astab": 12,
-  "aslash": 12,
-  "acrush": 12,
-  "amagic": 6,
-  "arange": 12,
-  "dstab": 12,
-  "dslash": 12,
-  "dcrush": 12,
-  "dmagic": 6,
-  "drange": 12,
-  "str": 12
- },
- "30382": {
-  "name": "Thousand-dragon ward",
-  "weight": 7.257,
-  "equipable": true,
-  "slot": 5,
-  "astab": 35,
-  "aslash": 35,
-  "acrush": 35,
-  "amagic": 15,
-  "arange": 25,
-  "dstab": 50,
-  "dslash": 55,
-  "dcrush": 53,
-  "dmagic": 40,
-  "drange": 52,
-  "str": 12,
-  "prayer": 6
- },
- "30386": {
-  "name": "Sunlit bracers",
-  "weight": 0.25,
-  "equipable": true,
-  "slot": 9,
-  "astab": 10,
-  "aslash": 10,
-  "acrush": 10,
-  "amagic": 6,
-  "arange": 18,
-  "dstab": 12,
-  "dslash": 12,
-  "dcrush": 12,
-  "dmagic": 6,
-  "drange": 12,
-  "str": 8,
-  "rstr": 4
- },
- "30388": {
-  "name": "Thunder khopesh",
-  "weight": 1.36,
-  "equipable": true,
-  "slot": 3,
-  "astab": 65,
-  "aslash": 110,
-  "str": 100,
-  "aspeed": 4,
-  "weaponCategory": "SLASH_SWORD"
- },
  "30404": {
   "name": "Raging echoes hat (t1)",
   "weight": 0.453,
@@ -49732,26 +49568,6 @@
   "aspeed": 5,
   "weaponCategory": "BOW"
  },
- "31172": {
-  "name": "Battlehat",
-  "weight": 2.721,
-  "equipable": true,
-  "slot": 0,
-  "astab": 15,
-  "aslash": 15,
-  "acrush": 15,
-  "amagic": 15,
-  "arange": 15,
-  "dstab": 60,
-  "dslash": 60,
-  "dcrush": 60,
-  "dmagic": 60,
-  "drange": 60,
-  "str": 10,
-  "rstr": 5,
-  "prayer": 10,
-  "mdmg": 5.0
- },
  "31181": {
   "name": "Grid master tabard",
   "weight": 0.3,
@@ -49838,6 +49654,21 @@
   "equipable": true,
   "slot": 5
  },
+ "31248": {
+  "name": "Belle's folly",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "astab": 100,
+  "aslash": 78,
+  "acrush": -3,
+  "dstab": 20,
+  "dslash": 15,
+  "dcrush": -9,
+  "str": 102,
+  "aspeed": 5,
+  "weaponCategory": "STAB_SWORD"
+ },
  "31288": {
   "name": "Sailing cape",
   "weight": 0.453,
@@ -49861,6 +49692,34 @@
   "drange": 9,
   "prayer": 4
  },
+ "31300": {
+  "name": "Deep sea apparatus",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 1
+ },
+ "31398": {
+  "name": "Tortugan shield",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 1,
+  "dstab": 8,
+  "dslash": 8,
+  "dcrush": 6,
+  "drange": 8
+ },
+ "31401": {
+  "name": "Deep sea helmet (The Red Reef)",
+  "weight": 5.0,
+  "equipable": true,
+  "slot": 0
+ },
+ "31403": {
+  "name": "Deep sea apparatus (The Red Reef)",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 1
+ },
  "31575": {
   "name": "Camphor blowpipe",
   "weight": 0.5,
@@ -49874,7 +49733,7 @@
  },
  "31577": {
   "name": "Camphor blowpipe",
-  "weight": 0.5,
+  "weight": 0.3,
   "equipable": true,
   "slot": 3,
   "is2h": true,
@@ -49896,7 +49755,7 @@
  },
  "31581": {
   "name": "Ironwood blowpipe",
-  "weight": 0.5,
+  "weight": 0.3,
   "equipable": true,
   "slot": 3,
   "is2h": true,
@@ -49918,7 +49777,7 @@
  },
  "31585": {
   "name": "Rosewood blowpipe",
-  "weight": 0.5,
+  "weight": 0.3,
   "equipable": true,
   "slot": 3,
   "is2h": true,
@@ -49939,29 +49798,3059 @@
   "equipable": true,
   "slot": 4
  },
+ "31740": {
+  "name": "Storm cruiser's trousers",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 4
+ },
+ "31742": {
+  "name": "Storm cruiser's shoes",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 10
+ },
  "31748": {
-  "name": "Nifty hat",
+  "name": "Swamp cruiser's hat",
   "weight": 0.6,
   "equipable": true,
   "slot": 0
  },
  "31750": {
-  "name": "Nifty jacket",
+  "name": "Swamp cruiser's jacket",
   "weight": 0.6,
   "equipable": true,
   "slot": 4
  },
  "31752": {
-  "name": "Nifty trousers",
+  "name": "Swamp cruiser's trousers",
   "weight": 0.6,
   "equipable": true,
   "slot": 7
  },
+ "31754": {
+  "name": "Swamp cruiser's shoes",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 10
+ },
+ "31760": {
+  "name": "Crystal glider's hat",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 0
+ },
+ "31762": {
+  "name": "Crystal glider's jacket",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 4
+ },
  "31764": {
-  "name": "Sleek trousers",
+  "name": "Crystal glider's trousers",
   "weight": 0.6,
   "equipable": true,
   "slot": 7
+ },
+ "31766": {
+  "name": "Crystal glider's shoes",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 10
+ },
+ "32386": {
+  "name": "Medallion of the deep",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 2
+ },
+ "32398": {
+  "name": "Sailors' amulet",
+  "weight": 0.06,
+  "equipable": true,
+  "slot": 2
+ },
+ "32399": {
+  "name": "Sailors' amulet",
+  "weight": 0.06,
+  "equipable": true,
+  "slot": 2
+ },
+ "32435": {
+  "name": "Crate of adamantite ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32436": {
+  "name": "Crate of crab paste",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32437": {
+  "name": "Crate of crystal seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32438": {
+  "name": "Crate of daggers",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32439": {
+  "name": "Crate of dyes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32440": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32441": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32442": {
+  "name": "Crate of lead ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32443": {
+  "name": "Crate of monkfish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32444": {
+  "name": "Crate of nickel ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32445": {
+  "name": "Crate of pest remains",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32446": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32447": {
+  "name": "Crate of spears",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32448": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32449": {
+  "name": "Crate of bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32450": {
+  "name": "Crate of crystal seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32451": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32452": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32453": {
+  "name": "Crate of gold ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32454": {
+  "name": "Crate of halberds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32455": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32456": {
+  "name": "Crate of poison",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32457": {
+  "name": "Crate of rabbit meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32458": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32459": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32460": {
+  "name": "Crate of salamanders",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32461": {
+  "name": "Crate of sand",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32462": {
+  "name": "Crate of silk",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32463": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32464": {
+  "name": "Crate of bear meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32465": {
+  "name": "Crate of beer",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32466": {
+  "name": "Crate of cacti",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32467": {
+  "name": "Crate of camphor logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32468": {
+  "name": "Crate of compost",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32469": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32470": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32471": {
+  "name": "Crate of iron bars",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32472": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32473": {
+  "name": "Crate of machinery parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32474": {
+  "name": "Crate of rum",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32475": {
+  "name": "Crate of sandstone",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32476": {
+  "name": "Crate of silver ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32477": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32478": {
+  "name": "Crate of vodka",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32479": {
+  "name": "Crate of wine",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32480": {
+  "name": "Crate of gold bars",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32481": {
+  "name": "Crate of secret stuff",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32482": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32483": {
+  "name": "Crate of bait",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32484": {
+  "name": "Crate of feathers",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32485": {
+  "name": "Crate of bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32486": {
+  "name": "Crate of coconuts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32487": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32488": {
+  "name": "Crate of glassmaking supplies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32489": {
+  "name": "Crate of gold ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32490": {
+  "name": "Crate of grog",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32491": {
+  "name": "Crate of javelins",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32492": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32493": {
+  "name": "Crate of karambwans",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32494": {
+  "name": "Crate of pineapples",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32495": {
+  "name": "Crate of potatoes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32496": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32497": {
+  "name": "Crate of silk",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32498": {
+  "name": "Crate of silver ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32499": {
+  "name": "Crate of vials",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32500": {
+  "name": "Crate of astral runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32501": {
+  "name": "Crate of books",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32502": {
+  "name": "Crate of coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32503": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32504": {
+  "name": "Crate of fruit",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32505": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32506": {
+  "name": "Crate of historical artefacts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32507": {
+  "name": "Crate of nickel ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32508": {
+  "name": "Crate of oranges",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32509": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32510": {
+  "name": "Crate of pineapples",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32511": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32512": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32513": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32514": {
+  "name": "Crate of ship parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32515": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32516": {
+  "name": "Crate of staffs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32517": {
+  "name": "Crate of tokens",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32518": {
+  "name": "Crate of vegetables",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32519": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32520": {
+  "name": "Crate of bear meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32521": {
+  "name": "Crate of beer",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32522": {
+  "name": "Crate of daggers",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32523": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32524": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32525": {
+  "name": "Crate of khali brews",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32526": {
+  "name": "Crate of peg legs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32527": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32528": {
+  "name": "Crate of rum",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32529": {
+  "name": "Crate of scimitars",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32530": {
+  "name": "Crate of ship parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32531": {
+  "name": "Crate of swords",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32532": {
+  "name": "Crate of alpaca wool",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32533": {
+  "name": "Crate of camphor logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32534": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32535": {
+  "name": "Crate of fruit",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32536": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32537": {
+  "name": "Crate of granite",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32538": {
+  "name": "Crate of javelins",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32539": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32540": {
+  "name": "Crate of machinery parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32541": {
+  "name": "Crate of mahogany logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32542": {
+  "name": "Crate of pest remains",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32543": {
+  "name": "Crate of pickaxes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32544": {
+  "name": "Crate of planks",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32545": {
+  "name": "Crate of suqah hides",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32546": {
+  "name": "Crate of warhammers",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32547": {
+  "name": "Crate of bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32548": {
+  "name": "Crate of barley",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32549": {
+  "name": "Crate of sand",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32550": {
+  "name": "Crate of adamantite ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32551": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32552": {
+  "name": "Crate of fruit",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32553": {
+  "name": "Crate of iron ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32554": {
+  "name": "Crate of monkfish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32555": {
+  "name": "Crate of onions",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32556": {
+  "name": "Crate of planks",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32557": {
+  "name": "Crate of swords",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32558": {
+  "name": "Crate of warhammers",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32559": {
+  "name": "Crate of yak hair",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32560": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32561": {
+  "name": "Crate of lead ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32562": {
+  "name": "Crate of rope",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32563": {
+  "name": "Crate of xerician fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32564": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32565": {
+  "name": "Crate of flax",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32566": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32567": {
+  "name": "Crate of bear meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32568": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32569": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32570": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32571": {
+  "name": "Crate of kebbit fur",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32572": {
+  "name": "Crate of meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32573": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32574": {
+  "name": "Crate of secret things",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32575": {
+  "name": "Crate of swords",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32576": {
+  "name": "Crate of vegetables",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32577": {
+  "name": "Crate of wine",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32578": {
+  "name": "Crate of antelope fur",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32579": {
+  "name": "Crate of berries",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32580": {
+  "name": "Crate of coal",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32581": {
+  "name": "Crate of crystal seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32582": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32583": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32584": {
+  "name": "Crate of kebbit fur",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32585": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32586": {
+  "name": "Crate of potions",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32587": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32588": {
+  "name": "Crate of bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32589": {
+  "name": "Crate of beer glasses",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32590": {
+  "name": "Crate of cocktails",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32591": {
+  "name": "Crate of eye patches",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32592": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32593": {
+  "name": "Crate of high importance",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32594": {
+  "name": "Crate of honey",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32595": {
+  "name": "Crate of lobsters",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32596": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32597": {
+  "name": "Crate of mahogany logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32598": {
+  "name": "Crate of meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32599": {
+  "name": "Crate of rotten bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32600": {
+  "name": "Crate of secret stuff",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32601": {
+  "name": "Crate of ship parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32602": {
+  "name": "Crate of silk",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32603": {
+  "name": "Crate of coal",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32604": {
+  "name": "Crate of mahogany logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32605": {
+  "name": "Crate of sand",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32606": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32607": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32608": {
+  "name": "Crate of flax",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32609": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32610": {
+  "name": "Crate of potions",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32611": {
+  "name": "Crate of vodka",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32612": {
+  "name": "Crate of angler outfit pieces",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32613": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32614": {
+  "name": "Crate of bows",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32615": {
+  "name": "Crate of bread",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32616": {
+  "name": "Crate of chainbodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32617": {
+  "name": "Crate of coal",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32618": {
+  "name": "Crate of crab paste",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32619": {
+  "name": "Crate of fruit",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32620": {
+  "name": "Crate of gunpowder",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32621": {
+  "name": "Crate of herbs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32622": {
+  "name": "Crate of huasca",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32623": {
+  "name": "Crate of kyatt teeth",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32624": {
+  "name": "Crate of planks",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32625": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32626": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32627": {
+  "name": "Crate of scimitars",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32628": {
+  "name": "Crate of secret stuff",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32629": {
+  "name": "Crate of spears",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32630": {
+  "name": "Crate of swamp paste",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32631": {
+  "name": "Crate of vodka",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32632": {
+  "name": "Crate of antelope meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32633": {
+  "name": "Crate of astral runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32634": {
+  "name": "Crate of books",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32635": {
+  "name": "Crate of cannonballs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32636": {
+  "name": "Crate of coal",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32637": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32638": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32639": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32640": {
+  "name": "Crate of gin",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32641": {
+  "name": "Crate of honey",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32642": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32643": {
+  "name": "Crate of kebbit fur",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32644": {
+  "name": "Crate of mahogany logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32645": {
+  "name": "Crate of planks",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32646": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32647": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32648": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32649": {
+  "name": "Crate of wine",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32650": {
+  "name": "Crate of antelope fur",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32651": {
+  "name": "Crate of berries",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32652": {
+  "name": "Crate of bows",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32653": {
+  "name": "Crate of coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32654": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32655": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32656": {
+  "name": "Crate of flax",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32657": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32658": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32659": {
+  "name": "Crate of honey",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32660": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32661": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32662": {
+  "name": "Crate of meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32663": {
+  "name": "Crate of nickel ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32664": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32665": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32666": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32667": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32668": {
+  "name": "Crate of silk",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32669": {
+  "name": "Crate of silver ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32670": {
+  "name": "Crate of staffs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32671": {
+  "name": "Crate of teak logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32672": {
+  "name": "Crate of wine",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32673": {
+  "name": "Crate of amulets",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32674": {
+  "name": "Crate of beer",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32675": {
+  "name": "Crate of books",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32676": {
+  "name": "Crate of cacti",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32677": {
+  "name": "Crate of camphor logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32678": {
+  "name": "Crate of coconuts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32679": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32680": {
+  "name": "Crate of flax",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32681": {
+  "name": "Crate of honey",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32682": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32683": {
+  "name": "Crate of kebabs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32684": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32685": {
+  "name": "Crate of nothing sinister",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32686": {
+  "name": "Crate of pest remains",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32687": {
+  "name": "Crate of red coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32688": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32689": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32690": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32691": {
+  "name": "Crate of sunbeam ale",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32692": {
+  "name": "Crate of swords",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32693": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32694": {
+  "name": "Crate of chinchompas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32695": {
+  "name": "Crate of coal",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32696": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32697": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32698": {
+  "name": "Crate of fruit",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32699": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32700": {
+  "name": "Crate of herbs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32701": {
+  "name": "Crate of mithril ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32702": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32703": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32704": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32705": {
+  "name": "Crate of shields",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32706": {
+  "name": "Crate of snakeskin",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32707": {
+  "name": "Crate of swords",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32708": {
+  "name": "Crate of vegetables",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32709": {
+  "name": "Crate of astral runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32710": {
+  "name": "Crate of books",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32711": {
+  "name": "Crate of clothes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32712": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32713": {
+  "name": "Crate of halberds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32714": {
+  "name": "Crate of herbs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32715": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32716": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32717": {
+  "name": "Crate of potions",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32718": {
+  "name": "Crate of silk",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32719": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32720": {
+  "name": "Crate of xerician fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32721": {
+  "name": "Crate of astral runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32722": {
+  "name": "Crate of battleaxes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32723": {
+  "name": "Crate of coal",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32724": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32725": {
+  "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32726": {
+  "name": "Crate of granite",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32727": {
+  "name": "Crate of herbs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32728": {
+  "name": "Crate of karambwans",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32729": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32730": {
+  "name": "Crate of protective clothing",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32731": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32732": {
+  "name": "Crate of ship parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32733": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32734": {
+  "name": "Crate of adamantite ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32735": {
+  "name": "Crate of beer",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32736": {
+  "name": "Crate of dragon bitter",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32737": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32738": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32739": {
+  "name": "Crate of halberds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32740": {
+  "name": "Crate of lead ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32741": {
+  "name": "Crate of monkfish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32742": {
+  "name": "Crate of pies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32743": {
+  "name": "Crate of planks",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32744": {
+  "name": "Crate of redwood logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32745": {
+  "name": "Crate of rope",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32746": {
+  "name": "Crate of ship parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32747": {
+  "name": "Crate of teak logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32748": {
+  "name": "Crate of wine",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32749": {
+  "name": "Crate of calquat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32750": {
+  "name": "Crate of cocktails",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32751": {
+  "name": "Crate of coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32752": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32753": {
+  "name": "Crate of fishing supplies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32754": {
+  "name": "Crate of javelins",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32755": {
+  "name": "Crate of planks",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32756": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32757": {
+  "name": "Crate of ship parts",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32758": {
+  "name": "Crate of beer",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32759": {
+  "name": "Crate of fabrics",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32760": {
+  "name": "Crate of fish",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32761": {
+  "name": "Crate of maces",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32762": {
+  "name": "Crate of warhammers",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32763": {
+  "name": "Crate of wine",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32764": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32765": {
+  "name": "Crate of bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32766": {
+  "name": "Crate of battleaxes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32767": {
+  "name": "Crate of cacti",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32768": {
+  "name": "Crate of coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32769": {
+  "name": "Crate of gold bars",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32770": {
+  "name": "Crate of granite",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32771": {
+  "name": "Crate of meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32772": {
+  "name": "Crate of pineapples",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32773": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32774": {
+  "name": "Crate of rum",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32775": {
+  "name": "Crate of sea shells",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32776": {
+  "name": "Crate of spices",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32777": {
+  "name": "Crate of steel bars",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32778": {
+  "name": "Crate of swamp paste",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32779": {
+  "name": "Crate of wax",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32780": {
+  "name": "Crate of bananas",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32781": {
+  "name": "Crate of cacti",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32782": {
+  "name": "Crate of gems",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32783": {
+  "name": "Crate of javelins",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32784": {
+  "name": "Crate of jewellery",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32785": {
+  "name": "Crate of leather",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32786": {
+  "name": "Crate of meat",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32787": {
+  "name": "Crate of nickel ore",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32788": {
+  "name": "Crate of pest remains",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32789": {
+  "name": "Crate of pineapples",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32790": {
+  "name": "Crate of potions",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32791": {
+  "name": "Crate of rope",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32792": {
+  "name": "Crate of sandstone",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32793": {
+  "name": "Crate of shields",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32794": {
+  "name": "Crate of coral",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32795": {
+  "name": "Crate of dragonhide",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32796": {
+  "name": "Crate of granite",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32797": {
+  "name": "Crate of herbs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32798": {
+  "name": "Crate of logs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32799": {
+  "name": "Crate of maces",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32800": {
+  "name": "Crate of ores",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32801": {
+  "name": "Crate of platebodies",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32802": {
+  "name": "Crate of potions",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32803": {
+  "name": "Crate of runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32804": {
+  "name": "Crate of seeds",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32805": {
+  "name": "Crate of spears",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32806": {
+  "name": "Crate of wrath runes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
  },
  "32807": {
   "name": "Crate of ship parts (Pandemonium)",
@@ -49973,8 +52862,18 @@
   "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
+ "32808": {
+  "name": "Crate of looty",
+  "quest": true,
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
  "32879": {
   "name": "Aquanite hopper",
+  "weight": 0.01,
   "equipable": true,
   "slot": 5,
   "astab": -5,
@@ -49983,6 +52882,48 @@
   "amagic": -13,
   "arange": 12,
   "rstr": 1
+ },
+ "32924": {
+  "name": "Crate of arrowtips",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32925": {
+  "name": "Crate of clothes",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
+ },
+ "32928": {
+  "name": "Lovley jubbly bib",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 2
+ },
+ "32930": {
+  "name": "Beer belly sweater",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "32932": {
+  "name": "Jad jumper",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "32934": {
+  "name": "Christmas dinner",
+  "weight": 0.07,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "weaponCategory": "BLUNT"
  },
  "2000001": {
   "name": "Gleaming Rapier",

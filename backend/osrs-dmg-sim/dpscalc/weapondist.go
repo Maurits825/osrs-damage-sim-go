@@ -211,6 +211,13 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 
 	}
 
+	if player.equippedGear.isEquipped(aquaHopper) && style == Ranged {
+		//TODO rounding here
+		factor := float32(1 - 0.67)
+		secondHitDist := attackdist.GetLinearHitDistribution(accuracy*factor*0.1, 0, int(float32(maxHit)*factor))
+		attackDistribution = attackdist.NewMultiAttackDistribution([]*attackdist.HitDistribution{baseHitDist, secondHitDist})
+	}
+
 	//TODO tome of water??
 
 	//TODO ahrims
@@ -230,8 +237,18 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 		if player.equippedGear.isEquipped(zaryteCrossbow) {
 			effectDmg = min(110, int(player.Npc.CombatStats.Hitpoints*22/100))
 		}
-		attackDistribution.ScaleProbability(1 - effectChance)
+		attackDistribution.Distributions[0].ScaleProbability(1 - effectChance)
 		attackDistribution.Distributions[0].AddWeightedHit(effectChance, []int{effectDmg})
+
+		//TODO hopper, kinda tricky how to manage this if zcb spec+hopper?
+		//also have double hopper check now
+		if player.equippedGear.isEquipped(aquaHopper) {
+			//TODO how does this stack with kan diary?
+			effectChance *= float32(1-0.67) * (1 - effectChance)
+			attackDistribution.Distributions[1].ScaleProbability(1 - effectChance)
+			//TODO this will show max hit as 100+100, even though you cant double ree, but the chance (and dps) is still correct?
+			attackDistribution.Distributions[1].AddWeightedHit(effectChance*0.1, []int{effectDmg})
+		}
 
 		if player.equippedGear.isEquipped(zaryteCrossbow) && isSpecial {
 			zcbSpecEffectChance := getZcbSpecEffectChance(accuracy, effectChance)

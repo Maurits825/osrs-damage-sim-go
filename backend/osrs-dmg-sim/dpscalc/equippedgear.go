@@ -92,6 +92,9 @@ const (
 	ralos = 28919
 
 	kerisAmascut = 30891
+
+	aquaHopper = 32879
+	atlatl     = 29000
 )
 
 // echo leagues stuff

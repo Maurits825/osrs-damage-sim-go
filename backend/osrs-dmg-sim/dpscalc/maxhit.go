@@ -132,8 +132,13 @@ func getMeleeMaxHit(player *Player) int {
 }
 
 func getRangedMaxHit(player *Player) int {
-	baseLevel := dpsDetailEntries.TrackAdd(dpsdetail.DamageLevel, player.inputGearSetup.GearSetupSettings.CombatStats.Ranged, player.combatStatBoost.Ranged)
+	baseLevel := player.inputGearSetup.GearSetupSettings.CombatStats.Ranged + player.combatStatBoost.Ranged
+	if player.IsEquipped(atlatl) {
+		baseLevel = player.inputGearSetup.GearSetupSettings.CombatStats.Strength + player.combatStatBoost.Strength
+	}
+
 	effectiveLevel := baseLevel
+	dpsDetailEntries.TrackValue(dpsdetail.DamageLevel, effectiveLevel)
 
 	for _, prayer := range player.inputGearSetup.GearSetup.Prayers {
 		prayerBoost := prayer.getPrayerBoost()
@@ -156,7 +161,11 @@ func getRangedMaxHit(player *Player) int {
 		effectiveLevel = dpsDetailEntries.TrackFactor(dpsdetail.DamageEffectiveLevelVoid, effectiveLevel, 11, 10)
 	}
 
-	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, player.equipmentStats.damageStats.rangedStrength, 64)
+	str := player.equipmentStats.damageStats.rangedStrength
+	if player.IsEquipped(atlatl) {
+		str = player.equipmentStats.damageStats.meleeStrength
+	}
+	gearBonus := dpsDetailEntries.TrackAdd(dpsdetail.DamageGearBonus, str, 64)
 	baseMaxHit := dpsDetailEntries.TrackMaxHitFromEffective(dpsdetail.MaxHitBase, effectiveLevel, gearBonus)
 
 	//TODO avarice, ratbone
