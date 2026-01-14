@@ -1,2 +1,14 @@
 {
+  "2000001": {
+    "name": "Gleaming Rapier",
+    "futureContent": true,
+    "equipable": true,
+    "slot": 3,
+    "astab": 100,
+    "aslash": 78,
+    "acrush": -3,
+    "str": 102,
+    "aspeed": 5,
+    "weaponCategory": "STAB_SWORD"
+  }
 }

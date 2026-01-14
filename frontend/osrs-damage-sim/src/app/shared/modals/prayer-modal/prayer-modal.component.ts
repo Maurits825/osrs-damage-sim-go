@@ -11,16 +11,13 @@ export class PrayerModalComponent {
   @Input()
   selectedPrayers: Set<Prayer>;
 
-  @Input()
-  disabledPrayers: Set<Prayer>;
-
   @Output()
   prayerToggle = new EventEmitter<Prayer>();
 
-  rows = Array(6)
+  rows = Array(5)
     .fill(0)
     .map((_, i) => i);
-  cols = Array(5)
+  cols = Array(4)
     .fill(0)
     .map((_, i) => i);
 
@@ -29,8 +26,6 @@ export class PrayerModalComponent {
   constructor(public activeModal: NgbActiveModal) {}
 
   togglePrayer(prayer: Prayer): void {
-    if (!this.disabledPrayers.has(prayer)) {
-      this.prayerToggle.emit(prayer);
-    }
+    this.prayerToggle.emit(prayer);
   }
 }

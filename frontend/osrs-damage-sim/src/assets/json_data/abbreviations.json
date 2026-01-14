@@ -428,6 +428,12 @@
  "Player killing": [
   "BK"
  ],
+ "Blade of Saeldor": [
+  "Blade"
+ ],
+ "Arkan blade": [
+  "Blade"
+ ],
  "Ice Blitz": [
   "Blitz"
  ],
@@ -453,7 +459,9 @@
  ],
  "Dual macuahuitl": [
   "Boppers",
-  "Dualies"
+  "Dualies",
+  "S*x paddles",
+  "Paddles"
  ],
  "Boss kill count": [
   "Boss kc"
@@ -1138,6 +1146,10 @@
  "Dragon platebody": [
   "Dplate"
  ],
+ "Calculator:Dry calc": [
+  "Dry",
+  "FFA"
+ ],
  "Slang dictionary/S": [
   "Dry",
   "FFA"
@@ -1186,6 +1198,18 @@
  ],
  "Duke Sucellus": [
   "Duke"
+ ],
+ "duplicate": [
+  "Dupe"
+ ],
+ "glitch": [
+  "Dupe"
+ ],
+ "bug abuse": [
+  "Dupe"
+ ],
+ "rollback": [
+  "Dupe"
  ],
  "Dust devil": [
   "Dusts",
@@ -1508,6 +1532,9 @@
  "Combat Achievement": [
   "GM"
  ],
+ "Grid Master": [
+  "GM"
+ ],
  "Granite maul": [
   "Gmaul",
   "Maul",
@@ -1552,6 +1579,9 @@
   "Hally"
  ],
  "Food": [
+  "Hard food"
+ ],
+ "attack delay": [
   "Hard food"
  ],
  "fish": [
@@ -2999,7 +3029,7 @@
  "Rare drop table": [
   "RDT"
  ],
- "bow of Faerdhinen": [
+ "megarare": [
   "Rebuild"
  ],
  "Ring of recoil": [

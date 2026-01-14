@@ -207,7 +207,7 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		if inToa {
 			shadowFactor = 4
 		}
-		equipmentStats.damageStats.magicStrength *= float32(shadowFactor)
+		equipmentStats.damageStats.magicStrength = min(1000, equipmentStats.damageStats.magicStrength*float32(shadowFactor))
 		equipmentStats.offensiveStats.magic *= shadowFactor
 	}
 

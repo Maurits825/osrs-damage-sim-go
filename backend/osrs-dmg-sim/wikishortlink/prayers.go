@@ -22,4 +22,6 @@ var prayersId = map[dpscalc.Prayer]int{
 	dpscalc.ThickSkinPrayer:          16,
 	dpscalc.RockSkinPrayer:           17,
 	dpscalc.SteelSkinPrayer:          18,
+	dpscalc.Deadeye:                  19,
+	dpscalc.MysticVigour:             20,
 }
