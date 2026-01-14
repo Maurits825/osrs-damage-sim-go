@@ -1146,6 +1146,10 @@
  "Dragon platebody": [
   "Dplate"
  ],
+ "Calculator:Dry calc": [
+  "Dry",
+  "FFA"
+ ],
  "Slang dictionary/S": [
   "Dry",
   "FFA"
@@ -1194,6 +1198,18 @@
  ],
  "Duke Sucellus": [
   "Duke"
+ ],
+ "duplicate": [
+  "Dupe"
+ ],
+ "glitch": [
+  "Dupe"
+ ],
+ "bug abuse": [
+  "Dupe"
+ ],
+ "rollback": [
+  "Dupe"
  ],
  "Dust devil": [
   "Dusts",
@@ -1514,6 +1530,9 @@
   "GM"
  ],
  "Combat Achievement": [
+  "GM"
+ ],
+ "Grid Master": [
   "GM"
  ],
  "Granite maul": [

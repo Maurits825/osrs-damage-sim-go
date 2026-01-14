@@ -8066,12 +8066,57 @@
   "dmagic": 5,
   "combat": 20,
   "size": 1,
-  "respawn": 25,
   "id": "292"
  },
  {
   "name": "Dwarf",
-  "hitpoints": 18,
+  "hitpoints": 16,
+  "att": 12,
+  "str": 5,
+  "def": 8,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dmagic": 5,
+  "drange": 10,
+  "combat": 11,
+  "size": 1,
+  "id": "294"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 16,
+  "att": 8,
+  "str": 5,
+  "def": 8,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dmagic": 10,
+  "combat": 11,
+  "size": 1,
+  "id": "295"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 12,
+  "att": 8,
+  "str": 8,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dmagic": 5,
+  "combat": 10,
+  "size": 1,
+  "id": "296"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 16,
   "att": 8,
   "str": 8,
   "def": 8,
@@ -8083,7 +8128,73 @@
   "drange": 10,
   "combat": 11,
   "size": 1,
-  "id": "294"
+  "id": "1401"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 16,
+  "att": 8,
+  "str": 8,
+  "def": 8,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dslash": 10,
+  "dcrush": 10,
+  "dmagic": 10,
+  "drange": 20,
+  "combat": 11,
+  "size": 1,
+  "id": "1403"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 12,
+  "att": 8,
+  "str": 8,
+  "def": 8,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dmagic": 5,
+  "drange": 10,
+  "combat": 10,
+  "size": 1,
+  "id": "1405"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 18,
+  "att": 8,
+  "str": 6,
+  "def": 10,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dmagic": 5,
+  "drange": 10,
+  "combat": 11,
+  "size": 1,
+  "id": "1406"
+ },
+ {
+  "name": "Dwarf",
+  "hitpoints": 13,
+  "att": 10,
+  "str": 8,
+  "def": 8,
+  "mage": 1,
+  "range": 1,
+  "attbns": 5,
+  "strbns": 7,
+  "dmagic": 5,
+  "drange": 10,
+  "combat": 11,
+  "size": 1,
+  "id": "1407"
  },
  {
   "name": "Dwarf",
@@ -12707,6 +12818,7 @@
   "drange": 20,
   "combat": 21,
   "size": 1,
+  "respawn": 50,
   "id": "14665"
  },
  {
@@ -13887,7 +13999,7 @@
   "dcrush": 30,
   "combat": 82,
   "size": 1,
-  "elementalweaknesspercent": 100,
+  "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire",
   "id": "1876"
  },
@@ -13926,7 +14038,7 @@
   "dcrush": 30,
   "combat": 82,
   "size": 1,
-  "elementalweaknesspercent": 100,
+  "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire",
   "id": "1875"
  },
@@ -14918,6 +15030,21 @@
   "elementalweaknesspercent": 25,
   "elementalweaknesstype": "fire",
   "id": "1042"
+ },
+ {
+  "name": "Jungle horror",
+  "hitpoints": 45,
+  "att": 70,
+  "str": 70,
+  "def": 55,
+  "mage": 1,
+  "range": 1,
+  "combat": 70,
+  "size": 1,
+  "respawn": 50,
+  "elementalweaknesspercent": 25,
+  "elementalweaknesstype": "fire",
+  "id": "1043"
  },
  {
   "name": "Jungle spider",
@@ -23713,7 +23840,7 @@
   "dheavy": 60,
   "combat": 235,
   "size": 4,
-  "respawn": 30,
+  "respawn": 20,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "air",
   "id": "14860"
@@ -29321,7 +29448,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire",
+  "elementalweaknesstype": "earth",
   "id": "5342"
  },
  {
@@ -29342,7 +29469,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire",
+  "elementalweaknesstype": "earth",
   "id": "5344"
  },
  {
@@ -31735,6 +31862,8 @@
   "combat": 25,
   "size": 1,
   "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire",
   "id": "64"
  },
  {

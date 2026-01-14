@@ -49178,7 +49178,6 @@
   "slot": 3,
   "astab": 2,
   "acrush": 21,
-  "amagic": 7,
   "dslash": 7,
   "dcrush": 3,
   "dmagic": 11,
@@ -49648,12 +49647,6 @@
   "equipable": true,
   "slot": 5
  },
- "31243": {
-  "name": "Horn of plenty",
-  "weight": 1.0,
-  "equipable": true,
-  "slot": 5
- },
  "31248": {
   "name": "Belle's folly",
   "weight": 1.36,
@@ -49692,6 +49685,12 @@
   "drange": 9,
   "prayer": 4
  },
+ "31292": {
+  "name": "Sailing hood",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
  "31300": {
   "name": "Deep sea apparatus",
   "weight": 10.0,
@@ -49700,6 +49699,7 @@
  },
  "31398": {
   "name": "Tortugan shield",
+  "quest": true,
   "weight": 10.0,
   "equipable": true,
   "slot": 1,

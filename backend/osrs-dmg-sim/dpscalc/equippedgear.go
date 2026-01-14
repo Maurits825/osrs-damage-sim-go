@@ -93,7 +93,7 @@ const (
 
 	kerisAmascut = 30891
 
-	aquaHopper = 32879
+	aquaHopper = 32879_000 //TODO -- disable this for now
 	atlatl     = 29000
 )
 

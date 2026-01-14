@@ -792,7 +792,9 @@
   "drange": 10,
   "combat": 25,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "65": {
   "name": "Zombie",
@@ -812,7 +814,9 @@
   "drange": 10,
   "combat": 25,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "66": {
   "name": "Zombie",
@@ -832,7 +836,9 @@
   "drange": 10,
   "combat": 25,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "67": {
   "name": "Zombie",
@@ -852,7 +858,9 @@
   "drange": 10,
   "combat": 25,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "68": {
   "name": "Zombie",
@@ -872,7 +880,9 @@
   "drange": 10,
   "combat": 25,
   "size": 1,
-  "respawn": 35
+  "respawn": 35,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "fire"
  },
  "69": {
   "name": "Summoned Zombie",
@@ -2852,14 +2862,13 @@
   "strbns": 9,
   "dmagic": 5,
   "combat": 20,
-  "size": 1,
-  "respawn": 25
+  "size": 1
  },
  "294": {
   "name": "Dwarf",
-  "hitpoints": 18,
-  "att": 8,
-  "str": 8,
+  "hitpoints": 16,
+  "att": 12,
+  "str": 5,
   "def": 8,
   "mage": 1,
   "range": 1,
@@ -2872,33 +2881,31 @@
  },
  "295": {
   "name": "Dwarf",
-  "hitpoints": 18,
+  "hitpoints": 16,
   "att": 8,
-  "str": 8,
+  "str": 5,
   "def": 8,
   "mage": 1,
   "range": 1,
   "attbns": 5,
   "strbns": 7,
-  "dmagic": 5,
-  "drange": 10,
+  "dmagic": 10,
   "combat": 11,
   "size": 1
  },
  "296": {
   "name": "Dwarf",
-  "hitpoints": 16,
+  "hitpoints": 12,
   "att": 8,
   "str": 8,
-  "def": 6,
+  "def": 10,
   "mage": 1,
   "range": 1,
   "attbns": 5,
   "strbns": 7,
   "dmagic": 5,
   "combat": 10,
-  "size": 1,
-  "respawn": 25
+  "size": 1
  },
  "299": {
   "name": "Gunthor the brave",
@@ -8473,7 +8480,7 @@
   "mage": 1,
   "range": 1,
   "combat": 70,
-  "size": 2,
+  "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 25,
   "elementalweaknesstype": "fire"
@@ -8501,7 +8508,7 @@
   "mage": 1,
   "range": 1,
   "combat": 70,
-  "size": 2,
+  "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 25,
   "elementalweaknesstype": "fire"
@@ -10095,7 +10102,7 @@
  },
  "1401": {
   "name": "Dwarf",
-  "hitpoints": 18,
+  "hitpoints": 16,
   "att": 8,
   "str": 8,
   "def": 8,
@@ -10110,7 +10117,7 @@
  },
  "1402": {
   "name": "Dwarf",
-  "hitpoints": 18,
+  "hitpoints": 16,
   "att": 8,
   "str": 8,
   "def": 8,
@@ -10125,7 +10132,7 @@
  },
  "1403": {
   "name": "Dwarf",
-  "hitpoints": 18,
+  "hitpoints": 16,
   "att": 8,
   "str": 8,
   "def": 8,
@@ -10133,14 +10140,16 @@
   "range": 1,
   "attbns": 5,
   "strbns": 7,
-  "dmagic": 5,
-  "drange": 10,
+  "dslash": 10,
+  "dcrush": 10,
+  "dmagic": 10,
+  "drange": 20,
   "combat": 11,
   "size": 1
  },
  "1404": {
   "name": "Dwarf",
-  "hitpoints": 18,
+  "hitpoints": 16,
   "att": 8,
   "str": 8,
   "def": 8,
@@ -10155,25 +10164,25 @@
  },
  "1405": {
   "name": "Dwarf",
-  "hitpoints": 16,
+  "hitpoints": 12,
   "att": 8,
   "str": 8,
-  "def": 6,
+  "def": 8,
   "mage": 1,
   "range": 1,
   "attbns": 5,
   "strbns": 7,
   "dmagic": 5,
+  "drange": 10,
   "combat": 10,
-  "size": 1,
-  "respawn": 25
+  "size": 1
  },
  "1406": {
   "name": "Dwarf",
   "hitpoints": 18,
   "att": 8,
-  "str": 8,
-  "def": 8,
+  "str": 6,
+  "def": 10,
   "mage": 1,
   "range": 1,
   "attbns": 5,
@@ -10185,8 +10194,8 @@
  },
  "1407": {
   "name": "Dwarf",
-  "hitpoints": 18,
-  "att": 8,
+  "hitpoints": 13,
+  "att": 10,
   "str": 8,
   "def": 8,
   "mage": 1,
@@ -12487,7 +12496,7 @@
   "dcrush": 30,
   "combat": 82,
   "size": 1,
-  "elementalweaknesspercent": 100,
+  "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
  "1876": {
@@ -12505,7 +12514,7 @@
   "dcrush": 30,
   "combat": 82,
   "size": 1,
-  "elementalweaknesspercent": 100,
+  "elementalweaknesspercent": 50,
   "elementalweaknesstype": "fire"
  },
  "1877": {
@@ -16800,6 +16809,29 @@
   "respawn": 50,
   "elementalweaknesspercent": 25,
   "elementalweaknesstype": "earth"
+ },
+ "2642": {
+  "name": "King Black Dragon",
+  "isDragon": true,
+  "isFiery": true,
+  "hitpoints": 240,
+  "att": 240,
+  "str": 240,
+  "def": 240,
+  "mage": 240,
+  "range": 1,
+  "dstab": 40,
+  "dslash": 90,
+  "dcrush": 90,
+  "dmagic": 80,
+  "dlight": 70,
+  "dstandard": 70,
+  "dheavy": 40,
+  "combat": 276,
+  "size": 5,
+  "respawn": 16,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "water"
  },
  "2645": {
   "name": "Blood Blamish Snail",
@@ -28781,7 +28813,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire"
+  "elementalweaknesstype": "earth"
  },
  "5343": {
   "name": "Undead one",
@@ -28794,7 +28826,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire"
+  "elementalweaknesstype": "earth"
  },
  "5344": {
   "name": "Undead one",
@@ -28814,7 +28846,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire"
+  "elementalweaknesstype": "earth"
  },
  "5345": {
   "name": "Undead one",
@@ -28834,7 +28866,7 @@
   "size": 1,
   "respawn": 50,
   "elementalweaknesspercent": 50,
-  "elementalweaknesstype": "fire"
+  "elementalweaknesstype": "earth"
  },
  "5346": {
   "name": "Undead one",
@@ -43763,8 +43795,8 @@
   "name": "Dwarf",
   "hitpoints": 18,
   "att": 8,
-  "str": 8,
-  "def": 8,
+  "str": 6,
+  "def": 10,
   "mage": 1,
   "range": 1,
   "attbns": 5,
@@ -61491,7 +61523,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14664": {
   "name": "Guard",
@@ -61509,7 +61542,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14665": {
   "name": "Guard",
@@ -61529,7 +61563,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14666": {
   "name": "Guard",
@@ -61549,7 +61584,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14667": {
   "name": "Guard",
@@ -61567,7 +61603,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14668": {
   "name": "Guard",
@@ -61585,7 +61622,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14669": {
   "name": "Guard",
@@ -61605,7 +61643,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14670": {
   "name": "Guard",
@@ -61625,7 +61664,8 @@
   "dmagic": -4,
   "drange": 20,
   "combat": 21,
-  "size": 1
+  "size": 1,
+  "respawn": 50
  },
  "14702": {
   "name": "Juvenile custodian stalker",
@@ -62045,7 +62085,7 @@
   "dheavy": 60,
   "combat": 235,
   "size": 4,
-  "respawn": 30,
+  "respawn": 20,
   "elementalweaknesspercent": 50,
   "elementalweaknesstype": "air"
  },

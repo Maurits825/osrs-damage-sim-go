@@ -131,7 +131,7 @@ func (options gearSetupOptions) enrichGearSetupOptions(style dpscalc.CombatStyle
 	if npc.IsUndead {
 		options.addGearId(dpscalc.Neck, salveAmuletEI)
 	}
-	if npc.IsDragon && style != dpscalc.Magic {
+	if npc.IsDragon {
 		options.addGearId(dpscalc.Weapon, dragonBaneWeapons[style])
 	}
 	if npc.IsDemon && style.IsMeleeStyle() {

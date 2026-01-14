@@ -55,11 +55,12 @@ const (
 )
 
 const (
-	shadowStaff   = 27275
-	sangStaff     = 22323
-	harmStaff     = 24423
-	volatileStaff = 24424
-	eyeOfAyak     = 31115
+	shadowStaff      = 27275
+	sangStaff        = 22323
+	harmStaff        = 24423
+	volatileStaff    = 24424
+	eyeOfAyak        = 31115
+	dragonHunterWand = 30070
 
 	tomeOfFire = 20714
 )
@@ -117,4 +118,5 @@ var dragonBaneWeapons = map[dpscalc.CombatStyleType]int{
 	dpscalc.Slash:  dhl,
 	dpscalc.Crush:  dhl,
 	dpscalc.Ranged: dhcb,
+	dpscalc.Magic:  dragonHunterWand,
 }
