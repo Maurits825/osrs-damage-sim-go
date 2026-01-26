@@ -53126,6 +53126,7 @@
   "rstr": 60
  },
  "2000004": {
+  "futureContent": true,
   "name": "Amethyst arrow seeker",
   "equipable": true,
   "slot": 13,

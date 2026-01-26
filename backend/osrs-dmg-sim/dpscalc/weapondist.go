@@ -12,12 +12,17 @@ import (
 var scytheHitReduction = []float32{1, 0.5, 0.25}
 
 func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attackdist.AttackDistribution {
-	//default linear dist
-	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, 0, maxHit)
-	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
-
 	style := player.combatStyle.CombatStyleType
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
+
+	minHit := 0
+	if player.equippedGear.isAnyEquipped(seekerArrows) && style == Ranged { //TODO check if bow style?
+		minHit = 3
+	}
+
+	//default linear dist
+	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, minHit, maxHit)
+	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
 
 	if player.ragingEchoesMasteries.ranged >= 1 {
 		for i := range baseHitDist.Hits {

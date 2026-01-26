@@ -145,6 +145,10 @@ var wildyWeapons = []int{
 	22542, ursineMace,
 }
 
+var seekerArrows = []int{
+	2000003, 2000004,
+}
+
 type equippedGear struct {
 	ids []int
 }
