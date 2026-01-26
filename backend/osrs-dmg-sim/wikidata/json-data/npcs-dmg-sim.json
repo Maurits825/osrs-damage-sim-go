@@ -23099,7 +23099,9 @@
   "dmagic": 500,
   "drange": 500,
   "combat": 69,
-  "size": 1
+  "size": 1,
+  "elementalweaknesspercent": 50,
+  "elementalweaknesstype": "air"
  },
  "3938": {
   "name": "Freidir",
@@ -62067,8 +62069,6 @@
  },
  "14860": {
   "name": "Shellbane gryphon",
-  "is<!-- if no monster attributes apply": true,
-  "isRemove this parameter -->": true,
   "hitpoints": 400,
   "att": 160,
   "str": 210,

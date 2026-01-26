@@ -95,6 +95,8 @@ const (
 
 	aquaHopper = 32879_000 //TODO -- disable this for now
 	atlatl     = 29000
+
+	crimsonBludgeon = 2000002 //TODO id
 )
 
 // echo leagues stuff

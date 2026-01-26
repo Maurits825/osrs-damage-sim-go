@@ -1,14 +1,36 @@
 {
   "2000001": {
-    "name": "Gleaming Rapier",
     "futureContent": true,
+    "name": "Necklace of pursuit",
     "equipable": true,
-    "slot": 3,
-    "astab": 100,
-    "aslash": 78,
-    "acrush": -3,
-    "str": 102,
-    "aspeed": 5,
-    "weaponCategory": "STAB_SWORD"
+    "slot": 2,
+    "arange": 22,
+    "rstr": 8,
+    "prayer": 3
+  },
+  "2000002": {
+    "futureContent": true,
+    "name": "Crimson bludgeon",
+    "equipable": true,
+	"slot": 3,
+    "acrush": 57,
+    "str": 56,
+    "aspeed": 4,
+    "weaponCategory": "SPIKED"
+  },
+  "2000003": {
+    "futureContent": true,
+    "name": "Dragon arrow seeker",
+    "equipable": true,
+    "slot": 13,
+    "arange": 23,
+    "rstr": 60
+  },
+  "2000004": {
+    "name": "Amethyst arrow seeker",
+    "equipable": true,
+    "slot": 13,
+    "rstr": 55,
+    "arange": 23
   }
 }

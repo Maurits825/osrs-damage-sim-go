@@ -4572,7 +4572,7 @@
   "dstab": 23,
   "dslash": 30,
   "dcrush": 30,
-  "dmagic": 26,
+  "dmagic": 28,
   "drange": 40
  },
  "2501": {
@@ -14196,7 +14196,7 @@
   "dstab": 23,
   "dslash": 30,
   "dcrush": 30,
-  "dmagic": 26,
+  "dmagic": 28,
   "drange": 40
  },
  "7376": {
@@ -14209,7 +14209,7 @@
   "dstab": 23,
   "dslash": 30,
   "dcrush": 30,
-  "dmagic": 26,
+  "dmagic": 28,
   "drange": 40
  },
  "7378": {
@@ -52925,16 +52925,211 @@
   "is2h": true,
   "weaponCategory": "BLUNT"
  },
- "2000001": {
-  "name": "Gleaming Rapier",
-  "futureContent": true,
+ "33002": {
+  "name": "Holy moleys",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 10,
+  "prayer": 3
+ },
+ "33021": {
+  "name": "Bow of faerdhinen (c) (deadman)",
+  "weight": 1.5,
   "equipable": true,
   "slot": 3,
-  "astab": 100,
-  "aslash": 78,
-  "acrush": -3,
-  "str": 102,
+  "is2h": true,
+  "arange": 128,
+  "rstr": 106,
   "aspeed": 5,
-  "weaponCategory": "STAB_SWORD"
+  "weaponCategory": "BOW"
+ },
+ "33023": {
+  "name": "Crystal body (deadman)",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -18,
+  "arange": 31,
+  "dstab": 46,
+  "dslash": 38,
+  "dcrush": 48,
+  "dmagic": 44,
+  "drange": 68,
+  "prayer": 3
+ },
+ "33025": {
+  "name": "Crystal body (deadman)",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "33027": {
+  "name": "Crystal legs (deadman)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -12,
+  "arange": 18,
+  "dstab": 26,
+  "dslash": 21,
+  "dcrush": 30,
+  "dmagic": 34,
+  "drange": 38,
+  "prayer": 2
+ },
+ "33029": {
+  "name": "Crystal legs (deadman)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7
+ },
+ "33031": {
+  "name": "Crystal helm (deadman)",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -10,
+  "arange": 9,
+  "dstab": 12,
+  "dslash": 8,
+  "dcrush": 14,
+  "dmagic": 10,
+  "drange": 18,
+  "prayer": 2
+ },
+ "33033": {
+  "name": "Crystal helm (deadman)",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "33035": {
+  "name": "Toxic staff (deadman)",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "astab": 55,
+  "aslash": 70,
+  "amagic": 17,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 17,
+  "str": 72,
+  "aspeed": 4,
+  "mdmg": 15.0,
+  "weaponCategory": "BLADED_STAFF"
+ },
+ "33036": {
+  "name": "Toxic staff (deadman)",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "astab": 55,
+  "aslash": 70,
+  "amagic": 25,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 17,
+  "str": 72,
+  "aspeed": 4,
+  "mdmg": 15.0,
+  "weaponCategory": "BLADED_STAFF"
+ },
+ "33063": {
+  "name": "Starter cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "astab": 5,
+  "aslash": 5,
+  "acrush": 5,
+  "amagic": 5,
+  "arange": 5
+ },
+ "33066": {
+  "name": "Hooded slayer helmet",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -2,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": -1,
+  "drange": 30
+ },
+ "33068": {
+  "name": "Hooded slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33070": {
+  "name": "Hooded slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33072": {
+  "name": "Hooded slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "2000001": {
+  "futureContent": true,
+  "name": "Necklace of pursuit",
+  "equipable": true,
+  "slot": 2,
+  "arange": 22,
+  "rstr": 8,
+  "prayer": 3
+ },
+ "2000002": {
+  "futureContent": true,
+  "name": "Crimson bludgeon",
+  "equipable": true,
+  "slot": 3,
+  "acrush": 57,
+  "str": 56,
+  "aspeed": 4,
+  "weaponCategory": "SPIKED"
+ },
+ "2000003": {
+  "futureContent": true,
+  "name": "Dragon arrow seeker",
+  "equipable": true,
+  "slot": 13,
+  "arange": 23,
+  "rstr": 60
+ },
+ "2000004": {
+  "name": "Amethyst arrow seeker",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 55,
+  "arange": 23
  }
 }
