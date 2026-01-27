@@ -36,13 +36,13 @@ export class LocalStorageService {
     if (error) return of(error);
 
     const gearSetupPreset = this.createGearSetupPreset(gearSetup);
+
     return this.getSavedGearSetups().pipe(
-      mergeMap((gearSetups: GearSetupPreset[]) =>
-        iif(
-          () => gearSetups.some((preset: GearSetupPreset) => preset.name === gearSetupPreset.name),
-          of('Name already exists'),
-          this.storage.set(this.gearSetupKey, [...gearSetups, gearSetupPreset]),
-        ),
+      map((gearSetups: GearSetupPreset[]) =>
+        gearSetups.filter((gearSetup: GearSetupPreset) => gearSetup.name !== gearSetupPreset.name),
+      ),
+      switchMap((gearSetups: GearSetupPreset[]) =>
+        this.storage.set(this.gearSetupKey, [...gearSetups, gearSetupPreset]),
       ),
     );
   }
