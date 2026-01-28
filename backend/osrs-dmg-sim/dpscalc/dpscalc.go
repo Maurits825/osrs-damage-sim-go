@@ -187,6 +187,10 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	npc := GetNpc(globalSettings.Npc.Id)
 	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
 
+	if globalSettings.MinDefence {
+		npc.CombatStats.Defence = getMinDefence(&npc)
+	}
+
 	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
 	cmbStyle.Is2H = is2H
 

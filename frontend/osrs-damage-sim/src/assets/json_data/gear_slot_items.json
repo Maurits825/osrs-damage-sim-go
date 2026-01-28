@@ -16033,6 +16033,7 @@
   {
    "name": "Amethyst arrow seeker",
    "id": 2000004,
+   "futureContent": true,
    "icon": "c3RvcmFnZTogb2JqZWN0IGRvZXNuJ3QgZXhpc3QK"
   }
  ],

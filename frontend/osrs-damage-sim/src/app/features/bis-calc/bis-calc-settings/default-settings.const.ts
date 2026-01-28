@@ -5,6 +5,7 @@ export const DEFAULT_BIS_INPUT_SETUP: BisCalcInputSetup = {
     npc: null,
     teamSize: 1,
     accuracyBuff: false,
+    minDefence: false,
     raidLevel: 0,
     pathLevel: 0,
     overlyDraining: false,
