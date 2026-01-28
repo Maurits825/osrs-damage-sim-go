@@ -39,6 +39,10 @@ export const KARIL_SET = [4734, 4732, 4736, 4738];
 export const AHRIM_SET = [4710, 4708, 4712, 4714];
 export const VERAC_SET = [4755, 4753, 4757, 4759];
 
+export const BLOOD_BARK = [25413, 25404, 25416];
+export const BLOOD_MOON = [29025, 29028, 29022];
+export const BLUE_MOON = [29016, 29019, 29013];
+
 export interface QuickGearSet {
   label: string;
   itemIds: number[];
@@ -49,6 +53,9 @@ export const QUICK_GEAR_SETS: QuickGearSet[] = [
   { label: 'Karil', itemIds: KARIL_SET },
   { label: 'Ahrim', itemIds: AHRIM_SET },
   { label: 'Verac', itemIds: VERAC_SET },
+  { label: 'Blood bark', itemIds: BLOOD_BARK },
+  { label: 'Blood moon', itemIds: BLOOD_MOON },
+  { label: 'Blue moon', itemIds: BLUE_MOON },
 ];
 
 export const DEFAULT_GEAR_SETUP: GearSetup = {
