@@ -140,8 +140,7 @@
  "Ancient Magicks": [
   "Ancients",
   "Barrage",
-  "Blitz",
-  "Farcaster"
+  "Blitz"
  ],
  "Necklace of anguish": [
   "Ang"
@@ -364,10 +363,12 @@
   "Barb Vil"
  ],
  "Ice Barrage": [
-  "Barrage"
+  "Barrage",
+  "Farcast"
  ],
  "Barrage spell": [
-  "Barrage"
+  "Barrage",
+  "Farcast"
  ],
  "Battleaxe": [
   "Baxe"
@@ -459,9 +460,7 @@
  ],
  "Dual macuahuitl": [
   "Boppers",
-  "Dualies",
-  "S*x paddles",
-  "Paddles"
+  "Dualies"
  ],
  "Boss kill count": [
   "Boss kc"
@@ -774,6 +773,9 @@
  "noob": [
   "Choob",
   "Froob"
+ ],
+ "clan": [
+  "Clannie"
  ],
  "Clue scroll": [
   "Clue",
@@ -1327,12 +1329,6 @@
  "Osmumten's fang": [
   "Fang"
  ],
- "spell": [
-  "Farcaster"
- ],
- "freeze spells": [
-  "Farcaster"
- ],
  "ironman": [
   "Fe"
  ],
@@ -1486,6 +1482,12 @@
  ],
  "G spear": [
   "G (weapon/armour name)"
+ ],
+ "#F": [
+  "Gap"
+ ],
+ "farcast": [
+  "Gap"
  ],
  "Gargoyles": [
   "Gargs"
@@ -2522,6 +2524,9 @@
  "main": [
   "Main"
  ],
+ "dual macuahuitl": [
+  "Maracas"
+ ],
  "free for all": [
   "Mass(ing)"
  ],
@@ -3149,7 +3154,7 @@
  "collection log": [
   "EHC"
  ],
- "New Official Client": [
+ "Official Client": [
   "EHC"
  ],
  "Experience rate": [
