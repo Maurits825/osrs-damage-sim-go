@@ -16,6 +16,7 @@ const (
 	MaxStatLevel      = 99
 	MaxStatDrainCount = 5
 	MaxStatDrainValue = 1000
+	MaxGearSetups     = 10
 )
 
 type GearSlot int
@@ -216,6 +217,10 @@ func (inputSetup *InputSetup) Validate() error {
 
 	if len(inputSetup.InputGearSetups) == 0 {
 		return errors.New("no input gear setups")
+	}
+
+	if len(inputSetup.InputGearSetups) > MaxGearSetups {
+		return errors.New("max gear setups is " + fmt.Sprint(MaxGearSetups))
 	}
 
 	for _, inputGearSetup := range inputSetup.InputGearSetups {

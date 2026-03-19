@@ -18,7 +18,7 @@ export class GearSetupTabsComponent implements OnInit, OnDestroy {
   activeTab = 0;
 
   @Input()
-  maxSetupTabs = 5;
+  maxSetupTabs = 10;
 
   private destroyed$ = new Subject();
 
