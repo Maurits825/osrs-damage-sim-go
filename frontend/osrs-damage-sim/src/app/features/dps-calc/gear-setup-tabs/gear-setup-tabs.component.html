@@ -23,14 +23,15 @@
             class="nav-link"
             role="button"
             [ngClass]="{
-              active: activeTab === i
+              active: activeTab === i,
             }"
             (click)="selectTab(i)"
           >
             <div class="text-center fs-5">Setup - {{ i + 1 }}</div>
           </a>
         </li>
-        <div class="me-auto">
+
+        <div>
           <button
             type="button"
             class="btn btn-primary btn-lg ms-3 my-2"
@@ -41,6 +42,64 @@
           </button>
         </div>
       </ul>
+
+      <div>
+        <div class="d-flex align-items-center mb-1">
+          <div>
+            <input class="form-control" type="text" [(ngModel)]="inputPresetName" placeholder="Preset name" />
+          </div>
+          <ng-template #saveGearSetupPop let-error="error">
+            <div *ngIf="error" class="text-danger">
+              {{ error }}
+            </div>
+            <div *ngIf="error === undefined" class="text-success">Saved!</div>
+          </ng-template>
+          <div class="ms-1">
+            <button
+              type="button"
+              class="btn btn-primary"
+              [ngbPopover]="saveGearSetupPop"
+              triggers="manual"
+              #saveGearPopover="ngbPopover"
+              (click)="savePreset(saveGearPopover)"
+            >
+              Save <i class="bi bi-download"></i>
+            </button>
+          </div>
+        </div>
+        <div class="ms-auto d-flex align-items-center">
+          <div class="me-2">Load preset</div>
+          <div class="flex-grow-1">
+            <app-ng-select-lazy-load
+              [valueType]="InputGearSetupPreset"
+              [allValues]="inputGearSetupPresets"
+              [selectedValue]="selectedInputGearSetupPreset"
+              [clearable]="false"
+              searchProperty="name"
+              placeholder="Select preset"
+              (valueChanged)="selectedPresetChange($event)"
+            >
+              <ng-template #dropdownLabel let-item="item">{{ item.name }}</ng-template>
+              <ng-template #dropdownOptions let-item="item">
+                <div class="d-flex align-items-center">
+                  <div>
+                    {{ item.name }}
+                  </div>
+                  <div class="ms-auto">
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger btn-sm"
+                      (click)="deletePreset($event, item.name)"
+                    >
+                      <i class="bi bi-x"></i>
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+            </app-ng-select-lazy-load>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
   <ng-container *ngFor="let inputSetup of inputGearSetups; index as i">
