@@ -16,9 +16,6 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 	isSpecial := player.inputGearSetup.GearSetup.IsSpecialAttack
 
 	minHit := 0
-	if player.equippedGear.isAnyEquipped(seekerArrows) && style == Ranged { //TODO check if bow style?
-		minHit = 3
-	}
 
 	//default linear dist
 	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, minHit, maxHit)
@@ -221,6 +218,13 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 		factor := float32(1 - 0.67)
 		secondHitDist := attackdist.GetLinearHitDistribution(accuracy*factor*0.1, 0, int(float32(maxHit)*factor))
 		attackDistribution = attackdist.NewMultiAttackDistribution([]*attackdist.HitDistribution{baseHitDist, secondHitDist})
+	}
+
+	//TODO check this
+	if player.equippedGear.isAnyEquipped(seekerArrows) && style == Ranged {
+		attackDistribution.Distributions[0].Hits[1].Hitsplats[0] = 3
+		attackDistribution.Distributions[0].Hits[2].Hitsplats[0] = 3
+		attackDistribution.Distributions[0].Hits[3].Hitsplats[0] = 3
 	}
 
 	//TODO tome of water??

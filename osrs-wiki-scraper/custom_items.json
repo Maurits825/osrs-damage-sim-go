@@ -1,19 +1,19 @@
 {
   "2000001": {
     "futureContent": true,
-    "name": "Necklace of pursuit",
+    "name": "Necklace of rupture",
     "equipable": true,
     "slot": 2,
-    "arange": 22,
+    "arange": 20,
     "rstr": 8,
     "prayer": 3
   },
   "2000002": {
     "futureContent": true,
-    "name": "Crimson bludgeon",
+    "name": "Crimson kisten",
     "equipable": true,
 	"slot": 3,
-    "acrush": 57,
+    "acrush": 80,
     "str": 56,
     "aspeed": 4,
     "weaponCategory": "SPIKED"
@@ -23,7 +23,7 @@
     "name": "Dragon arrow seeker",
     "equipable": true,
     "slot": 13,
-    "arange": 23,
+    "arange": 20,
     "rstr": 60
   },
   "2000004": {
@@ -32,6 +32,6 @@
     "equipable": true,
     "slot": 13,
     "rstr": 55,
-    "arange": 23
+    "arange": 20
   }
 }
