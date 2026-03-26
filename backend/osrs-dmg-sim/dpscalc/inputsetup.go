@@ -35,6 +35,20 @@ const (
 	Ammo   GearSlot = 13
 )
 
+var AllGearSlots = []GearSlot{
+	Head,
+	Cape,
+	Neck,
+	Weapon,
+	Body,
+	Shield,
+	Legs,
+	Hands,
+	Feet,
+	Ring,
+	Ammo,
+}
+
 // nested struct kinda nice if we want manual stat input here
 type NpcInfo struct {
 	Id        string `json:"id"`
@@ -54,6 +68,7 @@ type GlobalSettings struct {
 	TeamSize       int        `json:"teamSize"`
 	AccuracyBuff   bool       `json:"accuracyBuff"`
 	MinDefence     bool       `json:"minDefence"`
+	ForceSalve     bool       `json:"forceSalve"`
 	RaidLevel      int        `json:"raidLevel"`
 	PathLevel      int        `json:"pathLevel"`
 	OverlyDraining bool       `json:"overlyDraining"`

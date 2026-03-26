@@ -163,12 +163,22 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	specialAttackCost := 0
 	is2H := false
 
-	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
-		if gearItem.Id == EmptyItemId {
-			continue
-		}
+	npc := GetNpc(globalSettings.Npc.Id)
+	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
+
+	equipSalve := globalSettings.ForceSalve && npc.IsUndead
+
+	for _, gearSlot := range AllGearSlots {
+		gearItem := inputGearSetup.GearSetup.Gear[gearSlot]
 
 		itemId := getIdAlias(gearItem.Id)
+		if gearSlot == Neck && equipSalve {
+			itemId = salveAmuletEI
+		}
+
+		if itemId == EmptyItemId || itemId == 0 {
+			continue
+		}
 
 		item := allItems[itemId]
 		itemStats := item.equipmentStats
@@ -183,9 +193,6 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 			is2H = item.is2H
 		}
 	}
-
-	npc := GetNpc(globalSettings.Npc.Id)
-	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
 
 	if globalSettings.MinDefence {
 		npc.CombatStats.Defence = getMinDefence(&npc)

@@ -29,7 +29,7 @@ func getStyleBisGraph(graphs wikidata.BisGraphs) StyleBisGraph {
 	styleBisGraph := make(StyleBisGraph)
 	for styleString, style := range styleMap {
 		slotBisGraph := make(SlotBisGraph)
-		for _, gearSlot := range allGearSlots {
+		for _, gearSlot := range dpscalc.AllGearSlots {
 			slotBisGraph[gearSlot] = getSlotBisGraph(graphs[styleString][strconv.Itoa(int(gearSlot))])
 		}
 		styleBisGraph[style] = slotBisGraph
