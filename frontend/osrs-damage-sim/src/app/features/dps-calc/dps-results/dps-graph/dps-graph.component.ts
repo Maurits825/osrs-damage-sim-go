@@ -9,6 +9,7 @@ import {
 } from 'src/app/model/dps-calc/dps-grapher-results.model';
 import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
 import { graphTypeOrder, graphYLabel } from './dps-graph.const';
+import { CHART_COLORS } from 'src/app/model/shared/chart.const';
 
 @Component({
   selector: 'app-dps-graph',
@@ -34,18 +35,18 @@ export class DpsGraphComponent implements OnChanges {
   hitDistChart: Chart;
   hideZeroDist = false;
 
-  chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
+  chartColors = CHART_COLORS;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dpsGrapherResults']) {
       //TODO works but adds spacing in dropdown for some reason...
       //maybe refactor to observables and dont use ngonchanges?
       this.dpsGrapherResults.results.sort(
-        (r1: DpsGrapherResult, r2: DpsGrapherResult) => graphTypeOrder[r1.graphType] - graphTypeOrder[r2.graphType]
+        (r1: DpsGrapherResult, r2: DpsGrapherResult) => graphTypeOrder[r1.graphType] - graphTypeOrder[r2.graphType],
       );
 
       this.selectedDpsGrapherResult = this.dpsGrapherResults.results.find(
-        (dpsResult) => dpsResult.graphType === 'Elder maul'
+        (dpsResult) => dpsResult.graphType === 'Elder maul',
       );
 
       this.updateDpsGrapherChart();

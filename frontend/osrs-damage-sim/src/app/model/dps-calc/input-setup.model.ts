@@ -14,3 +14,8 @@ export interface InputGearSetup {
   gearSetupSettings: GearSetupSettings;
   gearSetup: GearSetup;
 }
+
+export interface InputGearSetupPreset {
+  name: string;
+  inputGearSetups: InputGearSetup[];
+}

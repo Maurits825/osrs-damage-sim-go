@@ -16,6 +16,7 @@ const (
 	MaxStatLevel      = 99
 	MaxStatDrainCount = 5
 	MaxStatDrainValue = 1000
+	MaxGearSetups     = 10
 )
 
 type GearSlot int
@@ -33,6 +34,20 @@ const (
 	Ring   GearSlot = 12
 	Ammo   GearSlot = 13
 )
+
+var AllGearSlots = []GearSlot{
+	Head,
+	Cape,
+	Neck,
+	Weapon,
+	Body,
+	Shield,
+	Legs,
+	Hands,
+	Feet,
+	Ring,
+	Ammo,
+}
 
 // nested struct kinda nice if we want manual stat input here
 type NpcInfo struct {
@@ -52,6 +67,8 @@ type GlobalSettings struct {
 	NpcHitpoints   int        `json:"npcHitpoints"`
 	TeamSize       int        `json:"teamSize"`
 	AccuracyBuff   bool       `json:"accuracyBuff"`
+	MinDefence     bool       `json:"minDefence"`
+	ForceSalve     bool       `json:"forceSalve"`
 	RaidLevel      int        `json:"raidLevel"`
 	PathLevel      int        `json:"pathLevel"`
 	OverlyDraining bool       `json:"overlyDraining"`
@@ -215,6 +232,10 @@ func (inputSetup *InputSetup) Validate() error {
 
 	if len(inputSetup.InputGearSetups) == 0 {
 		return errors.New("no input gear setups")
+	}
+
+	if len(inputSetup.InputGearSetups) > MaxGearSetups {
+		return errors.New("max gear setups is " + fmt.Sprint(MaxGearSetups))
 	}
 
 	for _, inputGearSetup := range inputSetup.InputGearSetups {

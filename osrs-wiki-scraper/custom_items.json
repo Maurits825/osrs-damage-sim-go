@@ -1,14 +1,37 @@
 {
   "2000001": {
-    "name": "Gleaming Rapier",
     "futureContent": true,
+    "name": "Necklace of rupture",
     "equipable": true,
-    "slot": 3,
-    "astab": 100,
-    "aslash": 78,
-    "acrush": -3,
-    "str": 102,
-    "aspeed": 5,
-    "weaponCategory": "STAB_SWORD"
+    "slot": 2,
+    "arange": 20,
+    "rstr": 8,
+    "prayer": 3
+  },
+  "2000002": {
+    "futureContent": true,
+    "name": "Crimson kisten",
+    "equipable": true,
+	"slot": 3,
+    "acrush": 80,
+    "str": 56,
+    "aspeed": 4,
+    "weaponCategory": "SPIKED"
+  },
+  "2000003": {
+    "futureContent": true,
+    "name": "Dragon arrow seeker",
+    "equipable": true,
+    "slot": 13,
+    "arange": 20,
+    "rstr": 60
+  },
+  "2000004": {
+	"futureContent": true,
+    "name": "Amethyst arrow seeker",
+    "equipable": true,
+    "slot": 13,
+    "rstr": 55,
+    "arange": 20
   }
 }

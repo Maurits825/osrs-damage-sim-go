@@ -34,6 +34,8 @@ export class JsonParseService {
       overlyDraining: globalSettings.overlyDraining || false,
       teamSize: globalSettings.teamSize,
       accuracyBuff: globalSettings.accuracyBuff || false,
+      minDefence: globalSettings.minDefence || false,
+      forceSalve: globalSettings.forceSalve || false,
       coxScaling: globalSettings.coxScaling,
     };
   }

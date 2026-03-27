@@ -7,20 +7,6 @@ import (
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
 )
 
-var allGearSlots = []dpscalc.GearSlot{
-	dpscalc.Head,
-	dpscalc.Cape,
-	dpscalc.Neck,
-	dpscalc.Weapon,
-	dpscalc.Body,
-	dpscalc.Shield,
-	dpscalc.Legs,
-	dpscalc.Hands,
-	dpscalc.Feet,
-	dpscalc.Ring,
-	dpscalc.Ammo,
-}
-
 type gearSetupOptions map[dpscalc.GearSlot][]int
 type gearSetup map[dpscalc.GearSlot]dpscalc.GearItem
 
@@ -91,7 +77,7 @@ func (setup gearSetup) isWearingIncompleteVoid() bool {
 
 func (setup gearSetup) clone() gearSetup {
 	newSetup := make(gearSetup)
-	for _, slot := range allGearSlots {
+	for _, slot := range dpscalc.AllGearSlots {
 		newSetup[slot] = setup[slot]
 	}
 	return newSetup
@@ -164,7 +150,7 @@ func (opt gearSetupOptions) removeGearId(slot dpscalc.GearSlot, index int) {
 // TODO simple func to get bis without budget consideration for now, from the bis graph
 func getGearSetupOptions(graph SlotBisGraph) gearSetupOptions {
 	options := make(gearSetupOptions)
-	for _, slot := range allGearSlots {
+	for _, slot := range dpscalc.AllGearSlots {
 		options[slot] = make([]int, len(graph[slot]))
 		for i := range graph[slot] {
 			options[slot][i] = graph[slot][i].ids[0] //take first item here
@@ -179,7 +165,7 @@ func gearSetupOptionsIterator(options gearSetupOptions) func() (gearSetup, error
 
 	var gearIndices map[dpscalc.GearSlot]int = make(map[dpscalc.GearSlot]int)
 	var gearLengths map[dpscalc.GearSlot]int = make(map[dpscalc.GearSlot]int)
-	for _, slot := range allGearSlots {
+	for _, slot := range dpscalc.AllGearSlots {
 		ids, ok := options[slot]
 		gearIndices[slot] = 0
 		gearLengths[slot] = len(ids)
@@ -188,7 +174,7 @@ func gearSetupOptionsIterator(options gearSetupOptions) func() (gearSetup, error
 		}
 	}
 
-	gearSlotIndex := len(allGearSlots) - 1
+	gearSlotIndex := len(dpscalc.AllGearSlots) - 1
 	lastGearSlotIndex := gearSlotIndex
 
 	return func() (gearSetup, error) {
@@ -197,7 +183,7 @@ func gearSetupOptionsIterator(options gearSetupOptions) func() (gearSetup, error
 		}
 
 		//get current gear based on indices
-		for _, slot := range allGearSlots {
+		for _, slot := range dpscalc.AllGearSlots {
 			ids, ok := options[slot]
 			if ok {
 				id := ids[gearIndices[slot]]
@@ -206,9 +192,9 @@ func gearSetupOptionsIterator(options gearSetupOptions) func() (gearSetup, error
 		}
 
 		//update indices
-		gearIndices[allGearSlots[lastGearSlotIndex]] += 1
+		gearIndices[dpscalc.AllGearSlots[lastGearSlotIndex]] += 1
 		gearSlotIndex = lastGearSlotIndex
-		gearSlot := allGearSlots[gearSlotIndex]
+		gearSlot := dpscalc.AllGearSlots[gearSlotIndex]
 		for gearIndices[gearSlot] == gearLengths[gearSlot] {
 			//iterator is empty
 			if gearSlotIndex == 0 {
@@ -218,7 +204,7 @@ func gearSetupOptionsIterator(options gearSetupOptions) func() (gearSetup, error
 
 			gearIndices[gearSlot] = 0
 			gearSlotIndex--
-			gearSlot = allGearSlots[gearSlotIndex]
+			gearSlot = dpscalc.AllGearSlots[gearSlotIndex]
 			gearIndices[gearSlot] += 1
 		}
 

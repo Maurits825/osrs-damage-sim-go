@@ -95,6 +95,8 @@ const (
 
 	aquaHopper = 32879_000 //TODO -- disable this for now
 	atlatl     = 29000
+
+	crimsonBludgeon = 2000002 //TODO id
 )
 
 // echo leagues stuff
@@ -141,6 +143,10 @@ var wildyWeapons = []int{
 	22547, webweaver,
 	22552, 27785, accursedSceptre,
 	22542, ursineMace,
+}
+
+var seekerArrows = []int{
+	2000003, 2000004,
 }
 
 type equippedGear struct {

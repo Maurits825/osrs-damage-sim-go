@@ -61,7 +61,7 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
   constructor(private staticDataService: StaticDataService) {}
 
   ngOnInit(): void {
-    this.valuesBuffer = this.allValues.slice(0, this.bufferSize);
+    this.valuesBuffer = this.allValues?.slice(0, this.bufferSize);
     this.staticDataService.abbreviations$.subscribe((abbreviations) => (this.abbreviations = abbreviations));
     this.onSearch();
   }
@@ -73,7 +73,7 @@ export class NgSelectLazyLoadComponent<T> implements OnInit, OnDestroy, OnChange
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['allValues']) {
-      this.valuesBuffer = this.allValues.slice(0, this.bufferSize);
+      this.valuesBuffer = this.allValues?.slice(0, this.bufferSize);
     }
   }
 

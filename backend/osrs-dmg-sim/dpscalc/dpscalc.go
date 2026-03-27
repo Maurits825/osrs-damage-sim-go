@@ -163,12 +163,22 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 	specialAttackCost := 0
 	is2H := false
 
-	for gearSlot, gearItem := range inputGearSetup.GearSetup.Gear {
-		if gearItem.Id == EmptyItemId {
-			continue
-		}
+	npc := GetNpc(globalSettings.Npc.Id)
+	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
+
+	equipSalve := globalSettings.ForceSalve && npc.IsUndead
+
+	for _, gearSlot := range AllGearSlots {
+		gearItem := inputGearSetup.GearSetup.Gear[gearSlot]
 
 		itemId := getIdAlias(gearItem.Id)
+		if gearSlot == Neck && equipSalve {
+			itemId = salveAmuletEI
+		}
+
+		if itemId == EmptyItemId || itemId == 0 {
+			continue
+		}
 
 		item := allItems[itemId]
 		itemStats := item.equipmentStats
@@ -184,8 +194,9 @@ func GetPlayer(globalSettings *GlobalSettings, inputGearSetup *InputGearSetup) *
 		}
 	}
 
-	npc := GetNpc(globalSettings.Npc.Id)
-	npc.ApplyAllNpcScaling(globalSettings, inputGearSetup)
+	if globalSettings.MinDefence {
+		npc.CombatStats.Defence = getMinDefence(&npc)
+	}
 
 	cmbStyle := ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)
 	cmbStyle.Is2H = is2H
@@ -304,7 +315,9 @@ func GetAttackSpeed(player *Player) int {
 	}
 
 	//TODO scurrius 1t weapons
-	//TODO eye of ayak spec is 5ticks? -> wiki dps calc doesnt have
+	if player.equippedGear.isEquipped(eyeOfAyak) && player.inputGearSetup.GearSetup.IsSpecialAttack {
+		return 5
+	}
 
 	if player.ragingEchoesMasteries.melee >= 5 ||
 		player.ragingEchoesMasteries.ranged >= 5 ||
@@ -427,14 +440,4 @@ func getHtk(hitDist []float32, npcHp int) float32 {
 	}
 
 	return htk[npcHp]
-}
-
-func gcd(a, b int) int {
-	for b != 0 {
-		a, b = b, a%b
-	}
-	return a
-}
-func lcm(a, b int) int {
-	return int(math.Abs(float64(a*b)) / float64(gcd(a, b)))
 }

@@ -9,6 +9,8 @@ export interface GlobalSettings {
 
   teamSize: number;
   accuracyBuff: boolean;
+  minDefence: boolean;
+  forceSalve: boolean;
   coxScaling: CoxScaling;
 }
 
@@ -23,6 +25,8 @@ export const DEFAULT_GLOBAL_SETTINGS: GlobalSettings = {
   npc: null,
   teamSize: 1,
   accuracyBuff: false,
+  minDefence: false,
+  forceSalve: false,
   raidLevel: 0,
   pathLevel: 0,
   overlyDraining: false,

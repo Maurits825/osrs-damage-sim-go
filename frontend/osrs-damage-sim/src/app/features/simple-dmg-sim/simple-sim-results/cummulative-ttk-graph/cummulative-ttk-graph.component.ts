@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SimpleSimResult } from 'src/app/model/simple-dmg-sim/simple-sim-results.model';
 import { Chart } from 'chart.js/auto';
 import { TickToTimePipe } from 'src/app/shared/pipes/tick-to-time.pipe';
+import { CHART_COLORS } from 'src/app/model/shared/chart.const';
 
 @Component({
   selector: 'app-cummulative-ttk-graph',
@@ -13,7 +14,7 @@ export class CummulativeTtkGraphComponent implements OnChanges {
   simpleSimResults: SimpleSimResult[];
 
   cumTtkChart: Chart;
-  chartColors = ['blue', 'green', 'red', 'orange', 'purple', 'pink', 'brown', 'yellow', 'teal'];
+  chartColors = CHART_COLORS;
 
   constructor(private tickToTimePipe: TickToTimePipe) {}
 
