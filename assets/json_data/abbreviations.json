@@ -140,8 +140,7 @@
  "Ancient Magicks": [
   "Ancients",
   "Barrage",
-  "Blitz",
-  "Farcaster"
+  "Blitz"
  ],
  "Necklace of anguish": [
   "Ang"
@@ -364,10 +363,12 @@
   "Barb Vil"
  ],
  "Ice Barrage": [
-  "Barrage"
+  "Barrage",
+  "Farcast"
  ],
  "Barrage spell": [
-  "Barrage"
+  "Barrage",
+  "Farcast"
  ],
  "Battleaxe": [
   "Baxe"
@@ -457,11 +458,12 @@
  "Blast Mine": [
   "BM"
  ],
+ "The Blood Moon Rises": [
+  "BMR"
+ ],
  "Dual macuahuitl": [
   "Boppers",
-  "Dualies",
-  "S*x paddles",
-  "Paddles"
+  "Dualies"
  ],
  "Boss kill count": [
   "Boss kc"
@@ -775,6 +777,9 @@
   "Choob",
   "Froob"
  ],
+ "clan": [
+  "Clannie"
+ ],
  "Clue scroll": [
   "Clue",
   "Clueing",
@@ -798,7 +803,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "Chambers_of_Xeric/Challenge_Mode": [
   "CM",
@@ -811,7 +817,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "Challenge Mode": [
   "CM",
@@ -824,7 +831,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "Collection Log": [
   "Col log",
@@ -845,6 +853,10 @@
  ],
  "Bounty Hunter ornament": [
   "(cr)"
+ ],
+ "Nylocas": [
+  "Crab",
+  "Nylo"
  ],
  "multicombat": [
   "Crash",
@@ -1298,7 +1310,9 @@
   "Vams"
  ],
  "Xarpus": [
-  "Xarp"
+  "Xarp",
+  "Ragging",
+  "Ragged"
  ],
  "Logout button#X-logging": [
   "X-logging"
@@ -1327,12 +1341,6 @@
  "Osmumten's fang": [
   "Fang"
  ],
- "spell": [
-  "Farcaster"
- ],
- "freeze spells": [
-  "Farcaster"
- ],
  "ironman": [
   "Fe"
  ],
@@ -1360,6 +1368,14 @@
  "Forum moderator": [
   "FM",
   "FMod"
+ ],
+ "The Fractured Archive": [
+  "Fred",
+  "TFA",
+  "Raids 1",
+  "Raids 2",
+  "Raids 3",
+  "Raids 4"
  ],
  "Ice spells": [
   "Freeze",
@@ -1486,6 +1502,12 @@
  ],
  "G spear": [
   "G (weapon/armour name)"
+ ],
+ "#F": [
+  "Gap"
+ ],
+ "farcast": [
+  "Gap"
  ],
  "Gargoyles": [
   "Gargs"
@@ -1726,7 +1748,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "invocations": [
   "Invoc(s)",
@@ -1736,7 +1759,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "Fortis Colosseum": [
   "Invoc(s)",
@@ -1746,7 +1770,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "Watering can": [
   "(w)"
@@ -1838,7 +1863,8 @@
  ],
  "Venator bow": [
   "Vbow",
-  "V bow"
+  "V bow",
+  "Venny"
  ],
  "Venenatis": [
   "Vene"
@@ -2008,7 +2034,8 @@
   "Purp",
   "Raids 1",
   "Raids 2",
-  "Raids 3"
+  "Raids 3",
+  "Raids 4"
  ],
  "Tome of fire": [
   "Tome",
@@ -2462,9 +2489,6 @@
  "newbie": [
   "Noob"
  ],
- "Nylocas": [
-  "Nylo"
- ],
  "Mature ale": [
   "(m)"
  ],
@@ -2521,6 +2545,9 @@
  ],
  "main": [
   "Main"
+ ],
+ "dual macuahuitl": [
+  "Maracas"
  ],
  "free for all": [
   "Mass(ing)"
@@ -2988,6 +3015,14 @@
   "Ragging",
   "Raggers"
  ],
+ "Doom of Mokhaiotl": [
+  "Ragging",
+  "Ragged"
+ ],
+ "Doom": [
+  "Ragging",
+  "Ragged"
+ ],
  "special attack": [
   "Rambo",
   "Rambo spec",
@@ -3149,7 +3184,7 @@
  "collection log": [
   "EHC"
  ],
- "New Official Client": [
+ "Official Client": [
   "EHC"
  ],
  "Experience rate": [
