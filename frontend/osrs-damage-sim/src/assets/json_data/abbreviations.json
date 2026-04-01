@@ -1146,6 +1146,11 @@
  "Deadman Mode": [
   "DMM"
  ],
+ "Doom of Mokhaiotl": [
+  "Doom",
+  "Ragging",
+  "Ragged"
+ ],
  "Drop party": [
   "DP"
  ],
@@ -1785,6 +1790,12 @@
  "Elidinis' ward": [
   "Ward"
  ],
+ "Tumeken's Warden": [
+  "Wardens"
+ ],
+ "Elidinis' Warden": [
+  "Wardens"
+ ],
  "Woodcutting": [
   "WC(ing)"
  ],
@@ -2293,6 +2304,9 @@
  "Stamina potion": [
   "Stam (pot)"
  ],
+ "Phantom Muspah": [
+  "Stepback"
+ ],
  "Strength": [
   "Str",
   "Obby mauler",
@@ -2471,7 +2485,8 @@
   "Nibbler(s)"
  ],
  "Noxious halberd": [
-  "Nhally"
+  "Nhally",
+  "Nelly"
  ],
  "Nitroglycerin": [
   "Nitro"
@@ -3004,6 +3019,9 @@
  "Quick prayers": [
   "QP(s)"
  ],
+ "Dizana's quiver": [
+  "Quiver"
+ ],
  "Recoil": [
   "(r)"
  ],
@@ -3014,10 +3032,6 @@
   "Rags",
   "Ragging",
   "Raggers"
- ],
- "Doom of Mokhaiotl": [
-  "Ragging",
-  "Ragged"
  ],
  "Doom": [
   "Ragging",
