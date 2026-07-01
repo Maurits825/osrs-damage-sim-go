@@ -24,6 +24,8 @@ export interface GearSetup {
 
   isKandarinDiary: boolean;
   isMarkOfDarkness: boolean;
+
+  isSunfireRunes: boolean;
 }
 
 export const SPECIAL_BOLTS = [9242, 21944, 9243, 21946];
@@ -85,4 +87,5 @@ export const DEFAULT_GEAR_SETUP: GearSetup = {
   miningLvl: 99,
   isKandarinDiary: true,
   isMarkOfDarkness: true,
+  isSunfireRunes: false,
 };

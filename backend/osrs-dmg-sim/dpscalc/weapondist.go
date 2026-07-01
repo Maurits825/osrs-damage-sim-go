@@ -17,6 +17,11 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 
 	minHit := 0
 
+	//TODO move minHit to getmaxhit func? return (minHit, maxHit) or something
+	if player.inputGearSetup.GearSetup.IsSunfireRunes && player.spell.elementalType == FireElement {
+		minHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 1, 10)
+	}
+
 	//default linear dist
 	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, minHit, maxHit)
 	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
