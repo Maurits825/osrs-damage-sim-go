@@ -150,3 +150,8 @@ class WeaponCategory(Enum):
     GUN = [
         AttackStyle("Kick (Crush/Aggressive)", AttackType.CRUSH, CombatStyle.AGGRESSIVE),
     ]
+    FLAIL = [
+        AttackStyle("Chop (Slash/Accurate)", AttackType.SLASH, CombatStyle.ACCURATE),
+        AttackStyle("Slash (Slash/Aggressive)", AttackType.SLASH, CombatStyle.AGGRESSIVE),
+        AttackStyle("Block (Slash/Defensive)", AttackType.SLASH, CombatStyle.DEFENSIVE)
+    ]

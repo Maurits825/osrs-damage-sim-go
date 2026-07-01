@@ -25,7 +25,7 @@ export const quickGearSetups: QuickGearSetup = {
   },
   [GearSlot.Neck]: {
     melee: [1704, 6585, 19553, 29801],
-    ranged: [1704, 6585, 19547],
+    ranged: [1704, 6585, 19547, 33639],
     magic: [1704, 6585, 12002],
   },
   [GearSlot.Weapon]: {
