@@ -59,7 +59,7 @@ const (
 	sangStaff        = 22323
 	harmStaff        = 24423
 	volatileStaff    = 24424
-	eyeOfAyak        = 31115
+	eyeOfAyak        = 31113
 	dragonHunterWand = 30070
 
 	tomeOfFire = 20714

@@ -1,6 +1,7 @@
 package biscalc
 
 import (
+	"cmp"
 	"slices"
 
 	"github.com/Maurits825/osrs-damage-sim-go/backend/osrs-damage-sim/dpscalc"
@@ -27,14 +28,16 @@ type BisCalcInputSetup struct {
 }
 
 var defaultGearSetup = dpscalc.GearSetup{
-	Name:            "default",
-	BlowpipeDarts:   dpscalc.GearItem{Id: dragonDarts},
-	CurrentHp:       1,
-	IsOnSlayerTask:  false,
-	IsSpecialAttack: false,
-	IsInWilderness:  false, // TODO options for this?
-	IsKandarinDiary: true,
-	MiningLevel:     99,
+	Name:             "default",
+	BlowpipeDarts:    dpscalc.GearItem{Id: dragonDarts},
+	CurrentHp:        1,
+	IsOnSlayerTask:   false,
+	IsSpecialAttack:  false,
+	IsInWilderness:   false, // TODO options for this?
+	IsKandarinDiary:  true,
+	IsSunfireRunes:   true,
+	IsMarkOfDarkness: true,
+	MiningLevel:      99,
 }
 
 func init() {
@@ -77,13 +80,14 @@ func getInputGearSetup(setup *BisCalcInputSetup, style dpscalc.CombatStyleType) 
 
 	inputGearSetup.GearSetup.IsSpecialAttack = setup.IsSpecialAttack
 	inputGearSetup.GearSetup.IsOnSlayerTask = setup.IsOnSlayerTask
+
 	return inputGearSetup
 }
 
 // TODO add locking gear from FE input
 func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetup, options gearSetupOptions, style dpscalc.CombatStyleType) []BisCalcResult {
 	count := 3 //TODO?
-	bisResults := make([]BisCalcResult, count)
+	weaponBisResults := make(map[int][]BisCalcResult, count)
 
 	optionsNext := gearSetupOptionsIterator(options)
 	gearSetup, err := optionsNext()
@@ -111,14 +115,30 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 
 				calcCount++
 
-				if dpsCalcResult.TheoreticalDps > bisResults[count-1].TheoreticalDps {
-					updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, bisResults)
+				weaponId := inputGearSetup.GearSetup.Gear[dpscalc.Weapon].Id
+
+				if _, exist := weaponBisResults[weaponId]; !exist {
+					weaponBisResults[weaponId] = make([]BisCalcResult, count)
+				}
+
+				results := weaponBisResults[weaponId]
+				if dpsCalcResult.TheoreticalDps > results[count-1].TheoreticalDps {
+					updateBisResult(gearSetup, inputGearSetup, &dpsCalcResult, results)
 				}
 			}
 		}
 	}
 
-	return bisResults
+	bisResults := make([]BisCalcResult, 0)
+	for _, results := range weaponBisResults {
+		bisResults = append(bisResults, results[0])
+	}
+
+	slices.SortFunc(bisResults, func(a, b BisCalcResult) int {
+		return cmp.Compare(b.TheoreticalDps, a.TheoreticalDps)
+	})
+
+	return bisResults[:count]
 }
 
 func getCombatOptions(gear gearSetup, style dpscalc.CombatStyleType) []dpscalc.CombatOption {

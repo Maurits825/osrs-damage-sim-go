@@ -44,7 +44,7 @@ func (gear gearSetup) isValid() bool {
 			return false
 		}
 	case "BOW":
-		if !strings.Contains(ammoName, "arrow") {
+		if !strings.Contains(ammoName, "arrow") && weaponId != bowfa {
 			return false
 		}
 	case "THROWN", "CHINCHOMPAS":
