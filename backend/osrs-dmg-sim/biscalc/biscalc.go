@@ -138,7 +138,7 @@ func RunDpsCalcs(setup *BisCalcInputSetup, inputGearSetup *dpscalc.InputGearSetu
 		return cmp.Compare(b.TheoreticalDps, a.TheoreticalDps)
 	})
 
-	return bisResults[:count]
+	return bisResults[:min(count, len(bisResults))]
 }
 
 func getCombatOptions(gear gearSetup, style dpscalc.CombatStyleType) []dpscalc.CombatOption {

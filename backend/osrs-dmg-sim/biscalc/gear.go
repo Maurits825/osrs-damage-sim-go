@@ -32,6 +32,7 @@ const (
 	voidwaker       = 27690
 	dragonClaws     = 13652
 	dragonWarhammer = 13576
+	crimsonKisten   = 33631
 )
 
 const (
@@ -78,7 +79,7 @@ const (
 var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
 var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
 var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}
-var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer}
+var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer, crimsonKisten}
 
 //TODO bowfa has to be with crystal armour, crystal armour is only good with bowfa
 var rangedWeapons = []int{tbow, blowpipe, zaryteCrossbow, bowfa}

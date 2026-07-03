@@ -96,7 +96,10 @@ const (
 	aquaHopper = 32879_000 //TODO -- disable this for now
 	atlatl     = 29000
 
-	crimsonBludgeon = 2000002 //TODO id
+	crimsonBludgeon = 33631
+
+	eyeOfAyak            = 31113
+	conflictionGauntlets = 31106
 )
 
 // echo leagues stuff
@@ -105,12 +108,6 @@ const (
 	devilElement    = 1000004
 	crystalBlessing = 1000005
 	glovesDamned    = 1000001
-)
-
-// future content
-const (
-	eyeOfAyak            = 31113
-	conflictionGauntlets = 31106
 )
 
 var virtusSet = []int{26241, 26243, 26245}
