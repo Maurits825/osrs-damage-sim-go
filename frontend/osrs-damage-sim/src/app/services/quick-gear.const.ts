@@ -65,7 +65,7 @@ export const quickGearSetups: QuickGearSetup = {
   },
   [GearSlot.Ammo]: {
     melee: [],
-    ranged: [21946, 21944, 21326, 11212],
+    ranged: [21946, 21944, 21326, 11212, 33595],
     magic: [],
   },
 };

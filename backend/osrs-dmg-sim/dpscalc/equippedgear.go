@@ -143,7 +143,7 @@ var wildyWeapons = []int{
 }
 
 var seekerArrows = []int{
-	2000003, 2000004,
+	33553, 33559, 33565, 33571, 33577, 33583, 33589, 33595, 33601,
 }
 
 type equippedGear struct {

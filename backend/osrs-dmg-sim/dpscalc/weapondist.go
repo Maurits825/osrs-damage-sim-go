@@ -225,7 +225,6 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution([]*attackdist.HitDistribution{baseHitDist, secondHitDist})
 	}
 
-	//TODO check this
 	if player.equippedGear.isAnyEquipped(seekerArrows) && style == Ranged {
 		attackDistribution.Distributions[0].Hits[1].Hitsplats[0] = 3
 		attackDistribution.Distributions[0].Hits[2].Hitsplats[0] = 3
