@@ -5,6 +5,10 @@ interface logData {
 
 export const changeLogData: logData[] = [
   {
+    title: '14 July 2026',
+    body: ['Blood moon rises update'],
+  },
+  {
     title: '10 September 2025',
     body: ['Doom of Mokha update'],
   },
