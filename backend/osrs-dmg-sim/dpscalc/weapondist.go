@@ -17,6 +17,11 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 
 	minHit := 0
 
+	//TODO move minHit to getmaxhit func? return (minHit, maxHit) or something
+	if player.inputGearSetup.GearSetup.IsSunfireRunes && player.spell.elementalType == FireElement {
+		minHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitDragonhunter, maxHit, 1, 10)
+	}
+
 	//default linear dist
 	baseHitDist := attackdist.GetLinearHitDistribution(accuracy, minHit, maxHit)
 	attackDistribution := attackdist.NewSingleAttackDistribution(baseHitDist)
@@ -220,7 +225,6 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 		attackDistribution = attackdist.NewMultiAttackDistribution([]*attackdist.HitDistribution{baseHitDist, secondHitDist})
 	}
 
-	//TODO check this
 	if player.equippedGear.isAnyEquipped(seekerArrows) && style == Ranged {
 		attackDistribution.Distributions[0].Hits[1].Hitsplats[0] = 3
 		attackDistribution.Distributions[0].Hits[2].Hitsplats[0] = 3
@@ -298,13 +302,14 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 			acc := float64(binomial(4, r+1)) * math.Pow(float64(accuracy), float64(r+1)) * math.Pow(float64(1-accuracy), float64(3-r))
 
 			baseMaxHit := maxHit
+			effectMin := int(minHitMult * float32(baseMaxHit))
+			effectMax := int(maxHitMult * float32(baseMaxHit))
+
 			if r == 3 { //TODO is this what is meant? or is it post mult?
-				baseMaxHit = maxHit - 1
+				effectMax = effectMax - 1
 			}
 
-			dist := attackdist.GetLinearHitDistribution(
-				1.0, int(minHitMult*float32(baseMaxHit)), int(maxHitMult*float32(baseMaxHit)),
-			)
+			dist := attackdist.GetLinearHitDistribution(1.0, effectMin, effectMax)
 			dist.ScaleProbability(float32(acc))
 			specDist.Hits = append(specDist.Hits, dist.Hits...)
 		}

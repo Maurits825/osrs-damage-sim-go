@@ -79,6 +79,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
   quickGearSet: number[];
 
   showMarkOfDarkness = false;
+  showSunfireRunes = false;
 
   private destroyed$ = new Subject();
 
@@ -136,6 +137,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
 
       this.updateSpecialGear();
       this.showMarkOfDarkness = this.gearSetup.spell?.includes('Demonbane');
+      this.showSunfireRunes = this.gearSetup.spell?.includes('Fire');
 
       this.sharedSettingsService.prayers$
         .pipe(takeUntil(this.destroyed$), skip(1))
@@ -252,6 +254,7 @@ export class GearSetupComponent implements OnInit, OnDestroy {
     }
 
     this.showMarkOfDarkness = this.gearSetup.spell?.includes('Demonbane');
+    this.showSunfireRunes = this.gearSetup.spell?.includes('Fire');
   }
 
   selectGearSetSetup(gearSet: GearSet): void {

@@ -46,5 +46,7 @@ class CoxNpcs:
             name = "Great Olm Right claw (mage)"
         elif npc_id == "7552":
             name = "Great Olm Left claw (melee)"
+        elif npc_id == "7551":
+            name = "Great Olm Head"
 
         return doc, name

@@ -53,6 +53,7 @@ type Buffs struct {
 	KandarinDiary       bool  `json:"kandarinDiary"`
 	OnSlayerTask        bool  `json:"onSlayerTask"`
 	MarkOfDarknessSpell bool  `json:"markOfDarknessSpell"`
+	UsingSunfireRunes   bool  `json:"usingSunfireRunes"`
 }
 
 type Style struct {
@@ -265,6 +266,7 @@ func buildLoadout(inputGearSetup dpscalc.InputGearSetup) Loadout {
 		KandarinDiary:       inputGearSetup.GearSetup.IsKandarinDiary,
 		OnSlayerTask:        inputGearSetup.GearSetup.IsOnSlayerTask,
 		MarkOfDarknessSpell: inputGearSetup.GearSetup.IsMarkOfDarkness,
+		UsingSunfireRunes:   inputGearSetup.GearSetup.IsSunfireRunes,
 	}
 
 	cmbtStyle := dpscalc.ParseCombatStyle(inputGearSetup.GearSetup.AttackStyle)

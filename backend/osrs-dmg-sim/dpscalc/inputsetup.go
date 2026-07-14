@@ -128,6 +128,7 @@ type GearSetup struct {
 	IsMarkOfDarkness bool                  `json:"isMarkOfDarkness"`
 	IsOnSlayerTask   bool                  `json:"isOnSlayerTask"`
 	IsSpecialAttack  bool                  `json:"isSpecial"`
+	IsSunfireRunes   bool                  `json:"isSunfireRunes"`
 	MiningLevel      int                   `json:"miningLvl"`
 	Prayers          []Prayer              `json:"prayers"`
 	Spell            string                `json:"spell"`

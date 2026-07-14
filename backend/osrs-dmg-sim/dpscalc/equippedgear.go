@@ -96,7 +96,10 @@ const (
 	aquaHopper = 32879_000 //TODO -- disable this for now
 	atlatl     = 29000
 
-	crimsonBludgeon = 2000002 //TODO id
+	crimsonBludgeon = 33631
+
+	eyeOfAyak            = 31113
+	conflictionGauntlets = 31106
 )
 
 // echo leagues stuff
@@ -105,12 +108,6 @@ const (
 	devilElement    = 1000004
 	crystalBlessing = 1000005
 	glovesDamned    = 1000001
-)
-
-// future content
-const (
-	eyeOfAyak            = 31113
-	conflictionGauntlets = 31106
 )
 
 var virtusSet = []int{26241, 26243, 26245}
@@ -146,7 +143,7 @@ var wildyWeapons = []int{
 }
 
 var seekerArrows = []int{
-	2000003, 2000004,
+	33553, 33559, 33565, 33571, 33577, 33583, 33589, 33595, 33601,
 }
 
 type equippedGear struct {

@@ -28705,24 +28705,6 @@
   "aspeed": 7,
   "weaponCategory": "BLUNT"
  },
- "20576": {
-  "name": "3rd age robe top (Last Man Standing)",
-  "weight": 2.7,
-  "equipable": true,
-  "slot": 4,
-  "amagic": 24,
-  "dmagic": 24,
-  "mdmg": 1.0
- },
- "20577": {
-  "name": "3rd age robe (Last Man Standing)",
-  "weight": 1.8,
-  "equipable": true,
-  "slot": 7,
-  "amagic": 19,
-  "dmagic": 19,
-  "mdmg": 1.0
- },
  "20578": {
   "name": "Climbing boots (Last Man Standing)",
   "weight": 0.34,
@@ -33610,12 +33592,12 @@
   "str": 12
  },
  "23595": {
-  "name": "Berserker ring (Last Man Standing)",
+  "name": "Berserker ring (i) (Last Man Standing)",
   "weight": 0.004,
   "equipable": true,
   "slot": 12,
-  "dcrush": 4,
-  "str": 4
+  "dcrush": 8,
+  "str": 8
  },
  "23597": {
   "name": "Dragon defender (Last Man Standing)",
@@ -33789,14 +33771,6 @@
   "str": 8,
   "prayer": 2
  },
- "23624": {
-  "name": "Seers ring (i) (Last Man Standing)",
-  "weight": 0.004,
-  "equipable": true,
-  "slot": 12,
-  "amagic": 12,
-  "dmagic": 12
- },
  "23626": {
   "name": "Kodai wand (Last Man Standing)",
   "weight": 0.198,
@@ -33809,17 +33783,6 @@
   "aspeed": 4,
   "mdmg": 15.0,
   "weaponCategory": "STAFF"
- },
- "23628": {
-  "name": "Ghrazi rapier (Last Man Standing)",
-  "weight": 1.814,
-  "equipable": true,
-  "slot": 3,
-  "astab": 94,
-  "aslash": 55,
-  "str": 89,
-  "aspeed": 4,
-  "weaponCategory": "STAB_SWORD"
  },
  "23630": {
   "name": "Heavy ballista (Last Man Standing)",
@@ -33871,58 +33834,6 @@
   "dmagic": -4,
   "drange": 92
  },
- "23635": {
-  "name": "Verac's plateskirt (Last Man Standing)",
-  "weight": 4.535,
-  "equipable": true,
-  "slot": 7,
-  "amagic": -21,
-  "arange": -11,
-  "dstab": 85,
-  "dslash": 82,
-  "dcrush": 83,
-  "drange": 84,
-  "prayer": 4
- },
- "23636": {
-  "name": "Verac's helm (Last Man Standing)",
-  "weight": 1.36,
-  "equipable": true,
-  "slot": 0,
-  "amagic": -6,
-  "arange": -2,
-  "dstab": 55,
-  "dslash": 58,
-  "dcrush": 54,
-  "drange": 56,
-  "prayer": 3
- },
- "23637": {
-  "name": "Torag's helm (Last Man Standing)",
-  "weight": 2.721,
-  "equipable": true,
-  "slot": 0,
-  "amagic": -6,
-  "arange": -2,
-  "dstab": 55,
-  "dslash": 58,
-  "dcrush": 54,
-  "dmagic": -1,
-  "drange": 62
- },
- "23638": {
-  "name": "Guthan's helm (Last Man Standing)",
-  "weight": 2.721,
-  "equipable": true,
-  "slot": 0,
-  "amagic": -6,
-  "arange": -2,
-  "dstab": 55,
-  "dslash": 58,
-  "dcrush": 54,
-  "dmagic": -1,
-  "drange": 62
- },
  "23639": {
   "name": "Dharok's helm (Last Man Standing)",
   "weight": 1.814,
@@ -33965,33 +33876,6 @@
   "dmagic": 2,
   "drange": 52,
   "prayer": 3
- },
- "23644": {
-  "name": "Eternal boots (Last Man Standing)",
-  "weight": 1.814,
-  "equipable": true,
-  "slot": 10,
-  "amagic": 8,
-  "dstab": 5,
-  "dslash": 5,
-  "dcrush": 5,
-  "dmagic": 8,
-  "drange": 5
- },
- "23646": {
-  "name": "Bandos tassets (Last Man Standing)",
-  "weight": 8.0,
-  "equipable": true,
-  "slot": 7,
-  "amagic": -21,
-  "arange": -7,
-  "dstab": 71,
-  "dslash": 63,
-  "dcrush": 66,
-  "dmagic": -4,
-  "drange": 93,
-  "str": 2,
-  "prayer": 1
  },
  "23648": {
   "name": "Dragon javelin (Last Man Standing)",
@@ -34420,7 +34304,6 @@
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
   "amagic": 84,
   "prayer": 1,
   "aspeed": 4,
@@ -34431,7 +34314,6 @@
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
   "amagic": 128,
   "prayer": 2,
   "aspeed": 4,
@@ -34442,7 +34324,6 @@
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
   "amagic": 184,
   "prayer": 3,
   "aspeed": 4,
@@ -34738,7 +34619,6 @@
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
   "amagic": 84,
   "prayer": 1,
   "aspeed": 4,
@@ -34749,7 +34629,6 @@
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
   "amagic": 128,
   "prayer": 2,
   "aspeed": 4,
@@ -34760,7 +34639,6 @@
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
-  "is2h": true,
   "amagic": 184,
   "prayer": 3,
   "aspeed": 4,
@@ -38398,19 +38276,6 @@
   "mdmg": 15.0,
   "weaponCategory": "STAFF"
  },
- "25518": {
-  "name": "Ancestral hat (Last Man Standing)",
-  "weight": 0.453,
-  "equipable": true,
-  "slot": 0,
-  "amagic": 8,
-  "arange": -2,
-  "dstab": 12,
-  "dslash": 11,
-  "dcrush": 13,
-  "dmagic": 5,
-  "mdmg": 2.0
- },
  "25539": {
   "name": "Celestial ring",
   "weight": 0.006,
@@ -38546,6 +38411,14 @@
   "weight": 0.056,
   "equipable": true,
   "slot": 0
+ },
+ "25615": {
+  "name": "Heat-proof vessel",
+  "weight": 4.0,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "UNARMED"
  },
  "25641": {
   "name": "Barronite mace",
@@ -41778,7 +41651,6 @@
  },
  "26910": {
   "name": "Tarnished locket",
-  "quest": true,
   "weight": 0.01,
   "equipable": true,
   "slot": 2
@@ -42389,50 +42261,6 @@
   "amagic": 15,
   "dmagic": 15
  },
- "27162": {
-  "name": "Wizard boots (Last Man Standing)",
-  "weight": 0.283,
-  "equipable": true,
-  "slot": 10,
-  "amagic": 4,
-  "dmagic": 4
- },
- "27163": {
-  "name": "Guthix halo (Last Man Standing)",
-  "weight": 0.3,
-  "equipable": true,
-  "slot": 0,
-  "dstab": 11,
-  "dslash": 12,
-  "dcrush": 10,
-  "dmagic": 11,
-  "drange": -1,
-  "prayer": 3
- },
- "27164": {
-  "name": "Zamorak halo (Last Man Standing)",
-  "weight": 0.3,
-  "equipable": true,
-  "slot": 0,
-  "dstab": 11,
-  "dslash": 12,
-  "dcrush": 10,
-  "dmagic": 11,
-  "drange": -1,
-  "prayer": 3
- },
- "27165": {
-  "name": "Saradomin halo (Last Man Standing)",
-  "weight": 0.3,
-  "equipable": true,
-  "slot": 0,
-  "dstab": 11,
-  "dslash": 12,
-  "dcrush": 10,
-  "dmagic": 11,
-  "drange": -1,
-  "prayer": 3
- },
  "27166": {
   "name": "Ghostly hood (Last Man Standing)",
   "weight": 0.001,
@@ -42469,14 +42297,6 @@
   "dcrush": 33,
   "drange": 30,
   "str": 3
- },
- "27170": {
-  "name": "Infinity boots (Last Man Standing)",
-  "weight": 0.453,
-  "equipable": true,
-  "slot": 10,
-  "amagic": 5,
-  "dmagic": 5
  },
  "27171": {
   "name": "Tormented bracelet (Last Man Standing)",
@@ -42534,43 +42354,6 @@
   "dmagic": 4,
   "mdmg": 1.0
  },
- "27177": {
-  "name": "Fremennik kilt (Last Man Standing)",
-  "weight": 3.0,
-  "equipable": true,
-  "slot": 7,
-  "amagic": -21,
-  "arange": -7,
-  "dstab": 11,
-  "dslash": 10,
-  "dcrush": 10,
-  "dmagic": -4,
-  "drange": 10,
-  "str": 1
- },
- "27178": {
-  "name": "Spiked manacles (Last Man Standing)",
-  "weight": 3.0,
-  "equipable": true,
-  "slot": 10,
-  "amagic": -3,
-  "arange": -1,
-  "dmagic": -4,
-  "str": 4
- },
- "27179": {
-  "name": "Rangers' tunic (Last Man Standing)",
-  "weight": 3.0,
-  "equipable": true,
-  "slot": 4,
-  "amagic": -15,
-  "arange": 15,
-  "dstab": 6,
-  "dslash": 9,
-  "dcrush": 12,
-  "dmagic": 6,
-  "drange": 6
- },
  "27180": {
   "name": "Guthix chaps (Last Man Standing)",
   "weight": 5.0,
@@ -42612,15 +42395,6 @@
   "dmagic": 28,
   "drange": 31,
   "prayer": 1
- },
- "27183": {
-  "name": "3rd age mage hat (Last Man Standing)",
-  "weight": 0.4,
-  "equipable": true,
-  "slot": 0,
-  "amagic": 8,
-  "dmagic": 8,
-  "mdmg": 1.0
  },
  "27184": {
   "name": "Ancient godsword (Last Man Standing)",
@@ -42667,6 +42441,17 @@
   "aspeed": 6,
   "weaponCategory": "CROSSBOW"
  },
+ "27187": {
+  "name": "Bow of faerdhinen (c) (Last Man Standing)",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 128,
+  "rstr": 106,
+  "aspeed": 5,
+  "weaponCategory": "BOW"
+ },
  "27188": {
   "name": "Light ballista (Last Man Standing)",
   "weight": 3.0,
@@ -42676,20 +42461,6 @@
   "arange": 110,
   "aspeed": 7,
   "weaponCategory": "CROSSBOW"
- },
- "27189": {
-  "name": "Verac's flail (Last Man Standing)",
-  "weight": 2.267,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "astab": 68,
-  "aslash": -2,
-  "acrush": 82,
-  "str": 72,
-  "prayer": 6,
-  "aspeed": 5,
-  "weaponCategory": "SPIKED"
  },
  "27191": {
   "name": "Unholy book (Last Man Standing)",
@@ -42708,135 +42479,6 @@
   "equipable": true,
   "slot": 13,
   "rstr": 122
- },
- "27193": {
-  "name": "Ancestral robe top (Last Man Standing)",
-  "weight": 2.721,
-  "equipable": true,
-  "slot": 4,
-  "amagic": 35,
-  "arange": -8,
-  "dstab": 42,
-  "dslash": 31,
-  "dcrush": 51,
-  "dmagic": 28,
-  "mdmg": 3.0
- },
- "27194": {
-  "name": "Ancestral robe bottom (Last Man Standing)",
-  "weight": 1.814,
-  "equipable": true,
-  "slot": 7,
-  "amagic": 26,
-  "arange": -7,
-  "dstab": 27,
-  "dslash": 24,
-  "dcrush": 30,
-  "dmagic": 20,
-  "mdmg": 3.0
- },
- "27195": {
-  "name": "Inquisitor's great helm (Last Man Standing)",
-  "weight": 2.721,
-  "equipable": true,
-  "slot": 0,
-  "astab": -2,
-  "aslash": -2,
-  "acrush": 8,
-  "amagic": -5,
-  "arange": -5,
-  "dstab": 19,
-  "dslash": 10,
-  "dcrush": 21,
-  "drange": 12,
-  "str": 4,
-  "prayer": 1
- },
- "27196": {
-  "name": "Inquisitor's hauberk (Last Man Standing)",
-  "weight": 9.979,
-  "equipable": true,
-  "slot": 4,
-  "astab": -3,
-  "aslash": -3,
-  "acrush": 12,
-  "amagic": -11,
-  "arange": -10,
-  "dstab": 67,
-  "dslash": 55,
-  "dcrush": 71,
-  "drange": 35,
-  "str": 4,
-  "prayer": 2
- },
- "27197": {
-  "name": "Inquisitor's plateskirt (Last Man Standing)",
-  "weight": 9.071,
-  "equipable": true,
-  "slot": 7,
-  "astab": -3,
-  "aslash": -3,
-  "acrush": 12,
-  "amagic": -9,
-  "arange": -5,
-  "dstab": 42,
-  "dslash": 30,
-  "dcrush": 49,
-  "drange": 22,
-  "str": 2,
-  "prayer": 2
- },
- "27198": {
-  "name": "Inquisitor's mace (Last Man Standing)",
-  "weight": 1.814,
-  "equipable": true,
-  "slot": 3,
-  "astab": 52,
-  "aslash": -4,
-  "acrush": 95,
-  "str": 89,
-  "prayer": 2,
-  "aspeed": 4,
-  "weaponCategory": "SPIKED"
- },
- "27199": {
-  "name": "3rd age range top (Last Man Standing)",
-  "weight": 4.0,
-  "equipable": true,
-  "slot": 4,
-  "amagic": -15,
-  "arange": 30,
-  "dstab": 55,
-  "dslash": 47,
-  "dcrush": 60,
-  "dmagic": 60,
-  "drange": 55
- },
- "27200": {
-  "name": "3rd age range legs (Last Man Standing)",
-  "weight": 3.0,
-  "equipable": true,
-  "slot": 7,
-  "amagic": -10,
-  "arange": 17,
-  "dstab": 31,
-  "dslash": 25,
-  "dcrush": 33,
-  "dmagic": 30,
-  "drange": 31
- },
- "27201": {
-  "name": "3rd age range coif (Last Man Standing)",
-  "weight": 1.0,
-  "equipable": true,
-  "slot": 0,
-  "amagic": -2,
-  "arange": 9,
-  "dstab": 4,
-  "dslash": 7,
-  "dcrush": 10,
-  "dmagic": 5,
-  "drange": 8
  },
  "27226": {
   "name": "Masori mask",
@@ -45575,7 +45217,7 @@
   "acrush": 8,
   "dslash": 1,
   "str": 12,
-  "aspeed": 5,
+  "aspeed": 7,
   "weaponCategory": "AXE"
  },
  "28208": {
@@ -46359,9 +46001,17 @@
   "slot": 5
  },
  "28771": {
-  "name": "Sage's greaves",
+  "name": "Searing boots",
   "equipable": true,
   "slot": 10
+ },
+ "28773": {
+  "name": "Sage's axe",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
  },
  "28786": {
   "name": "Icy jumper",
@@ -46971,118 +46621,55 @@
   "name": "Eclipse moon chestplate",
   "weight": 3.0,
   "equipable": true,
-  "slot": 4,
-  "amagic": -15,
-  "arange": 31,
-  "dstab": 15,
-  "dslash": 18,
-  "dcrush": 57,
-  "dmagic": 55,
-  "drange": 32,
-  "str": 3
+  "slot": 4
  },
  "29052": {
   "name": "Eclipse moon tassets",
   "weight": 1.0,
   "equipable": true,
-  "slot": 7,
-  "amagic": -15,
-  "arange": 17,
-  "dstab": 9,
-  "dslash": 13,
-  "dcrush": 37,
-  "dmagic": 31,
-  "drange": 17,
-  "str": 1
+  "slot": 7
  },
  "29055": {
   "name": "Eclipse moon helm",
   "weight": 0.907,
   "equipable": true,
-  "slot": 0,
-  "amagic": -6,
-  "arange": 8,
-  "dstab": 2,
-  "dslash": 3,
-  "dcrush": 14,
-  "dmagic": 10,
-  "drange": 4,
-  "str": 3
+  "slot": 0
  },
  "29058": {
   "name": "Blue moon chestplate",
   "weight": 3.175,
   "equipable": true,
-  "slot": 4,
-  "amagic": 30,
-  "dcrush": 51,
-  "dmagic": 28,
-  "str": 2,
-  "mdmg": 1.0
+  "slot": 4
  },
  "29061": {
   "name": "Blue moon tassets",
   "weight": 1.36,
   "equipable": true,
-  "slot": 7,
-  "amagic": 22,
-  "dcrush": 23,
-  "dmagic": 32,
-  "str": 1,
-  "mdmg": 1.0
+  "slot": 7
  },
  "29064": {
   "name": "Blue moon helm",
   "weight": 0.453,
   "equipable": true,
-  "slot": 0,
-  "amagic": 6,
-  "dcrush": 10,
-  "dmagic": 6,
-  "str": 3,
-  "mdmg": 1.0
+  "slot": 0
  },
  "29067": {
   "name": "Blood moon chestplate",
   "weight": 5.443,
   "equipable": true,
-  "slot": 4,
-  "amagic": -15,
-  "arange": -10,
-  "dstab": 60,
-  "dslash": 80,
-  "dcrush": 80,
-  "dmagic": 40,
-  "drange": 79,
-  "str": 4
+  "slot": 4
  },
  "29070": {
   "name": "Blood moon tassets",
   "weight": 4.082,
   "equipable": true,
-  "slot": 7,
-  "amagic": -21,
-  "arange": -7,
-  "dstab": 30,
-  "dslash": 50,
-  "dcrush": 49,
-  "dmagic": 32,
-  "drange": 46,
-  "str": 2
+  "slot": 7
  },
  "29073": {
   "name": "Blood moon helm",
   "weight": 0.907,
   "equipable": true,
-  "slot": 0,
-  "amagic": -6,
-  "arange": -2,
-  "dstab": 20,
-  "dslash": 31,
-  "dcrush": 34,
-  "dmagic": 7,
-  "drange": 29,
-  "str": 4
+  "slot": 0
  },
  "29084": {
   "name": "Sulphur blades",
@@ -47992,6 +47579,76 @@
   "equipable": true,
   "slot": 7
  },
+ "29929": {
+  "name": "Ram mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29930": {
+  "name": "Wolf mask (Death on the Isle)",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29931": {
+  "name": "Bird mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29932": {
+  "name": "Jaguar mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29933": {
+  "name": "Snake mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29934": {
+  "name": "Ram mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29936": {
+  "name": "Wolf mask (Death on the Isle)",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29938": {
+  "name": "Bird mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29940": {
+  "name": "Jaguar mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
+ "29942": {
+  "name": "Snake mask",
+  "quest": true,
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0
+ },
  "29974": {
   "name": "Prescription goggles",
   "weight": 1.02,
@@ -48041,12 +47698,6 @@
   "slot": 2
  },
  "29990": {
-  "name": "Alchemist's amulet",
-  "weight": 0.007,
-  "equipable": true,
-  "slot": 2
- },
- "29992": {
   "name": "Alchemist's amulet",
   "weight": 0.007,
   "equipable": true,
@@ -48280,6 +47931,21 @@
   "drange": 30,
   "str": 2
  },
+ "30340": {
+  "name": "Crystal dagger (perfected)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 3,
+  "astab": 20,
+  "aslash": 140,
+  "acrush": -4,
+  "amagic": 1,
+  "dmagic": 1,
+  "str": 40,
+  "prayer": 3,
+  "aspeed": 4,
+  "weaponCategory": "STAB_SWORD"
+ },
  "30342": {
   "name": "Infernal harpoon (or) (Trailblazer Reloaded)",
   "weight": 2.267,
@@ -48394,11 +48060,24 @@
   "aspeed": 5,
   "weaponCategory": "AXE"
  },
+ "30357": {
+  "name": "Forager's pouch",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5
+ },
  "30361": {
   "name": "Banker's briefcase",
   "weight": 0.05,
   "equipable": true,
   "slot": 1
+ },
+ "30384": {
+  "name": "Crystal blessing",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 13,
+  "prayer": 5
  },
  "30404": {
   "name": "Raging echoes hat (t1)",
@@ -49621,6 +49300,7 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
+  "aspeed": 4,
   "weaponCategory": "BLUNT"
  },
  "31229": {
@@ -49642,6 +49322,12 @@
   "slot": 9
  },
  "31241": {
+  "name": "Horn of plenty",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5
+ },
+ "31243": {
   "name": "Horn of plenty",
   "weight": 1.0,
   "equipable": true,
@@ -49697,6 +49383,24 @@
   "equipable": true,
   "slot": 1
  },
+ "31353": {
+  "name": "Prison uniform top",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "31355": {
+  "name": "Prison uniform trousers",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7
+ },
+ "31357": {
+  "name": "Fishy prison uniform top",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 4
+ },
  "31398": {
   "name": "Tortugan shield",
   "quest": true,
@@ -49710,12 +49414,14 @@
  },
  "31401": {
   "name": "Deep sea helmet (The Red Reef)",
+  "quest": true,
   "weight": 5.0,
   "equipable": true,
   "slot": 0
  },
  "31403": {
   "name": "Deep sea apparatus (The Red Reef)",
+  "quest": true,
   "weight": 10.0,
   "equipable": true,
   "slot": 1
@@ -50344,6 +50050,15 @@
  },
  "32487": {
   "name": "Crate of furs",
+  "weight": 1.285,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "aspeed": 4,
+  "weaponCategory": "UNARMED"
+ },
+ "32488": {
+  "name": "Crate of glassmaking supplies",
   "weight": 1.285,
   "equipable": true,
   "slot": 3,
@@ -51096,6 +50811,7 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "32573": {
@@ -51327,6 +51043,7 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "32599": {
@@ -51897,6 +51614,7 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "32663": {
@@ -52867,6 +52585,7 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "32772": {
@@ -53001,6 +52720,7 @@
   "equipable": true,
   "slot": 3,
   "is2h": true,
+  "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
  "32787": {
@@ -54097,39 +53817,1116 @@
   "equipable": true,
   "slot": 2
  },
- "2000001": {
-  "futureContent": true,
+ "33151": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33153": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33155": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33157": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33159": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33161": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33163": {
+  "name": "Archibald",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33166": {
+  "name": "Crystal body (Last Man Standing)",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -18,
+  "arange": 31,
+  "dstab": 46,
+  "dslash": 38,
+  "dcrush": 48,
+  "dmagic": 44,
+  "drange": 68,
+  "prayer": 3
+ },
+ "33168": {
+  "name": "Crystal legs (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -12,
+  "arange": 18,
+  "dstab": 26,
+  "dslash": 21,
+  "dcrush": 30,
+  "dmagic": 34,
+  "drange": 38,
+  "prayer": 2
+ },
+ "33170": {
+  "name": "Crystal helm (Last Man Standing)",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -10,
+  "arange": 9,
+  "dstab": 12,
+  "dslash": 8,
+  "dcrush": 14,
+  "dmagic": 10,
+  "drange": 18,
+  "prayer": 2
+ },
+ "33172": {
+  "name": "Avernic treads (max) (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 10,
+  "astab": 5,
+  "aslash": 5,
+  "acrush": 5,
+  "amagic": 11,
+  "arange": 15,
+  "dstab": 21,
+  "dslash": 25,
+  "dcrush": 25,
+  "dmagic": 10,
+  "drange": 10,
+  "str": 6,
+  "rstr": 3,
+  "mdmg": 2.0
+ },
+ "33174": {
+  "name": "Osmumten's fang (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 105,
+  "aslash": 75,
+  "str": 103,
+  "aspeed": 5,
+  "weaponCategory": "STAB_SWORD"
+ },
+ "33176": {
+  "name": "Elidinis' ward (f) (Last Man Standing)",
+  "weight": 3.708,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 25,
+  "dstab": 53,
+  "dslash": 55,
+  "dcrush": 73,
+  "dmagic": 2,
+  "drange": 52,
+  "prayer": 4,
+  "mdmg": 5.0
+ },
+ "33178": {
+  "name": "Noxious halberd (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 80,
+  "aslash": 132,
+  "str": 142,
+  "aspeed": 5,
+  "weaponCategory": "POLEARM"
+ },
+ "33180": {
+  "name": "Magus ring (Last Man Standing)",
+  "weight": 0.012,
+  "equipable": true,
+  "slot": 12,
+  "amagic": 15,
+  "mdmg": 2.0
+ },
+ "33182": {
+  "name": "Ultor ring (Last Man Standing)",
+  "weight": 0.012,
+  "equipable": true,
+  "slot": 12,
+  "str": 12
+ },
+ "33184": {
+  "name": "Purging staff (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": -5,
+  "acrush": 83,
+  "amagic": 37,
+  "dstab": 1,
+  "dslash": 1,
+  "dmagic": 25,
+  "str": 62,
+  "aspeed": 5,
+  "mdmg": 10.0,
+  "weaponCategory": "STAFF"
+ },
+ "33186": {
+  "name": "Dragonfire shield (Last Man Standing)",
+  "weight": 7.257,
+  "equipable": true,
+  "slot": 5,
+  "amagic": -10,
+  "arange": -5,
+  "dstab": 70,
+  "dslash": 75,
+  "dcrush": 72,
+  "dmagic": 10,
+  "drange": 72,
+  "str": 7
+ },
+ "33188": {
+  "name": "Twisted buckler (Last Man Standing)",
+  "weight": 5.443,
+  "equipable": true,
+  "slot": 5,
+  "astab": -7,
+  "aslash": -8,
+  "acrush": -7,
+  "amagic": -10,
+  "arange": 18,
+  "dstab": 22,
+  "dslash": 24,
+  "dcrush": 22,
+  "dmagic": 26,
+  "drange": 58,
+  "rstr": 10
+ },
+ "33190": {
+  "name": "Masori body (f) (Last Man Standing)",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -4,
+  "arange": 43,
+  "dstab": 59,
+  "dslash": 52,
+  "dcrush": 64,
+  "dmagic": 74,
+  "drange": 60,
+  "rstr": 4,
+  "prayer": 1
+ },
+ "33192": {
+  "name": "Masori chaps (f) (Last Man Standing)",
+  "weight": 8.5,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -2,
+  "arange": 27,
+  "dstab": 35,
+  "dslash": 30,
+  "dcrush": 39,
+  "dmagic": 46,
+  "drange": 37,
+  "rstr": 2,
+  "prayer": 1
+ },
+ "33194": {
+  "name": "Torva platelegs (Last Man Standing)",
+  "weight": 9.071,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -24,
+  "arange": -11,
+  "dstab": 87,
+  "dslash": 78,
+  "dcrush": 79,
+  "dmagic": -9,
+  "drange": 102,
+  "str": 4,
+  "prayer": 1
+ },
+ "33196": {
+  "name": "Virtus robe top (Last Man Standing)",
+  "weight": 2.895,
+  "equipable": true,
+  "slot": 4,
+  "amagic": 35,
+  "arange": -11,
+  "dstab": 47,
+  "dslash": 36,
+  "dcrush": 56,
+  "dmagic": 31,
+  "prayer": 2,
+  "mdmg": 2.0
+ },
+ "33198": {
+  "name": "Virtus robe bottom (Last Man Standing)",
+  "weight": 3.79,
+  "equipable": true,
+  "slot": 7,
+  "amagic": 26,
+  "arange": -9,
+  "dstab": 31,
+  "dslash": 28,
+  "dcrush": 34,
+  "dmagic": 22,
+  "prayer": 1,
+  "mdmg": 2.0
+ },
+ "33200": {
+  "name": "Burning claws (Last Man Standing)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 43,
+  "aslash": 54,
+  "dstab": 3,
+  "dslash": 6,
+  "dcrush": 1,
+  "str": 32,
+  "aspeed": 4,
+  "weaponCategory": "CLAW"
+ },
+ "33202": {
+  "name": "Aranea boots (Last Man Standing)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 10,
+  "amagic": 5,
+  "arange": 6,
+  "str": 4,
+  "prayer": 1
+ },
+ "33227": {
+  "name": "Evil eye (item)",
+  "weight": 0.25,
+  "equipable": true,
+  "slot": 2
+ },
+ "33229": {
+  "name": "Transmutation ledger",
+  "weight": 0.014,
+  "equipable": true,
+  "slot": 5
+ },
+ "33243": {
+  "name": "Infernal tecpatl",
+  "weight": 3.628,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 72,
+  "aslash": 72,
+  "acrush": 72,
+  "str": 70,
+  "prayer": -1,
+  "aspeed": 4,
+  "weaponCategory": "MULTI-MELEE"
+ },
+ "33245": {
+  "name": "Nature's recurve",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 95,
+  "rstr": 4,
+  "aspeed": 4,
+  "weaponCategory": "BOW"
+ },
+ "33249": {
+  "name": "Fang of the hound",
+  "weight": 0.666,
+  "equipable": true,
+  "slot": 3,
+  "astab": 60,
+  "aslash": 60,
+  "acrush": 10,
+  "amagic": 3,
+  "str": 20,
+  "aspeed": 3,
+  "weaponCategory": "STAB_SWORD"
+ },
+ "33251": {
+  "name": "King's barrage",
+  "weight": 6.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 130,
+  "dstab": 20,
+  "dslash": 20,
+  "dcrush": 20,
+  "dmagic": 25,
+  "drange": 60,
+  "rstr": 14,
+  "aspeed": 6,
+  "weaponCategory": "CROSSBOW"
+ },
+ "33253": {
+  "name": "Shadowflame quadrant",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "acrush": 60,
+  "amagic": 25,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 17,
+  "str": 50,
+  "aspeed": 5,
+  "mdmg": 15.0,
+  "weaponCategory": "STAFF"
+ },
+ "33255": {
+  "name": "Lithic sceptre",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 10,
+  "dmagic": 20,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33257": {
+  "name": "Lithic sceptre",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 10,
+  "dslash": 10,
+  "dcrush": 10,
+  "dmagic": 20,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33260": {
+  "name": "Demonic hood (t1)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "33263": {
+  "name": "Demonic robe top (t1)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33266": {
+  "name": "Demonic robe bottom (t1)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33269": {
+  "name": "Demonic boots (t1)",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "33272": {
+  "name": "Demonic hood (t2)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "33275": {
+  "name": "Demonic robe top (t2)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33278": {
+  "name": "Demonic robe bottom (t2)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33281": {
+  "name": "Demonic boots (t2)",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "33284": {
+  "name": "Demonic hood (t3)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "33287": {
+  "name": "Demonic robe top (t3)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33290": {
+  "name": "Demonic robe bottom (t3)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33293": {
+  "name": "Demonic boots (t3)",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "33296": {
+  "name": "Demonic sceptre",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 5,
+  "aspeed": 4
+ },
+ "33299": {
+  "name": "Demonic pacts banner",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "aspeed": 4,
+  "weaponCategory": "BANNER"
+ },
+ "33314": {
+  "name": "Trident of the swamp (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33316": {
+  "name": "Trident of the swamp (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33318": {
+  "name": "Trident of the swamp (e) (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33320": {
+  "name": "Trident of the swamp (e) (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33322": {
+  "name": "Trident of the seas (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33323": {
+  "name": "Trident of the seas (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33326": {
+  "name": "Trident of the seas (e) (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33328": {
+  "name": "Trident of the seas (e) (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33330": {
+  "name": "Iban's staff (o)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": -1,
+  "acrush": 40,
+  "amagic": 10,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 10,
+  "str": 50,
+  "aspeed": 5,
+  "weaponCategory": "STAFF"
+ },
+ "33332": {
+  "name": "Iban's staff (u) (o)",
+  "quest": true,
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 3,
+  "astab": 10,
+  "aslash": -1,
+  "acrush": 40,
+  "amagic": 10,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 10,
+  "str": 50,
+  "aspeed": 5,
+  "weaponCategory": "STAFF"
+ },
+ "33335": {
+  "name": "Soulreaper axe (o)",
+  "weight": 2.825,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 28,
+  "aslash": 134,
+  "acrush": 66,
+  "str": 121,
+  "aspeed": 5,
+  "weaponCategory": "AXE"
+ },
+ "33338": {
+  "name": "Oathplate slayer helmet",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -2,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": -1,
+  "drange": 30
+ },
+ "33340": {
+  "name": "Radiant slayer helmet",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -6,
+  "arange": -2,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": -1,
+  "drange": 30
+ },
+ "33345": {
+  "name": "Demonic pacts dragon trophy",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33347": {
+  "name": "Demonic pacts rune trophy",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33349": {
+  "name": "Demonic pacts adamant trophy",
+  "weight": 1.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": -100,
+  "aslash": -100,
+  "acrush": -50,
+  "str": -10,
+  "aspeed": 4,
+  "weaponCategory": "BLUNT"
+ },
+ "33351": {
+  "name": "Demonic pacts mithril trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "33353": {
+  "name": "Demonic pacts steel trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "33355": {
+  "name": "Demonic pacts iron trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "33357": {
+  "name": "Demonic pacts bronze trophy",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 5,
+  "weaponCategory": "BLUNT"
+ },
+ "33434": {
+  "name": "Trident of the seas (o)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "amagic": 25,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 15,
+  "aspeed": 4,
+  "weaponCategory": "POWERED_STAFF"
+ },
+ "33439": {
+  "name": "Oathplate slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33441": {
+  "name": "Oathplate slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33443": {
+  "name": "Oathplate slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33445": {
+  "name": "Radiant slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33447": {
+  "name": "Radiant slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33449": {
+  "name": "Radiant slayer helmet (i)",
+  "weight": 2.267,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 3,
+  "arange": 3,
+  "dstab": 30,
+  "dslash": 32,
+  "dcrush": 27,
+  "dmagic": 10,
+  "drange": 30
+ },
+ "33460": {
+  "name": "Dragon crossbow (Last Man Standing)",
+  "weight": 6.0,
+  "equipable": true,
+  "slot": 3,
+  "arange": 94,
+  "aspeed": 6,
+  "weaponCategory": "CROSSBOW"
+ },
+ "33462": {
+  "name": "Oathplate helm (Last Man Standing)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "aslash": 10,
+  "amagic": -2,
+  "arange": -7,
+  "dstab": 50,
+  "dslash": 72,
+  "dcrush": 45,
+  "drange": 50,
+  "str": 6
+ },
+ "33553": {
+  "name": "Seeking bronze arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 7
+ },
+ "33559": {
+  "name": "Seeking iron arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 10
+ },
+ "33565": {
+  "name": "Seeking steel arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 16
+ },
+ "33571": {
+  "name": "Seeking mithril arrow",
+  "weight": 0.014,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 22
+ },
+ "33577": {
+  "name": "Seeking adamant arrow",
+  "weight": 0.018,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 31
+ },
+ "33583": {
+  "name": "Seeking rune arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 49
+ },
+ "33589": {
+  "name": "Seeking amethyst arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 55
+ },
+ "33595": {
+  "name": "Seeking dragon arrow",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 60
+ },
+ "33601": {
+  "name": "Seeking broad arrows",
+  "weight": 0.016,
+  "equipable": true,
+  "slot": 13,
+  "arange": 20,
+  "rstr": 28
+ },
+ "33631": {
+  "name": "Crimson kisten",
+  "weight": 2.825,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "acrush": 80,
+  "str": 56,
+  "aspeed": 4,
+  "weaponCategory": "AXE"
+ },
+ "33639": {
   "name": "Necklace of rupture",
+  "weight": 0.01,
   "equipable": true,
   "slot": 2,
   "arange": 20,
   "rstr": 8,
   "prayer": 3
  },
- "2000002": {
-  "futureContent": true,
-  "name": "Crimson kisten",
+ "33644": {
+  "name": "Dummy stymphike feather",
+  "weight": 2.0,
   "equipable": true,
   "slot": 3,
-  "acrush": 80,
+  "aspeed": 3,
+  "weaponCategory": "BLUNT"
+ },
+ "33655": {
+  "name": "Makeshift spear",
+  "equipable": true,
+  "slot": 3
+ },
+ "33709": {
+  "name": "Diamond sickle (b)",
+  "weight": 1.587,
+  "equipable": true,
+  "slot": 3,
+  "dslash": 1,
+  "dcrush": 1,
+  "dmagic": 1,
+  "drange": 1,
+  "str": 8,
+  "prayer": 5,
+  "aspeed": 5,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "33711": {
+  "name": "Enchanted diamond sickle (b)",
+  "weight": 1.587,
+  "equipable": true,
+  "slot": 3,
+  "dslash": 1,
+  "dcrush": 1,
+  "dmagic": 1,
+  "drange": 1,
+  "str": 12,
+  "prayer": 5,
+  "aspeed": 5,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "33713": {
+  "name": "Blisterwood sickle (e)",
+  "weight": 1.587,
+  "equipable": true,
+  "slot": 3,
+  "astab": 44,
+  "aslash": 56,
+  "dstab": 1,
+  "dslash": 2,
+  "dcrush": 2,
+  "dmagic": 2,
+  "drange": 2,
   "str": 56,
+  "prayer": 5,
+  "aspeed": 5,
+  "weaponCategory": "SLASH_SWORD"
+ },
+ "33716": {
+  "name": "Blisterwood stake",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 3,
+  "arange": 16,
+  "rstr": 14,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
+ },
+ "33718": {
+  "name": "Hallowed flail",
+  "weight": 0.001,
+  "equipable": true,
+  "slot": 3,
+  "astab": 32,
+  "aslash": 68,
+  "amagic": 10,
+  "dslash": 2,
+  "dmagic": 10,
+  "str": 46,
+  "prayer": 6,
   "aspeed": 4,
-  "weaponCategory": "SPIKED"
+  "weaponCategory": "FLAIL"
  },
- "2000003": {
-  "futureContent": true,
-  "name": "Dragon arrow seeker",
+ "33722": {
+  "name": "Sunspear",
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 100,
+  "aslash": 21,
+  "acrush": 60,
+  "dslash": 42,
+  "dcrush": 28,
+  "str": 70,
+  "prayer": 7,
+  "aspeed": 5,
+  "weaponCategory": "SPEAR"
+ },
+ "33800": {
+  "name": "Silvthrill ballista",
+  "quest": true,
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 125,
+  "rstr": 15,
+  "aspeed": 6,
+  "weaponCategory": "CROSSBOW"
+ },
+ "33801": {
+  "name": "Silvthrill javelin",
   "equipable": true,
   "slot": 13,
-  "arange": 20,
-  "rstr": 60
- },
- "2000004": {
-  "futureContent": true,
-  "name": "Amethyst arrow seeker",
-  "equipable": true,
-  "slot": 13,
-  "rstr": 55,
-  "arange": 20
+  "rstr": 124
  }
 }

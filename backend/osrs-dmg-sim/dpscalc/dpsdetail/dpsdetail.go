@@ -87,6 +87,7 @@ const (
 	PlayerAccuracyREPassive           DetailKey = "Player accuracy RE passive"
 	PlayerMaxHitREMultiHit            DetailKey = "Player max hit RE multi hit"
 	PlayerDemonbaneFactor             DetailKey = "Player demonbane factor"
+	MinHitSunfireRune                 DetailKey = "Player min hit sunfire rune"
 )
 
 type detailEntries struct {
