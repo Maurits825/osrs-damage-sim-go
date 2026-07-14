@@ -93,6 +93,20 @@
  ],
  "Armadyl godsword": [
   "AGS",
+  "ANGS",
+  "AGS2",
+  "ZGS",
+  "XGS",
+  "Prod",
+  "Rush",
+  "Rusher"
+ ],
+ "Ancient godsword": [
+  "AGS",
+  "ANGS",
+  "AGS2",
+  "ZGS",
+  "XGS",
   "Prod",
   "Rush",
   "Rusher"
@@ -144,10 +158,6 @@
  ],
  "Necklace of anguish": [
   "Ang"
- ],
- "Ancient godsword": [
-  "ANGS",
-  "AGS2"
  ],
  "Antipoison": [
   "Anti",
@@ -730,7 +740,8 @@
  ],
  "Corrupted Gauntlet": [
   "CG",
-  "CGaunt"
+  "CGaunt",
+  "Red prison"
  ],
  "Crystal halberd": [
   "Chally"
@@ -1083,6 +1094,9 @@
   "Mager",
   "Pure"
  ],
+ "Demonic gorillas": [
+  "Demonics"
+ ],
  "Dexterous prayer scroll": [
   "Dex"
  ],
@@ -1145,6 +1159,11 @@
  ],
  "Deadman Mode": [
   "DMM"
+ ],
+ "Doom of Mokhaiotl": [
+  "Doom",
+  "Ragging",
+  "Ragged"
  ],
  "Drop party": [
   "DP"
@@ -1275,6 +1294,9 @@
  "Zamorak godsword": [
   "ZGS"
  ],
+ "Zaros": [
+  "ZGS"
+ ],
  "Verzik Vitur": [
   "Zik",
   "Verz"
@@ -1301,7 +1323,8 @@
   "Zully",
   "Jad phase",
   "Money snake",
-  "Money dragon"
+  "Money dragon",
+  "Money slug"
  ],
  "Zaryte vambraces": [
   "ZVambs",
@@ -1313,12 +1336,6 @@
   "Xarp",
   "Ragging",
   "Ragged"
- ],
- "Logout button#X-logging": [
-  "X-logging"
- ],
- "X-logging": [
-  "X-logging"
  ],
  "Experience": [
   "XP/H",
@@ -1711,6 +1728,14 @@
  "Imbued": [
   "(i)"
  ],
+ "Username#Character names": [
+  "IGN",
+  "RSN"
+ ],
+ "character name": [
+  "IGN",
+  "RSN"
+ ],
  "Ignore list": [
   "Ignore"
  ],
@@ -1785,6 +1810,12 @@
  "Elidinis' ward": [
   "Ward"
  ],
+ "Tumeken's Warden": [
+  "Wardens"
+ ],
+ "Elidinis' Warden": [
+  "Wardens"
+ ],
  "Woodcutting": [
   "WC(ing)"
  ],
@@ -1829,19 +1860,22 @@
   "Woox walking",
   "Vork",
   "Money snake",
-  "Money dragon"
+  "Money dragon",
+  "Money slug"
  ],
  "The Walk": [
   "Woox walking",
   "Vork",
   "Money snake",
-  "Money dragon"
+  "Money dragon",
+  "Money slug"
  ],
  "here": [
   "Woox walking",
   "Vork",
   "Money snake",
-  "Money dragon"
+  "Money dragon",
+  "Money slug"
  ],
  "Wintertodt": [
   "WT",
@@ -2008,6 +2042,9 @@
  ],
  "Twisted bow": [
   "TBow"
+ ],
+ "Tormented Demon": [
+  "TDs"
  ],
  "Tears of Guthix": [
   "Tears",
@@ -2293,6 +2330,12 @@
  "Stamina potion": [
   "Stam (pot)"
  ],
+ "Phantom Muspah": [
+  "Stepback",
+  "Money snake",
+  "Money dragon",
+  "Money slug"
+ ],
  "Strength": [
   "Str",
   "Obby mauler",
@@ -2333,6 +2376,18 @@
  ],
  "Trident of the swamp": [
   "Swamp"
+ ],
+ "special attack": [
+  "Switch",
+  "Rambo",
+  "Rambo spec",
+  "Rambo special"
+ ],
+ "game tick": [
+  "Switch",
+  "Rambo",
+  "Rambo spec",
+  "Rambo special"
  ],
  "Swordfish": [
   "Sword",
@@ -2471,7 +2526,8 @@
   "Nibbler(s)"
  ],
  "Noxious halberd": [
-  "Nhally"
+  "Nhally",
+  "Nelly"
  ],
  "Nitroglycerin": [
   "Nitro"
@@ -2555,6 +2611,16 @@
  "Obsidian maul": [
   "Maul",
   "Mauler"
+ ],
+ "Slang dictionary/B": [
+  "Max",
+  "Maxed",
+  "Maxing"
+ ],
+ "BiS": [
+  "Max",
+  "Maxed",
+  "Maxing"
  ],
  "Medium helmet": [
   "Med (helm)",
@@ -2641,6 +2707,21 @@
  ],
  "Law rune": [
   "Law(s)"
+ ],
+ "Prayer flicking": [
+  "Lazy flicking"
+ ],
+ "protection prayer": [
+  "Lazy flicking"
+ ],
+ "Prayer drain": [
+  "Lazy flicking"
+ ],
+ "Slang dictionary/Numbers": [
+  "Lazy flicking"
+ ],
+ "1-tick flicking": [
+  "Lazy flicking"
  ],
  "Lightbearer": [
   "LB"
@@ -3004,6 +3085,9 @@
  "Quick prayers": [
   "QP(s)"
  ],
+ "Dizana's quiver": [
+  "Quiver"
+ ],
  "Recoil": [
   "(r)"
  ],
@@ -3015,18 +3099,9 @@
   "Ragging",
   "Raggers"
  ],
- "Doom of Mokhaiotl": [
-  "Ragging",
-  "Ragged"
- ],
  "Doom": [
   "Ragging",
   "Ragged"
- ],
- "special attack": [
-  "Rambo",
-  "Rambo spec",
-  "Rambo special"
  ],
  "Ranger boots": [
   "Rangers",
@@ -3076,6 +3151,9 @@
  ],
  "Group Ironman": [
   "Red helm"
+ ],
+ "The Gauntlet#Corrupted Gauntlet": [
+  "Red prison"
  ],
  "Revenants": [
   "Rev(s)"
@@ -3128,9 +3206,6 @@
   "RSHD"
  ],
  "Username#Character_names": [
-  "RSN"
- ],
- "character name": [
   "RSN"
  ],
  "RuneScape Forums": [
