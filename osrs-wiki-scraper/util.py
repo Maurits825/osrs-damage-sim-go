@@ -9,7 +9,7 @@ from model.weapon_category import WeaponCategory
 VERSION_EXTRACTOR = re.compile(r"(.*?)([0-9]+)?$")
 
 ITEM_FILTER = ["29804", "25862", "12924", "12929",
-               "33243"]
+               "33243", "21433"]
 
 
 def each_version(template_name: str, code, include_base: bool = False,

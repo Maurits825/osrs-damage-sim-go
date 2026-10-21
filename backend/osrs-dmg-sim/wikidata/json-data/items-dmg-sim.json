@@ -43,7 +43,7 @@
   "rstr": 16
  },
  "86": {
-  "name": "Pendant of lucien",
+  "name": "Pendant of Lucien",
   "quest": true,
   "weight": 0.01,
   "equipable": true,
@@ -225,7 +225,7 @@
   "rstr": 7
  },
  "616": {
-  "name": "Beads of the dead",
+  "name": "Beads of the Dead",
   "quest": true,
   "weight": 0.01,
   "equipable": true,
@@ -1337,7 +1337,7 @@
   "slot": 0
  },
  "1052": {
-  "name": "Cape of legends",
+  "name": "Cape of Legends",
   "weight": 1.814,
   "equipable": true,
   "slot": 1,
@@ -2480,6 +2480,12 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 3,
+  "astab": 10,
+  "aslash": 5,
+  "acrush": -4,
+  "amagic": 1,
+  "dmagic": 1,
+  "str": 7,
   "aspeed": 4,
   "weaponCategory": "STAB_SWORD"
  },
@@ -3218,7 +3224,7 @@
   "aslash": -4,
   "acrush": 18,
   "amagic": -4,
-  "str": 16,
+  "str": 18,
   "aspeed": 6,
   "weaponCategory": "BLUNT"
  },
@@ -4342,7 +4348,7 @@
   "dcrush": 1,
   "dmagic": 6,
   "str": 2,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "STAFF"
  },
  "2416": {
@@ -4359,7 +4365,7 @@
   "dcrush": 1,
   "dmagic": 6,
   "str": 2,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "STAFF"
  },
  "2417": {
@@ -4376,7 +4382,7 @@
   "dcrush": 1,
   "dmagic": 6,
   "str": 2,
-  "aspeed": 5,
+  "aspeed": 4,
   "weaponCategory": "STAFF"
  },
  "2460": {
@@ -4754,7 +4760,7 @@
   "dmagic": 4
  },
  "2581": {
-  "name": "Robin hood hat",
+  "name": "Robin Hood hat",
   "weight": 0.283,
   "equipable": true,
   "slot": 0,
@@ -6900,7 +6906,7 @@
   "prayer": 5
  },
  "3844": {
-  "name": "Book of balance",
+  "name": "Book of Balance",
   "quest": true,
   "weight": 1.0,
   "equipable": true,
@@ -7486,7 +7492,7 @@
   "weaponCategory": "STAFF"
  },
  "4202": {
-  "name": "Ring of charos",
+  "name": "Ring of Charos",
   "quest": true,
   "weight": 0.005,
   "equipable": true,
@@ -11063,6 +11069,12 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 3,
+  "astab": 10,
+  "aslash": 5,
+  "acrush": -4,
+  "amagic": 1,
+  "dmagic": 1,
+  "str": 7,
   "aspeed": 4,
   "weaponCategory": "STAB_SWORD"
  },
@@ -11183,6 +11195,12 @@
   "weight": 0.453,
   "equipable": true,
   "slot": 3,
+  "astab": 10,
+  "aslash": 5,
+  "acrush": -4,
+  "amagic": 1,
+  "dmagic": 1,
+  "str": 7,
   "aspeed": 4,
   "weaponCategory": "STAB_SWORD"
  },
@@ -11433,7 +11451,7 @@
   "weaponCategory": "SPEAR"
  },
  "6040": {
-  "name": "Amulet of nature",
+  "name": "Amulet of Nature",
   "weight": 0.007,
   "equipable": true,
   "slot": 2
@@ -12615,7 +12633,7 @@
   "weaponCategory": "BLUNT"
  },
  "6465": {
-  "name": "Ring of charos",
+  "name": "Ring of Charos",
   "quest": true,
   "weight": 0.005,
   "equipable": true,
@@ -13506,14 +13524,14 @@
   "weaponCategory": "BLUNT"
  },
  "6786": {
-  "name": "Robe of elidinis (top)",
+  "name": "Robe of Elidinis (top)",
   "quest": true,
   "weight": 0.005,
   "equipable": true,
   "slot": 4
  },
  "6787": {
-  "name": "Robe of elidinis (bottom)",
+  "name": "Robe of Elidinis (bottom)",
   "quest": true,
   "weight": 0.005,
   "equipable": true,
@@ -13652,6 +13670,7 @@
   "amagic": 20,
   "dmagic": 20,
   "aspeed": 4,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "6916": {
@@ -14722,7 +14741,7 @@
   "slot": 10
  },
  "7639": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14739,7 +14758,7 @@
   "weaponCategory": "STAFF"
  },
  "7640": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14756,7 +14775,7 @@
   "weaponCategory": "STAFF"
  },
  "7641": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14773,7 +14792,7 @@
   "weaponCategory": "STAFF"
  },
  "7642": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14790,7 +14809,7 @@
   "weaponCategory": "STAFF"
  },
  "7643": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14807,7 +14826,7 @@
   "weaponCategory": "STAFF"
  },
  "7644": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14824,7 +14843,7 @@
   "weaponCategory": "STAFF"
  },
  "7645": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14841,7 +14860,7 @@
   "weaponCategory": "STAFF"
  },
  "7646": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14858,7 +14877,7 @@
   "weaponCategory": "STAFF"
  },
  "7647": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -14875,7 +14894,7 @@
   "weaponCategory": "STAFF"
  },
  "7648": {
-  "name": "Rod of ivandis",
+  "name": "Rod of Ivandis",
   "quest": true,
   "weight": 0.001,
   "equipable": true,
@@ -16815,7 +16834,7 @@
   "drange": -2
  },
  "9083": {
-  "name": "Seal of passage",
+  "name": "Seal of Passage",
   "quest": true,
   "weight": 4.535,
   "equipable": true,
@@ -19000,7 +19019,7 @@
   "slot": 4
  },
  "10330": {
-  "name": "3rd age range top",
+  "name": "3rd Age range top",
   "weight": 4.0,
   "equipable": true,
   "slot": 4,
@@ -19013,7 +19032,7 @@
   "drange": 55
  },
  "10332": {
-  "name": "3rd age range legs",
+  "name": "3rd Age range legs",
   "weight": 3.0,
   "equipable": true,
   "slot": 7,
@@ -19026,7 +19045,7 @@
   "drange": 31
  },
  "10334": {
-  "name": "3rd age range coif",
+  "name": "3rd Age range coif",
   "weight": 1.0,
   "equipable": true,
   "slot": 0,
@@ -19039,7 +19058,7 @@
   "drange": 8
  },
  "10336": {
-  "name": "3rd age vambraces",
+  "name": "3rd Age vambraces",
   "weight": 1.0,
   "equipable": true,
   "slot": 9,
@@ -19051,7 +19070,7 @@
   "dmagic": 9
  },
  "10338": {
-  "name": "3rd age robe top",
+  "name": "3rd Age robe top",
   "weight": 2.7,
   "equipable": true,
   "slot": 4,
@@ -19060,7 +19079,7 @@
   "mdmg": 1.0
  },
  "10340": {
-  "name": "3rd age robe",
+  "name": "3rd Age robe",
   "weight": 1.8,
   "equipable": true,
   "slot": 7,
@@ -19069,7 +19088,7 @@
   "mdmg": 1.0
  },
  "10342": {
-  "name": "3rd age mage hat",
+  "name": "3rd Age mage hat",
   "weight": 0.4,
   "equipable": true,
   "slot": 0,
@@ -19078,7 +19097,7 @@
   "mdmg": 1.0
  },
  "10344": {
-  "name": "3rd age amulet",
+  "name": "3rd Age amulet",
   "weight": 0.003,
   "equipable": true,
   "slot": 2,
@@ -19086,7 +19105,7 @@
   "dmagic": 10
  },
  "10346": {
-  "name": "3rd age platelegs",
+  "name": "3rd Age platelegs",
   "weight": 2.721,
   "equipable": true,
   "slot": 7,
@@ -19099,7 +19118,7 @@
   "drange": 75
  },
  "10348": {
-  "name": "3rd age platebody",
+  "name": "3rd Age platebody",
   "weight": 9.979,
   "equipable": true,
   "slot": 4,
@@ -19111,7 +19130,7 @@
   "drange": 97
  },
  "10350": {
-  "name": "3rd age full helmet",
+  "name": "3rd Age full helmet",
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
@@ -19124,7 +19143,7 @@
   "drange": 48
  },
  "10352": {
-  "name": "3rd age kiteshield",
+  "name": "3rd Age kiteshield",
   "weight": 2.721,
   "equipable": true,
   "slot": 5,
@@ -20075,7 +20094,7 @@
   "drange": 33
  },
  "10828": {
-  "name": "Helm of neitiznot",
+  "name": "Helm of Neitiznot",
   "weight": 2.267,
   "equipable": true,
   "slot": 0,
@@ -21754,7 +21773,7 @@
   "weaponCategory": "STAFF"
  },
  "11791": {
-  "name": "Staff of the dead",
+  "name": "Staff of the Dead",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -22278,7 +22297,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "11905": {
-  "name": "Trident of the seas",
+  "name": "Trident of the Seas",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -22291,7 +22310,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "11907": {
-  "name": "Trident of the seas",
+  "name": "Trident of the Seas",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -22304,7 +22323,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "11908": {
-  "name": "Trident of the seas",
+  "name": "Trident of the Seas",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -23763,7 +23782,7 @@
   "mdmg": 1.0
  },
  "12422": {
-  "name": "3rd age wand",
+  "name": "3rd Age wand",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -23773,7 +23792,7 @@
   "weaponCategory": "STAFF"
  },
  "12424": {
-  "name": "3rd age bow",
+  "name": "3rd Age bow",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -23783,7 +23802,7 @@
   "weaponCategory": "BOW"
  },
  "12426": {
-  "name": "3rd age longsword",
+  "name": "3rd Age longsword",
   "weight": 1.0,
   "equipable": true,
   "slot": 3,
@@ -23838,7 +23857,7 @@
   "prayer": 5
  },
  "12437": {
-  "name": "3rd age cloak",
+  "name": "3rd Age cloak",
   "weight": 0.005,
   "equipable": true,
   "slot": 1,
@@ -24419,7 +24438,7 @@
   "prayer": 5
  },
  "12608": {
-  "name": "Book of war",
+  "name": "Book of War",
   "quest": true,
   "weight": 1.0,
   "equipable": true,
@@ -24435,7 +24454,7 @@
   "prayer": 5
  },
  "12610": {
-  "name": "Book of law",
+  "name": "Book of Law",
   "quest": true,
   "weight": 1.0,
   "equipable": true,
@@ -24451,7 +24470,7 @@
   "prayer": 5
  },
  "12612": {
-  "name": "Book of darkness",
+  "name": "Book of Darkness",
   "quest": true,
   "weight": 1.0,
   "equipable": true,
@@ -24875,7 +24894,7 @@
   "weaponCategory": "BLUNT"
  },
  "12851": {
-  "name": "Amulet of the damned",
+  "name": "Amulet of the Damned",
   "weight": 0.1,
   "equipable": true,
   "slot": 2,
@@ -24893,7 +24912,7 @@
   "prayer": 3
  },
  "12853": {
-  "name": "Amulet of the damned",
+  "name": "Amulet of the Damned",
   "weight": 0.1,
   "equipable": true,
   "slot": 2,
@@ -24983,7 +25002,7 @@
   "slot": 10
  },
  "12899": {
-  "name": "Trident of the swamp",
+  "name": "Trident of the Swamp",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -24996,7 +25015,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "12900": {
-  "name": "Trident of the swamp",
+  "name": "Trident of the Swamp",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -25009,7 +25028,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "12902": {
-  "name": "Toxic staff of the dead",
+  "name": "Toxic Staff of the Dead",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -25025,7 +25044,7 @@
   "weaponCategory": "BLADED_STAFF"
  },
  "12904": {
-  "name": "Toxic staff of the dead",
+  "name": "Toxic Staff of the Dead",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -25721,7 +25740,7 @@
   "prayer": 8
  },
  "13203": {
-  "name": "Mask of balance",
+  "name": "Mask of Balance",
   "weight": 1.0,
   "equipable": true,
   "slot": 0
@@ -25779,7 +25798,8 @@
   "dslash": 5,
   "dcrush": 5,
   "dmagic": 5,
-  "drange": 5
+  "drange": 5,
+  "rstr": 1
  },
  "13239": {
   "name": "Primordial boots",
@@ -27296,7 +27316,7 @@
   "weaponCategory": "SLASH_SWORD"
  },
  "19687": {
-  "name": "Helm of raedwald",
+  "name": "Helm of Raedwald",
   "weight": 1.0,
   "equipable": true,
   "slot": 0,
@@ -27715,7 +27735,7 @@
   "slot": 0
  },
  "20011": {
-  "name": "3rd age axe",
+  "name": "3rd Age axe",
   "weight": 1.36,
   "equipable": true,
   "slot": 3,
@@ -27728,7 +27748,7 @@
   "weaponCategory": "AXE"
  },
  "20014": {
-  "name": "3rd age pickaxe",
+  "name": "3rd Age pickaxe",
   "weight": 2.4,
   "equipable": true,
   "slot": 3,
@@ -28897,7 +28917,7 @@
   "slot": 9
  },
  "20714": {
-  "name": "Tome of fire",
+  "name": "Tome of Fire",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -28905,7 +28925,7 @@
   "dmagic": 8
  },
  "20716": {
-  "name": "Tome of fire",
+  "name": "Tome of Fire",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -30066,7 +30086,19 @@
   "name": "Wilderness champion amulet",
   "weight": 0.01,
   "equipable": true,
-  "slot": 2
+  "slot": 2,
+  "astab": 100,
+  "aslash": 100,
+  "acrush": 100,
+  "amagic": 100,
+  "arange": 100,
+  "dstab": 100,
+  "dslash": 100,
+  "dcrush": 100,
+  "dmagic": 100,
+  "drange": 100,
+  "str": 50,
+  "prayer": 50
  },
  "21434": {
   "name": "Wilderness cape (Wilderness Wars, Champion)",
@@ -30292,7 +30324,7 @@
   "prayer": 1
  },
  "21776": {
-  "name": "Imbued saradomin max cape",
+  "name": "Imbued Saradomin max cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -30304,13 +30336,13 @@
   "mdmg": 2.0
  },
  "21778": {
-  "name": "Imbued saradomin max hood",
+  "name": "Imbued Saradomin max hood",
   "weight": 0.453,
   "equipable": true,
   "slot": 0
  },
  "21780": {
-  "name": "Imbued zamorak max cape",
+  "name": "Imbued Zamorak max cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -30322,13 +30354,13 @@
   "mdmg": 2.0
  },
  "21782": {
-  "name": "Imbued zamorak max hood",
+  "name": "Imbued Zamorak max hood",
   "weight": 0.453,
   "equipable": true,
   "slot": 0
  },
  "21784": {
-  "name": "Imbued guthix max cape",
+  "name": "Imbued Guthix max cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -30340,13 +30372,13 @@
   "mdmg": 2.0
  },
  "21786": {
-  "name": "Imbued guthix max hood",
+  "name": "Imbued Guthix max hood",
   "weight": 0.453,
   "equipable": true,
   "slot": 0
  },
  "21791": {
-  "name": "Imbued saradomin cape",
+  "name": "Imbued Saradomin cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -30358,7 +30390,7 @@
   "mdmg": 2.0
  },
  "21793": {
-  "name": "Imbued guthix cape",
+  "name": "Imbued Guthix cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -30370,7 +30402,7 @@
   "mdmg": 2.0
  },
  "21795": {
-  "name": "Imbued zamorak cape",
+  "name": "Imbued Zamorak cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -30398,7 +30430,7 @@
   "weight": 2.721,
   "equipable": true,
   "slot": 0,
-  "amagic": -6,
+  "amagic": 2,
   "arange": -2,
   "dstab": 6,
   "dslash": 7,
@@ -31413,7 +31445,7 @@
   "drange": 14
  },
  "22288": {
-  "name": "Trident of the seas (e)",
+  "name": "Trident of the Seas (e)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -31426,7 +31458,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "22290": {
-  "name": "Trident of the seas (e)",
+  "name": "Trident of the Seas (e)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -31439,7 +31471,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "22292": {
-  "name": "Trident of the swamp (e)",
+  "name": "Trident of the Swamp (e)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -31452,7 +31484,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "22294": {
-  "name": "Trident of the swamp (e)",
+  "name": "Trident of the Swamp (e)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -31465,7 +31497,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "22296": {
-  "name": "Staff of light",
+  "name": "Staff of Light",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -31528,14 +31560,14 @@
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "astab": 94,
+  "astab": 100,
   "aslash": 55,
-  "str": 89,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "STAB_SWORD"
  },
  "22325": {
-  "name": "Scythe of vitur",
+  "name": "Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -31787,7 +31819,7 @@
   "weaponCategory": "SLASH_SWORD"
  },
  "22486": {
-  "name": "Scythe of vitur",
+  "name": "Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -32476,7 +32508,7 @@
   "prayer": 2
  },
  "22951": {
-  "name": "Boots of brimstone",
+  "name": "Boots of Brimstone",
   "weight": 3.175,
   "equipable": true,
   "slot": 10,
@@ -32714,6 +32746,12 @@
   "aspeed": 4,
   "weaponCategory": "UNARMED"
  },
+ "23185": {
+  "name": "Ring of 3rd Age",
+  "weight": 0.005,
+  "equipable": true,
+  "slot": 12
+ },
  "23188": {
   "name": "Guthix d'hide shield",
   "weight": 8.0,
@@ -32947,7 +32985,7 @@
   "prayer": 3
  },
  "23242": {
-  "name": "3rd age plateskirt",
+  "name": "3rd Age plateskirt",
   "weight": 2.721,
   "equipable": true,
   "slot": 7,
@@ -33214,21 +33252,21 @@
   "weaponCategory": "SLASH_SWORD"
  },
  "23336": {
-  "name": "3rd age druidic robe top",
+  "name": "3rd Age druidic robe top",
   "weight": 1.5,
   "equipable": true,
   "slot": 4,
   "prayer": 8
  },
  "23339": {
-  "name": "3rd age druidic robe bottoms",
+  "name": "3rd Age druidic robe bottoms",
   "weight": 1.5,
   "equipable": true,
   "slot": 7,
   "prayer": 6
  },
  "23342": {
-  "name": "3rd age druidic staff",
+  "name": "3rd Age druidic staff",
   "weight": 2.0,
   "equipable": true,
   "slot": 3,
@@ -33246,7 +33284,7 @@
   "weaponCategory": "STAFF"
  },
  "23345": {
-  "name": "3rd age druidic cloak",
+  "name": "3rd Age druidic cloak",
   "weight": 0.4,
   "equipable": true,
   "slot": 1,
@@ -33306,7 +33344,7 @@
   "weaponCategory": "BLUNT"
  },
  "23363": {
-  "name": "Staff of bob the cat",
+  "name": "Staff of Bob the Cat",
   "weight": 2.0,
   "equipable": true,
   "slot": 3,
@@ -33543,7 +33581,7 @@
   "weaponCategory": "UNARMED"
  },
  "23522": {
-  "name": "Mask of ranul",
+  "name": "Mask of Ranul",
   "weight": 0.35,
   "equipable": true,
   "slot": 0,
@@ -33562,7 +33600,7 @@
   "weaponCategory": "SPIKED"
  },
  "23591": {
-  "name": "Helm of neitiznot (Last Man Standing)",
+  "name": "Helm of Neitiznot (Last Man Standing)",
   "weight": 2.267,
   "equipable": true,
   "slot": 0,
@@ -33638,7 +33676,7 @@
   "weaponCategory": "CROSSBOW"
  },
  "23603": {
-  "name": "Imbued guthix cape (Last Man Standing)",
+  "name": "Imbued Guthix cape (Last Man Standing)",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -33650,7 +33688,7 @@
   "mdmg": 2.0
  },
  "23605": {
-  "name": "Imbued zamorak cape (Last Man Standing)",
+  "name": "Imbued Zamorak cape (Last Man Standing)",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -33662,7 +33700,7 @@
   "mdmg": 2.0
  },
  "23607": {
-  "name": "Imbued saradomin cape (Last Man Standing)",
+  "name": "Imbued Saradomin cape (Last Man Standing)",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -33684,7 +33722,7 @@
   "weaponCategory": "CROSSBOW"
  },
  "23613": {
-  "name": "Staff of the dead (Last Man Standing)",
+  "name": "Staff of the Dead (Last Man Standing)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -34878,18 +34916,18 @@
   "slot": 5
  },
  "23995": {
-  "name": "Blade of saeldor",
+  "name": "Blade of Saeldor",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "23997": {
-  "name": "Blade of saeldor",
+  "name": "Blade of Saeldor",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -35251,7 +35289,7 @@
   "str": 6
  },
  "24144": {
-  "name": "Staff of balance",
+  "name": "Staff of Balance",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -35892,7 +35930,7 @@
   "weaponCategory": "BLUNT"
  },
  "24232": {
-  "name": "Imbued saradomin max cape",
+  "name": "Imbued Saradomin max cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -35904,7 +35942,7 @@
   "mdmg": 2.0
  },
  "24233": {
-  "name": "Imbued zamorak max cape",
+  "name": "Imbued Zamorak max cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -35916,7 +35954,7 @@
   "mdmg": 2.0
  },
  "24234": {
-  "name": "Imbued guthix max cape",
+  "name": "Imbued Guthix max cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -35928,7 +35966,7 @@
   "mdmg": 2.0
  },
  "24248": {
-  "name": "Imbued saradomin cape",
+  "name": "Imbued Saradomin cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -35940,7 +35978,7 @@
   "mdmg": 2.0
  },
  "24249": {
-  "name": "Imbued guthix cape",
+  "name": "Imbued Guthix cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -35952,7 +35990,7 @@
   "mdmg": 2.0
  },
  "24250": {
-  "name": "Imbued zamorak cape",
+  "name": "Imbued Zamorak cape",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -36316,8 +36354,8 @@
   "slot": 3,
   "astab": 52,
   "aslash": -4,
-  "acrush": 95,
-  "str": 89,
+  "acrush": 102,
+  "str": 96,
   "prayer": 2,
   "aspeed": 4,
   "weaponCategory": "SPIKED"
@@ -36327,16 +36365,14 @@
   "weight": 2.721,
   "equipable": true,
   "slot": 0,
-  "astab": -2,
-  "aslash": -2,
-  "acrush": 8,
+  "acrush": 10,
   "amagic": -5,
   "arange": -5,
   "dstab": 19,
   "dslash": 10,
   "dcrush": 21,
   "drange": 12,
-  "str": 4,
+  "str": 6,
   "prayer": 1
  },
  "24420": {
@@ -36344,9 +36380,7 @@
   "weight": 9.979,
   "equipable": true,
   "slot": 4,
-  "astab": -3,
-  "aslash": -3,
-  "acrush": 12,
+  "acrush": 16,
   "amagic": -11,
   "arange": -10,
   "dstab": 67,
@@ -36361,8 +36395,6 @@
   "weight": 9.071,
   "equipable": true,
   "slot": 7,
-  "astab": -3,
-  "aslash": -3,
   "acrush": 12,
   "amagic": -9,
   "arange": -5,
@@ -36385,7 +36417,7 @@
   "weaponCategory": "STAFF"
  },
  "24423": {
-  "name": "Harmonised nightmare staff",
+  "name": "Harmonised Nightmare staff",
   "weight": 1.6,
   "equipable": true,
   "slot": 3,
@@ -36396,7 +36428,7 @@
   "weaponCategory": "STAFF"
  },
  "24424": {
-  "name": "Volatile nightmare staff",
+  "name": "Volatile Nightmare staff",
   "weight": 1.6,
   "equipable": true,
   "slot": 3,
@@ -36407,7 +36439,7 @@
   "weaponCategory": "STAFF"
  },
  "24425": {
-  "name": "Eldritch nightmare staff",
+  "name": "Eldritch Nightmare staff",
   "weight": 1.6,
   "equipable": true,
   "slot": 3,
@@ -36502,13 +36534,13 @@
   "weaponCategory": "BLUNT"
  },
  "24551": {
-  "name": "Blade of saeldor (c)",
+  "name": "Blade of Saeldor (c)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
@@ -38266,7 +38298,7 @@
   "weaponCategory": "AXE"
  },
  "25517": {
-  "name": "Volatile nightmare staff (Last Man Standing)",
+  "name": "Volatile Nightmare staff (Last Man Standing)",
   "weight": 1.6,
   "equipable": true,
   "slot": 3,
@@ -38336,7 +38368,7 @@
   "dcrush": 1
  },
  "25574": {
-  "name": "Tome of water",
+  "name": "Tome of Water",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -38344,7 +38376,7 @@
   "dmagic": 8
  },
  "25576": {
-  "name": "Tome of water",
+  "name": "Tome of Water",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -38607,14 +38639,14 @@
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "astab": 94,
+  "astab": 100,
   "aslash": 55,
-  "str": 89,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "STAB_SWORD"
  },
  "25736": {
-  "name": "Holy scythe of vitur",
+  "name": "Holy Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -38631,7 +38663,7 @@
   "weaponCategory": "SCYTHE"
  },
  "25738": {
-  "name": "Holy scythe of vitur",
+  "name": "Holy Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -38647,7 +38679,7 @@
   "weaponCategory": "SCYTHE"
  },
  "25739": {
-  "name": "Sanguine scythe of vitur",
+  "name": "Sanguine Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -38664,7 +38696,7 @@
   "weaponCategory": "SCYTHE"
  },
  "25741": {
-  "name": "Sanguine scythe of vitur",
+  "name": "Sanguine Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -38680,7 +38712,7 @@
   "weaponCategory": "SCYTHE"
  },
  "25818": {
-  "name": "Book of the dead",
+  "name": "Book of the Dead",
   "quest": true,
   "weight": 0.2,
   "equipable": true,
@@ -38737,7 +38769,7 @@
   "weaponCategory": "THROWN"
  },
  "25862": {
-  "name": "Bow of faerdhinen",
+  "name": "Bow of Faerdhinen",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38746,7 +38778,7 @@
   "weaponCategory": "BOW"
  },
  "25865": {
-  "name": "Bow of faerdhinen",
+  "name": "Bow of Faerdhinen",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38757,7 +38789,7 @@
   "weaponCategory": "BOW"
  },
  "25867": {
-  "name": "Bow of faerdhinen (c)",
+  "name": "Bow of Faerdhinen (c)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38768,84 +38800,84 @@
   "weaponCategory": "BOW"
  },
  "25870": {
-  "name": "Blade of saeldor (c) (Ithell)",
+  "name": "Blade of Saeldor (c) (Ithell)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25872": {
-  "name": "Blade of saeldor (c) (Iorwerth)",
+  "name": "Blade of Saeldor (c) (Iorwerth)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25874": {
-  "name": "Blade of saeldor (c) (Trahaearn)",
+  "name": "Blade of Saeldor (c) (Trahaearn)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25876": {
-  "name": "Blade of saeldor (c) (Cadarn)",
+  "name": "Blade of Saeldor (c) (Cadarn)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25878": {
-  "name": "Blade of saeldor (c) (Crwys)",
+  "name": "Blade of Saeldor (c) (Crwys)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25880": {
-  "name": "Blade of saeldor (c) (Meilyr)",
+  "name": "Blade of Saeldor (c) (Meilyr)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25882": {
-  "name": "Blade of saeldor (c) (Amlodd)",
+  "name": "Blade of Saeldor (c) (Amlodd)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
   "astab": 55,
-  "aslash": 94,
-  "str": 89,
+  "aslash": 100,
+  "str": 93,
   "aspeed": 4,
   "weaponCategory": "SLASH_SWORD"
  },
  "25884": {
-  "name": "Bow of faerdhinen (c) (Ithell)",
+  "name": "Bow of Faerdhinen (c) (Ithell)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38856,7 +38888,7 @@
   "weaponCategory": "BOW"
  },
  "25886": {
-  "name": "Bow of faerdhinen (c) (Iorwerth)",
+  "name": "Bow of Faerdhinen (c) (Iorwerth)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38867,7 +38899,7 @@
   "weaponCategory": "BOW"
  },
  "25888": {
-  "name": "Bow of faerdhinen (c) (Trahaearn)",
+  "name": "Bow of Faerdhinen (c) (Trahaearn)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38878,7 +38910,7 @@
   "weaponCategory": "BOW"
  },
  "25890": {
-  "name": "Bow of faerdhinen (c) (Cadarn)",
+  "name": "Bow of Faerdhinen (c) (Cadarn)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38889,7 +38921,7 @@
   "weaponCategory": "BOW"
  },
  "25892": {
-  "name": "Bow of faerdhinen (c) (Crwys)",
+  "name": "Bow of Faerdhinen (c) (Crwys)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38900,7 +38932,7 @@
   "weaponCategory": "BOW"
  },
  "25894": {
-  "name": "Bow of faerdhinen (c) (Meilyr)",
+  "name": "Bow of Faerdhinen (c) (Meilyr)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -38911,7 +38943,7 @@
   "weaponCategory": "BOW"
  },
  "25896": {
-  "name": "Bow of faerdhinen (c) (Amlodd)",
+  "name": "Bow of Faerdhinen (c) (Amlodd)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -39461,7 +39493,6 @@
  },
  "26254": {
   "name": "Saucepan",
-  "quest": true,
   "weight": 2.0,
   "equipable": true,
   "slot": 0
@@ -39798,7 +39829,7 @@
   "weaponCategory": "CROSSBOW"
  },
  "26488": {
-  "name": "Book of balance (or)",
+  "name": "Book of Balance (or)",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -39815,7 +39846,7 @@
   "prayer": 5
  },
  "26490": {
-  "name": "Book of darkness (or)",
+  "name": "Book of Darkness (or)",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -39823,7 +39854,7 @@
   "prayer": 5
  },
  "26492": {
-  "name": "Book of law (or)",
+  "name": "Book of Law (or)",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -39831,7 +39862,7 @@
   "prayer": 5
  },
  "26494": {
-  "name": "Book of war (or)",
+  "name": "Book of War (or)",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -40138,7 +40169,6 @@
  },
  "26686": {
   "name": "Maoma's med helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40153,7 +40183,6 @@
  },
  "26687": {
   "name": "Maoma's full helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40168,7 +40197,6 @@
  },
  "26688": {
   "name": "Maoma's great helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40183,7 +40211,6 @@
  },
  "26689": {
   "name": "Calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -40200,7 +40227,6 @@
  },
  "26690": {
   "name": "Superior calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -40217,7 +40243,6 @@
  },
  "26691": {
   "name": "Elite calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -40234,7 +40259,6 @@
  },
  "26692": {
   "name": "Calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -40251,7 +40275,6 @@
  },
  "26693": {
   "name": "Superior calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -40268,7 +40291,6 @@
  },
  "26694": {
   "name": "Elite calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -40285,7 +40307,6 @@
  },
  "26695": {
   "name": "Centurion cuirass",
-  "quest": true,
   "weight": 6.0,
   "equipable": true,
   "slot": 4,
@@ -40298,8 +40319,7 @@
   "str": 4
  },
  "26696": {
-  "name": "Wristbands of the arena",
-  "quest": true,
+  "name": "Wristbands of the Arena",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40316,8 +40336,7 @@
   "str": 12
  },
  "26697": {
-  "name": "Wristbands of the arena (i)",
-  "quest": true,
+  "name": "Wristbands of the Arena (i)",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40335,7 +40354,6 @@
  },
  "26698": {
   "name": "Koriff's headband",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40351,7 +40369,6 @@
  },
  "26699": {
   "name": "Koriff's cowl",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40367,7 +40384,6 @@
  },
  "26700": {
   "name": "Koriff's coif",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40383,7 +40399,6 @@
  },
  "26701": {
   "name": "Saika's hood",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40399,7 +40414,6 @@
  },
  "26702": {
   "name": "Saika's veil",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40415,7 +40429,6 @@
  },
  "26703": {
   "name": "Saika's shroud",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40431,7 +40444,6 @@
  },
  "26708": {
   "name": "Dragon claws (or)",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 3,
@@ -40448,7 +40460,6 @@
  },
  "26710": {
   "name": "Dragon warhammer (or)",
-  "quest": true,
   "weight": 2.0,
   "equipable": true,
   "slot": 3,
@@ -40462,7 +40473,6 @@
  },
  "26712": {
   "name": "Heavy ballista (or)",
-  "quest": true,
   "weight": 6.0,
   "equipable": true,
   "slot": 3,
@@ -40474,7 +40484,6 @@
  },
  "26714": {
   "name": "Armadyl helmet (or)",
-  "quest": true,
   "weight": 0.5,
   "equipable": true,
   "slot": 0,
@@ -40492,7 +40501,6 @@
  },
  "26715": {
   "name": "Armadyl chestplate (or)",
-  "quest": true,
   "weight": 4.0,
   "equipable": true,
   "slot": 4,
@@ -40510,7 +40518,6 @@
  },
  "26716": {
   "name": "Armadyl chainskirt (or)",
-  "quest": true,
   "weight": 1.0,
   "equipable": true,
   "slot": 7,
@@ -40528,7 +40535,6 @@
  },
  "26718": {
   "name": "Bandos chestplate (or)",
-  "quest": true,
   "weight": 12.0,
   "equipable": true,
   "slot": 4,
@@ -40544,7 +40550,6 @@
  },
  "26719": {
   "name": "Bandos tassets (or)",
-  "quest": true,
   "weight": 8.0,
   "equipable": true,
   "slot": 7,
@@ -40560,7 +40565,6 @@
  },
  "26720": {
   "name": "Bandos boots (or)",
-  "quest": true,
   "weight": 6.0,
   "equipable": true,
   "slot": 10,
@@ -40574,7 +40578,6 @@
  },
  "26721": {
   "name": "Centurion cuirass",
-  "quest": true,
   "weight": 6.0,
   "equipable": true,
   "slot": 4,
@@ -40588,7 +40591,6 @@
  },
  "26722": {
   "name": "Centurion cuirass",
-  "quest": true,
   "weight": 6.0,
   "equipable": true,
   "slot": 4,
@@ -40601,8 +40603,7 @@
   "str": 4
  },
  "26723": {
-  "name": "Wristbands of the arena",
-  "quest": true,
+  "name": "Wristbands of the Arena",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40619,8 +40620,7 @@
   "str": 12
  },
  "26724": {
-  "name": "Wristbands of the arena",
-  "quest": true,
+  "name": "Wristbands of the Arena",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40637,8 +40637,7 @@
   "str": 12
  },
  "26725": {
-  "name": "Wristbands of the arena",
-  "quest": true,
+  "name": "Wristbands of the Arena",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40655,8 +40654,7 @@
   "str": 12
  },
  "26726": {
-  "name": "Wristbands of the arena",
-  "quest": true,
+  "name": "Wristbands of the Arena",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40673,8 +40671,7 @@
   "str": 12
  },
  "26727": {
-  "name": "Wristbands of the arena (i)",
-  "quest": true,
+  "name": "Wristbands of the Arena (i)",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40691,8 +40688,7 @@
   "str": 12
  },
  "26728": {
-  "name": "Wristbands of the arena (i)",
-  "quest": true,
+  "name": "Wristbands of the Arena (i)",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40709,8 +40705,7 @@
   "str": 12
  },
  "26729": {
-  "name": "Wristbands of the arena (i)",
-  "quest": true,
+  "name": "Wristbands of the Arena (i)",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40727,8 +40722,7 @@
   "str": 12
  },
  "26730": {
-  "name": "Wristbands of the arena (i)",
-  "quest": true,
+  "name": "Wristbands of the Arena (i)",
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -40746,7 +40740,6 @@
  },
  "26731": {
   "name": "Saika's hood",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40762,7 +40755,6 @@
  },
  "26732": {
   "name": "Saika's hood",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40778,7 +40770,6 @@
  },
  "26733": {
   "name": "Saika's veil",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40794,7 +40785,6 @@
  },
  "26734": {
   "name": "Saika's veil",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40810,7 +40800,6 @@
  },
  "26735": {
   "name": "Saika's shroud",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40826,7 +40815,6 @@
  },
  "26736": {
   "name": "Saika's shroud",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40842,7 +40830,6 @@
  },
  "26737": {
   "name": "Koriff's headband",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40858,7 +40845,6 @@
  },
  "26738": {
   "name": "Koriff's headband",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40874,7 +40860,6 @@
  },
  "26739": {
   "name": "Koriff's cowl",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40890,7 +40875,6 @@
  },
  "26740": {
   "name": "Koriff's cowl",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40906,7 +40890,6 @@
  },
  "26741": {
   "name": "Koriff's coif",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40922,7 +40905,6 @@
  },
  "26742": {
   "name": "Koriff's coif",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -40938,7 +40920,6 @@
  },
  "26743": {
   "name": "Maoma's med helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40953,7 +40934,6 @@
  },
  "26744": {
   "name": "Maoma's med helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40968,7 +40948,6 @@
  },
  "26745": {
   "name": "Maoma's full helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40983,7 +40962,6 @@
  },
  "26746": {
   "name": "Maoma's full helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -40998,7 +40976,6 @@
  },
  "26747": {
   "name": "Maoma's great helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -41013,7 +40990,6 @@
  },
  "26748": {
   "name": "Maoma's great helm",
-  "quest": true,
   "weight": 1.36,
   "equipable": true,
   "slot": 0,
@@ -41028,7 +41004,6 @@
  },
  "26749": {
   "name": "Calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -41045,7 +41020,6 @@
  },
  "26750": {
   "name": "Calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -41062,7 +41036,6 @@
  },
  "26751": {
   "name": "Superior calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -41079,7 +41052,6 @@
  },
  "26752": {
   "name": "Superior calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -41096,7 +41068,6 @@
  },
  "26753": {
   "name": "Elite calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -41113,7 +41084,6 @@
  },
  "26754": {
   "name": "Elite calamity chest",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 4,
@@ -41130,7 +41100,6 @@
  },
  "26755": {
   "name": "Calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -41147,7 +41116,6 @@
  },
  "26756": {
   "name": "Calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -41164,7 +41132,6 @@
  },
  "26757": {
   "name": "Superior calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -41181,7 +41148,6 @@
  },
  "26758": {
   "name": "Superior calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -41198,7 +41164,6 @@
  },
  "26759": {
   "name": "Elite calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -41215,7 +41180,6 @@
  },
  "26760": {
   "name": "Elite calamity breeches",
-  "quest": true,
   "weight": 0.907,
   "equipable": true,
   "slot": 7,
@@ -41572,79 +41536,79 @@
   "slot": 5
  },
  "26850": {
-  "name": "Hat of the eye",
+  "name": "Hat of the Eye",
   "weight": 0.4,
   "equipable": true,
   "slot": 0
  },
  "26852": {
-  "name": "Robe top of the eye",
+  "name": "Robe top of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 4
  },
  "26854": {
-  "name": "Robe bottoms of the eye",
+  "name": "Robe bottoms of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 7
  },
  "26856": {
-  "name": "Boots of the eye",
+  "name": "Boots of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 10
  },
  "26858": {
-  "name": "Hat of the eye",
+  "name": "Hat of the Eye",
   "weight": 0.4,
   "equipable": true,
   "slot": 0
  },
  "26860": {
-  "name": "Robe top of the eye",
+  "name": "Robe top of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 4
  },
  "26862": {
-  "name": "Robe bottoms of the eye",
+  "name": "Robe bottoms of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 7
  },
  "26864": {
-  "name": "Hat of the eye",
+  "name": "Hat of the Eye",
   "weight": 0.4,
   "equipable": true,
   "slot": 0
  },
  "26866": {
-  "name": "Robe top of the eye",
+  "name": "Robe top of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 4
  },
  "26868": {
-  "name": "Robe bottoms of the eye",
+  "name": "Robe bottoms of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 7
  },
  "26870": {
-  "name": "Hat of the eye",
+  "name": "Hat of the Eye",
   "weight": 0.4,
   "equipable": true,
   "slot": 0
  },
  "26872": {
-  "name": "Robe top of the eye",
+  "name": "Robe top of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 4
  },
  "26874": {
-  "name": "Robe bottoms of the eye",
+  "name": "Robe bottoms of the Eye",
   "weight": 0.6,
   "equipable": true,
   "slot": 7
@@ -41662,7 +41626,7 @@
   "slot": 1
  },
  "26914": {
-  "name": "Amulet of the eye",
+  "name": "Amulet of the Eye",
   "weight": 0.25,
   "equipable": true,
   "slot": 2
@@ -41770,19 +41734,19 @@
   "slot": 1
  },
  "26990": {
-  "name": "Amulet of the eye",
+  "name": "Amulet of the Eye",
   "weight": 0.25,
   "equipable": true,
   "slot": 2
  },
  "26992": {
-  "name": "Amulet of the eye",
+  "name": "Amulet of the Eye",
   "weight": 0.25,
   "equipable": true,
   "slot": 2
  },
  "26994": {
-  "name": "Amulet of the eye",
+  "name": "Amulet of the Eye",
   "weight": 0.25,
   "equipable": true,
   "slot": 2
@@ -42063,7 +42027,6 @@
  },
  "27100": {
   "name": "Elder maul (or)",
-  "quest": true,
   "weight": 5.443,
   "equipable": true,
   "slot": 3,
@@ -42075,7 +42038,6 @@
  },
  "27110": {
   "name": "Mithril gloves (wrapped)",
-  "quest": true,
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -42088,7 +42050,6 @@
  },
  "27111": {
   "name": "Rune gloves (wrapped)",
-  "quest": true,
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -42101,7 +42062,6 @@
  },
  "27112": {
   "name": "Barrows gloves (wrapped)",
-  "quest": true,
   "weight": 0.25,
   "equipable": true,
   "slot": 9,
@@ -42114,7 +42074,6 @@
  },
  "27115": {
   "name": "Elder chaos top (or)",
-  "quest": true,
   "weight": 0.2,
   "equipable": true,
   "slot": 4,
@@ -42124,7 +42083,6 @@
  },
  "27117": {
   "name": "Elder chaos robe (or)",
-  "quest": true,
   "weight": 0.18,
   "equipable": true,
   "slot": 7,
@@ -42134,7 +42092,6 @@
  },
  "27119": {
   "name": "Elder chaos hood (or)",
-  "quest": true,
   "weight": 0.18,
   "equipable": true,
   "slot": 0,
@@ -42144,7 +42101,6 @@
  },
  "27123": {
   "name": "Dagon'hai hat (or)",
-  "quest": true,
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -42154,7 +42110,6 @@
  },
  "27125": {
   "name": "Dagon'hai robe top (or)",
-  "quest": true,
   "weight": 2.267,
   "equipable": true,
   "slot": 4,
@@ -42164,7 +42119,6 @@
  },
  "27127": {
   "name": "Dagon'hai robe bottom (or)",
-  "quest": true,
   "weight": 1.814,
   "equipable": true,
   "slot": 7,
@@ -42442,7 +42396,7 @@
   "weaponCategory": "CROSSBOW"
  },
  "27187": {
-  "name": "Bow of faerdhinen (c) (Last Man Standing)",
+  "name": "Bow of Faerdhinen (c) (Last Man Standing)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -42683,7 +42637,7 @@
   "weaponCategory": "PARTISAN"
  },
  "27358": {
-  "name": "Tome of fire (Last Man Standing)",
+  "name": "Tome of Fire (Last Man Standing)",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -42723,7 +42677,7 @@
   "slot": 0
  },
  "27370": {
-  "name": "Mask of rebirth",
+  "name": "Mask of Rebirth",
   "weight": 0.35,
   "equipable": true,
   "slot": 0
@@ -42898,37 +42852,37 @@
   "weaponCategory": "BLUNT"
  },
  "27428": {
-  "name": "Hood of ruin",
+  "name": "Hood of Ruin",
   "weight": 0.453,
   "equipable": true,
   "slot": 0
  },
  "27430": {
-  "name": "Robe top of ruin",
+  "name": "Robe top of Ruin",
   "weight": 2.721,
   "equipable": true,
   "slot": 4
  },
  "27432": {
-  "name": "Robe bottom of ruin",
+  "name": "Robe bottom of Ruin",
   "weight": 1.814,
   "equipable": true,
   "slot": 7
  },
  "27434": {
-  "name": "Gloves of ruin",
+  "name": "Gloves of Ruin",
   "weight": 0.453,
   "equipable": true,
   "slot": 9
  },
  "27436": {
-  "name": "Socks of ruin",
+  "name": "Socks of Ruin",
   "weight": 0.453,
   "equipable": true,
   "slot": 10
  },
  "27438": {
-  "name": "Cloak of ruin",
+  "name": "Cloak of Ruin",
   "weight": 0.453,
   "equipable": true,
   "slot": 1
@@ -43079,7 +43033,6 @@
  },
  "27483": {
   "name": "Terrifying charm",
-  "quest": true,
   "weight": 0.09,
   "equipable": true,
   "slot": 13
@@ -43119,12 +43072,6 @@
   "weight": 0.25,
   "equipable": true,
   "slot": 0
- },
- "27544": {
-  "name": "Ghommal's lucky penny",
-  "weight": 0.05,
-  "equipable": true,
-  "slot": 13
  },
  "27550": {
   "name": "Ghommal's avernic defender 5",
@@ -43340,7 +43287,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "27626": {
@@ -43359,7 +43306,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "27645": {
@@ -44977,7 +44924,7 @@
   "str": 4
  },
  "28070": {
-  "name": "Helm of neitiznot (or)",
+  "name": "Helm of Neitiznot (or)",
   "weight": 2.267,
   "equipable": true,
   "slot": 0,
@@ -45305,7 +45252,7 @@
   "weaponCategory": "AXE"
  },
  "28226": {
-  "name": "3rd age felling axe",
+  "name": "3rd Age felling axe",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -45379,7 +45326,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28262": {
@@ -45398,7 +45345,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28264": {
@@ -45417,7 +45364,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28266": {
@@ -45436,7 +45383,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28307": {
@@ -45509,7 +45456,7 @@
   "astab": 28,
   "aslash": 134,
   "acrush": 66,
-  "str": 121,
+  "str": 125,
   "aspeed": 5,
   "weaponCategory": "AXE"
  },
@@ -45536,7 +45483,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28474": {
@@ -45555,7 +45502,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28475": {
@@ -45574,7 +45521,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28476": {
@@ -45593,7 +45540,7 @@
   "str": 60,
   "prayer": -1,
   "aspeed": 4,
-  "mdmg": 5.0,
+  "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
  "28531": {
@@ -45652,7 +45599,7 @@
   "weaponCategory": "BOW"
  },
  "28543": {
-  "name": "Corrupted scythe of vitur",
+  "name": "Corrupted Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -45669,7 +45616,7 @@
   "weaponCategory": "SCYTHE"
  },
  "28545": {
-  "name": "Corrupted scythe of vitur",
+  "name": "Corrupted Scythe of Vitur",
   "weight": 3.175,
   "equipable": true,
   "slot": 3,
@@ -46216,7 +46163,7 @@
   "rstr": 3
  },
  "28919": {
-  "name": "Tonalztics of ralos",
+  "name": "Tonalztics of Ralos",
   "weight": 3.0,
   "equipable": true,
   "slot": 3,
@@ -46227,7 +46174,7 @@
   "weaponCategory": "THROWN"
  },
  "28922": {
-  "name": "Tonalztics of ralos",
+  "name": "Tonalztics of Ralos",
   "weight": 3.0,
   "equipable": true,
   "slot": 3,
@@ -46319,7 +46266,7 @@
   "slot": 1
  },
  "28955": {
-  "name": "Blessed dizana's quiver",
+  "name": "Blessed Dizana's quiver",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -46327,7 +46274,7 @@
   "rstr": 3
  },
  "28957": {
-  "name": "Blessed dizana's quiver",
+  "name": "Blessed Dizana's quiver",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -46335,7 +46282,7 @@
   "rstr": 3
  },
  "28988": {
-  "name": "Blue moon spear",
+  "name": "Blue Moon spear",
   "weight": 3.0,
   "equipable": true,
   "slot": 3,
@@ -46384,7 +46331,7 @@
   "weaponCategory": "BOW"
  },
  "29004": {
-  "name": "Eclipse moon chestplate",
+  "name": "Eclipse Moon chestplate",
   "weight": 3.0,
   "equipable": true,
   "slot": 4,
@@ -46398,7 +46345,7 @@
   "str": 3
  },
  "29007": {
-  "name": "Eclipse moon tassets",
+  "name": "Eclipse Moon tassets",
   "weight": 1.0,
   "equipable": true,
   "slot": 7,
@@ -46412,7 +46359,7 @@
   "str": 1
  },
  "29010": {
-  "name": "Eclipse moon helm",
+  "name": "Eclipse Moon helm",
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
@@ -46426,7 +46373,7 @@
   "str": 3
  },
  "29013": {
-  "name": "Blue moon chestplate",
+  "name": "Blue Moon chestplate",
   "weight": 3.175,
   "equipable": true,
   "slot": 4,
@@ -46437,7 +46384,7 @@
   "mdmg": 1.0
  },
  "29016": {
-  "name": "Blue moon tassets",
+  "name": "Blue Moon tassets",
   "weight": 1.36,
   "equipable": true,
   "slot": 7,
@@ -46448,7 +46395,7 @@
   "mdmg": 1.0
  },
  "29019": {
-  "name": "Blue moon helm",
+  "name": "Blue Moon helm",
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -46459,7 +46406,7 @@
   "mdmg": 1.0
  },
  "29022": {
-  "name": "Blood moon chestplate",
+  "name": "Blood Moon chestplate",
   "weight": 5.443,
   "equipable": true,
   "slot": 4,
@@ -46473,7 +46420,7 @@
   "str": 4
  },
  "29025": {
-  "name": "Blood moon tassets",
+  "name": "Blood Moon tassets",
   "weight": 4.082,
   "equipable": true,
   "slot": 7,
@@ -46487,7 +46434,7 @@
   "str": 2
  },
  "29028": {
-  "name": "Blood moon helm",
+  "name": "Blood Moon helm",
   "weight": 1.0,
   "equipable": true,
   "slot": 0,
@@ -46501,7 +46448,7 @@
   "str": 4
  },
  "29031": {
-  "name": "Eclipse moon chestplate",
+  "name": "Eclipse Moon chestplate",
   "weight": 3.0,
   "equipable": true,
   "slot": 4,
@@ -46515,7 +46462,7 @@
   "str": 3
  },
  "29033": {
-  "name": "Eclipse moon tassets",
+  "name": "Eclipse Moon tassets",
   "weight": 1.0,
   "equipable": true,
   "slot": 7,
@@ -46529,7 +46476,7 @@
   "str": 1
  },
  "29035": {
-  "name": "Eclipse moon helm",
+  "name": "Eclipse Moon helm",
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
@@ -46543,7 +46490,7 @@
   "str": 3
  },
  "29037": {
-  "name": "Blue moon chestplate",
+  "name": "Blue Moon chestplate",
   "weight": 3.175,
   "equipable": true,
   "slot": 4,
@@ -46554,7 +46501,7 @@
   "mdmg": 1.0
  },
  "29039": {
-  "name": "Blue moon tassets",
+  "name": "Blue Moon tassets",
   "weight": 1.36,
   "equipable": true,
   "slot": 7,
@@ -46565,7 +46512,7 @@
   "mdmg": 1.0
  },
  "29041": {
-  "name": "Blue moon helm",
+  "name": "Blue Moon helm",
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -46576,7 +46523,7 @@
   "mdmg": 1.0
  },
  "29043": {
-  "name": "Blood moon chestplate",
+  "name": "Blood Moon chestplate",
   "weight": 5.443,
   "equipable": true,
   "slot": 4,
@@ -46590,7 +46537,7 @@
   "str": 4
  },
  "29045": {
-  "name": "Blood moon tassets",
+  "name": "Blood Moon tassets",
   "weight": 4.082,
   "equipable": true,
   "slot": 7,
@@ -46604,7 +46551,7 @@
   "str": 2
  },
  "29047": {
-  "name": "Blood moon helm",
+  "name": "Blood Moon helm",
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
@@ -46618,55 +46565,55 @@
   "str": 4
  },
  "29049": {
-  "name": "Eclipse moon chestplate",
+  "name": "Eclipse Moon chestplate",
   "weight": 3.0,
   "equipable": true,
   "slot": 4
  },
  "29052": {
-  "name": "Eclipse moon tassets",
+  "name": "Eclipse Moon tassets",
   "weight": 1.0,
   "equipable": true,
   "slot": 7
  },
  "29055": {
-  "name": "Eclipse moon helm",
+  "name": "Eclipse Moon helm",
   "weight": 0.907,
   "equipable": true,
   "slot": 0
  },
  "29058": {
-  "name": "Blue moon chestplate",
+  "name": "Blue Moon chestplate",
   "weight": 3.175,
   "equipable": true,
   "slot": 4
  },
  "29061": {
-  "name": "Blue moon tassets",
+  "name": "Blue Moon tassets",
   "weight": 1.36,
   "equipable": true,
   "slot": 7
  },
  "29064": {
-  "name": "Blue moon helm",
+  "name": "Blue Moon helm",
   "weight": 0.453,
   "equipable": true,
   "slot": 0
  },
  "29067": {
-  "name": "Blood moon chestplate",
+  "name": "Blood Moon chestplate",
   "weight": 5.443,
   "equipable": true,
   "slot": 4
  },
  "29070": {
-  "name": "Blood moon tassets",
+  "name": "Blood Moon tassets",
   "weight": 4.082,
   "equipable": true,
   "slot": 7
  },
  "29073": {
-  "name": "Blood moon helm",
+  "name": "Blood Moon helm",
   "weight": 0.907,
   "equipable": true,
   "slot": 0
@@ -46779,7 +46726,7 @@
   "weaponCategory": "THROWN"
  },
  "29433": {
-  "name": "Book of egg",
+  "name": "Book of Egg",
   "weight": 1.0,
   "equipable": true,
   "slot": 5
@@ -47088,7 +47035,7 @@
   "weaponCategory": "BOW"
  },
  "29602": {
-  "name": "Corrupted volatile nightmare staff",
+  "name": "Corrupted Volatile Nightmare staff",
   "weight": 1.6,
   "equipable": true,
   "slot": 3,
@@ -47099,7 +47046,7 @@
   "weaponCategory": "STAFF"
  },
  "29605": {
-  "name": "Armadyl godsword (deadman)",
+  "name": "Armadyl godsword (Deadman)",
   "weight": 10.0,
   "equipable": true,
   "slot": 3,
@@ -47112,7 +47059,7 @@
   "weaponCategory": "TWO_HANDED_SWORD"
  },
  "29607": {
-  "name": "Voidwaker (deadman)",
+  "name": "Voidwaker (Deadman)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -47127,7 +47074,7 @@
   "weaponCategory": "SLASH_SWORD"
  },
  "29609": {
-  "name": "Volatile nightmare staff (deadman)",
+  "name": "Volatile Nightmare staff (Deadman)",
   "weight": 1.6,
   "equipable": true,
   "slot": 3,
@@ -47138,7 +47085,7 @@
   "weaponCategory": "STAFF"
  },
  "29611": {
-  "name": "Dark bow (deadman)",
+  "name": "Dark bow (Deadman)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -47148,7 +47095,7 @@
   "weaponCategory": "BOW"
  },
  "29613": {
-  "name": "Imbued zamorak cape (deadman)",
+  "name": "Imbued Zamorak cape (Deadman)",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -47160,7 +47107,7 @@
   "mdmg": 2.0
  },
  "29615": {
-  "name": "Imbued guthix cape (deadman)",
+  "name": "Imbued Guthix cape (Deadman)",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -47172,7 +47119,7 @@
   "mdmg": 2.0
  },
  "29617": {
-  "name": "Imbued saradomin cape (deadman)",
+  "name": "Imbued Saradomin cape (Deadman)",
   "weight": 0.453,
   "equipable": true,
   "slot": 1,
@@ -47302,7 +47249,7 @@
   "drange": 30
  },
  "29840": {
-  "name": "Eclipse moon chestplate (Last Man Standing)",
+  "name": "Eclipse Moon chestplate (Last Man Standing)",
   "weight": 3.0,
   "equipable": true,
   "slot": 4,
@@ -47316,7 +47263,7 @@
   "str": 3
  },
  "29841": {
-  "name": "Eclipse moon tassets (Last Man Standing)",
+  "name": "Eclipse Moon tassets (Last Man Standing)",
   "weight": 1.0,
   "equipable": true,
   "slot": 7,
@@ -47330,7 +47277,7 @@
   "str": 1
  },
  "29842": {
-  "name": "Eclipse moon helm (Last Man Standing)",
+  "name": "Eclipse Moon helm (Last Man Standing)",
   "weight": 0.907,
   "equipable": true,
   "slot": 0,
@@ -47344,7 +47291,7 @@
   "str": 3
  },
  "29843": {
-  "name": "Blue moon chestplate (Last Man Standing)",
+  "name": "Blue Moon chestplate (Last Man Standing)",
   "weight": 3.175,
   "equipable": true,
   "slot": 4,
@@ -47355,7 +47302,7 @@
   "mdmg": 1.0
  },
  "29844": {
-  "name": "Blue moon tassets (Last Man Standing)",
+  "name": "Blue Moon tassets (Last Man Standing)",
   "weight": 1.36,
   "equipable": true,
   "slot": 7,
@@ -47366,7 +47313,7 @@
   "mdmg": 1.0
  },
  "29845": {
-  "name": "Blue moon helm (Last Man Standing)",
+  "name": "Blue Moon helm (Last Man Standing)",
   "weight": 0.453,
   "equipable": true,
   "slot": 0,
@@ -47377,7 +47324,7 @@
   "mdmg": 1.0
  },
  "29846": {
-  "name": "Blood moon chestplate (Last Man Standing)",
+  "name": "Blood Moon chestplate (Last Man Standing)",
   "weight": 5.443,
   "equipable": true,
   "slot": 4,
@@ -47391,7 +47338,7 @@
   "str": 4
  },
  "29847": {
-  "name": "Blood moon tassets (Last Man Standing)",
+  "name": "Blood Moon tassets (Last Man Standing)",
   "weight": 4.082,
   "equipable": true,
   "slot": 7,
@@ -47405,7 +47352,7 @@
   "str": 2
  },
  "29848": {
-  "name": "Blood moon helm (Last Man Standing)",
+  "name": "Blood Moon helm (Last Man Standing)",
   "weight": 1.0,
   "equipable": true,
   "slot": 0,
@@ -47419,7 +47366,7 @@
   "str": 4
  },
  "29849": {
-  "name": "Blue moon spear (Last Man Standing)",
+  "name": "Blue Moon spear (Last Man Standing)",
   "weight": 3.0,
   "equipable": true,
   "slot": 3,
@@ -47510,14 +47457,14 @@
   "weaponCategory": "BLUNT"
  },
  "29892": {
-  "name": "Pendant of ates",
+  "name": "Pendant of Ates",
   "weight": 0.06,
   "equipable": true,
   "slot": 2,
   "amagic": 2
  },
  "29893": {
-  "name": "Pendant of ates",
+  "name": "Pendant of Ates",
   "weight": 0.06,
   "equipable": true,
   "slot": 2,
@@ -47703,6 +47650,18 @@
   "equipable": true,
   "slot": 2
  },
+ "30045": {
+  "name": "Graceful hood (Varlamore)",
+  "weight": 0.6,
+  "equipable": true,
+  "slot": 0
+ },
+ "30047": {
+  "name": "Graceful hood (Varlamore)",
+  "weight": -3.0,
+  "equipable": true,
+  "slot": 0
+ },
  "30048": {
   "name": "Graceful cape (Varlamore)",
   "weight": 0.8,
@@ -47764,7 +47723,7 @@
   "slot": 10
  },
  "30064": {
-  "name": "Tome of earth",
+  "name": "Tome of Earth",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -47772,7 +47731,7 @@
   "dmagic": 8
  },
  "30066": {
-  "name": "Tome of earth",
+  "name": "Tome of Earth",
   "weight": 1.0,
   "equipable": true,
   "slot": 5,
@@ -47786,7 +47745,7 @@
   "slot": 3,
   "amagic": 16,
   "dmagic": 16,
-  "aspeed": 5,
+  "aspeed": 4,
   "mdmg": 10.0,
   "weaponCategory": "STAFF"
  },
@@ -47883,6 +47842,384 @@
   "weight": 0.3,
   "equipable": true,
   "slot": 4
+ },
+ "30237": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30239": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30241": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30242": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30243": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30244": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30245": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30246": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30247": {
+  "name": "Beige pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30248": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30249": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30250": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30251": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30252": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30253": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30254": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30255": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30256": {
+  "name": "White pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30257": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30258": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30259": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30260": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30261": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30262": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30263": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30264": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30265": {
+  "name": "Yellow pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30266": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30267": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30268": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30269": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30270": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30271": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30272": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30273": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30274": {
+  "name": "Orange pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30275": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30276": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30277": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30278": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30279": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30280": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30281": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30282": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30283": {
+  "name": "Red pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30284": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30285": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30286": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30287": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30288": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30289": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30290": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30291": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30292": {
+  "name": "Dark green pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30293": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30294": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30295": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30296": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30297": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30298": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30299": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30300": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
+ },
+ "30301": {
+  "name": "Powder grey pumpkin",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 0
  },
  "30302": {
   "name": "Torva full helm (unobtainable item)",
@@ -48072,6 +48409,36 @@
   "equipable": true,
   "slot": 1
  },
+ "30371": {
+  "name": "Devil's element",
+  "weight": 0.2,
+  "equipable": true,
+  "slot": 5,
+  "amagic": 20,
+  "prayer": 3,
+  "mdmg": 6.0
+ },
+ "30373": {
+  "name": "Drygore blowpipe",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 50,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
+ },
+ "30374": {
+  "name": "Drygore blowpipe",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 50,
+  "rstr": 10,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
+ },
  "30384": {
   "name": "Crystal blessing",
   "weight": 0.453,
@@ -48188,6 +48555,20 @@
   "rstr": 25,
   "aspeed": 5,
   "weaponCategory": "BOW"
+ },
+ "30437": {
+  "name": "Echo virtus mask",
+  "weight": 0.1,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 8,
+  "arange": -3,
+  "dstab": 15,
+  "dslash": 14,
+  "dcrush": 16,
+  "dmagic": 6,
+  "prayer": 1,
+  "mdmg": 2.0
  },
  "30439": {
   "name": "Echo virtus robe top",
@@ -48322,6 +48703,36 @@
   "equipable": true,
   "slot": 5,
   "weaponCategory": "BLUNT"
+ },
+ "30479": {
+  "name": "Present box hat",
+  "weight": 0.113,
+  "equipable": true,
+  "slot": 0
+ },
+ "30481": {
+  "name": "Present box hat",
+  "weight": 0.113,
+  "equipable": true,
+  "slot": 0
+ },
+ "30483": {
+  "name": "Present box hat",
+  "weight": 0.113,
+  "equipable": true,
+  "slot": 0
+ },
+ "30485": {
+  "name": "Present box hat",
+  "weight": 0.113,
+  "equipable": true,
+  "slot": 0
+ },
+ "30487": {
+  "name": "Dog disguise",
+  "weight": 0.113,
+  "equipable": true,
+  "slot": 0
  },
  "30489": {
   "name": "Festive scarf",
@@ -48788,6 +49199,12 @@
   "slot": 13,
   "rstr": 122
  },
+ "30720": {
+  "name": "Carrot costume hat",
+  "weight": 0.3,
+  "equipable": true,
+  "slot": 0
+ },
  "30722": {
   "name": "Carrot costume body",
   "weight": 0.907,
@@ -48864,6 +49281,20 @@
   "aspeed": 5,
   "mdmg": 1.0,
   "weaponCategory": "SPIKED"
+ },
+ "30777": {
+  "name": "Radiant oathplate helm",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "aslash": 10,
+  "amagic": -2,
+  "arange": -7,
+  "dstab": 50,
+  "dslash": 72,
+  "dcrush": 45,
+  "drange": 50,
+  "str": 6
  },
  "30779": {
   "name": "Radiant oathplate chest",
@@ -49210,7 +49641,7 @@
   "mdmg": 7.0
  },
  "31113": {
-  "name": "Eye of ayak",
+  "name": "Eye of Ayak",
   "weight": 2.0,
   "equipable": true,
   "slot": 3,
@@ -49322,13 +49753,13 @@
   "slot": 9
  },
  "31241": {
-  "name": "Horn of plenty",
+  "name": "Horn of Plenty",
   "weight": 1.0,
   "equipable": true,
   "slot": 5
  },
  "31243": {
-  "name": "Horn of plenty",
+  "name": "Horn of Plenty",
   "weight": 1.0,
   "equipable": true,
   "slot": 5
@@ -49481,17 +49912,6 @@
   "aspeed": 3,
   "weaponCategory": "THROWN"
  },
- "31585": {
-  "name": "Rosewood blowpipe",
-  "weight": 0.3,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 22,
-  "rstr": 6,
-  "aspeed": 3,
-  "weaponCategory": "THROWN"
- },
  "31736": {
   "name": "Storm cruiser's hat",
   "weight": 0.6,
@@ -49565,7 +49985,7 @@
   "slot": 10
  },
  "32386": {
-  "name": "Medallion of the deep",
+  "name": "Medallion of the Deep",
   "weight": 1.0,
   "equipable": true,
   "slot": 2
@@ -53545,7 +53965,7 @@
   "prayer": 3
  },
  "33021": {
-  "name": "Bow of faerdhinen (c) (deadman)",
+  "name": "Bow of Faerdhinen (c) (deadman)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -53616,7 +54036,7 @@
   "slot": 0
  },
  "33035": {
-  "name": "Toxic staff (deadman)",
+  "name": "Toxic staff (Deadman)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -53632,7 +54052,7 @@
   "weaponCategory": "BLADED_STAFF"
  },
  "33036": {
-  "name": "Toxic staff (deadman)",
+  "name": "Toxic staff (Deadman)",
   "weight": 1.5,
   "equipable": true,
   "slot": 3,
@@ -54204,6 +54624,22 @@
   "aspeed": 4,
   "weaponCategory": "BOW"
  },
+ "33247": {
+  "name": "V's helm",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "amagic": 8,
+  "arange": 12,
+  "dstab": 40,
+  "dslash": 40,
+  "dcrush": 40,
+  "dmagic": 10,
+  "drange": 40,
+  "str": 8,
+  "rstr": 2,
+  "mdmg": 3.0
+ },
  "33249": {
   "name": "Fang of the hound",
   "weight": 0.666,
@@ -54362,7 +54798,7 @@
   "weaponCategory": "BANNER"
  },
  "33314": {
-  "name": "Trident of the swamp (o)",
+  "name": "Trident of the Swamp (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -54375,7 +54811,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33316": {
-  "name": "Trident of the swamp (o)",
+  "name": "Trident of the Swamp (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -54388,7 +54824,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33318": {
-  "name": "Trident of the swamp (e) (o)",
+  "name": "Trident of the Swamp (e) (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -54401,7 +54837,7 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33320": {
-  "name": "Trident of the swamp (e) (o)",
+  "name": "Trident of the Swamp (e) (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -54414,11 +54850,11 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33322": {
-  "name": "Trident of the seas (o)",
+  "name": "Trident of the Seas (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "amagic": 25,
+  "amagic": 15,
   "dstab": 2,
   "dslash": 3,
   "dcrush": 1,
@@ -54427,11 +54863,11 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33323": {
-  "name": "Trident of the seas (o)",
+  "name": "Trident of the Seas (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "amagic": 25,
+  "amagic": 15,
   "dstab": 2,
   "dslash": 3,
   "dcrush": 1,
@@ -54440,11 +54876,11 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33326": {
-  "name": "Trident of the seas (e) (o)",
+  "name": "Trident of the Seas (e) (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "amagic": 25,
+  "amagic": 15,
   "dstab": 2,
   "dslash": 3,
   "dcrush": 1,
@@ -54453,11 +54889,11 @@
   "weaponCategory": "POWERED_STAFF"
  },
  "33328": {
-  "name": "Trident of the seas (e) (o)",
+  "name": "Trident of the Seas (e) (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "amagic": 25,
+  "amagic": 15,
   "dstab": 2,
   "dslash": 3,
   "dcrush": 1,
@@ -54509,7 +54945,7 @@
   "astab": 28,
   "aslash": 134,
   "acrush": 66,
-  "str": 121,
+  "str": 125,
   "aspeed": 5,
   "weaponCategory": "AXE"
  },
@@ -54607,11 +55043,11 @@
   "weaponCategory": "BLUNT"
  },
  "33434": {
-  "name": "Trident of the seas (o)",
+  "name": "Trident of the Seas (o)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
-  "amagic": 25,
+  "amagic": 15,
   "dstab": 2,
   "dslash": 3,
   "dcrush": 1,
@@ -54722,7 +55158,6 @@
  },
  "33553": {
   "name": "Seeking bronze arrow",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54730,7 +55165,6 @@
  },
  "33559": {
   "name": "Seeking iron arrow",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54738,7 +55172,6 @@
  },
  "33565": {
   "name": "Seeking steel arrow",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54746,7 +55179,6 @@
  },
  "33571": {
   "name": "Seeking mithril arrow",
-  "weight": 0.014,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54754,7 +55186,6 @@
  },
  "33577": {
   "name": "Seeking adamant arrow",
-  "weight": 0.018,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54762,7 +55193,6 @@
  },
  "33583": {
   "name": "Seeking rune arrow",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54770,7 +55200,6 @@
  },
  "33589": {
   "name": "Seeking amethyst arrow",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54778,7 +55207,6 @@
  },
  "33595": {
   "name": "Seeking dragon arrow",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54786,7 +55214,6 @@
  },
  "33601": {
   "name": "Seeking broad arrows",
-  "weight": 0.016,
   "equipable": true,
   "slot": 13,
   "arange": 20,
@@ -54801,7 +55228,7 @@
   "acrush": 80,
   "str": 56,
   "aspeed": 4,
-  "weaponCategory": "AXE"
+  "weaponCategory": "SPIKED"
  },
  "33639": {
   "name": "Necklace of rupture",
@@ -54820,13 +55247,9 @@
   "aspeed": 3,
   "weaponCategory": "BLUNT"
  },
- "33655": {
-  "name": "Makeshift spear",
-  "equipable": true,
-  "slot": 3
- },
  "33709": {
   "name": "Diamond sickle (b)",
+  "quest": true,
   "weight": 1.587,
   "equipable": true,
   "slot": 3,
@@ -54841,6 +55264,7 @@
  },
  "33711": {
   "name": "Enchanted diamond sickle (b)",
+  "quest": true,
   "weight": 1.587,
   "equipable": true,
   "slot": 3,
@@ -54855,6 +55279,7 @@
  },
  "33713": {
   "name": "Blisterwood sickle (e)",
+  "quest": true,
   "weight": 1.587,
   "equipable": true,
   "slot": 3,
@@ -54882,6 +55307,7 @@
  },
  "33718": {
   "name": "Hallowed flail",
+  "quest": true,
   "weight": 0.001,
   "equipable": true,
   "slot": 3,
@@ -54897,6 +55323,7 @@
  },
  "33722": {
   "name": "Sunspear",
+  "quest": true,
   "weight": 3.0,
   "equipable": true,
   "slot": 3,
@@ -54910,6 +55337,17 @@
   "prayer": 7,
   "aspeed": 5,
   "weaponCategory": "SPEAR"
+ },
+ "33790": {
+  "name": "Spine",
+  "quest": true,
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 3,
+  "arange": 16,
+  "rstr": 26,
+  "aspeed": 3,
+  "weaponCategory": "THROWN"
  },
  "33800": {
   "name": "Silvthrill ballista",
@@ -54925,8 +55363,658 @@
  },
  "33801": {
   "name": "Silvthrill javelin",
+  "quest": true,
   "equipable": true,
   "slot": 13,
   "rstr": 124
+ },
+ "33836": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33839": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33842": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33845": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33848": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33851": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33854": {
+  "name": "Noble robe top",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33857": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33860": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33863": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33866": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33869": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33872": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33875": {
+  "name": "Wyrmscraig noble skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33878": {
+  "name": "Wyrmscraig shoes",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "33881": {
+  "name": "Wyrmscraig boots",
+  "weight": 0.34,
+  "equipable": true,
+  "slot": 10
+ },
+ "33884": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33887": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33890": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33893": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33896": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33899": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33902": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33905": {
+  "name": "Wyrmscraig villager robe top (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33908": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33911": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33914": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33917": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33920": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33923": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33926": {
+  "name": "Wyrmscraig villager robe bottom (A)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33929": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33932": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33935": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33938": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33941": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33944": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33947": {
+  "name": "Wyrmscraig villager robe bottom (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33950": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33953": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33956": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33959": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33962": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33965": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33968": {
+  "name": "Wyrmscraig villager robe top (B)",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 4
+ },
+ "33971": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33974": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33977": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33980": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33983": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33986": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33989": {
+  "name": "Wyrmscraig villager skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33992": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33995": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "33998": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "34001": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "34004": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "34007": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "34010": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "34013": {
+  "name": "Wyrmscraig villager work skirt",
+  "weight": 0.907,
+  "equipable": true,
+  "slot": 7
+ },
+ "34027": {
+  "name": "Hallowfell",
+  "weight": 10.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "aslash": 117,
+  "acrush": 25,
+  "str": 110,
+  "prayer": 4,
+  "aspeed": 6,
+  "weaponCategory": "TWO_HANDED_SWORD"
+ },
+ "34063": {
+  "name": "Vampyre snelm",
+  "weight": 0.777,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -3,
+  "arange": -1,
+  "dstab": 7,
+  "dslash": 8,
+  "dcrush": 6,
+  "dmagic": -1,
+  "drange": 7
+ },
+ "34401": {
+  "name": "Necklace of Fangs",
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2,
+  "arange": 12,
+  "rstr": 1
+ },
+ "34407": {
+  "name": "Amulet of air",
+  "weight": 0.101,
+  "equipable": true,
+  "slot": 2,
+  "amagic": 10
+ },
+ "34413": {
+  "name": "Amulet of water",
+  "weight": 0.107,
+  "equipable": true,
+  "slot": 2,
+  "amagic": 10
+ },
+ "34419": {
+  "name": "Amulet of earth",
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 2,
+  "amagic": 10
+ },
+ "34425": {
+  "name": "Amulet of fire",
+  "weight": 0.107,
+  "equipable": true,
+  "slot": 2,
+  "amagic": 10
+ },
+ "34428": {
+  "name": "Elemental amulet",
+  "weight": 0.007,
+  "equipable": true,
+  "slot": 2,
+  "amagic": 10
+ },
+ "34607": {
+  "name": "Imbued ancient cape (Deadman)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "34625": {
+  "name": "Imbued ancient max cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "34627": {
+  "name": "Imbued ancient max hood",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 0
+ },
+ "34633": {
+  "name": "Imbued ancient cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "34635": {
+  "name": "Imbued ancient cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "34637": {
+  "name": "Imbued ancient cape",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1,
+  "amagic": 15,
+  "dstab": 3,
+  "dslash": 3,
+  "dcrush": 3,
+  "dmagic": 15,
+  "mdmg": 2.0
+ },
+ "34659": {
+  "name": "Living record (tier 1)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1
+ },
+ "34661": {
+  "name": "Living record (tier 2)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1
+ },
+ "34663": {
+  "name": "Living record (tier 3)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1
+ },
+ "34665": {
+  "name": "Living record (tier 4)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1
+ },
+ "34667": {
+  "name": "Living record (tier 5)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 1
+ },
+ "34681": {
+  "name": "Ascension crossbows",
+  "weight": 6.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "amagic": 3,
+  "arange": 34,
+  "dstab": -7,
+  "dslash": -5,
+  "dmagic": 10,
+  "aspeed": 3,
+  "weaponCategory": "CROSSBOW"
+ },
+ "34684": {
+  "name": "Ascension bolts",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 53
+ },
+ "34690": {
+  "name": "Diamond ascension bolts",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 58
+ },
+ "34696": {
+  "name": "Diamond ascension bolts (e)",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 58
+ },
+ "34702": {
+  "name": "Onyx ascension bolts",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 58
+ },
+ "34708": {
+  "name": "Onyx ascension bolts (e)",
+  "equipable": true,
+  "slot": 13,
+  "rstr": 58
+ },
+ "34715": {
+  "name": "Obligator",
+  "weight": 4.989,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 22,
+  "aslash": -8,
+  "acrush": 120,
+  "dslash": 16,
+  "dmagic": 3,
+  "drange": 8,
+  "str": 40,
+  "prayer": 3,
+  "aspeed": 5,
+  "weaponCategory": "EXTENDING_CHAIN_MACE"
+ },
+ "34717": {
+  "name": "Obligator",
+  "weight": 4.989,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "astab": 22,
+  "aslash": -8,
+  "acrush": 120,
+  "dslash": 16,
+  "dmagic": 3,
+  "drange": 8,
+  "str": 40,
+  "prayer": 3,
+  "aspeed": 5,
+  "weaponCategory": "EXTENDING_CHAIN_MACE"
+ },
+ "34719": {
+  "name": "Rondache",
+  "weight": 4.122,
+  "equipable": true,
+  "slot": 5,
+  "amagic": -5,
+  "arange": -8,
+  "dstab": 35,
+  "dslash": 41,
+  "dcrush": 38,
+  "dmagic": -6,
+  "drange": 55,
+  "str": 8
+ },
+ "34725": {
+  "name": "Zorya's tome",
+  "weight": 5.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "amagic": 45,
+  "dstab": 1,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 10,
+  "prayer": 2,
+  "aspeed": 3,
+  "mdmg": 15.0,
+  "weaponCategory": "UNARMED"
+ },
+ "34727": {
+  "name": "Zorya's tome",
+  "weight": 4.0,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "amagic": 45,
+  "dstab": 1,
+  "dslash": 5,
+  "dcrush": 5,
+  "dmagic": 10,
+  "prayer": 2,
+  "aspeed": 3,
+  "mdmg": 15.0,
+  "weaponCategory": "UNARMED"
  }
 }

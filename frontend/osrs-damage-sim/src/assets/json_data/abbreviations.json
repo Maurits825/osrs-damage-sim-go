@@ -196,7 +196,7 @@
  "desert heat": [
   "AoE"
  ],
- "Amulet of the damned": [
+ "Amulet of the Damned": [
   "AotD"
  ],
  "Arcane spirit shield": [
@@ -440,10 +440,12 @@
   "BK"
  ],
  "Blade of Saeldor": [
-  "Blade"
+  "Blade",
+  "Salad blade"
  ],
  "Arkan blade": [
-  "Blade"
+  "Blade",
+  "Salad blade"
  ],
  "Ice Blitz": [
   "Blitz"
@@ -478,7 +480,7 @@
  "Boss kill count": [
   "Boss kc"
  ],
- "Bow of faerdhinen": [
+ "Bow of Faerdhinen": [
   "Bowfa",
   "Bofa",
   "FBow"
@@ -1618,15 +1620,18 @@
   "Hally"
  ],
  "Food": [
-  "Hard food"
+  "Hard food",
+  "te"
  ],
  "attack delay": [
-  "Hard food"
+  "Hard food",
+  "te"
  ],
  "fish": [
-  "Hard food"
+  "Hard food",
+  "te"
  ],
- "Harmonised nightmare staff": [
+ "Harmonised Nightmare staff": [
   "Harm",
   "Harmo"
  ],
@@ -1968,7 +1973,7 @@
   "RC Pker",
   "EVoid"
  ],
- "Volatile nightmare staff": [
+ "Volatile Nightmare staff": [
   "Voli",
   "Volly",
   "Vola"
@@ -2046,6 +2051,9 @@
  "Tormented Demon": [
   "TDs"
  ],
+ "Tick eating": [
+  "te"
+ ],
  "Tears of Guthix": [
   "Tears",
   "ToG"
@@ -2058,6 +2066,9 @@
  ],
  "Kraken tentacle": [
   "Tent"
+ ],
+ "Twinflame staff": [
+  "TFS"
  ],
  "Thermonuclear smoke devil": [
   "Thermy"
@@ -2074,7 +2085,7 @@
   "Raids 3",
   "Raids 4"
  ],
- "Tome of fire": [
+ "Tome of Fire": [
   "Tome",
   "ToF"
  ],
@@ -2100,7 +2111,7 @@
  "Dragon full helm (g)": [
   "Transmog"
  ],
- "Tzrek-jad#JalRek-Jad": [
+ "TzRek-Jad#JalRek-Jad": [
   "Transmog"
  ],
  "JalRek-Jad": [
@@ -2115,9 +2126,6 @@
  ],
  "multi-way combat": [
   "Safer"
- ],
- "Blade of saeldor": [
-  "Salad blade"
  ],
  "Xerician robes": [
   "Salad robes"
@@ -2160,7 +2168,7 @@
   "Skim",
   "Skimmy"
  ],
- "Scorching Bow": [
+ "Scorching bow": [
   "Scobo",
   "Scobow"
  ],
@@ -2170,7 +2178,7 @@
  "Scythe": [
   "Scy"
  ],
- "Scythe of vitur": [
+ "Scythe of Vitur": [
   "Scy"
  ],
  "Seers' Village": [
@@ -2233,13 +2241,10 @@
   "Skiller",
   "Pure"
  ],
- "Sniping": [
-  "Snipe"
- ],
  "Shield of Arrav": [
   "SoA"
  ],
- "Staff of light": [
+ "Staff of Light": [
   "SoL"
  ],
  "food": [
@@ -2256,7 +2261,7 @@
   "Sot",
   "Sote"
  ],
- "Staff of the dead": [
+ "Staff of the Dead": [
   "SotD"
  ],
  "Song of the Elves": [
@@ -2374,7 +2379,7 @@
   "SW",
   "sw"
  ],
- "Trident of the swamp": [
+ "Trident of the Swamp": [
   "Swamp"
  ],
  "special attack": [
@@ -2454,7 +2459,7 @@
  "TzTok-Jad": [
   "Jad"
  ],
- "Tzrek-jad": [
+ "TzRek-Jad": [
   "Jad"
  ],
  "JalTok-Jad": [
@@ -2495,12 +2500,6 @@
   "Nech"
  ],
  "Neitiznot": [
-  "Nezzy",
-  "Nez",
-  "Neit",
-  "Neitz"
- ],
- "Helm of neitiznot": [
   "Nezzy",
   "Nez",
   "Neit",
@@ -3265,7 +3264,7 @@
  "Experience rate": [
   "EHP"
  ],
- "Eldritch nightmare staff": [
+ "Eldritch Nightmare staff": [
   "Eldritch",
   "Eld"
  ],

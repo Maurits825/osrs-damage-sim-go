@@ -155,3 +155,8 @@ class WeaponCategory(Enum):
         AttackStyle("Slash (Slash/Aggressive)", AttackType.SLASH, CombatStyle.AGGRESSIVE),
         AttackStyle("Block (Slash/Defensive)", AttackType.SLASH, CombatStyle.DEFENSIVE)
     ]
+    EXTENDING_CHAIN_MACE = [
+        AttackStyle("Thrust (Crush/Accurate)", AttackType.CRUSH, CombatStyle.ACCURATE),
+        AttackStyle("Thrust (Crush/Aggressive)", AttackType.CRUSH, CombatStyle.AGGRESSIVE),
+        AttackStyle("Smash (Crush/Aggressive)", AttackType.CRUSH, CombatStyle.AGGRESSIVE),
+    ]
