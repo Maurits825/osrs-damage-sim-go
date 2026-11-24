@@ -91,6 +91,11 @@ class WeaponCategory(Enum):
         AttackStyle("Accurate (Magic/Accurate)", AttackType.MAGIC, CombatStyle.ACCURATE),
         AttackStyle("Longrange (Magic/Longrange)", AttackType.MAGIC, CombatStyle.LONGRANGE)
     ]
+    POWERED_BOOK = [
+        AttackStyle("Accurate (Magic/Accurate)", AttackType.MAGIC, CombatStyle.ACCURATE),
+        AttackStyle("Accurate (Magic/Accurate)", AttackType.MAGIC, CombatStyle.ACCURATE),
+        AttackStyle("Longrange (Magic/Longrange)", AttackType.MAGIC, CombatStyle.LONGRANGE)
+    ]
     SALAMANDER = [
         AttackStyle("Scorch (Slash/Aggressive)", AttackType.SLASH, CombatStyle.AGGRESSIVE),
         AttackStyle("Flare (Ranged/Accurate)", AttackType.RANGED, CombatStyle.ACCURATE),

@@ -288,7 +288,7 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 		attackDistribution.ScaleDamage(10000+float32(demonbaneFactor)*player.Npc.demonbaneVulnerability, 10000)
 	}
 
-	if player.IsEquipped(crimsonBludgeon) && style.IsMeleeStyle() && isSpecial {
+	if player.IsEquipped(crimsonKisten) && style.IsMeleeStyle() && isSpecial {
 		specDist := &attackdist.HitDistribution{Hits: []attackdist.WeightedHit{
 			{
 				Probability: float32(math.Pow(float64(1-accuracy), 4)),
@@ -304,10 +304,6 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 			baseMaxHit := maxHit
 			effectMin := int(minHitMult * float32(baseMaxHit))
 			effectMax := int(maxHitMult * float32(baseMaxHit))
-
-			if r == 3 { //TODO is this what is meant? or is it post mult?
-				effectMax = effectMax - 1
-			}
 
 			dist := attackdist.GetLinearHitDistribution(1.0, effectMin, effectMax)
 			dist.ScaleProbability(float32(acc))

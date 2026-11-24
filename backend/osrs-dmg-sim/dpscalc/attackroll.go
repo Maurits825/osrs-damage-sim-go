@@ -105,20 +105,18 @@ func getMeleeAttackRoll(player *Player) int {
 	//TODO blisterwood
 
 	if player.combatStyle.CombatStyleType == Crush {
-		inqCount := 0
+		inqBonus := 0
 		for _, inq := range inquisitorSet {
 			if player.equippedGear.isEquipped(inq) {
-				inqCount++
+				if inq == inqHelm {
+					inqBonus += 5
+				} else {
+					inqBonus += 10
+				}
 			}
 		}
-		if inqCount > 0 {
-			if player.equippedGear.isEquipped(inqMace) {
-				inqCount *= 5
-			} else if inqCount == 3 {
-				inqCount = 5
-			}
-			attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyInq, attackRoll, 200+inqCount, 200)
-		}
+
+		attackRoll = dpsDetailEntries.TrackFactor(dpsdetail.PlayerAccuracyInq, attackRoll, 1000+inqBonus, 1000)
 	}
 
 	return attackRoll
@@ -322,14 +320,16 @@ func getSpecialAttackRoll(baseAttackRoll int, player *Player) int {
 func twistedbowScaling(current int, magic int, accuracyMode bool) int {
 	factor := 14
 	base := 250
+	clamp := 250
 	if accuracyMode {
 		factor = 10
 		base = 140
+		clamp = 140
 	}
 
 	t2 := int((3*magic - factor) / 100)
 	t3 := int(math.Pow(float64(int(3*magic/10)-(10*factor)), 2) / 100)
 
-	bonus := base + t2 - t3
+	bonus := max(0, min(clamp, base+t2-t3))
 	return int(current * bonus / 100)
 }

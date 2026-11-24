@@ -226,6 +226,9 @@
   "Arma",
   "Arm"
  ],
+ "Ascension crossbows": [
+  "Asc"
+ ],
  "Asgarnia": [
   "Asg"
  ],
@@ -322,8 +325,7 @@
   "B",
   "Bil",
   "GP",
-  "Green cash stack",
-  "K"
+  "Green cash stack"
  ],
  "Bones to Bananas": [
   "B2B",
@@ -475,7 +477,8 @@
  ],
  "Dual macuahuitl": [
   "Boppers",
-  "Dualies"
+  "Dualies",
+  "Maracas"
  ],
  "Boss kill count": [
   "Boss kc"
@@ -648,8 +651,7 @@
   "BDR"
  ],
  "Karambwan": [
-  "Bwan",
-  "Karam"
+  "Bwan"
  ],
  "The Gauntlet": [
   "(c)",
@@ -1988,8 +1990,7 @@
   "VV"
  ],
  "Voidwaker": [
-  "VW",
-  "Korasi"
+  "VW"
  ],
  "Group Ironman Mode#Unranked Group Ironman": [
   "UGIM"
@@ -2069,6 +2070,9 @@
  ],
  "Twinflame staff": [
   "TFS"
+ ],
+ "Telekinetic Grab": [
+  "TG"
  ],
  "Thermonuclear smoke devil": [
   "Thermy"
@@ -2406,56 +2410,6 @@
   "Sword",
   "Swordy"
  ],
- "Karil the Tainted's equipment": [
-  "K"
- ],
- "Karil's": [
-  "K"
- ],
- "Kandarin": [
-  "Kand",
-  "Kanda",
-  "Kan"
- ],
- "Karamja": [
-  "Karam"
- ],
- "King Black Dragon": [
-  "KBD"
- ],
- "Kill count": [
-  "KC"
- ],
- "Karil's crossbow": [
-  "KCB",
-  "Kbow",
-  "KXB"
- ],
- "Keldagrim": [
-  "Kelda",
-  "Keld"
- ],
- "Weight": [
-  "KG"
- ],
- "Kiteshield": [
-  "Kite"
- ],
- "Kodai wand": [
-  "Kodai"
- ],
- "Karambwan paste": [
-  "(kp)"
- ],
- "Kalphite Queen": [
-  "KQ"
- ],
- "Karil's leatherskirt": [
-  "KSkirt"
- ],
- "Karil's leathertop": [
-  "KTop"
- ],
  "TzTok-Jad": [
   "Jad"
  ],
@@ -2526,7 +2480,7 @@
  ],
  "Noxious halberd": [
   "Nhally",
-  "Nelly"
+  "Nally"
  ],
  "Nitroglycerin": [
   "Nitro"
@@ -2600,9 +2554,6 @@
  ],
  "main": [
   "Main"
- ],
- "dual macuahuitl": [
-  "Maracas"
  ],
  "free for all": [
   "Mass(ing)"

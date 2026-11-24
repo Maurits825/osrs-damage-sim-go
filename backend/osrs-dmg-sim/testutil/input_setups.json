@@ -1,6 +1,6 @@
 {
   "Vorkath max dhcb": {
-    "expectedDps": 11.529653,
+    "expectedDps": 11.653961,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -109,7 +109,7 @@
     }
   },
   "Cerb max scythe inq slayer": {
-    "expectedDps": 12.634607,
+    "expectedDps": 13.005208,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -215,7 +215,7 @@
     }
   },
   "Olm max tbow": {
-    "expectedDps": 11.724658,
+    "expectedDps": 11.709569,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -1048,7 +1048,7 @@
     }
   },
   "Olm melee hand scythe crush 1 dwh 50 bgs": {
-    "expectedDps": 11.596047,
+    "expectedDps": 11.688951,
     "inputSetup": {
       "globalSettings": {
         "iterations": 10000,
@@ -1152,7 +1152,7 @@
     }
   },
   "Sote 3 man max rapier 3 dwh": {
-    "expectedDps": 8.967832,
+    "expectedDps": 9.196733,
     "inputSetup": {
       "globalSettings": {
         "iterations": 1000,
@@ -1358,7 +1358,7 @@
     }
   },
   "Tekton CM inquisitor mace": {
-    "expectedDps": 5.5536447,
+    "expectedDps": 5.564345,
     "inputSetup": {
       "globalSettings": {
         "iterations": 1000,
@@ -1586,7 +1586,7 @@
     }
   },
   "Ice demon max tbow": {
-    "expectedDps": 3.807845,
+    "expectedDps": 3.824983,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -1811,7 +1811,7 @@
     }
   },
   "Zulrah max tbow ranging pot": {
-    "expectedDps": 9.099011,
+    "expectedDps": 9.085035,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -2149,7 +2149,7 @@
     }
   },
   "Vardorvis max soulreaper axe bellator": {
-    "expectedDps": 7.5427566,
+    "expectedDps": 7.749256,
     "inputSetup": {
       "globalSettings": {
         "npc": {
@@ -4664,7 +4664,7 @@
     }
   },
   "Max inq crimson spec phosani": {
-    "expectedDps": 10.522679,
+    "expectedDps": 24.952820,
     "inputSetup": {
       "multiNpcs": [],
       "globalSettings": {
@@ -4783,7 +4783,7 @@
               "name": "Dragon dart",
               "id": 11230
             },
-            "attackStyle": "Hack (Slash/Aggressive)",
+            "attackStyle": "Pummel (Crush/Aggressive)",
             "spell": null,
             "isSpecial": true,
             "prayers": [

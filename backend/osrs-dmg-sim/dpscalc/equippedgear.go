@@ -96,10 +96,12 @@ const (
 	aquaHopper = 32879_000 //TODO -- disable this for now
 	atlatl     = 29000
 
-	crimsonBludgeon = 33631
+	crimsonKisten = 33631
 
 	eyeOfAyak            = 31113
 	conflictionGauntlets = 31106
+
+	inqHelm = 24419
 )
 
 // echo leagues stuff
@@ -113,7 +115,7 @@ const (
 var virtusSet = []int{26241, 26243, 26245}
 var voidRobes = []int{8839, 8840, 8842}
 var eliteVoidRobes = []int{13072, 13073, 8842}
-var inquisitorSet = []int{24419, 24420, 24421}
+var inquisitorSet = []int{inqHelm, 24420, 24421}
 var kerisWeapons = []int{10581, 10582, 10583, 10584, 25979, kerisBreaching, 27291, 27287, kerisAmascut}
 var demonBaneWeapons = []int{2402, 6746}
 

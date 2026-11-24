@@ -2784,7 +2784,7 @@
   "weaponCategory": "PICKAXE"
  },
  "1277": {
-  "name": "Bronze sword",
+  "name": "Bronze shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -2798,7 +2798,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "1279": {
-  "name": "Iron sword",
+  "name": "Iron shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -2812,7 +2812,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "1281": {
-  "name": "Steel sword",
+  "name": "Steel shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -2826,7 +2826,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "1283": {
-  "name": "Black sword",
+  "name": "Black shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -2840,7 +2840,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "1285": {
-  "name": "Mithril sword",
+  "name": "Mithril shortsword",
   "weight": 1.587,
   "equipable": true,
   "slot": 3,
@@ -2854,7 +2854,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "1287": {
-  "name": "Adamant sword",
+  "name": "Adamant shortsword",
   "weight": 2.041,
   "equipable": true,
   "slot": 3,
@@ -2868,7 +2868,7 @@
   "weaponCategory": "STAB_SWORD"
  },
  "1289": {
-  "name": "Rune sword",
+  "name": "Rune shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -13008,7 +13008,7 @@
   "weaponCategory": "STAFF"
  },
  "6605": {
-  "name": "White sword",
+  "name": "White shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -14948,7 +14948,7 @@
   "weaponCategory": "CLAW"
  },
  "7675": {
-  "name": "Wooden sword",
+  "name": "Wooden shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -17494,47 +17494,6 @@
   "drange": 31,
   "prayer": 6
  },
- "9703": {
-  "name": "Training sword",
-  "weight": 1.814,
-  "equipable": true,
-  "slot": 3,
-  "astab": 4,
-  "aslash": 3,
-  "acrush": -2,
-  "dslash": 2,
-  "dcrush": 1,
-  "str": 5,
-  "aspeed": 4,
-  "weaponCategory": "STAB_SWORD"
- },
- "9704": {
-  "name": "Training shield",
-  "weight": 5.443,
-  "equipable": true,
-  "slot": 5,
-  "dstab": 4,
-  "dslash": 5,
-  "dcrush": 3,
-  "dmagic": 1,
-  "drange": 4
- },
- "9705": {
-  "name": "Training bow",
-  "weight": 1.36,
-  "equipable": true,
-  "slot": 3,
-  "is2h": true,
-  "arange": 8,
-  "aspeed": 4,
-  "weaponCategory": "BOW"
- },
- "9706": {
-  "name": "Training arrows",
-  "equipable": true,
-  "slot": 13,
-  "rstr": 7
- },
  "9729": {
   "name": "Elemental helmet",
   "quest": true,
@@ -18299,7 +18258,7 @@
   "slot": 0
  },
  "10010": {
-  "name": "Butterfly net",
+  "name": "Insect net",
   "weight": 0.226,
   "equipable": true,
   "slot": 3,
@@ -20795,7 +20754,7 @@
   "weaponCategory": "BOW"
  },
  "11259": {
-  "name": "Magic butterfly net",
+  "name": "Magic insect net",
   "weight": 0.226,
   "equipable": true,
   "slot": 3,
@@ -29314,7 +29273,7 @@
   "weaponCategory": "STAFF"
  },
  "21009": {
-  "name": "Dragon sword",
+  "name": "Dragon shortsword",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -29769,6 +29728,19 @@
   "str": 147,
   "aspeed": 6,
   "weaponCategory": "BLUNT"
+ },
+ "21206": {
+  "name": "Dragon shortsword (Last Man Standing)",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 65,
+  "aslash": 55,
+  "acrush": -2,
+  "dslash": 2,
+  "dcrush": 1,
+  "str": 63,
+  "aspeed": 4
  },
  "21209": {
   "name": "Birthday balloons",
@@ -44630,7 +44602,7 @@
   "weaponCategory": "SPIKED"
  },
  "28029": {
-  "name": "Dragon sword (cr)",
+  "name": "Dragon shortsword (cr)",
   "weight": 1.814,
   "equipable": true,
   "slot": 3,
@@ -55809,6 +55781,100 @@
   "dmagic": 15,
   "mdmg": 2.0
  },
+ "34609": {
+  "name": "Karil's leatherskirt (Pete Kayer's Challenges)",
+  "weight": 5.443,
+  "equipable": true,
+  "slot": 7,
+  "amagic": -10,
+  "arange": 17,
+  "dstab": 26,
+  "dslash": 20,
+  "dcrush": 28,
+  "dmagic": 35,
+  "drange": 33
+ },
+ "34611": {
+  "name": "Bandos chestplate (Pete Kayer's Challenges)",
+  "weight": 12.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -15,
+  "arange": -10,
+  "dstab": 98,
+  "dslash": 93,
+  "dcrush": 105,
+  "dmagic": -6,
+  "drange": 133,
+  "str": 4,
+  "prayer": 1
+ },
+ "34613": {
+  "name": "Fighter torso (Pete Kayer's Challenges)",
+  "weight": 4.0,
+  "equipable": true,
+  "slot": 4,
+  "amagic": -40,
+  "dstab": 62,
+  "dslash": 85,
+  "dcrush": 62,
+  "dmagic": -10,
+  "drange": 67,
+  "str": 4
+ },
+ "34615": {
+  "name": "Black d'hide shield (Pete Kayer's Challenges)",
+  "weight": 8.0,
+  "equipable": true,
+  "slot": 5,
+  "astab": -15,
+  "aslash": -15,
+  "acrush": -11,
+  "amagic": -10,
+  "arange": 7,
+  "dstab": 21,
+  "dslash": 18,
+  "dcrush": 16,
+  "dmagic": 15,
+  "drange": 14
+ },
+ "34617": {
+  "name": "Torva full helm (Pete Kayer's Challenges)",
+  "weight": 2.721,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -5,
+  "arange": -5,
+  "dstab": 59,
+  "dslash": 60,
+  "dcrush": 62,
+  "dmagic": -2,
+  "drange": 57,
+  "str": 8,
+  "prayer": 1
+ },
+ "34619": {
+  "name": "Abyssal tentacle (Pete Kayer's Challenges)",
+  "weight": 0.453,
+  "equipable": true,
+  "slot": 3,
+  "aslash": 90,
+  "str": 86,
+  "aspeed": 4,
+  "weaponCategory": "WHIP"
+ },
+ "34621": {
+  "name": "Dragon boots (Pete Kayer's Challenges)",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 10,
+  "amagic": -3,
+  "arange": -1,
+  "dstab": 16,
+  "dslash": 17,
+  "dcrush": 18,
+  "str": 4
+ },
  "34625": {
   "name": "Imbued ancient max cape",
   "weight": 0.453,
@@ -55999,7 +56065,7 @@
   "prayer": 2,
   "aspeed": 3,
   "mdmg": 15.0,
-  "weaponCategory": "UNARMED"
+  "weaponCategory": "POWERED_BOOK"
  },
  "34727": {
   "name": "Zorya's tome",
@@ -56015,6 +56081,135 @@
   "prayer": 2,
   "aspeed": 3,
   "mdmg": 15.0,
-  "weaponCategory": "UNARMED"
+  "weaponCategory": "POWERED_BOOK"
+ },
+ "34740": {
+  "name": "Vampyre monocle",
+  "weight": 0.003,
+  "equipable": true,
+  "slot": 0
+ },
+ "34742": {
+  "name": "Vampyre costume top",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 4
+ },
+ "34744": {
+  "name": "Vampyre costume bottom",
+  "weight": 1.0,
+  "equipable": true,
+  "slot": 7
+ },
+ "34746": {
+  "name": "Vampyre costume cape",
+  "weight": 0.5,
+  "equipable": true,
+  "slot": 1
+ },
+ "34762": {
+  "name": "Amulet of sight",
+  "quest": true,
+  "weight": 0.01,
+  "equipable": true,
+  "slot": 2,
+  "arange": 10
+ },
+ "34766": {
+  "name": "Painted shortsword",
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "astab": 4,
+  "aslash": 3,
+  "acrush": -2,
+  "dslash": 2,
+  "dcrush": 1,
+  "str": 5,
+  "aspeed": 4
+ },
+ "34769": {
+  "name": "Painted kiteshield",
+  "weight": 5.443,
+  "equipable": true,
+  "slot": 5,
+  "amagic": -8,
+  "arange": -3,
+  "dstab": 5,
+  "dslash": 7,
+  "dcrush": 6,
+  "dmagic": -1,
+  "drange": 6
+ },
+ "34772": {
+  "name": "Painted shortbow",
+  "weight": 1.36,
+  "equipable": true,
+  "slot": 3,
+  "is2h": true,
+  "arange": 8,
+  "aspeed": 4
+ },
+ "34777": {
+  "name": "Bee hunter's hat",
+  "quest": true,
+  "weight": 0.001,
+  "equipable": true,
+  "slot": 0
+ },
+ "34801": {
+  "name": "Pink snelm",
+  "quest": true,
+  "weight": 2.0,
+  "equipable": true,
+  "slot": 0,
+  "amagic": -3,
+  "arange": -1,
+  "dstab": 7,
+  "dslash": 8,
+  "dcrush": 6,
+  "dmagic": -1,
+  "drange": 7
+ },
+ "34835": {
+  "name": "Sedridor's staff",
+  "quest": true,
+  "weight": 1.814,
+  "equipable": true,
+  "slot": 3,
+  "aslash": -1,
+  "acrush": 7,
+  "amagic": 4,
+  "dstab": 2,
+  "dslash": 3,
+  "dcrush": 1,
+  "dmagic": 4,
+  "str": 3,
+  "aspeed": 5,
+  "weaponCategory": "STAFF"
+ },
+ "34840": {
+  "name": "Heavy bonesack",
+  "quest": true,
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 1,
+  "dstab": 4,
+  "dslash": 4,
+  "dcrush": 4,
+  "dmagic": 4,
+  "drange": 4
+ },
+ "34842": {
+  "name": "Heavy bonesack",
+  "quest": true,
+  "weight": 3.0,
+  "equipable": true,
+  "slot": 1,
+  "dstab": 4,
+  "dslash": 4,
+  "dcrush": 4,
+  "dmagic": 4,
+  "drange": 4
  }
 }

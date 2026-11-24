@@ -1,17 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UnitTest } from './unit-test.model';
 import { DpsCalcInputService } from 'src/app/services/dps-calc-input.service';
 import { InputSetup } from 'src/app/model/dps-calc/input-setup.model';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-unit-test-modal',
   templateUrl: './unit-test-modal.component.html',
 })
-export class UnitTestModalComponent {
+export class UnitTestModalComponent implements OnInit {
   unitTests: Record<string, UnitTest>;
 
-  constructor(public activeModal: NgbActiveModal, private inputSetupService: DpsCalcInputService) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private inputSetupService: DpsCalcInputService,
+  ) {}
+
+  ngOnInit(): void {
+    if (this.inputSetupService.unitTests) {
+      this.unitTests = cloneDeep(this.inputSetupService.unitTests);
+    }
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -30,6 +40,7 @@ export class UnitTestModalComponent {
       } catch (error) {
         console.error('Error parsing JSON:', error);
       }
+      this.inputSetupService.unitTests = this.unitTests;
     };
     reader.readAsText(file);
   }

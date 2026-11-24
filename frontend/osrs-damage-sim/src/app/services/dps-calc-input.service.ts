@@ -7,6 +7,7 @@ import { UserSettings } from '../model/shared/user-settings.model';
 import { GlobalSettings } from '../model/shared/global-settings.model';
 import { JsonParseService } from './json-parse.service';
 import { Npc } from '../model/osrs/npc.model';
+import { UnitTest } from '../shared/modals/unit-test-modal/unit-test.model';
 
 export interface InputGearSetupProvider {
   getInputGearSetup(): InputGearSetup[];
@@ -31,6 +32,8 @@ export class DpsCalcInputService {
   multiNpcsProvider: MultiNpcsProvider;
 
   userSettingsWatch$: Observable<UserSettings>;
+
+  unitTests: Record<string, UnitTest>;
 
   constructor(
     private localStorageService: LocalStorageService,

@@ -111,21 +111,18 @@ func getMeleeMaxHit(player *Player) int {
 	}
 
 	if player.combatStyle.CombatStyleType == Crush {
-		inqCount := 0
+		inqBonus := 0
 		for _, inq := range inquisitorSet {
 			if player.equippedGear.isEquipped(inq) {
-				inqCount++
+				if inq == inqHelm {
+					inqBonus += 5
+				} else {
+					inqBonus += 10
+				}
 			}
 		}
-		if inqCount == 3 {
-			inqCount = 5
-		}
-		if inqCount > 0 {
-			if player.equippedGear.isEquipped(inqMace) {
-				inqCount *= 3
-			}
-			maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitInq, maxHit, 200+inqCount, 200)
-		}
+
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitInq, maxHit, 1000+inqBonus, 1000)
 	}
 
 	return maxHit
