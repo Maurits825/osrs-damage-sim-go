@@ -103,7 +103,8 @@ const (
 
 	inqHelm = 24419
 
-	blicky = 34715
+	blicky            = 34715
+	ascensionCrossbow = 34681
 )
 
 // echo leagues stuff
@@ -126,7 +127,7 @@ var smokeBattleStaves = []int{11998, 12000}
 var dharokSet = []int{4716, 4718, 4720, 4722}
 
 var enchantedRubyBolts = []int{9242, 21944}
-var enchantedDiamondBolts = []int{9243, 21946}
+var enchantedDiamondBolts = []int{9243, 21946, 34696}
 
 var amuletDamned = 12851
 var karilSet = []int{4734, 4732, 4736, 4738}

@@ -3619,7 +3619,7 @@
     }
   },
   "Ralos void maiden 1 ralos": {
-    "expectedDps": 5.668469,
+    "expectedDps": 5.715376,
     "inputSetup": {
       "globalSettings": {
         "npc": {

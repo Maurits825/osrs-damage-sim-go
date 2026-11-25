@@ -351,6 +351,10 @@ func applyNonRubyBoltEffects(player *Player, baseHitDist *attackdist.HitDistribu
 
 	if player.equippedGear.isAnyEquipped(enchantedDiamondBolts) && style == Ranged {
 		effectChance := float32(0.1 * kandarinFactor)
+		if player.IsEquipped(ascensionCrossbow) {
+			effectChance /= 2
+		}
+
 		zcbFactor := 15
 		if player.equippedGear.isEquipped(zaryteCrossbow) {
 			zcbFactor = 26

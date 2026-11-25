@@ -112,7 +112,7 @@ func (npc *Npc) ApplyStatDrain(statsDrains []StatDrain) {
 		case Ralos:
 			for range statDrain.Value {
 				currentDefence := npc.CombatStats.Defence
-				defence := currentDefence - int(npc.CombatStats.Magic/10)
+				defence := currentDefence - int(npc.CombatStats.Magic/8)
 				npc.CombatStats.Defence = max(minDefence, defence)
 			}
 		case EyeofAyak:
