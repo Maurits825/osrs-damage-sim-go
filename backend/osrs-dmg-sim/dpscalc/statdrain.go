@@ -2,6 +2,29 @@ package dpscalc
 
 import "slices"
 
+var tfaMindef = map[int]int{
+	//archive
+	16659: 156,
+	16660: 156,
+
+	//ezekiel
+	16652: 120,
+
+	//bork and smork
+	16640: 180,
+	16641: 0,
+
+	//moia
+	16667: 117,
+
+	//xarth
+	16684: 102,
+
+	16673: 129, //oc p1
+	16675: 0,   //oc p2
+	16677: 150, //oc p3
+}
+
 func getMinDefence(npc *Npc) int {
 	if slices.Contains(verzikIds, npc.id) || npc.name == "Vardorvis" {
 		return npc.CombatStats.Defence
@@ -35,6 +58,10 @@ func getMinDefence(npc *Npc) int {
 	}
 	if slices.Contains(araxxor, npc.id) {
 		return 90
+	}
+
+	if minDef, exists := tfaMindef[npc.id]; exists {
+		return minDef
 	}
 
 	// no limit
