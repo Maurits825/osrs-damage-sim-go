@@ -62,6 +62,7 @@ const (
 	MaxHitRatbane                     DetailKey = "Max hit ratbane"
 	MaxHitTome                        DetailKey = "Max hit tome"
 	MaxHitRalos                       DetailKey = "Max hit ralos"
+	MaxHitObligator                   DetailKey = "Max hit obligator"
 	MaxHitFinal                       DetailKey = "Max hit"
 	SpecialMaxHitFinal                DetailKey = "Spec Max hit"
 	PlayerAccuracyScurriusRat         DetailKey = "Player accuracy override giant rat"

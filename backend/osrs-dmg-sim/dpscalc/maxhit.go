@@ -110,6 +110,16 @@ func getMeleeMaxHit(player *Player) int {
 		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitColossalblade, maxHit, min(0, player.Npc.size), 10)
 	}
 
+	if player.equippedGear.isEquipped(blicky) && player.inputGearSetup.GearSetup.AttackStyle != "Smash (Crush/Aggressive)" &&
+		player.combatStyle.CombatStyleType.IsMeleeStyle() && player.Npc.size >= 2 {
+		bonus := 40
+		if player.Npc.size == 2 {
+			bonus = 20
+		}
+
+		maxHit = dpsDetailEntries.TrackFactor(dpsdetail.MaxHitObligator, maxHit, 100+bonus, 100)
+	}
+
 	if player.combatStyle.CombatStyleType == Crush {
 		inqBonus := 0
 		for _, inq := range inquisitorSet {

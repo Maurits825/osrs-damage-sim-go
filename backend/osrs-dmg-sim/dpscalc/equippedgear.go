@@ -102,6 +102,8 @@ const (
 	conflictionGauntlets = 31106
 
 	inqHelm = 24419
+
+	blicky = 34715
 )
 
 // echo leagues stuff

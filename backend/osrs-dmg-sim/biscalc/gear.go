@@ -21,6 +21,7 @@ const (
 	inqMace         = 24417
 	elderMaul       = 21003
 	abbysalBludgeon = 13263
+	blicky          = 34715
 
 	dhl = 22978
 
@@ -78,7 +79,7 @@ const (
 // TODO hardcoded weapons, better way?
 var meleeStabWeapons = []int{fang, rapier, noxHally, zammySpear}
 var meleeSlashWeapons = []int{scythe, saladBlade, soulreaperAxe, noxHally}
-var meleeCrushWeapons = []int{scythe, inqMace, elderMaul, abbysalBludgeon}
+var meleeCrushWeapons = []int{blicky, scythe, inqMace, elderMaul, abbysalBludgeon}
 var meleeSpecWeapons = []int{fang, bandosGodsword, armadylGodsword, abbysalDagger, crystalHalberd, voidwaker, dragonClaws, dragonWarhammer, crimsonKisten}
 
 //TODO bowfa has to be with crystal armour, crystal armour is only good with bowfa

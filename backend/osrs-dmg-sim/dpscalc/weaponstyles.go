@@ -92,6 +92,11 @@ var WeaponStyles = map[string][]CombatOption{
 		{"Accurate (Magic/Accurate)", CombatStyleType("Magic"), combatStyleStance("Accurate")},
 		{"Longrange (Magic/Longrange)", CombatStyleType("Magic"), combatStyleStance("Longrange")},
 	},
+	"POWERED_BOOK": {
+		{"Accurate (Magic/Accurate)", CombatStyleType("Magic"), combatStyleStance("Accurate")},
+		{"Accurate (Magic/Accurate)", CombatStyleType("Magic"), combatStyleStance("Accurate")},
+		{"Longrange (Magic/Longrange)", CombatStyleType("Magic"), combatStyleStance("Longrange")},
+	},
 	"SALAMANDER": {
 		{"Scorch (Slash/Aggressive)", CombatStyleType("Slash"), combatStyleStance("Aggressive")},
 		{"Flare (Ranged/Accurate)", CombatStyleType("Ranged"), combatStyleStance("Accurate")},
@@ -150,5 +155,10 @@ var WeaponStyles = map[string][]CombatOption{
 	},
 	"GUN": {
 		{"Kick (Crush/Aggressive)", CombatStyleType("Crush"), combatStyleStance("Aggressive")},
+	},
+	"EXTENDING_CHAIN_MACE": {
+		{"Thrust (Crush/Accurate)", CombatStyleType("Crush"), combatStyleStance("Accurate")},
+		{"Thrust (Crush/Aggressive)", CombatStyleType("Crush"), combatStyleStance("Aggressive")},
+		{"Smash (Crush/Aggressive)", CombatStyleType("Crush"), combatStyleStance("Aggressive")},
 	},
 }

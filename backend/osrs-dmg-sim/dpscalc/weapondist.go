@@ -313,6 +313,28 @@ func getAttackDistribution(player *Player, accuracy float32, maxHit int) *attack
 		attackDistribution.SetSingleAttackDistribution(specDist)
 	}
 
+	if player.equippedGear.isEquipped(blicky) && player.inputGearSetup.GearSetup.AttackStyle != "Smash (Crush/Aggressive)" && player.combatStyle.CombatStyleType.IsMeleeStyle() {
+		rolls := float64(2)
+		if player.Npc.DefensiveStats.stab > player.Npc.DefensiveStats.crush {
+			rolls++
+		}
+		if player.Npc.DefensiveStats.slash > player.Npc.DefensiveStats.crush {
+			rolls++
+		}
+
+		cumProb := 0.0
+		for i := range attackDistribution.Distributions[0].Hits {
+			if i == 0 {
+				continue
+			}
+
+			prevProb := cumProb
+			cumProb += float64(attackDistribution.Distributions[0].Hits[i].Probability) / float64(accuracy)
+			attackDistribution.Distributions[0].Hits[i].Probability = accuracy * (float32(math.Pow(cumProb, rolls)) - float32(math.Pow(prevProb, rolls)))
+		}
+
+	}
+
 	applyLimiters(player, attackDistribution)
 
 	return attackDistribution
