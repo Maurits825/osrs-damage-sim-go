@@ -30,7 +30,7 @@ export const quickGearSetups: QuickGearSetup = {
   },
   [GearSlot.Weapon]: {
     melee: [13652, 29577, 27690, 23987],
-    ranged: [25865, 26374],
+    ranged: [25865, 26374, 12926],
     magic: [11905, 12899, 31113],
   },
   [GearSlot.Body]: {

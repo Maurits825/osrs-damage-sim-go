@@ -13,7 +13,7 @@ export class PrayerSelectionComponent implements OnInit, OnChanges {
   selectedPrayers: Set<Prayer>;
 
   @Input()
-  quickPrayers: Set<Prayer> = new Set(['piety', 'chivalry', 'rigour', 'eagle_eye', 'augury', 'mystic_might']);
+  quickPrayers: Set<Prayer> = new Set(['zeal', 'piety', 'chivalry', 'rigour', 'eagle_eye', 'augury', 'mystic_might']);
 
   @Output()
   prayerToggle = new EventEmitter<Prayer>();

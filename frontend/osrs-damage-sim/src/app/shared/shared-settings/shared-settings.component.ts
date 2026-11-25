@@ -24,7 +24,7 @@ export class SharedSettingsComponent implements OnInit {
 
   quickPrayers: Record<AttackType, Set<Prayer>> = {
     magic: new Set(['augury']),
-    melee: new Set(['piety']),
+    melee: new Set(['zeal']),
     ranged: new Set(['rigour']),
   };
 
@@ -39,7 +39,10 @@ export class SharedSettingsComponent implements OnInit {
 
   userSettingsWatch$: Observable<UserSettings>;
 
-  constructor(private sharedSettingsService: SharedSettingsService, private localStorageService: LocalStorageService) {}
+  constructor(
+    private sharedSettingsService: SharedSettingsService,
+    private localStorageService: LocalStorageService,
+  ) {}
 
   ngOnInit(): void {
     this.selectedPrayers = this.sharedSettingsService.prayers$.getValue();

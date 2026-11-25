@@ -33,7 +33,7 @@ export const DEFAULT_BIS_INPUT_SETUP: BisCalcInputSetup = {
   },
   prayers: {
     magic: new Set(['augury']),
-    melee: new Set(['piety']),
+    melee: new Set(['zeal']),
     ranged: new Set(['rigour']),
   },
   isOnSlayerTask: false,

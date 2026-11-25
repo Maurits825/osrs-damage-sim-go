@@ -37,7 +37,7 @@ export class BisCalcSettingsComponent implements OnInit {
 
   quickPrayers: Record<AttackType, Set<Prayer>> = {
     magic: new Set(['augury']),
-    melee: new Set(['piety']),
+    melee: new Set(['zeal']),
     ranged: new Set(['rigour']),
   };
 

@@ -19,6 +19,7 @@ export const allPrayers = [
   'mystic_vigour',
   'rigour',
   'augury',
+  'zeal',
 ] as const;
 
 export type Prayer = (typeof allPrayers)[number];
@@ -29,6 +30,6 @@ export type ReplacePrayer = {
 
 export const DEFAULT_PRAYERS: Record<AttackType, Set<Prayer>> = {
   magic: new Set(['augury']),
-  melee: new Set(['piety']),
+  melee: new Set(['zeal']),
   ranged: new Set(['rigour']),
 };

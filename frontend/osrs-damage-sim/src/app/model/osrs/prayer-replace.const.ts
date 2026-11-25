@@ -16,6 +16,7 @@ export const attackPrayers: Set<Prayer> = new Set([
   'augury',
   'deadeye',
   'mystic_vigour',
+  'zeal',
 ]);
 
 export const strengthPrayers: Set<Prayer> = new Set([
@@ -34,9 +35,10 @@ export const strengthPrayers: Set<Prayer> = new Set([
   'augury',
   'deadeye',
   'mystic_vigour',
+  'zeal',
 ]);
 
-export const defencePrayers: Set<Prayer> = new Set(['chivalry', 'piety', 'rigour', 'augury']);
+export const defencePrayers: Set<Prayer> = new Set(['chivalry', 'piety', 'rigour', 'augury', 'zeal']);
 
 export const replacePrayers: ReplacePrayer = {
   burst_of_strength: strengthPrayers,
@@ -57,4 +59,5 @@ export const replacePrayers: ReplacePrayer = {
   augury: new Set([...attackPrayers, ...strengthPrayers, ...defencePrayers]),
   deadeye: new Set([...attackPrayers, ...strengthPrayers, ...defencePrayers]),
   mystic_vigour: new Set([...attackPrayers, ...strengthPrayers, ...defencePrayers]),
+  zeal: new Set([...attackPrayers, ...strengthPrayers, ...defencePrayers]),
 };

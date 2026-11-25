@@ -36,6 +36,8 @@ func (prayer Prayer) getPrayerBoost() prayerBoost {
 		return prayerBoost{meleeAttack: factor{23, 20}, meleeStrength: factor{118, 100}, defence: factor{6, 5}}
 	case PietyPrayer:
 		return prayerBoost{meleeAttack: factor{6, 5}, meleeStrength: factor{123, 100}, defence: factor{5, 4}}
+	case ZealPrayer:
+		return prayerBoost{meleeAttack: factor{125, 100}, meleeStrength: factor{128, 100}, defence: factor{125, 100}}
 	case RigourPrayer:
 		return prayerBoost{rangedAttack: factor{6, 5}, rangedStrength: factor{123, 100}, defence: factor{5, 4}}
 	case AuguryPrayer:
